@@ -41,6 +41,7 @@ export default function Hero() {
               />
             </h4>
             <AuSoftUI.UI.Button
+              onClick={() => window.open("https://www.facebook.com/marcafl3x/")}
               size={"lg"}
               className="rounded-full md:mt-4 mt-2.5 animate-pulse"
               variant={"primary"}

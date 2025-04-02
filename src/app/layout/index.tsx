@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${anek.className} transition-all duration-500 bg-slate-200/80 dark:bg-ausoft-slate-900`}
+        className={`${anek.className} transition-all duration-500 bg-slate-200/80 dark:bg-ausoft-slate-950`}
       >
         <Suspense>
           <SocketProvider>

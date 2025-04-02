@@ -29,7 +29,7 @@ interface ITicketAmount {
   name: string;
 }
 
-interface ICheckoutProduct {
+interface ICheckoutTicket {
   customer: string;
   email: string;
   phone: string;
@@ -42,14 +42,16 @@ interface ICheckoutContextProps {
   selectedViewedInvoice: IInvoiceTransaction;
   backToCheckoutUrl: string | undefined;
   amountPriceSelected: ITicketAmount | undefined;
-  selectedProduct: ITicket | undefined;
-  selectedCustomerBuyed: ICheckoutProduct | undefined;
+  selectedCheckoutTicket: ITicket | undefined;
+  selectedCustomerBuyed: ICheckoutTicket | undefined;
   isPurchased: boolean;
 
   handleIsPurchased: (mode: boolean) => void;
-  handleSelectCustomerBuyed: (customer: ICheckoutProduct | undefined) => void;
-  handleSelectProduct: (product: ITicket | undefined) => void;
-  handlePriceAmountSelected: (product: ITicketAmount | undefined) => void;
+  handleSelectCustomerBuyed: (customer: ICheckoutTicket | undefined) => void;
+  handleSelectCheckoutTicket: (Checkoutticket: ITicket | undefined) => void;
+  handlePriceAmountSelected: (
+    Checkoutticket: ITicketAmount | undefined
+  ) => void;
   handleBackToCheckoutUrl: (url: string | undefined) => void;
   handleSelectViewInvoice: (type: IInvoiceTransaction) => void;
   handleSelectAngolanMethod: (method: TAngolanMethods) => void;
@@ -80,7 +82,7 @@ export default function CheckoutProvider({
   >();
 
   const [selectedCustomerBuyed, setSelectedCustomerBuyed] = useState<
-    ICheckoutProduct | undefined
+    ICheckoutTicket | undefined
   >();
 
   const [selectedViewedInvoice, setSelectedViewedInvoice] =
@@ -90,7 +92,7 @@ export default function CheckoutProvider({
     string | undefined
   >();
 
-  const [selectedProduct, setSelectedProduct] = useState<
+  const [selectedCheckoutTicket, setSelectedCheckoutTicket] = useState<
     ITicket | undefined
   >();
 
@@ -114,15 +116,17 @@ export default function CheckoutProvider({
     setBackToCheckoutUrl(url);
   }
 
-  function handlePriceAmountSelected(product: ITicketAmount | undefined) {
-    setAmountPriceSelected(product);
+  function handlePriceAmountSelected(
+    Checkoutticket: ITicketAmount | undefined
+  ) {
+    setAmountPriceSelected(Checkoutticket);
   }
 
-  function handleSelectProduct(product: ITicket | undefined) {
-    setSelectedProduct(product);
+  function handleSelectCheckoutTicket(Checkoutticket: ITicket | undefined) {
+    setSelectedCheckoutTicket(Checkoutticket);
   }
 
-  function handleSelectCustomerBuyed(customer: ICheckoutProduct | undefined) {
+  function handleSelectCustomerBuyed(customer: ICheckoutTicket | undefined) {
     setSelectedCustomerBuyed(customer);
   }
 
@@ -134,13 +138,13 @@ export default function CheckoutProvider({
         handleSelectViewInvoice,
         handleBackToCheckoutUrl,
         handlePriceAmountSelected,
-        handleSelectProduct,
+        handleSelectCheckoutTicket,
         handleIsPurchased,
         handleSelectCustomerBuyed,
 
         isPurchased,
         selectedCustomerBuyed,
-        selectedProduct,
+        selectedCheckoutTicket,
         amountPriceSelected,
         backToCheckoutUrl,
         selectedViewedInvoice,
