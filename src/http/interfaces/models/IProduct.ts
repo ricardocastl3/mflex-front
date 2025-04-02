@@ -1,4 +1,3 @@
-import { IOrderBump } from "@/@components/(modals)/add-product/components/order-bump/OrderBumpComponent";
 import { IUserResponse } from "../responses/IUserResponse";
 import { IPayment } from "./IPayment";
 
@@ -15,7 +14,6 @@ export interface IProduct {
   image_right?: string;
   webhook_id?: string;
   user: IUserResponse;
-  order_bumps: IOrderBump[];
 }
 
 export interface I extends IProduct {
