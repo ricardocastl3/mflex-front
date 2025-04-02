@@ -8,7 +8,7 @@ export default function SMobileFooter() {
   const { currentPageByUrl } = useAppProvider();
 
   return (
-    <BaseBox className="dark:bg-ausoft-slate-900 z-20 md:hidden border-t rounded-t-xl border-slate-200 dark:border-slate-800 fixed bottom-0 rounded-none grid grid-cols-4 inset-x-0">
+    <BaseBox className="dark:bg-ausoft-slate-950 z-20 md:hidden border-t rounded-t-xl border-slate-200 dark:border-slate-800 fixed bottom-0 rounded-none grid grid-cols-4 inset-x-0">
       <LinkMButton
         Icon={ReactIcons.AiICon.AiFillFire}
         action="news"
