@@ -8,9 +8,9 @@ import { AuSoftUI } from "@/@components/(ausoft)";
 import { useCheckoutProvider } from "@/providers/app/CheckoutProvider";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { useModal } from "@/providers/app/ModalProvider";
-import { useProductProvider } from "@/providers/features/ProductProvider";
-import { IProduct } from "@/http/interfaces/models/IProduct";
 import { localImages } from "@/utils/images";
+import { useTicketProvider } from "@/providers/features/TicketProvider";
+import { ITicket } from "@/http/interfaces/models/ITicket";
 
 import LogoSpinner from "@/app/onload-pages/spinner/LogoSpinner";
 import CurrencyServices from "@/services/CurrencyServices";
@@ -25,7 +25,7 @@ export default function CheckOut({ params }: { params: { id: string } }) {
   // Contexts
   const { selectedAngolanMethod, handleSelectCustomerBuyed } =
     useCheckoutProvider();
-  const { handleSelectProduct, selectedProduct } = useProductProvider();
+  const { handleSelectTicket, selectedTicket } = useTicketProvider();
   const { handleAddToastOnArray } = useAppProvider();
   const { isLoadingUserData } = useAuth();
 
@@ -46,7 +46,7 @@ export default function CheckOut({ params }: { params: { id: string } }) {
     try {
       const resp = await internalApi.get<{
         success: boolean;
-        product: IProduct;
+        tickets: ITicket;
       }>("/products/checkout", {
         params: {
           id: params.id,
@@ -58,7 +58,7 @@ export default function CheckOut({ params }: { params: { id: string } }) {
         return;
       }
 
-      handleSelectProduct(resp.data.product);
+      handleSelectTicket(resp.data.tickets);
       setIsLoaging(false);
     } catch (err) {
       window.location.href = "/" + langByCookies;
@@ -140,30 +140,31 @@ export default function CheckOut({ params }: { params: { id: string } }) {
     );
   }
 
-  if (selectedProduct)
+  /*
+  if (selectedTicket)
     return (
       <div
         style={{
-          background: selectedProduct.background,
+          background: selectedTicket.background,
         }}
         className="flex flex-col justify-center md:px-0 px-4 md:items-center items-stretch w-full h-full md:pt-16 pt-2 md:pb-12 pb-8"
       >
-        {selectedProduct.image_top && selectedProduct.image_top != "" && (
+        {selectedTicket.image_top && selectedTicket.image_top != "" && (
           <div
             style={{
               height: window.innerWidth < 765 ? "13vh" : "200px",
               width:
                 window.innerWidth < 765
                   ? "100%"
-                  : !selectedProduct.image_right ||
-                    selectedProduct.image_right == ""
+                  : !selectedTicket.image_right ||
+                    selectedTicket.image_right == ""
                   ? "640px"
                   : "850px",
               objectFit: "fill",
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
-              backgroundImage: `url(${selectedProduct.image_top})`,
+              backgroundImage: `url(${selectedTicket.image_top})`,
             }}
             className="mt-3 bg-slate-300 dark:bg-slate-800 rounded-xl "
           ></div>
@@ -181,7 +182,7 @@ export default function CheckOut({ params }: { params: { id: string } }) {
                     backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: "center",
-                    backgroundImage: `url(${selectedProduct.image_url})`,
+                    backgroundImage: `url(${selectedTicket.image_url})`,
                   }}
                   className="rounded-xl bg-slate-300 dark:bg-slate-800"
                 ></div>
@@ -189,15 +190,15 @@ export default function CheckOut({ params }: { params: { id: string } }) {
 
               <div className="flex flex-col gap-2 ">
                 <h4 className="text-xl font-bold text-blue-600 dak:text-blue-500">
-                  {selectedProduct.title}
+                  {selectedTicket.title}
                 </h4>
                 <h4 className="text-base font-bold text-blue-600 dak:text-blue-500">
                   {`${CurrencyServices.decimal(
-                    Number(selectedProduct.ao_amount)
+                    Number(selectedTicket.ao_amount)
                   )} Kz`}
                 </h4>
                 <h4 className="text-sm text-slate-600 dak:text-slate-500 text-wrap">
-                  {selectedProduct.description}
+                  {selectedTicket.description}
                 </h4>
               </div>
             </div>
@@ -351,18 +352,18 @@ export default function CheckOut({ params }: { params: { id: string } }) {
             </div>
           </BaseBox>
 
-          {selectedProduct.image_right && selectedProduct.image_right != "" && (
+          {selectedTicket.image_right && selectedTicket.image_right != "" && (
             <div
               style={{
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center",
-                backgroundImage: `url(${selectedProduct.image_right})`,
+                backgroundImage: `url(${selectedTicket.image_right})`,
                 height:
                   window.innerWidth < 765
                     ? "10vh"
-                    : !selectedProduct.image_right ||
-                      selectedProduct.image_right == ""
+                    : !selectedTicket.image_right ||
+                      selectedTicket.image_right == ""
                     ? "810px"
                     : "750px",
                 width: window.innerWidth < 765 ? "100%" : "200px",
@@ -372,5 +373,5 @@ export default function CheckOut({ params }: { params: { id: string } }) {
           )}
         </div>
       </div>
-    );
+    );*/
 }

@@ -1,12 +1,12 @@
-import { IUserResponse } from "@/http/interfaces/responses/IUserResponse";
+import { ITicket } from "@/http/interfaces/models/ITicket";
 import { createContext, ReactNode, useContext, useState } from "react";
 
 interface ITicketProviderProps {
-  selectedTicket: IUserResponse | undefined;
+  selectedTicket: ITicket | undefined;
   fetchTicket: boolean;
 
   handleFetchTicket: (mode: boolean) => void;
-  handleSelectTicket: (ticket: IUserResponse | undefined) => void;
+  handleSelectTicket: (ticket: ITicket | undefined) => void;
 }
 
 export const TicketContext = createContext({} as ITicketProviderProps);
@@ -17,10 +17,7 @@ export function useTicketProvider() {
 }
 
 export default function TicketProvider({ children }: { children: ReactNode }) {
-
-  const [selectedTicket, setSelectedTicket] = useState<
-    IUserResponse | undefined
-  >();
+  const [selectedTicket, setSelectedTicket] = useState<ITicket | undefined>();
 
   const [fetchTicket, setFetchTicket] = useState(false);
 
@@ -28,7 +25,7 @@ export default function TicketProvider({ children }: { children: ReactNode }) {
     setFetchTicket(mode);
   }
 
-  function handleSelectTicket(merchant: IUserResponse | undefined) {
+  function handleSelectTicket(merchant: ITicket | undefined) {
     setSelectedTicket(merchant);
   }
 

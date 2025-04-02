@@ -1,14 +1,12 @@
 import { IUserResponse } from "../responses/IUserResponse";
+import { IUser } from "./IUser";
 
 export interface IPayment {
   id?: string;
   user: IUserResponse;
-  product?: { id: string; title: string };
-  ao_amount: string;
-  us_amount: string;
-  customer: string;
-  customer_phone: string;
-  created_at: Date;
+  tickets?: { id: string; title: string };
+  amount: string;
+  customer: IUser;
   payment_method: string;
   status: string;
 }

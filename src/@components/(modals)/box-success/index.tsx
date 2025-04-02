@@ -3,7 +3,6 @@ import { AuSoftUI } from "@/@components/(ausoft)";
 import { BaseBox } from "@/@components/(box)/BaseBox";
 import { localImages } from "@/utils/images";
 import { useAuth } from "@/providers/auth/AuthProvider";
-import { useProductProvider } from "@/providers/features/ProductProvider";
 import { useTicketProvider } from "@/providers/features/TicketProvider";
 
 import React from "react";
@@ -15,7 +14,7 @@ export default function BoxSuccessModal() {
   //Contexts
   const { handleOpenModal, boxSuccessText } = useModal();
   const { userLogged } = useAuth();
-  const { selectedProduct, handleFetchProduct } = useProductProvider();
+  const { selectedTicket, handleFetchTicket } = useTicketProvider();
   const {
     selectedTicket: selectedMerchant,
     handleFetchTicket: handleFetchMerchant,
@@ -28,8 +27,8 @@ export default function BoxSuccessModal() {
       handleFetchMerchant(false);
     }
 
-    if (selectedProduct) {
-      handleFetchProduct(false);
+    if (selectedTicket) {
+      handleFetchTicket(false);
     }
   }
 

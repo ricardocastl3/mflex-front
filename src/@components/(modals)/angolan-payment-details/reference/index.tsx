@@ -28,9 +28,7 @@ export default function ReferencePayment() {
   const handleGetRef = useCallback(async () => {
     try {
       const resp = await internalApi.post(
-        `/payments/checkout/${
-          !itemPriceIdCheckoutSelected ? "products" : "subs"
-        }`,
+        `/payments/checkout/t`,
         {
           price: selectedTicket ? selectedTicket.id : undefined,
           subs: itemPriceIdCheckoutSelected
