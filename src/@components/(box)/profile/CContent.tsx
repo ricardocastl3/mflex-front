@@ -9,7 +9,7 @@ import { langByCookies } from "@/http/axios/api";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 
 export default function CContent({ callback }: { callback?: () => void }) {
-  const { userLogged, handleLogout, currentSubscriptionUsage } = useAuth();
+  const { userLogged, handleLogout } = useAuth();
   const { handleOpenModal } = useModal();
 
   return (
@@ -41,45 +41,6 @@ export default function CContent({ callback }: { callback?: () => void }) {
       </div>
 
       <div className="flex flex-col gap-1.5 mt-4">
-        <div className="flex flex-col gap-2 mb-2">
-          {!currentSubscriptionUsage && (
-            <>
-              <h4 className="dark:text-white text-normal font-bold px-2 pt-2 pb-1 rounded-full bg-blue-100 dark:bg-blue-800/20">
-                <CTranslateTo
-                  eng="🥺 You don't have a subscription"
-                  pt="🥺 Você não tem um plano assinado"
-                />
-              </h4>
-              <div className="grid md:grid-cols-2 grid-cols-2 gap-2">
-                <AuSoftUI.UI.Button
-                  size={"sm"}
-                  onClick={() => handleOpenModal("subscribe")}
-                  className="w-full justify-start px-2 font-bold rounded-full dark:text-white pt-2 pb-1 "
-                  variant={"primary"}
-                >
-                  <CTranslateTo
-                    eng="🙌 Subscription"
-                    pt="🙌 Assinar um plano"
-                  />
-                </AuSoftUI.UI.Button>
-              </div>
-            </>
-          )}
-
-          {currentSubscriptionUsage && (
-            <AuSoftUI.UI.Button
-              size={"sm"}
-              onClick={() => {
-                callback!();
-                window.location.href = `/${langByCookies}/app`;
-              }}
-              className="w-full justify-start px-2 font-bold rounded-full dark:text-white pt-2 pb-1 "
-              variant={"primary"}
-            >
-              <CTranslateTo eng="🙌 My Links" pt="✨ Meus Links" />
-            </AuSoftUI.UI.Button>
-          )}
-        </div>
         <div className="border-t border-slate-200 dark:border-slate-800 pt-2">
           <AuSoftUI.UI.Button
             size={"sm"}
