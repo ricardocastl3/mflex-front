@@ -39,11 +39,7 @@ export default function AngolanPaymentDetailsModal() {
     if (selectedAngolanMethod != "reference" && !isPurchased)
       handleOpenModal("");
 
-    if (
-      selectedAngolanMethod == "reference" ||
-      isPurchased ||
-      selectedAngolanMethod == "transference"
-    )
+    if (selectedAngolanMethod == "reference" || isPurchased)
       window.location.href = "/" + langByCookies + "/purchase";
   }
 
@@ -57,8 +53,6 @@ export default function AngolanPaymentDetailsModal() {
                 ? localImages.logos.multicaixaReference
                 : selectedAngolanMethod == "paypay"
                 ? localImages.logos.paypayLogo
-                : selectedAngolanMethod == "transference"
-                ? "/icons/money.png"
                 : localImages.logos.multicaixaExpress
             }
             height={35}
@@ -81,8 +75,6 @@ export default function AngolanPaymentDetailsModal() {
           {selectedAngolanMethod == "express" && <MulticaixaPayment />}
 
           {selectedAngolanMethod == "paypay" && <PayPayPayment />}
-
-          {selectedAngolanMethod == "transference" && <TransferencePayment />}
         </div>
 
         <div className="p-4 border-t border-slate-300 dark:border-slate-800">
