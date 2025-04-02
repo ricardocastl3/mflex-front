@@ -6,7 +6,6 @@ import { Abel } from "next/font/google";
 import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Suspense } from "react";
-import { useWebPushLoading } from "@/services/web-push/useWebPushLoading";
 
 import AuthProvider from "@/providers/auth/AuthProvider";
 import AppProvider from "@/providers/app/AppProvider";
@@ -14,8 +13,7 @@ import TranslateProvider from "@/providers/app/TranslateProvider";
 import ModalProvider from "@/providers/app/ModalProvider";
 import usePWA from "@/services/pwa/usePWA";
 import CheckoutProvider from "@/providers/app/CheckoutProvider";
-import ProductProvider from "@/providers/features/ProductProvider";
-import MerchantProvider from "@/providers/features/MerchantProvider";
+import TicketProvider from "@/providers/features/TicketProvider";
 import SocketProvider from "@/providers/auth/SocketProvider";
 import TransactionProvider from "@/providers/features/TransactionProvider";
 
@@ -41,13 +39,10 @@ export default function RootLayout({
                 <AppProvider>
                   <AuthProvider>
                     <CheckoutProvider>
-                      <ProductProvider>
-                        <TransactionProvider>
-                          <MerchantProvider>{children}</MerchantProvider>
-                        </TransactionProvider>
-                      </ProductProvider>
+                      <TransactionProvider>
+                        <TicketProvider>{children}</TicketProvider>
+                      </TransactionProvider>
                     </CheckoutProvider>
-
                     <ProgressBar
                       height="4px"
                       color="#d4b548"

@@ -9,7 +9,7 @@ const bwevipayApi = axios.create({
   withCredentials: true,
   headers: {
     origin: process.env.MFLEX_NEXT_PUBLIC_URL,
-    "mf-server-token": `Agata ${process.env.MFLEX_SERVER_TOKEN}`,
+    "mf-server-token": `Karma ${process.env.MFLEX_SERVER_TOKEN}`,
   },
 });
 

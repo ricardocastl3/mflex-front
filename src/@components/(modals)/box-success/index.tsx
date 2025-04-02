@@ -4,7 +4,7 @@ import { BaseBox } from "@/@components/(box)/BaseBox";
 import { localImages } from "@/utils/images";
 import { useAuth } from "@/providers/auth/AuthProvider";
 import { useProductProvider } from "@/providers/features/ProductProvider";
-import { useMerchantProvider } from "@/providers/features/MerchantProvider";
+import { useTicketProvider } from "@/providers/features/TicketProvider";
 
 import React from "react";
 import BaseModal from "../base";
@@ -16,7 +16,10 @@ export default function BoxSuccessModal() {
   const { handleOpenModal, boxSuccessText } = useModal();
   const { userLogged } = useAuth();
   const { selectedProduct, handleFetchProduct } = useProductProvider();
-  const { selectedMerchant, handleFetchMerchant } = useMerchantProvider();
+  const {
+    selectedTicket: selectedMerchant,
+    handleFetchTicket: handleFetchMerchant,
+  } = useTicketProvider();
 
   function handleCloseBox() {
     handleOpenModal("");
