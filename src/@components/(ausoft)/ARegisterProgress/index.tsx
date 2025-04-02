@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 
+
 export default function ARegisterProgress({
   isOpened,
   rounded = "none",
@@ -7,6 +8,7 @@ export default function ARegisterProgress({
   isOpened: boolean;
   rounded?: "bottom" | "top" | "all" | "none";
 }) {
+  /*
   return (
     <>
       {isOpened && (
@@ -39,5 +41,5 @@ export default function ARegisterProgress({
         </motion.div>
       )}
     </>
-  );
+  );*/
 }
