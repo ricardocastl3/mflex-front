@@ -3,8 +3,8 @@ import { internalApi } from "@/http/axios/api";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { useCallback, useEffect, useState } from "react";
 import { AuSoftUI } from "@/@components/(ausoft)";
-import { useProductProvider } from "@/providers/features/ProductProvider";
 import { useCheckoutProvider } from "@/providers/app/CheckoutProvider";
+import { useTicketProvider } from "@/providers/features/TicketProvider";
 
 import CurrencyServices from "@/services/CurrencyServices";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
@@ -13,7 +13,7 @@ import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 export default function ReferencePayment() {
   // Contexts
   const { handleAddToastOnArray } = useAppProvider();
-  const { selectedProduct } = useProductProvider();
+  const { selectedTicket } = useTicketProvider();
   const { selectedCustomerBuyed, itemPriceIdCheckoutSelected } =
     useCheckoutProvider();
 
@@ -32,7 +32,7 @@ export default function ReferencePayment() {
           !itemPriceIdCheckoutSelected ? "products" : "subs"
         }`,
         {
-          price: selectedProduct ? selectedProduct.id : undefined,
+          price: selectedTicket ? selectedTicket.id : undefined,
           subs: itemPriceIdCheckoutSelected
             ? itemPriceIdCheckoutSelected.price
             : undefined,

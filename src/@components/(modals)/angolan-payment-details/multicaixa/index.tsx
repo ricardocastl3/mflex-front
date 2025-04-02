@@ -4,10 +4,10 @@ import { ReactIcons } from "@/utils/icons";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { internalApi } from "@/http/axios/api";
 import { useAuth } from "@/providers/auth/AuthProvider";
-import { useProductProvider } from "@/providers/features/ProductProvider";
 import { useCheckoutProvider } from "@/providers/app/CheckoutProvider";
 import { useSocketProvider } from "@/providers/auth/SocketProvider";
 import { useModal } from "@/providers/app/ModalProvider";
+import { useTicketProvider } from "@/providers/features/TicketProvider";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CurrencyServices from "@/services/CurrencyServices";
@@ -19,7 +19,7 @@ export default function MulticaixaPayment() {
   const { socketEvent } = useSocketProvider();
 
   const { handleAddToastOnArray } = useAppProvider();
-  const { selectedProduct } = useProductProvider();
+  const { selectedTicket } = useTicketProvider();
   const {
     selectedCustomerBuyed,
     handleIsPurchased,
@@ -50,7 +50,7 @@ export default function MulticaixaPayment() {
           !itemPriceIdCheckoutSelected ? "products" : "subs"
         }`,
         {
-          price: selectedProduct ? selectedProduct.id : undefined,
+          price: selectedTicket ? selectedTicket.id : undefined,
           subs: itemPriceIdCheckoutSelected
             ? itemPriceIdCheckoutSelected.price
             : undefined,

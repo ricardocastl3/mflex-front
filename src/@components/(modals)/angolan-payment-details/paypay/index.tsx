@@ -4,10 +4,10 @@ import { useAppProvider } from "@/providers/app/AppProvider";
 import { useCallback, useEffect, useState } from "react";
 import { AuSoftUI } from "@/@components/(ausoft)";
 
-import { useProductProvider } from "@/providers/features/ProductProvider";
 import { useCheckoutProvider } from "@/providers/app/CheckoutProvider";
 import { useSocketProvider } from "@/providers/auth/SocketProvider";
 import { useModal } from "@/providers/app/ModalProvider";
+import { useTicketProvider } from "@/providers/features/TicketProvider";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
@@ -17,7 +17,7 @@ import CircularProgress from "@/services/circular-progress";
 export default function PayPayPayment() {
   // Contexts
   const { handleAddToastOnArray } = useAppProvider();
-  const { selectedProduct } = useProductProvider();
+  const { selectedTicket } = useTicketProvider();
   const { socketEvent } = useSocketProvider();
   const {
     selectedCustomerBuyed,
@@ -47,7 +47,7 @@ export default function PayPayPayment() {
           !itemPriceIdCheckoutSelected ? "products" : "subs"
         }`,
         {
-          price: selectedProduct ? selectedProduct.id : undefined,
+          price: selectedTicket ? selectedTicket.id : undefined,
           subs: itemPriceIdCheckoutSelected
             ? itemPriceIdCheckoutSelected.price
             : undefined,
