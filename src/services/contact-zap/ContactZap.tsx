@@ -27,7 +27,7 @@ export default function ContactZap() {
             bottom: bottomSafe,
             right: rightSafe,
           }}
-          className="fixed bg-red-600 z-20 animate-fade-up"
+          className="fixed dark:bg-yellow-700 bg-yellow-600 rounded-full z-20 animate-fade-up"
         >
           <Link
             target="_blank"
@@ -36,7 +36,7 @@ export default function ContactZap() {
                 ? "Hello, I need a help!"
                 : "Olá, preciso de ajuda!"
             }`}
-            className="dark:bg-yellow-700 bg-yellow-600 p-1.5 rounded-full flex items-center gap-4"
+            className=" p-1.5 rounded-full flex items-center gap-4"
           >
             <h4 className="text-sm text-white">
               <CTranslateTo eng="Talk with us" pt="Fale conosco" />
