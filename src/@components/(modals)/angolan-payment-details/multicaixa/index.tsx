@@ -56,7 +56,6 @@ export default function MulticaixaPayment() {
             : undefined,
           angolan_method: "multicaixa",
           payment_method: "angolan",
-          order_bumps: selectedCustomerBuyed?.order_bumbs,
           customer: selectedCustomerBuyed?.customer,
           customer_email: selectedCustomerBuyed?.email,
           phone_number: phoneNumber,
@@ -108,9 +107,7 @@ export default function MulticaixaPayment() {
             <h4 className="pb-1 pt-1.5 px-3 bg-orange-200/45 w-fit rounded-full dark:bg-orange-700/15 text-orange-800 dark:text-orange-400 text-[0.9rem] font-bold text-nowrap">
               <CTranslateTo eng="Money: " pt="Valor: " />{" "}
               {CurrencyServices.formatWithCurrencyValue(
-                Number(
-                 selectedCustomerBuyed?.amount
-                ),
+                Number(selectedCustomerBuyed?.amount),
                 "AOA"
               )}
             </h4>

@@ -34,7 +34,7 @@ export default function PayPayPayment() {
 
   const [angolanDetail, setAngolanDetail] = useState<{
     link: string;
-  }>({ link: process.env.LINKS_NEXT_PUBLIC_URL });
+  }>({ link: process.env.MFLEX_NEXT_PUBLIC_URL });
 
   //Controls
   const [isLoading, setIsLoading] = useState(true);
@@ -54,7 +54,6 @@ export default function PayPayPayment() {
           angolan_method: "paypay",
           payment_method: "angolan",
           customer: selectedCustomerBuyed?.customer,
-          order_bumps: selectedCustomerBuyed?.order_bumbs,
           customer_email: selectedCustomerBuyed?.email,
           phone_number: selectedCustomerBuyed?.phone,
           d: socketEvent?.metadata,

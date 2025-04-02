@@ -39,7 +39,6 @@ export default function ReferencePayment() {
           angolan_method: "reference",
           payment_method: "angolan",
           customer: selectedCustomerBuyed?.customer,
-          order_bumps: selectedCustomerBuyed?.order_bumbs,
           customer_email: selectedCustomerBuyed?.email,
           phone_number: selectedCustomerBuyed?.phone,
         }

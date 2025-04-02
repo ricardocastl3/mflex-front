@@ -13,7 +13,6 @@ import Image from "next/image";
 import ReferencePayment from "./reference";
 import MulticaixaPayment from "./multicaixa";
 import PayPayPayment from "./paypay";
-import TransferencePayment from "./transference";
 
 export default function AngolanPaymentDetailsModal() {
   //Contexts
