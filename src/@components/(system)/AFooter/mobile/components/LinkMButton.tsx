@@ -9,6 +9,7 @@ interface ILinkMButton {
   title_en: string;
   isSelected: boolean;
   Icon: IconType;
+  bar?: boolean;
   action: string;
   action_blank?: boolean;
 }
@@ -17,6 +18,7 @@ export default function LinkMButton({
   isSelected,
   title_en,
   title_pt,
+  bar,
   action,
   Icon,
   action_blank = false,
@@ -32,13 +34,16 @@ export default function LinkMButton({
           : action
       }`}
       className={`${
-        isSelected ? "border-blue-600" : "border-transparent"
-      }  border-t-2 flex justify-center dark:text-white items-center p-3`}
+        isSelected ? "border-yellow-600" : "border-transparent"
+      }  border-t-2 flex justify-center dark:text-white items-center p-3 relative`}
     >
+      {bar && isSelected && (
+        <div className="animate-fade duration-500 absolute -top-7 p-2 bg-red-500"></div>
+      )}
       <div
         className={`${
           isSelected
-            ? "dark:bg-blue-900/20 bg-blue-200/50 text-blue-800 dark:text-blue-200 font-bold"
+            ? "dark:bg-yellow-900/20 bg-yellow-200/50 text-yellow-800 dark:text-yellow-200 font-bold"
             : ""
         } mx-2 px-2 py-1 rounded-xl w-[40vw] text-center  flex flex-col items-center gap-1 text-xs text-nowrap`}
       >

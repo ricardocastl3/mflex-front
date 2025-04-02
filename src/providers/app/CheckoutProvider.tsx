@@ -2,9 +2,7 @@
 
 import React, { createContext, useContext, useState } from "react";
 
-import { useModal } from "./ModalProvider";
-import { useAppProvider } from "./AppProvider";
-import { IProduct } from "@/http/interfaces/models/IProduct";
+import { ITicket } from "@/http/interfaces/models/ITicket";
 
 export type TAngolanMethods = "reference" | "express" | "paypay";
 
@@ -26,7 +24,7 @@ interface IPrice {
   amount: number;
 }
 
-interface IProductAmount {
+interface ITicketAmount {
   amount: number;
   name: string;
 }
@@ -43,15 +41,15 @@ interface ICheckoutContextProps {
   selectedAngolanMethod: TAngolanMethods;
   selectedViewedInvoice: IInvoiceTransaction;
   backToCheckoutUrl: string | undefined;
-  amountPriceSelected: IProductAmount | undefined;
-  selectedProduct: IProduct | undefined;
+  amountPriceSelected: ITicketAmount | undefined;
+  selectedProduct: ITicket | undefined;
   selectedCustomerBuyed: ICheckoutProduct | undefined;
   isPurchased: boolean;
 
   handleIsPurchased: (mode: boolean) => void;
   handleSelectCustomerBuyed: (customer: ICheckoutProduct | undefined) => void;
-  handleSelectProduct: (product: IProduct | undefined) => void;
-  handlePriceAmountSelected: (product: IProductAmount | undefined) => void;
+  handleSelectProduct: (product: ITicket | undefined) => void;
+  handlePriceAmountSelected: (product: ITicketAmount | undefined) => void;
   handleBackToCheckoutUrl: (url: string | undefined) => void;
   handleSelectViewInvoice: (type: IInvoiceTransaction) => void;
   handleSelectAngolanMethod: (method: TAngolanMethods) => void;
@@ -78,7 +76,7 @@ export default function CheckoutProvider({
   const [isPurchased, setIsPurchased] = useState(false);
 
   const [amountPriceSelected, setAmountPriceSelected] = useState<
-    IProductAmount | undefined
+    ITicketAmount | undefined
   >();
 
   const [selectedCustomerBuyed, setSelectedCustomerBuyed] = useState<
@@ -93,7 +91,7 @@ export default function CheckoutProvider({
   >();
 
   const [selectedProduct, setSelectedProduct] = useState<
-    IProduct | undefined
+    ITicket | undefined
   >();
 
   function handleAddItemOnCheckout(item: IPrice | undefined) {
@@ -116,11 +114,11 @@ export default function CheckoutProvider({
     setBackToCheckoutUrl(url);
   }
 
-  function handlePriceAmountSelected(product: IProductAmount | undefined) {
+  function handlePriceAmountSelected(product: ITicketAmount | undefined) {
     setAmountPriceSelected(product);
   }
 
-  function handleSelectProduct(product: IProduct | undefined) {
+  function handleSelectProduct(product: ITicket | undefined) {
     setSelectedProduct(product);
   }
 

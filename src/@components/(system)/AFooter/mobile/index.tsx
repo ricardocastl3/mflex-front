@@ -29,6 +29,7 @@ export default function AMobileFooter() {
           isSelected={currentAppPageUrl == "" || !currentAppPageUrl}
           title_en="Home"
           title_pt="Página Inicial"
+          bar
         />
 
         <LinkMButton
@@ -37,6 +38,7 @@ export default function AMobileFooter() {
           isSelected={currentAppPageUrl == "products"}
           title_en="My Products"
           title_pt="Meus Produtos"
+          bar
         />
 
         <LinkMButton
@@ -45,6 +47,7 @@ export default function AMobileFooter() {
           isSelected={currentAppPageUrl == "transactions"}
           title_en="Transactions"
           title_pt="Transações"
+          bar
         />
 
         <LinkMButton
@@ -53,6 +56,7 @@ export default function AMobileFooter() {
           isSelected={currentAppPageUrl == "webhooks"}
           title_en="Webhooks"
           title_pt="Webhooks"
+          bar
         />
       </BaseBox>
     </div>

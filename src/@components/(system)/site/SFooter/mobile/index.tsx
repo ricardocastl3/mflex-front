@@ -15,32 +15,33 @@ export default function SMobileFooter() {
         isSelected={currentPageByUrl == "news"}
         title_en="News"
         title_pt="Novidades"
+        bar
       />
 
       <LinkMButton
-        isLink={true}
         Icon={ReactIcons.AiICon.AiOutlineVerified}
         action="events"
         isSelected={currentPageByUrl == "events"}
         title_en="Events"
         title_pt="Eventos"
+        bar
       />
 
       <LinkMButton
-        isLink={true}
         Icon={ReactIcons.AiICon.AiOutlineAudio}
         action="podflex"
         isSelected={currentPageByUrl == "podflex"}
         title_en="PodFlex"
         title_pt="PodFlex"
+        bar
       />
       <LinkMButton
-        isLink={true}
         Icon={ReactIcons.AiICon.AiFillSignal}
         action="services"
         isSelected={currentPageByUrl == "services"}
         title_en="Services"
         title_pt="Serviços"
+        bar
       />
     </BaseBox>
   );
