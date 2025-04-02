@@ -27,7 +27,7 @@ export default function ContactZap() {
             bottom: bottomSafe,
             right: rightSafe,
           }}
-          className="fixed dark:bg-yellow-700 bg-yellow-600 rounded-full z-20 animate-fade-up"
+          className="fixed rounded-full z-20 animate-fade-up"
         >
           <Link
             target="_blank"
