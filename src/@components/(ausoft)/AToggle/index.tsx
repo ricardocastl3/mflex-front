@@ -1,5 +1,5 @@
 import { ReactIcons } from "@/utils/icons";
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 export default function AToggle({
   setValue,

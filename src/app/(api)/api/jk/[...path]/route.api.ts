@@ -15,7 +15,7 @@ const bwevipayApi = axios.create({
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { path: any } }
+  { params }: { params: Promise<{ path: any }> }
 ) {
   try {
     const validateToken = await validateTokenSignOnRequest(req);
@@ -26,7 +26,7 @@ export async function GET(
       );
     }
 
-    const { path } = params;
+    const { path } = await params;
     const url = new URL(req.url);
     const query = Object.fromEntries(url.searchParams.entries());
     const cookieSafe = await cookies();
@@ -64,7 +64,7 @@ export async function GET(
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: { path: any } }
+  { params }: { params: Promise<{ path: any }> }
 ) {
   try {
     const validateToken = await validateTokenSignOnRequest(req);
@@ -84,7 +84,7 @@ export async function POST(
       isPostForm = true;
     }
 
-    const { path } = params;
+    const { path } = await params;
     const cookieSafe = await cookies();
     const authToken = cookieSafe.get(ECOOKIES.COOKIE_USER_AUTH_TOKEN)?.value;
     const lang = req.headers.get("accept-language");
@@ -133,7 +133,7 @@ export async function POST(
 }
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { path: any } }
+  { params }: { params: Promise<{ path: any }> }
 ) {
   try {
     const validateToken = await validateTokenSignOnRequest(req);
@@ -144,7 +144,7 @@ export async function PUT(
       );
     }
 
-    const { path } = params;
+    const { path } = await params;
     const dataRequest = await req.json();
 
     const cookieSafe = await cookies();
@@ -185,7 +185,7 @@ export async function PUT(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { path: any } }
+  { params }: { params: Promise<{ path: any }> }
 ) {
   try {
     const validateToken = await validateTokenSignOnRequest(req);
@@ -196,7 +196,7 @@ export async function DELETE(
       );
     }
 
-    const { path } = params;
+    const { path } = await params;
     const dataRequest = await req.json();
     const cookieSafe = await cookies();
     const authToken = cookieSafe.get(ECOOKIES.COOKIE_USER_AUTH_TOKEN)?.value;

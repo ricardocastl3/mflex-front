@@ -1,11 +1,11 @@
-import CTranslateTo from "@/@components/(translation)/CTranslateTo";
+import HeroNews from "./components/Hero";
+import NewsContainer from "./components/container";
 
 export default function PodFlexPage() {
   return (
-    <div>
-      <h1 className="dark:text-white">
-        <CTranslateTo eng="PodFlex" pt="PodFlex" />
-      </h1>
+    <div className="flex flex-col gap-4">
+      <HeroNews />
+      <NewsContainer />
     </div>
   );
 }

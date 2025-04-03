@@ -60,7 +60,7 @@ const TextFieldDefault = React.forwardRef<HTMLInputElement, InputProps>(
             ` ${
               requiredField
                 ? "border-red-500 dark:border-red-800/80 focus:ring-red-800/40 dark:focus:ring-red-800/80 dark:focus:ring-offset-red-500 focus:ring-offset-red-200 "
-                : "border-slate-300 dark:border-slate-700/80 focus:ring-blue-800/40 focus:ring-offset-blue-600"
+                : "border-slate-300 dark:border-slate-700/80 focus:ring-yellow-800/40 focus:ring-offset-yellow-600"
             } `
           }
           ref={ref}

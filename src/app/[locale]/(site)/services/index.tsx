@@ -1,11 +1,9 @@
-import CTranslateTo from "@/@components/(translation)/CTranslateTo";
+import HeroServices from "./components/Hero";
 
 export default function ServicesPage() {
   return (
-    <div>
-      <h1 className="dark:text-white">
-        <CTranslateTo eng="Our Services" pt="Nossos Serviços" />
-      </h1>
+    <div className="flex flex-col gap-4">
+      <HeroServices />
     </div>
   );
 }

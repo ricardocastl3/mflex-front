@@ -11,7 +11,6 @@ import React from "react";
 import ASidebar from "@/@components/(system)/ASidebar";
 import AMobileFooter from "@/@components/(system)/AFooter/mobile";
 import ABanner from "@/@components/(system)/ABanner";
-import WebhookProvider from "@/providers/features/WebhookProvider";
 
 export default function LinkLayout({
   children,
@@ -28,33 +27,31 @@ export default function LinkLayout({
 
   return (
     <>
-      <WebhookProvider>
-        {openToast.length > 0 && <AuSoftUI.Component.Toaster />}
-        <AuSoftUI.Modal.ModalOpenProvider />
+      {openToast.length > 0 && <AuSoftUI.Component.Toaster />}
+      <AuSoftUI.Modal.ModalOpenProvider />
 
-        <div className="flex flex-col w-full">
+      <div className="flex flex-col w-full">
+        <div
+          className={`${
+            openBanner ? "pb-5" : "pb-0"
+          } fixed z-30 top-0 inset-x-0 flex transition-all duration-500 flex-col bg-gradient-to-r dark:from-orange-700 from-orange-500 dark:to-violet-800 to-violet-500`}
+        >
+          {openBanner && <ABanner />}
+          <AHeader />
+        </div>
+        <div className="flex">
+          <ASidebar />
           <div
             className={`${
-              openBanner ? "pb-5" : "pb-0"
-            } fixed z-30 top-0 inset-x-0 flex transition-all duration-500 flex-col bg-gradient-to-r dark:from-orange-700 from-orange-500 dark:to-violet-800 to-violet-500`}
+              openBanner ? "md:mt-[7rem] mt-28" : "md:mt-[5.2rem] mt-20"
+            } flex-1 md:mb-0 mb-[2rem] md:mx-8 mx-5`}
           >
-            {openBanner && <ABanner />}
-            <AHeader />
+            {children}
           </div>
-          <div className="flex">
-            <ASidebar />
-            <div
-              className={`${
-                openBanner ? "md:mt-[7rem] mt-28" : "md:mt-[5.2rem] mt-20"
-              } flex-1 md:mb-0 mb-[2rem] md:mx-8 mx-5`}
-            >
-              {children}
-            </div>
-          </div>
-
-          <AMobileFooter />
         </div>
-      </WebhookProvider>
+
+        <AMobileFooter />
+      </div>
     </>
   );
 }
