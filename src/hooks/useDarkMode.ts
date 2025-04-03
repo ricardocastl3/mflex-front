@@ -9,7 +9,7 @@ export default function useDarkMode(): [
       return localStorage.getItem("theme")!;
     }
 
-    return "light";
+    return "dark";
   });
   const colorTheme: string = theme === "dark" ? "light" : "dark";
 
