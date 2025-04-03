@@ -1,8 +1,8 @@
 {
-  "name": "BweviPay",
-  "short_name": "BweviPay",
-  "description": "Manage your payment links",
-  "start_url": "/pt/app",
+  "name": "Marca Flex",
+  "short_name": "Marca Flex",
+  "description": "As melhores novidades você encontra aqui.",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#0000",
   "theme_color": "#000000",

@@ -71,7 +71,12 @@ export default function SHeader() {
               className="rounded-full"
             >
               <ReactIcons.AiICon.AiOutlineUser size={18} />
-              <CTranslateTo eng="Sign in" pt="Iniciar sessão" />
+              {window.innerWidth > 765 && (
+                <CTranslateTo eng="Sign in" pt="Iniciar sessão" />
+              )}
+              {window.innerWidth <= 765 && (
+                <CTranslateTo eng="Sign in" pt="Entrar" />
+              )}
             </AuSoftUI.UI.Button>
           )}
 
