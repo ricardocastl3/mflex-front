@@ -2,9 +2,9 @@ import { appConfigs } from "@/utils/enums";
 import { Metadata } from "next";
 
 export interface IlocalePage {
-  params: {
+  params: Promise<{
     locale: string;
-  };
+  }>;
 }
 interface ILocaleParams {
   params: string;

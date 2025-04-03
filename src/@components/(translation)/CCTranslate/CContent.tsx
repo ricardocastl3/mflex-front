@@ -38,7 +38,7 @@ export default function CContent({ callback }: { callback?: () => void }) {
             className={`${
               currentLang.code == lang.code
                 ? "dark:bg-yellow-800/50 bg-yellow-200/40"
-                : "dark:hover:bg-blue-800/50 hover:bg-yellow-200/40"
+                : "dark:hover:bg-yellow-800/50 hover:bg-yellow-200/40"
             }  flex items-center gap-2 w-full md:py-2.5 py-4 my-1 px-2 dark:text-slate-100 rounded-full text-[0.85rem]`}
           >
             <Image src={lang.image!} width={20} height={20} alt={lang.lang} />

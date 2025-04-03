@@ -30,7 +30,7 @@ export default function BweviPayLayout({
         <SHeader />
 
         <div className="flex">
-          <div className={`flex-1 md:mb-0 mb-[2rem] md:px-4 px-4 md:pt-4 pt-32`}>{children}</div>
+          <div className={`flex-1 md:mb-0 mb-[2rem]`}>{children}</div>
         </div>
         <SMobileFooter />
         <ContactZap />

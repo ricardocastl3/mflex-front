@@ -5,12 +5,15 @@ import { Metadata } from "next";
 
 export { default } from ".";
 
-export function generateMetadata({ params }: IlocalePage): Metadata {
+export async function generateMetadata({
+  params,
+}: IlocalePage): Promise<Metadata> {
+  const pars = await params;
   return LocalePageServices.metadatas({
     titleENG: "Our Services 💡",
     titlePT: "Nossos Serviços 💡",
     descriptionENG: "Our services for your brand 🚀",
     descriptionPT: "Nossos serviços para a sua marca 🚀",
-    params: params.locale,
+    params: pars.locale,
   });
 }

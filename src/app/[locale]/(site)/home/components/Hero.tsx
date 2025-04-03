@@ -3,6 +3,7 @@ import { langByCookies } from "@/http/axios/api";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import AAuSoftLogo from "@/@components/(ausoft)/AAuSoftLogo";
+import { ReactIcons } from "@/utils/icons";
 
 export default function Hero() {
   const { userLogged } = useAuth();
@@ -43,9 +44,10 @@ export default function Hero() {
             <AuSoftUI.UI.Button
               onClick={() => window.open("https://www.facebook.com/marcafl3x/")}
               size={"lg"}
-              className="rounded-full md:mt-4 mt-2.5 animate-pulse"
+              className="rounded-full md:mt-4 mt-2.5 animate-pulse items-center"
               variant={"primary"}
             >
+              <ReactIcons.AiICon.AiFillFacebook size={19} />
               <CTranslateTo eng="Access our page" pt="Acessar a nossa página" />
             </AuSoftUI.UI.Button>
           </div>
