@@ -62,7 +62,7 @@ export default function AuthProvider({
       const user = resp.data.user;
 
       if (path.slice(4) == "sign-in") {
-        window.location.href = "/" + langByCookies + "/app";
+       // window.location.href = "/" + langByCookies + "/app";
       }
 
       if (path.slice(4).startsWith("app")) {
@@ -84,7 +84,7 @@ export default function AuthProvider({
   }, []);
 
   function handleRedirectToSign() {
-    window.location.href = "/" + langByCookies + "/sign-in";
+   // window.location.href = "/" + langByCookies + "/sign-in";
   }
 
   async function handleLogout() {
