@@ -1,10 +1,11 @@
+
 import { ECOOKIES } from "@/utils/enums";
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { validateTokenSignOnRequest } from "@/services/auth/TokenServices";
 import axios, { AxiosError } from "axios";
 
-const bwevipayApi = axios.create({
+const mflexApi = axios.create({
   baseURL: `${process.env.MFLEX_SERVER_URL}/api/v1`,
   withCredentials: true,
   headers: {
@@ -33,7 +34,7 @@ export async function GET(
     const authToken = cookieSafe.get(ECOOKIES.COOKIE_USER_AUTH_TOKEN)?.value;
     const lang = req.headers.get("accept-language");
 
-    const externalResponse = await bwevipayApi.get(path.join("/"), {
+    const externalResponse = await mflexApi.get(path.join("/"), {
       params: { ...query },
       headers: {
         "accept-language": lang,
@@ -91,7 +92,7 @@ export async function POST(
 
     if (isPostForm) {
       const formData = await req.formData();
-      externalResponse = await bwevipayApi.postForm(path.join("/"), formData, {
+      externalResponse = await mflexApi.postForm(path.join("/"), formData, {
         headers: {
           "accept-language": lang,
           mf: authToken,
@@ -99,7 +100,7 @@ export async function POST(
       });
     } else {
       const dataRequest = await req.json();
-      externalResponse = await bwevipayApi.post(
+      externalResponse = await mflexApi.post(
         path.join("/"),
         { ...dataRequest },
         {
@@ -151,7 +152,7 @@ export async function PUT(
     const authToken = cookieSafe.get(ECOOKIES.COOKIE_USER_AUTH_TOKEN)?.value;
     const lang = req.headers.get("accept-language");
 
-    const externalResponse = await bwevipayApi.put(
+    const externalResponse = await mflexApi.put(
       path.join("/"),
       { ...dataRequest },
       {
@@ -202,7 +203,7 @@ export async function DELETE(
     const authToken = cookieSafe.get(ECOOKIES.COOKIE_USER_AUTH_TOKEN)?.value;
     const lang = req.headers.get("accept-language");
 
-    const externalResponse = await bwevipayApi.delete(path.join("/"), {
+    const externalResponse = await mflexApi.delete(path.join("/"), {
       data: {
         ...dataRequest,
       },
