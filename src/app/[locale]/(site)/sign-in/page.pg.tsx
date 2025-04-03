@@ -5,12 +5,15 @@ import { Metadata } from "next";
 
 export { default } from ".";
 
-export function generateMetadata({ params }: IlocalePage): Metadata {
+export async function generateMetadata({
+  params,
+}: IlocalePage): Promise<Metadata> {
+  const pars = await params;
   return LocalePageServices.metadatas({
     titleENG: "Sign-In 🟡",
     titlePT: "Iniciar sessão 🟡",
     descriptionENG: "Log in to your library platform",
     descriptionPT: "Inicie sessão na sua plataforma de business",
-    params: params.locale,
+    params: pars.locale,
   });
 }
