@@ -1,16 +1,19 @@
 import LocalePageServices, {
   IlocalePage,
 } from "@/services/locale/LocalePageServices";
-import { Metadata } from "next";
 
+import { Metadata } from "next";
 export { default } from ".";
 
-export function generateMetadata({ params }: IlocalePage): Metadata {
+export async function generateMetadata({
+  params,
+}: IlocalePage): Promise<Metadata> {
+  const pars = await params;
   return LocalePageServices.metadatas({
     titleENG: "Thanks!",
     titlePT: "Obrigado!",
     descriptionENG: "Thanks for buy",
     descriptionPT: "Obrigado por comprar",
-    params: params.locale,
+    params: pars.locale,
   });
 }

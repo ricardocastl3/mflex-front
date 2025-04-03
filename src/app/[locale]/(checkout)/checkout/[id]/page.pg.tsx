@@ -6,14 +6,15 @@ import axios from "axios";
 export async function generateMetadata({
   params,
 }: {
-  params: { locale: string; id: string };
+  params: Promise<{ locale: string; id: string }>;
 }) {
   try {
+    const { id, locale } = await params;
     const resp = await axios.get(
       process.env.LINKS_SERVER_URL + "/api/v1" + "/products/checkout",
       {
         params: {
-          id: params.id,
+          id,
         },
         headers: {
           "accept-language": langByCookies,
