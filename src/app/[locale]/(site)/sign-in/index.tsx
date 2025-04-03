@@ -9,8 +9,12 @@ import Image from "next/image";
 
 export default function SignInPage() {
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-      <BaseBox className="h-full flex justify-center items-center">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="md:px-8 px-4 md:pt-4 pt-32"
+    >
+      <BaseBox className="h-full flex justify-center items-center ">
         <div className="md:px-10 px-8 py-8 md:w-[38vw] w-full flex flex-col items-center gap-6 ">
           <div className="flex flex-col items-center justify-center gap-4 pb-4 border-b border-slate-300 dark:border-slate-700">
             <Image
