@@ -4,7 +4,7 @@ import axios from "axios";
 export const langByCookies = CookieServices.getLocale();
 
 export const internalApi = axios.create({
-  baseURL: "/api/jk",
+  baseURL: "/api",
   withCredentials: true,
   headers: {
     "accept-language": langByCookies,
