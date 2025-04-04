@@ -14,13 +14,13 @@ export default function SFooter() {
         <div className="grid md:grid-cols-4 grid-cols-1 gap-4">
           <div className="flex items-start gap-2 md:col-span-2 col-span-1">
             <div className="flex flex-col gap-2 md:w-[30vw] w-[90vw]">
-              <h4 className="flex items-center gap-2 md:text-base text-sm font-semibold dark:text-white">
+              <h4 className="flex items-center gap-2 md:text-base text-base font-semibold dark:text-white">
                 <ReactIcons.AiICon.AiFillBuild size={20} />
                 <CTranslateTo eng="Who are we?" pt="Quem somos?" />
               </h4>
-              <h4 className="md:text-base text-sm text-slate-600 dark:text-slate-400">
+              <h4 className="md:text-base text-base text-slate-600 dark:text-slate-400">
                 <CTranslateTo
-                  eng=""
+                  eng="We are a marketing & advertising agency, focused on flexibility and strategy."
                   pt="Somos uma agência marketing & publicidade, com foco em flexibilidade e estratégia."
                 />
               </h4>
@@ -30,20 +30,20 @@ export default function SFooter() {
             <div className="flex flex-col">
               <div className="flex items-start gap-2">
                 <div className="flex flex-col gap-2">
-                  <h4 className="flex items-center gap-2 md:text-base text-sm font-semibold dark:text-white">
+                  <h4 className="flex items-center gap-2 md:text-base text-base font-semibold dark:text-white">
                     <ReactIcons.AiICon.AiFillAppstore size={20} />
                     <CTranslateTo eng="Download App" pt="Baixar Aplicativo" />
                   </h4>
                   <div className="flex flex-col gap-2">
                     <Link
-                      className="text-slate-500 dark:text-slate-400 items-start flex gap-2 md:text-base text-sm hover:opacity-50"
+                      className="text-slate-500 dark:text-slate-400 items-start flex gap-2 md:text-base text-base hover:opacity-50"
                       href={"mailto:contacto@ausoftdevelop.com"}
                     >
                       <ReactIcons.AiICon.AiFillAndroid size={18} />
                       Android
                     </Link>
                     <Link
-                      className="text-slate-500 dark:text-slate-400 items-start flex gap-2 md:text-base text-sm hover:opacity-50"
+                      className="text-slate-500 dark:text-slate-400 items-start flex gap-2 md:text-base text-base hover:opacity-50"
                       href={"mailto:contacto@ausoftdevelop.com"}
                     >
                       <ReactIcons.AiICon.AiFillApple size={18} />
@@ -56,10 +56,10 @@ export default function SFooter() {
             <div className="flex flex-col">
               <div className="flex items-start gap-2">
                 <div className="flex flex-col gap-2">
-                  <h4 className="md:text-base text-sm font-semibold dark:text-white">
+                  <h4 className="md:text-base text-base font-semibold dark:text-white">
                     <CTranslateTo eng="Location" pt="Localização" />
                   </h4>
-                  <h3 className="text-slate-500 dark:text-slate-400 md:text-base text-sm">
+                  <h3 className="text-slate-500 dark:text-slate-400 md:text-base text-base">
                     Angola, Luanda
                   </h3>
                 </div>
@@ -69,7 +69,7 @@ export default function SFooter() {
           <div className="flex flex-col">
             <div className="flex items-start gap-2">
               <div className="flex flex-col gap-2">
-                <h4 className="md:text-base text-sm flex items-center gap-2 font-semibold dark:text-white">
+                <h4 className="md:text-base text-base flex items-center gap-2 font-semibold dark:text-white">
                   <ReactIcons.AiICon.AiOutlineLink size={20} />
                   <CTranslateTo eng="Extras" pt="Extras" />
                 </h4>
@@ -77,20 +77,20 @@ export default function SFooter() {
                   <Link
                     target="_blank"
                     href={""}
-                    className="hover:opacity-60 cursor-pointer  md:text-base text-sm  dark:text-slate-400"
+                    className="hover:opacity-60 cursor-pointer  md:text-base text-base  dark:text-slate-400"
                   >
                     <CTranslateTo eng="FAQs" pt="Perguntas Frequentes" />
                   </Link>
                   <div className="md:hidden flex flex-col gap-2">
                     <Link
                       href={`/${langByCookies}/policy/terms`}
-                      className="hover:opacity-60  md:text-base text-sm  dark:text-slate-400"
+                      className="hover:opacity-60  md:text-base text-base  dark:text-slate-400"
                     >
                       <CTranslateTo eng="Terms of Use" pt="Termos de Uso" />
                     </Link>
                     <Link
                       href={`/${langByCookies}/policy/privacy`}
-                      className="hover:opacity-60  md:text-base text-sm  dark:text-slate-400"
+                      className="hover:opacity-60  md:text-base text-base  dark:text-slate-400"
                     >
                       <CTranslateTo
                         eng="Privacy Policy"

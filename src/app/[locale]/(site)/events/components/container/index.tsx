@@ -1,10 +1,43 @@
+"use client";
+
 import { AuSoftUI } from "@/@components/(ausoft)";
+import { useEffect, useState } from "react";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import EventCard from "./EventCard";
 import BoxCategories from "../../../components/BoxCategories";
 
 export default function EventContainer() {
+  const [items, setItems] = useState<number>(4); // Começa com 4 items
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (isLoading) return;
+
+      const scrollHeight = document.documentElement.scrollHeight;
+      const scrollTop = window.scrollY;
+      const clientHeight = document.documentElement.clientHeight;
+
+      // Verifica se chegou ao final da página
+      if (scrollTop + clientHeight >= scrollHeight - 50) {
+        // -10 para dar uma pequena margem
+        setIsLoading(true);
+
+        if (items >= 10) return;
+
+        // Simula um carregamento com delay
+        setTimeout(() => {
+          setItems((prev) => prev + 4); // Adiciona mais 4 items
+          setIsLoading(false);
+        }, 500);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isLoading]);
+
   return (
     <div className="flex flex-col gap-5 relative max-w-full md:mb-28 mb-12">
       <div className="z-20 flex w-full items-center justify-center absolute -top-24 flex-col gap-4">
@@ -27,7 +60,7 @@ export default function EventContainer() {
 
       <div className="flex flex-col md:px-[3rem] px-5">
         <div className="grid md:grid-cols-4 grid-cols-1 gap-6">
-          {Array.from({ length: 8 }).map((_, i) => {
+          {Array.from({ length: items }).map((_, i) => {
             return (
               <EventCard
                 key={i}

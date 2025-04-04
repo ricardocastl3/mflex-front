@@ -70,48 +70,6 @@ export default function MobileMoreOptions() {
               title_pt="WhatsApp"
             />
           </div>
-          {userLogged?.user_type == "owner" && (
-            <>
-              <h4 className="text-normal text-slate-500 dark:text-slate-300">
-                <CTranslateTo eng="Administration" pt="Administração" />
-              </h4>
-              <LinkButton
-                isExpanded={true}
-                Icon={ReactIcons.PiIcon.PiUser}
-                href="merchants"
-                isSelected={currentAppPageUrl == "merchants"}
-                title_en="Merchants"
-                title_pt="Comerciantes"
-              />
-
-              <LinkButton
-                isExpanded={true}
-                Icon={ReactIcons.PiIcon.PiShippingContainer}
-                href="m-transactions"
-                isSelected={currentAppPageUrl == "m-transactions"}
-                title_en="Transactions"
-                title_pt="Transações"
-              />
-
-              <LinkButton
-                isExpanded={true}
-                Icon={ReactIcons.PiIcon.PiHandWithdrawThin}
-                href="m-transfer"
-                isSelected={currentAppPageUrl == "m-transfer"}
-                title_en="Transferences"
-                title_pt="Transferências"
-              />
-
-              <LinkButton
-                isExpanded={true}
-                Icon={ReactIcons.PiIcon.PiShoppingCart}
-                href="m-products"
-                isSelected={currentAppPageUrl == "m-products"}
-                title_en="Products"
-                title_pt="Produtos"
-              />
-            </>
-          )}
         </div>
         <div className="border-t border-slate-300 dark:border-t-slate-700 px-4 py-2.5">
           <AuSoftUI.UI.Button
