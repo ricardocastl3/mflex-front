@@ -16,7 +16,7 @@ export default function NewsContainer() {
         <AuSoftUI.UI.TextField.Default
           placeholder="Ex: Fly PodCast...."
           weight={"lg"}
-          className="rounded-full dark:bg-ausoft-slate-950 bg-slate-100 md:w-[50vw] w-[90vw]"
+          className="rounded-full text-center dark:bg-ausoft-slate-950 bg-slate-100 md:w-[50vw] w-[90vw]"
         />
       </div>
     </div>

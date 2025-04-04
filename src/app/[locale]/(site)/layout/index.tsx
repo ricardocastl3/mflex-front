@@ -19,7 +19,11 @@ export default function BweviPayLayout({
   const { openToast, openBanner } = useAppProvider();
 
   if (isLoadingUserData) {
-    return <LoadingLayout />;
+    return (
+      <div className="bg-ausoft-slate-950 w-screen h-screen flex items-center justify-center">
+        <LoadingLayout />
+      </div>
+    );
   }
 
   return (

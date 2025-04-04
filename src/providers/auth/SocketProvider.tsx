@@ -11,7 +11,7 @@ interface ISocketEvent {
   metadata: string;
 }
 
-const socketClient = io(process.env.LINKS_SERVER_URL);
+const socketClient = io(process.env.MFLEX_SERVER_URL);
 
 export const SocketProviderContext = createContext({} as ISocketProviderProps);
 

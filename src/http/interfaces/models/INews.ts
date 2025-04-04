@@ -1,7 +1,12 @@
+import { ICategory } from "./ICategory";
+
 export interface INews {
   id: string;
   title: string;
   content: string;
-  cover: string;
+  image_url: string;
   slug: string;
+  category?: ICategory;
+  category_id?: string;
+  created_at: Date;
 }
