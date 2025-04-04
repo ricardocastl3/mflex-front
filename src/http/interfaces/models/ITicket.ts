@@ -1,18 +1,8 @@
-import { Decimal } from "@prisma/client/runtime/library";
-import { IIAngolanReference } from "../angolan-reference/IAngolanReference";
-import { IEvent } from "../events/IEvent";
-import { IPayment } from "../payments/IPayment";
-import { IUserResponse } from "../users/IUserResponse";
+import { IEvent } from "./IEvent";
 
 export interface ITicket {
   id: string;
-  amount: Decimal;
+  amount: number;
   quantity: number;
-  customer?: IUserResponse;
-  customer_id?: string;
-  angolan_reference?: IIAngolanReference;
-  payment?: IPayment;
   event?: IEvent;
-  event_id?: string;
-  created_at: Date;
 }
