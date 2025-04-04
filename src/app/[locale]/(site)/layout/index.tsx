@@ -9,6 +9,7 @@ import React from "react";
 import SHeader from "@/@components/(system)/site/SHeader";
 import SMobileFooter from "@/@components/(system)/site/SFooter/mobile";
 import ContactZap from "@/services/contact-zap/ContactZap";
+import SFooter from "@/@components/(system)/site/SFooter/desktop";
 
 export default function BweviPayLayout({
   children,
@@ -37,6 +38,7 @@ export default function BweviPayLayout({
           <div className={`flex-1 md:mb-0 mb-[2rem]`}>{children}</div>
         </div>
         <SMobileFooter />
+        <SFooter />
         <ContactZap />
       </div>
     </>

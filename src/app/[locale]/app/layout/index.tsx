@@ -12,7 +12,7 @@ import ASidebar from "@/@components/(system)/ASidebar";
 import AMobileFooter from "@/@components/(system)/AFooter/mobile";
 import ABanner from "@/@components/(system)/ABanner";
 
-export default function LinkLayout({
+export default function MFlexLayout({
   children,
 }: {
   children: React.ReactNode;

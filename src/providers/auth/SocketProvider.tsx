@@ -38,7 +38,7 @@ export default function SocketProvider({
     socketClient.on("reference-pay", (data) => {
       setSocketEvent((state) => ({ ...state, name: "reference-pay" }));
     });
-  }, []);
+  }, [socketClient]);
 
   return (
     <SocketProviderContext.Provider value={{ socketEvent }}>

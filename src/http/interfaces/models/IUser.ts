@@ -6,5 +6,4 @@ export interface IUser {
   status?: number;
   password?: string;
   photo?: string;
-  user_type?: string;
 }

@@ -6,6 +6,7 @@ import { useAppProvider } from "@/providers/app/AppProvider";
 import { useAuth } from "@/providers/auth/AuthProvider";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { ReactIcons } from "@/utils/icons";
+import { useEffect, useState } from "react";
 
 import Link from "next/link";
 import AAuSoftLogo from "@/@components/(ausoft)/AAuSoftLogo";
@@ -17,9 +18,32 @@ export default function SHeader() {
   // Contexts
   const { segmentedLayout } = useAppProvider();
   const { userLogged, handleRedirectToSign, isLoadingUserData } = useAuth();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPercentage = (window.scrollY / window.innerHeight) * 100;
+      setIsScrolled(scrollPercentage > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <div className="fixed flex top-0 inset-x-0 z-30 border-b border-slate-200 dark:border-slate-800 md:pr-8 pr-5 md:pl-8 pl-4 md:py-0.5 py-0 justify-between bg-slate-50 backdrop-filter backdrop-blur-md dark:bg-ausoft-slate-900/50  items-center md:gap-4 gap-2">
+    <div
+      className={`
+      fixed flex top-0 inset-x-0 z-30 
+      border-b transition-all duration-300
+      md:pr-8 pr-5 md:pl-8 pl-4 md:py-0.5 py-0 
+      justify-between items-center md:gap-4 gap-2
+      ${
+        isScrolled
+          ? "border-slate-200 dark:border-slate-800 bg-slate-50/95 backdrop-blur-md dark:bg-ausoft-slate-900/95"
+          : "border-transparent bg-transparent"
+      }
+    `}
+    >
       <div className="flex items-center gap-4">
         <Link
           href={`/${segmentedLayout}`}
@@ -29,24 +53,28 @@ export default function SHeader() {
         </Link>
         <div className="items-center gap-1.5 md:flex hidden mt-[0.27rem]">
           <LinkHeader
+            isScrolled={isScrolled}
             Icon={ReactIcons.AiICon.AiFillFire}
             action="news"
             title_en="News"
             title_pt="Novidades"
           />
           <LinkHeader
+            isScrolled={isScrolled}
             Icon={ReactIcons.AiICon.AiOutlineVerified}
             action="events"
             title_en="Events"
             title_pt="Eventos"
           />
           <LinkHeader
+            isScrolled={isScrolled}
             Icon={ReactIcons.AiICon.AiOutlineAudio}
             action="podflex"
             title_en="PodFlex"
             title_pt="PodFlex"
           />
           <LinkHeader
+            isScrolled={isScrolled}
             Icon={ReactIcons.AiICon.AiFillSignal}
             action="services"
             title_en="Services"

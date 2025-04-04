@@ -1,31 +1,19 @@
-import { useAuth } from "@/providers/auth/AuthProvider";
-import { langByCookies } from "@/http/axios/api";
-import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import { AuSoftUI } from "@/@components/(ausoft)";
-import AAuSoftLogo from "@/@components/(ausoft)/AAuSoftLogo";
 import { ReactIcons } from "@/utils/icons";
 
-export default function Hero() {
-  const { userLogged } = useAuth();
-  function handleStarted() {
-    if (!userLogged) {
-      window.location.href = `/${langByCookies}/sign-in`;
-    } else {
-      window.location.href = `/${langByCookies}/app`;
-    }
-  }
+import CTranslateTo from "@/@components/(translation)/CTranslateTo";
+import AAuSoftLogo from "@/@components/(ausoft)/AAuSoftLogo";
+import VideoBackground from "../../components/video/VideoBackground";
 
+export default function Hero() {
   return (
     <div className="h-screen md:flex-row flex-col flex w-full relative">
-      <video
-        loop
-        muted
-        autoPlay
-        className="absolute inset-0 h-full w-full object-cover"
-      >
-        <source src="/assets/party.mp4" type="video/mp4" />
-      </video>
-      <div className="z-10 absolute inset-0 bg-black/50 flex justify-center h-full items-center">
+      <VideoBackground
+        fallback_url="https://images.pexels.com/photos/3122799/pexels-photo-3122799.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+        video_url="/assets/party.mp4"
+      />
+
+      <div className="z-20 absolute inset-0 bg-black/50 flex justify-center h-full items-center">
         <div className="flex flex-col items-center">
           <AAuSoftLogo size={100} />
           <h4 className="md:text-[2rem] text-xl font-bold text-yellow-500 md:mt-2 mt-2">

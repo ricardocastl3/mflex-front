@@ -62,7 +62,7 @@ export default function AuthProvider({
       const user = resp.data.user;
 
       if (path.slice(4) == "sign-in") {
-       // window.location.href = "/" + langByCookies + "/app";
+        // window.location.href = "/" + langByCookies + "/app";
       }
 
       if (path.slice(4).startsWith("app")) {
@@ -75,16 +75,12 @@ export default function AuthProvider({
       setUserLogged(user);
       setIsLoadingUserData(false);
     } catch (err) {
-      console.log(path.slice(4));
-      if (path.slice(4).startsWith("app")) {
-        return handleRedirectToSign();
-      }
       setIsLoadingUserData(false);
     }
   }, []);
 
   function handleRedirectToSign() {
-   // window.location.href = "/" + langByCookies + "/sign-in";
+    window.location.href = "/" + langByCookies + "/sign-in";
   }
 
   async function handleLogout() {
