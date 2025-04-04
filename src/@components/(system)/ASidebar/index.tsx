@@ -165,54 +165,6 @@ export default function ASidebar() {
             />
           </div>
 
-          {userLogged?.user_type == "owner" && (
-            <>
-              <h4 className="text-normal text-slate-500 dark:text-slate-300">
-                {isExpanded ? (
-                  <CTranslateTo eng="Administração" pt="Administração" />
-                ) : (
-                  <CTranslateTo eng="Admins." pt="Admins." />
-                )}
-              </h4>
-              <div className="flex flex-col gap-2">
-                <LinkButton
-                  isExpanded={showText}
-                  Icon={ReactIcons.PiIcon.PiUser}
-                  href="merchants"
-                  isSelected={currentAppPageUrl == "merchants"}
-                  title_en="Merchants"
-                  title_pt="Comerciantes"
-                />
-
-                <LinkButton
-                  isExpanded={showText}
-                  Icon={ReactIcons.PiIcon.PiShippingContainer}
-                  href="m-transactions"
-                  isSelected={currentAppPageUrl == "m-transactions"}
-                  title_en="Transactions"
-                  title_pt="Transações"
-                />
-
-                <LinkButton
-                  isExpanded={showText}
-                  Icon={ReactIcons.PiIcon.PiHandWithdrawThin}
-                  href="m-transfer"
-                  isSelected={currentAppPageUrl == "m-transfer"}
-                  title_en="Transferences"
-                  title_pt="Transferências"
-                />
-
-                <LinkButton
-                  isExpanded={showText}
-                  Icon={ReactIcons.PiIcon.PiShoppingCart}
-                  href="m-products"
-                  isSelected={currentAppPageUrl == "m-products"}
-                  title_en="Products"
-                  title_pt="Produtos"
-                />
-              </div>
-            </>
-          )}
         </div>
       </div>
     </BaseBox>
