@@ -24,7 +24,7 @@ export default function PodFlexContainer() {
       const scrollTop = window.scrollY;
       const clientHeight = document.documentElement.clientHeight;
 
-      const height = window.innerWidth > 765 ? 200 : 500;
+      const height = window.innerWidth > 765 ? 400 : 500;
 
       if (items >= 10) return;
 
