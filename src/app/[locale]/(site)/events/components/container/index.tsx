@@ -6,10 +6,15 @@ import { useEffect, useState } from "react";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import EventCard from "./EventCard";
 import BoxCategories from "../../../components/BoxCategories";
+import { ReactIcons } from "@/utils/icons";
 
 export default function EventContainer() {
-  const [items, setItems] = useState<number>(4); // Começa com 4 items
+  const [items, setItems] = useState<number>(4);
   const [isLoading, setIsLoading] = useState(false);
+
+  const getItemIndex = (i: number) => {
+    return i % 4; // Retorna 0, 1, 2 ou 3 ciclicamente
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,18 +24,16 @@ export default function EventContainer() {
       const scrollTop = window.scrollY;
       const clientHeight = document.documentElement.clientHeight;
 
-      // Verifica se chegou ao final da página
-      if (scrollTop + clientHeight >= scrollHeight - 50) {
-        // -10 para dar uma pequena margem
+      const height = window.innerWidth > 765 ? 200 : 500;
+
+      if (items >= 10) return;
+
+      if (scrollTop + clientHeight >= scrollHeight - height) {
         setIsLoading(true);
-
-        if (items >= 10) return;
-
-        // Simula um carregamento com delay
         setTimeout(() => {
-          setItems((prev) => prev + 4); // Adiciona mais 4 items
+          setItems((prev) => prev + 4);
           setIsLoading(false);
-        }, 500);
+        }, 1000);
       }
     };
 
@@ -61,9 +64,12 @@ export default function EventContainer() {
       <div className="flex flex-col md:px-[3rem] px-5">
         <div className="grid md:grid-cols-4 grid-cols-1 gap-6">
           {Array.from({ length: items }).map((_, i) => {
+            const currentIndex = getItemIndex(i);
+
             return (
               <EventCard
                 key={i}
+                index={currentIndex}
                 event={{
                   id: "djff",
                   amount: 0,
@@ -91,6 +97,15 @@ export default function EventContainer() {
             );
           })}
         </div>
+
+        {isLoading && (
+          <div className="flex justify-center py-12">
+            <ReactIcons.PiIcon.PiSpinner
+              size={40}
+              className="animate-spin dark:text-slate-400"
+            />
+          </div>
+        )}
       </div>
     </div>
   );

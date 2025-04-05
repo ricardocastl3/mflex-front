@@ -20,13 +20,17 @@ export default function SFooter() {
               </h4>
               <h4 className="md:text-base text-base text-slate-600 dark:text-slate-400">
                 <CTranslateTo
-                  eng="We are a marketing & advertising agency, focused on flexibility and strategy."
-                  pt="Somos uma agência marketing & publicidade, com foco em flexibilidade e estratégia."
+                  eng="At Marca Flex, we are more than just an agency — we are creative partners in the growth of brands that want to be remembered.
+                  We combine strategy, innovation and passion for communication to transform ideas into real connections. We work in digital marketing,
+                  advertising and brand promotion with comprehensive and affordable solutions, adapted to local reality and the global scenario."
+                  pt="Na Marca Flex, somos mais do que uma agência — somos parceiros criativos no crescimento de marcas que querem ser lembradas.
+                  Unimos estratégia, inovação e paixão pela comunicação para transformar ideias em conexões reais. Atuamos no marketing digital, 
+                  publicidade e promoção de marcas com soluções completas e acessíveis, adaptadas à realidade local e ao cenário global."
                 />
               </h4>
             </div>
           </div>
-          <div className="grid md:grid-cols-1 grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-1 grid-cols-2 gap-4 md:mt-0 mt-2">
             <div className="flex flex-col">
               <div className="flex items-start gap-2">
                 <div className="flex flex-col gap-2">
@@ -66,7 +70,7 @@ export default function SFooter() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col md:mt-0 mt-2">
             <div className="flex items-start gap-2">
               <div className="flex flex-col gap-2">
                 <h4 className="md:text-base text-base flex items-center gap-2 font-semibold dark:text-white">
@@ -77,27 +81,30 @@ export default function SFooter() {
                   <Link
                     target="_blank"
                     href={""}
-                    className="hover:opacity-60 cursor-pointer  md:text-base text-base  dark:text-slate-400"
+                    className="flex items-center gap-2 hover:opacity-60 cursor-pointer  md:text-base text-base  dark:text-slate-400"
                   >
                     <CTranslateTo eng="FAQs" pt="Perguntas Frequentes" />
+                    <ReactIcons.BiIcon.BiLinkExternal size={16} />
                   </Link>
                   <div className="md:hidden flex flex-col gap-2">
                     <Link
                       href={`/${langByCookies}/policy/terms`}
-                      className="hover:opacity-60  md:text-base text-base  dark:text-slate-400"
+                      className="flex items-center gap-2 hover:opacity-60  md:text-base text-base  dark:text-slate-400"
                     >
                       <CTranslateTo eng="Terms of Use" pt="Termos de Uso" />
+                      <ReactIcons.BiIcon.BiLinkExternal size={16} />
                     </Link>
                     <Link
                       href={`/${langByCookies}/policy/privacy`}
-                      className="hover:opacity-60  md:text-base text-base  dark:text-slate-400"
+                      className="flex items-center gap-2 hover:opacity-60  md:text-base text-base  dark:text-slate-400"
                     >
                       <CTranslateTo
                         eng="Privacy Policy"
                         pt="Políticas de Privacidade"
                       />
+                      <ReactIcons.BiIcon.BiLinkExternal size={16} />
                     </Link>
-                    <h4 className="dark:text-slate-400 md:text-base text-sm">
+                    <h4 className="dark:text-slate-400 md:text-base text-base">
                       Marca Flex@{new Date().getFullYear()}
                     </h4>
                   </div>

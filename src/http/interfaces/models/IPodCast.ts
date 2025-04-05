@@ -9,10 +9,9 @@ export interface IPodcast {
   thumbnail: string;
   source: string;
   url: string;
+  slug: string;
   started_at: Date;
   category?: ICategory;
-  category_id?: string;
-  podcaster: IPodcastAuthor;
-  podcaster_id: string;
+  podcaster: Omit<IPodcastAuthor, "created_at" | "id">;
   created_at: Date;
 }
