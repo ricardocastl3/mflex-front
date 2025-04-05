@@ -60,7 +60,8 @@ export default function SFooter() {
             <div className="flex flex-col">
               <div className="flex items-start gap-2">
                 <div className="flex flex-col gap-2">
-                  <h4 className="md:text-base text-base font-semibold dark:text-white">
+                  <h4 className="flex items-center gap-2 md:text-base text-base font-semibold dark:text-white">
+                    <ReactIcons.BiIcon.BiMapPin size={20} />
                     <CTranslateTo eng="Location" pt="Localização" />
                   </h4>
                   <h3 className="text-slate-500 dark:text-slate-400 md:text-base text-base">
