@@ -42,7 +42,7 @@ export default function EventCard({
         >
           <div></div>
 
-          {showImageFooter && (
+          {(showImageFooter || window.innerWidth <= 765) && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

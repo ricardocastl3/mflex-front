@@ -44,7 +44,7 @@ export default function PodFlexCard({
           className="flex  flex-col gap-2  justify-between"
         >
           <div></div>
-          {showImageFooter && (
+          {(showImageFooter || window.innerWidth <= 765) && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
