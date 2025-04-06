@@ -113,7 +113,14 @@ export async function POST(
 
     const data = await externalResponse.data;
 
-    return NextResponse.json(data, { status: 200 });
+    const resp = NextResponse.json(data, { status: 200 });
+    const cookie = externalResponse.headers["set-cookie"]
+      ? externalResponse.headers["set-cookie"]
+      : "";
+
+    resp.headers.set("Set-Cookie", cookie as string);
+
+    return resp;
   } catch (err) {
     if (err instanceof AxiosError) {
       return NextResponse.json(

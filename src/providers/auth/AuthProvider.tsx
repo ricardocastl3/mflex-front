@@ -12,7 +12,7 @@ import React, {
 import { IUserResponse } from "@/http/interfaces/responses/IUserResponse";
 import { hasCookie } from "cookies-next";
 import { internalApi, langByCookies } from "@/http/axios/api";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import CookieServices from "@/services/auth/CookieServices";
 
@@ -43,6 +43,9 @@ export default function AuthProvider({
   const [isUserConfirmed, setIsUserConfirmed] = useState(false);
 
   const path = usePathname();
+  const startRoutes = path.slice(4);
+
+  const router = useRouter();
 
   const fetchUserInformations = useCallback(async () => {
     try {
@@ -61,21 +64,35 @@ export default function AuthProvider({
 
       const user = resp.data.user;
 
-      if (path.slice(4) == "sign-in") {
-        // window.location.href = "/" + langByCookies + "/app";
-      }
-
-      if (path.slice(4).startsWith("app")) {
-        if (user.status != 1) {
-          window.location.href = "/" + langByCookies;
+      if (
+        path.slice(4).startsWith("app") ||
+        startRoutes == "sign-in" ||
+        startRoutes == "forgot-pwd" ||
+        startRoutes == "sign-up"
+      ) {
+        if (user.status == 0) {
+          window.location.href = `/${langByCookies}/confirm-account`;
           return;
         }
+      }
+
+      if (
+        startRoutes == "sign-in" ||
+        startRoutes == "sign-up" ||
+        startRoutes == "forgot-pwd" ||
+        (startRoutes == "confirm-account" && user.status == 1)
+      ) {
+        window.location.href = "/" + langByCookies + "/app";
       }
 
       setUserLogged(user);
       setIsLoadingUserData(false);
     } catch (err) {
-      setIsLoadingUserData(false);
+      if (startRoutes == "app" || startRoutes == "confirm-account") {
+        return handleRedirectToSign();
+      } else {
+        setIsLoadingUserData(false);
+      }
     }
   }, []);
 

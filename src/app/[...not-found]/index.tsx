@@ -20,7 +20,7 @@ export default function NotFound() {
           height={180}
           alt="Imagem de home buscando algo"
         />
-        <h4 className="md:text-xl text-[1.2rem] text-center font-bold dark:text-blue-400 text-blue-700 mt-4 mb-2">
+        <h4 className="md:text-xl text-[1.2rem] text-center font-bold dark:text-yellow-400 text-yellow-700 mt-4 mb-2">
           <CTranslateTo
             eng="Ow! Page not found"
             pt=" Ops! Página não encontrada"

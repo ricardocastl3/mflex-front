@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 
-
 export default function ARegisterProgress({
   isOpened,
   rounded = "none",
@@ -8,7 +7,6 @@ export default function ARegisterProgress({
   isOpened: boolean;
   rounded?: "bottom" | "top" | "all" | "none";
 }) {
-  /*
   return (
     <>
       {isOpened && (
@@ -35,11 +33,11 @@ export default function ARegisterProgress({
                   : ""
               } h-1.5 w-full bg-pink-100 overflow-hidden`}
             >
-              <div className="animate-progress rounded-full w-full h-full bg-blue-500 dark:bg-blue-800 origin-left-right"></div>
+              <div className="animate-progress rounded-t-full w-full h-full bg-yellow-500 dark:bg-yellow-600 origin-left-right"></div>
             </div>
           </div>
         </motion.div>
       )}
     </>
-  );*/
+  );
 }

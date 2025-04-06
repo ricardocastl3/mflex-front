@@ -5,16 +5,18 @@ import { motion } from "framer-motion";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { ReactIcons } from "@/utils/icons";
 import { FormProvider, useForm } from "react-hook-form";
-import { langByCookies } from "@/http/axios/api";
+import { internalApi, langByCookies } from "@/http/axios/api";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 import Link from "next/link";
 import signUpSchema from "@/services/schemas/SignUpSchema";
+import ARegisterProgress from "@/@components/(ausoft)/ARegisterProgress";
 
 export default function SignUpPage() {
   // Context
@@ -22,6 +24,9 @@ export default function SignUpPage() {
 
   // Controls
   const [termCheck, setTermCheck] = useState(false);
+  const [isSubmit, setIsSubmit] = useState(false);
+
+  const router = useRouter();
 
   // Schema
   const schema = new signUpSchema(langByCookies);
@@ -40,12 +45,37 @@ export default function SignUpPage() {
   const {
     register,
     handleSubmit,
-    formState: { isSubmitting, errors },
+    formState: { errors },
   } = methods;
 
-  function handleSignUp(data: formData) {
+  async function handleSignUp(data: formData) {
     try {
+      if (!termCheck) {
+        return AuSoftUI.Component.ToastifyWithTranslation({
+          description_en:
+            "To proceed, you need agree with terms and conditions",
+          description_pt:
+            "Para prosseguir, precisa concordar com os termos e condições",
+          title_en: "Terms & Conditions",
+          title_pt: "Termos & Condições",
+          toast: handleAddToastOnArray,
+          type: "error",
+        });
+      }
+
+      setIsSubmit(true);
+
+      await internalApi.post("/auth/sign-up", {
+        first_name: data.first_name,
+        last_name: data.last_name,
+        phone: data.phone,
+        password: data.password,
+        confirmPassword: data.confirmPassword,
+      });
+
+      router.push(`/${langByCookies}/confirm-account`);
     } catch (err) {
+      setIsSubmit(false);
       return CAxiosErrorToastify({
         err: err,
         openToast: handleAddToastOnArray,
@@ -61,7 +91,7 @@ export default function SignUpPage() {
     >
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(handleSignUp)}>
-          <BaseBox className="h-fit w-full">
+          <BaseBox className="h-fit w-full relative">
             <div className="md:px-5 px-4 py-4 flex flex-col gap-6 ">
               <div className="flex flex-col  justify-center gap-4 pb-4 border-b border-slate-300 dark:border-slate-700">
                 <div className="flex items-center justify-between">
@@ -83,7 +113,7 @@ export default function SignUpPage() {
                     </AuSoftUI.UI.Button>
                   </Link>
                 </div>
-                <h4 className="text-[0.89rem]  text-slate-500 dark:text-slate-500">
+                <h4 className="text-[0.89rem]  text-slate-500 dark:text-slate-400">
                   <CTranslateTo
                     eng="You take the good decision 🚀"
                     pt="Tomou a decisão certa! 🚀"
@@ -230,12 +260,21 @@ export default function SignUpPage() {
                     className="w-full font-bold justify-center items-center"
                     variant={"primary"}
                   >
-                    <CTranslateTo eng="Create Account" pt="Criar Conta" />
-                    <ReactIcons.AiICon.AiOutlineUserAdd size={16} />
+                    {!isSubmit && (
+                      <>
+                        <CTranslateTo eng="Create Account" pt="Criar Conta" />
+                        <ReactIcons.AiICon.AiOutlineUserAdd size={16} />
+                      </>
+                    )}
+
+                    <AuSoftUI.Component.isFormSubmitting
+                      isSubmitting={isSubmit}
+                    />
                   </AuSoftUI.UI.Button>
                 </div>
               </div>
             </div>
+            <ARegisterProgress rounded="all" isOpened={isSubmit} />
           </BaseBox>
         </form>
       </FormProvider>

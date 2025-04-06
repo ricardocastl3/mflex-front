@@ -46,8 +46,8 @@ export default function LinkButton({
       href={`/${langByCookies}/${href == "" ? "app" : `app/${href}`}`}
       className={`${
         isSelected
-          ? "bg-blue-100 dark:bg-blue-800/10"
-          : "hover:bg-blue-100 dark:hover:bg-blue-800/10"
+          ? "bg-yellow-100 dark:bg-yellow-800/10"
+          : "hover:bg-yellow-100 dark:hover:bg-yellow-800/10"
       } ${
         isExpanded ? "" : "w-fit"
       }  text-nowrap transition-all flex items-center gap-2 px-2 py-1.5 text-normal rounded-xl text-slate-800 dark:text-white`}
@@ -56,8 +56,8 @@ export default function LinkButton({
         ref={iconRef}
         className={`${
           isSelected
-            ? "bg-blue-600 text-white"
-            : "bg-slate-200 dark:bg-slate-800/80 hover:bg-blue-600 hover:dark:bg-blue-600 hover:text-white"
+            ? "bg-yellow-600 text-white"
+            : "bg-slate-200 dark:bg-slate-800/80 hover:bg-yellow-600 hover:dark:bg-yellow-600 hover:text-white"
         } relative w-fit p-2 rounded-xl flex`}
       >
         <Icon size={15} />

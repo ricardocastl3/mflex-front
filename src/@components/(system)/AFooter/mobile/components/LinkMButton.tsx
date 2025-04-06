@@ -35,15 +35,12 @@ export default function LinkMButton({
       }`}
       className={`${
         isSelected ? "border-yellow-600" : "border-transparent"
-      }  border-t-2 flex justify-center dark:text-white items-center p-3 relative`}
+      }  border-t-2 flex justify-center dark:text-white items-center p-3 relative transition-all duration-300`}
     >
-      {bar && isSelected && (
-        <div className="animate-fade duration-500 absolute -top-7 p-2 bg-red-500"></div>
-      )}
       <div
         className={`${
           isSelected
-            ? "dark:bg-yellow-900/20 bg-yellow-200/50 text-yellow-800 dark:text-yellow-200 font-bold"
+            ? "rounded-t-xl scale-105 dark:bg-yellow-800/30 transition-all bg-yellow-600/40 text-yellow-800 dark:text-yellow-500 font-bold"
             : ""
         } mx-2 px-2 py-1 rounded-xl w-[40vw] text-center  flex flex-col items-center gap-1 text-xs text-nowrap`}
       >

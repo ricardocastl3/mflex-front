@@ -24,20 +24,29 @@ export default function AMobileFooter() {
       </div>
       <BaseBox className="dark:bg-ausoft-slate-900 z-20 md:hidden border-t rounded-t-xl border-slate-200 dark:border-slate-800 fixed bottom-0 rounded-none grid grid-cols-4 inset-x-0">
         <LinkMButton
-          Icon={ReactIcons.CgIcon.CgHome}
+          Icon={ReactIcons.VSCIcon.VscSymbolEvent}
           action="/"
           isSelected={currentAppPageUrl == "" || !currentAppPageUrl}
-          title_en="Home"
-          title_pt="Página Inicial"
+          title_en="Flex Zone"
+          title_pt="Flex Zone"
           bar
         />
 
         <LinkMButton
-          Icon={ReactIcons.PiIcon.PiShoppingBagFill}
-          action="products"
-          isSelected={currentAppPageUrl == "products"}
-          title_en="My Products"
-          title_pt="Meus Produtos"
+          Icon={ReactIcons.Hi2Icon.HiTag}
+          action="tickets"
+          isSelected={currentAppPageUrl == "tickets"}
+          title_en="My Tickets"
+          title_pt="Meus Ingressos"
+          bar
+        />
+
+        <LinkMButton
+          Icon={ReactIcons.BiIcon.BiSolidCalendarEvent}
+          action="events"
+          isSelected={currentAppPageUrl == "events"}
+          title_en="My Events"
+          title_pt="Meus Eventos"
           bar
         />
 
@@ -47,15 +56,6 @@ export default function AMobileFooter() {
           isSelected={currentAppPageUrl == "transactions"}
           title_en="Transactions"
           title_pt="Transações"
-          bar
-        />
-
-        <LinkMButton
-          Icon={ReactIcons.AiICon.AiFillBuild}
-          action="webhooks"
-          isSelected={currentAppPageUrl == "webhooks"}
-          title_en="Webhooks"
-          title_pt="Webhooks"
           bar
         />
       </BaseBox>

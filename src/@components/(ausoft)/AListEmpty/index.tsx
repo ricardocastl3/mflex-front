@@ -41,7 +41,7 @@ export default function AListEmpty({
       />
 
       <div className="md:w-[40vw] w-[80vw] flex flex-col gap-2">
-        <h4 className="text-lg text-center font-bold text-blue-700 dark:text-blue-400">
+        <h4 className="text-lg text-center font-bold text-yellow-700 dark:text-yellow-400">
           <CTranslateTo eng={title_en} pt={title_pt} />
         </h4>
         <h4 className="text-base text-center text-slate-600 dark:text-slate-400">

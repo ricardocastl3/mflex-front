@@ -35,7 +35,7 @@ export default function SHeader() {
       className={`
       fixed flex top-0 inset-x-0 z-30 
       border-b transition-all duration-300
-      md:pr-8 pr-5 md:pl-8 pl-4 md:py-0.5 py-0 
+      md:pr-8 pr-5 md:pl-8 pl-4 md:py-3 py-2 
       justify-between items-center md:gap-4 gap-2
       ${
         isScrolled
@@ -49,7 +49,7 @@ export default function SHeader() {
           href={`/${segmentedLayout}`}
           className="flex items-center font-bold gap-1.5 md:text-xl text-md text-yellow-500 dark:text-yellow-500"
         >
-          <AAuSoftLogo size={80} />
+          <AAuSoftLogo size={70} />
         </Link>
         <div className="items-center gap-1.5 md:flex hidden mt-[0.27rem]">
           <LinkHeader

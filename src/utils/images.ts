@@ -107,6 +107,7 @@ const enFlag =
 const paypayLogo =
   "https://firebasestorage.googleapis.com/v0/b/lora-538b7.appspot.com/o/prefs%2Flogos%2Fpaypay_africa_logo.jpeg?alt=media&token=fd9ae0e9-f121-4ef4-ac78-3520a7874c72";
 
+import flexUser from "@/@assets/logos/flex-user.png";
 import mflex from "@/@assets/logos/mflex.png";
 
 export const localImages = {
@@ -121,6 +122,7 @@ export const localImages = {
     multicaixaReference,
     unitelMoney,
     lora,
+    flexUser,
     mflex,
     paypayLogo,
   },

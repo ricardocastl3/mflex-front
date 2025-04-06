@@ -93,12 +93,12 @@ export default function CToastify({
           )}
           <div className="flex flex-col gap-1.5">
             <h3
-              className={`dark:text-slate-200 font-bold text-slate-800 text-normal`}
+              className={`dark:text-slate-200 font-bold text-slate-800 text-sm`}
             >
               {toast?.title}
             </h3>
             <h3
-              className={` dark:text-slate-400 font-light text-slate-600 text-normal`}
+              className={` dark:text-slate-400 font-light text-slate-600 text-sm`}
             >
               {toast?.description}
             </h3>

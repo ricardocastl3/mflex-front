@@ -5,20 +5,28 @@ import { motion } from "framer-motion";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { ReactIcons } from "@/utils/icons";
 import { FormProvider, useForm } from "react-hook-form";
-import { langByCookies } from "@/http/axios/api";
+import { internalApi, langByCookies } from "@/http/axios/api";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAppProvider } from "@/providers/app/AppProvider";
+import { useState } from "react";
+import { useAuth } from "@/providers/auth/AuthProvider";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import AuthSchemas from "@/services/schemas/AuthSchemas";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
-import Link from "next/link";
 import RecoverPwdSchema from "@/services/schemas/RecoveryPwdSchema";
+import ARegisterProgress from "@/@components/(ausoft)/ARegisterProgress";
 
 export default function SignInPage() {
   // Context
   const { handleAddToastOnArray } = useAppProvider();
+  const { fetchUserInformations } = useAuth();
+
+  // Controls
+  const [sentConde, setSentCode] = useState(false);
+  const [isLoadingSendCode, setIsLoadingSendCode] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [secondaryPhone, setSecondaryPhone] = useState("");
 
   // Schema
   const schema = new RecoverPwdSchema(langByCookies);
@@ -30,19 +38,81 @@ export default function SignInPage() {
       password: "",
       code: "",
       confirmPassword: "",
-      phone: "",
     },
   });
 
   const {
     register,
     handleSubmit,
-    formState: { isSubmitting, errors },
+    formState: { errors },
   } = methods;
 
-  function handleSignIn(data: formData) {
+  async function handleRecovery(data: formData) {
     try {
+      if (secondaryPhone.length != 9) {
+        return AuSoftUI.Component.ToastifyWithTranslation({
+          description_en: "Enter a valid mobile phone number",
+          description_pt: "Informe um número válido",
+          title_en: "Invalid Mobile Phone Number",
+          title_pt: "Número de celular inválido",
+          toast: handleAddToastOnArray,
+          type: "error",
+        });
+      }
+
+      if (data.code.length <= 0) {
+        return AuSoftUI.Component.ToastifyWithTranslation({
+          description_en: "Click on send code button, if you don't click after",
+          description_pt:
+            "Clique no botão enviar código, se você não clicou antes",
+          title_en: "Invalid Code",
+          title_pt: "Código inválido",
+          toast: handleAddToastOnArray,
+          type: "error",
+        });
+      }
+
+      setIsSubmitting(true);
+
+      await internalApi.post("/auth/reset-pwd", {
+        code: data.code,
+        phone: secondaryPhone,
+        password: data.password,
+        confirmPassword: data.confirmPassword,
+      });
+
+      await fetchUserInformations();
     } catch (err) {
+      setIsSubmitting(false);
+      return CAxiosErrorToastify({
+        err: err,
+        openToast: handleAddToastOnArray,
+      });
+    }
+  }
+
+  async function handleReceiveCode() {
+    try {
+      if (secondaryPhone.length != 9) {
+        return AuSoftUI.Component.ToastifyWithTranslation({
+          description_en: "Enter a valide mobile phone number",
+          description_pt: "Informe um número válido",
+          title_en: "Invalid Mobile Phone Number",
+          title_pt: "Número de celular inválido",
+          toast: handleAddToastOnArray,
+          type: "error",
+        });
+      }
+
+      setIsLoadingSendCode(true);
+
+      await internalApi.post("/auth/resend-code", {
+        phone: secondaryPhone,
+      });
+      setSentCode(true);
+      setIsLoadingSendCode(false);
+    } catch (err) {
+      setIsLoadingSendCode(false);
       return CAxiosErrorToastify({
         err: err,
         openToast: handleAddToastOnArray,
@@ -57,8 +127,8 @@ export default function SignInPage() {
       className="flex flex-col gap-4 md:w-[40vw] w-[90vw]"
     >
       <FormProvider {...methods}>
-        <form onSubmit={handleSubmit(handleSignIn)}>
-          <BaseBox className="h-fit w-full">
+        <form onSubmit={handleSubmit(handleRecovery)}>
+          <BaseBox className="h-fit w-full relative">
             <div className="md:px-5 px-4 py-4 flex flex-col gap-6 ">
               <div className="flex flex-col  justify-center gap-4 pb-4 border-b border-slate-300 dark:border-slate-700">
                 <div className="flex items-center justify-between">
@@ -69,7 +139,7 @@ export default function SignInPage() {
                     />
                   </h1>
                 </div>
-                <h4 className="text-[0.89rem]  text-slate-500 dark:text-slate-500">
+                <h4 className="text-[0.89rem]  text-slate-500 dark:text-slate-400">
                   <CTranslateTo
                     eng="You take the good decision 🚀"
                     pt="Tomou a decisão certa! 🚀"
@@ -91,41 +161,71 @@ export default function SignInPage() {
                         />
                       </h1>
                     </div>
-                    <button className="text-yellow-600 dark:text-yellow-300 hover:text-yellow-800 dark:hover:text-yellow-400">
-                      <CTranslateTo eng="Send Code" pt="Enviar código" />
-                    </button>
+                    {!isLoadingSendCode && !sentConde && (
+                      <button
+                        type="button"
+                        onClick={() => handleReceiveCode()}
+                        className="text-yellow-600 dark:text-yellow-300 hover:text-yellow-800 dark:hover:text-yellow-400"
+                      >
+                        <CTranslateTo eng="Send Code" pt="Enviar código" />
+                      </button>
+                    )}
+
+                    {!isLoadingSendCode && sentConde && (
+                      <h2 className="flex items-center gap-2 text-green-600 dark:text-green-300">
+                        <CTranslateTo eng="Sent code" pt="Código enviado" />
+                        <ReactIcons.AiICon.AiOutlineCheck />
+                      </h2>
+                    )}
+
+                    {isLoadingSendCode && (
+                      <h2 className="flex items-center gap-2 text-yellow-600 dark:text-yellow-300 animate-pulse">
+                        <CTranslateTo eng="Sending" pt="Enviando" />
+                        <ReactIcons.PiIcon.PiSpinner
+                          className="animate-spin"
+                          size={15}
+                        />
+                      </h2>
+                    )}
                   </div>
                   <AuSoftUI.UI.TextField.Default
-                    {...register("phone")}
+                    value={secondaryPhone}
+                    onChange={(e) => setSecondaryPhone(e.target.value)}
                     placeholder="Ex: 935567356"
                     className="w-full"
-                    requiredField={errors.phone?.message ? true : false}
+                    requiredField={
+                      secondaryPhone.length != 9 && isSubmitting ? true : false
+                    }
                     weight={"md"}
                   />
+                </div>
 
-                  {errors.phone?.message && (
-                    <AuSoftUI.Component.RequiredTextField
-                      text={errors.phone.message}
-                      color="red"
-                    />
-                  )}
-                </div>
-                <div className="flex flex-col gap-2 w-full">
-                  <div className="flex items-center justify-between">
-                    <div className="dark:text-white flex items-center gap-2">
-                      <ReactIcons.PiIcon.PiDotsThree size={20} />
-                      <h1 className="text-base ">
-                        <CTranslateTo eng="Code" pt="Código" />
-                      </h1>
+                {sentConde && (
+                  <div className="flex flex-col gap-2 w-full">
+                    <div className="flex items-center justify-between">
+                      <div className="dark:text-white flex items-center gap-2">
+                        <ReactIcons.PiIcon.PiDotsThree size={20} />
+                        <h1 className="text-base ">
+                          <CTranslateTo eng="Code" pt="Código" />
+                        </h1>
+                      </div>
                     </div>
+                    <AuSoftUI.UI.TextField.Default
+                      {...register("code")}
+                      className="w-full"
+                      weight={"md"}
+                      placeholder="Ex: 00545"
+                      requiredField={false}
+                    />
+                    {errors.code?.message && (
+                      <AuSoftUI.Component.RequiredTextField
+                        text={errors.code.message}
+                        color="red"
+                      />
+                    )}
                   </div>
-                  <AuSoftUI.UI.TextField.Default
-                    className="w-full"
-                    weight={"md"}
-                    placeholder="Ex: 00545"
-                    requiredField={false}
-                  />
-                </div>
+                )}
+
                 <div className="grid md:grid-cols-2 grid-cols-1 gap-4 mt-1.5">
                   <div className="flex flex-col gap-2 w-full">
                     <div className="flex items-center justify-between">
@@ -182,12 +282,24 @@ export default function SignInPage() {
                     className="w-full font-bold items-center"
                     variant={"primary"}
                   >
-                    <CTranslateTo eng="Recovery Paaword" pt="Recuperar Senha" />
-                    <ReactIcons.AiICon.AiFillUnlock size={16} />
+                    {!isSubmitting && (
+                      <>
+                        <CTranslateTo
+                          eng="Recovery Paaword"
+                          pt="Recuperar Senha"
+                        />
+                        <ReactIcons.AiICon.AiFillUnlock size={16} />
+                      </>
+                    )}
+
+                    <AuSoftUI.Component.isFormSubmitting
+                      isSubmitting={isSubmitting}
+                    />
                   </AuSoftUI.UI.Button>
                 </div>
               </div>
             </div>
+            <ARegisterProgress rounded="all" isOpened={isSubmitting} />
           </BaseBox>
         </form>
       </FormProvider>

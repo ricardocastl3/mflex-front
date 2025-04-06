@@ -54,22 +54,6 @@ export default function MobileMoreOptions() {
               title_pt="Definições"
             />
           </div>
-          <h4 className="text-normal text-slate-500 dark:text-slate-300">
-            <CTranslateTo eng="Community" pt="Comunidade" />
-          </h4>
-          <div className="flex flex-col gap-2">
-            <LinkButton
-              onClick={() => {
-                window.open("https://chat.whatsapp.com/JokBihhucQF9xtNfyYeuhK");
-              }}
-              isExpanded={true}
-              Icon={ReactIcons.PiIcon.PiWhatsappLogo}
-              href="#"
-              isSelected={false}
-              title_en="WhatsApp"
-              title_pt="WhatsApp"
-            />
-          </div>
         </div>
         <div className="border-t border-slate-300 dark:border-t-slate-700 px-4 py-2.5">
           <AuSoftUI.UI.Button

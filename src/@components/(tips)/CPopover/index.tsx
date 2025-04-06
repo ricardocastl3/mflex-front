@@ -23,9 +23,9 @@ export default function CPopever({
     >
       <ReactIcons.BiIcon.BiCaretLeft
         size={15}
-        className="text-blue-600 absolute -left-2"
+        className="text-yellow-600 absolute -left-2"
       />
-      <div className="px-2 pt-1 pb-0 w-fit rounded-full text-nowrap text-no bg-blue-600 text-white">
+      <div className="px-2 py-1 w-fit rounded-full text-nowrap text-no bg-yellow-600 text-white">
         <CTranslateTo pt={title_pt} eng={title_en} />
       </div>
     </motion.div>

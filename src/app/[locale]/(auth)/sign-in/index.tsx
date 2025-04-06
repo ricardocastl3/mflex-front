@@ -5,19 +5,26 @@ import { motion } from "framer-motion";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { ReactIcons } from "@/utils/icons";
 import { FormProvider, useForm } from "react-hook-form";
-import { langByCookies } from "@/http/axios/api";
+import { internalApi, langByCookies } from "@/http/axios/api";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAppProvider } from "@/providers/app/AppProvider";
+import { useAuth } from "@/providers/auth/AuthProvider";
+import { useState } from "react";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import AuthSchemas from "@/services/schemas/AuthSchemas";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 import Link from "next/link";
+import ARegisterProgress from "@/@components/(ausoft)/ARegisterProgress";
 
 export default function SignInPage() {
   // Context
   const { handleAddToastOnArray } = useAppProvider();
+  const { fetchUserInformations } = useAuth();
+
+  // Controls
+  const [isSubmit, setIsSubmit] = useState(false);
 
   // Schema
   const schema = new AuthSchemas(langByCookies);
@@ -34,12 +41,20 @@ export default function SignInPage() {
   const {
     register,
     handleSubmit,
-    formState: { isSubmitting, errors },
+    formState: { errors },
   } = methods;
 
-  function handleSignIn(data: formData) {
+  async function handleSignIn(data: formData) {
     try {
+      setIsSubmit(true);
+      await internalApi.post("/auth/sign-in", {
+        phone: data.phone,
+        password: data.password,
+      });
+
+      await fetchUserInformations();
     } catch (err) {
+      setIsSubmit(false);
       return CAxiosErrorToastify({
         err: err,
         openToast: handleAddToastOnArray,
@@ -55,7 +70,7 @@ export default function SignInPage() {
     >
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(handleSignIn)}>
-          <BaseBox className="h-fit w-full">
+          <BaseBox className="h-fit w-full relative">
             <div className="md:px-5 px-4 py-4 flex flex-col gap-6 ">
               <div className="flex flex-col  justify-center gap-4 pb-4 border-b border-slate-300 dark:border-slate-700">
                 <div className="flex items-center justify-between">
@@ -80,7 +95,7 @@ export default function SignInPage() {
                     </AuSoftUI.UI.Button>
                   </Link>
                 </div>
-                <h4 className="text-[0.89rem]  text-slate-500 dark:text-slate-500">
+                <h4 className="text-[0.89rem]  text-slate-500 dark:text-slate-400">
                   <CTranslateTo
                     eng="You take the good decision 🚀"
                     pt="Tomou a decisão certa! 🚀"
@@ -127,7 +142,7 @@ export default function SignInPage() {
                     >
                       <CTranslateTo
                         eng="I forgot the password"
-                        pt="Esqueci-de da senha"
+                        pt="Esqueci-me da senha"
                       />
                     </Link>
                   </div>
@@ -142,12 +157,21 @@ export default function SignInPage() {
                     className="w-full font-bold items-center"
                     variant={"primary"}
                   >
-                    <CTranslateTo eng="Sign In" pt="Iniciar sessão" />
-                    <ReactIcons.AiICon.AiOutlineArrowRight size={16} />
+                    {!isSubmit && (
+                      <>
+                        <CTranslateTo eng="Sign In" pt="Iniciar sessão" />
+                        <ReactIcons.AiICon.AiOutlineArrowRight size={16} />
+                      </>
+                    )}
+
+                    <AuSoftUI.Component.isFormSubmitting
+                      isSubmitting={isSubmit}
+                    />
                   </AuSoftUI.UI.Button>
                 </div>
               </div>
             </div>
+            <ARegisterProgress rounded="all" isOpened={isSubmit} />
           </BaseBox>
         </form>
       </FormProvider>

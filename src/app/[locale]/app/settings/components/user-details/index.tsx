@@ -16,16 +16,21 @@ export default function UserDetailBox() {
   //controls
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [personalData, setPersonalData] = useState<{
+    email?: string;
     first: string;
     last: string;
   }>(
     userLogged
-      ? { last: userLogged.last_name!, first: userLogged.first_name! }
-      : { last: "", first: "" }
+      ? {
+          last: userLogged.last_name!,
+          first: userLogged.first_name!,
+          email: userLogged.email,
+        }
+      : { last: "", first: "", email: "" }
   );
   const [phoneNumber, setPhoneNumber] = useState(
     userLogged?.profile?.phone_number
-      ? userLogged.profile?.phone_number
+      ? "+244" + userLogged.profile?.phone_number
       : "+244"
   );
 
@@ -57,8 +62,9 @@ export default function UserDetailBox() {
       await internalApi.put("/users", {
         last_name: personalData.last,
         first_name: personalData.first,
-        phone: phoneNumber,
+        email: personalData.email,
       });
+
       AuSoftUI.Component.ToastifyWithTranslation({
         description_en: "Your personal informations went updated successfully",
         description_pt: "Os seus dados pessoas foram atualizados com sucesso",
@@ -128,16 +134,32 @@ export default function UserDetailBox() {
               placeholder="Ex: Castro"
             />
           </div>
+
           <div className="flex flex-col gap-4 relative">
             <h4 className="text-sm font-bold dark:text-white">
-              <CTranslateTo
-                eng="WhatsApp Customer Support"
-                pt="WhatsApp do Suporte Ao Cliente"
-              />
+              <CTranslateTo eng="Mobile Phone Number" pt="Número de celular" />
             </h4>
             <AuSoftUI.UI.TextField.Phone
+              disabled={true}
               value={phoneNumber}
               setValue={setPhoneNumber}
+            />
+          </div>
+          <div className="flex flex-col gap-4">
+            <h4 className="text-sm font-bold dark:text-white">
+              <CTranslateTo eng="Email" pt="Email" />
+            </h4>
+            <AuSoftUI.UI.TextField.Default
+              value={personalData.email}
+              onChange={(e) => {
+                setPersonalData((state) => ({
+                  ...state,
+                  email: e.target.value,
+                }));
+              }}
+              className="w-full"
+              weight={"md"}
+              placeholder="Ex: oi@marcaflex.com"
             />
           </div>
         </div>

@@ -15,7 +15,7 @@ export default function Hero() {
 
       <div className="z-20 absolute inset-0 bg-black/50 flex justify-center h-full items-center">
         <div className="flex flex-col items-center">
-          <AAuSoftLogo size={100} />
+          <AAuSoftLogo size={90} />
           <h4 className="md:text-[2rem] text-xl font-bold text-yellow-500 md:mt-2 mt-2">
             <CTranslateTo
               eng="The best event at moment"

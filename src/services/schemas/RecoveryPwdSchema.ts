@@ -5,20 +5,6 @@ class RecoverPwdSchema {
   constructor(lang: string) {
     this.recoverPwdSchema = z
       .object({
-        phone: z
-          .string({
-            required_error:
-              lang == "en"
-                ? "Phone number is required"
-                : "Número de celular é obrigatório",
-          })
-          .min(9, {
-            message:
-              lang == "en"
-                ? "Enter a valid phone number"
-                : "Informe um número de celular válido",
-          }),
-
         code: z
           .string({
             required_error:
@@ -26,11 +12,11 @@ class RecoverPwdSchema {
                 ? "Verification code is required"
                 : "Código de verificação é obrigatório",
           })
-          .length(6, {
+          .min(2, {
             message:
               lang == "en"
-                ? "Code must be 6 digits"
-                : "O código deve ter 6 dígitos",
+                ? "Verification code is required"
+                : "Código de verificação é obrigatório",
           }),
 
         password: z
