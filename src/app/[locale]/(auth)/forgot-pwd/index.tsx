@@ -182,8 +182,8 @@ export default function SignInPage() {
                     className="w-full font-bold items-center"
                     variant={"primary"}
                   >
-                    <CTranslateTo eng="Sign In" pt="Iniciar sessão" />
-                    <ReactIcons.AiICon.AiOutlineArrowRight size={16} />
+                    <CTranslateTo eng="Recovery Paaword" pt="Recuperar Senha" />
+                    <ReactIcons.AiICon.AiFillUnlock size={16} />
                   </AuSoftUI.UI.Button>
                 </div>
               </div>
