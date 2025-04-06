@@ -11,6 +11,7 @@ import { IPodcast } from "@/http/interfaces/models/IPodCast";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function PodFlexCard({
   podcast,
@@ -28,7 +29,10 @@ export default function PodFlexCard({
       transition={{ type: "spring", delay: 0.3 * index, duration: 2 }}
       className="cursor-pointer w-full"
     >
-      <div className="flex flex-col gap-3 md:hover:scale-[1.03] scale-100 transition-all">
+      <Link
+        href={`/${langByCookies}/podflex/${podcast.slug}`}
+        className="flex flex-col gap-3 md:hover:scale-[1.03] scale-100 transition-all"
+      >
         <BaseBox
           onMouseEnter={() => setShowImageFooter(true)}
           onMouseLeave={() => setShowImageFooter(false)}
@@ -106,7 +110,7 @@ export default function PodFlexCard({
             </h2>
           </div>
         </div>
-      </div>
+      </Link>
     </motion.div>
   );
 }

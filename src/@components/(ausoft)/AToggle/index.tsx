@@ -8,7 +8,7 @@ export default function AToggle({
   callback,
 }: {
   callback?: () => void;
-  color: "green" | "violet" | "blue" | "orange" | "red";
+  color: "green" | "violet" | "blue" | "orange" | "red" | "yellow";
   value: boolean;
   setValue: Dispatch<SetStateAction<boolean>>;
 }) {
@@ -30,6 +30,10 @@ export default function AToggle({
             ? "bg-violet-500 dark:bg-violet-800"
             : color == "red"
             ? "bg-red-500 dark:bg-red-800"
+            : color == "orange"
+            ? "bg-orange-500 dark:bg-orange-800"
+            : color == "yellow"
+            ? "bg-yellow-500 dark:bg-yellow-800"
             : ""
           : "bg-slate-500 dark:bg-slate-700"
       }`}

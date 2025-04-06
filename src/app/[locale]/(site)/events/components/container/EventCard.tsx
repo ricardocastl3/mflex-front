@@ -9,6 +9,8 @@ import { ptBR, enUS } from "date-fns/locale";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
+import Link from "next/link";
+
 export default function EventCard({
   event,
   index,
@@ -25,7 +27,10 @@ export default function EventCard({
       transition={{ type: "spring", delay: 0.3 * index, duration: 2 }}
       className="cursor-pointer w-full"
     >
-      <div className="flex flex-col gap-4  md:hover:scale-[1.03] scale-100 transition-all">
+      <Link
+        href={`/${langByCookies}/events/${event.slug}`}
+        className="flex flex-col gap-4  md:hover:scale-[1.03] scale-100 transition-all"
+      >
         <BaseBox
           onMouseEnter={() => setShowImageFooter(true)}
           onMouseLeave={() => setShowImageFooter(false)}
@@ -75,7 +80,7 @@ export default function EventCard({
             {event.reference_address}
           </h4>
         </div>
-      </div>
+      </Link>
     </motion.div>
   );
 }

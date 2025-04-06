@@ -76,6 +76,7 @@ export default function EventContainer() {
                   created_at: new Date(),
                   description: "",
                   main_address: "Luanda",
+                  slug: "mundo-casa-royal",
                   reference_address: "Mundo de Casa - Royal Park",
                   map_location: "",
                   start_at: new Date(),
@@ -91,7 +92,7 @@ export default function EventContainer() {
                     last_name: "Boa Vida",
                   },
                   image_url:
-                    "https://images.pexels.com/photos/1860618/pexels-photo-1860618.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                    "https://img.freepik.com/free-psd/black-friday-super-sale-instagram-facebook-story-banner-template_106176-1631.jpg?t=st=1743867072~exp=1743870672~hmac=1610e61a32604cd2b554b1f86fa426d8f7b4d891a58ad7e4b4420adf880af20e&w=740",
                 }}
               />
             );

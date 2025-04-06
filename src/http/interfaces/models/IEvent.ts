@@ -12,9 +12,8 @@ export interface IEvent {
   image_url: string;
   start_at: Date;
   category?: ICategory;
-  category_id?: string;
+  slug: string;
   organizer?: IUser;
-  organizer_id?: string;
   main_address: string;
   reference_address: string;
   created_at: Date;
