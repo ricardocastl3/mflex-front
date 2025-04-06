@@ -2,7 +2,7 @@
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import useTransferences from "@/hooks/api/useTransferences";
-import ProductBox from "./ProductBox";
+import TransferBox from "./components/TransferBox";
 
 import { ReactIcons } from "@/utils/icons";
 
@@ -25,7 +25,7 @@ export default function TransferModal() {
         </h4>
       </div>
 
-      <ProductBox
+      <TransferBox
         fetchAll={fetchAllTransfer}
         handleSearchName={handleSeachByName}
         isLoading={isLoadingAllTransfer}

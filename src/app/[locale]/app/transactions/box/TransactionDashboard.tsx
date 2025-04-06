@@ -30,7 +30,7 @@ export default function TransactionDashboard({
       const failed = transactions.filter((i) => i.status == "failed").length;
       const earns = transactions
         .filter((i) => i.status == "success")
-        .reduce((acc, current) => acc + Number(current.ao_amount), 0);
+        .reduce((acc, current) => acc + Number(current.amount), 0);
 
       setTransDetail({ failed, pending, success, earns });
     }

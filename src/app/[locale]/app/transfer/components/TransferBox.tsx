@@ -6,10 +6,10 @@ import { useEffect, useState } from "react";
 import { ITransfer } from "@/http/interfaces/models/ITransfer";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import ProductList from "./components/row-list";
-import ProductCard from "./components/card-list";
+import ProductList from "./row-list";
+import ProductCard from "./card-list";
 
-export default function ProductBox({
+export default function TransferBox({
   transfers,
   isLoading,
   fetchAll,

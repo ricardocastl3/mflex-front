@@ -63,7 +63,7 @@ export default function ProductList({ transfers }: { transfers: ITransfer[] }) {
               className="p-4 items-center grid grid-cols-10 w-full cursor-pointer hover:bg-slate-100 rounded-lg dark:hover:bg-slate-700/50"
             >
               <h4 className="text-sm dark:text-white col-span-3">
-                {prod.payment.product?.title}
+                {prod.payment.ticket?.event?.title}
               </h4>
 
               <h4 className="text-sm dark:text-white text-nowrap col-span-2">
@@ -79,16 +79,14 @@ export default function ProductList({ transfers }: { transfers: ITransfer[] }) {
               </h4>
 
               <h4 className="text-sm text-green-500">
-                {`${CurrencyServices.decimal(
-                  Number(prod.payment.ao_amount)
-                )} Kz`}
+                {`${CurrencyServices.decimal(Number(prod.payment.amount))} Kz`}
               </h4>
 
               <h4 className="text-sm dark:text-white font-bold w-fit">5%</h4>
 
               <h4 className="text-sm text-green-500">
                 {`${CurrencyServices.decimal(
-                  Number(prod.payment.ao_amount) * 0.95
+                  Number(prod.payment.amount) * 0.95
                 )} Kz`}
               </h4>
 

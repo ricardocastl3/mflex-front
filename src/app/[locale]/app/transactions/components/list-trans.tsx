@@ -46,9 +46,9 @@ export default function ListTransactions({
               key={i}
               className={`mx-2 grid grid-cols-7 rounded-xl px-2 items-center cursor-pointer py-3 hover:bg-slate-100 dark:hover:bg-slate-800/70`}
             >
-              <h4 className="text-sm font-bold dark:text-white col-span-2">
-                {transaction.customer}
-              </h4>
+              <h3 className="text-violet-600 font-bold dark:text-violet-400 text-sm py-2">
+                {`${transaction.customer?.first_name} ${transaction.customer?.last_name}`}
+              </h3>
 
               <div className="pr-16">
                 <CardMethod
@@ -60,22 +60,25 @@ export default function ListTransactions({
 
               <h4 className="dark:text-green-400 w-fit rounded-full text-green-700 text-sm text-start px-2 pt-1 bg-green-100 dark:bg-green-800/40">
                 {CurrencyServices.formatWithCurrencyValue(
-                  Number(transaction.ao_amount),
+                  Number(transaction.amount),
                   "AOA"
                 )}
               </h4>
 
               <h4 className="text-sm dark:text-white text-start">
-                {(transaction.customer_phone == "" ||
-                  !transaction.customer_phone) &&
+                {(transaction.customer?.profile?.phone_number == "" ||
+                  !transaction.customer?.profile?.phone_number) &&
                   "----------------"}
-                {transaction.customer_phone &&
-                  transaction.customer_phone != "" &&
-                  transaction.customer_phone.replace("+244", "(+244) ")}
+                {transaction.customer?.profile?.phone_number &&
+                  transaction.customer?.profile?.phone_number != "" &&
+                  transaction.customer?.profile?.phone_number.replace(
+                    "+244",
+                    "(+244) "
+                  )}
               </h4>
 
               <div className="flex justify-center ">
-                <CardStatus status={transaction.status} />
+                <CardStatus status={transaction.status!} />
               </div>
 
               <h4 className="dark:text-slate-200 text-sm text-center">

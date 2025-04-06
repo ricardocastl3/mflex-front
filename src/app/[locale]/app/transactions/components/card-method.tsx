@@ -42,32 +42,6 @@ export default function CardMethod({
           </div>
         </>
       )}
-      {method == "transference" && (
-        <>
-          <div
-            onClick={() => {
-              handleSelectTransaction(transaction);
-              handleOpenModal("change-transaction-status");
-            }}
-            className={`${
-              status == "pending"
-                ? "dark:text-yellow-400 text-yellow-700 animate-pulse"
-                : status == "success"
-                ? "dark:text-cyan-400 text-cyan-700"
-                : "dark:text-red-400 text-red-700"
-            } flex items-center gap-2 cursor-pointer`}
-          >
-            <span
-              className={`text-xl mb-1 w-5 h-5 flex items-center justify-center rounded-full `}
-            >
-              <ReactIcons.BiIcon.BiWallet />
-            </span>
-            <h3 className="text-sm">
-              <CTranslateTo pt={"Tranfer. Bancária"} eng={"Bank Transfer "} />
-            </h3>
-          </div>
-        </>
-      )}
 
       {method == "paypay" && (
         <>

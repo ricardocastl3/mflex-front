@@ -22,12 +22,12 @@ export default function CardTransaction({
           >
             <div className="flex items-center gap-4">
               <h3 className="text-violet-600 font-bold dark:text-violet-400 text-sm py-2">
-                {transaction.customer}
+                {`${transaction.customer?.first_name} ${transaction.customer?.last_name}`}
               </h3>
             </div>
 
             <div className="flex items-center gap-4">
-              <CardStatus status={transaction.status} />
+              <CardStatus status={transaction.status!} />
               <CardMethod
                 method={transaction.payment_method}
                 status={transaction.status}
@@ -44,17 +44,20 @@ export default function CardTransaction({
               </h3>
               <h4 className="dark:text-green-400 text-green-700 text-sm">
                 {CurrencyServices.formatWithCurrencyValue(
-                  Number(transaction.ao_amount),
+                  Number(transaction.amount),
                   "AOA"
                 )}
               </h4>
               <h4 className="text-sm dark:text-white text-start">
-                {(transaction.customer_phone == "" ||
-                  !transaction.customer_phone) &&
+                {(transaction.customer?.profile?.phone_number == "" ||
+                  !transaction.customer?.profile?.phone_number) &&
                   "----------------"}
-                {transaction.customer_phone &&
-                  transaction.customer_phone != "" &&
-                  transaction.customer_phone.replace("+244", "(+244) ")}
+                {transaction.customer?.profile?.phone_number &&
+                  transaction.customer?.profile?.phone_number != "" &&
+                  transaction.customer?.profile?.phone_number.replace(
+                    "+244",
+                    "(+244) "
+                  )}
               </h4>
             </div>
           </div>
