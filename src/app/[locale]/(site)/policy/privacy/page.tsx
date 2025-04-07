@@ -3,7 +3,7 @@ import LocalePageServices, {
 } from "@/services/locale/LocalePageServices";
 import { Metadata } from "next";
 
-export { default } from "./_index";
+export { default } from ".";
 
 export async function generateMetadata({
   params,

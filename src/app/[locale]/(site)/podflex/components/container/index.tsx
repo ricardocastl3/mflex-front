@@ -6,7 +6,7 @@ import { ReactIcons } from "@/utils/icons";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import BoxCategories from "../../../components/BoxCategories";
-import PodFlexCard from "./_PodFlexCard";
+import PodFlexCard from "./PodFlexCard";
 
 export default function PodFlexContainer() {
   const [items, setItems] = useState<number>(3);

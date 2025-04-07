@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { PrivacySections } from "./components/_index";
-import PolicyContentItem from "../components/content/_index";
-import PolicyMenuItem from "../components/items/_index";
+import PolicyContentItem from "../components/content";
+import PolicyMenuItem from "../components/items";
 
 export default function Terms() {
   const [currentSection, setCurrentSection] = useState("1");

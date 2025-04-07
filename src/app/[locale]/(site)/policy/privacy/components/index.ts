@@ -1,4 +1,4 @@
-import HeroSection from "./hero/_index";
+import HeroSection from "./hero";
 
 export const PrivacySections = {
   HeroSection,
