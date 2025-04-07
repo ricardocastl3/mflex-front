@@ -1,9 +1,9 @@
 "use client";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-
 import useTransferences from "@/hooks/api/useTransferences";
 import TicketBox from "./components/TicketBox";
+
 import { ReactIcons } from "@/utils/icons";
 
 export default function TransferModal() {

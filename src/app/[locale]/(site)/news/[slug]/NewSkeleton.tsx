@@ -1,5 +1,5 @@
+import React from "react";
 import { BaseBox } from "@/@components/(box)/BaseBox";
-import AdsBanner from "../../components/ads/AdsBanner";
 
 export default function NewSkeleton() {
   return (

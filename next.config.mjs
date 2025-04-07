@@ -6,6 +6,7 @@ const isDev = process.env.NODE_ENV === "development";
 const nextConfig = withPWA({
   disable: true, //isDev,
 })({
+  output: "standalone",
   pageExtensions: ["pg.tsx", "api.ts"],
   reactStrictMode: false,
   images: {
