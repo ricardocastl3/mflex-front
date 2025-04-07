@@ -1,6 +1,6 @@
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 
-export default function HeroServices() {
+export default function HeroFaqs() {
   return (
     <div
       style={{
@@ -13,12 +13,12 @@ export default function HeroServices() {
       <div className="absolute inset-0 bg-black/50"></div>
       <div className="flex flex-col gap-2 z-20">
         <h1 className="md:text-[2rem] text-[1.7rem] font-bold text-white">
-          <CTranslateTo eng="Services" pt="Serviços" />
+          <CTranslateTo eng="FAQs" pt="Perguntas Frequentes" />
         </h1>
         <h4 className="text-white md:mt-2 t-2 text-lg">
           <CTranslateTo
-            eng="Our best marketing and advertising services for you 🚀"
-            pt="Os nossos melhores serviços de marketing e publicidade para si 🚀"
+            eng="Do you have any questions? Read the most frequently asked questions to get your questions answered 🟡"
+            pt="Tem alguma dúvida ? Leia as perguntas mais frequentes para tirar suas dúvidas 🟡"
           />
         </h4>
       </div>

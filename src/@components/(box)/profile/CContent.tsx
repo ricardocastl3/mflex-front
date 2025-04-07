@@ -45,7 +45,7 @@ export default function CContent({ callback }: { callback?: () => void }) {
         </div>
       </div>
 
-      <div className="flex flex-col mt-3 ">
+      <div onClick={callback} className="flex flex-col mt-3 ">
         <h4 className="text-sm dark:text-slate-400 text-slate-600">
           <CTranslateTo eng="Your Menu" pt="Seu Menu" />
         </h4>
@@ -71,7 +71,7 @@ export default function CContent({ callback }: { callback?: () => void }) {
           <CTranslateTo eng="Public Events" pt="Eventos Públicos" />
         </Link>
       </div>
-      <div className="flex flex-col gap-1.5 mt-4">
+      <div className="flex flex-col gap-1.5 mt-2">
         <div className="border-t border-slate-200 dark:border-slate-800 pt-2">
           <AuSoftUI.UI.Button
             size={"sm"}

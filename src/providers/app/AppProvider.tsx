@@ -88,8 +88,6 @@ export default function AppProvider({
     setCurrentPageByUrl(pathBase);
     setCurrentAppPageUrl(path.split("/")[3]);
 
-    console.log("AAA: ", pathBase);
-
     const lang = CookieServices.getLocale();
     setSegmentedLayoutByLocalStorage(lang?.toString().toLowerCase()!);
   }, [path]);

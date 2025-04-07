@@ -24,7 +24,7 @@ export default function PolicyMenuItem({
         onClick={() => setCurrentSection(currentSection)}
         href={`#${currentSection}`}
         className={`${
-          isSelected ? "text-white bg-violet-500" : "dark:text-white"
+          isSelected ? "text-white bg-yellow-500" : "dark:text-white"
         } rounded-full px-4 py-2 text-nowrap text-normal `}
       >
         <CTranslateTo eng={title_en} pt={title_pt} />

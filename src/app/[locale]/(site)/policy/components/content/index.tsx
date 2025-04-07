@@ -23,7 +23,7 @@ export default function PolicyContentItem({
         {`${position}. `}
         <CTranslateTo eng={title_en} pt={title_pt} />
       </h4>
-      <h5 className="text-md text-slate-600 dark:text-slate-400/80">
+      <h5 className="text-md text-slate-600 dark:text-slate-400">
         {<CTranslateTo eng={description_en} pt={description_pt} />}
       </h5>
     </section>

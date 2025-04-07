@@ -6,7 +6,7 @@ const isDev = process.env.NODE_ENV === "development";
 const nextConfig = withPWA({
   disable: true, //isDev,
 })({
-  pageExtensions: [".pg.tsx", ".api.ts"],
+  pageExtensions: ["pg.tsx", "api.ts"],
   reactStrictMode: false,
   images: {
     remotePatterns: [

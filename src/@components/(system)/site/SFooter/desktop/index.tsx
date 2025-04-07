@@ -80,7 +80,7 @@ export default function SFooter() {
                 </h4>
                 <div className="gap-2 flex flex-col w-full border-t pt-4 border-slate-300 dark:border-slate-800">
                   <Link
-                    href={""}
+                    href={`/${langByCookies}/faqs`}
                     className="flex items-center gap-2 hover:opacity-60 cursor-pointer  md:text-base text-base  dark:text-slate-400"
                   >
                     <CTranslateTo eng="FAQs" pt="Perguntas Frequentes" />

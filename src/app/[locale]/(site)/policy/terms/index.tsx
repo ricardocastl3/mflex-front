@@ -24,44 +24,30 @@ export default function Terms() {
             currentSection="2"
             isSelected={currentSection == "2" ? true : false}
             setCurrentSection={setCurrentSection}
-            title_en="Third-Party Integrations"
-            title_pt="Integrações com Terceiros"
+            title_en="Phone Number Requirement"
+            title_pt="Requisito de Número de Telefone"
           />
+
           <PolicyMenuItem
             currentSection="3"
             isSelected={currentSection == "3" ? true : false}
             setCurrentSection={setCurrentSection}
-            title_en="Service Modifications"
-            title_pt="Modificações nos Serviços"
+            title_en="Ticket Purchase Refunds"
+            title_pt="Reembolsos de Compra de Ingressos"
           />
+
           <PolicyMenuItem
             currentSection="4"
             isSelected={currentSection == "4" ? true : false}
             setCurrentSection={setCurrentSection}
-            title_en="Free Trial and Subscription Charges"
-            title_pt="Período de Teste e Cobranças de Assinatura"
-          />
-
-          <PolicyMenuItem
-            currentSection="5"
-            isSelected={currentSection == "5" ? true : false}
-            setCurrentSection={setCurrentSection}
-            title_en="Cancellation and Refund Eligibility"
-            title_pt="Cancelamento e Elegibilidade para Reembolso"
-          />
-
-          <PolicyMenuItem
-            currentSection="6"
-            isSelected={currentSection == "6" ? true : false}
-            setCurrentSection={setCurrentSection}
-            title_en="Policy Modifications"
-            title_pt="Modificações na Política"
+            title_en="Service Modifications"
+            title_pt="Modificações nos Serviços"
           />
         </div>
         <div className="md:w-[70vw] w-full flex flex-col gap-4 md:pl-8 pl-0 md:pt-0 pt-6">
           <PolicyContentItem
-            description_en="By using our platform, you agree to comply with all applicable laws and regulations. You are responsible for maintaining the security of your account and for all activities that occur under your account. Unauthorized use of the platform, including attempts to gain unauthorized access, distribute malware, or disrupt services, is strictly prohibited and may result in termination of your account."
-            description_pt="Ao utilizar nossa plataforma, você concorda em cumprir todas as leis e regulamentos aplicáveis. Você é responsável por manter a segurança da sua conta e por todas as atividades que ocorrem sob a sua conta. O uso não autorizado da plataforma, incluindo tentativas de obter acesso não autorizado, distribuir malware ou interromper os serviços, é estritamente proibido e pode resultar na rescisão da sua conta."
+            description_en="To authenticate on our platform, you only need a valid phone number. We recommend using strong passwords to ensure the security of your account. You are responsible for maintaining the confidentiality of your login credentials and for all activities that occur under your account. Unauthorized use of the platform, including attempts to gain unauthorized access, distribute malware, or disrupt services, is strictly prohibited and may result in termination of your account."
+            description_pt="Para se autenticar em nossa plataforma, você precisa apenas de um número de celular válido. Recomendamos o uso de senhas fortes para garantir a segurança da sua conta. Você é responsável por manter a confidencialidade das suas credenciais de login e por todas as atividades que ocorrem sob sua conta. O uso não autorizado da plataforma, incluindo tentativas de obter acesso não autorizado, distribuir malware ou interromper os serviços, é estritamente proibido e pode resultar na rescisão da sua conta."
             title_en="User Responsibilities"
             title_pt="Responsabilidades do Usuário"
             section_id="1"
@@ -69,12 +55,21 @@ export default function Terms() {
           />
 
           <PolicyContentItem
-            description_en="Our platform may offer integrations with third-party services. By using these integrations, you agree to the terms and conditions of the third-party providers. We are not responsible for the privacy practices, data handling, or content of these third-party services. It is your responsibility to review and comply with the terms of service of any third-party services you use through our platform."
-            description_pt="Nossa plataforma pode oferecer integrações com serviços de terceiros. Ao usar essas integrações, você concorda com os termos e condições dos provedores terceiros. Não somos responsáveis pelas práticas de privacidade, manuseio de dados ou conteúdo desses serviços de terceiros. É sua responsabilidade revisar e cumprir os termos de serviço de qualquer serviço de terceiros que você usar através de nossa plataforma."
-            title_en="Third-Party Integrations"
-            title_pt="Integrações com Terceiros"
+            description_en="To access our platform, you are required to provide a valid phone number. This number is used solely for authentication and communication purposes related to your account activity. You are responsible for ensuring the accuracy of your contact information."
+            description_pt="Para acessar nossa plataforma, é necessário fornecer um número de telefone válido. Esse número é utilizado exclusivamente para fins de autenticação e comunicação relacionada às atividades da sua conta. Você é responsável por garantir a precisão das suas informações de contato."
+            title_en="Phone Number Requirement"
+            title_pt="Requisito de Número de Telefone"
             section_id="2"
             position={2}
+          />
+
+          <PolicyContentItem
+            description_en="Refunds apply only to ticket purchases. If you wish to request a refund for a purchased ticket, it is the responsibility of the event organizer (event owner) to process the refund. The event organizer will decide whether or not to offer a refund, in accordance with their event's policies."
+            description_pt="Os reembolsos se aplicam apenas à compra de ingressos. Se você desejar solicitar um reembolso por um ingresso adquirido, é responsabilidade do organizador do evento (dono do evento) processar o reembolso. O organizador do evento decidirá se oferecerá ou não o reembolso, de acordo com as políticas do evento."
+            title_en="Ticket Purchase Refunds"
+            title_pt="Reembolsos de Compra de Ingressos"
+            section_id="3"
+            position={3}
           />
 
           <PolicyContentItem
@@ -82,35 +77,8 @@ export default function Terms() {
             description_pt="Reservamo-nos o direito de modificar ou descontinuar nossos serviços a qualquer momento, com ou sem aviso prévio. Também podemos atualizar estes termos de uso periodicamente. Seu uso continuado da plataforma após qualquer alteração nos termos constituirá sua aceitação dos termos revisados. É sua responsabilidade revisar os termos de uso regularmente para garantir que esteja ciente de quaisquer alterações."
             title_en="Service Modifications"
             title_pt="Modificações nos Serviços"
-            section_id="3"
-            position={3}
-          />
-
-          <PolicyContentItem
-            description_en="We offer a 7-day free trial with access to all pro features, allowing you to evaluate our services before committing to a subscription. If you decide to subscribe, either monthly or annually, charges will apply at the end of the trial period. Once a subscription is active, refunds are not provided for any unused portion of the subscription term. We encourage you to use the trial period to ensure our services meet your needs."
-            description_pt="Oferecemos um período de teste gratuito de 7 dias com acesso a todos os recursos pro, permitindo que você avalie nossos serviços antes de se comprometer com uma assinatura. Se decidir assinar, seja mensalmente ou anualmente, as cobranças serão aplicadas ao final do período de teste. Uma vez que a assinatura esteja ativa, não oferecemos reembolsos por qualquer parte não utilizada do período da assinatura. Recomendamos que você utilize o período de teste para garantir que nossos serviços atendam às suas necessidades."
-            title_en="Free Trial and Subscription Charges"
-            title_pt="Período de Teste e Cobranças de Assinatura"
             section_id="4"
             position={4}
-          />
-
-          <PolicyContentItem
-            description_en="You may cancel your subscription at any time before the next billing cycle to avoid further charges. Monthly subscriptions will not be refunded once the payment has been processed. For annual subscriptions, if you cancel within the first 30 days after the initial charge, you may be eligible for a partial refund, calculated on a pro-rata basis. After 30 days, no refunds will be issued for annual subscriptions."
-            description_pt="Você pode cancelar sua assinatura a qualquer momento antes do próximo ciclo de faturamento para evitar novas cobranças. Assinaturas mensais não serão reembolsadas uma vez que o pagamento tenha sido processado. Para assinaturas anuais, se você cancelar dentro dos primeiros 30 dias após a cobrança inicial, você poderá ser elegível para um reembolso parcial, calculado proporcionalmente. Após 30 dias, não serão emitidos reembolsos para assinaturas anuais."
-            title_en="Cancellation and Refund Eligibility"
-            title_pt="Cancelamento e Elegibilidade para Reembolso"
-            section_id="5"
-            position={5}
-          />
-
-          <PolicyContentItem
-            description_en="We reserve the right to modify our refund policy at any time. Any changes to the refund policy will be communicated to you in advance, and your continued use of our services after the effective date of the changes will constitute your acceptance of the new policy. It is your responsibility to review the refund policy periodically to stay informed of any updates."
-            description_pt="Reservamo-nos o direito de modificar nossa política de reembolso a qualquer momento. Quaisquer alterações na política de reembolso serão comunicadas a você com antecedência, e seu uso contínuo de nossos serviços após a data de vigência das alterações constituirá sua aceitação da nova política. É sua responsabilidade revisar a política de reembolso periodicamente para se manter informado sobre quaisquer atualizações."
-            title_en="Policy Modifications"
-            title_pt="Modificações na Política"
-            section_id="6"
-            position={6}
           />
         </div>
       </div>

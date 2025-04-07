@@ -1,6 +1,7 @@
 import * as PiIcons from "react-icons/pi";
 import * as MdIcons from "react-icons/md";
 import * as Hi2Icons from "react-icons/hi2";
+import * as HiIcons from "react-icons/hi";
 import * as Io5Icons from "react-icons/io5";
 import * as CgIcons from "react-icons/cg";
 import * as FaIcons from "react-icons/fa";
@@ -20,4 +21,5 @@ export const ReactIcons = {
   AiICon: AiIcons,
   RxIcon: RxIcons,
   VSCIcon: VScIcons,
+  HiIcon: HiIcons,
 };

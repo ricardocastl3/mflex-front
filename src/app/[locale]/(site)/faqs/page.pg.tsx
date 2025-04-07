@@ -10,10 +10,10 @@ export async function generateMetadata({
 }: IlocalePage): Promise<Metadata> {
   const pars = await params;
   return LocalePageServices.metadatas({
-    titleENG: "Terms of Use",
-    titlePT: "Termos de Uso",
-    descriptionENG: "Discover our terms of uses",
-    descriptionPT: "Conheça os nossos termos de uso",
+    titleENG: "FAQs",
+    titlePT: "FAQs",
+    descriptionENG: "Find out which questions are most frequently asked",
+    descriptionPT: "Saiba quais perguntas são mais frequentes",
     params: pars.locale,
   });
 }
