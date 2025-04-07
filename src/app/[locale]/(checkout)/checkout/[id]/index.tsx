@@ -15,8 +15,9 @@ import LogoSpinner from "@/app/onload-pages/spinner/LogoSpinner";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 import COpenToastyWithTranslation from "@/@components/(tips)/CToastify/COpenToastyWithTranslation";
 
-export default function CheckOut({ params }: { params: { id: string }}) {
+export default function CheckOut({ params }: { params:Promise<{ id: string }>}) {
 
+  const pars = use(params)
   // Contexts
   const { selectedAngolanMethod, handleSelectCustomerBuyed } =
     useCheckoutProvider();
@@ -44,7 +45,7 @@ export default function CheckOut({ params }: { params: { id: string }}) {
         tickets: ITicket;
       }>("/products/checkout", {
         params: {
-          id: await params.id,
+          id: await pars.id,
         },
       });
 

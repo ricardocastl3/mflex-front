@@ -7,11 +7,11 @@ import { ReactIcons } from "@/utils/icons";
 import NewSkeleton from "./NewSkeleton";
 import HeroNews from "../components/Hero";
 
-export default function PreviewNew({
-  params,
-}: {
+type Props = {
   params: Promise<{ slug: string }>;
-}) {
+};
+
+export default function PreviewNew({ params }: Props) {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedNews, setSelectedNews] = useState<INews | undefined>();
 
