@@ -11,6 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/providers/auth/AuthProvider";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
@@ -21,6 +22,7 @@ import ARegisterProgress from "@/@components/(ausoft)/ARegisterProgress";
 export default function SignUpPage() {
   // Context
   const { handleAddToastOnArray } = useAppProvider();
+  const { fetchUserInformations } = useAuth();
 
   // Controls
   const [termCheck, setTermCheck] = useState(false);
@@ -73,7 +75,7 @@ export default function SignUpPage() {
         confirmPassword: data.confirmPassword,
       });
 
-      window.location.href = `/${langByCookies}/confirm-account`;
+      await fetchUserInformations();
     } catch (err) {
       setIsSubmit(false);
       return CAxiosErrorToastify({

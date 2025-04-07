@@ -42,7 +42,7 @@ export default function AuthLayout({
       <div className="flex flex-col gap-8">
         <div
           className={`  ${
-            isScrolled && window.innerWidth <= 765
+            isScrolled
               ? "border-slate-200 dark:border-slate-800 bg-slate-50/95 backdrop-blur-md dark:bg-ausoft-slate-900/95"
               : "border-transparent bg-transparent"
           } z-10 md:px-12 fixed inset-x-0 px-5 md:py-8 py-4 flex items-center justify-between`}
