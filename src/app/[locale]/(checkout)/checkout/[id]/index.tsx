@@ -21,7 +21,12 @@ import Link from "next/link";
 import Image from "next/image";
 import COpenToastyWithTranslation from "@/@components/(tips)/CToastify/COpenToastyWithTranslation";
 
-export default function CheckOut({ params }: { params: { id: string } }) {
+export default async function CheckOut({
+  pars,
+}: {
+  pars: Promise<{ id: string }>;
+}) {
+  const params = await pars;
   // Contexts
   const { selectedAngolanMethod, handleSelectCustomerBuyed } =
     useCheckoutProvider();
@@ -49,7 +54,7 @@ export default function CheckOut({ params }: { params: { id: string } }) {
         tickets: ITicket;
       }>("/products/checkout", {
         params: {
-          id: params.id,
+          id: await params.id,
         },
       });
 
