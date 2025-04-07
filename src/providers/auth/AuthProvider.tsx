@@ -64,8 +64,12 @@ export default function AuthProvider({
 
       const user = resp.data.user;
 
+      if (startRoutes == "app") {
+        if (user.status == 3) return handleLogout();
+      }
+
       if (
-        path.slice(4).startsWith("app") ||
+        startRoutes == "app" ||
         startRoutes == "sign-in" ||
         startRoutes == "forgot-pwd" ||
         startRoutes == "sign-up"

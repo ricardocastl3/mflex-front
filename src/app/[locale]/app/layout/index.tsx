@@ -7,23 +7,40 @@ import { useWebPush } from "@/hooks/useWebPush";
 
 import AHeader from "@/@components/(system)/AHeader";
 import LoadingLayout from "@/app/onload-pages/_loading-layouts";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ASidebar from "@/@components/(system)/ASidebar";
 import AMobileFooter from "@/@components/(system)/AFooter/mobile";
 import ABanner from "@/@components/(system)/ABanner";
+import { langByCookies } from "@/http/axios/api";
 
 export default function MFlexLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { isLoadingUserData, userLogged } = useAuth();
+  const { isLoadingUserData, userLogged, handleLogout } = useAuth();
   const { openToast, openBanner } = useAppProvider();
   useWebPush(userLogged?.id!);
 
-  if (isLoadingUserData) {
+  // Controls
+  const [isLoadingAll, setIsLoadingAll] = useState(true);
+
+  if (isLoadingUserData || isLoadingAll) {
     return <LoadingLayout />;
   }
+
+  useEffect(() => {
+    if (!userLogged) return;
+
+    if (userLogged?.status == 0) {
+      window.location.href = `/${langByCookies}/confirm-account`;
+      return;
+    }
+
+    if (userLogged?.status == 3) return handleLogout();
+
+    if (userLogged?.status == 1) return setIsLoadingAll(false);
+  }, [userLogged]);
 
   return (
     <>
