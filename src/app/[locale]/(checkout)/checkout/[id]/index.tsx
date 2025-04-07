@@ -15,8 +15,7 @@ import LogoSpinner from "@/app/onload-pages/spinner/LogoSpinner";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 import COpenToastyWithTranslation from "@/@components/(tips)/CToastify/COpenToastyWithTranslation";
 
-export default function CheckOut({ pars }: { pars: Promise<{ id: string }> }) {
-  const params = use(pars);
+export default function CheckOut({ params }: { params: { id: string }}) {
 
   // Contexts
   const { selectedAngolanMethod, handleSelectCustomerBuyed } =
