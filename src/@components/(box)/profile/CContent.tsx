@@ -57,7 +57,7 @@ export default function CContent({ callback }: { callback?: () => void }) {
           <CTranslateTo eng="Flex Zone" pt="Flex Zone" />
         </Link>
         <Link
-          href={`/${langByCookies}/podcasts`}
+          href={`/${langByCookies}/podflex`}
           className="rounded-full flex text-sm items-center gap-2 px-4 dark:text-slate-200 dark:hover:bg-slate-800/40 hover:bg-slate-200 transition-all py-3"
         >
           <ReactIcons.AiICon.AiOutlineAudio size={14} />
