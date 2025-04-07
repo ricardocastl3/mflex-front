@@ -73,7 +73,7 @@ export default function SignUpPage() {
         confirmPassword: data.confirmPassword,
       });
 
-      router.push(`/${langByCookies}/confirm-account`);
+      window.location.href = `/${langByCookies}/confirm-account`;
     } catch (err) {
       setIsSubmit(false);
       return CAxiosErrorToastify({
