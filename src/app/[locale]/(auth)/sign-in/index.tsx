@@ -73,7 +73,7 @@ export default function SignInPage() {
           <BaseBox className="h-fit w-full relative">
             <div className="md:px-5 px-4 py-4 flex flex-col gap-6 ">
               <div className="flex flex-col  justify-center gap-4 pb-4 border-b border-slate-300 dark:border-slate-700">
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between flex-wrap gap-3">
                   <h1 className="dark:text-white font-bold text-xl">
                     <CTranslateTo
                       eng="You're Welcome, sign in"
