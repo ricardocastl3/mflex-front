@@ -1,4 +1,5 @@
 "use client";
+
 import { localImages } from "@/utils/images";
 import { BaseBox } from "@/@components/(box)/BaseBox";
 import { Button } from "@/@components/ui/Button";

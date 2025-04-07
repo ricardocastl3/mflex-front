@@ -1,3 +1,5 @@
+"use server";
+
 import { ECOOKIES } from "@/utils/enums";
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";

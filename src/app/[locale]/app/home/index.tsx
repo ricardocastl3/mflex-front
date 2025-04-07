@@ -1,11 +1,9 @@
 "use client";
 
 import { useAppProvider } from "@/providers/app/AppProvider";
-import { useAuth } from "@/providers/auth/AuthProvider";
 
 export default function Home() {
   const { openBanner } = useAppProvider();
-  const { userLogged } = useAuth();
 
   return (
     <div
