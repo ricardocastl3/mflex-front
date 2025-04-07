@@ -25,10 +25,6 @@ export default function MFlexLayout({
   // Controls
   const [isLoadingAll, setIsLoadingAll] = useState(true);
 
-  if (isLoadingUserData || isLoadingAll) {
-    return <LoadingLayout />;
-  }
-
   useEffect(() => {
     if (!userLogged) return;
 
@@ -41,6 +37,10 @@ export default function MFlexLayout({
 
     if (userLogged?.status == 1) return setIsLoadingAll(false);
   }, [userLogged]);
+
+  if (isLoadingUserData || isLoadingAll) {
+    return <LoadingLayout />;
+  }
 
   return (
     <>
