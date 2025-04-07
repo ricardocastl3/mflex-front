@@ -4,7 +4,7 @@ import { useAuth } from "@/providers/auth/AuthProvider";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { useAppProvider } from "@/providers/app/AppProvider";
 
-import LoadingLayout from "@/app/onload-pages/loading-layouts";
+import LoadingLayout from "@/app/onload-pages/_loading-layouts";
 import React from "react";
 import SHeader from "@/@components/(system)/site/SHeader";
 import SMobileFooter from "@/@components/(system)/site/SFooter/mobile";

@@ -11,7 +11,7 @@ import React, { useEffect, useState } from "react";
 import CTranslate from "@/@components/(translation)/CCTranslate/CTranslate";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import Link from "next/link";
-import LoadingLayout from "@/app/onload-pages/loading-layouts";
+import LoadingLayout from "@/app/onload-pages/_loading-layouts";
 
 export default function AuthLayout({
   children,

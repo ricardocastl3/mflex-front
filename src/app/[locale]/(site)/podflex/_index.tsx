@@ -1,5 +1,5 @@
-import HeroPodFlex from "./components/Hero";
-import PodFlexContainer from "./components/container";
+import HeroPodFlex from "./components/_Hero";
+import PodFlexContainer from "./components/container/_index";
 
 export default function PodFlexPage() {
   return (

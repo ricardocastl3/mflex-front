@@ -6,7 +6,7 @@ import { useAppProvider } from "@/providers/app/AppProvider";
 import { useWebPush } from "@/hooks/useWebPush";
 
 import AHeader from "@/@components/(system)/AHeader";
-import LoadingLayout from "@/app/onload-pages/loading-layouts";
+import LoadingLayout from "@/app/onload-pages/_loading-layouts";
 import React from "react";
 import ASidebar from "@/@components/(system)/ASidebar";
 import AMobileFooter from "@/@components/(system)/AFooter/mobile";

@@ -4,7 +4,7 @@ import { INews } from "@/http/interfaces/models/INews";
 import { useCallback, useState } from "react";
 import { ReactIcons } from "@/utils/icons";
 
-import NewSkeleton from "./NewSkeleton";
+import NewSkeleton from "./_NewSkeleton";
 import HeroNews from "../components/Hero";
 
 export default function PreviewNew({

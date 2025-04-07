@@ -1,5 +1,5 @@
 import { langByCookies } from "@/http/axios/api";
-export { default } from ".";
+export { default } from "./_index";
 
 import axios from "axios";
 
