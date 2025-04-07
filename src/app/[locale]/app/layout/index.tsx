@@ -4,6 +4,7 @@ import { useAuth } from "@/providers/auth/AuthProvider";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { useWebPush } from "@/hooks/useWebPush";
+import { langByCookies } from "@/http/axios/api";
 
 import AHeader from "@/@components/(system)/AHeader";
 import LoadingLayout from "@/app/onload-pages/_loading-layouts";
@@ -11,7 +12,6 @@ import React, { useEffect, useState } from "react";
 import ASidebar from "@/@components/(system)/ASidebar";
 import AMobileFooter from "@/@components/(system)/AFooter/mobile";
 import ABanner from "@/@components/(system)/ABanner";
-import { langByCookies } from "@/http/axios/api";
 
 export default function MFlexLayout({
   children,
