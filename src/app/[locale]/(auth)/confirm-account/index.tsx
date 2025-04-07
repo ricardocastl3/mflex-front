@@ -92,7 +92,7 @@ export default function ConfirmAccountPage() {
       }
       setIsLoadingSendCode(true);
 
-      await internalApi.post("/auth/resend-code", {
+      await internalApi.post("/auth/resend-code-confirm", {
         phone:
           secondaryPhone != ""
             ? secondaryPhone
