@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "main": "dist/index.js",
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
     "@layback-ui/tokens": "^2.1.0",

@@ -80,7 +80,6 @@ export default function SFooter() {
                 </h4>
                 <div className="gap-2 flex flex-col w-full border-t pt-4 border-slate-300 dark:border-slate-800">
                   <Link
-                    target="_blank"
                     href={""}
                     className="flex items-center gap-2 hover:opacity-60 cursor-pointer  md:text-base text-base  dark:text-slate-400"
                   >
@@ -118,15 +117,13 @@ export default function SFooter() {
       <div className="md:flex items-center gap-8 hidden md:px-[7.28rem] px-2 py-4  md:mb-0 mb-16 text-sm dark:text-slate-300 bg-slate-100 dark:bg-ausoft-slate-900">
         <h4 className="col-span-3">Marca Flex@{new Date().getFullYear()}</h4>
         <Link
-          target="__blank"
-          href={`${process.env.MFLEX_NEXT_PUBLIC_URL}/${segmentedLayout}/policy/terms`}
+          href={`/${segmentedLayout}/policy/terms`}
           className="hover:opacity-60"
         >
           <CTranslateTo eng="Terms of Use" pt="Termos de Uso" />
         </Link>
         <Link
-          target="__blank"
-          href={`${process.env.MFLEX_NEXT_PUBLIC_URL}/${segmentedLayout}/policy/privacy`}
+          href={`/${segmentedLayout}/policy/privacy`}
           className="hover:opacity-60"
         >
           <CTranslateTo eng="Privacy Policy" pt="Políticas de Privacidade" />

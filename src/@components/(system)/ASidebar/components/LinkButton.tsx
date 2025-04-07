@@ -46,8 +46,8 @@ export default function LinkButton({
       href={`/${langByCookies}/${href == "" ? "app" : `app/${href}`}`}
       className={`${
         isSelected
-          ? "bg-yellow-100 dark:bg-yellow-800/10"
-          : "hover:bg-yellow-100 dark:hover:bg-yellow-800/10"
+          ? "bg-yellow-100/50 dark:bg-yellow-800/10"
+          : "hover:bg-yellow-100/50 dark:hover:bg-yellow-800/10"
       } ${
         isExpanded ? "" : "w-fit"
       }  text-nowrap transition-all flex items-center gap-2 px-2 py-1.5 text-normal rounded-xl text-slate-800 dark:text-white`}

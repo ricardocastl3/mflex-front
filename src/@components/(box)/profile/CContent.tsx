@@ -33,7 +33,7 @@ export default function CContent({ callback }: { callback?: () => void }) {
             {callback && (
               <button
                 onClick={callback}
-                className="rounded-md pb-3 hover:opacity-80 text-slate-800 dark:text-slate-200"
+                className="rounded-md hover:opacity-80 text-slate-800 dark:text-slate-200"
               >
                 <ReactIcons.BiIcon.BiX size={25} />
               </button>
@@ -51,21 +51,21 @@ export default function CContent({ callback }: { callback?: () => void }) {
         </h4>
         <Link
           href={`/${langByCookies}/app`}
-          className="mt-2.5 rounded-full flex text-sm items-center gap-2 px-4 dark:text-slate-200 hover:bg-slate-800/40 transition-all py-3"
+          className="mt-2.5 rounded-full flex text-sm items-center gap-2 px-4 dark:text-slate-200 dark:hover:bg-slate-800/40 hover:bg-slate-200 transition-all py-3"
         >
           <ReactIcons.VSCIcon.VscSymbolEvent size={14} />
           <CTranslateTo eng="Flex Zone" pt="Flex Zone" />
         </Link>
         <Link
           href={`/${langByCookies}/podcasts`}
-          className="rounded-full flex text-sm items-center gap-2 px-4 dark:text-slate-200 hover:bg-slate-800/40 transition-all py-3"
+          className="rounded-full flex text-sm items-center gap-2 px-4 dark:text-slate-200 dark:hover:bg-slate-800/40 hover:bg-slate-200 transition-all py-3"
         >
           <ReactIcons.AiICon.AiOutlineAudio size={14} />
           <CTranslateTo eng="PodCasts" pt="PodCasts" />
         </Link>
         <Link
           href={`/${langByCookies}/events`}
-          className="rounded-full flex text-sm items-center gap-2 px-4 dark:text-slate-200 hover:bg-slate-800/40 transition-all py-3"
+          className="rounded-full flex text-sm items-center gap-2 px-4 dark:text-slate-200 dark:hover:bg-slate-800/40 hover:bg-slate-200 transition-all py-3"
         >
           <ReactIcons.BiIcon.BiCalendarAlt size={14} />
           <CTranslateTo eng="Public Events" pt="Eventos Públicos" />
