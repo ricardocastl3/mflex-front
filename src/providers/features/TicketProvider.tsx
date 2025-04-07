@@ -1,3 +1,5 @@
+"use client";
+
 import { ITicket } from "@/http/interfaces/models/ITicket";
 import { createContext, ReactNode, useContext, useState } from "react";
 

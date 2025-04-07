@@ -1,4 +1,3 @@
-import { localImages } from "@/utils/images";
 import { Metadata } from "next";
 
 export { default } from "./layout";
