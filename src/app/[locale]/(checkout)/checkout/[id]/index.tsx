@@ -1,27 +1,23 @@
 "use client";
 
-import { BaseBox } from "@/@components/(box)/BaseBox";
 import { internalApi, langByCookies } from "@/http/axios/api";
 import { useAuth } from "@/providers/auth/AuthProvider";
-import { useCallback, useEffect, useState } from "react";
+import { use, useCallback, useEffect, useState } from "react";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { useCheckoutProvider } from "@/providers/app/CheckoutProvider";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { useModal } from "@/providers/app/ModalProvider";
-import { localImages } from "@/utils/images";
 import { useTicketProvider } from "@/providers/features/TicketProvider";
 import { ITicket } from "@/http/interfaces/models/ITicket";
 
 import LogoSpinner from "@/app/onload-pages/spinner/LogoSpinner";
-import CurrencyServices from "@/services/CurrencyServices";
-import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import PaymentCard from "./components/payment-card";
+
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
-import Link from "next/link";
-import Image from "next/image";
 import COpenToastyWithTranslation from "@/@components/(tips)/CToastify/COpenToastyWithTranslation";
 
-export default function CheckOut({ params }: { params: { id: string } }) {
+export default function CheckOut({ pars }: { pars: Promise<{ id: string }> }) {
+  const params = use(pars);
+
   // Contexts
   const { selectedAngolanMethod, handleSelectCustomerBuyed } =
     useCheckoutProvider();
@@ -49,7 +45,7 @@ export default function CheckOut({ params }: { params: { id: string } }) {
         tickets: ITicket;
       }>("/products/checkout", {
         params: {
-          id: params.id,
+          id: await params.id,
         },
       });
 
