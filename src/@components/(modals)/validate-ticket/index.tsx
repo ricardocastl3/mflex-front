@@ -18,7 +18,7 @@ export default function ValidateTicketModal() {
 
   return (
     <BaseModal callbackClose={handleClose} customDesktop="pb-4 pt-4">
-      <div className="h-[70vh] flex flex-col md:w-[30vw] w-[90vw]">
+      <div className="md:h-[70vh] h-[40vh] flex flex-col md:w-[30vw] w-[90vw]">
         <AuSoftUI.UI.Button
           onClick={handleClose}
           className="justify-center"
@@ -32,12 +32,6 @@ export default function ValidateTicketModal() {
               handleClose();
             }}
           />
-        </div>
-        <div className="flex items-center justify-center">
-          <h4 className="flex items-center gap-3 py-2 text-yellow-500 dark:text-yellow-400 animate-pulse">
-            <CTranslateTo eng="Scanning" pt="Escaneando" />
-            <ReactIcons.PiIcon.PiSpinner className="animate-spin" size={20} />
-          </h4>
         </div>
       </div>
     </BaseModal>
