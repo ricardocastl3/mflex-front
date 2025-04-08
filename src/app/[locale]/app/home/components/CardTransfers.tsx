@@ -16,7 +16,7 @@ export default function CardTransfers() {
             className="text-yellow-500"
           />
         </div>
-        <h1 className="text-base text-yellow-600 dark:text-yellow-500">20</h1>
+        <h1 className="text-base text-yellow-600 dark:text-yellow-500">49</h1>
       </div>
     </BaseBox>
   );

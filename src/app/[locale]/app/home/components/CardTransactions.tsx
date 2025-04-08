@@ -13,7 +13,7 @@ export default function CardTransactions() {
           </h1>
           <ReactIcons.PiIcon.PiMoney size={15} className="text-green-500" />
         </div>
-        <h1 className="text-base text-yellow-600 dark:text-yellow-500">20</h1>
+        <h1 className="text-base text-yellow-600 dark:text-yellow-500">87</h1>
       </div>
     </BaseBox>
   );

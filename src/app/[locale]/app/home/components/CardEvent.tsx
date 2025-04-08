@@ -13,7 +13,7 @@ export default function CardEvent() {
           </h1>
           <ReactIcons.HiIcon.HiTicket size={15} className="text-cyan-500" />
         </div>
-        <h1 className="text-base text-yellow-600 dark:text-yellow-500">20</h1>
+        <h1 className="text-base text-yellow-600 dark:text-yellow-500">55</h1>
       </div>
     </BaseBox>
   );
