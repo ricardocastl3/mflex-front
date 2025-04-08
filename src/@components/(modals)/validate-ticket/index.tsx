@@ -17,7 +17,7 @@ export default function ValidateTicketModal() {
 
   return (
     <BaseModal callbackClose={handleClose} customDesktop="pb-4 pt-4">
-      <div className="md:h-[70vh] h-[80vh] flex flex-col md:w-[30vw] w-[90vw]">
+      <div className="md:h-[70vh] h-[100%] flex flex-col md:w-[30vw] w-[90vw]">
         <AuSoftUI.UI.Button
           onClick={handleClose}
           className="justify-center"
