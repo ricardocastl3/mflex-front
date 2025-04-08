@@ -9,7 +9,7 @@ const boxVariants = cva("", {
       whiteboard:
         "bg-slate-400 border rounded-xl dark:bg-slate-700 box-border dark:border dark:border-slate-800/60",
       backboard:
-        "bg-white rounded-2xl box-border dark:bg-[#0f121c] dark:border dark:border-slate-800/60",
+        "bg-white rounded-2xl box-border dark:bg-[#0f121c] dark:border dark:border-slate-800/80",
     },
   },
   defaultVariants: {
