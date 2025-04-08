@@ -69,7 +69,7 @@ const QrScanner = ({ onScan }: { onScan: (code: string) => void }) => {
     <div className="flex flex-col gap-2">
       <div
         id="reader"
-        style={{ width: "100%", height: "100%", borderRadius: 20 }}
+        className="md:w-[100%] w-[100%] md:h-[100%] h-[50%]"
       />
       <div className="">
         <AuSoftUI.UI.Select
