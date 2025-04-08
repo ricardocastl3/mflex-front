@@ -22,7 +22,7 @@ export default function TicketCard() {
       <div className="flex-1 flex flex-col gap-4 justify-between">
         <div className="flex flex-col gap-2">
           <h4 className="dark:text-white text-lg font-bold">
-            2ª Edição - Festa dos pequeninos
+            {` 2ª Edição - Festa dos pequeninos`}
           </h4>
 
           <div className="flex items-center gap-2 flex-wrap">
@@ -30,24 +30,32 @@ export default function TicketCard() {
               <ReactIcons.HiIcon.HiCurrencyDollar size={18} />
               {CurrencyServices.decimal(254000)} Kz - {` Área VIP`}
             </h1>
-            <h1 className="md:flex hidden text-base dark:text-slate-400 text-slate-600">|</h1>
+            <h1 className="md:flex hidden text-base dark:text-slate-400 text-slate-600">
+              |
+            </h1>
             <h1 className="flex items-center gap-2 dark:text-slate-300">
               <b>2</b>
               <CTranslateTo eng="Tickets" pt="Ingressos" />
               <ReactIcons.HiIcon.HiTicket size={18} />
             </h1>
-            <h1 className="flex items-center gap-2 dark:text-yellow-400 text-yellow-700 text-base">
-              <ReactIcons.HiIcon.HiCalendar size={18} />
-              <CTranslateTo eng="Past Event" pt="Evento Passado" />
-            </h1>
+            <div className="flex items-center gap-2">
+              <h1 className="flex items-center gap-2 dark:text-slate-400 text-slate-700 text-base">
+                <ReactIcons.HiIcon.HiCalendar size={18} />
+                <CTranslateTo eng="Past Event" pt="Evento Passado" />
+              </h1>
+              <h1 className="flex items-center gap-2 dark:text-yellow-400 text-yellow-700 text-base">
+                <ReactIcons.HiIcon.HiUser size={18} />
+                {`Studio Brown`}
+              </h1>
+            </div>
           </div>
         </div>
         <div>
           <AuSoftUI.UI.Button
             variant={"primary"}
-            className="items-center md:w-fit w-full"
+            className="items-center md:w-fit w-full font-bold"
           >
-            <ReactIcons.AiICon.AiOutlineQrcode size={12} />
+            <ReactIcons.AiICon.AiOutlineQrcode size={15} />
             <CTranslateTo eng="View Access Code" pt="Ver código de acesso" />
           </AuSoftUI.UI.Button>
         </div>

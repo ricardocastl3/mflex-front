@@ -23,7 +23,7 @@ export default function TransferModal() {
       <div className="flex md:items-center items-stretch w-full justify-between md:flex-row flex-col gap-3 border-b pb-2 border-slate-300 dark:border-slate-800">
         <h4 className="flex items-center  gap-2 font-bold text-xl dark:text-white">
           <ReactIcons.Hi2Icon.HiTag size={18} />
-          <CTranslateTo eng="My Tickets" pt="Meus Tickets" />
+          <CTranslateTo eng="My Tickets" pt="Meus Ingressos" />
         </h4>
         <div>
           <AuSoftUI.UI.TextField.Default
