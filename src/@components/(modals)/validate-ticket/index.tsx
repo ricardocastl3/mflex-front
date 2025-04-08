@@ -20,7 +20,7 @@ export default function ValidateTicketModal() {
       <div className="md:h-[70vh] h-[100%] flex flex-col md:w-[30vw] w-[90vw]">
         <AuSoftUI.UI.Button
           onClick={handleClose}
-          className="justify-center"
+          className="justify-center text-base font-bold"
           variant={"primary"}
           size={"md"}
         >
