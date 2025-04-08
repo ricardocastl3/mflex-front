@@ -22,6 +22,7 @@ export default function ValidateTicketModal() {
           onClick={handleClose}
           className="justify-center"
           variant={"primary"}
+          size={"md"}
         >
           <CTranslateTo eng="Done" pt="Concluído" />
         </AuSoftUI.UI.Button>
