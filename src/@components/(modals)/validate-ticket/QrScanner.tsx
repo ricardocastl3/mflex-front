@@ -79,7 +79,11 @@ const QrScanner = ({ onScan }: { onScan: (code: string) => void }) => {
           weight={"sm"}
         >
           {allCamera.map((cam, i) => {
-            return <option value={cam.id}>{cam.label}</option>;
+            return (
+              <option key={i} value={cam.id}>
+                {cam.label}
+              </option>
+            );
           })}
         </AuSoftUI.UI.Select>
       </div>

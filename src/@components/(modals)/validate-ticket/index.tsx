@@ -5,7 +5,6 @@ import QrScanner from "./QrScanner";
 import { useModal } from "@/providers/app/ModalProvider";
 import { useState } from "react";
 import { AuSoftUI } from "@/@components/(ausoft)";
-import { ReactIcons } from "@/utils/icons";
 
 export default function ValidateTicketModal() {
   const { handleOpenModal } = useModal();
