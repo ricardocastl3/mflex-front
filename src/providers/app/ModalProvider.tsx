@@ -10,6 +10,10 @@ interface IBoxTextLocale {
 }
 
 type modalType =
+  | "add-event"
+  | "add-ticket"
+  | "list-ticket"
+  | "validate-ticket"
   | "box-success"
   | "default-question"
   | "checkout-success"

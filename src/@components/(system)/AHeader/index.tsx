@@ -28,18 +28,7 @@ export default function AHeader() {
           href={`/${langByCookies}/app`}
           className="flex items-center font-bold gap-1.5 md:text-md text-xl md:ml-2 ml-0 text-blue-500 dark:text-blue-600/90"
         >
-          <AAuSoftLogo size={70}  />
-        </Link>
-        <Link href={`/${langByCookies}`}>
-          <AuSoftUI.UI.Button
-            type="button"
-            size={"sm"}
-            className="w-fit font-bold items-center py-1"
-            variant={"outline"}
-          >
-            <ReactIcons.AiICon.AiOutlineArrowLeft size={16} />
-            <CTranslateTo eng="Back" pt="Voltar" />
-          </AuSoftUI.UI.Button>
+          <AAuSoftLogo size={70} />
         </Link>
       </div>
 

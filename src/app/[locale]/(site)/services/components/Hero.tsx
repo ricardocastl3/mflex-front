@@ -4,7 +4,9 @@ export default function HeroServices() {
   return (
     <div
       style={{
-        backgroundAttachment: "fixed",
+        objectFit: "fill",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: window.innerWidth <= 765 ? "center" : "",
         backgroundImage: `url(https://img.freepik.com/free-photo/smiling-asian-woman-pointing-fingers-left-showing-advertisement-empty-copy-space-standing-yellow-background_1258-92225.jpg?t=st=1744019799~exp=1744023399~hmac=159cead594fdb9f5c02ddd613111f8ed32ccc67fee30c691a2c23404e54c3e15&w=1380)`,
         backgroundSize: "cover",
       }}

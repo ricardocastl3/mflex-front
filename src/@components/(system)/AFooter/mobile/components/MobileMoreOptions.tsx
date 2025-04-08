@@ -20,8 +20,8 @@ export default function MobileMoreOptions() {
       <BaseBox className="w-[90vw] h-fit flex flex-col justify-between">
         <div className="px-4 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
           <div className="flex items-end gap-2">
-            <AuSoftUI.Component.AuSoftLogo size={25} />
-            <h4 className="font-bold text-normal dark:text-white">
+            <AuSoftUI.Component.AuSoftLogo size={40} />
+            <h4 className="font-bold text-base dark:text-white">
               <CTranslateTo eng="More Options" pt="Mais Opções" />
             </h4>
           </div>

@@ -18,7 +18,7 @@ export default function PolicyContentItem({
   position,
 }: IContentItem) {
   return (
-    <section id={`${section_id}`}>
+    <section id={`${section_id}`} className="flex flex-col gap-2">
       <h4 className="text-xl dark:text-white">
         {`${position}. `}
         <CTranslateTo eng={title_en} pt={title_pt} />

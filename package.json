@@ -16,6 +16,7 @@
     "@stitches/react": "^1.2.8",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/react-copy-to-clipboard": "^5.0.7",
+    "@yudiel/react-qr-scanner": "^2.2.1",
     "axios": "^1.7.7",
     "class-variance-authority": "^0.7.0",
     "cookies-next": "^4.3.0",

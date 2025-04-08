@@ -9,6 +9,8 @@ import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import useTransactions from "@/hooks/api/useTransactions";
 import TransactionDashboard from "./box/TransactionDashboard";
 import TransactionList from "./box/TransactionList";
+import PageBase from "../cmps/PageBase";
+import ContainerBase from "../cmps/ContanerBase";
 
 export default function TransactionPage() {
   const {
@@ -36,7 +38,7 @@ export default function TransactionPage() {
   }, [fetchTransaction]);
 
   return (
-    <div className="flex flex-col md:h-[84vh] h-full overflow-y-auto md:pr-2 pr-0">
+    <PageBase>
       <div className="flex items-center border-b pb-2 border-slate-300 dark:border-slate-800">
         <h4 className="flex items-center gap-2 font-bold text-xl dark:text-white">
           <ReactIcons.AiICon.AiOutlineTransaction size={18} />
@@ -44,22 +46,24 @@ export default function TransactionPage() {
         </h4>
       </div>
 
-      <div className="pb-8 gap-4 flex flex-col">
-        <TransactionDashboard
-          isLoading={isLoadingBase && isLoadingAllTransactions}
-          transactions={allBaseTransaction}
-        />
+      <ContainerBase>
+        <div className="pb-8 gap-4 flex flex-col">
+          <TransactionDashboard
+            isLoading={isLoadingBase && isLoadingAllTransactions}
+            transactions={allBaseTransaction}
+          />
 
-        <TransactionList
-          local="transaction"
-          rawTransactions={allTransactions}
-          setTransactions={setAllBaseTransaction}
-          transactions={allBaseTransaction}
-          fetchAll={fetchAllTransactions}
-          handleSearchName={handleSeachByName}
-          isLoading={isLoadingAllTransactions}
-        />
-      </div>
-    </div>
+          <TransactionList
+            local="transaction"
+            rawTransactions={allTransactions}
+            setTransactions={setAllBaseTransaction}
+            transactions={allBaseTransaction}
+            fetchAll={fetchAllTransactions}
+            handleSearchName={handleSeachByName}
+            isLoading={isLoadingAllTransactions}
+          />
+        </div>
+      </ContainerBase>
+    </PageBase>
   );
 }

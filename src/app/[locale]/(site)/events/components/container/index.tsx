@@ -2,11 +2,11 @@
 
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { useEffect, useState } from "react";
+import { ReactIcons } from "@/utils/icons";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import EventCard from "./EventCard";
 import BoxCategories from "../../../components/BoxCategories";
-import { ReactIcons } from "@/utils/icons";
 
 export default function EventContainer() {
   const [items, setItems] = useState<number>(4);
@@ -55,7 +55,7 @@ export default function EventContainer() {
         <AuSoftUI.UI.TextField.Default
           placeholder="Ex: Fly PodCast...."
           weight={"lg"}
-          className="rounded-full text-lg text-center dark:bg-ausoft-slate-950 bg-slate-100 md:w-[50vw] w-[90vw]"
+          className="rounded-full md:text-lg text-base text-center dark:bg-ausoft-slate-950 bg-slate-100 md:w-[50vw] w-[90vw]"
         />
       </div>
 

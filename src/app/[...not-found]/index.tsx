@@ -38,7 +38,7 @@ export default function NotFound() {
           size={"md"}
           className="w-full justify-center mt-4 rounded-full"
         >
-          <Link href={`/${segmentedLayoutByLocalStorage}`}>
+          <Link href={`/${segmentedLayoutByLocalStorage}/`}>
             <CTranslateTo eng="Back to MFLEX" pt="Voltar para a MFLEX" />
           </Link>
         </Button>

@@ -3,6 +3,7 @@
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import useTransferences from "@/hooks/api/useTransferences";
 import TransferBox from "./components/TransferBox";
+import PageBase from "../cmps/PageBase";
 
 import { ReactIcons } from "@/utils/icons";
 
@@ -17,7 +18,7 @@ export default function TransferModal() {
   });
 
   return (
-    <div className="flex flex-col w-full md:h-[84vh] h-full overflow-y-auto md:pr-2 pr-0">
+    <PageBase>
       <div className="flex items-center border-b pb-2 border-slate-300 dark:border-slate-800">
         <h4 className="flex items-center gap-2 font-bold text-xl dark:text-white">
           <ReactIcons.AiICon.AiOutlineMoneyCollect size={18} />
@@ -31,6 +32,6 @@ export default function TransferModal() {
         isLoading={isLoadingAllTransfer}
         transfers={allTransfer}
       />
-    </div>
+    </PageBase>
   );
 }

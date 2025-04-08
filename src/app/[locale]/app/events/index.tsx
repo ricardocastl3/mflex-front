@@ -5,8 +5,14 @@ import useTransferences from "@/hooks/api/useTransferences";
 import EventBox from "./components/EventBox";
 
 import { ReactIcons } from "@/utils/icons";
+import { AuSoftUI } from "@/@components/(ausoft)";
+import { useModal } from "@/providers/app/ModalProvider";
+import PageBase from "../cmps/PageBase";
 
-export default function TransferModal() {
+export default function EventAppPage() {
+  // Contexts
+  const { handleOpenModal } = useModal();
+
   const {
     allTransfer,
     isLoadingAllTransfer,
@@ -17,14 +23,52 @@ export default function TransferModal() {
   });
 
   return (
-    <div className="flex flex-col w-full md:h-[84vh] h-full overflow-y-auto md:pr-2 pr-0">
-      <div className="flex items-center border-b pb-2 border-slate-300 dark:border-slate-800">
+    <PageBase>
+      <div className="flex items-center justify-between border-b w-full pb-2 border-slate-300 dark:border-slate-800">
         <h4 className="flex items-center gap-2 font-bold text-xl dark:text-white">
           <ReactIcons.BiIcon.BiSolidCalendarEvent size={18} />
           <CTranslateTo eng="My Events" pt="Meus Eventos" />
         </h4>
+        <div className="md:flex hidden items-center gap-3">
+          <AuSoftUI.UI.Button
+            onClick={() => handleOpenModal("validate-ticket")}
+            size={"sm"}
+            className="rounded-full py-2"
+            variant={"primary"}
+          >
+            <CTranslateTo eng="Validate Ticket" pt="Validar Ingresso" />
+            <ReactIcons.PiIcon.PiScan size={18} />
+          </AuSoftUI.UI.Button>
+          <AuSoftUI.UI.Button
+            onClick={() => handleOpenModal("add-event")}
+            size={"sm"}
+            className="rounded-full py-2"
+            variant={"primary"}
+          >
+            <CTranslateTo eng="New Event" pt="Novo Evento" />
+            <ReactIcons.Hi2Icon.HiCalendar size={18} />
+          </AuSoftUI.UI.Button>
+        </div>
+        <div className="md:hidden flex fixed gap-4 bottom-[4.9rem] right-[4.4rem] z-20">
+          <AuSoftUI.UI.Button
+            size={"sm"}
+            onClick={() => handleOpenModal("validate-ticket")}
+            className="rounded-full p-3"
+            variant={"primary"}
+          >
+            <ReactIcons.PiIcon.PiScan size={18} />
+          </AuSoftUI.UI.Button>
+          <AuSoftUI.UI.Button
+            size={"sm"}
+            onClick={() => handleOpenModal("add-event")}
+            className="rounded-full p-3"
+            variant={"primary"}
+          >
+            <ReactIcons.Hi2Icon.HiCalendar size={18} />
+          </AuSoftUI.UI.Button>
+        </div>
       </div>
       <EventBox />
-    </div>
+    </PageBase>
   );
 }

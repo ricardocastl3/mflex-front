@@ -35,6 +35,7 @@ export default function SMobileFooter() {
         title_pt="PodFlex"
         bar
       />
+
       <LinkMButton
         Icon={ReactIcons.AiICon.AiFillSignal}
         action="services"

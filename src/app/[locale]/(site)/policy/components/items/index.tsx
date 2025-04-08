@@ -25,7 +25,7 @@ export default function PolicyMenuItem({
         href={`#${currentSection}`}
         className={`${
           isSelected ? "text-white bg-yellow-500" : "dark:text-white"
-        } rounded-full px-4 py-2 text-nowrap text-sm `}
+        } rounded-full px-4 py-2 text-nowrap md:text-sm text-lg `}
       >
         <CTranslateTo eng={title_en} pt={title_pt} />
       </Link>
