@@ -66,7 +66,6 @@ export default function MFlexLayout({
                 {children}
               </div>
             </div>
-
             <AMobileFooter />
           </div>
         </EventProvider>

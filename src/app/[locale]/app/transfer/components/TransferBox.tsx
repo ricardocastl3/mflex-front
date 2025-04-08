@@ -8,7 +8,7 @@ import { ITransfer } from "@/http/interfaces/models/ITransfer";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import ProductList from "./row-list";
 import ProductCard from "./card-list";
-import ContainerBase from "../../cmps/ContanerBase";
+import ContainerBase from "../../cmps/ContainerBase";
 
 export default function TransferBox({
   transfers,

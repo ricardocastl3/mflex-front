@@ -4,7 +4,7 @@ import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import UserDetailBox from "./components/user-details";
 import BankMerchantBox from "./components/bank-merchant";
 import PageBase from "../cmps/PageBase";
-import ContainerBase from "../cmps/ContanerBase";
+import ContainerBase from "../cmps/ContainerBase";
 
 export default function SettingsPage() {
   return (

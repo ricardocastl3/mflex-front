@@ -1,3 +1,5 @@
+"use client";
+
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { ReactNode } from "react";
 

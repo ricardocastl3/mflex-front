@@ -10,7 +10,7 @@ import useTransactions from "@/hooks/api/useTransactions";
 import TransactionDashboard from "./box/TransactionDashboard";
 import TransactionList from "./box/TransactionList";
 import PageBase from "../cmps/PageBase";
-import ContainerBase from "../cmps/ContanerBase";
+import ContainerBase from "../cmps/ContainerBase";
 
 export default function TransactionPage() {
   const {

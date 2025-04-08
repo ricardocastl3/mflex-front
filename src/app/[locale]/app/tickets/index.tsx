@@ -28,7 +28,7 @@ export default function TransferModal() {
         <div>
           <AuSoftUI.UI.TextField.Default
             weight={"sm"}
-            className="md:w-[19rem] w-full border-slate-500"
+            className="md:w-[19rem] w-full font-bold border-slate-400"
             placeholder="Ex: Formação Você Rei..."
           />
         </div>

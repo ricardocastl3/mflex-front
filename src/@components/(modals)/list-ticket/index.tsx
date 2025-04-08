@@ -17,7 +17,7 @@ export default function ListTicketModal() {
           <div className="flex items-center gap-3">
             <AAuSoftLogo size={40} />
             <h3 className="text-base font-bold dark:text-white">
-              <CTranslateTo eng="New Ticket" pt="Novo Ingresso" />
+              <CTranslateTo eng="Ticket List" pt="Lista de ingressos" />
             </h3>
           </div>
           <button
