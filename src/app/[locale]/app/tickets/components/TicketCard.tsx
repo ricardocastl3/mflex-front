@@ -1,9 +1,13 @@
 import { AuSoftUI } from "@/@components/(ausoft)";
-import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import CurrencyServices from "@/services/CurrencyServices";
+import { useModal } from "@/providers/app/ModalProvider";
 import { ReactIcons } from "@/utils/icons";
 
+import CTranslateTo from "@/@components/(translation)/CTranslateTo";
+import CurrencyServices from "@/services/CurrencyServices";
+
 export default function TicketCard() {
+  const { handleOpenModal } = useModal();
+
   return (
     <div className="dark:bg-ausoft-slate-900 bg-white rounded-xl p-4 flex md:flex-row flex-col gap-3">
       <div className="flex md:justify-start justify-center">
@@ -28,16 +32,20 @@ export default function TicketCard() {
           <div className="flex items-center gap-2 flex-wrap">
             <h1 className="flex items-center gap-2 dark:text-yellow-400 text-yellow-700 text-base">
               <ReactIcons.HiIcon.HiCurrencyDollar size={18} />
-              {CurrencyServices.decimal(254000)} Kz - {` Área VIP`}
-            </h1>
-            <h1 className="md:flex hidden text-base dark:text-slate-400 text-slate-600">
-              |
+              {CurrencyServices.decimal(254000)} Kz
             </h1>
             <h1 className="flex items-center gap-2 dark:text-slate-300">
+              <ReactIcons.HiIcon.HiTicket size={18} />
               <b>2</b>
               <CTranslateTo eng="Tickets" pt="Ingressos" />
-              <ReactIcons.HiIcon.HiTicket size={18} />
             </h1>
+            <div className="flex items-center gap-2 flex-wrap">
+              <h1 className="flex items-center gap-2 dark:text-slate-300">
+                <ReactIcons.HiIcon.HiHome size={18} />
+                {`ARQUIBANCADA`}
+              </h1>
+            </div>
+
             <div className="flex items-center gap-2">
               <h1 className="flex items-center gap-2 dark:text-slate-400 text-slate-700 text-base">
                 <ReactIcons.HiIcon.HiCalendar size={18} />
@@ -52,6 +60,7 @@ export default function TicketCard() {
         </div>
         <div>
           <AuSoftUI.UI.Button
+            onClick={() => handleOpenModal("view-ticket")}
             variant={"primary"}
             className="items-center md:w-fit w-full font-bold"
           >

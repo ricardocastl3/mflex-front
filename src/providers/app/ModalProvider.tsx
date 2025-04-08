@@ -15,6 +15,7 @@ type modalType =
   | "list-ticket"
   | "validate-ticket"
   | "box-success"
+  | "view-ticket"
   | "default-question"
   | "checkout-success"
   | "checkout-failed"

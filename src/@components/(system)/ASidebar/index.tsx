@@ -69,20 +69,20 @@ export default function ASidebar() {
         <div
           className={`${!isExpanded ? "justify-center" : "pr-4"} ${
             openBanner ? "pb-4 " : "pb-[1.18rem]"
-          } border-b flex  border-slate-200 dark:border-slate-800 items-center gap-4`}
+          } dark:text-yellow-500 text-yellow-500 border-b flex border-slate-200 dark:border-slate-800 items-center gap-2`}
         >
           <div
             className={`${
               isExpanded ? "" : "mr-3"
-            } flex  pt-0.5 pb-0 rounded-full h-5 px-2 w-fit items-center dark:bg-yellow-900/50 dark:text-yellow-200 bg-yellow-100 text-yellow-700 gap-2`}
+            } flex  pt-0.5 pb-0 rounded-full h-5 px-2 w-fit items-center gap-2`}
           >
-            <ReactIcons.FaIcon.FaCircle
-              size={10}
+            <ReactIcons.VSCIcon.VscSymbolEvent
+              size={20}
               className="mb-1 animate-pulse"
             />
           </div>
           {showText && (
-            <h4 className="duration-1000 text-sm transition-all dark:text-yellow-500 text-yellow-500 font-bold">
+            <h4 className="duration-1000 text-sm transition-all  font-bold">
               FlexZone
             </h4>
           )}

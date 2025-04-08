@@ -12,6 +12,7 @@ import AddEventModal from "./add-event";
 import ValidateTicketModal from "./validate-ticket";
 import AddTicketModal from "./add-ticket";
 import ListTicketModal from "./list-ticket";
+import ViewTicketModal from "./view-ticket";
 
 export default function ModalOpenProvider() {
   const { openModal } = useModal();
@@ -43,6 +44,9 @@ export default function ModalOpenProvider() {
 
     case "list-ticket":
       return <ListTicketModal />;
+
+    case "view-ticket":
+      return <ViewTicketModal />;
 
     default:
       return <></>;

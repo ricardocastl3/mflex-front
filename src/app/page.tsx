@@ -5,5 +5,5 @@ export { default } from "./onload-pages/_load-tnotify";
 
 export const metadata: Metadata = {
   title: appConfigs.title,
-  description: "🚀 Marca Flex",
+  description: "Marca Flex, marketing & publicidade ao seu alance 🚀 ",
 };
