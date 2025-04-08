@@ -17,6 +17,7 @@ export default function VideoBackground({
   return (
     <>
       <video
+        onError={() => setIsLoading(true)}
         onLoadedData={() => setIsLoading(false)}
         loop
         muted
