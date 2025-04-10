@@ -2,12 +2,41 @@ import { AuSoftUI } from "@/@components/(ausoft)";
 import { IEventTicket } from "@/http/interfaces/models/EventTicket";
 import { ReactIcons } from "@/utils/icons";
 import { useEffect, useState } from "react";
+import { useAuth } from "@/providers/auth/AuthProvider";
+import { useRouter } from "next/navigation";
+import { langByCookies } from "@/http/axios/api";
+import { useModal } from "@/providers/app/ModalProvider";
+import { useCheckoutProvider } from "@/providers/app/CheckoutProvider";
+import { useEventTicketProvider } from "@/providers/features/EventTicketProvider";
 
 import CurrencyServices from "@/services/CurrencyServices";
+import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 
 export default function TicketCard({ ticket }: { ticket: IEventTicket }) {
   const [quantity, setQuantity] = useState(1);
   const [totalToPay, setTotalToPay] = useState(0);
+
+  // Contexts
+  const { userLogged } = useAuth();
+  const { handleOpenModal } = useModal();
+  const { handleSelectEventTicket } = useEventTicketProvider();
+  const { handleSelectCustomerBuyed } = useCheckoutProvider();
+
+  const router = useRouter();
+
+  function handlePurchaseTicket() {
+    if (!userLogged) {
+      router.push(`/${langByCookies}/sign-in`);
+    } else {
+      handleSelectCustomerBuyed({
+        amount: totalToPay,
+        quantity,
+        ticket_id: ticket.id,
+      });
+      handleSelectEventTicket(ticket);
+      handleOpenModal("angolan-payment-modal");
+    }
+  }
 
   useEffect(() => {
     const total = quantity * ticket.amount;
@@ -17,43 +46,75 @@ export default function TicketCard({ ticket }: { ticket: IEventTicket }) {
   return (
     <div className="md:p-8 p-5 flex flex-col gap-2 bg-slate-300/30 rounded-lg dark:bg-ausoft-slate-950">
       <div className="flex items-center justify-between flex-wrap">
-        <h1 className="text-xl">{ticket.name}</h1>
-        <h1 className="text-xl font-bold">{`${CurrencyServices.decimal(
+        <h1 className="md:text-xl text-lg dark:text-white">{ticket.name}</h1>
+        <h1 className="md:text-xl text-lg font-bold dark:text-white">{`${CurrencyServices.decimal(
           totalToPay
         )} Kz`}</h1>
       </div>
-      <div className="flex justify-end">
-        <div className="flex items-center gap-2">
-          <AuSoftUI.UI.Button
-            onClick={() =>
-              setQuantity((state) => {
-                if (state > 1) {
-                  return state - 1;
-                }
-                return 1;
-              })
-            }
-            className="md:w-fit w-[5rem]"
-            variant={"primary"}
-            size={"sm"}
-          >
-            <ReactIcons.BiIcon.BiMinus size={15} />
-          </AuSoftUI.UI.Button>
-          <AuSoftUI.UI.TextField.Default
-            value={quantity}
-            disabled={true}
-            weight={"sm"}
-            className="md:w-[2rem] w-full text-center"
-          />
+      <div className="flex md:items-center gap-4 items-stretch md:flex-row flex-col justify-between">
+        <div>
+          {ticket.description != "" && (
+            <>
+              <h1 className="md:text-lg text-base dark:text-slate-400 text-slate-700">
+                {ticket.description}
+              </h1>
+            </>
+          )}
+        </div>
+        <div className="flex md:items-center gap-4 items-stretch md:flex-row flex-col">
+          <div className="flex items-center gap-2">
+            <AuSoftUI.UI.Button
+              onClick={() =>
+                setQuantity((state) => {
+                  if (state > 1) {
+                    return state - 1;
+                  }
+                  return 1;
+                })
+              }
+              className="md:w-fit w-[4rem] justify-center"
+              variant={"primary"}
+              size={"sm"}
+            >
+              <ReactIcons.BiIcon.BiMinus size={15} />
+            </AuSoftUI.UI.Button>
+            <AuSoftUI.UI.TextField.Default
+              value={quantity}
+              disabled={true}
+              weight={"sm"}
+              className="md:w-[4rem] font-bold md:text-lg text-base w-full text-center"
+            />
 
-          <AuSoftUI.UI.Button
-            onClick={() => setQuantity((state) => state + 1)}
-            size={"sm"}
-            className="md:w-fit w-[4rem]"
-            variant={"primary"}
-          >
-            <ReactIcons.BiIcon.BiPlus size={15} />
-          </AuSoftUI.UI.Button>
+            <AuSoftUI.UI.Button
+              onClick={() => setQuantity((state) => state + 1)}
+              size={"sm"}
+              className="md:w-fit w-[4rem] justify-center"
+              variant={"primary"}
+            >
+              <ReactIcons.BiIcon.BiPlus size={15} />
+            </AuSoftUI.UI.Button>
+          </div>
+          {ticket.status == "available" && (
+            <AuSoftUI.UI.Button
+              onClick={() => handlePurchaseTicket()}
+              size={"sm"}
+              className="md:w-fit w-full items-center"
+              variant={"primary"}
+            >
+              <ReactIcons.BiIcon.BiCart size={15} />
+              <CTranslateTo eng="Purchase" pt="Comprar" />
+            </AuSoftUI.UI.Button>
+          )}
+          {ticket.status == "unavailable" && (
+            <AuSoftUI.UI.Button
+              size={"sm"}
+              className="md:w-fit w-full items-center"
+              variant={"destructive"}
+            >
+              <ReactIcons.BiIcon.BiLock size={15} />
+              <CTranslateTo eng="Unavailable" pt="Indisponível" />
+            </AuSoftUI.UI.Button>
+          )}
         </div>
       </div>
     </div>

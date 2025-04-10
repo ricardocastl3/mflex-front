@@ -20,12 +20,8 @@ export default function MulticaixaPayment() {
 
   const { handleAddToastOnArray } = useAppProvider();
   const { selectedTicket } = useTicketProvider();
-  const {
-    selectedCustomerBuyed,
-    handleIsPurchased,
-    isPurchased,
-    itemPriceIdCheckoutSelected,
-  } = useCheckoutProvider();
+  const { selectedCustomerBuyed, handleIsPurchased, isPurchased } =
+    useCheckoutProvider();
   const { userLogged } = useAuth();
   const { handleOpenModal } = useModal();
 
@@ -35,33 +31,20 @@ export default function MulticaixaPayment() {
   const [seconds, setSeconds] = useState(59);
 
   const [phoneNumber, setPhoneNumber] = useState(
-    selectedCustomerBuyed
-      ? selectedCustomerBuyed?.phone
-      : userLogged?.profile?.phone_number
-      ? userLogged.profile.phone_number
-      : "+244"
+    userLogged?.profile?.phone_number ? userLogged.profile.phone_number : "+244"
   );
 
   async function handleBuy() {
     try {
       setIsLoading(true);
-      const resp = await internalApi.post(
-        `/payments/checkout/${
-          !itemPriceIdCheckoutSelected ? "products" : "subs"
-        }`,
-        {
-          price: selectedTicket ? selectedTicket.id : undefined,
-          subs: itemPriceIdCheckoutSelected
-            ? itemPriceIdCheckoutSelected.price
-            : undefined,
-          angolan_method: "multicaixa",
-          payment_method: "angolan",
-          customer: selectedCustomerBuyed?.customer,
-          customer_email: selectedCustomerBuyed?.email,
-          phone_number: phoneNumber,
-          d: socketEvent?.metadata,
-        }
-      );
+      const resp = await internalApi.post(`/payments/checkout/tickets`, {
+        quantity: selectedCustomerBuyed?.quantity,
+        price: selectedCustomerBuyed?.ticket_id,
+        angolan_method: "multicaixa",
+        payment_method: "angolan",
+        phone_number: phoneNumber,
+        d: socketEvent?.metadata,
+      });
 
       setAlreadySent(resp.data.d);
       setIsLoading(false);

@@ -56,7 +56,7 @@ export default function NewsContainer() {
         />
       </div>
 
-      <BoxCategories />
+      <BoxCategories view="news" callback={() => {}} />
 
       <div className="flex flex-col md:px-[3rem] px-5">
         <div className="grid md:grid-cols-3 grid-cols-1 gap-6">

@@ -35,11 +35,10 @@ export default function AngolanPaymentDetailsModal() {
       }
     );*/
 
-    if (selectedAngolanMethod != "reference" && !isPurchased)
-      handleOpenModal("");
+    if (!isPurchased) handleOpenModal("");
 
-    if (selectedAngolanMethod == "reference" || isPurchased)
-      window.location.href = "/" + langByCookies + "/purchase";
+    if (isPurchased)
+      window.location.href = "/" + langByCookies + "/app/tickets";
   }
 
   return (

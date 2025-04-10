@@ -7,14 +7,14 @@ import TicketCard from "./TicketCard";
 export default function TicketBox({ tickets }: { tickets: IEventTicket[] }) {
   return (
     <div className="md:px-12 px-5 py-8 flex flex-col gap-4 border-b border-slate-300 dark:border-slate-800 bg-white dark:bg-ausoft-slate-900">
-      <h1 className="dark:text-white text-xl font-bold">
+      <h1 className="dark:text-white text-2xl font-bold">
         <CTranslateTo eng="Tickets" pt="Ingressos" />
       </h1>
 
       {tickets.length > 0 && (
         <div className="flex flex-col gap-4">
           {tickets.map((ticket, i) => {
-            return <TicketCard ticket={ticket} />;
+            return <TicketCard key={i} ticket={ticket} />;
           })}
         </div>
       )}

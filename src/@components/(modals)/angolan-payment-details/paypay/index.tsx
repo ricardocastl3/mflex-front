@@ -42,23 +42,13 @@ export default function PayPayPayment() {
 
   const handleGetRef = useCallback(async () => {
     try {
-      const resp = await internalApi.post(
-        `/payments/checkout/${
-          !itemPriceIdCheckoutSelected ? "products" : "subs"
-        }`,
-        {
-          price: selectedTicket ? selectedTicket.id : undefined,
-          subs: itemPriceIdCheckoutSelected
-            ? itemPriceIdCheckoutSelected.price
-            : undefined,
-          angolan_method: "paypay",
-          payment_method: "angolan",
-          customer: selectedCustomerBuyed?.customer,
-          customer_email: selectedCustomerBuyed?.email,
-          phone_number: selectedCustomerBuyed?.phone,
-          d: socketEvent?.metadata,
-        }
-      );
+      const resp = await internalApi.post(`/payments/checkout/tickets`, {
+        price: selectedCustomerBuyed?.ticket_id,
+        quantity: selectedCustomerBuyed?.quantity,
+        angolan_method: "paypay",
+        payment_method: "angolan",
+        d: socketEvent?.metadata,
+      });
 
       setAlreadySentRequest(resp.data.d);
       setAngolanDetail({ link: resp.data.link });

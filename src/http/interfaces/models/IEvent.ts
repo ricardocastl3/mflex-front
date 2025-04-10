@@ -15,6 +15,7 @@ export interface IEvent {
   created_at: Date;
   category: ICategory;
   organizer: {
+    email?: string;
     first_name: string;
     last_name: string;
   };

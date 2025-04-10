@@ -89,6 +89,7 @@ export default function EventContainer() {
       </div>
 
       <BoxCategories
+        view="events"
         callback={(e) => {
           handleSeachByName({
             name: searchField,

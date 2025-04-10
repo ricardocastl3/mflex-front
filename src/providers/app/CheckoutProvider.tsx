@@ -30,10 +30,9 @@ interface ITicketAmount {
 }
 
 interface ICheckoutTicket {
-  customer: string;
-  email: string;
-  phone: string;
+  quantity: number;
   amount?: number;
+  ticket_id: string;
 }
 
 interface ICheckoutContextProps {

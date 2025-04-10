@@ -46,7 +46,7 @@ export default function ListTransactions({
               key={i}
               className={`mx-2 grid grid-cols-7 rounded-xl px-2 items-center cursor-pointer py-3 hover:bg-slate-100 dark:hover:bg-slate-800/70`}
             >
-              <h3 className="text-violet-600 font-bold dark:text-violet-400 text-sm py-2">
+              <h3 className="col-span-2 text-violet-600 font-bold dark:text-violet-400 text-sm py-2">
                 {`${transaction.customer?.first_name} ${transaction.customer?.last_name}`}
               </h3>
 

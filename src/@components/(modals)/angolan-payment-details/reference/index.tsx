@@ -13,9 +13,7 @@ import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 export default function ReferencePayment() {
   // Contexts
   const { handleAddToastOnArray } = useAppProvider();
-  const { selectedTicket } = useTicketProvider();
-  const { selectedCustomerBuyed, itemPriceIdCheckoutSelected } =
-    useCheckoutProvider();
+  const { selectedCustomerBuyed } = useCheckoutProvider();
 
   const [angolanDetail, setAngolanDetail] = useState<{
     reference: string;
@@ -27,20 +25,12 @@ export default function ReferencePayment() {
 
   const handleGetRef = useCallback(async () => {
     try {
-      const resp = await internalApi.post(
-        `/payments/checkout/t`,
-        {
-          price: selectedTicket ? selectedTicket.id : undefined,
-          subs: itemPriceIdCheckoutSelected
-            ? itemPriceIdCheckoutSelected.price
-            : undefined,
-          angolan_method: "reference",
-          payment_method: "angolan",
-          customer: selectedCustomerBuyed?.customer,
-          customer_email: selectedCustomerBuyed?.email,
-          phone_number: selectedCustomerBuyed?.phone,
-        }
-      );
+      const resp = await internalApi.post(`/payments/checkout/tickets`, {
+        quantity: selectedCustomerBuyed?.quantity,
+        price: selectedCustomerBuyed?.ticket_id,
+        angolan_method: "reference",
+        payment_method: "angolan",
+      });
       setAngolanDetail({
         entity: resp.data.entity,
         reference: resp.data.reference,
@@ -80,7 +70,7 @@ export default function ReferencePayment() {
             <div className="flex flex-wrap items-center justify-between gap-2 w-full">
               <AuSoftUI.Component.Clipboard
                 body={
-                  <h4 className="pb-1 pt-1.5 px-3 cursor-pointer hover:bg-violet-200 hover:dark:bg-violet-950 bg-violet-200/45 md:w-fit w-full rounded-full dark:bg-violet-700/15 text-violet-800 dark:text-violet-400 text-[0.9rem] font-bold text-nowrap">
+                  <h4 className="pb-1 pt-1.5 px-3 cursor-pointer hover:bg-yellow-200 hover:dark:bg-yellow-950 bg-yellow-200/45 md:w-fit w-full rounded-full dark:bg-yellow-700/15 text-yellow-800 dark:text-yellow-400 text-[0.9rem] font-bold text-nowrap">
                     <CTranslateTo eng="Entity: " pt="Entidade: " />{" "}
                     {angolanDetail.entity}
                   </h4>
@@ -91,7 +81,7 @@ export default function ReferencePayment() {
               />
               <AuSoftUI.Component.Clipboard
                 body={
-                  <h4 className="pb-1 pt-1.5 px-3 cursor-pointer hover:bg-violet-200 hover:dark:bg-violet-950 bg-violet-200/45 md:w-fit w-full rounded-full dark:bg-violet-700/15 text-violet-800 dark:text-violet-400 text-[0.9rem] font-bold text-nowrap">
+                  <h4 className="pb-1 pt-1.5 px-3 cursor-pointer hover:bg-yellow-200 hover:dark:bg-yellow-950 bg-yellow-200/45 md:w-fit w-full rounded-full dark:bg-yellow-700/15 text-yellow-800 dark:text-yellow-400 text-[0.9rem] font-bold text-nowrap">
                     <CTranslateTo eng="Reference: " pt="Referência: " />{" "}
                     {angolanDetail.reference}
                   </h4>

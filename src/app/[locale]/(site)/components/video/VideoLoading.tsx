@@ -19,7 +19,7 @@ export default function VideoLoading({
             backgroundAttachment: "fixed",
             backgroundImage: `url(${image})`,
           }}
-          className="animate-fade absolute h-full w-full inset-0 z-10"
+          className="animate-fade absolute h-full w-full inset-0"
         ></div>
       )}
     </>

@@ -14,6 +14,7 @@ type modalType =
   | "add-ticket"
   | "approve-ticket"
   | "list-ticket"
+  | "angolan-payment-modal"
   | "validate-ticket"
   | "box-success"
   | "view-ticket"
