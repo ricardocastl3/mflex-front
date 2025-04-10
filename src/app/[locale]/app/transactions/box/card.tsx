@@ -20,7 +20,7 @@ export default function CardDashboard({
   currency?: boolean;
 }) {
   return (
-    <BaseBox className="p-4 w-full">
+    <BaseBox className="md:p-4 p-3 w-full">
       <div className="flex flex-col gap-2">
         <div className="flex md:flex-row flex-col md:items-center items-start gap-2 md:justify-between justify-start">
           <Icon

@@ -16,7 +16,7 @@ export default function EventCard({
   index,
 }: {
   index: number;
-  event: Omit<IEvent, "">;
+  event: IEvent;
 }) {
   const [showImageFooter, setShowImageFooter] = useState(false);
 

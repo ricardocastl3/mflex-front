@@ -8,6 +8,7 @@ export interface IEvent {
   status: string;
   image_url: string;
   start_at: Date;
+  slug: string;
   main_address: string;
   map_location: string;
   reference_address: string;
