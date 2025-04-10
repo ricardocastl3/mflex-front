@@ -14,6 +14,7 @@ import AMobileFooter from "@/@components/(system)/AFooter/mobile";
 import ABanner from "@/@components/(system)/ABanner";
 import EventProvider from "@/providers/features/EventProvider";
 import TicketProvider from "@/providers/features/TicketProvider";
+import CategoryProvider from "@/providers/features/CategoryProvider";
 
 export default function MFlexLayout({
   children,
@@ -49,27 +50,23 @@ export default function MFlexLayout({
       {openToast.length > 0 && <AuSoftUI.Component.Toaster />}
       <AuSoftUI.Modal.ModalOpenProvider />
 
-      <TicketProvider>
-        <EventProvider>
-          <div className="flex flex-col w-full">
-            <div
-              className={`${
-                openBanner ? "pb-5" : "pb-0"
-              } fixed z-30 top-0 inset-x-0 flex transition-all duration-500 flex-col bg-gradient-to-r dark:from-orange-700 from-orange-500 dark:to-violet-800 to-violet-500`}
-            >
-              {openBanner && <ABanner />}
-              <AHeader />
-            </div>
-            <div className="flex">
-              <ASidebar />
-              <div className={`flex-1 md:mb-0 mb-[2rem] md:px-8 px-5`}>
-                {children}
-              </div>
-            </div>
-            <AMobileFooter />
+      <div className="flex flex-col w-full">
+        <div
+          className={`${
+            openBanner ? "pb-5" : "pb-0"
+          } fixed z-30 top-0 inset-x-0 flex transition-all duration-500 flex-col bg-gradient-to-r dark:from-orange-700 from-orange-500 dark:to-violet-800 to-violet-500`}
+        >
+          {openBanner && <ABanner />}
+          <AHeader />
+        </div>
+        <div className="flex">
+          <ASidebar />
+          <div className={`flex-1 md:mb-0 mb-[2rem] md:px-8 px-5`}>
+            {children}
           </div>
-        </EventProvider>
-      </TicketProvider>
+        </div>
+        <AMobileFooter />
+      </div>
     </>
   );
 }

@@ -1,26 +1,30 @@
 "use client";
 
-import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import useTransferences from "@/hooks/api/useTransferences";
-import EventBox from "./components/EventBox";
-
 import { ReactIcons } from "@/utils/icons";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { useModal } from "@/providers/app/ModalProvider";
+import { useEffect } from "react";
+import { useEventProvider } from "@/providers/features/EventProvider";
+
+import CTranslateTo from "@/@components/(translation)/CTranslateTo";
+import EventBox from "./components/EventBox";
+
 import PageBase from "../cmps/PageBase";
+import useEvents from "@/hooks/api/useEvents";
 
 export default function EventAppPage() {
   // Contexts
   const { handleOpenModal } = useModal();
+  const { fetchEvent, handleSelectEvent } = useEventProvider();
 
-  const {
-    allTransfer,
-    isLoadingAllTransfer,
-    fetchAllTransfer,
-    handleSeachByName,
-  } = useTransferences({
-    route: "transfer",
-  });
+  const { allEvents, fetchAllEvents, handleSeachByName, isLoadingAllEvents } =
+    useEvents({
+      route: "app",
+    });
+
+  useEffect(() => {
+    if (fetchEvent) fetchAllEvents();
+  }, [fetchEvent]);
 
   return (
     <PageBase>
@@ -31,6 +35,9 @@ export default function EventAppPage() {
         </h4>
         <div className="flex items-center gap-3">
           <AuSoftUI.UI.TextField.Default
+            onChange={(e) =>
+              handleSeachByName({ name: e.target.value, mode: "app" })
+            }
             weight={"sm"}
             className="md:w-[19rem] w-full rounded-full font-bold border-slate-400"
             placeholder="Ex: Formação Você Rei..."
@@ -46,7 +53,9 @@ export default function EventAppPage() {
               <ReactIcons.PiIcon.PiScan size={18} />
             </AuSoftUI.UI.Button>
             <AuSoftUI.UI.Button
-              onClick={() => handleOpenModal("add-event")}
+              onClick={() => {
+                handleSelectEvent(undefined), handleOpenModal("add-event");
+              }}
               size={"sm"}
               className="rounded-full py-2"
               variant={"primary"}
@@ -75,7 +84,7 @@ export default function EventAppPage() {
           </AuSoftUI.UI.Button>
         </div>
       </div>
-      <EventBox />
+      <EventBox isLoading={isLoadingAllEvents} events={allEvents} />
     </PageBase>
   );
 }

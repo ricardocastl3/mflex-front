@@ -13,8 +13,8 @@ const selectVariants = cva(
       },
       variant: {
         default:
-          "focus:ring-offset-1 focus:ring-violet-800/40 focus:ring-offset-violet-600",
-        primary: "border-violet-300 dark:border-violet-800",
+          "focus:ring-offset-1 focus:ring-yellow-800/40 focus:ring-offset-yellow-600",
+        primary: "border-yellow-300 dark:border-yellow-800",
       },
       weight: {
         sm: "md:py-3 py-1.5",
@@ -57,7 +57,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
           ` ${
             requiredField
               ? "border-red-500 dark:border-red-800/80 focus:ring-red-800/40 dark:focus:ring-red-800/80 dark:focus:ring-offset-red-500 focus:ring-offset-red-200 "
-              : "border-slate-300 dark:border-slate-700/80 focus:ring-violet-800/40 focus:ring-offset-violet-600"
+              : "border-slate-300 dark:border-slate-700/80 focus:ring-yellow-800/40 focus:ring-offset-yellow-600"
           } `
         }
         ref={ref}

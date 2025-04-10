@@ -2,26 +2,35 @@ import AAuSoftLogo from "@/@components/(ausoft)/AAuSoftLogo";
 import BaseModal from "../base";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import EventSchemas from "@/services/schemas/EventSchema";
+import SelectCategoryDropdown from "./category";
+import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
+import ARegisterProgress from "@/@components/(ausoft)/ARegisterProgress";
 
 import { ReactIcons } from "@/utils/icons";
 import { useModal } from "@/providers/app/ModalProvider";
 import { AuSoftUI } from "@/@components/(ausoft)";
-import { langByCookies } from "@/http/axios/api";
+import { internalApi, langByCookies } from "@/http/axios/api";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { provinces } from "./datas";
 import { useEventProvider } from "@/providers/features/EventProvider";
 import { localImages } from "@/utils/images";
+import { useCategoryProvider } from "@/providers/features/CategoryProvider";
+import { useAppProvider } from "@/providers/app/AppProvider";
 
 export default function AddEventModal() {
   // Contexts
-  const { selectedEvent } = useEventProvider();
-  const { handleOpenModal } = useModal();
+  const { selectedEvent, handleFetchEvent } = useEventProvider();
+  const { handleAddToastOnArray } = useAppProvider();
+  const { selectedCategory, handleSelectCategory } = useCategoryProvider();
+  const { handleOpenModal, handleAddTextOnBoxSuccess } = useModal();
 
   // Controls
   const [ticketImageUrl, setTicketImageUrl] = useState("");
+  const [mainAddress, setMainAddress] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Forms
   const schema = new EventSchemas(langByCookies);
@@ -37,7 +46,7 @@ export default function AddEventModal() {
           description: selectedEvent.description,
           map_location: selectedEvent.map_location,
           reference_address: selectedEvent.reference_address,
-          start_at: selectedEvent.start_at,
+          start_at: new Date(selectedEvent.start_at),
           title: selectedEvent.title,
         }
       : {
@@ -48,14 +57,96 @@ export default function AddEventModal() {
         },
   });
 
-  function handleRegister(data: formData) {
+  async function handleRegister(data: formData) {
     try {
-    } catch (err) {}
+      if (!selectedCategory) {
+        return AuSoftUI.Component.ToastifyWithTranslation({
+          description_en: "Please, select an category",
+          description_pt: "Por favor, selecione uma categoria",
+          title_en: "No Category",
+          title_pt: "Sem categoria",
+          toast: handleAddToastOnArray,
+          type: "error",
+        });
+      }
+
+      if (mainAddress == "") {
+        return AuSoftUI.Component.ToastifyWithTranslation({
+          description_en: "Please, select an province",
+          description_pt: "Por favor, selecione uma província",
+          title_en: "No Province",
+          title_pt: "Sem Província",
+          toast: handleAddToastOnArray,
+          type: "error",
+        });
+      }
+
+      if (!selectedEvent && ticketImageUrl == "") {
+        return AuSoftUI.Component.ToastifyWithTranslation({
+          description_en: "Please, select an event image",
+          description_pt: "Por favor, selecione uma imagem para o evento",
+          title_en: "No Image",
+          title_pt: "Sem Imagem",
+          toast: handleAddToastOnArray,
+          type: "error",
+        });
+      }
+
+      setIsSubmitting(true);
+      const formData = new FormData();
+
+      if (ticketImageUrl != "") {
+        const res = await fetch(ticketImageUrl);
+        const blob = await res.blob();
+        formData.append("event_image", blob);
+      }
+
+      if (selectedEvent) {
+        formData.append("event_id", selectedEvent?.id);
+      }
+
+      formData.append("category_id", selectedCategory.id);
+      formData.append("title", data.title);
+      formData.append("description", data.description);
+      formData.append("reference_address", data.reference_address);
+      formData.append("main_address", mainAddress);
+      formData.append("map_location", data.map_location);
+      formData.append("start_at", data.start_at.toISOString());
+
+      await internalApi.postForm("/events", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      handleAddTextOnBoxSuccess({
+        text_en:
+          "Many congratulations! Your event has been registered successfully",
+        text_pt: "Muitos parabéns! O seu evento foi cadastrado com sucesso",
+        title_en: "Event added successfully",
+        title_pt: "Evento adicionado com sucesso",
+      });
+
+      handleOpenModal("box-success");
+
+      handleFetchEvent(true);
+      setIsSubmitting(false);
+    } catch (err) {
+      setIsSubmitting(false);
+      return CAxiosErrorToastify({ err, openToast: handleAddToastOnArray });
+    }
   }
 
   function handleClose() {
     handleOpenModal("");
+    handleSelectCategory(undefined);
   }
+
+  useEffect(() => {
+    if (!selectedEvent) return;
+    setMainAddress(selectedEvent.main_address);
+    handleSelectCategory(selectedEvent.category);
+  }, [selectedEvent]);
 
   const cataloguePreview = localImages.vectors.imageEmpty.src;
 
@@ -63,7 +154,7 @@ export default function AddEventModal() {
     <BaseModal callbackClose={handleClose} customDesktop="p-4 p-4">
       <form
         onSubmit={handleSubmit(handleRegister)}
-        className="flex flex-col md:w-[60vw] w-[90vw]"
+        className="flex flex-col md:w-[60vw] w-[90vw] relative"
       >
         <div className="flex items-center justify-between p-5 border-b border-slate-300 dark:border-slate-800">
           <div className="flex items-center gap-3">
@@ -172,7 +263,14 @@ export default function AddEventModal() {
               <h1 className="text-base dark:text-white">
                 <CTranslateTo eng="Province" pt="Província" />
               </h1>
-              <AuSoftUI.UI.Select className="w-full" weight={"md"}>
+              <AuSoftUI.UI.Select
+                value={mainAddress}
+                onChange={(e) => {
+                  setMainAddress(e.target.value);
+                }}
+                className="w-full"
+                weight={"md"}
+              >
                 <option
                   value={""}
                   className="dark:bg-ausoft-slate-950 dark:text-white"
@@ -200,25 +298,9 @@ export default function AddEventModal() {
           <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
             <div className="flex flex-col gap-2">
               <h1 className="text-base dark:text-white">
-                <CTranslateTo eng="Map Location" pt="Localização no Mapa" />
+                <CTranslateTo eng="Category" pt="Categoria" />
               </h1>
-              <AuSoftUI.UI.TextField.Default
-                requiredField={errors.map_location?.message ? true : false}
-                {...register("map_location")}
-                placeholder={`${
-                  langByCookies == "pt"
-                    ? "Ex: FGW9+48D, Luanda"
-                    : "Ex: FGW9+48D, Luanda"
-                }`}
-                className="w-full"
-                weight={"md"}
-              />
-              {errors.map_location?.message && (
-                <AuSoftUI.Component.RequiredTextField
-                  text={errors.map_location.message}
-                  color="red"
-                />
-              )}
+              <SelectCategoryDropdown />
             </div>
             <div className="flex flex-col gap-2">
               <h1 className="text-base dark:text-white">
@@ -242,6 +324,29 @@ export default function AddEventModal() {
                 />
               )}
             </div>
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <h1 className="text-base dark:text-white">
+              <CTranslateTo eng="Map Location" pt="Localização no Mapa" />
+            </h1>
+            <AuSoftUI.UI.TextField.Default
+              requiredField={errors.map_location?.message ? true : false}
+              {...register("map_location")}
+              placeholder={`${
+                langByCookies == "pt"
+                  ? "Ex: FGW9+48D, Luanda"
+                  : "Ex: FGW9+48D, Luanda"
+              }`}
+              className="w-full"
+              weight={"md"}
+            />
+            {errors.map_location?.message && (
+              <AuSoftUI.Component.RequiredTextField
+                text={errors.map_location.message}
+                color="red"
+              />
+            )}
           </div>
 
           <div className="flex flex-col gap-2">
@@ -278,14 +383,16 @@ export default function AddEventModal() {
             <CTranslateTo eng="Cancel" pt="Cancelar" />
           </AuSoftUI.UI.Button>
           <AuSoftUI.UI.Button type="submit" variant={"primary"} size={"md"}>
-            {selectedEvent && (
+            {selectedEvent && !isSubmitting && (
               <CTranslateTo eng="Save Changes" pt="Salvar alterações" />
             )}
-            {!selectedEvent && (
+            {!selectedEvent && !isSubmitting && (
               <CTranslateTo eng="Add new event" pt="Adicionar novo evento" />
             )}
+            <AuSoftUI.Component.isFormSubmitting isSubmitting={isSubmitting} />
           </AuSoftUI.UI.Button>
         </div>
+        <ARegisterProgress isOpened={isSubmitting} rounded="all" />
       </form>
     </BaseModal>
   );

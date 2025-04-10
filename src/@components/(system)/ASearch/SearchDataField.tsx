@@ -8,7 +8,7 @@ import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 export interface ISearchDataField {
   name?: string;
   email?: string;
-  phone?: string;
+  category_id?: string;
   mode?: string;
 }
 

@@ -1,21 +1,21 @@
-import { IUserResponse } from "../responses/IUserResponse";
+import { IEventTicket } from "./EventTicket";
 import { ICategory } from "./ICategory";
-import { ITicket } from "./ITicket";
-import { IUser } from "./IUser";
 
 export interface IEvent {
   id: string;
   title: string;
-  amount: number;
   description: string;
-  map_location: string;
+  status: string;
   image_url: string;
   start_at: Date;
-  category?: ICategory;
-  slug: string;
-  organizer?: IUser;
   main_address: string;
+  map_location: string;
   reference_address: string;
   created_at: Date;
-  tickets?: ITicket[];
+  category: ICategory;
+  organizer: {
+    first_name: string;
+    last_name: string;
+  };
+  event_tickets: IEventTicket[];
 }

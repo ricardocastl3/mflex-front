@@ -21,12 +21,19 @@ export default function CardDashboard({
 }) {
   return (
     <BaseBox className="p-4 w-full">
-      <div className="flex flex-col gap-2 items-center">
-        <Icon size={20} className={`${iconColor}`} />
-        <h4 className="md:text-sm text-xs text-slate-600 dark:text-slate-300">
-          <CTranslateTo eng={title_en} pt={title_pt} />
-        </h4>
-        <h4 className="md:text-xl text-xs font-bold text-blue-500 dark:text-blue-300 text-center">
+      <div className="flex flex-col gap-2">
+        <div className="flex md:flex-row flex-col md:items-center items-start gap-2 md:justify-between justify-start">
+          <Icon
+            size={window.innerWidth > 765 ? 20 : 14}
+            className={`${iconColor} md:hidden flex`}
+          />
+          <h4 className="md:text-base text-sm text-slate-600 dark:text-slate-300">
+            <CTranslateTo eng={title_en} pt={title_pt} />
+          </h4>
+          <Icon size={20} className={`${iconColor} md:flex hidden`} />
+        </div>
+
+        <h4 className="md:text-xl text-sm font-bold text-yellow-500 dark:text-yellow-300">
           {currency && `${CurrencyServices.decimal(value)} Kz`}
           {!currency && value}
         </h4>

@@ -42,7 +42,7 @@ export default function BoxSuccessModal() {
             height={150}
             alt="homem procurando papel"
           />
-          <h4 className="font-bold text-lg md:w-[20vw] w-[70vw] text-blue-600 text-center dark:text-blue-400 mt-4">
+          <h4 className="font-bold text-lg md:w-[20vw] w-[70vw] text-yellow-600 text-center dark:text-yellow-400 mt-4">
             {boxSuccessText.title_en && boxSuccessText.title_pt && (
               <>
                 <CTranslateTo

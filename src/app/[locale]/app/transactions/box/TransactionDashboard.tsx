@@ -72,7 +72,7 @@ export default function TransactionDashboard({
             />
 
             <CardDashboard
-              Icon={ReactIcons.BiIcon.BiSolidCaretUpCircle}
+              Icon={ReactIcons.BiIcon.BiCaretDownCircle}
               iconColor="text-red-500 dark:text-red-300"
               title_en="Cancel"
               title_pt="Canceladas"

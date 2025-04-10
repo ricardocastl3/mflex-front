@@ -5,6 +5,6 @@ export const ECOOKIES = {
 };
 
 export const appConfigs = {
-  title: "MarcaFlex",
+  title: "Marca Flex",
   domain: ".marcaflex.com",
 };

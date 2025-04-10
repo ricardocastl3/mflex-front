@@ -16,6 +16,9 @@ import CheckoutProvider from "@/providers/app/CheckoutProvider";
 import TicketProvider from "@/providers/features/TicketProvider";
 import SocketProvider from "@/providers/auth/SocketProvider";
 import TransactionProvider from "@/providers/features/TransactionProvider";
+import CategoryProvider from "@/providers/features/CategoryProvider";
+import EventProvider from "@/providers/features/EventProvider";
+import EventTicketProvider from "@/providers/features/EventTicketProvider";
 
 const anek = Abel({ weight: "400", subsets: ["latin"] });
 
@@ -40,7 +43,15 @@ export default function RootLayout({
                   <AuthProvider>
                     <CheckoutProvider>
                       <TransactionProvider>
-                        <TicketProvider>{children}</TicketProvider>
+                        <TicketProvider>
+                          <CategoryProvider>
+                            <EventProvider>
+                              <EventTicketProvider>
+                                {children}
+                              </EventTicketProvider>
+                            </EventProvider>
+                          </CategoryProvider>
+                        </TicketProvider>
                       </TransactionProvider>
                     </CheckoutProvider>
                     <ProgressBar
