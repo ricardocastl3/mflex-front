@@ -72,9 +72,10 @@ export default function EventContainer() {
                 index={currentIndex}
                 event={{
                   id: "djff",
-                  amount: 0,
+                  description: "ssdd",
+                  event_tickets: [],
+                  status: "pending",
                   created_at: new Date(),
-                  description: "",
                   main_address: "Luanda",
                   slug: "mundo-casa-royal",
                   reference_address: "Mundo de Casa - Royal Park",
