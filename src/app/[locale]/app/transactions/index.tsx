@@ -18,7 +18,7 @@ export default function TransactionPage() {
     isLoadingAllTransactions,
     fetchAllTransactions,
     handleSeachByName,
-  } = useTransactions({ route: "transaction" });
+  } = useTransactions();
 
   // Controls
   const [isLoadingBase, setIsLoadingBase] = useState(true);

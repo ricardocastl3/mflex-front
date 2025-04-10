@@ -13,9 +13,7 @@ export default function TransferModal() {
     isLoadingAllTransfer,
     fetchAllTransfer,
     handleSeachByName,
-  } = useTransferences({
-    route: "transfer",
-  });
+  } = useTransferences();
 
   return (
     <PageBase>
