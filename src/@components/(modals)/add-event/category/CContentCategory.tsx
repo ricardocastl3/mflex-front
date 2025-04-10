@@ -10,13 +10,17 @@ import useCategory from "@/hooks/api/useCategory";
 
 export default function ContentCategory({
   callback,
+  view,
 }: {
   callback?: () => void;
+  view: "events" | "news" | "podflex";
 }) {
   //Contexts
   const { currentLang } = useTranslate();
   const { handleOpenModal } = useModal();
-  const { allCategory, isLoadingCategory, handleSeachByName } = useCategory();
+  const { allCategory, isLoadingCategory, handleSeachByName } = useCategory({
+    view,
+  });
   const { handleSelectCategory } = useCategoryProvider();
 
   return (
@@ -41,7 +45,7 @@ export default function ContentCategory({
       <div>
         <AuSoftUI.UI.TextField.Default
           onChange={(e) => {
-            handleSeachByName(e.target.value);
+            handleSeachByName(e.target.value, "events");
           }}
           placeholder={currentLang.code == "EN" ? "Search..." : "Pesquisar..."}
           className="w-full"

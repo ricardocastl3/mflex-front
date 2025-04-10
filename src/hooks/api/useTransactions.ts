@@ -3,11 +3,7 @@ import { internalApi } from "@/http/axios/api";
 import { IPayment } from "@/http/interfaces/models/IPayment";
 import { useCallback, useEffect, useState } from "react";
 
-export default function useTransactions({
-  route,
-}: {
-  route: "merchant" | "transaction";
-}) {
+export default function useTransactions() {
   const [allTransactions, setAllTransactions] = useState<IPayment[]>([]);
   const [isLoadingAllTransactions, setIsLoadingAllTransactions] =
     useState(true);
@@ -16,9 +12,7 @@ export default function useTransactions({
     try {
       const resp = await internalApi.get<{
         transactions: IPayment[];
-      }>("/payments/transactions", {
-        params: { mode: route == "transaction" ? "merchant" : "all" },
-      });
+      }>("/payments/transactions");
 
       setAllTransactions(resp.data.transactions);
       setIsLoadingAllTransactions(false);
@@ -27,13 +21,13 @@ export default function useTransactions({
     }
   }, []);
 
-  async function handleSeachByName({ name, mode }: ISearchDataField) {
+  async function handleSeachByName({ name }: ISearchDataField) {
     try {
       setIsLoadingAllTransactions(true);
 
       const resp = await internalApi.get<{
         transactions: IPayment[];
-      }>("/payments/transactions", { params: { name, mode } });
+      }>("/payments/transactions", { params: { name } });
 
       setAllTransactions(resp.data.transactions);
       setIsLoadingAllTransactions(false);

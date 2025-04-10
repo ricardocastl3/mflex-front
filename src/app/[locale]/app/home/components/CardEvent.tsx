@@ -2,8 +2,11 @@ import { BaseBox } from "@/@components/(box)/BaseBox";
 import { ReactIcons } from "@/utils/icons";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
+import useEvents from "@/hooks/api/useEvents";
+import LoadingVal from "./LoadindVal";
 
 export default function CardEvent() {
+  const { allEvents, isLoadingAllEvents } = useEvents({ route: "app" });
   return (
     <BaseBox className="p-4">
       <div className="flex flex-col gap-2">
@@ -13,7 +16,8 @@ export default function CardEvent() {
           </h1>
           <ReactIcons.HiIcon.HiTicket size={15} className="text-cyan-500" />
         </div>
-        <h1 className="text-base text-yellow-600 dark:text-yellow-500">55</h1>
+
+        <LoadingVal isLoading={isLoadingAllEvents} val={allEvents.length} />
       </div>
     </BaseBox>
   );

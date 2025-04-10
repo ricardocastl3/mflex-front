@@ -5,7 +5,11 @@ import { useCategoryProvider } from "@/providers/features/CategoryProvider";
 
 import ContentCategory from "./CContentCategory";
 
-export default function SelectCategoryDropdown() {
+export default function SelectCategoryDropdown({
+  view,
+}: {
+  view: "events" | "news" | "podflex";
+}) {
   const { currentLang } = useTranslate();
   const { selectedCategory } = useCategoryProvider();
 
@@ -38,9 +42,11 @@ export default function SelectCategoryDropdown() {
         </div>
       }
       DesktopContent
-      MobileContent={(e) => <ContentCategory callback={() => e.callback()} />}
+      MobileContent={(e) => (
+        <ContentCategory view={view} callback={() => e.callback()} />
+      )}
       DesktopContentElement={(e) => (
-        <ContentCategory callback={() => e.callback!()} />
+        <ContentCategory view={view} callback={() => e.callback!()} />
       )}
     />
   );

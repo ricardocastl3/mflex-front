@@ -3,11 +3,7 @@ import { internalApi } from "@/http/axios/api";
 import { ITransfer } from "@/http/interfaces/models/ITransfer";
 import { useCallback, useEffect, useState } from "react";
 
-export default function useTransferences({
-  route,
-}: {
-  route: "merchant" | "transfer";
-}) {
+export default function useTransferences() {
   const [allTransfer, setAllTransfer] = useState<ITransfer[]>([]);
   const [isLoadingAllTransfer, setIsLoadingAllTransfer] = useState(true);
 
@@ -15,11 +11,7 @@ export default function useTransferences({
     try {
       const resp = await internalApi.get<{
         transfers: ITransfer[];
-      }>("/payments/transfer", {
-        params: {
-          mode: route == "merchant" ? "all" : undefined,
-        },
-      });
+      }>("/payments/transfer");
 
       setAllTransfer(resp.data.transfers);
       setIsLoadingAllTransfer(false);
@@ -35,7 +27,7 @@ export default function useTransferences({
       const resp = await internalApi.get<{
         transfers: ITransfer[];
       }>("/payments/transfer", {
-        params: { name, mode: route == "merchant" ? "all" : undefined },
+        params: { name },
       });
 
       setAllTransfer(resp.data.transfers);

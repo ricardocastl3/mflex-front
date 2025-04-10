@@ -2,8 +2,11 @@ import { BaseBox } from "@/@components/(box)/BaseBox";
 import { ReactIcons } from "@/utils/icons";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
+import useTransactions from "@/hooks/api/useTransactions";
+import LoadingVal from "./LoadindVal";
 
 export default function CardTransactions() {
+  const { allTransactions, isLoadingAllTransactions } = useTransactions();
   return (
     <BaseBox className="p-4">
       <div className="flex flex-col gap-2">
@@ -13,7 +16,10 @@ export default function CardTransactions() {
           </h1>
           <ReactIcons.PiIcon.PiMoney size={15} className="text-green-500" />
         </div>
-        <h1 className="text-base text-yellow-600 dark:text-yellow-500">87</h1>
+        <LoadingVal
+          isLoading={isLoadingAllTransactions}
+          val={allTransactions.length}
+        />
       </div>
     </BaseBox>
   );

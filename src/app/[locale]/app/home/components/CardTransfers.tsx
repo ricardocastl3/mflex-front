@@ -2,8 +2,11 @@ import { BaseBox } from "@/@components/(box)/BaseBox";
 import { ReactIcons } from "@/utils/icons";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
+import useTransferences from "@/hooks/api/useTransferences";
+import LoadingVal from "./LoadindVal";
 
 export default function CardTransfers() {
+  const { allTransfer, isLoadingAllTransfer } = useTransferences();
   return (
     <BaseBox className="p-4">
       <div className="flex flex-col gap-2">
@@ -16,7 +19,7 @@ export default function CardTransfers() {
             className="text-yellow-500"
           />
         </div>
-        <h1 className="text-base text-yellow-600 dark:text-yellow-500">49</h1>
+        <LoadingVal isLoading={isLoadingAllTransfer} val={allTransfer.length} />
       </div>
     </BaseBox>
   );

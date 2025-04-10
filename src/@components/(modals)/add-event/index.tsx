@@ -300,7 +300,7 @@ export default function AddEventModal() {
               <h1 className="text-base dark:text-white">
                 <CTranslateTo eng="Category" pt="Categoria" />
               </h1>
-              <SelectCategoryDropdown />
+              <SelectCategoryDropdown view="events" />
             </div>
             <div className="flex flex-col gap-2">
               <h1 className="text-base dark:text-white">

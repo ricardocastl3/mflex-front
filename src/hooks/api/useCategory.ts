@@ -2,7 +2,11 @@ import { internalApi } from "@/http/axios/api";
 import { ICategory } from "@/http/interfaces/models/ICategory";
 import { useCallback, useEffect, useState } from "react";
 
-export default function useCategory() {
+export default function useCategory({
+  view,
+}: {
+  view: "events" | "news" | "podflex";
+}) {
   const [isLoadingCategory, setIsLoadingCategory] = useState(true);
   const [allCategory, setAllCategory] = useState<ICategory[]>([]);
 
@@ -11,7 +15,11 @@ export default function useCategory() {
       setIsLoadingCategory(true);
       const resp = await internalApi.get<{
         categories: ICategory[];
-      }>("/categories");
+      }>("/categories", {
+        params: {
+          view,
+        },
+      });
 
       setAllCategory(resp.data.categories);
       setIsLoadingCategory(false);
@@ -20,7 +28,7 @@ export default function useCategory() {
     }
   }, []);
 
-  const handleSeachByName = async (name: string) => {
+  const handleSeachByName = async (name: string, view: string) => {
     try {
       setIsLoadingCategory(true);
       const resp = await internalApi.get<{
@@ -28,6 +36,7 @@ export default function useCategory() {
       }>("/categories", {
         params: {
           name,
+          view,
         },
       });
 

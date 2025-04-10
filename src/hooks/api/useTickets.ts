@@ -11,9 +11,7 @@ export default function useTickets({ route }: { route: "app" | "public" }) {
     try {
       const resp = await internalApi.get<{
         tickets: IEventTicket[];
-      }>("/tickets", {
-        params: { mode: route == "app" ? "me" : "all" },
-      });
+      }>(`/tickets/me`);
 
       setAllTickets(resp.data.tickets);
       setIsLoadingAllTickets(false);

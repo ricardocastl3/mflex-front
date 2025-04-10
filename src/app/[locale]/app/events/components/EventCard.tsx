@@ -80,7 +80,11 @@ export default function EventCard({ event }: { event: IEvent }) {
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
           backgroundSize: "cover",
-          backgroundImage: `url(${event.image_url})`,
+          backgroundImage: `url(${
+            event.image_url != ""
+              ? event.image_url
+              : "https://img.freepik.com/free-vector/abstract-vertical-banners-with-orange-rolled-wrapping-paper-isolated_1284-48680.jpg?t=st=1744285073~exp=1744288673~hmac=7d793bd806e2ee3a895b2ccbad682ac4828c55b8aa1c2a57d0e5bf854970eb34&w=900"
+          })`,
         }}
         className="rounded-xl md:h-[400px] h-[400px] flex flex-col justify-between"
       >
@@ -95,7 +99,7 @@ export default function EventCard({ event }: { event: IEvent }) {
             {event.status == "approved" && (
               <h1 className="text-green-400 flex items-center gap-2 text-sm">
                 <ReactIcons.HiIcon.HiTicket size={18} />
-                <CTranslateTo eng="Pending Event" pt="Evento Pendente" />
+                <CTranslateTo eng="Approved Event" pt="Evento Aprovado" />
               </h1>
             )}
           </div>

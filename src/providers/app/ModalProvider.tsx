@@ -12,6 +12,7 @@ interface IBoxTextLocale {
 type modalType =
   | "add-event"
   | "add-ticket"
+  | "approve-ticket"
   | "list-ticket"
   | "validate-ticket"
   | "box-success"

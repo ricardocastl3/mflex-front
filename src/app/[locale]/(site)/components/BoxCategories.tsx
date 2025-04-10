@@ -1,28 +1,93 @@
 import { BaseBox } from "@/@components/(box)/BaseBox";
 import { ReactIcons } from "@/utils/icons";
+import { useCategoryProvider } from "@/providers/features/CategoryProvider";
 
-export default function BoxCategories() {
+import useCategory from "@/hooks/api/useCategory";
+import CTranslateTo from "@/@components/(translation)/CTranslateTo";
+
+export default function BoxCategories({
+  callback,
+}: {
+  callback: (e: string) => void;
+}) {
+  const { allCategory, isLoadingCategory } = useCategory({ view: "events" });
+  const { selectedCategory, handleSelectCategory } = useCategoryProvider();
+
   return (
     <BaseBox className="md:w-auto w-[88vw] flex md:py-4 py-4 justify-center md:px-8 px-5 overflow-x-auto md:mt-8 mt-6 md:mb-4 mb-4 my-4 md:mx-[3rem] mx-5">
-      <div className="flex items-center gap-8 overflowx-x-auto">
-        {Array.from({ length: 7 }).map((_, i) => {
-          return (
+      <div className="flex items-center md:gap-12 gap-8 overflowx-x-auto">
+        {!isLoadingCategory && allCategory.length > 0 && (
+          <>
             <button
-              key={i}
-              className="flex flex-col gap-2 items-center hover:scale-[1.05] transition-all"
+              onClick={() => {
+                handleSelectCategory(undefined), callback("");
+              }}
+              className={`${
+                !selectedCategory ? "" : "hover:scale-[1.05]"
+              } flex flex-col gap-2 items-center transition-all`}
             >
-              <div className="border hover:border-yellow-400 dark:hover:border-yellow-600 flex flex-col gap-4 p-4 rounded-full border-slate-300 dark:border-slate-800">
-                <ReactIcons.AiICon.AiOutlineShoppingCart
+              <div
+                className={`${
+                  !selectedCategory
+                    ? "bg-yellow-300 dark:bg-yellow-500"
+                    : "hover:bg-yellow-300 dark:hover:bg-yellow-500 border border-slate-300 dark:border-slate-800"
+                }   flex flex-col gap-4 p-4 rounded-full`}
+              >
+                <ReactIcons.VSCIcon.VscAzure
                   size={18}
                   className="dark:text-white"
                 />
               </div>
               <h3 className="text-sm text-nowrap font-bold dark:text-white">
-                Artes & Teatros
+                <CTranslateTo eng="All" pt="Todas" />
               </h3>
             </button>
-          );
-        })}
+            {allCategory.map((category, i) => {
+              return (
+                <button
+                  onClick={() => {
+                    callback(category.id), handleSelectCategory(category);
+                  }}
+                  key={i}
+                  className={`${
+                    selectedCategory?.id === category.id
+                      ? ""
+                      : "hover:scale-[1.05]"
+                  } flex flex-col gap-2 items-center transition-all`}
+                >
+                  <div
+                    className={`${
+                      selectedCategory?.id === category.id
+                        ? "bg-yellow-300 dark:bg-yellow-500"
+                        : "hover:bg-yellow-300 dark:hover:bg-yellow-500 border border-slate-300 dark:border-slate-800"
+                    }  flex flex-col gap-4 p-4 rounded-full `}
+                  >
+                    <ReactIcons.VSCIcon.VscAzure
+                      size={18}
+                      className="dark:text-white"
+                    />
+                  </div>
+                  <h3 className="text-sm text-nowrap font-bold dark:text-white">
+                    {category.name}
+                  </h3>
+                </button>
+              );
+            })}
+          </>
+        )}
+
+        {isLoadingCategory && (
+          <>
+            {Array.from({ length: 7 }).map((_, i) => {
+              return (
+                <button
+                  key={i}
+                  className="flex p-5 animate-pulse rounded-full bg-slate-200 dark:bg-ausoft-slate-900 flex-col gap-2 items-center hover:scale-[1.05] transition-all"
+                ></button>
+              );
+            })}
+          </>
+        )}
       </div>
     </BaseBox>
   );
