@@ -47,7 +47,7 @@ export default function TransferBox({
     <ContainerBase>
       <BaseBox className={``}>
         <div className="flex md:items-center items-start md:flex-row flex-col gap-4 py-1 mb-4 px-4 justify-between border-b border-slate-200 dark:border-slate-800">
-          <h4 className="md:text-lg text-base font-bold dark:text-white px-2">
+          <h4 className="md:text-lg text-base font-bold dark:text-white p-2">
             <CTranslateTo eng="Register" pt="Registos" /> ({transfers.length})
           </h4>
         </div>
