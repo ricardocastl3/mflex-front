@@ -32,7 +32,7 @@ export default function TicketCard({ ticket }: { ticket: ITicket }) {
       </div>
       <div className="flex-1 flex flex-col gap-4 justify-between">
         <div className="flex flex-col gap-2">
-          <h4 className="dark:text-white text-lg font-bold">
+          <h4 className="dark:text-white md:text-lg text-base font-bold">
             {`${
               ticket.event_ticket
                 ? ticket.event_ticket.event.title

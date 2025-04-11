@@ -78,18 +78,39 @@ export default function PodFlexCard({
           <h4 className="font-bold text-xl dark:text-white">{podcast.title}</h4>
         </div>
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-2 text-green-500">
-            <ReactIcons.AiICon.AiFillCiCircle className="" size={18} />
-            <h4 className="text-sm">
-              <CTranslateTo eng="Available" pt="Disponível" />
-            </h4>
-          </div>
-          <div className="flex items-center gap-2 text-blue-500">
-            <ReactIcons.AiICon.AiFillCiCircle className="" size={18} />
-            <h4 className="text-sm">
-              <CTranslateTo eng="Trends" pt="Destaque" />
-            </h4>
-          </div>
+          {podcast.available && (
+            <div className="flex items-center gap-2 text-green-500">
+              <ReactIcons.AiICon.AiFillCiCircle className="" size={18} />
+              <h4 className="text-sm">
+                <CTranslateTo eng="Available" pt="Disponível" />
+              </h4>
+            </div>
+          )}
+
+          {!podcast.available && (
+            <div className="flex items-center gap-2 text-red-500">
+              <ReactIcons.AiICon.AiFillCiCircle className="" size={18} />
+              <h4 className="text-sm">
+                <CTranslateTo eng="Unavailable" pt="Indisponível" />
+              </h4>
+            </div>
+          )}
+          {podcast.category?.name == "PodFlex" && (
+            <div className="flex items-center gap-2 text-yellow-500">
+              <ReactIcons.AiICon.AiFillCiCircle className="" size={18} />
+              <h4 className="text-sm">
+                <CTranslateTo eng="Exclusive PodFlex" pt="Exclusivo PodFlex" />
+              </h4>
+            </div>
+          )}
+          {podcast.category?.name != "PodFlex" && (
+            <div className="flex items-center gap-2 text-blue-500">
+              <ReactIcons.AiICon.AiFillCiCircle className="" size={18} />
+              <h4 className="text-sm">
+                <CTranslateTo eng="Trends" pt="Destaque" />
+              </h4>
+            </div>
+          )}
         </div>
         <div className="flex items-center gap-2 dark:bg-slate-800/30 rounded-xl p-2 bg-white">
           <Image

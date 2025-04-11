@@ -2,44 +2,65 @@
 
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { useEffect, useState } from "react";
-import { ReactIcons } from "@/utils/icons";
+import { useCategoryProvider } from "@/providers/features/CategoryProvider";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import BoxCategories from "../../../components/BoxCategories";
 import NewsCard from "./NewsCard";
+import useNews from "@/hooks/api/useNews";
 
 export default function NewsContainer() {
-  const [items, setItems] = useState<number>(3);
-  const [isLoading, setIsLoading] = useState(false);
+  // Contexts
+  const {
+    allNews,
+    hasMoreNews,
+    isLoadingMoreNews,
+    handleLoadMore,
+    handleSeachByName,
+    isLoadingAllNews,
+  } = useNews();
+  const { selectedCategory } = useCategoryProvider();
 
+  // Controls
   const getItemIndex = (i: number) => {
-    return i % 3; // Retorna 0, 1, 2
+    return i % 4; // Retorna 0, 1, 2 ou 3 ciclicamente
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (isLoading) return;
+  const [searchField, setSearchField] = useState("");
 
+  useEffect(() => {
+    if (
+      !hasMoreNews ||
+      isLoadingAllNews ||
+      isLoadingMoreNews ||
+      (!isLoadingMoreNews && !hasMoreNews)
+    )
+      return;
+
+    let isLoading = false; // Controle para evitar chamadas repetidas
+
+    const handleScroll = () => {
       const scrollHeight = document.documentElement.scrollHeight;
       const scrollTop = window.scrollY;
       const clientHeight = document.documentElement.clientHeight;
 
       const height = window.innerWidth > 765 ? 400 : 500;
 
-      if (items >= 10) return;
-
-      if (scrollTop + clientHeight >= scrollHeight - height) {
-        setIsLoading(true);
-        setTimeout(() => {
-          setItems((prev) => prev + 3);
-          setIsLoading(false);
+      if (scrollTop + clientHeight >= scrollHeight - height && !isLoading) {
+        isLoading = true; // Marcar como carregando
+        setTimeout(async () => {
+          await handleLoadMore({
+            category_id: selectedCategory?.id,
+            name: searchField,
+          });
+          isLoading = false; // Resetar após a chamada
         }, 1000);
       }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isLoading]);
+  }, [isLoadingMoreNews, isLoadingAllNews]);
 
   return (
     <div className="flex flex-col gap-5 relative md:mb-28 mb-12">
@@ -50,42 +71,63 @@ export default function NewsContainer() {
           </h4>
         </div>
         <AuSoftUI.UI.TextField.Default
-          placeholder="Ex: Fly PodCast...."
+          value={searchField}
+          onChange={(e) => {
+            setSearchField(e.target.value);
+            handleSeachByName({
+              name: e.target.value,
+              category_id: selectedCategory?.id,
+            });
+          }}
+          placeholder="Ex: Concursos Públicos"
           weight={"lg"}
           className="rounded-full md:text-lg text-base text-center dark:bg-ausoft-slate-950 bg-slate-100 md:w-[50vw] w-[90vw]"
         />
       </div>
 
-      <BoxCategories view="news" callback={() => {}} />
+      <BoxCategories
+        view="news"
+        callback={(e) => {
+          handleSeachByName({
+            name: searchField,
+            category_id: e,
+          });
+        }}
+      />
 
       <div className="flex flex-col md:px-[3rem] px-5">
-        <div className="grid md:grid-cols-3 grid-cols-1 gap-6">
-          {Array.from({ length: items }).map((_, i) => {
-            const currentIndex = getItemIndex(i);
+        {!isLoadingAllNews && allNews.length > 0 && (
+          <div className="grid md:grid-cols-3 grid-cols-1 gap-6">
+            {allNews.map((event, i) => {
+              const currentIndex = getItemIndex(i);
+              return <NewsCard key={i} index={currentIndex} news={event} />;
+            })}
 
-            return (
-              <NewsCard
-                key={i}
-                index={currentIndex}
-                news={{
-                  id: "djff",
-                  created_at: new Date(),
-                  title: "ANGOTIC 2025 - Junho",
-                  source: "Angop",
-                  slug: "angotic-2025",
-                  image_url:
-                    "https://images.pexels.com/photos/8554381/pexels-photo-8554381.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-                }}
-              />
-            );
-          })}
-        </div>
-
-        {isLoading && (
-          <div className="flex justify-center py-12">
-            <ReactIcons.PiIcon.PiSpinner
-              size={40}
-              className="animate-spin dark:text-slate-400"
+            {isLoadingMoreNews && (
+              <>
+                {Array.from({ length: 4 }).map((event, i) => {
+                  return (
+                    <div
+                      key={i}
+                      className="p-8 h-[40vh] rounded-xl bg-slate-300/40 dark:bg-ausoft-slate-900 animate-pulse"
+                    ></div>
+                  );
+                })}
+              </>
+            )}
+          </div>
+        )}
+        {!isLoadingAllNews && !isLoadingMoreNews && allNews.length <= 0 && (
+          <div className="w-full h-full flex justify-center py-12 md:px-[3rem] px-5 flex-col">
+            <AuSoftUI.Component.ListEmpty
+              action_en=""
+              action_pt=""
+              action_url=""
+              description_en="Mo available podcasts at moment"
+              description_pt="Sem Podcasts disponíveis de momento"
+              title_en="No PodCasts"
+              title_pt="Sem PodCasts"
+              hasAction={false}
             />
           </div>
         )}

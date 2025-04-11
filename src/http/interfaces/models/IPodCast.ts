@@ -8,6 +8,7 @@ export interface IPodcast {
   duration: string;
   thumbnail: string;
   source: string;
+  available:boolean
   url: string;
   slug: string;
   started_at: Date;
