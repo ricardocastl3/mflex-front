@@ -123,10 +123,10 @@ export default function AddTicketModal() {
           <div className="flex items-center gap-3">
             <AAuSoftLogo size={40} />
             <h3 className="text-base font-bold dark:text-white">
-              {selectedEventTicket && (
+              {!selectedEventTicket && (
                 <CTranslateTo eng="New Ticket" pt="Novo Ingresso" />
               )}
-              {!selectedEventTicket && (
+              {selectedEventTicket && (
                 <CTranslateTo eng="Edit Ticket" pt="Editar Ingresso" />
               )}
             </h3>

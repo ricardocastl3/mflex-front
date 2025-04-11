@@ -159,9 +159,16 @@ export default function AddEventModal() {
         <div className="flex items-center justify-between p-5 border-b border-slate-300 dark:border-slate-800">
           <div className="flex items-center gap-3">
             <AAuSoftLogo size={40} />
-            <h3 className="text-base font-bold dark:text-white">
-              <CTranslateTo eng="New Event" pt="Novo Evento" />
-            </h3>
+            {!selectedEvent && (
+              <h3 className="text-base font-bold dark:text-white">
+                <CTranslateTo eng="New Event" pt="Novo Evento" />
+              </h3>
+            )}
+            {selectedEvent && (
+              <h3 className="text-base font-bold dark:text-white">
+                <CTranslateTo eng="Edit Event" pt="Editar Evento" />
+              </h3>
+            )}
           </div>
           <button onClick={handleClose} className="dark:text-white">
             <ReactIcons.BiIcon.BiX size={20} />

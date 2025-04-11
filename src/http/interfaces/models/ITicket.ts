@@ -7,6 +7,10 @@ export interface ITicket {
   amount: number;
   status: string;
   quantity: number;
+  event_name: string;
+  event_start_at: Date;
+  event_organizer: string;
+  event_ticket_name: string;
   customer: IUserResponse;
   event_ticket?: IEventTicket;
 }

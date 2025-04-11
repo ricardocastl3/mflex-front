@@ -110,6 +110,7 @@ const paypayLogo =
 import imageEmpty from "@/@assets/vectors/no-image.png";
 import flexUser from "@/@assets/logos/flex-user.png";
 import mflex from "@/@assets/logos/mflex.png";
+import emptyBox from "@/@assets/vectors/emptyBox.png";
 
 export const localImages = {
   logos: {
@@ -133,6 +134,7 @@ export const localImages = {
     en: enFlag,
   },
   vectors: {
+    emptyBox,
     coinWallet,
     imageEmpty,
     manFly,

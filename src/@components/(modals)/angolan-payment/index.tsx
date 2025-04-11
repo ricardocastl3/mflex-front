@@ -18,7 +18,7 @@ export default function AngolanPaymentModal() {
     <BaseModal callbackClose={() => handleOpenModal("")}>
       <div className="md:w-[50vw] w-[90vw]">
         <div className="p-4 border-b pb-2 border-slate-300 dark:border-slate-800 flex items-center gap-2">
-          <AuSoftUI.Component.AuSoftLogo size={26} style="mb-1" />
+          <AuSoftUI.Component.AuSoftLogo size={36} style="mb-1" />
           <h3 className="text-md font-bold dark:text-white">
             <CTranslateTo
               pt="Como deseja pagar?"

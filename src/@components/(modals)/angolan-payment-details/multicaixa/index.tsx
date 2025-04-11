@@ -7,7 +7,6 @@ import { useAuth } from "@/providers/auth/AuthProvider";
 import { useCheckoutProvider } from "@/providers/app/CheckoutProvider";
 import { useSocketProvider } from "@/providers/auth/SocketProvider";
 import { useModal } from "@/providers/app/ModalProvider";
-import { useTicketProvider } from "@/providers/features/TicketProvider";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CurrencyServices from "@/services/CurrencyServices";
@@ -19,7 +18,6 @@ export default function MulticaixaPayment() {
   const { socketEvent } = useSocketProvider();
 
   const { handleAddToastOnArray } = useAppProvider();
-  const { selectedTicket } = useTicketProvider();
   const { selectedCustomerBuyed, handleIsPurchased, isPurchased } =
     useCheckoutProvider();
   const { userLogged } = useAuth();
@@ -160,7 +158,7 @@ export default function MulticaixaPayment() {
             <CircularProgress percentage={seconds} />
           </div>
           <div>
-            <h4 className="text-sm dark:text-white text-slate-600 text-center">
+            <h4 className="text-base dark:text-white text-slate-600 text-center">
               <CTranslateTo
                 eng="Make your payment, using your multicaixa express app"
                 pt="Realize o seu pagamento, usando o aplicativo multicaixa express"

@@ -24,7 +24,7 @@ export default function DefaultQuestionModal() {
       <BaseBox className="md:w-[40vw] w-[90vw] h-fit flex flex-col justify-between">
         <div className="px-4 py-3 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
           <div className="flex items-end gap-2">
-            <AuSoftUI.Component.AuSoftLogo size={25} />
+            <AuSoftUI.Component.AuSoftLogo size={36} />
             <h3 className="text-normal font-bold dark:text-white">
               {appConfigs.title}
             </h3>

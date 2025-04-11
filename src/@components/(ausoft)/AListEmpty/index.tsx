@@ -36,7 +36,7 @@ export default function AListEmpty({
       <Image
         width={180}
         height={180}
-        src={localImages.vectors.manSearchList}
+        src={localImages.vectors.emptyBox}
         alt="Imagem de lista não encontrado"
       />
 

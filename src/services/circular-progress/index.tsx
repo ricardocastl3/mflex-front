@@ -16,6 +16,7 @@ export default function CircularProgress({
         pathColor: !isDarkMode ? yellow[500] : yellow[600],
         trailColor: !isDarkMode ? slate[200] : slate[800],
         textColor: !isDarkMode ? yellow[500] : yellow[500],
+        textSize: 18,
       })}
       maxValue={59}
       value={percentage}
