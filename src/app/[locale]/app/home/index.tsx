@@ -33,7 +33,7 @@ export default function Home() {
           <AAuSoftLogo size={70} />
           <h3 className="text-lg font-bold text-center dark:text-white">
             <CTranslateTo
-              eng="What do you want to do today ?"
+              eng="Flexibility & Strategy"
               pt="Flexibilidade & Estratégia"
             />
           </h3>
