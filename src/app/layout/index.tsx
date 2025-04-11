@@ -59,7 +59,7 @@ export default function RootLayout({
                       color="#d4b548"
                       options={{ showSpinner: false }}
                     />
-                    <GoogleAnalytics gaId="G-ZM1Y9J4TKT" />
+                    <GoogleAnalytics gaId="G-998HC7V4FQ" />
                   </AuthProvider>
                 </AppProvider>
               </ModalProvider>
