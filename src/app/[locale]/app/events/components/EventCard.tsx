@@ -11,7 +11,11 @@ import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 
 export default function EventCard({ event }: { event: IEvent }) {
-  const { handleOpenModal, handleAddModalQuestionData } = useModal();
+  const {
+    handleOpenModal,
+    handleAddTextOnBoxSuccess,
+    handleAddModalQuestionData,
+  } = useModal();
   const { handleSelectEvent, handleFetchEvent } = useEventProvider();
   const { handleAddToastOnArray } = useAppProvider();
 
@@ -27,7 +31,7 @@ export default function EventCard({ event }: { event: IEvent }) {
           id: event.id,
         },
       });
-      handleOpenModal("box-success");
+
       handleFetchEvent(true);
       handleSelectEvent(undefined);
       handleAddModalQuestionData({ isSubmitting: false, isUpdated: true });

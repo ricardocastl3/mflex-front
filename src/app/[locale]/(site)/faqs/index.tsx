@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { AuSoftUI } from "@/@components/(ausoft)";
+
 import HeroFaqs from "./components/Hero";
 import CollapseItem from "./components/CollapseItem";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import { AuSoftUI } from "@/@components/(ausoft)";
 
-export default function Privacy() {
+export default function FaqsPage() {
   const [currectSection, setCurrentSection] = useState("services");
 
   return (
@@ -14,9 +15,7 @@ export default function Privacy() {
       <HeroFaqs />
       <div className="flex flex-col gap-5 md:px-[7rem] px-5 md:py-12 py-8">
         <div className="md:w-[20vw] w-full">
-          <h1 className="text-base dark:text-white">
-            <CTranslateTo eng="" pt="" />
-          </h1>
+          <h1 className="text-base dark:text-white"></h1>
           <AuSoftUI.UI.Select
             className="w-full"
             value={currectSection}

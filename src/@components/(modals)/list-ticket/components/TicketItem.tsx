@@ -30,7 +30,7 @@ export default function EventTicketCard({ ticket }: { ticket: IEventTicket }) {
           id: ticket.id,
         },
       });
-      handleOpenModal("box-success");
+
       handleFetchEvent(true);
       handleSelectEventTicket(undefined);
       handleSelectEvent(undefined);
