@@ -1,18 +1,15 @@
 import BaseModal from "../base";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import QrScanner from "./QrScanner";
-import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 
 import { useModal } from "@/providers/app/ModalProvider";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { internalApi } from "@/http/axios/api";
 import { useTicketProvider } from "@/providers/features/TicketProvider";
-import { useAppProvider } from "@/providers/app/AppProvider";
 
 export default function ValidateTicketModal() {
   const { handleOpenModal } = useModal();
   const { handleSelectTicket } = useTicketProvider();
-  const { handleAddToastOnArray } = useAppProvider();
 
   function handleClose() {
     handleOpenModal("");
@@ -28,6 +25,7 @@ export default function ValidateTicketModal() {
       handleSelectTicket(resp.data.ticket);
       handleOpenModal("approve-ticket");
     } catch (err) {
+      handleSelectTicket(undefined);
       handleOpenModal("");
     }
   };
