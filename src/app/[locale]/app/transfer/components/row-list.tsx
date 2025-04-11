@@ -28,7 +28,7 @@ export default function ProductList({ transfers }: { transfers: ITransfer[] }) {
     }
   }
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full px-2">
       <div className="grid grid-cols-10 w-full p-4 border-b border-slate-200 dark:border-slate-800">
         <h4 className="font-bold dark:text-white text-sm col-span-3">
           <CTranslateTo eng="Name" pt="Nome" />
