@@ -25,7 +25,7 @@ export default function CollapseItem({
           show ? "rounded-t-xl rounded-b-none" : "rounded-xl"
         } z-10 w-full p-4 flex items-center justify-between cursor-pointer`}
       >
-        <h1 className="text-lg dark:text-white font-bold">
+        <h1 className="md:text-lg text-base dark:text-white font-bold">
           <CTranslateTo eng={title_en} pt={title_pt} />
         </h1>
 
