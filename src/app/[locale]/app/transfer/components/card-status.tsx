@@ -18,7 +18,7 @@ export default function CardStatus({ status }: { status: string }) {
         {status == "failed" && <ReactIcons.PiIcon.PiLockKeyOpen size={12} />}
         {status == "pending" && <ReactIcons.PiIcon.PiLockKeyOpen size={12} />}
 
-        <p className="mt-1 text-xs font-bold">
+        <p className="text-xs font-bold">
           {status == "success" && <CTranslateTo eng="Success" pt="Sucesso" />}
           {status == "pending" && <CTranslateTo eng="Pending" pt="Pendente" />}
           {status == "failed" && (
