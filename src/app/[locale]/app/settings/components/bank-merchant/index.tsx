@@ -94,7 +94,7 @@ export default function BankMerchantBox() {
               }}
               className="w-full"
               weight={"md"}
-              placeholder="Ex: Ricardo Castle..."
+              placeholder="Ex: Albert Einstein..."
             />
           </div>
           <div className="flex flex-col gap-4">
