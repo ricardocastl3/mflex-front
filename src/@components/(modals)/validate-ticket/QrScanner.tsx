@@ -1,67 +1,55 @@
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { Html5Qrcode, CameraDevice } from "html5-qrcode";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const QrScanner = ({ onScan }: { onScan: (code: string) => void }) => {
   const [allCamera, setAllCamera] = useState<CameraDevice[]>([]);
   const [selectedCamera, setSelectedCamera] = useState("");
+  const html5QrCodeRef = useRef<Html5Qrcode | null>(null);
 
   useEffect(() => {
     const qrCodeRegionId = "reader";
-    const html5QrCode = new Html5Qrcode(qrCodeRegionId);
+    html5QrCodeRef.current = new Html5Qrcode(qrCodeRegionId);
 
-    if (selectedCamera != "") {
-      Html5Qrcode.getCameras()
-        .then((devices) => {
-          if (devices && devices.length) {
-            setAllCamera(devices);
+    const startScanning = async (cameraId: string) => {
+      try {
+        if (!html5QrCodeRef.current) return;
 
-            const cameraId = selectedCamera;
+        await html5QrCodeRef.current.start(
+          cameraId,
+          {
+            fps: 10,
+            qrbox: { width: 250, height: 250 },
+          },
+          (decodedText) => {
+            onScan(decodedText);
+          },
+          (error) => {}
+        );
+      } catch (err) {
+        console.error("Erro ao iniciar a câmera:", err);
+      }
+    };
 
-            html5QrCode.start(
-              cameraId,
-              {
-                fps: 10,
-                qrbox: { width: 250, height: 250 },
-              },
-              (decodedText) => {
-                onScan(decodedText);
-              },
-              (error) => {}
-            );
-          }
-        })
-        .catch((err) => {
-          console.error("Erro ao acessar câmera:", err);
-        });
-    } else {
-      Html5Qrcode.getCameras()
-        .then((devices) => {
-          if (devices && devices.length) {
-            setAllCamera(devices);
+    const getCameras = async () => {
+      try {
+        const devices = await Html5Qrcode.getCameras();
+        if (devices && devices.length) {
+          setAllCamera(devices);
+          const cameraId = selectedCamera || devices[0].id;
+          await startScanning(cameraId);
+        }
+      } catch (err) {
+        console.error("Erro ao acessar câmera:", err);
+      }
+    };
 
-            const cameraId = devices[0].id;
-
-            html5QrCode.start(
-              cameraId,
-              {
-                fps: 10,
-                qrbox: { width: 250, height: 250 },
-              },
-              (decodedText) => {
-                onScan(decodedText);
-              },
-              (error) => {}
-            );
-          }
-        })
-        .catch((err) => {
-          console.error("Erro ao acessar câmera:", err);
-        });
-    }
+    getCameras();
 
     return () => {
-      if (html5QrCode.isScanning) html5QrCode.stop().catch(console.error);
+      if (html5QrCodeRef.current && html5QrCodeRef.current.isScanning) {
+        html5QrCodeRef.current.stop().catch(console.error);
+      }
     };
   }, [onScan, selectedCamera]);
 
@@ -75,13 +63,11 @@ const QrScanner = ({ onScan }: { onScan: (code: string) => void }) => {
           value={selectedCamera}
           weight={"sm"}
         >
-          {allCamera.map((cam, i) => {
-            return (
-              <option key={i} value={cam.id}>
-                {cam.label}
-              </option>
-            );
-          })}
+          {allCamera.map((cam, i) => (
+            <option key={i} value={cam.id}>
+              {cam.label}
+            </option>
+          ))}
         </AuSoftUI.UI.Select>
       </div>
     </div>
