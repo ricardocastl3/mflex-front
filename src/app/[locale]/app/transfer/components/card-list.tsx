@@ -56,7 +56,7 @@ export default function ProductCard({ transfers }: { transfers: ITransfer[] }) {
 
               <h4 className="text-sm text-green-500">
                 {`${CurrencyServices.decimal(
-                  Number(prod.payment.amount) * 0.95
+                  Number(prod.payment.amount) * Number(0.92)
                 )} Kz`}
               </h4>
               <h4 className="dark:text-white text-sm">Taxa de envio</h4>

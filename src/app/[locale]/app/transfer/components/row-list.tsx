@@ -82,11 +82,11 @@ export default function ProductList({ transfers }: { transfers: ITransfer[] }) {
                 {`${CurrencyServices.decimal(Number(prod.payment.amount))} Kz`}
               </h4>
 
-              <h4 className="text-sm dark:text-white font-bold w-fit">5%</h4>
+              <h4 className="text-sm dark:text-white font-bold w-fit">8%</h4>
 
               <h4 className="text-sm text-green-500">
                 {`${CurrencyServices.decimal(
-                  Number(prod.payment.amount) * 0.95
+                  Number(prod.payment.amount) * Number(0.92)
                 )} Kz`}
               </h4>
 
