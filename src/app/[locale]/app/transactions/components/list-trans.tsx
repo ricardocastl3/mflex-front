@@ -46,8 +46,13 @@ export default function ListTransactions({
               key={i}
               className={`mx-2 grid grid-cols-7 rounded-xl px-2 items-center cursor-pointer py-3 hover:bg-slate-100 dark:hover:bg-slate-800/70`}
             >
-              <h3 className="col-span-2 text-violet-600 font-bold dark:text-violet-400 text-sm py-2">
-                {`${transaction.customer?.first_name} ${transaction.customer?.last_name}`}
+              <h3 className="col-span-2 text-yellow-600 font-bold dark:text-yellow-400 text-sm py-2">
+                {transaction.customer && (
+                  <>
+                    {`${transaction.customer?.first_name} ${transaction.customer?.last_name}`}
+                  </>
+                )}
+                {!transaction.customer && <>{`${transaction.customer_name}`}</>}
               </h3>
 
               <div className="pr-16">
@@ -66,15 +71,20 @@ export default function ListTransactions({
               </h4>
 
               <h4 className="text-sm dark:text-white text-start">
-                {(transaction.customer?.profile?.phone_number == "" ||
-                  !transaction.customer?.profile?.phone_number) &&
-                  "----------------"}
-                {transaction.customer?.profile?.phone_number &&
-                  transaction.customer?.profile?.phone_number != "" &&
-                  transaction.customer?.profile?.phone_number.replace(
-                    "+244",
-                    "(+244) "
-                  )}
+                {transaction.customer && (
+                  <>
+                    {(transaction.customer?.profile?.phone_number == "" ||
+                      !transaction.customer?.profile?.phone_number) &&
+                      "----------------"}
+                    {transaction.customer?.profile?.phone_number &&
+                      transaction.customer?.profile?.phone_number != "" &&
+                      transaction.customer?.profile?.phone_number.replace(
+                        "+244",
+                        "(+244) "
+                      )}
+                  </>
+                )}
+                {!transaction.customer && <>{transaction.customer_number}</>}
               </h4>
 
               <div className="flex justify-center ">

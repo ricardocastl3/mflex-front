@@ -21,8 +21,13 @@ export default function CardTransaction({
             className="px-4 flex flex-col border-b pb-2  border-slate-300 dark:border-slate-700/50"
           >
             <div className="flex items-center gap-4">
-              <h3 className="text-violet-600 font-bold dark:text-violet-400 text-sm py-2">
-                {`${transaction.customer?.first_name} ${transaction.customer?.last_name}`}
+              <h3 className="text-yellow-600 font-bold dark:text-yellow-400 text-sm py-2">
+                {transaction.customer && (
+                  <>
+                    {`${transaction.customer?.first_name} ${transaction.customer?.last_name}`}
+                  </>
+                )}
+                {!transaction.customer && <>{`${transaction.customer_name}`}</>}
               </h3>
             </div>
 
@@ -49,15 +54,20 @@ export default function CardTransaction({
                 )}
               </h4>
               <h4 className="text-sm dark:text-white text-start">
-                {(transaction.customer?.profile?.phone_number == "" ||
-                  !transaction.customer?.profile?.phone_number) &&
-                  "----------------"}
-                {transaction.customer?.profile?.phone_number &&
-                  transaction.customer?.profile?.phone_number != "" &&
-                  transaction.customer?.profile?.phone_number.replace(
-                    "+244",
-                    "(+244) "
-                  )}
+                {transaction.customer && (
+                  <>
+                    {(transaction.customer?.profile?.phone_number == "" ||
+                      !transaction.customer?.profile?.phone_number) &&
+                      "----------------"}
+                    {transaction.customer?.profile?.phone_number &&
+                      transaction.customer?.profile?.phone_number != "" &&
+                      transaction.customer?.profile?.phone_number.replace(
+                        "+244",
+                        "(+244) "
+                      )}
+                  </>
+                )}
+                {!transaction.customer && <>{transaction.customer_number}</>}
               </h4>
             </div>
           </div>

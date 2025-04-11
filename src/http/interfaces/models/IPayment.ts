@@ -6,6 +6,13 @@ export interface IPayment {
   id: string;
   amount: number;
   customer?: IUserResponse;
+  customer_name: string;
+  customer_number: string;
+
+  event_name: string;
+  event_start_at: Date;
+  event_ticket_name: string;
+
   customer_id?: string;
   payment_method: string;
   status?: string;
