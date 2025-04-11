@@ -4,8 +4,7 @@ import { IEvent } from "./IEvent";
 export interface ITicket {
   id: string;
   amount: number;
-  name: string;
-  description: string;
+  status: string;
   quantity: number;
   event_ticket?: IEventTicket;
 }

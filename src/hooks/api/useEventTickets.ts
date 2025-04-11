@@ -1,17 +1,17 @@
 import { ISearchDataField } from "@/@components/(system)/ASearch/SearchDataField";
 import { internalApi } from "@/http/axios/api";
-import { ITicket } from "@/http/interfaces/models/ITicket";
+import { IEventTicket } from "@/http/interfaces/models/EventTicket";
 import { useCallback, useEffect, useState } from "react";
 
-export default function useTickets() {
-  const [allTickets, setAllTickets] = useState<ITicket[]>([]);
+export default function useEventTickets() {
+  const [allTickets, setAllTickets] = useState<IEventTicket[]>([]);
   const [isLoadingAllTickets, setIsLoadingAllTickets] = useState(true);
 
   const fetchAllTickets = useCallback(async () => {
     try {
       const resp = await internalApi.get<{
-        tickets: ITicket[];
-      }>(`/tickets/me`);
+        tickets: IEventTicket[];
+      }>(`/events/tickets/me`);
 
       setAllTickets(resp.data.tickets);
       setIsLoadingAllTickets(false);
@@ -20,13 +20,13 @@ export default function useTickets() {
     }
   }, []);
 
-  async function handleSeachByName({ name, mode }: ISearchDataField) {
+  async function handleSeachEventTicket({ name }: ISearchDataField) {
     try {
       setIsLoadingAllTickets(true);
 
       const resp = await internalApi.get<{
-        tickets: ITicket[];
-      }>("/tickets", { params: { name } });
+        tickets: IEventTicket[];
+      }>("/events/tickets", { params: { name } });
 
       setAllTickets(resp.data.tickets);
       setIsLoadingAllTickets(false);
@@ -40,9 +40,9 @@ export default function useTickets() {
   }, [fetchAllTickets]);
 
   return {
+    handleSeachEventTicket,
     fetchAllTickets,
     allTickets,
-    handleSeachByName,
     isLoadingAllTickets,
   };
 }

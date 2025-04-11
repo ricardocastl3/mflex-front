@@ -2,7 +2,7 @@ import AAuSoftLogo from "@/@components/(ausoft)/AAuSoftLogo";
 import BaseModal from "../base";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import EventTicketCard from "./components/TicketItem";
-import useTickets from "@/hooks/api/useTickets";
+import useEventTickets from "@/hooks/api/useEventTickets";
 
 import { ReactIcons } from "@/utils/icons";
 import { useModal } from "@/providers/app/ModalProvider";
@@ -18,7 +18,7 @@ export default function ListTicketModal() {
   const { handleSelectEventTicket } = useEventTicketProvider();
   const { handleOpenModal } = useModal();
   const { handleSeachEventTicket, isLoadingAllTickets, allTickets } =
-    useTickets({ route: "app" });
+    useEventTickets({ route: "app" });
 
   // Constrols
   const [allTicketsSafed, setAllTicketsSafed] = useState<IEventTicket[]>(
