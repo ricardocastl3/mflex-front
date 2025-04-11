@@ -4,7 +4,7 @@ import "@/styles/tailwind.css";
 import { GlobalStyles } from "@/styles/global";
 import { Abel } from "next/font/google";
 import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import { GoogleTagManager } from "@next/third-parties/google";
 import { Suspense } from "react";
 
 import AuthProvider from "@/providers/auth/AuthProvider";
@@ -59,7 +59,7 @@ export default function RootLayout({
                       color="#d4b548"
                       options={{ showSpinner: false }}
                     />
-                    <GoogleAnalytics gaId="G-998HC7V4FQ" />
+                    <GoogleTagManager gtmId="G-998HC7V4FQ" />
                   </AuthProvider>
                 </AppProvider>
               </ModalProvider>
