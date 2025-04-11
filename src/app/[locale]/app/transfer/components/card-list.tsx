@@ -60,7 +60,7 @@ export default function ProductCard({ transfers }: { transfers: ITransfer[] }) {
                 )} Kz`}
               </h4>
               <h4 className="dark:text-white text-sm">Taxa de envio</h4>
-              <h4 className="text-sm dark:text-white font-bold">5%</h4>
+              <h4 className="text-sm dark:text-white font-bold">8%</h4>
               <h4 className="dark:text-white text-sm">IBAN:</h4>
 
               <h4 className="text-sm dark:text-white text-nowrap">
