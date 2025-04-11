@@ -34,8 +34,8 @@ export default function AListEmpty({
   return (
     <div className="flex items-center flex-col gap-3 justify-center">
       <Image
-        width={130}
-        height={130}
+        width={100}
+        height={100}
         src={localImages.vectors.emptyBox}
         alt="Imagem de lista não encontrado"
       />
