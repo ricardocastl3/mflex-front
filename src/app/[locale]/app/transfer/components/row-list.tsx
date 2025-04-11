@@ -95,7 +95,7 @@ export default function ProductList({ transfers }: { transfers: ITransfer[] }) {
               {prod.status == "failed" && (
                 <button
                   onClick={() => handleResend(prod.id)}
-                  className="text-blue-500 font-bold justify-self-center dark:text-blue-500 text-sm text-center"
+                  className="text-yellow-500 font-bold justify-self-center dark:text-yellow-500 text-sm text-center"
                 >
                   {isLoading && (
                     <ReactIcons.PiIcon.PiSpinner
