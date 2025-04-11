@@ -18,7 +18,7 @@ export default function ListTicketModal() {
   const { handleSelectEventTicket } = useEventTicketProvider();
   const { handleOpenModal } = useModal();
   const { handleSeachEventTicket, isLoadingAllTickets, allTickets } =
-    useEventTickets({ route: "app" });
+    useEventTickets();
 
   // Constrols
   const [allTicketsSafed, setAllTicketsSafed] = useState<IEventTicket[]>(

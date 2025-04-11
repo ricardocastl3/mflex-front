@@ -1,3 +1,4 @@
+import { IUserResponse } from "../responses/IUserResponse";
 import { IEventTicket } from "./EventTicket";
 import { IEvent } from "./IEvent";
 
@@ -6,5 +7,6 @@ export interface ITicket {
   amount: number;
   status: string;
   quantity: number;
+  customer: IUserResponse;
   event_ticket?: IEventTicket;
 }

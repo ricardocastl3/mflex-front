@@ -38,7 +38,7 @@ export default function TicketCard({ ticket }: { ticket: ITicket }) {
             </h1>
             <h1 className="flex items-center gap-2 dark:text-slate-300">
               <ReactIcons.HiIcon.HiTicket size={18} />
-              <b>2</b>
+              <b>{ticket.quantity}</b>
               <CTranslateTo eng="Tickets" pt="Ingressos" />
             </h1>
             <div className="flex items-center gap-2 flex-wrap">
@@ -71,7 +71,6 @@ export default function TicketCard({ ticket }: { ticket: ITicket }) {
         <div>
           {ticket.status == "delivered" && (
             <AuSoftUI.UI.Button
-              disabled={true}
               variant={"green"}
               className="items-center md:w-fit w-full font-bold"
             >
