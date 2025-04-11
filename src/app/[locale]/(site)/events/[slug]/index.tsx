@@ -10,6 +10,7 @@ import { enUS, pt } from "date-fns/locale";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import TicketBox from "./components/TicketsBox";
+import EventSkeleton from "./components/EventSkeleton";
 
 export default function EventPage({
   params,
@@ -40,6 +41,15 @@ export default function EventPage({
   useEffect(() => {
     handleGetEvent();
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className="flex flex-col gap-4">
+        <div className="h-[60vh] bg-slate-200 animate-pulse dark:bg-ausoft-slate-900"></div>
+        <EventSkeleton />
+      </div>
+    );
+  }
 
   if (selectedEvent && !isLoading)
     return (

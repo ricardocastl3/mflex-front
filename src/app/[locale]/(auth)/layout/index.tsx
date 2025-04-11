@@ -64,7 +64,7 @@ export default function AuthLayout({
           </div>
         </div>
 
-        <div className="md:z-20 z-0 flex flex-col gap-8 h-full justify-center w-full items-center md:pt-32 pt-32 md:pb-28 pb-24">
+        <div className="z-0 flex flex-col gap-8 h-full justify-center w-full items-center md:pt-32 pt-32 md:pb-28 pb-24">
           {children}
         </div>
       </div>

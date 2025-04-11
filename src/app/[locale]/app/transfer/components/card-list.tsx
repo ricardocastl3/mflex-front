@@ -30,7 +30,7 @@ export default function ProductCard({ transfers }: { transfers: ITransfer[] }) {
     }
   }
   return (
-    <div className="flex flex-col w-[90vw] h-full px-2">
+    <div className="flex flex-col w-full h-full px-1">
       {transfers.map((prod, i) => {
         return (
           <div

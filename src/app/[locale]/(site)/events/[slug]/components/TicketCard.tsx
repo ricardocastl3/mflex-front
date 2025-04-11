@@ -62,38 +62,40 @@ export default function TicketCard({ ticket }: { ticket: IEventTicket }) {
           )}
         </div>
         <div className="flex md:items-center gap-4 items-stretch md:flex-row flex-col">
-          <div className="flex items-center gap-2">
-            <AuSoftUI.UI.Button
-              onClick={() =>
-                setQuantity((state) => {
-                  if (state > 1) {
-                    return state - 1;
-                  }
-                  return 1;
-                })
-              }
-              className="md:w-fit w-[4rem] justify-center"
-              variant={"primary"}
-              size={"sm"}
-            >
-              <ReactIcons.BiIcon.BiMinus size={15} />
-            </AuSoftUI.UI.Button>
-            <AuSoftUI.UI.TextField.Default
-              value={quantity}
-              disabled={true}
-              weight={"sm"}
-              className="md:w-[4rem] font-bold md:text-lg text-base w-full text-center"
-            />
+          {ticket.status == "available" && (
+            <div className="flex items-center gap-2">
+              <AuSoftUI.UI.Button
+                onClick={() =>
+                  setQuantity((state) => {
+                    if (state > 1) {
+                      return state - 1;
+                    }
+                    return 1;
+                  })
+                }
+                className="md:w-fit w-[4rem] justify-center"
+                variant={"primary"}
+                size={"sm"}
+              >
+                <ReactIcons.BiIcon.BiMinus size={15} />
+              </AuSoftUI.UI.Button>
+              <AuSoftUI.UI.TextField.Default
+                value={quantity}
+                disabled={true}
+                weight={"sm"}
+                className="md:w-[4rem] font-bold md:text-lg text-base w-full text-center"
+              />
 
-            <AuSoftUI.UI.Button
-              onClick={() => setQuantity((state) => state + 1)}
-              size={"sm"}
-              className="md:w-fit w-[4rem] justify-center"
-              variant={"primary"}
-            >
-              <ReactIcons.BiIcon.BiPlus size={15} />
-            </AuSoftUI.UI.Button>
-          </div>
+              <AuSoftUI.UI.Button
+                onClick={() => setQuantity((state) => state + 1)}
+                size={"sm"}
+                className="md:w-fit w-[4rem] justify-center"
+                variant={"primary"}
+              >
+                <ReactIcons.BiIcon.BiPlus size={15} />
+              </AuSoftUI.UI.Button>
+            </div>
+          )}
           {ticket.status == "available" && (
             <AuSoftUI.UI.Button
               onClick={() => handlePurchaseTicket()}
