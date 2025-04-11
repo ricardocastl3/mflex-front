@@ -2,11 +2,11 @@ import { BaseBox } from "@/@components/(box)/BaseBox";
 import { ReactIcons } from "@/utils/icons";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import useEventTickets from "@/hooks/api/useEventTickets";
 import LoadingVal from "./LoadindVal";
+import useTickets from "@/hooks/api/useTickets";
 
 export default function CardTicket() {
-  const { allTickets, isLoadingAllTickets } = useEventTickets();
+  const { allTickets, isLoadingAllTickets } = useTickets();
 
   return (
     <BaseBox className="p-4">
