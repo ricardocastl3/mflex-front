@@ -12,6 +12,7 @@ export default function ValidateTicketModal() {
   const { handleSelectTicket } = useTicketProvider();
 
   function handleClose() {
+    handleSelectTicket(undefined);
     handleOpenModal("");
   }
 

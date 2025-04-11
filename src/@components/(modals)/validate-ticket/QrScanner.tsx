@@ -61,16 +61,13 @@ const QrScanner = ({ onScan }: { onScan: (code: string) => void }) => {
     }
 
     return () => {
-      html5QrCode.stop().catch(console.error);
+      if (html5QrCode.isScanning) html5QrCode.stop().catch(console.error);
     };
   }, [onScan, selectedCamera]);
 
   return (
     <div className="flex flex-col gap-2">
-      <div
-        id="reader"
-        className="md:w-[100%] w-[100%] md:h-[100%] h-[50%]"
-      />
+      <div id="reader" className="md:w-[100%] w-[100%] md:h-[100%] h-[50%]" />
       <div className="">
         <AuSoftUI.UI.Select
           className="w-full dark:bg-ausoft-slate-900 dark:text-white"
