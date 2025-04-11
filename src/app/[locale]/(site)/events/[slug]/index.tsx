@@ -58,11 +58,14 @@ export default function EventPage({
           <div className="z-0 inset-0 bg-black/50 absolute"></div>
           <div className="flex flex-col gap-2 md:px-[2.5rem] px-5 z-10 absolute justify-center h-full w-full ">
             <h1 className="text-yellow-300 md:text-2xl text-[1.4rem]">
-              <CTranslateTo eng="" pt="Adquira o seu ingresso 🚀" />
+              <CTranslateTo
+                eng="Get your ticket 🚀"
+                pt="Adquira o seu ingresso 🚀"
+              />
             </h1>
             <h1 className="text-white md:text-xl text-lg">
               <CTranslateTo
-                eng=""
+                eng="Quickly, simply and in your comfort 🌟"
                 pt="De forma rápida, simples e no seu conforto 🌟"
               />
             </h1>

@@ -1,3 +1,4 @@
+import { IEvent } from "./IEvent";
 import { ITicket } from "./ITicket";
 
 export interface IEventTicket {
@@ -8,4 +9,5 @@ export interface IEventTicket {
   status: string;
   tickets: ITicket[];
   created_at: Date;
+  event: IEvent;
 }

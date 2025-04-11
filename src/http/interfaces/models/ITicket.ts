@@ -1,3 +1,4 @@
+import { IEventTicket } from "./EventTicket";
 import { IEvent } from "./IEvent";
 
 export interface ITicket {
@@ -6,5 +7,5 @@ export interface ITicket {
   name: string;
   description: string;
   quantity: number;
-  event?: IEvent;
+  event_ticket?: IEventTicket;
 }
