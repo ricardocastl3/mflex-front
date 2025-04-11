@@ -28,7 +28,7 @@ export default function ValidateTicketModal() {
       handleSelectTicket(resp.data.ticket);
       handleOpenModal("approve-ticket");
     } catch (err) {
-      return CAxiosErrorToastify({ err, openToast: handleAddToastOnArray });
+      handleOpenModal("");
     }
   };
 
