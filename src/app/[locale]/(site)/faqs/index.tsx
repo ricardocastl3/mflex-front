@@ -17,7 +17,8 @@ export default function FaqsPage() {
         <div className="md:w-[20vw] w-full">
           <h1 className="text-base dark:text-white"></h1>
           <AuSoftUI.UI.Select
-            className="w-full"
+            className="w-full md:text-[1.07rem] text-base"
+            weight={"md"}
             value={currectSection}
             onChange={(e) => setCurrentSection(e.target.value)}
           >
@@ -31,7 +32,7 @@ export default function FaqsPage() {
               value={"tickets"}
               className="dark:bg-ausoft-slate-950 dark:text-white"
             >
-              <CTranslateTo eng="Eventos & Ingressos" pt="Events & Tickets" />
+              <CTranslateTo eng="Events & Tickets" pt="Eventos & Ingressos" />
             </option>
           </AuSoftUI.UI.Select>
         </div>
@@ -48,15 +49,15 @@ export default function FaqsPage() {
               <CollapseItem
                 title_en="How do I receive the money from my ticket sales?"
                 title_pt="Como recebo o dinheiro das vendas dos meus ingressos?"
-                content_en="Each time someone buys a ticket to your event, the payment is automatically sent to your bank account, minus a 5% service fee. No delays, no complications."
-                content_pt="Sempre que alguém compra um ingresso do seu evento, o valor é automaticamente transferido para sua conta bancária, com desconto de uma taxa de serviço de 5%. Sem atrasos, sem complicações."
+                content_en="Each time someone buys a ticket to your event, the payment is automatically sent to your bank account, minus a 8% service fee. No delays, no complications."
+                content_pt="Sempre que alguém compra um ingresso do seu evento, o valor é automaticamente transferido para sua conta bancária, com desconto de uma taxa de serviço de 8%. Sem atrasos, sem complicações."
               />
 
               <CollapseItem
                 title_en="What is the service fee for selling tickets?"
                 title_pt="Qual é a taxa cobrada pela venda de ingressos?"
-                content_en="We charge a 5% service fee on each ticket sold. This helps us maintain the platform, ensure secure payments, and offer customer support."
-                content_pt="Cobramos uma taxa de serviço de 5% por cada ingresso vendido. Isso nos permite manter a plataforma, garantir pagamentos seguros e oferecer suporte ao cliente."
+                content_en="We charge a 8% service fee on each ticket sold. This helps us maintain the platform, ensure secure payments, and offer customer support."
+                content_pt="Cobramos uma taxa de serviço de 8% por cada ingresso vendido. Isso nos permite manter a plataforma, garantir pagamentos seguros e oferecer suporte ao cliente."
               />
 
               <CollapseItem

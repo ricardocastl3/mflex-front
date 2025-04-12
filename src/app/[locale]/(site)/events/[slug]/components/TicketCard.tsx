@@ -88,7 +88,7 @@ export default function TicketCard({ ticket }: { ticket: IEventTicket }) {
                 value={quantity}
                 disabled={true}
                 weight={"sm"}
-                className="md:w-[4rem] font-bold md:text-lg text-base w-full text-center"
+                className="md:w-[4rem] font-bold md:text-[0.9rem] py-1.5 dark:text-white text-base w-full text-center"
               />
 
               <AuSoftUI.UI.Button
@@ -105,7 +105,7 @@ export default function TicketCard({ ticket }: { ticket: IEventTicket }) {
             <AuSoftUI.UI.Button
               onClick={() => handlePurchaseTicket()}
               size={"sm"}
-              className="md:w-fit w-full items-center"
+              className="md:w-fit w-full items-center py-1.5"
               variant={"primary"}
             >
               <ReactIcons.BiIcon.BiCart size={15} />
@@ -115,7 +115,7 @@ export default function TicketCard({ ticket }: { ticket: IEventTicket }) {
           {ticket.status == "unavailable" && (
             <AuSoftUI.UI.Button
               size={"sm"}
-              className="md:w-fit w-full items-center"
+              className="md:w-fit w-full items-center py-0.5"
               variant={"destructive"}
             >
               <ReactIcons.BiIcon.BiLock size={15} />

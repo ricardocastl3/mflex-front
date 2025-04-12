@@ -17,8 +17,8 @@ export default function HeroFaqs() {
         </h1>
         <h4 className="text-white md:mt-2 t-2 text-lg">
           <CTranslateTo
-            eng="Do you have any questions? Read the most frequently asked questions to get your questions answered 🟡"
-            pt="Tem alguma dúvida ? Leia as perguntas mais frequentes para tirar suas dúvidas 🟡"
+            eng="Do you have any questions? Read the most frequently asked questions to get them answered 🟡"
+            pt="Tem alguma dúvida ? Leia as perguntas mais frequentes para tirá-las 🟡"
           />
         </h4>
       </div>
