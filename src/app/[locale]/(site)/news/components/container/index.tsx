@@ -123,7 +123,7 @@ export default function NewsContainer() {
               action_en=""
               action_pt=""
               action_url=""
-              description_en="Mo available news at moment"
+              description_en="No available news at moment"
               description_pt="Sem novidades disponíveis de momento"
               title_en="No News"
               title_pt="Sem Novidades"
