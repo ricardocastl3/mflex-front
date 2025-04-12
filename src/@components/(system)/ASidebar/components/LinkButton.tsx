@@ -50,7 +50,7 @@ export default function LinkButton({
           : "hover:bg-yellow-100/50 dark:hover:bg-yellow-800/10"
       } ${
         isExpanded ? "" : "w-fit"
-      }  text-nowrap transition-all flex items-center gap-2 px-2 py-1.5 text-normal rounded-xl text-slate-800 dark:text-white`}
+      }  text-nowrap transition-all flex items-center gap-2 px-2 py-1.5 text-normal rounded-full text-slate-800 dark:text-white`}
     >
       <span
         ref={iconRef}
@@ -58,7 +58,7 @@ export default function LinkButton({
           isSelected
             ? "bg-yellow-600 text-white"
             : "bg-slate-200 dark:bg-slate-800/80 hover:bg-yellow-600 hover:dark:bg-yellow-600 hover:text-white"
-        } relative w-fit p-2 rounded-xl flex`}
+        } relative w-fit p-2 rounded-full flex`}
       >
         <Icon size={15} />
         {!isExpanded && openPopover == href && (

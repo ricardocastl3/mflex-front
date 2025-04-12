@@ -20,7 +20,7 @@ export default function NewsOthers({
 
   return (
     <div className="md:py-10 py-10 md:px-[3rem] px-6 flex mt-5 flex-col gap-8 bg-slate-300/40 dark:bg-ausoft-slate-950 pt-2 border-t border-slate-300 dark:border-slate-800">
-      <h1 className="dark:text-white text-xl font-bold">
+      <h1 className="dark:text-white text-xl font-bold md:pt-0 pt-8">
         <CTranslateTo eng="Oher news" pt="Outras novidades" />
       </h1>
       <div className="grid md:grid-cols-3 grid-cols-1 md:items-center items-start w-full gap-4">

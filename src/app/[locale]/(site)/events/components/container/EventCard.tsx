@@ -4,12 +4,11 @@ import { BaseBox } from "@/@components/(box)/BaseBox";
 import { langByCookies } from "@/http/axios/api";
 import { IEvent } from "@/http/interfaces/models/IEvent";
 import { ReactIcons } from "@/utils/icons";
-import { format } from "date-fns";
-import { ptBR, enUS } from "date-fns/locale";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
 import Link from "next/link";
+import DateCategory from "../../../components/DateCategory";
 
 export default function EventCard({
   event,
@@ -69,16 +68,11 @@ export default function EventCard({
         </BaseBox>
         <div className="flex flex-col gap-2">
           <h4 className="font-bold text-xl dark:text-white">{event.title}</h4>
-          <h4 className="flex items-center gap-2 dark:text-slate-300">
-            <ReactIcons.Hi2Icon.HiCalendar size={15} />
-            {format(
-              event.start_at,
-              langByCookies === "pt"
-                ? "d 'de' MMMM 'às' HH:mm"
-                : "d MMMM 'at' HH:mm",
-              { locale: langByCookies === "pt" ? ptBR : enUS }
-            )}
-          </h4>
+          <DateCategory
+            right
+            category_name={event.category ? event.category.name : "---------"}
+            date={event.start_at}
+          />
           <h4 className="flex items-center gap-2 dark:text-slate-300 text-slate-700">
             <ReactIcons.Hi2Icon.HiMap size={15} />
             {event.reference_address}

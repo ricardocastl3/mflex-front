@@ -13,6 +13,7 @@ type modalType =
   | "add-event"
   | "add-ticket"
   | "approve-ticket"
+  | "technical-support"
   | "list-ticket"
   | "angolan-payment-modal"
   | "validate-ticket"

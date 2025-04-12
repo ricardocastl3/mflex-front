@@ -16,7 +16,7 @@ export default function BoxCategories({
   const { selectedCategory, handleSelectCategory } = useCategoryProvider();
 
   return (
-    <BaseBox className="md:w-auto w-[88vw] flex md:py-4 py-4 justify-center md:px-8 px-8 overflow-x-auto md:mt-8 mt-6 md:mb-4 mb-4 my-4 md:mx-[3rem] mx-5">
+    <BaseBox className="md:w-auto w-[88vw] flex md:py-4 py-3 justify-center md:px-8 px-8 overflow-x-auto md:mt-8 mt-6 md:mb-4 mb-4 my-4 md:mx-[3rem] mx-5">
       <div className="flex items-center md:gap-12 gap-8 overflowx-x-auto">
         {!isLoadingCategory && allCategory.length > 0 && (
           <>
@@ -33,10 +33,10 @@ export default function BoxCategories({
                   !selectedCategory
                     ? "bg-yellow-300 dark:bg-yellow-500"
                     : "hover:bg-yellow-300 dark:hover:bg-yellow-500 border border-slate-300 dark:border-slate-800"
-                }   flex flex-col gap-4 p-4 rounded-full`}
+                }   flex flex-col gap-4 md:p-4 p-3 rounded-full`}
               >
                 <ReactIcons.VSCIcon.VscAzureDevops
-                  size={18}
+                  size={window.innerWidth > 765 ? 18 : 15}
                   className="dark:text-white"
                 />
               </div>
@@ -62,10 +62,10 @@ export default function BoxCategories({
                       selectedCategory?.id === category.id
                         ? "bg-yellow-300 dark:bg-yellow-500"
                         : "hover:bg-yellow-300 dark:hover:bg-yellow-500 border border-slate-300 dark:border-slate-800"
-                    }  flex flex-col gap-4 p-4 rounded-full `}
+                    }  flex flex-col gap-4 md:p-4 p-3 rounded-full `}
                   >
                     <ReactIcons.VSCIcon.VscAzureDevops
-                      size={18}
+                      size={window.innerWidth > 765 ? 18 : 15}
                       className="dark:text-white"
                     />
                   </div>

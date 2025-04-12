@@ -15,6 +15,7 @@ import ListTicketModal from "./list-ticket";
 import ViewTicketModal from "./view-ticket";
 import ApproveTicketModal from "./approve-ticket";
 import AngolanPaymentModal from "./angolan-payment";
+import TechnicalSupport from "./technical-support";
 
 export default function ModalOpenProvider() {
   const { openModal } = useModal();
@@ -55,6 +56,9 @@ export default function ModalOpenProvider() {
 
     case "angolan-payment-modal":
       return <AngolanPaymentModal />;
+
+    case "technical-support":
+      return <TechnicalSupport />;
 
     default:
       return <></>;

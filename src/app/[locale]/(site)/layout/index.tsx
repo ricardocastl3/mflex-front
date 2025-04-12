@@ -8,8 +8,8 @@ import LoadingLayout from "@/app/onload-pages/_loading-layouts";
 import React from "react";
 import SHeader from "@/@components/(system)/site/SHeader";
 import SMobileFooter from "@/@components/(system)/site/SFooter/mobile";
-import ContactZap from "@/services/contact-zap/ContactZap";
 import SFooter from "@/@components/(system)/site/SFooter/desktop";
+import TechSupport from "@/services/contact-zap/TechSupport";
 
 export default function BweviPayLayout({
   children,
@@ -39,7 +39,7 @@ export default function BweviPayLayout({
         </div>
         <SMobileFooter />
         <SFooter />
-        <ContactZap />
+        <TechSupport />
       </div>
     </>
   );

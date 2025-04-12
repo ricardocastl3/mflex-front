@@ -1,9 +1,7 @@
 import { BaseBox } from "@/@components/(box)/BaseBox";
-import { langByCookies } from "@/http/axios/api";
 import { INews } from "@/http/interfaces/models/INews";
-import { ReactIcons } from "@/utils/icons";
-import { format } from "date-fns";
-import { enUS, ptBR } from "date-fns/locale";
+
+import DateCategory from "../../../components/DateCategory";
 
 export default function NewContent({ news }: { news: INews }) {
   return (
@@ -21,19 +19,10 @@ export default function NewContent({ news }: { news: INews }) {
         className="rounded-xl"
       ></div>
       <div className="flex items-center gap-3 flex-wrap  border-b pb-4 border-slate-300 dark:border-slate-700/60">
-        <h1 className="text-base font-bold dark:text-yellow-500 text-yellow-600">
-          {news.category?.name}
-        </h1>
-        <h4 className="flex items-center gap-2 dark:text-slate-300">
-          <ReactIcons.Hi2Icon.HiCalendar size={15} />
-          {format(
-            news.created_at,
-            langByCookies === "pt"
-              ? "d 'de' MMMM 'às' HH:mm"
-              : "d MMMM 'at' HH:mm",
-            { locale: langByCookies === "pt" ? ptBR : enUS }
-          )}
-        </h4>
+        <DateCategory
+          category_name={news?.category ? news.category.name : "-------"}
+          date={news.created_at}
+        />
       </div>
       <div
         className="dark:text-slate-300 text-lg"
