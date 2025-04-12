@@ -62,7 +62,7 @@ export default function ProductList({ transfers }: { transfers: ITransfer[] }) {
               key={i}
               className="p-4 items-center grid grid-cols-10 w-full cursor-pointer hover:bg-slate-100 rounded-lg dark:hover:bg-slate-700/50"
             >
-              <h4 className="text-sm dark:text-white col-span-3 pr-4">
+              <h4 className="text-sm dark:text-white col-span-3 pr-7">
                 {prod.payment.ticket?.event_ticket?.event.title}
               </h4>
 
