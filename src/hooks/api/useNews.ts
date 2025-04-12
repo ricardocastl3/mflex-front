@@ -21,6 +21,8 @@ export default function useNews() {
         },
       });
 
+      if (resp.data.news.length <= 0) setHasMoreNews(false);
+
       setAllNews(resp.data.news);
       setIsLoadingAllNews(false);
     } catch (err) {

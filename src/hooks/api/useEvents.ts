@@ -21,6 +21,8 @@ export default function useEvents({ route }: { route: "app" | "public" }) {
         },
       });
 
+      if (resp.data.events.length <= 0) setHasMoreEvents(false);
+
       setAllEvents(resp.data.events);
       setIsLoadingAllEvents(false);
     } catch (err) {

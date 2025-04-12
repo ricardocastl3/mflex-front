@@ -21,6 +21,7 @@ export default function usePodcasts() {
         },
       });
 
+      if (resp.data.podcasts.length <= 0) setHasMorePodcasts(false);
       setAllPodcasts(resp.data.podcasts);
       setIsLoadingAllPodcasts(false);
     } catch (err) {
