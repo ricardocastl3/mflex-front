@@ -76,7 +76,9 @@ export default function EventAppPage() {
           </AuSoftUI.UI.Button>
           <AuSoftUI.UI.Button
             size={"sm"}
-            onClick={() => handleOpenModal("add-event")}
+            onClick={() => {
+              handleSelectEvent(undefined), handleOpenModal("add-event");
+            }}
             className="rounded-full p-3"
             variant={"primary"}
           >
