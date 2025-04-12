@@ -131,7 +131,7 @@ export default function PodFlexContainer() {
                 action_en=""
                 action_pt=""
                 action_url=""
-                description_en="Mo available podcasts at moment"
+                description_en="No available podcasts at moment"
                 description_pt="Sem Podcasts disponíveis de momento"
                 title_en="No PodCasts"
                 title_pt="Sem PodCasts"
