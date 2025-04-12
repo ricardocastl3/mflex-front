@@ -37,7 +37,7 @@ export default function TransactionDashboard({
   }, [isLoading, transactions]);
 
   return (
-    <div className="pt-4 w-full">
+    <div className="w-full">
       <div className="grid md:grid-cols-4 grid-cols-4 md:gap-4 gap-2">
         {isLoading && (
           <>
