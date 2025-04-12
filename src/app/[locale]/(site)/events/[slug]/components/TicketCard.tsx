@@ -49,10 +49,7 @@ export default function TicketCard({ ticket }: { ticket: IEventTicket }) {
   }, [quantity]);
 
   return (
-    <div
-      id="tickets"
-      className="md:p-8 p-5 flex flex-col gap-2 bg-slate-300/30 rounded-lg dark:bg-ausoft-slate-950"
-    >
+    <div className="md:p-8 p-5 flex flex-col gap-2 bg-slate-300/30 rounded-lg dark:bg-ausoft-slate-950">
       <div className="flex items-center justify-between flex-wrap">
         <h1 className="md:text-xl text-lg dark:text-white">{ticket.name}</h1>
         <h1 className="md:text-xl text-lg font-bold dark:text-white">{`${CurrencyServices.decimal(
