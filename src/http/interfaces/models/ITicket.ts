@@ -1,5 +1,5 @@
 import { IUserResponse } from "../responses/IUserResponse";
-import { IEventTicket } from "./EventTicket";
+import { IEventTicket } from "./IEventTicket";
 import { IEvent } from "./IEvent";
 
 export interface ITicket {

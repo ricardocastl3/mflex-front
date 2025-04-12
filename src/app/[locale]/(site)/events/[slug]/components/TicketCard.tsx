@@ -1,5 +1,5 @@
 import { AuSoftUI } from "@/@components/(ausoft)";
-import { IEventTicket } from "@/http/interfaces/models/EventTicket";
+import { IEventTicket } from "@/http/interfaces/models/IEventTicket";
 import { ReactIcons } from "@/utils/icons";
 import { useEffect, useState } from "react";
 import { useAuth } from "@/providers/auth/AuthProvider";

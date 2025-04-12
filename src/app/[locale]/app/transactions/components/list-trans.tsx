@@ -63,7 +63,7 @@ export default function ListTransactions({
                 />
               </div>
 
-              <h4 className="dark:text-green-400 w-fit rounded-full text-green-700 text-sm text-start px-2 pt-1 bg-green-100 dark:bg-green-800/40">
+              <h4 className="dark:text-green-400 w-fit rounded-full text-green-700 text-sm text-start px-2 py-0.5 bg-green-100 dark:bg-green-800/40">
                 {CurrencyServices.formatWithCurrencyValue(
                   Number(transaction.amount),
                   "AOA"

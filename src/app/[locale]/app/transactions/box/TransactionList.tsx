@@ -126,7 +126,7 @@ export default function TransactionList({
               setTransactionStatus(e.target.value);
             }}
             weight={"sm"}
-            className="h-[40px] md:w-[220px] w-full px-[15px] md:text-sm text-[0.85rem] font-bold"
+            className=" md:w-[220px] w-full px-[15px] md:text-sm text-[0.85rem] font-bold"
           >
             <option value={"all"} className="dark:bg-ausoft-slate-950">
               <CTranslateTo eng="All" pt="Todas" />
@@ -149,7 +149,7 @@ export default function TransactionList({
               setTransactionMethod(e.target.value);
             }}
             weight={"sm"}
-            className="h-[40px] md:w-[220px] w-full px-[15px] md:text-sm text-[0.85rem] font-bold"
+            className=" md:w-[220px] w-full px-[15px] md:text-sm text-[0.85rem] font-bold"
           >
             <option value={"all"} className="dark:bg-ausoft-slate-950">
               <CTranslateTo eng="All" pt="Todas" />

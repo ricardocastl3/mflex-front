@@ -1,4 +1,4 @@
-import { IEventTicket } from "./EventTicket";
+import { IEventTicket } from "./IEventTicket";
 import { ICategory } from "./ICategory";
 
 export interface IEvent {

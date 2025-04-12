@@ -9,7 +9,7 @@ import { useModal } from "@/providers/app/ModalProvider";
 import { useEventProvider } from "@/providers/features/EventProvider";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { useEventTicketProvider } from "@/providers/features/EventTicketProvider";
-import { IEventTicket } from "@/http/interfaces/models/EventTicket";
+import { IEventTicket } from "@/http/interfaces/models/IEventTicket";
 import { useEffect, useState } from "react";
 
 export default function ListTicketModal() {

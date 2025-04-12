@@ -1,4 +1,4 @@
-import { IEventTicket } from "@/http/interfaces/models/EventTicket";
+import { IEventTicket } from "@/http/interfaces/models/IEventTicket";
 import { ReactIcons } from "@/utils/icons";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";

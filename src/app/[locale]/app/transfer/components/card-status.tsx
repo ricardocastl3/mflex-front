@@ -27,7 +27,7 @@ export default function CardStatus({ status }: { status: string }) {
                 <CTranslateTo eng="Failed" pt="Falhou" />
               )}
               {window.innerWidth < 765 && (
-                <CTranslateTo eng="Unable to send" pt="Falha no envio" />
+                <CTranslateTo eng="Failed" pt="Falhou" />
               )}
             </>
           )}

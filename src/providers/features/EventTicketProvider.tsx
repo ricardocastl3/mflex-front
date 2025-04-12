@@ -1,6 +1,6 @@
 "use client";
 
-import { IEventTicket } from "@/http/interfaces/models/EventTicket";
+import { IEventTicket } from "@/http/interfaces/models/IEventTicket";
 import { createContext, ReactNode, useContext, useState } from "react";
 
 interface IEventTicketProviderProps {

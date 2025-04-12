@@ -1,6 +1,6 @@
 import { ISearchDataField } from "@/@components/(system)/ASearch/SearchDataField";
 import { internalApi } from "@/http/axios/api";
-import { IEventTicket } from "@/http/interfaces/models/EventTicket";
+import { IEventTicket } from "@/http/interfaces/models/IEventTicket";
 import { useCallback, useEffect, useState } from "react";
 
 export default function useEventTickets() {
