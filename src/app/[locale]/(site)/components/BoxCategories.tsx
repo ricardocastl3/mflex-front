@@ -64,7 +64,7 @@ export default function BoxCategories({
                         : "hover:bg-yellow-300 dark:hover:bg-yellow-500 border border-slate-300 dark:border-slate-800"
                     }  flex flex-col gap-4 p-4 rounded-full `}
                   >
-                    <ReactIcons.VSCIcon.VscAzure
+                    <ReactIcons.VSCIcon.VscAzureDevops
                       size={18}
                       className="dark:text-white"
                     />

@@ -8,6 +8,8 @@ import { langByCookies } from "@/http/axios/api";
 import { useModal } from "@/providers/app/ModalProvider";
 import { useCheckoutProvider } from "@/providers/app/CheckoutProvider";
 import { useEventTicketProvider } from "@/providers/features/EventTicketProvider";
+import { setCookie } from "cookies-next";
+import { appConfigs, ECOOKIES } from "@/utils/enums";
 
 import CurrencyServices from "@/services/CurrencyServices";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
@@ -26,6 +28,9 @@ export default function TicketCard({ ticket }: { ticket: IEventTicket }) {
 
   function handlePurchaseTicket() {
     if (!userLogged) {
+      setCookie(ECOOKIES.AS_CHECKOUT_REDIRECT, ticket.event_id, {
+        domain: appConfigs.domain,
+      });
       router.push(`/${langByCookies}/sign-in`);
     } else {
       handleSelectCustomerBuyed({
@@ -44,7 +49,10 @@ export default function TicketCard({ ticket }: { ticket: IEventTicket }) {
   }, [quantity]);
 
   return (
-    <div className="md:p-8 p-5 flex flex-col gap-2 bg-slate-300/30 rounded-lg dark:bg-ausoft-slate-950">
+    <div
+      id="tickets"
+      className="md:p-8 p-5 flex flex-col gap-2 bg-slate-300/30 rounded-lg dark:bg-ausoft-slate-950"
+    >
       <div className="flex items-center justify-between flex-wrap">
         <h1 className="md:text-xl text-lg dark:text-white">{ticket.name}</h1>
         <h1 className="md:text-xl text-lg font-bold dark:text-white">{`${CurrencyServices.decimal(

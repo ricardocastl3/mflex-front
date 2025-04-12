@@ -7,6 +7,7 @@ export interface IEventTicket {
   name: string;
   description: string;
   status: string;
+  event_id: string;
   tickets: ITicket[];
   created_at: Date;
   event: IEvent;

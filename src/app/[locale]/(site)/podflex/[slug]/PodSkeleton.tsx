@@ -1,7 +1,7 @@
 import React from "react";
 import { BaseBox } from "@/@components/(box)/BaseBox";
 
-export default function EventSkeleton() {
+export default function PodSkeleton() {
   return (
     <>
       <div className="md:mt-8 mt-4 flex flex-col dark:bg-ausoft-slate-950">

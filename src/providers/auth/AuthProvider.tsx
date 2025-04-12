@@ -1,6 +1,6 @@
 "use client";
 
-import { ECOOKIES } from "@/utils/enums";
+import { appConfigs, ECOOKIES } from "@/utils/enums";
 import React, {
   createContext,
   useCallback,
@@ -10,7 +10,7 @@ import React, {
 } from "react";
 
 import { IUserResponse } from "@/http/interfaces/responses/IUserResponse";
-import { hasCookie } from "cookies-next";
+import { getCookie, hasCookie, setCookie } from "cookies-next";
 import { internalApi, langByCookies } from "@/http/axios/api";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -78,6 +78,20 @@ export default function AuthProvider({
           window.location.href = `/${langByCookies}/confirm-account`;
           return;
         }
+      }
+
+      const getCheckout = getCookie(ECOOKIES.AS_CHECKOUT_REDIRECT);
+      if (getCheckout) {
+        setCookie(ECOOKIES.AS_CHECKOUT_REDIRECT, "", {
+          domain: appConfigs.domain,
+          expires: new Date(0),
+          maxAge: 0,
+        });
+        const resp = await internalApi.get("/events/" + getCheckout);
+        setUserLogged(user);
+        setIsLoadingUserData(false);
+        router.push(`/${langByCookies}/events/${resp.data.event.slug}`);
+        return;
       }
 
       if (

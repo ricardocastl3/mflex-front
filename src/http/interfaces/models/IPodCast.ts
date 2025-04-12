@@ -8,10 +8,11 @@ export interface IPodcast {
   duration: string;
   thumbnail: string;
   source: string;
-  available:boolean
+  available: boolean;
   url: string;
   slug: string;
   started_at: Date;
+  category_id: string;
   category?: ICategory;
   podcaster: Omit<IPodcastAuthor, "created_at" | "id">;
   created_at: Date;

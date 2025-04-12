@@ -12,6 +12,7 @@ import { IPodcast } from "@/http/interfaces/models/IPodCast";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import Image from "next/image";
 import Link from "next/link";
+import { PiDivide } from "react-icons/pi";
 
 export default function PodFlexCard({
   podcast,
@@ -31,9 +32,9 @@ export default function PodFlexCard({
     >
       <Link
         href={`/${langByCookies}/podflex/${podcast.slug}`}
-        className="flex flex-col gap-3 md:hover:scale-[1.03] scale-100 transition-all"
+        className="flex flex-col md:hover:scale-[1.03] scale-100 transition-all"
       >
-        <BaseBox
+        <div
           onMouseEnter={() => setShowImageFooter(true)}
           onMouseLeave={() => setShowImageFooter(false)}
           style={{
@@ -45,14 +46,14 @@ export default function PodFlexCard({
             backgroundImage: `url(${podcast.thumbnail})`,
             backgroundRepeat: "no-repeat",
           }}
-          className="flex  flex-col gap-2  justify-between"
+          className="flex rounded-t-xl flex-col gap-2 justify-between"
         >
           <div></div>
           {(showImageFooter || window.innerWidth <= 765) && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="p-4 bg-black/50 rounded-b-xl"
+              className="p-4 bg-black/50"
             >
               <div className="flex items-center gap-2">
                 <ReactIcons.AiICon.AiFillPlaySquare
@@ -73,62 +74,77 @@ export default function PodFlexCard({
               </div>
             </motion.div>
           )}
-        </BaseBox>
-        <div className="flex flex-col gap-2">
-          <h4 className="font-bold text-xl dark:text-white">{podcast.title}</h4>
         </div>
-        <div className="flex items-center gap-2">
-          {podcast.available && (
-            <div className="flex items-center gap-2 text-green-500">
-              <ReactIcons.AiICon.AiFillCiCircle className="" size={18} />
-              <h4 className="text-sm">
-                <CTranslateTo eng="Available" pt="Disponível" />
-              </h4>
-            </div>
-          )}
+        <div className="dark:bg-ausoft-slate-900/50 bg-white rounded-b-xl flex flex-col gap-3 md:p-3 p-2.5">
+          <div className="flex flex-col gap-2">
+            <h4 className="font-bold text-lg dark:text-white">
+              {podcast.title}
+            </h4>
+          </div>
+          <div className="flex items-center gap-2 flex-wrap">
+            {podcast.available && (
+              <div className="flex items-center gap-2 text-green-500">
+                <ReactIcons.AiICon.AiFillCiCircle className="" size={18} />
+                <h4 className="text-sm">
+                  <CTranslateTo eng="Available" pt="Disponível" />
+                </h4>
+              </div>
+            )}
 
-          {!podcast.available && (
-            <div className="flex items-center gap-2 text-red-500">
+            {!podcast.available && (
+              <div className="flex items-center gap-2 text-red-500">
+                <ReactIcons.AiICon.AiFillCiCircle className="" size={18} />
+                <h4 className="text-sm">
+                  <CTranslateTo eng="Unavailable" pt="Indisponível" />
+                </h4>
+              </div>
+            )}
+            {podcast.category?.name == "PodFlex" && (
+              <div className="flex items-center gap-2 text-yellow-500">
+                <ReactIcons.AiICon.AiFillCiCircle className="" size={18} />
+                <h4 className="text-sm">
+                  <CTranslateTo
+                    eng="Exclusive PodFlex"
+                    pt="Exclusivo PodFlex"
+                  />
+                </h4>
+              </div>
+            )}
+            {podcast.category?.name != "PodFlex" && (
+              <div className="flex items-center gap-2 text-violet-500">
+                <ReactIcons.AiICon.AiFillCiCircle className="" size={18} />
+                <h4 className="text-sm">
+                  <CTranslateTo eng="Trends" pt="Destaque" />
+                </h4>
+              </div>
+            )}
+
+            <div className="flex items-center gap-2 text-violet-500">
               <ReactIcons.AiICon.AiFillCiCircle className="" size={18} />
-              <h4 className="text-sm">
-                <CTranslateTo eng="Unavailable" pt="Indisponível" />
-              </h4>
+              <h4 className="text-sm">{podcast?.category?.name}</h4>
             </div>
-          )}
-          {podcast.category?.name == "PodFlex" && (
-            <div className="flex items-center gap-2 text-yellow-500">
-              <ReactIcons.AiICon.AiFillCiCircle className="" size={18} />
-              <h4 className="text-sm">
-                <CTranslateTo eng="Exclusive PodFlex" pt="Exclusivo PodFlex" />
-              </h4>
+          </div>
+          <div className="flex items-center gap-4 p-2 pt-3 border-t border-slate-300 dark:border-slate-800">
+            <div
+              style={{
+                backgroundImage: `url(${podcast.podcaster.photo})`,
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+                backgroundSize: "contain",
+                objectFit: "cover",
+                height: "48px",
+                width: "48px",
+              }}
+              className="rounded-full bg-yellow-500"
+            ></div>
+            <div className="flex-1 flex flex-col gap-1 ">
+              <h1 className="text-sm dark:text-white">
+                {podcast.podcaster.name}
+              </h1>
+              <h2 className="text-[0.7rem] dark:text-red-400 w-fit font-bold text-red-500 px-2 py-0.5 rounded-full bg-red-200 dark:bg-red-900/30">
+                {podcast.source}
+              </h2>
             </div>
-          )}
-          {podcast.category?.name != "PodFlex" && (
-            <div className="flex items-center gap-2 text-blue-500">
-              <ReactIcons.AiICon.AiFillCiCircle className="" size={18} />
-              <h4 className="text-sm">
-                <CTranslateTo eng="Trends" pt="Destaque" />
-              </h4>
-            </div>
-          )}
-        </div>
-        <div className="flex items-center gap-2 dark:bg-slate-800/30 rounded-xl p-2 bg-white">
-          <Image
-            alt="podcasts"
-            className="rounded-full"
-            width={50}
-            height={20}
-            src={
-              "https://images.pexels.com/photos/15858821/pexels-photo-15858821/free-photo-of-cidade-meio-urbano-moda-tendencia.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            }
-          />
-          <div className="flex-1 flex flex-col gap-1 pt-2 ">
-            <h1 className="text-sm dark:text-white">
-              {podcast.podcaster.name}
-            </h1>
-            <h2 className="text-[0.8rem] dark:text-red-400 w-fit font-bold text-red-500 px-2 py-0.5 rounded-full bg-red-200 dark:bg-red-900/30">
-              {podcast.source}
-            </h2>
           </div>
         </div>
       </Link>

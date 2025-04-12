@@ -5,7 +5,7 @@ export default function NewSkeleton() {
   return (
     <>
       <div className="md:mt-8 mt-4 flex flex-col dark:bg-ausoft-slate-950">
-        <div className="md:mx-10 mx-5 flex md:flex-row flex-col gap-8">
+        <div className="md:mx-10 mx-5 flex md:flex-row flex-col gap-8 md:pb-8 pb-4">
           <BaseBox className="flex-1 p-8 dark:bg-ausoft-slate-900 animate-pulse"></BaseBox>
           <div className="flex flex-col gap-4 md:w-[20rem] w-full">
             {Array.from({ length: 3 }).map((_, i) => {

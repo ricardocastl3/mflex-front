@@ -1,6 +1,6 @@
 import { langByCookies } from "@/http/axios/api";
-import { IEvent } from "@/http/interfaces/models/IEvent";
-import { NextResponse } from "next/server";
+import { IPodcast } from "@/http/interfaces/models/IPodCast";
+export { default } from ".";
 
 import axios from "axios";
 
@@ -10,11 +10,13 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   try {
-    const slug = (await params).slug;
-
-    const resp = await axios.get<{ event: IEvent }>(
-      process.env.MFLEX_SERVER_URL + "/api/v1" + "/events/" + slug,
+    const pars = await params;
+    const resp = await axios.get<{ podcast: IPodcast }>(
+      process.env.MFLEX_SERVER_URL + "/api/v1" + "/podcasts",
       {
+        params: {
+          slug: pars.slug,
+        },
         headers: {
           "accept-language": langByCookies,
           origin: process.env.MFLEX_NEXT_PUBLIC_URL,
@@ -23,20 +25,15 @@ export async function generateMetadata({
       }
     );
 
-    const findEvent = resp.data.event;
+    const findPodflex = resp.data.podcast;
 
     return {
-      title: findEvent.title + " 🟡 | Marca Flex",
-      description: "",
+      title: findPodflex.title + " 🎙️ | Marca Flex",
+      description: findPodflex.description,
     };
   } catch (err) {
-    console.log(err);
-
     return {
       title: "404",
-      description: "404",
     };
   }
 }
-
-export { default } from ".";

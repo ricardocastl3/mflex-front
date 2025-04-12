@@ -114,7 +114,7 @@ export default function PodFlexContainer() {
                   return (
                     <div
                       key={i}
-                      className="p-8 h-[40vh] rounded-xl bg-slate-300/40 dark:bg-ausoft-slate-900 animate-pulse"
+                      className="p-8 h-[50vh] rounded-xl bg-slate-300/40 dark:bg-ausoft-slate-900 animate-pulse"
                     ></div>
                   );
                 })}

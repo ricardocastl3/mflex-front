@@ -123,10 +123,10 @@ export default function NewsContainer() {
               action_en=""
               action_pt=""
               action_url=""
-              description_en="Mo available podcasts at moment"
-              description_pt="Sem Podcasts disponíveis de momento"
-              title_en="No PodCasts"
-              title_pt="Sem PodCasts"
+              description_en="Mo available news at moment"
+              description_pt="Sem novidades disponíveis de momento"
+              title_en="No News"
+              title_pt="Sem Novidades"
               hasAction={false}
             />
           </div>

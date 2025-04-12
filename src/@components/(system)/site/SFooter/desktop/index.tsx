@@ -10,7 +10,7 @@ export default function SFooter() {
   const { segmentedLayout } = useAppProvider();
   return (
     <div>
-      <BaseBox className="md:pl-28 pl-8 md:pr-8 pr-4  pt-16 pb-28 rounded-none dark:bg-ausoft-slate-950">
+      <BaseBox className="md:pl-28 pl-6 md:pr-8 pr-4  pt-16 pb-28 rounded-none dark:bg-ausoft-slate-950">
         <div className="grid md:grid-cols-4 grid-cols-1 gap-4">
           <div className="flex items-start gap-2 md:col-span-2 col-span-1">
             <div className="flex flex-col gap-2 md:w-[30vw] w-[90vw]">

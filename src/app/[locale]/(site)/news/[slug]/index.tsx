@@ -1,26 +1,52 @@
 "use client";
 
 import { INews } from "@/http/interfaces/models/INews";
-import { useCallback, useState } from "react";
+import { use, useCallback, useEffect, useState } from "react";
 import { ReactIcons } from "@/utils/icons";
+import { internalApi, langByCookies } from "@/http/axios/api";
 
 import NewSkeleton from "./NewSkeleton";
 import HeroNews from "../components/Hero";
+import useNews from "@/hooks/api/useNews";
+import NewsRelated from "./components/NewsRelated";
+import NewsOthers from "./components/NewsOthers";
+import NewContent from "./components/NewContent";
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
 
 export default function PreviewNew({ params }: Props) {
+  const pars = use(params);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedNews, setSelectedNews] = useState<INews | undefined>();
 
-  const fetchNews = useCallback(() => {
+  const { isLoadingAllNews, allNews } = useNews();
+
+  const fetchNews = useCallback(async () => {
     try {
-    } catch (err) {}
+      const resp = await internalApi.get("/news", {
+        params: {
+          slug: pars.slug,
+        },
+      });
+
+      if (!resp.data.news.available) {
+        window.location.href = `/${langByCookies}/news`;
+        return;
+      }
+      setSelectedNews(resp.data.news);
+      setIsLoading(false);
+    } catch (err) {
+      window.location.href = `/${langByCookies}/news`;
+    }
   }, []);
 
-  if (isLoading) {
+  useEffect(() => {
+    fetchNews();
+  }, []);
+
+  if (isLoading || isLoadingAllNews) {
     return (
       <div className="flex flex-col">
         <div className="relative">
@@ -37,10 +63,24 @@ export default function PreviewNew({ params }: Props) {
     );
   }
 
-  return (
-    <div className="flex flex-col">
-      <HeroNews />
-      <div>OIIIII</div>
-    </div>
-  );
+  if (selectedNews && !isLoading && !isLoadingAllNews)
+    return (
+      <div className="flex flex-col gap-8">
+        <div className="relative">
+          <HeroNews />
+          <div className="z-20 absolute inset-0 justify-center flex items-center md:px-8 p-4 text-center">
+            <h1 className="md:text-[2rem] text-2xl text-white">
+              {selectedNews.title}
+            </h1>
+          </div>
+        </div>
+
+        <div className="flex md:flex-row flex-col gap-8 md:px-[3rem] px-6">
+          <NewContent news={selectedNews} />
+          <NewsRelated newElement={selectedNews} news={allNews} />
+        </div>
+
+        <NewsOthers newElement={selectedNews} news={allNews} />
+      </div>
+    );
 }
