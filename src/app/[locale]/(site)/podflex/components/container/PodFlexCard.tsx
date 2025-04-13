@@ -64,7 +64,7 @@ export default function PodFlexCard({
                 <h4 className="flex items-center gap-2 text-white">
                   <ReactIcons.Hi2Icon.HiCalendar size={15} />
                   {format(
-                    podcast.created_at,
+                    podcast.started_at,
                     langByCookies === "pt"
                       ? "d 'de' MMMM 'às' HH:mm"
                       : "d MMMM 'at' HH:mm",
