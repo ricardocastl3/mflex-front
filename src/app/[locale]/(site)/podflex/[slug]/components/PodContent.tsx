@@ -11,12 +11,17 @@ export default function PodContent({ podflex }: { podflex: IPodcast }) {
       <div className="w-full rounded-xl">
         <YouTubeEmbed
           videoid={podflex.url}
-          style="width: 100%; height: 100%; border-radius: 10px;"
+          style={
+            window.innerWidth > 765
+              ? "width: 100%; height: 100%; border-radius: 10px;"
+              : "width: 100%; height: 100%;"
+          }
         />
       </div>
       <div className="flex flex-col gap-4 md:p-0 p-4">
         <div className="flex items-center gap-3 flex-wrap border-b pb-4 border-slate-300 dark:border-slate-700/60">
           <DateCategory
+            right
             category_name={
               podflex?.category ? podflex.category.name : "-------"
             }
