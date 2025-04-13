@@ -204,7 +204,7 @@ export default function EventPage({
                 </h1>
 
                 <div className="flex flex-col gap-2">
-                  <h2 className="dark:text-slate-300 font-bold text-base">
+                  <h2 className="dark:text-white font-bold text-base">
                     <CTranslateTo eng="Name" pt="Nome" />
                   </h2>
                   <h2 className="dark:text-slate-300 text-base">
@@ -215,7 +215,7 @@ export default function EventPage({
                 {selectedEvent.organizer.email &&
                   selectedEvent.organizer.email != "" && (
                     <div className="flex flex-col gap-2">
-                      <h2 className="dark:text-slate-300 font-bold text-base">
+                      <h2 className="dark:text-white font-bold text-base">
                         <CTranslateTo eng="Email" pt="Email" />
                       </h2>
                       <h2 className="dark:text-slate-300 text-base">
