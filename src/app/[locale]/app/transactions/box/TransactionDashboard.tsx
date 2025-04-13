@@ -45,7 +45,7 @@ export default function TransactionDashboard({
               return (
                 <div
                   key={i}
-                  className="rounded-xl p-16 bg-slate-300 dark:bg-slate-700/50 animate-pulse"
+                  className="rounded-xl md:p-16 p-5 bg-slate-300 dark:bg-slate-700/50 animate-pulse"
                 ></div>
               );
             })}
