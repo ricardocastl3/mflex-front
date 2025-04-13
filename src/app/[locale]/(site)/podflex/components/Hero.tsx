@@ -4,7 +4,7 @@ export default function HeroPodFlex({ route }: { route: string }) {
   return (
     <div
       className={`${
-        route == "slug" ? "md:h-[55vh] h-[8vh]" : "md:h-[55vh] h-[35vh]"
+        route == "slug" ? "md:h-[55vh] h-[9vh]" : "md:h-[55vh] h-[35vh]"
       }  w-full relative`}
     >
       <div className="absolute z-20 inset-0 bg-black/70"></div>
