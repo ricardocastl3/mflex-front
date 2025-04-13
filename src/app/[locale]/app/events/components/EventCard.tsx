@@ -9,6 +9,7 @@ import { internalApi } from "@/http/axios/api";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
+import EventStatus from "./EventStatus";
 
 export default function EventCard({ event }: { event: IEvent }) {
   const {
@@ -94,18 +95,7 @@ export default function EventCard({ event }: { event: IEvent }) {
       >
         <div className="p-4 flex flex-col gap-1 bg-black/80 rounded-t-xl h-fit">
           <div className="flex items-center gap-4">
-            {event.status == "pending" && (
-              <h1 className="text-yellow-400 flex items-center gap-2 text-sm">
-                <ReactIcons.HiIcon.HiTicket size={18} />
-                <CTranslateTo eng="Pending Event" pt="Evento Pendente" />
-              </h1>
-            )}
-            {event.status == "approved" && (
-              <h1 className="text-green-400 flex items-center gap-2 text-sm">
-                <ReactIcons.HiIcon.HiTicket size={18} />
-                <CTranslateTo eng="Approved Event" pt="Evento Aprovado" />
-              </h1>
-            )}
+            <EventStatus status={event.status} />
           </div>
           <div className="flex items-center gap-2">
             <h1 className="flex items-start text-sm gap-2 text-white">

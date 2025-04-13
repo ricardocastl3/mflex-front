@@ -175,6 +175,20 @@ export default function AddEventModal() {
           </button>
         </div>
         <div className="p-5 flex flex-col gap-4 h-[60vh] overflow-y-auto">
+          {selectedEvent?.rejected_reason &&
+            selectedEvent.rejected_reason != "" && (
+              <div
+                className={`${
+                  selectedEvent.status == "rejected"
+                    ? " bg-red-200 dark:bg-red-900/30 text-red-800 dark:text-red-400"
+                    : " bg-yellow-200 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-400"
+                } p-2 rounded-xl flex items-start text-base gap-2 animate-pulse`}
+              >
+                <ReactIcons.AiICon.AiFillWarning size={20} />
+                <h1>{selectedEvent.rejected_reason}</h1>
+              </div>
+            )}
+
           <div className="flex flex-col gap-4 items-center justify-center">
             <div className="rounded-xl w-fit">
               <div

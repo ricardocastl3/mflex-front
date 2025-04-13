@@ -14,6 +14,7 @@ export interface IEvent {
   reference_address: string;
   created_at: Date;
   category: ICategory;
+  rejected_reason?: string;
   organizer: {
     email?: string;
     first_name: string;
