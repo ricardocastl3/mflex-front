@@ -10,7 +10,7 @@ export default function PodContent({ podflex }: { podflex: IPodcast }) {
     <BaseBox className="flex-1 md:p-8 p-0 md:mb-8 mb-0 md:rounded-xl rounded-none flex flex-col gap-4 dark:bg-ausoft-slate-900 ">
       <div className="w-full rounded-xl">
         <YouTubeEmbed
-          videoid="SEmT64SQITw"
+          videoid={podflex.url}
           style="width: 100%; height: 100%; border-radius: 10px;"
         />
       </div>
