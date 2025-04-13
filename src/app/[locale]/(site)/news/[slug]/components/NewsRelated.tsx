@@ -14,7 +14,7 @@ export default function NewsRelated({
   news: INews[];
 }) {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 md:pb-12 pb-2">
       <BaseBox className="p-4 dark:bg-ausoft-slate-900 dark:text-white font-bold text-lg">
         <CTranslateTo eng="Related News" pt="Novidades Relacionadas" />
       </BaseBox>

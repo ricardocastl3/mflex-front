@@ -85,7 +85,7 @@ export default function PodFlexCard({
             {podcast.category?.name == "PodFlex" && (
               <div className="flex items-center gap-2 text-yellow-500">
                 <ReactIcons.AiICon.AiFillCiCircle className="" size={18} />
-                <h4 className="text-[0.98rem]">
+                <h4 className="text-[0.95rem]">
                   <CTranslateTo
                     eng="Exclusive PodFlex"
                     pt="Exclusivo PodFlex"
@@ -96,7 +96,7 @@ export default function PodFlexCard({
             {podcast.category?.name != "PodFlex" && (
               <div className="flex items-center gap-2 text-violet-500">
                 <ReactIcons.AiICon.AiFillCiCircle className="" size={18} />
-                <h4 className="text-[0.98rem]">
+                <h4 className="text-[0.95rem]">
                   <CTranslateTo eng="Trends" pt="Destaque" />
                 </h4>
               </div>
@@ -104,7 +104,7 @@ export default function PodFlexCard({
 
             <div className="flex items-center gap-2 text-violet-500">
               <ReactIcons.AiICon.AiFillCiCircle className="" size={18} />
-              <h4 className="text-sm">{podcast?.category?.name}</h4>
+              <h4 className="text-[0.95rem]">{podcast?.category?.name}</h4>
             </div>
           </div>
           <div className="flex items-center gap-4 p-2 pt-3 border-t border-slate-300 dark:border-slate-800">
