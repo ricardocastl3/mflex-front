@@ -82,23 +82,6 @@ export default function PodFlexCard({
             </h4>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
-            {podcast.available && (
-              <div className="flex items-center gap-2 text-green-500">
-                <ReactIcons.AiICon.AiFillCiCircle className="" size={18} />
-                <h4 className="text-sm">
-                  <CTranslateTo eng="Available" pt="Disponível" />
-                </h4>
-              </div>
-            )}
-
-            {!podcast.available && (
-              <div className="flex items-center gap-2 text-red-500">
-                <ReactIcons.AiICon.AiFillCiCircle className="" size={18} />
-                <h4 className="text-sm">
-                  <CTranslateTo eng="Unavailable" pt="Indisponível" />
-                </h4>
-              </div>
-            )}
             {podcast.category?.name == "PodFlex" && (
               <div className="flex items-center gap-2 text-yellow-500">
                 <ReactIcons.AiICon.AiFillCiCircle className="" size={18} />
