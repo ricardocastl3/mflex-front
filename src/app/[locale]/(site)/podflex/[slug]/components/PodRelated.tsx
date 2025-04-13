@@ -14,7 +14,7 @@ export default function PodRelated({
   podcasts: IPodcast[];
 }) {
   return (
-    <div className="flex flex-col gap-4 md:px-0 px-5">
+    <div className="flex flex-col gap-4 md:px-0 px-5 md:pb-8 pb-2">
       <BaseBox className="p-4 dark:bg-ausoft-slate-900 dark:text-white font-bold text-lg">
         <CTranslateTo eng="Related PodCasts" pt="PodCasts Relacionados" />
       </BaseBox>
