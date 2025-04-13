@@ -28,7 +28,7 @@ export default function PodContent({ podflex }: { podflex: IPodcast }) {
           </h4>
         </div>
         <div
-          className="dark:text-slate-300 text-lg"
+          className="dark:text-slate-300 text-base"
           dangerouslySetInnerHTML={{ __html: podflex.description }}
         ></div>
       </div>
