@@ -32,6 +32,7 @@ export default function EventAppPage() {
         <h4 className="flex items-center gap-2 font-bold text-xl dark:text-white">
           <ReactIcons.BiIcon.BiSolidCalendarEvent size={18} />
           <CTranslateTo eng="My Events" pt="Meus Eventos" />
+          {` (${allEvents.length})`}
         </h4>
         <div className="flex items-center gap-3">
           <AuSoftUI.UI.TextField.Default

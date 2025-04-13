@@ -17,6 +17,7 @@ export default function TicketPage() {
         <h4 className="flex items-center  gap-2 font-bold text-xl dark:text-white">
           <ReactIcons.Hi2Icon.HiTag size={18} />
           <CTranslateTo eng="My Tickets" pt="Meus Ingressos" />
+          {` (${allTickets.length})`}
         </h4>
         <div>
           <AuSoftUI.UI.TextField.Default
