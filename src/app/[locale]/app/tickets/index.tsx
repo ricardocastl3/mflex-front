@@ -22,7 +22,7 @@ export default function TicketPage() {
           <AuSoftUI.UI.TextField.Default
             weight={"sm"}
             onChange={(e) => handleSeachByName({ name: e.target.value })}
-            className="md:w-[19rem] w-full font-bold border-slate-400"
+            className="md:w-[19rem] w-full font-bold rounded-full border-slate-400"
             placeholder="Ex: Formação Você Rei..."
           />
         </div>

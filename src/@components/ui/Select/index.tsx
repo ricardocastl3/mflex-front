@@ -17,7 +17,7 @@ const selectVariants = cva(
         primary: "border-yellow-300 dark:border-yellow-800",
       },
       weight: {
-        sm: "md:py-2 py-1.5",
+        sm: "md:py-2 py-2",
         md: "py-3.5 text-[0.9rem]",
       },
     },

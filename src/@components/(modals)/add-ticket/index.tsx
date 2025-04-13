@@ -68,11 +68,10 @@ export default function AddTicketModal() {
       if (selectedEventTicket) {
         await internalApi.put("/events/tickets", {
           id: selectedEventTicket.id,
-          name: selectedEventTicket.name,
-          description: selectedEventTicket.description,
-          amount: selectedEventTicket.amount,
+          name: data.name,
+          description: data.description,
+          amount: data.amount,
           status: ticketStatus,
-          event_id: selectedEvent?.id,
         });
       } else {
         await internalApi.post("/events/tickets", {

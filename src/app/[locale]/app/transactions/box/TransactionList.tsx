@@ -86,7 +86,7 @@ export default function TransactionList({
           : "md:min-h-fit min-h-fit md:max-h-fit max-h-full"
       }  pt-4 md:pb-4 pb-4 md:px-2 px-0.5 md:mt-4 mt-4 md:mb-4 mb-4`}
     >
-      <div className="flex md:items-center items-start md:flex-row flex-col gap-4 py-1 mb-4 px-4 justify-between border-b border-slate-200 dark:border-slate-800">
+      <div className="flex md:items-center items-start md:flex-row flex-col gap-4 pb-4 mb-4 px-4 justify-between border-b border-slate-200 dark:border-slate-800">
         <h4 className="md:text-lg text-base font-bold dark:text-white">
           {local == "merchant" && (
             <CTranslateTo
