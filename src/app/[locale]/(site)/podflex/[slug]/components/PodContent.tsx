@@ -7,7 +7,7 @@ import DateCategory from "../../../components/DateCategory";
 
 export default function PodContent({ podflex }: { podflex: IPodcast }) {
   return (
-    <BaseBox className="flex-1 md:p-8 p-0 md:mb-8 mb-0 md:rounded-xl rounded-none flex flex-col gap-4 dark:bg-ausoft-slate-900 ">
+    <BaseBox className="flex-1 md:p-8 p-0 md:mb-8 mb-0 md:rounded-xl rounded-none flex flex-col md:gap-4 gap-2 dark:bg-ausoft-slate-900 ">
       <div className="w-full rounded-xl">
         <YouTubeEmbed
           videoid={podflex.url}
