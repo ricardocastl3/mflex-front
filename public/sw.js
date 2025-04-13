@@ -20,30 +20,9 @@ self.addEventListener("push", async (event) => {
         sound: true,
       },
     };
-    /*
-    if (data.sound) {
-      await playSound(data.sound);
-    }*/
+
     await self.registration.showNotification(data.title, options);
   } catch (error) {
     console.error("Erro ao processar push:", error);
   }
 });
-
-/*
-const playSound = async (soundUrl) => {
-  if (!soundUrl) return;
-
-  try {
-    const howl = new howlImport.Howl({ src: [soundUrl], loop: false });
-    howl.play();
-  } catch (error) {
-    console.error("Erro ao carregar ou reproduzir som:", error);
-    throw error;
-  }
-};
-
-self.addEventListener("notificationclick", (event) => {
-  event.notification.close();
-});
-*/
