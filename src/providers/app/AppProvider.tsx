@@ -1,12 +1,7 @@
 "use client";
 
-import {
-  usePathname,
-  useSearchParams,
-  useSelectedLayoutSegment,
-} from "next/navigation";
+import { usePathname, useSelectedLayoutSegment } from "next/navigation";
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { useModal } from "./ModalProvider";
 import CookieServices from "@/services/auth/CookieServices";
 
 export interface IToast {
@@ -25,6 +20,7 @@ interface IAppContext {
   segmentedLayoutByLocalStorage: string;
   openBanner: boolean;
   canCloseSubscribe: boolean;
+  hiddenMobileHeader: boolean;
 
   handleCanCloseSubscribe: (mode: boolean) => void;
   handleOpenBanner: (mode: boolean) => void;
@@ -52,12 +48,11 @@ export default function AppProvider({
   const [openBanner, setOpenBanner] = useState(false);
   const [canCloseSubscribe, setCanCloseSubscribe] = useState(true);
 
+  const [hiddenMobileHeader, setHiddenMobileHeader] = useState(false);
+
   const segmentedLayout = useSelectedLayoutSegment();
   const [segmentedLayoutByLocalStorage, setSegmentedLayoutByLocalStorage] =
     useState("");
-
-  //  Contexts
-  const { handleOpenModal } = useModal();
 
   function handleAddToastOnArray({ ...toast }: IToast) {
     const id = Math.round(Math.PI * new Date().getTime());
@@ -81,12 +76,17 @@ export default function AppProvider({
   }
 
   const path = usePathname();
-  const params = useSearchParams();
 
   useEffect(() => {
     const pathBase = path.split("/")[2];
     setCurrentPageByUrl(pathBase);
     setCurrentAppPageUrl(path.split("/")[3]);
+
+    if (pathBase == "podflex" && path.split("/").length == 4) {
+      setHiddenMobileHeader(true);
+    } else {
+      setHiddenMobileHeader(false);
+    }
 
     const lang = CookieServices.getLocale();
     setSegmentedLayoutByLocalStorage(lang?.toString().toLowerCase()!);
@@ -100,6 +100,7 @@ export default function AppProvider({
         handleOpenBanner,
         canCloseSubscribe,
 
+        hiddenMobileHeader,
         openBanner,
         segmentedLayoutByLocalStorage,
         segmentedLayout,

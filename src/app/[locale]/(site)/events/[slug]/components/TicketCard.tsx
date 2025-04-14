@@ -78,7 +78,7 @@ export default function TicketCard({ ticket }: { ticket: IEventTicket }) {
                     return 1;
                   })
                 }
-                className="md:w-fit w-[4rem] justify-center"
+                className="md:w-fit w-[4rem] md:py-2.5 py-3 justify-center"
                 variant={"primary"}
                 size={"sm"}
               >
@@ -86,15 +86,15 @@ export default function TicketCard({ ticket }: { ticket: IEventTicket }) {
               </AuSoftUI.UI.Button>
               <AuSoftUI.UI.TextField.Default
                 value={quantity}
-                disabled={true}
+                readOnly={true}
                 weight={"sm"}
-                className="md:w-[4rem] font-bold md:text-[0.9rem] py-1.5 dark:text-white text-base w-full text-center"
+                className="md:w-[4rem] font-bold md:text-[0.9rem] md:h-[36px] h-[39px] dark:text-white text-base w-full text-center"
               />
 
               <AuSoftUI.UI.Button
                 onClick={() => setQuantity((state) => state + 1)}
                 size={"sm"}
-                className="md:w-fit w-[4rem] justify-center"
+                className="md:w-fit w-[4rem] md:py-2.5 py-3 justify-center"
                 variant={"primary"}
               >
                 <ReactIcons.BiIcon.BiPlus size={15} />
@@ -105,7 +105,7 @@ export default function TicketCard({ ticket }: { ticket: IEventTicket }) {
             <AuSoftUI.UI.Button
               onClick={() => handlePurchaseTicket()}
               size={"sm"}
-              className="md:w-fit w-full items-center md:py-1.5 py-2"
+              className="md:w-fit w-full text-[0.95rem] items-center md:py-1.5 py-2"
               variant={"primary"}
             >
               <ReactIcons.BiIcon.BiCart size={15} />

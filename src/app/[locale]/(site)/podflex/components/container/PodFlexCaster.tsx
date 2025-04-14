@@ -24,10 +24,10 @@ export default function PodFlexCaster({
       <div className="flex-1 flex flex-col gap-1 ">
         <h1 className="text-sm dark:text-white">{podcaster.name}</h1>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1">
           {allSources.map((sr, i) => {
             return (
-              <>
+              <div key={i}>
                 {sr == "youtube" && (
                   <h2 className="text-[0.7rem] flex items-center gap-2 dark:text-red-400 w-fit font-bold text-red-500 px-2 py-0.5 rounded-full bg-red-200 dark:bg-red-900/30">
                     <ReactIcons.AiICon.AiFillYoutube size={17} />
@@ -46,7 +46,7 @@ export default function PodFlexCaster({
                     Spotify
                   </h2>
                 )}
-              </>
+              </div>
             );
           })}
         </div>
