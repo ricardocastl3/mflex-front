@@ -44,7 +44,7 @@ export default function NewsContainer() {
       const scrollTop = window.scrollY;
       const clientHeight = document.documentElement.clientHeight;
 
-      const height = window.innerWidth > 765 ? 900 : 800;
+      const height = window.innerWidth > 765 ? 1000 : 800;
 
       if (scrollTop + clientHeight >= scrollHeight - height && !isLoading) {
         isLoading = true; // Marcar como carregando
@@ -54,7 +54,7 @@ export default function NewsContainer() {
             name: searchField,
           });
           isLoading = false;
-        }, 1000);
+        }, 500);
       }
     };
 
