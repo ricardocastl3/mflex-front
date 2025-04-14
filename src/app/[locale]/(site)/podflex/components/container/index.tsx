@@ -44,7 +44,7 @@ export default function PodFlexContainer() {
       const scrollTop = window.scrollY;
       const clientHeight = document.documentElement.clientHeight;
 
-      const height = window.innerWidth > 765 ? 400 : 500;
+      const height = window.innerWidth > 765 ? 900 : 800;
 
       if (scrollTop + clientHeight >= scrollHeight - height && !isLoading) {
         isLoading = true; // Marcar como carregando

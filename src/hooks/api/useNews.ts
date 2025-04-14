@@ -17,7 +17,7 @@ export default function useNews() {
       }>(`/news`, {
         params: {
           currentPage: 0,
-          nextPage: 4,
+          nextPage: 3,
         },
       });
 
@@ -66,7 +66,7 @@ export default function useNews() {
           name,
           category_id,
           currentPage: allNews.length,
-          nextPage: 4,
+          nextPage: 3,
         },
       });
 
