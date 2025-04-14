@@ -70,10 +70,12 @@ export default function PreviewNew({ params }: Props) {
       <div className="flex flex-col md:gap-8 gap-0">
         <div className="relative">
           <HeroPodFlex route="slug" />
-          <div className="md:flex hidden z-20 absolute inset-0 justify-center items-center md:px-32 p-4 text-center">
-            <h1 className="md:text-[2rem] text-2xl text-white">
-              {selectedPodcasts.title}
-            </h1>
+          <div className="md:w-[40vw] w-[90vw]">
+            <div className="md:flex hidden z-20 absolute inset-0 justify-center items-center md:px-8 p-4 text-center">
+              <h1 className="md:text-[2rem] text-2xl text-white">
+                {selectedPodcasts.title}
+              </h1>
+            </div>
           </div>
         </div>
 
