@@ -14,6 +14,6 @@ export interface IPodcast {
   started_at: Date;
   category_id: string;
   category?: ICategory;
-  podcaster: Omit<IPodcastAuthor, "created_at" | "id">;
+  podcaster: IPodcastAuthor;
   created_at: Date;
 }

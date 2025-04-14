@@ -16,7 +16,7 @@ import LinkHeader from "./components/LinkHeader";
 
 export default function SHeader() {
   // Contexts
-  const { segmentedLayout } = useAppProvider();
+  const { segmentedLayout, currentPageByUrl } = useAppProvider();
   const { userLogged, handleRedirectToSign, isLoadingUserData } = useAuth();
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -33,10 +33,12 @@ export default function SHeader() {
   return (
     <div
       className={`
-      fixed flex top-0 inset-x-0 z-30 
+      fixed ${
+        currentPageByUrl && !isScrolled ? "md:flex hidden" : "flex"
+      } flex top-0 inset-x-0 z-30 
       border-b transition-all duration-300
       md:pr-8 pr-5 md:pl-8 pl-4 md:py-3 py-2 
-      justify-between items-center md:gap-4 gap-2
+      justify-between items-center md:gap-4 gap-2 animate-fade
       ${
         isScrolled
           ? "border-slate-200 dark:border-slate-800 bg-slate-50/95 backdrop-blur-md dark:bg-ausoft-slate-900/95"

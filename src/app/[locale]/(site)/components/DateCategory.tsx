@@ -15,7 +15,7 @@ export default function DateCategory({
   return (
     <div className="flex items-center gap-3 flex-wrap">
       {!right && (
-        <h1 className="flex items-center gap-2 text-base font-bold dark:text-yellow-500 text-yellow-600">
+        <h1 className="flex items-center gap-2 text-base dark:text-yellow-500 text-yellow-600">
           <ReactIcons.VSCIcon.VscAzureDevops size={15} />
           {`${category_name}`}
         </h1>
@@ -33,7 +33,7 @@ export default function DateCategory({
       </h4>
 
       {right && (
-        <h1 className="flex items-center gap-2 text-base font-bold dark:text-yellow-500 text-yellow-600">
+        <h1 className="flex items-center gap-2 text-base dark:text-yellow-500 text-yellow-600">
           <ReactIcons.VSCIcon.VscAzureDevops size={15} />
           {`${category_name}`}
         </h1>

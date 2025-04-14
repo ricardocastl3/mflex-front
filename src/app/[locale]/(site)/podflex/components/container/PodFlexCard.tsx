@@ -1,6 +1,5 @@
 "use client";
 
-import { BaseBox } from "@/@components/(box)/BaseBox";
 import { langByCookies } from "@/http/axios/api";
 import { ReactIcons } from "@/utils/icons";
 import { format } from "date-fns";
@@ -10,9 +9,8 @@ import { useState } from "react";
 import { IPodcast } from "@/http/interfaces/models/IPodCast";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import Image from "next/image";
 import Link from "next/link";
-import { PiDivide } from "react-icons/pi";
+import PodFlexCaster from "./PodFlexCaster";
 
 export default function PodFlexCard({
   podcast,
@@ -94,7 +92,7 @@ export default function PodFlexCard({
               </div>
             )}
             {podcast.category?.name != "PodFlex" && (
-              <div className="flex items-center gap-2 text-violet-500">
+              <div className="flex items-center gap-2 dark:text-violet-400 text-violet-500">
                 <ReactIcons.AiICon.AiFillCiCircle className="" size={18} />
                 <h4 className="text-[0.95rem]">
                   <CTranslateTo eng="Trends" pt="Destaque" />
@@ -102,32 +100,13 @@ export default function PodFlexCard({
               </div>
             )}
 
-            <div className="flex items-center gap-2 text-violet-500">
+            <div className="flex items-center gap-2 dark:text-yellow-400 text-yellow-500">
               <ReactIcons.AiICon.AiFillCiCircle className="" size={18} />
               <h4 className="text-[0.95rem]">{podcast?.category?.name}</h4>
             </div>
           </div>
           <div className="flex items-center gap-4 p-2 pt-3 border-t border-slate-300 dark:border-slate-800">
-            <div
-              style={{
-                backgroundImage: `url(${podcast.podcaster.photo})`,
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center",
-                backgroundSize: "contain",
-                objectFit: "cover",
-                height: "48px",
-                width: "48px",
-              }}
-              className="rounded-full bg-yellow-500"
-            ></div>
-            <div className="flex-1 flex flex-col gap-1 ">
-              <h1 className="text-sm dark:text-white">
-                {podcast.podcaster.name}
-              </h1>
-              <h2 className="text-[0.7rem] dark:text-red-400 w-fit font-bold text-red-500 px-2 py-0.5 rounded-full bg-red-200 dark:bg-red-900/30">
-                {podcast.source}
-              </h2>
-            </div>
+            <PodFlexCaster podcaster={podcast.podcaster} />
           </div>
         </div>
       </Link>
