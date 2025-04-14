@@ -63,7 +63,7 @@ export default function EventPage({
             backgroundImage: `url(https://img.freepik.com/free-vector/yellow-color-elegant-wave-style-corporate-banner-design_1055-13670.jpg?t=st=1744311252~exp=1744314852~hmac=abf3be930eff3eb4164247c9059bbc1a558042d88e633b97e50a66058c2e2c9b&w=1380)`,
             backgroundAttachment: "fixed",
           }}
-          className="h-[60vh] relative"
+          className="md:h-[60vh] h-[40vh] relative"
         >
           <div className="z-0 inset-0 bg-black/50 absolute"></div>
           <div className="flex flex-col gap-2 md:px-[2.5rem] px-5 z-10 absolute justify-center h-full w-full ">
