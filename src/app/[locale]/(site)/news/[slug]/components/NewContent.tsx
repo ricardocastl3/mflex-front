@@ -20,7 +20,7 @@ export default function NewContent({ news }: { news: INews }) {
       ></div>
       <div className="flex items-center gap-3 flex-wrap  border-b pb-4 border-slate-300 dark:border-slate-700/60">
         <DateCategory
-          category_name={news?.category ? news.category.name : "-------"}
+          category_name={news?.category ? news.category.name : "no"}
           date={news.created_at}
         />
       </div>

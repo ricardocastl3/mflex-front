@@ -102,7 +102,9 @@ export default function PodFlexCard({
 
             <div className="flex items-center gap-2 dark:text-yellow-400 text-yellow-500">
               <ReactIcons.AiICon.AiFillCiCircle className="" size={18} />
-              <h4 className="text-[0.95rem]">{podcast?.category?.name}</h4>
+              <h4 className="text-[0.95rem]">
+                {podcast?.category ? podcast.category.name : "--------"}
+              </h4>
             </div>
           </div>
           <div className="flex items-center gap-4 p-2 pt-3 border-t border-slate-300 dark:border-slate-800">

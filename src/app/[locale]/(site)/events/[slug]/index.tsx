@@ -154,7 +154,9 @@ export default function EventPage({
                   </div>
 
                   <h2 className="dark:text-slate-300 text-base">
-                    {selectedEvent.category.name}
+                    {selectedEvent.category
+                      ? selectedEvent.category.name
+                      : "---------"}
                   </h2>
                 </div>
               </BaseBox>

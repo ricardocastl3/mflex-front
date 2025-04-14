@@ -69,7 +69,7 @@ export default function NewsCard({
           <h4 className="font-bold text-xl dark:text-white">{news.title}</h4>
 
           <DateCategory
-            category_name={news?.category ? news.category.name : "-------"}
+            category_name={news?.category ? news.category.name : "no"}
             date={news.created_at}
           />
         </div>

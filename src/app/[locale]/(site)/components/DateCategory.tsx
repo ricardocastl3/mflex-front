@@ -1,3 +1,4 @@
+import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import { langByCookies } from "@/http/axios/api";
 import { ReactIcons } from "@/utils/icons";
 import { format } from "date-fns";
@@ -35,7 +36,11 @@ export default function DateCategory({
       {right && (
         <h1 className="flex items-center gap-2 text-base dark:text-yellow-500 text-yellow-600">
           <ReactIcons.VSCIcon.VscAzureDevops size={15} />
-          {`${category_name}`}
+          {category_name == "no" && (
+            <CTranslateTo eng="No Category" pt="Sem categoria" />
+          )}
+
+          {category_name != "no" && <>{`${category_name}`}</>}
         </h1>
       )}
     </div>

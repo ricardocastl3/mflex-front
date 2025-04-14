@@ -3,9 +3,9 @@ import { useModal } from "@/providers/app/ModalProvider";
 import { ReactIcons } from "@/utils/icons";
 import { ITicket } from "@/http/interfaces/models/ITicket";
 import { useTicketProvider } from "@/providers/features/TicketProvider";
+import { localImages } from "@/utils/images";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import { localImages } from "@/utils/images";
 
 export default function TicketCard({ ticket }: { ticket: ITicket }) {
   const { handleOpenModal } = useModal();

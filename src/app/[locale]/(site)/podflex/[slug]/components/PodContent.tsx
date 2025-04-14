@@ -29,9 +29,7 @@ export default function PodContent({ podflex }: { podflex: IPodcast }) {
         <div className="flex items-center gap-3 flex-wrap border-b pb-4 border-slate-300 dark:border-slate-700/60">
           <DateCategory
             right
-            category_name={
-              podflex?.category ? podflex.category.name : "-------"
-            }
+            category_name={podflex?.category ? podflex.category.name : "no"}
             date={podflex.started_at}
           />
         </div>

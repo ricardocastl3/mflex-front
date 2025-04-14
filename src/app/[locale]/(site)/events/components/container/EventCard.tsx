@@ -70,7 +70,7 @@ export default function EventCard({
           <h4 className="font-bold text-xl dark:text-white">{event.title}</h4>
           <DateCategory
             right
-            category_name={event.category ? event.category.name : "---------"}
+            category_name={event.category ? event.category.name : "no"}
             date={event.start_at}
           />
           <h4 className="flex items-center gap-2 dark:text-slate-300 text-slate-700">
