@@ -12,8 +12,8 @@ export async function generateMetadata({
   return LocalePageServices.metadatas({
     titleENG: "Dashboard",
     titlePT: "Dashboard",
-    descriptionENG: "Manage your books with quality",
-    descriptionPT: "Gerencie seus livros com qualidade",
+    descriptionENG: "Manage your events with quality",
+    descriptionPT: "Gerencie seus eventos com qualidade",
     params: pars.locale,
   });
 }

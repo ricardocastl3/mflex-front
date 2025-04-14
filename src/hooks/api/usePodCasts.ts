@@ -17,7 +17,7 @@ export default function usePodcasts() {
       }>(`/podcasts`, {
         params: {
           currentPage: 0,
-          nextPage: 4,
+          nextPage: 3,
         },
       });
 
@@ -43,7 +43,7 @@ export default function usePodcasts() {
       const resp = await internalApi.get<{
         podcasts: IPodcast[];
       }>(`/podcasts`, {
-        params: { name, category_id, currentPage: 0, nextPage: 4 },
+        params: { name, category_id, currentPage: 0, nextPage: 3 },
       });
 
       if (resp.data.podcasts.length > 0) {
@@ -69,7 +69,7 @@ export default function usePodcasts() {
           name,
           category_id,
           currentPage: allPodcasts.length,
-          nextPage: 4,
+          nextPage: 3,
         },
       });
 
