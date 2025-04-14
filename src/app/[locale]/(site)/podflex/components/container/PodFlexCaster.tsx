@@ -24,24 +24,24 @@ export default function PodFlexCaster({
       <div className="flex-1 flex flex-col gap-1 ">
         <h1 className="text-sm dark:text-white">{podcaster.name}</h1>
 
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-2">
           {allSources.map((sr, i) => {
             return (
               <div key={i}>
                 {sr == "youtube" && (
-                  <h2 className="text-[0.7rem] flex items-center gap-2 dark:text-red-400 w-fit font-bold text-red-500 px-2 py-0.5 rounded-full bg-red-200 dark:bg-red-900/30">
+                  <h2 className="text-[0.7rem] flex items-center gap-1 dark:text-red-400 w-fit font-bold text-red-500 px-2 py-0.5 rounded-full bg-red-200 dark:bg-red-900/30">
                     <ReactIcons.AiICon.AiFillYoutube size={17} />
                     YouTube
                   </h2>
                 )}
                 {sr == "facebook" && (
-                  <h2 className="text-[0.7rem] flex items-center gap-2 dark:text-white w-fit font-bold text-white px-2 py-0.5 rounded-full bg-blue-200 dark:bg-blue-900/30">
+                  <h2 className="text-[0.7rem] flex items-center gap-1 dark:text-white w-fit font-bold text-white px-2 py-0.5 rounded-full bg-blue-200 dark:bg-blue-900/30">
                     <ReactIcons.MdIcon.MdFacebook size={17} />
                     Facebook
                   </h2>
                 )}
                 {sr == "spotify" && (
-                  <h2 className="text-[0.7rem] flex items-center gap-2 dark:text-white w-fit font-bold text-white px-2 py-0.5 rounded-full bg-blue-200 dark:bg-blue-900/30">
+                  <h2 className="text-[0.7rem] flex items-center gap-1 dark:text-white w-fit font-bold text-white px-2 py-0.5 rounded-full bg-blue-200 dark:bg-blue-900/30">
                     <ReactIcons.AiICon.AiFillSpotify size={17} />
                     Spotify
                   </h2>
