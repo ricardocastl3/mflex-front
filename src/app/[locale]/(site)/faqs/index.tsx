@@ -17,7 +17,7 @@ export default function FaqsPage() {
         <div className="md:w-[20vw] w-full">
           <h1 className="text-base dark:text-white"></h1>
           <AuSoftUI.UI.Select
-            className="w-full md:text-[1.07rem] text-base"
+            className="w-full md:text-[1.07rem] text-base dark:bg-transparent bg-white"
             weight={"md"}
             value={currectSection}
             onChange={(e) => setCurrentSection(e.target.value)}
