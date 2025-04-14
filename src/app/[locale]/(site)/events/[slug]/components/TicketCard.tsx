@@ -115,7 +115,7 @@ export default function TicketCard({ ticket }: { ticket: IEventTicket }) {
           {ticket.status == "unavailable" && (
             <AuSoftUI.UI.Button
               size={"sm"}
-              className="md:w-fit w-full items-center md:py-2.5 py-3"
+              className="md:w-fit w-full text-[0.95rem] items-center md:py-2.5 py-3"
               variant={"destructive"}
             >
               <ReactIcons.BiIcon.BiLock size={15} />
