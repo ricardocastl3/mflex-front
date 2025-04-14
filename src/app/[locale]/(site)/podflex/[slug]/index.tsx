@@ -71,8 +71,8 @@ export default function PreviewNew({ params }: Props) {
         <div className="relative w-full">
           <HeroPodFlex route="slug" />
           <div className="w-full md:flex hidden z-20 absolute inset-0 justify-center items-center">
-            <div className="md:w-[60vw] w-[90vw] leading-8 md:px-8 p-4 text-center">
-              <h1 className="md:text-[2rem] text-center text-2xl text-white">
+            <div className="md:w-[60vw] w-[90vw] md:px-8 p-4 text-center">
+              <h1 className="md:text-[2rem] text-center leading-[3rem] text-2xl text-white">
                 {selectedPodcasts.title}
               </h1>
             </div>
