@@ -5,6 +5,7 @@ self.addEventListener("push", async (event) => {
     const data = event.data.json();
     const options = {
       body: data.message,
+      url: data.url,
       priority: "high",
       time_to_live: 0,
       icon: "/icons/logo.png",
