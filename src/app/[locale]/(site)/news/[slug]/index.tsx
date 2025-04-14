@@ -68,9 +68,9 @@ export default function PreviewNew({ params }: Props) {
       <div className="flex flex-col gap-8">
         <div className="relative">
           <HeroNews />
-          <div className="md:w-[40vw] w-[90vw]">
-            <div className="z-20 absolute inset-0 justify-center flex items-center md:px-8 p-4 text-center">
-              <h1 className="md:text-[2rem] text-2xl text-white">
+          <div className="flex justify-center">
+            <div className="md:w-[40vw] w-[90vw] z-20 absolute inset-0 justify-center flex items-center md:px-8 p-4 text-center">
+              <h1 className="md:text-[2rem] text-2xl text-center text-white">
                 {selectedNews.title}
               </h1>
             </div>
