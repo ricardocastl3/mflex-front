@@ -28,7 +28,7 @@ export default function EventCard({
     >
       <Link
         href={`/${langByCookies}/events/${event.slug}`}
-        className="flex flex-col gap-4  md:hover:scale-[1.03] scale-100 transition-all"
+        className="flex flex-col gap-4 dark:p-0 p-2 md:hover:scale-[1.03] scale-100 transition-all bg-white dark:bg-transparent rounded-2xl"
       >
         <BaseBox
           onMouseEnter={() => setShowImageFooter(true)}
@@ -46,7 +46,7 @@ export default function EventCard({
             })`,
             backgroundRepeat: "no-repeat",
           }}
-          className="flex  flex-col gap-2  justify-between"
+          className="flex flex-col gap-2  justify-between"
         >
           <div></div>
 
@@ -66,7 +66,7 @@ export default function EventCard({
             </motion.div>
           )}
         </BaseBox>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 dark:px-0 px-2 dark:pb-0 pb-4">
           <h4 className="font-bold text-xl dark:text-white">{event.title}</h4>
           <DateCategory
             right

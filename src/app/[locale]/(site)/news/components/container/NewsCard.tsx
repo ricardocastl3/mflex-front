@@ -29,7 +29,7 @@ export default function NewsCard({
     >
       <Link
         href={`/${langByCookies}/news/${news.slug}`}
-        className="flex flex-col gap-4  md:hover:scale-[1.03] scale-100 transition-all bg-white dark:bg-transparent rounded-xl"
+        className="flex flex-col gap-4  md:hover:scale-[1.03] scale-100 transition-all bg-white dark:bg-transparent rounded-2xl dark:p-0 p-2"
       >
         <BaseBox
           onMouseEnter={() => setShowImageFooter(true)}
@@ -65,7 +65,7 @@ export default function NewsCard({
             </motion.div>
           )}
         </BaseBox>
-        <div className="flex flex-col gap-2 dark:p-0 p-4">
+        <div className="flex flex-col gap-2 dark:px-0 px-2 dark:pb-0 pb-4">
           <h4 className="font-bold text-xl dark:text-white">{news.title}</h4>
 
           <DateCategory
