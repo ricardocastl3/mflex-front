@@ -2,6 +2,7 @@ import { BaseBox } from "@/@components/(box)/BaseBox";
 import { INews } from "@/http/interfaces/models/INews";
 
 import DateCategory from "../../../components/DateCategory";
+import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 
 export default function NewContent({ news }: { news: INews }) {
   return (
@@ -28,6 +29,12 @@ export default function NewContent({ news }: { news: INews }) {
         className="dark:text-slate-300 text-lg"
         dangerouslySetInnerHTML={{ __html: news.content }}
       ></div>
+      <div className="pt-4 flex items-center gap-2 text-lg">
+        <h4 className="dark:text-white">
+          <CTranslateTo eng="Source: " pt="Fonte: " />
+        </h4>
+        <h4 className="text-yellow-500">{news.source}</h4>
+      </div>
     </BaseBox>
   );
 }
