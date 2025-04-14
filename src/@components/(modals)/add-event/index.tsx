@@ -119,13 +119,44 @@ export default function AddEventModal() {
         },
       });
 
-      handleAddTextOnBoxSuccess({
-        text_en:
-          "Many congratulations! Your event has been registered successfully",
-        text_pt: "Muitos parabéns! O seu evento foi cadastrado com sucesso",
-        title_en: "Event added successfully",
-        title_pt: "Evento adicionado com sucesso",
-      });
+      const message = {
+        pt: {
+          add: {
+            text: "Muitos parabéns! O seu evento foi cadastrado com sucesso",
+            title: "Evento adicionado com sucesso",
+          },
+          update: {
+            text: "O seu evento foi atualizado com sucesso",
+            title: "Evento atualizado com sucesso",
+          },
+        },
+        en: {
+          add: {
+            text: "Many congratulations! Your event has been registered successfully",
+            title: "Event added successfully",
+          },
+          update: {
+            text: "Your event has been updated successfully",
+            title: "Event updated successfully",
+          },
+        },
+      };
+
+      if (selectedEvent) {
+        handleAddTextOnBoxSuccess({
+          text_en: message.en.update.text,
+          text_pt: message.pt.update.text,
+          title_en: message.en.update.title,
+          title_pt: message.pt.update.title,
+        });
+      } else {
+        handleAddTextOnBoxSuccess({
+          text_en: message.en.add.text,
+          text_pt: message.pt.add.text,
+          title_en: message.en.add.title,
+          title_pt: message.pt.add.title,
+        });
+      }
 
       handleOpenModal("box-success");
 
