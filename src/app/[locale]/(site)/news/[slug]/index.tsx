@@ -21,7 +21,7 @@ export default function PreviewNew({ params }: Props) {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedNews, setSelectedNews] = useState<INews | undefined>();
 
-  const { isLoadingAllNews, allNews } = useNews();
+  const { isLoadingAllNews, allNews } = useNews({ route: "slug" });
 
   const fetchNews = useCallback(async () => {
     try {

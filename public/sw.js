@@ -5,7 +5,9 @@ self.addEventListener("push", async (event) => {
     const data = event.data.json();
     const options = {
       body: data.message,
-      url: data.url,
+      data: {
+        url: data.url,
+      },
       priority: "high",
       time_to_live: 0,
       icon: "/icons/logo.png",
@@ -26,4 +28,24 @@ self.addEventListener("push", async (event) => {
   } catch (error) {
     console.error("Erro ao processar push:", error);
   }
+});
+
+self.addEventListener("notificationclick", (event) => {
+  event.notification.close();
+
+  const urlToOpen =
+    event.notification.data.url || process.env.MFLEX_NEXT_PUBLIC_URL;
+
+  event.waitUntil(
+    clients.matchAll({ type: "window" }).then((clientList) => {
+      const matchingClient = clientList.find(
+        (client) => client.url === urlToOpen && "focus" in client
+      );
+      if (matchingClient) {
+        return matchingClient.focus();
+      } else {
+        return clients.openWindow(urlToOpen);
+      }
+    })
+  );
 });

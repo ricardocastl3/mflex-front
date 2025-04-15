@@ -18,7 +18,7 @@ export default function PodFlexContainer() {
     handleLoadMore,
     handleSeachByName,
     isLoadingAllPodcasts,
-  } = usePodcasts();
+  } = usePodcasts({ route: "podflex" });
   const { selectedCategory } = useCategoryProvider();
 
   // Controls

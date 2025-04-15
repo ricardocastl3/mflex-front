@@ -23,7 +23,7 @@ export default function PreviewNew({ params }: Props) {
     IPodcast | undefined
   >();
 
-  const { allPodcasts, isLoadingAllPodcasts } = usePodcasts();
+  const { allPodcasts, isLoadingAllPodcasts } = usePodcasts({ route: "slug" });
 
   const fetchPodFlex = useCallback(async () => {
     try {

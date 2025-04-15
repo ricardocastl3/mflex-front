@@ -3,7 +3,7 @@ import { internalApi } from "@/http/axios/api";
 import { INews } from "@/http/interfaces/models/INews";
 import { useCallback, useEffect, useState } from "react";
 
-export default function useNews() {
+export default function useNews({ route }: { route: "slug" | "news" }) {
   const [allNews, setAllNews] = useState<INews[]>([]);
   const [isLoadingAllNews, setIsLoadingAllNews] = useState(true);
 
@@ -17,7 +17,7 @@ export default function useNews() {
       }>(`/news`, {
         params: {
           currentPage: 0,
-          nextPage: 3,
+          nextPage: route == "slug" ? 9999 : 3,
         },
       });
 

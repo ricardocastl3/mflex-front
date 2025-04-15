@@ -18,7 +18,7 @@ export default function NewsContainer() {
     handleLoadMore,
     handleSeachByName,
     isLoadingAllNews,
-  } = useNews();
+  } = useNews({ route: "news" });
   const { selectedCategory } = useCategoryProvider();
 
   // Controls

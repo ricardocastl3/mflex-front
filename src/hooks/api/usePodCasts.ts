@@ -3,7 +3,7 @@ import { internalApi } from "@/http/axios/api";
 import { IPodcast } from "@/http/interfaces/models/IPodCast";
 import { useCallback, useEffect, useState } from "react";
 
-export default function usePodcasts() {
+export default function usePodcasts({ route }: { route: "slug" | "podflex" }) {
   const [allPodcasts, setAllPodcasts] = useState<IPodcast[]>([]);
   const [isLoadingAllPodcasts, setIsLoadingAllPodcasts] = useState(true);
 
@@ -17,7 +17,7 @@ export default function usePodcasts() {
       }>(`/podcasts`, {
         params: {
           currentPage: 0,
-          nextPage: 3,
+          nextPage: route == "slug" ? 999 : 3,
         },
       });
 
