@@ -7,7 +7,7 @@ import PodFlexCaster from "../../components/container/PodFlexCaster";
 
 export default function PodContent({ podflex }: { podflex: IPodcast }) {
   return (
-    <BaseBox className="flex-1 md:p-8 p-0 md:mb-8 mb-0 md:rounded-xl rounded-none flex flex-col md:gap-4 gap-2 dark:bg-ausoft-slate-900 ">
+    <BaseBox className="flex-1 md:p-8 p-0 md:mb-8 mb-0 md:rounded-xl rounded-none flex flex-col md:gap-4 gap-0 dark:bg-ausoft-slate-900 ">
       <div className="md:flex hidden">
         <PodFlexCaster podcaster={podflex.podcaster} />
       </div>
@@ -23,7 +23,7 @@ export default function PodContent({ podflex }: { podflex: IPodcast }) {
       </div>
       <div className="flex flex-col gap-4 md:p-0 p-4">
         <div className="md:hidden flex flex-col gap-2">
-          <h4 className="text-base dark:text-white fon-bold">
+          <h4 className="text-base dark:text-white font-bold">
             {podflex.title}
           </h4>
           <PodFlexCaster podcaster={podflex.podcaster} />
