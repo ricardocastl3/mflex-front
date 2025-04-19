@@ -1,13 +1,15 @@
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { ReactIcons } from "@/utils/icons";
+import { langByCookies } from "@/http/axios/api";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import AAuSoftLogo from "@/@components/(ausoft)/AAuSoftLogo";
 import VideoBackground from "../../components/video/VideoBackground";
+import Link from "next/link";
 
 export default function Hero() {
   return (
-    <div className="h-screen md:flex-row flex-col flex w-full relative">
+    <div className="h-screen md:flex-row flex-col flex w-full relative md:mb-12 mb-4">
       <VideoBackground
         fallback_url="https://images.pexels.com/photos/3122799/pexels-photo-3122799.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
         video_url="/assets/party.mp4"
@@ -28,15 +30,16 @@ export default function Hero() {
               pt="Aqui você tem, do bom e do melhor 🔥"
             />
           </h4>
-          <AuSoftUI.UI.Button
-            onClick={() => window.open("https://www.facebook.com/marcafl3x/")}
-            size={"lg"}
-            className="rounded-full md:mt-4 mt-2.5 animate-pulse items-center"
-            variant={"primary"}
-          >
-            <ReactIcons.AiICon.AiFillFacebook size={19} />
-            <CTranslateTo eng="Access our page" pt="Acessar a nossa página" />
-          </AuSoftUI.UI.Button>
+          <Link href={`/${langByCookies}/events`}>
+            <AuSoftUI.UI.Button
+              size={"lg"}
+              className="rounded-full md:mt-4 mt-2.5 animate-pulse items-center"
+              variant={"primary"}
+            >
+              <ReactIcons.AiICon.AiFillEnvironment size={19} />
+              <CTranslateTo eng="View Events" pt="Acessar eventos" />
+            </AuSoftUI.UI.Button>
+          </Link>
         </div>
       </div>
     </div>

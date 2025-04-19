@@ -112,6 +112,18 @@ import flexUser from "@/@assets/logos/flex-user.png";
 import mflex from "@/@assets/logos/mflex.png";
 import emptyBox from "@/@assets/vectors/emptyBox.png";
 
+import banner1 from "@/@assets/bgs/banners/1.jpg";
+import banner2 from "@/@assets/bgs/banners/2.jpg";
+import banner3 from "@/@assets/bgs/banners/3.jpg";
+import banner4 from "@/@assets/bgs/banners/4.jpg";
+
+import flex1 from "@/@assets/bgs/banners/flex/1.jpg";
+import flex2 from "@/@assets/bgs/banners/flex/2.jpg";
+import flex3 from "@/@assets/bgs/banners/flex/3.jpg";
+import flex4 from "@/@assets/bgs/banners/flex/4.jpg";
+import flex5 from "@/@assets/bgs/banners/flex/5.jpg";
+import flex6 from "@/@assets/bgs/banners/flex/6.jpg";
+
 export const localImages = {
   logos: {
     ausoftBlack,
@@ -132,6 +144,18 @@ export const localImages = {
   flags: {
     pt: ptFlag,
     en: enFlag,
+  },
+  banner: {
+    banner1,
+    banner2,
+    banner3,
+    banner4,
+    flex1,
+    flex2,
+    flex3,
+    flex4,
+    flex5,
+    flex6,
   },
   vectors: {
     emptyBox,

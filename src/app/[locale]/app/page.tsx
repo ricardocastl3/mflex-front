@@ -10,8 +10,8 @@ export async function generateMetadata({
 }: IlocalePage): Promise<Metadata> {
   const pars = await params;
   return LocalePageServices.metadatas({
-    titleENG: "Dashboard",
-    titlePT: "Dashboard",
+    titleENG: "Flex Zone",
+    titlePT: "Flex Zone",
     descriptionENG: "Manage your events with quality",
     descriptionPT: "Gerencie seus eventos com qualidade",
     params: pars.locale,

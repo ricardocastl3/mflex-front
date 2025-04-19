@@ -5,6 +5,7 @@ import UserDetailBox from "./components/user-details";
 import BankMerchantBox from "./components/bank-merchant";
 import PageBase from "../cmps/PageBase";
 import ContainerBase from "../cmps/ContainerBase";
+import UserSettingsBox from "./components/user-settings";
 
 export default function SettingsPage() {
   return (
@@ -16,6 +17,7 @@ export default function SettingsPage() {
       </div>
       <ContainerBase>
         <UserDetailBox />
+        <UserSettingsBox />
         <BankMerchantBox />
       </ContainerBase>
     </PageBase>

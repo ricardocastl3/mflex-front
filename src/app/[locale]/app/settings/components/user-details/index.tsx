@@ -4,6 +4,7 @@ import { internalApi } from "@/http/axios/api";
 import { BaseBox } from "@/@components/(box)/BaseBox";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { useAuth } from "@/providers/auth/AuthProvider";
+import { ReactIcons } from "@/utils/icons";
 
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
@@ -86,9 +87,12 @@ export default function UserDetailBox() {
     <BaseBox className="md:px-5 px-4 md:py-4 py-4">
       <div className="flex items-start gap-2 border-b pb-2 border-slate-300/80 dark:border-slate-800">
         <div className="flex flex-col gap-0.5">
-          <h3 className="text-md font-bold dark:text-slate-100">
-            <CTranslateTo pt="Meus Dados" eng="My Informations" />
-          </h3>
+          <div className="flex items-center gap-2 dark:text-slate-100">
+            <h3 className="text-md font-bold dark:text-slate-100">
+              <CTranslateTo pt="Meus Dados" eng="My Informations" />
+            </h3>
+            <ReactIcons.AiICon.AiOutlineUser size={15} />
+          </div>
           <h3 className="text-normal text-slate-500 dark:text-slate-400 md:w-[50vw] w-full">
             <CTranslateTo
               pt="Edite suas configurações pessoais"
@@ -170,7 +174,7 @@ export default function UserDetailBox() {
           disabled={isSubmitting}
           variant={"primary"}
           size={"md"}
-          className="md:w-fit w-full"
+          className="md:w-fit w-full items-center"
         >
           {isSubmitting && (
             <AuSoftUI.Component.isFormSubmitting isSubmitting={isSubmitting} />
@@ -179,6 +183,8 @@ export default function UserDetailBox() {
           {!isSubmitting && (
             <CTranslateTo eng="Save changes" pt="Salvar alterações" />
           )}
+
+          <ReactIcons.AiICon.AiOutlineForm size={14} />
         </AuSoftUI.UI.Button>
       </div>
     </BaseBox>
