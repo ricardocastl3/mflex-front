@@ -43,7 +43,7 @@ export default function NewsRelated({
               i.category?.id == newElement.category?.id && i.id != newElement.id
           )
           .map((newEl, i) => {
-            return i < 3 && <NewsCard index={i} key={i} news={newEl} />;
+            return i < 2 && <NewsCard index={i} key={i} news={newEl} />;
           })}
       </div>
     </div>
