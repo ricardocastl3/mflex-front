@@ -50,7 +50,7 @@ export default function ViewTicketModal() {
             className="flex flex-col items-center justify-center gap-2"
           >
             <AAuSoftLogo size={90} />
-            <h4 className="text-lg font-bold text-center">
+            <h4 className="text-lg font-bold text-center dark:text-white">
               <CTranslateTo
                 eng="Buyed By MARCA FLEX"
                 pt="Comprado na MARCA FLEX"
@@ -70,7 +70,7 @@ export default function ViewTicketModal() {
           <AuSoftUI.UI.Button
             onClick={() => handlePrint()}
             variant={"primary"}
-            className="roundex-xl"
+            className="roundex-xl items-center"
           >
             <CTranslateTo eng="Print" pt="Imprimir" />
             <ReactIcons.AiICon.AiFillPrinter size={15} />
