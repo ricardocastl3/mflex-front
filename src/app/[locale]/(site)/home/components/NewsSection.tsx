@@ -9,7 +9,7 @@ import Link from "next/link";
 import AAnimated from "@/@components/(ausoft)/AAnimated";
 
 export default function NewsSection() {
-  const { allNews, isLoadingAllNews } = useNews({ route: "news" });
+  const { allNews, isLoadingAllNews } = useNews({ route: "slug" });
 
   return (
     <AAnimated animate="animate-fade-up md:mt-0 mt-8">
@@ -43,7 +43,7 @@ export default function NewsSection() {
 
             {!isLoadingAllNews &&
               allNews.map((news, i) => {
-                return i < 2 && <NewsCard key={i} news={news} index={i} />;
+                return i < 3 && <NewsCard key={i} news={news} index={i} />;
               })}
           </div>
 

@@ -9,7 +9,7 @@ import Link from "next/link";
 export default function FlexSection() {
   return (
     <AAnimated animate="animate-fade-up mb-12">
-      <section className="md:h-[70vh] h-[60vh] flex items-center justify-center bg-yellow-500 dark:bg-yellow-700/30 md:my-8 my-6">
+      <section className="md:h-[70vh] h-[60vh] flex items-center justify-center bg-yellow-500  md:my-8 my-6">
         <div className="md:w-[60vw] w-[90vw] text-center flex-col gap-6 items-center flex justify-center">
           <div className="p-2 rounded-full bg-yellow-600 text-white">
             <ReactIcons.AiICon.AiFillStar size={14} />

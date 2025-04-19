@@ -10,7 +10,7 @@ import AAnimated from "@/@components/(ausoft)/AAnimated";
 
 export default function PodFlexSection() {
   const { allPodcasts, isLoadingAllPodcasts } = usePodcasts({
-    route: "podflex",
+    route: "slug",
   });
 
   return (
@@ -46,7 +46,7 @@ export default function PodFlexSection() {
             {!isLoadingAllPodcasts &&
               allPodcasts.map((news, i) => {
                 return (
-                  i < 2 && <PodFlexCard key={i} podcast={news} index={i} />
+                  i < 3 && <PodFlexCard key={i} podcast={news} index={i} />
                 );
               })}
           </div>
