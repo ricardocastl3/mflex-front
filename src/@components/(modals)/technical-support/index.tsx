@@ -20,7 +20,7 @@ export default function TechnicalSupport() {
           <div className="flex items-end gap-2">
             <AuSoftUI.Component.AuSoftLogo size={36} />
             <h3 className="text-normal font-bold dark:text-white">
-              <CTranslateTo eng="Tecnhical Support" pt="Suporte Técnico" />
+              <CTranslateTo eng="Customer Support" pt="Apoio Ao Cliente" />
             </h3>
           </div>
           <button onClick={() => handleOpenModal("")}>

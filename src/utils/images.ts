@@ -117,12 +117,24 @@ import banner2 from "@/@assets/bgs/banners/2.jpg";
 import banner3 from "@/@assets/bgs/banners/3.jpg";
 import banner4 from "@/@assets/bgs/banners/4.jpg";
 
-import flex1 from "@/@assets/bgs/banners/flex/1.jpg";
-import flex2 from "@/@assets/bgs/banners/flex/2.jpg";
-import flex3 from "@/@assets/bgs/banners/flex/3.jpg";
-import flex4 from "@/@assets/bgs/banners/flex/4.jpg";
-import flex5 from "@/@assets/bgs/banners/flex/5.jpg";
-import flex6 from "@/@assets/bgs/banners/flex/6.jpg";
+const flex1 =
+  "https://firebasestorage.googleapis.com/v0/b/lora-538b7.appspot.com/o/mflex%2Fbns%2F1.jpg?alt=media&token=2961e9c7-2467-4874-9e88-44cb846d9cdd";
+
+const flex2 =
+  "https://firebasestorage.googleapis.com/v0/b/lora-538b7.appspot.com/o/mflex%2Fbns%2F2.jpg?alt=media&token=cf20418f-822e-4177-a90b-52eda8b24d9f";
+
+const flex3 =
+  "https://firebasestorage.googleapis.com/v0/b/lora-538b7.appspot.com/o/mflex%2Fbns%2F3.jpg?alt=media&token=f05e868e-9bfb-496d-97bd-ff6d26e0d686";
+
+const flex4 =
+  "https://firebasestorage.googleapis.com/v0/b/lora-538b7.appspot.com/o/mflex%2Fbns%2F4.jpg?alt=media&token=dd9e980f-363d-4ecc-a4ac-0fa9ad6613af";
+
+const flex5 =
+  "https://firebasestorage.googleapis.com/v0/b/lora-538b7.appspot.com/o/mflex%2Fbns%2F5.jpg?alt=media&token=8061b136-06bc-4305-8d74-e49c3334eaf0";
+
+const flex6 =
+  "https://firebasestorage.googleapis.com/v0/b/lora-538b7.appspot.com/o/mflex%2Fbns%2F6.jpg?alt=media&token=d8b7da77-4d6c-45ac-b554-6fa3819fc725";
+
 
 
 export const localImages = {

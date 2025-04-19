@@ -38,7 +38,7 @@ export default function PodFlexSection() {
                 return (
                   <div
                     key={i}
-                    className="rounded-xl bg-white dark:bg-slate-700 animate-pulse p-12"
+                    className="rounded-xl bg-white dark:bg-slate-700 animate-pulse p-16"
                   ></div>
                 );
               })}

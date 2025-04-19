@@ -36,7 +36,7 @@ export default function NewsSection() {
                 return (
                   <div
                     key={i}
-                    className="rounded-xl bg-white dark:bg-slate-700 animate-pulse p-12"
+                    className="rounded-xl bg-white dark:bg-slate-700 animate-pulse p-24"
                   ></div>
                 );
               })}
