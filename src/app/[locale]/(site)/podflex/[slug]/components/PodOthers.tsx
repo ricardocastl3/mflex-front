@@ -30,7 +30,7 @@ export default function PodOthers({
               i.category_id != podElement.category_id && i.id != podElement.id
           )
           .map((newEl, i) => {
-            return i <= 2 && <PodFlexCard podcast={newEl} index={i} key={i} />;
+            return i <= 3 && <PodFlexCard podcast={newEl} index={i} key={i} />;
           })}
       </div>
     </div>

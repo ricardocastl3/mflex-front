@@ -1,10 +1,10 @@
 import { BaseBox } from "@/@components/(box)/BaseBox";
 import { IPodcast } from "@/http/interfaces/models/IPodCast";
+import { localImages } from "@/utils/images";
 
 import PodFlexCard from "../../components/container/PodFlexCard";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import Image from "next/image";
-import { localImages } from "@/utils/images";
 
 export default function PodRelated({
   podcasts,
@@ -44,7 +44,7 @@ export default function PodRelated({
               i.category_id == podElement.category_id && i.id != podElement.id
           )
           .map((newEl, i) => {
-            return i < 2 && <PodFlexCard index={i} key={i} podcast={newEl} />;
+            return i < 3 && <PodFlexCard index={i} key={i} podcast={newEl} />;
           })}
       </div>
     </div>
