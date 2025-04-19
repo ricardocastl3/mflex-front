@@ -5,22 +5,22 @@ export default function BannerSite({ banner }: { banner: number }) {
 
   switch (banner) {
     case 1:
-      image_url = localImages.banner.flex1.src;
+      image_url = localImages.banner.flex1;
       break;
     case 2:
-      image_url = localImages.banner.flex2.src;
+      image_url = localImages.banner.flex2;
       break;
     case 3:
-      image_url = localImages.banner.flex3.src;
+      image_url = localImages.banner.flex3;
       break;
     case 4:
-      image_url = localImages.banner.flex4.src;
+      image_url = localImages.banner.flex4;
       break;
     case 5:
-      image_url = localImages.banner.flex5.src;
+      image_url = localImages.banner.flex5;
       break;
     case 6:
-      image_url = localImages.banner.flex6.src;
+      image_url = localImages.banner.flex6;
       break;
   }
 
