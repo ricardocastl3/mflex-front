@@ -124,6 +124,7 @@ import flex4 from "@/@assets/bgs/banners/flex/4.jpg";
 import flex5 from "@/@assets/bgs/banners/flex/5.jpg";
 import flex6 from "@/@assets/bgs/banners/flex/6.jpg";
 
+
 export const localImages = {
   logos: {
     ausoftBlack,
