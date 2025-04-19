@@ -14,7 +14,7 @@ export default function NewsSection() {
   return (
     <AAnimated animate="animate-fade-up md:mt-0 mt-8">
       <section className="flex flex-col gap-4 md:py-8 py-5 md:px-12 px-5">
-        <div className="flex flex-col gap-3 items-center text-center pb-4 border-b border-slate-400/50 dark:border-slate-700/70">
+        <div className="flex flex-col gap-3 items-center text-center pb-4 border-b border-slate-400/50 dark:border-slate-700/50">
           <div className="p-2 rounded-full bg-yellow-500 text-white">
             <ReactIcons.AiICon.AiFillStar size={14} />
           </div>
