@@ -18,7 +18,7 @@ export default function NewsRelated({
       <BaseBox className="p-4 dark:bg-ausoft-slate-900 dark:text-white font-bold text-lg">
         <CTranslateTo eng="Related News" pt="Novidades Relacionadas" />
       </BaseBox>
-      <div className="flex flex-col gap-4 md:w-[20rem] w-full">
+      <div className="flex flex-col md:gap-4 gap-6 md:w-[20rem] w-full">
         {news.filter(
           (i) =>
             i.category?.id == newElement.category?.id && i.id != newElement.id

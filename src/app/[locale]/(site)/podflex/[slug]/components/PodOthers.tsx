@@ -23,7 +23,7 @@ export default function PodOthers({
       <h1 className="dark:text-white text-xl font-bold md:pt-0 pt-8">
         <CTranslateTo eng="Oher PodCasts" pt="Outros PodCasts" />
       </h1>
-      <div className="grid md:grid-cols-3 grid-cols-1 md:items-center items-start w-full gap-4">
+      <div className="grid md:grid-cols-3 grid-cols-1 md:items-center items-start w-full md:gap-4 gap-6">
         {podcasts
           .filter(
             (i) =>

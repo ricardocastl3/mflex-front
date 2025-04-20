@@ -19,7 +19,7 @@ export default function PodRelated({
         <CTranslateTo eng="Related PodCasts" pt="PodCasts Relacionados" />
       </BaseBox>
 
-      <div className="flex flex-col gap-4 md:w-[20rem] w-full">
+      <div className="flex flex-col md:gap-4 gap-6 md:w-[20rem] w-full">
         {podcasts.filter(
           (i) =>
             i.category_id == podElement.category_id && i.id != podElement.id
