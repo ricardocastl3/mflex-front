@@ -34,7 +34,7 @@ export default function CContentServices({
         <Link
           href={`/${langByCookies}/about-us`}
           className={`${
-            currentPageByUrl == "about-uss"
+            currentPageByUrl == "about-us"
               ? "dark:bg-yellow-800/50 bg-yellow-200/40"
               : "dark:hover:bg-yellow-800/50 hover:bg-yellow-200/40"
           }  flex items-center gap-2 w-full md:py-2.5 py-4 my-1 px-4 dark:text-slate-100 rounded-full text-[0.85rem]`}
