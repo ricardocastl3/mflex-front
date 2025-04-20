@@ -13,6 +13,7 @@ import AAuSoftLogo from "@/@components/(ausoft)/AAuSoftLogo";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CTranslate from "@/@components/(translation)/CCTranslate/CTranslate";
 import LinkHeader from "./components/LinkHeader";
+import ServicesDropdown from "./components/services";
 
 export default function SHeader() {
   // Contexts
@@ -56,6 +57,7 @@ export default function SHeader() {
         </Link>
         <div className="items-center gap-1.5 md:flex hidden mt-[0.27rem]">
           <LinkHeader
+            isSelected={currentPageByUrl == "news"}
             isScrolled={isScrolled}
             Icon={ReactIcons.AiICon.AiFillFire}
             action="news"
@@ -63,6 +65,7 @@ export default function SHeader() {
             title_pt="Novidades"
           />
           <LinkHeader
+            isSelected={currentPageByUrl == "events"}
             isScrolled={isScrolled}
             Icon={ReactIcons.AiICon.AiOutlineVerified}
             action="events"
@@ -70,19 +73,14 @@ export default function SHeader() {
             title_pt="Eventos"
           />
           <LinkHeader
+            isSelected={currentPageByUrl == "podflex"}
             isScrolled={isScrolled}
             Icon={ReactIcons.AiICon.AiOutlineAudio}
             action="podflex"
             title_en="PodFlex"
             title_pt="PodFlex"
           />
-          <LinkHeader
-            isScrolled={isScrolled}
-            Icon={ReactIcons.AiICon.AiFillSignal}
-            action="services"
-            title_en="Services"
-            title_pt="Serviços"
-          />
+          <ServicesDropdown isScrolled={isScrolled} />
         </div>
       </div>
       <div className="flex items-center md:gap-2 gap-2 divide-x-2 divide-slate-200 dark:divide-slate-700/60">

@@ -135,7 +135,8 @@ const flex5 =
 const flex6 =
   "https://firebasestorage.googleapis.com/v0/b/lora-538b7.appspot.com/o/mflex%2Fbns%2F6.jpg?alt=media&token=d8b7da77-4d6c-45ac-b554-6fa3819fc725";
 
-
+const flexSocial =
+  "https://firebasestorage.googleapis.com/v0/b/lora-538b7.appspot.com/o/mflex%2Fbns%2Fsocial.JPG?alt=media&token=232994ed-fc58-477c-b88e-42495a27eae8";
 
 export const localImages = {
   logos: {
@@ -169,6 +170,7 @@ export const localImages = {
     flex4,
     flex5,
     flex6,
+    flexSocial,
   },
   vectors: {
     emptyBox,

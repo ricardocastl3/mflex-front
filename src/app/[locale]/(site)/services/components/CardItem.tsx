@@ -42,14 +42,14 @@ export default function CardItem({
         </div>
       </div>
       <div className="flex justify-center gap-4">
-        <Link href={action} className="w-full">
+        <Link target="_blank" href={action} className="w-full">
           <AuSoftUI.UI.Button
             variant={"primary"}
             size={"md"}
             className="w-full items-center"
           >
             <CTranslateTo eng={action_en} pt={action_pt} />
-            <ActionIcon size={15} />
+            <ActionIcon size={18} />
           </AuSoftUI.UI.Button>
         </Link>
       </div>

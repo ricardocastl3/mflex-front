@@ -11,20 +11,26 @@ export default function LinkHeader({
   title_en,
   title_pt,
   isScrolled,
+  isSelected,
+  isButton,
 }: {
   action: string;
   title_en: string;
   title_pt: string;
   Icon: IconType;
+  isButton?: boolean;
   isScrolled: boolean;
+  isSelected: boolean;
 }) {
   const { currentPageByUrl } = useAppProvider();
 
   return (
     <Link
-      href={`/${langByCookies}/${action}`}
+      href={`${
+        !isButton ? `/${langByCookies}/${action}` : `${currentPageByUrl}#`
+      }`}
       className={`${
-        currentPageByUrl == action
+        isSelected
           ? "dark:text-yellow-300 text-yellow-500"
           : `dark:hover:text-yellow-300 hover:text-yellow-500  ${
               isScrolled ? "dark:text-white" : "text-white"

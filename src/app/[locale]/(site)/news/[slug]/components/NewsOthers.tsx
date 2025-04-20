@@ -30,7 +30,7 @@ export default function NewsOthers({
               i.category?.id != newElement.category?.id && i.id != newElement.id
           )
           .map((newEl, i) => {
-            return i <= 3 && <NewsCard news={newEl} index={i} key={i} />;
+            return i <= 2 && <NewsCard news={newEl} index={i} key={i} />;
           })}
       </div>
     </div>

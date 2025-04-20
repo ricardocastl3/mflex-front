@@ -27,22 +27,26 @@ export default function LinkMButton({
   return (
     <Link
       href={`${
-        !action_blank
-          ? `/${segmentedLayout}/${
-              currentPageByUrl == "app" ? `app/${action}` : action
+        action == "#"
+          ? `${currentPageByUrl}#`
+          : `${
+              !action_blank
+                ? `/${segmentedLayout}/${
+                    currentPageByUrl == "app" ? `app/${action}` : action
+                  }`
+                : action
             }`
-          : action
       }`}
       className={`${
         isSelected ? "border-yellow-600" : "border-transparent"
-      }  border-t-2 flex justify-center dark:text-white items-center p-3 relative transition-all duration-300`}
+      } border-t-2 flex justify-center dark:text-white items-center p-3 relative transition-all duration-300`}
     >
       <div
         className={`${
           isSelected
             ? "rounded-t-xl scale-105 dark:bg-yellow-800/30 transition-all bg-yellow-600/40 text-yellow-800 dark:text-yellow-500 font-bold"
             : ""
-        } mx-2 px-2 py-1 rounded-xl w-[40vw] text-center  flex flex-col items-center gap-1 text-xs text-nowrap`}
+        } mx-2 px-2 py-1 rounded-xl  text-center  flex flex-col items-center gap-1 text-xs text-nowrap`}
       >
         <Icon size={15} />
         <CTranslateTo pt={title_pt} eng={title_en} />
