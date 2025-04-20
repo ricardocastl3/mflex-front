@@ -24,13 +24,19 @@ export default function FlexSection() {
             />
           </h3>
           <div className="flex justify-center items-center text-center">
-            <Link href={`/${langByCookies}/news`} className="animate-bounce">
+            <Link
+              href={`/${langByCookies}/about-us`}
+              className="animate-bounce"
+            >
               <AuSoftUI.UI.Button
                 size={"md"}
                 className="rounded-full font-bold items-center"
                 variant={"primary"}
               >
-                <CTranslateTo eng="View all news" pt="Ver todas novidades" />
+                <CTranslateTo
+                  eng="Know more about us"
+                  pt="Saiba mais sobre nós"
+                />
                 <ReactIcons.AiICon.AiOutlineLink size={12} />
               </AuSoftUI.UI.Button>
             </Link>
