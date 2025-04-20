@@ -36,7 +36,7 @@ export default function SocialItem({
           }}
           className="md:h-[20vh] h-[13vh] w-full rounded-t-2xl relative"
         >
-          <div className="absolute -bottom-7 left-8 w-fit p-0.5 bg-yellow-600 rounded-full">
+          <div className="absolute -bottom-7 md:left-6 left-6 w-fit p-0.5 bg-yellow-600 rounded-full">
             <div className="w-[70px] h-[70px] flex justify-center items-center rounded-full bg-black">
               <AAuSoftLogo size={60} />
             </div>

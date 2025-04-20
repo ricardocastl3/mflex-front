@@ -74,14 +74,14 @@ export default function ServicesPage() {
             des_pt="Siga-nos no Instagram para não perder as últimas novidades e inspirações! 🚀"
             social="instagram"
             action="https://www.instagram.com/marcafl3x"
-            brand_color="text-violet-500 dark:text-violet-500"
+            brand_color="text-violet-500 dark:text-violet-400"
           />
           <SocialItem
             des_en="Like our Facebook page and stay updated with the best news! 🚀"
             des_pt="Curta nossa página no Facebook e fique atualizado com as melhores novidades! 🚀"
             social="facebook"
             action="https://www.facebook.com/marcafl3x"
-            brand_color="text-blue-500 dark:text-blue-500"
+            brand_color="text-blue-500 dark:text-blue-400"
           />
         </div>
       </AAnimated>
