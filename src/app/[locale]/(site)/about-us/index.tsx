@@ -67,7 +67,7 @@ export default function ServicesPage() {
             des_en="Follow us on TikTok and stay updated with amazing news! 🚀"
             des_pt="Siga-nos no TikTok e fique por dentro das novidades incríveis! 🚀"
             social="tiktok"
-            action="https://www.tiktok.com/marcafl3x"
+            action="https://www.tiktok.com/@marcafl3x"
           />
           <SocialItem
             des_en="Follow us on Instagram for the latest news and inspiration! 🚀"
