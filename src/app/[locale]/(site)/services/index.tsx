@@ -2,19 +2,20 @@
 
 import { ReactIcons } from "@/utils/icons";
 import { Meteors } from "@/@components/(aceternity)/Meteors";
-import { langByCookies } from "@/http/axios/api";
+import { services } from "./components/services";
 
 import CardItem from "./components/CardItem";
 import HeroServices from "./components/Hero";
-import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import { services } from "./components/services";
 
 export default function ServicesPage() {
   return (
     <div className="flex flex-col gap-4 md:mb-8 mb-8">
       <HeroServices />
 
-      <div className="relative md:px-16 px-5 grid md:grid-cols-3 grid-cols-1 md:gap-8 gap-4 my-8">
+      <div
+        data-aos="fade-up"
+        className="relative md:px-16 px-5 grid md:grid-cols-3 grid-cols-1 md:gap-8 gap-4 my-8"
+      >
         {/*  <CardItem
           action={`/${langByCookies}/app/events`}
           ActionIcon={ReactIcons.BiIcon.BiLinkExternal}

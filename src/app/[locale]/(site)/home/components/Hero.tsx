@@ -30,7 +30,7 @@ export default function Hero() {
               pt="Aqui você tem, do bom e do melhor 🔥"
             />
           </h4>
-          <Link data-aos="fade-down" href={`/${langByCookies}/events`}>
+          <Link data-aos="fade-up" href={`/${langByCookies}/events`}>
             <AuSoftUI.UI.Button
               size={"lg"}
               className="rounded-full md:mt-4 mt-2.5 animate-pulse items-center"

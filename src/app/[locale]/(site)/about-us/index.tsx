@@ -15,7 +15,7 @@ export default function ServicesPage() {
       <HeroAbout />
 
       <div
-        data-aos="fade-down"
+        data-aos="fade-up"
         className="flex flex-col gap-6 md:px-16 px-5 md:pt-8 pt-4 md:w-[70vw] w-[90vw] md:pb-8 pb-4 relative"
       >
         <div className="flex flex-col gap-1">
