@@ -5,6 +5,7 @@ import { AuSoftUI } from "@/@components/(ausoft)";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { useWebPush } from "@/hooks/useWebPush";
 import { langByCookies } from "@/http/axios/api";
+import { useModal } from "@/providers/app/ModalProvider";
 
 import AHeader from "@/@components/(system)/AHeader";
 import LoadingLayout from "@/app/onload-pages/_loading-layouts";
@@ -12,9 +13,6 @@ import React, { useEffect, useState } from "react";
 import ASidebar from "@/@components/(system)/ASidebar";
 import AMobileFooter from "@/@components/(system)/AFooter/mobile";
 import ABanner from "@/@components/(system)/ABanner";
-import EventProvider from "@/providers/features/EventProvider";
-import TicketProvider from "@/providers/features/TicketProvider";
-import CategoryProvider from "@/providers/features/CategoryProvider";
 
 export default function MFlexLayout({
   children,

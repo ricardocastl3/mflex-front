@@ -15,6 +15,7 @@ type modalType =
   | "approve-ticket"
   | "technical-support"
   | "list-ticket"
+  | "allow-notifications"
   | "angolan-payment-modal"
   | "validate-ticket"
   | "box-success"

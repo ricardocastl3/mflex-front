@@ -1,4 +1,5 @@
 import { internalApi } from "@/http/axios/api";
+import { useModal } from "@/providers/app/ModalProvider";
 import { useEffect, useState } from "react";
 
 const VAPID_PUBLIC_KEY = process.env.VAPID_PUBLIC_KEY;
@@ -7,6 +8,8 @@ export const useWebPush = (userId: string) => {
   const [subscription, setSubscription] = useState<PushSubscription | null>(
     null
   );
+
+  const { handleOpenModal } = useModal();
 
   useEffect(() => {
     if (!userId) return;
@@ -20,7 +23,7 @@ export const useWebPush = (userId: string) => {
           } else {
             const permission = await Notification.requestPermission();
             if (permission !== "granted") {
-              console.error("Permissão de notificação negada pelo usuário.");
+              handleOpenModal("allow-notifications");
               return;
             }
 

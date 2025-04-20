@@ -35,7 +35,7 @@
     ".next/types/**/*.ts",
     "src/services/web-push/useWebPushLoading.js",
     "public/sw.js"
-  ],
+, "src/hooks/app/useAOS.tsx"  ],
   "exclude": [
     "node_modules"
   ]

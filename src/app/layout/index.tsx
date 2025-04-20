@@ -19,6 +19,7 @@ import TransactionProvider from "@/providers/features/TransactionProvider";
 import CategoryProvider from "@/providers/features/CategoryProvider";
 import EventProvider from "@/providers/features/EventProvider";
 import EventTicketProvider from "@/providers/features/EventTicketProvider";
+import useAOS from "@/hooks/app/useAOS";
 
 const anek = Abel({ weight: "400", subsets: ["latin"] });
 
@@ -30,6 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   usePWA();
+  useAOS();
   return (
     <html lang="en">
       <body

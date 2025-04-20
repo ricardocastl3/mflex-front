@@ -16,6 +16,7 @@ import ViewTicketModal from "./view-ticket";
 import ApproveTicketModal from "./approve-ticket";
 import AngolanPaymentModal from "./angolan-payment";
 import TechnicalSupport from "./technical-support";
+import AllowNotificationModal from "./allow-notifications";
 
 export default function ModalOpenProvider() {
   const { openModal } = useModal();
@@ -59,6 +60,9 @@ export default function ModalOpenProvider() {
 
     case "technical-support":
       return <TechnicalSupport />;
+
+    case "allow-notifications":
+      return <AllowNotificationModal />;
 
     default:
       return <></>;

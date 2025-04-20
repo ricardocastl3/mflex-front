@@ -73,7 +73,7 @@ export default function BoxSuccessModal() {
             onClick={() => handleCloseBox()}
             size={"sm"}
             variant={"primary"}
-            className="w-full justify-center rounded-full pt-3"
+            className="w-full justify-center rounded-full"
           >
             <CTranslateTo
               eng="Very good, understood"
