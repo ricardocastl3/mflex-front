@@ -52,7 +52,7 @@ export default function SocialItem({
                   ? "dark:text-white"
                   : social == "instagram"
                   ? "text-violet-500"
-                  : "text-blue-700"
+                  : "text-blue-500"
               }`}
             >
               {social == "tiktok" && (
