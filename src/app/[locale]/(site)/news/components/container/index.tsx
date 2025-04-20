@@ -97,7 +97,7 @@ export default function NewsContainer() {
 
       <div className="flex flex-col md:px-[3rem] px-5">
         {!isLoadingAllNews && allNews.length > 0 && (
-          <div className="grid md:grid-cols-3 grid-cols-1 gap-6">
+          <div className="grid md:grid-cols-3 grid-cols-1 gap-x-6 gap-y-10 ">
             {allNews.map((event, i) => {
               const currentIndex = getItemIndex(i);
               return <NewsCard key={i} index={currentIndex} news={event} />;
