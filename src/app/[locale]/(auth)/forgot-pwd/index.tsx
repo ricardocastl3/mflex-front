@@ -60,7 +60,7 @@ export default function SignInPage() {
         });
       }
 
-      if (data.code.length <= 0) {
+      if (data.code && data.code.length <= 0) {
         return AuSoftUI.Component.ToastifyWithTranslation({
           description_en: "Click on send code button, if you don't click after",
           description_pt:
