@@ -25,20 +25,36 @@ export default function LinkHeader({
   const { currentPageByUrl } = useAppProvider();
 
   return (
-    <Link
-      href={`${
-        !isButton ? `/${langByCookies}/${action}` : `${currentPageByUrl}#`
-      }`}
-      className={`${
-        isSelected
-          ? "dark:text-yellow-300 text-yellow-500"
-          : `dark:hover:text-yellow-300 hover:text-yellow-500  ${
-              isScrolled ? "dark:text-white" : "text-white"
-            }`
-      }  text-[0.9rem] flex items-center gap-2 cursor-pointer font-semibold rounded-full px-4 `}
-    >
-      <Icon size={18} />
-      <CTranslateTo eng={title_en} pt={title_pt} />
-    </Link>
+    <>
+      {!isButton && (
+        <Link
+          href={`/${langByCookies}/${action}`}
+          className={`${
+            isSelected
+              ? "dark:text-yellow-300 text-yellow-500"
+              : `dark:hover:text-yellow-300 hover:text-yellow-500  ${
+                  isScrolled ? "dark:text-white" : "text-white"
+                }`
+          }  text-[0.9rem] flex items-center gap-2 cursor-pointer font-semibold rounded-full px-4 `}
+        >
+          <Icon size={18} />
+          <CTranslateTo eng={title_en} pt={title_pt} />
+        </Link>
+      )}
+      {isButton && (
+        <button
+          className={`${
+            isSelected
+              ? "dark:text-yellow-300 text-yellow-500"
+              : `dark:hover:text-yellow-300 hover:text-yellow-500  ${
+                  isScrolled ? "dark:text-white" : "text-white"
+                }`
+          } appearance-none text-[0.9rem] flex items-center gap-2 cursor-pointer font-semibold rounded-full px-4 `}
+        >
+          <Icon size={18} />
+          <CTranslateTo eng={title_en} pt={title_pt} />
+        </button>
+      )}
+    </>
   );
 }
