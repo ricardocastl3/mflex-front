@@ -12,13 +12,7 @@ class RecoverPwdSchema {
                 ? "Verification code is required"
                 : "Código de verificação é obrigatório",
           })
-          .min(2, {
-            message:
-              lang == "en"
-                ? "Verification code is required"
-                : "Código de verificação é obrigatório",
-          }),
-
+          .nullish(),
         password: z
           .string({
             required_error:
