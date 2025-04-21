@@ -70,7 +70,7 @@ export default function PreviewNew({ params }: Props) {
           <HeroNews />
           <div className="w-full flex z-20 absolute inset-0 justify-center items-center">
             <div className="md:w-[60vw] w-[90vw] md:px-8 p-4 text-center">
-              <h1 className="md:text-[2rem] text-2xl leading-[3rem] text-center text-white">
+              <h1 className="md:text-[2rem] text-2xl md:leading-[3rem] leading-[1.2rem] text-center text-white">
                 {selectedNews.title}
               </h1>
             </div>
