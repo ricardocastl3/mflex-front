@@ -26,7 +26,7 @@ export default function NewContent({ news }: { news: INews }) {
             date={news.created_at}
           />
         </div>
-        <h1 className="text-lg leading-[3rem] font-bold text-center text-white">
+        <h1 className="text-lg leading-[3rem] font-bold text-white">
           {news.title}
         </h1>
         <div
