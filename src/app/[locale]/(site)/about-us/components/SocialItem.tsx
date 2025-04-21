@@ -23,7 +23,7 @@ export default function SocialItem({
     <Link
       target="_blank"
       href={action}
-      className="w-full hover:scale-[1.03] scale-100 transition-all"
+      className="w-full md:hover:scale-[1.03] scale-100 transition-all"
     >
       <BaseBox className="relative rounded-2xl">
         <div

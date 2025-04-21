@@ -40,7 +40,10 @@ export default function CContentServices({
           }  flex items-center gap-2 w-full md:py-2.5 py-4 my-1 px-4 dark:text-slate-100 rounded-full text-[0.85rem]`}
         >
           <ReactIcons.PiIcon.PiBuilding size={15} />
-          <CTranslateTo eng="" pt="Conheça a Agência Marca Flex" />
+          <CTranslateTo
+            eng="About Marca Flex Agency"
+            pt="Conheça a Agência Marca Flex"
+          />
         </Link>
         <Link
           href={`/${langByCookies}/services`}
