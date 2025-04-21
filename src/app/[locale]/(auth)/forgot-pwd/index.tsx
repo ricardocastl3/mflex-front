@@ -52,9 +52,9 @@ export default function SignInPage() {
       if (secondaryPhone.length != 9) {
         return AuSoftUI.Component.ToastifyWithTranslation({
           description_en: "Enter a valid mobile phone number",
-          description_pt: "Informe um número válido",
-          title_en: "Invalid Mobile Phone Number",
-          title_pt: "Número de celular inválido",
+          description_pt: "Informe um número do WhatsApp válido",
+          title_en: "Invalid WhatsApp Number",
+          title_pt: "Número do WhatsApp inválido",
           toast: handleAddToastOnArray,
           type: "error",
         });
@@ -156,8 +156,8 @@ export default function SignInPage() {
                       />
                       <h1 className="text-base ">
                         <CTranslateTo
-                          eng="Phone number"
-                          pt="Número de celular"
+                          eng="WhatsApp Number"
+                          pt="Número do WhatsApp"
                         />
                       </h1>
                     </div>
@@ -285,7 +285,7 @@ export default function SignInPage() {
                     {!isSubmitting && (
                       <>
                         <CTranslateTo
-                          eng="Recovery Paaword"
+                          eng="Recovery Password"
                           pt="Recuperar Senha"
                         />
                         <ReactIcons.AiICon.AiFillUnlock size={16} />

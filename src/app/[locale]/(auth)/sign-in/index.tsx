@@ -110,7 +110,10 @@ export default function SignInPage() {
                       className="rotate-90"
                     />
                     <h1 className="text-base ">
-                      <CTranslateTo eng="Phone number" pt="Número de celular" />
+                      <CTranslateTo
+                        eng="WhatsApp Number"
+                        pt="Número do WhatsApp"
+                      />
                     </h1>
                   </div>
                   <AuSoftUI.UI.TextField.Default

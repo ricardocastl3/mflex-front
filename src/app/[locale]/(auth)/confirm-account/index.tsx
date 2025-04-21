@@ -82,14 +82,15 @@ export default function ConfirmAccountPage() {
     try {
       if (secondaryPhone.length != 9 && type == "secondary") {
         return AuSoftUI.Component.ToastifyWithTranslation({
-          description_en: "Enter a valide mobile phone number",
-          description_pt: "Informe um número válido",
-          title_en: "Invalid Mobile Phone Number",
-          title_pt: "Número de celular inválido",
+          description_en: "Enter a valid WhatsApp number",
+          description_pt: "Informe um número do WhatsApp válido",
+          title_en: "Invalid WhatsApp Number",
+          title_pt: "Número do WhatsApp inválido",
           toast: handleAddToastOnArray,
           type: "error",
         });
       }
+
       setIsLoadingSendCode(true);
 
       await internalApi.post("/auth/resend-code-confirm", {
@@ -175,8 +176,8 @@ export default function ConfirmAccountPage() {
                         />
                         <h1 className="text-base ">
                           <CTranslateTo
-                            eng="New phone number"
-                            pt="Novo número de celular"
+                            eng="New WhatsApp number"
+                            pt="Novo número do WhatsApp"
                           />
                         </h1>
                       </div>

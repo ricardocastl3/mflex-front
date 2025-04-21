@@ -28,8 +28,6 @@ export default function SignUpPage() {
   const [termCheck, setTermCheck] = useState(false);
   const [isSubmit, setIsSubmit] = useState(false);
 
-  const router = useRouter();
-
   // Schema
   const schema = new signUpSchema(langByCookies);
   type formData = z.infer<typeof schema.signUpSchema>;
@@ -130,7 +128,10 @@ export default function SignUpPage() {
                       className="rotate-90"
                     />
                     <h1 className="text-base ">
-                      <CTranslateTo eng="Phone number" pt="Número de celular" />
+                      <CTranslateTo
+                        eng="WhatsApp number"
+                        pt="Número do WhatsApp"
+                      />
                     </h1>
                   </div>
                   <AuSoftUI.UI.TextField.Default
