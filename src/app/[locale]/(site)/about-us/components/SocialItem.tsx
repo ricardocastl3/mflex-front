@@ -21,12 +21,8 @@ export default function SocialItem({
   brand_color?: string;
 }) {
   return (
-    <AAnimated animate="animate-fade w-full">
-      <Link
-        target="_blank"
-        href={action}
-        className="w-full md:hover:scale-[1.03] hover:scale-100 scale-100 transition-all"
-      >
+    <AAnimated animate="animate-fade w-full md:hover:scale-[1.03] hover:scale-100 scale-100 ">
+      <Link target="_blank" href={action} className="w-full transition-all">
         <BaseBox className="relative rounded-2xl">
           <div
             style={{
