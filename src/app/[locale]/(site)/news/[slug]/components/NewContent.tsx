@@ -26,6 +26,9 @@ export default function NewContent({ news }: { news: INews }) {
             date={news.created_at}
           />
         </div>
+        <h1 className="text-lg leading-[3rem] font-bold text-center text-white">
+          {news.title}
+        </h1>
         <div
           className="dark:text-slate-300 text-lg"
           dangerouslySetInnerHTML={{ __html: news.content }}
