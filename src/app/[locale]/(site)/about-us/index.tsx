@@ -31,6 +31,14 @@ export default function ServicesPage() {
         </div>
 
         <AboutItem
+          Icon={ReactIcons.PiIcon.PiStar}
+          title_en="Our Essence"
+          title_pt="Nossa Essência"
+          des_en="More than just an agency, we are a vibrant platform where you can explore podcasts, events, and must-see news. Join us and discover how we can turn your ideas into reality!"
+          des_pt="Mais do que uma agência, somos uma plataforma vibrante onde você pode explorar podcasts, eventos e novidades imperdíveis. Junte-se a nós e descubra como podemos transformar suas ideias em realidade!"
+        />
+
+        <AboutItem
           Icon={ReactIcons.PiIcon.PiMapPin}
           des_en="Our mission is to empower our clients to achieve their goals through creative and innovative solutions, turning ideas into tangible results."
           des_pt="Nossa missão é capacitar nossos clientes a alcançarem seus objetivos por meio de soluções criativas e inovadoras, transformando ideias em resultados tangíveis."
@@ -61,30 +69,29 @@ export default function ServicesPage() {
 
         {window.innerWidth > 765 && <Meteors number={10} />}
       </div>
-      <AAnimated animate="animate-fade">
-        <div className="md:px-16 px-5 grid md:grid-cols-3 grid-cols-1 gap-6">
-          <SocialItem
-            des_en="Follow us on TikTok and stay updated with amazing news! 🚀"
-            des_pt="Siga-nos no TikTok e fique por dentro das novidades incríveis! 🚀"
-            social="tiktok"
-            action="https://www.tiktok.com/@marcafl3x"
-          />
-          <SocialItem
-            des_en="Follow us on Instagram for the latest news and inspiration! 🚀"
-            des_pt="Siga-nos no Instagram para não perder as últimas novidades e inspirações! 🚀"
-            social="instagram"
-            action="https://www.instagram.com/marcafl3x"
-            brand_color="text-violet-500 dark:text-violet-400"
-          />
-          <SocialItem
-            des_en="Like our Facebook page and stay updated with the best news! 🚀"
-            des_pt="Curta nossa página no Facebook e fique atualizado com as melhores novidades! 🚀"
-            social="facebook"
-            action="https://www.facebook.com/marcafl3x"
-            brand_color="text-blue-500 dark:text-blue-400"
-          />
-        </div>
-      </AAnimated>
+
+      <div className="md:px-16 px-5 grid md:grid-cols-3 grid-cols-1 gap-6">
+        <SocialItem
+          des_en="Follow us on TikTok and stay updated with amazing news! 🚀"
+          des_pt="Siga-nos no TikTok e fique por dentro das novidades incríveis! 🚀"
+          social="tiktok"
+          action="https://www.tiktok.com/@marcafl3x"
+        />
+        <SocialItem
+          des_en="Follow us on Instagram for the latest news and inspiration! 🚀"
+          des_pt="Siga-nos no Instagram para não perder as últimas novidades e inspirações! 🚀"
+          social="instagram"
+          action="https://www.instagram.com/marcafl3x"
+          brand_color="text-violet-500 dark:text-violet-400"
+        />
+        <SocialItem
+          des_en="Like our Facebook page and stay updated with the best news! 🚀"
+          des_pt="Curta nossa página no Facebook e fique atualizado com as melhores novidades! 🚀"
+          social="facebook"
+          action="https://www.facebook.com/marcafl3x"
+          brand_color="text-blue-500 dark:text-blue-400"
+        />
+      </div>
     </div>
   );
 }
