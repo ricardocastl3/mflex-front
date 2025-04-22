@@ -37,7 +37,13 @@ export default function ProductCard({ transfers }: { transfers: ITransfer[] }) {
             className="p-4 flex flex-col gap-2 border-b pb-2 border-slate-300 dark:border-slate-700/50"
           >
             <h4 className="text-yellow-500 dark:text-yellow-300 md:text-sm text-[0.9rem] font-bold">
-              {prod.payment.ticket?.event_ticket?.event.title}
+              {prod.payment.ticket?.event_ticket && (
+                <>{prod.payment.ticket?.event_ticket?.event.title}</>
+              )}
+
+              {!prod.payment.ticket?.event_ticket && (
+                <>{prod.payment.event_ticket_name}</>
+              )}
             </h4>
 
             <div className="grid grid-cols-2 gap-2">

@@ -63,7 +63,13 @@ export default function ProductList({ transfers }: { transfers: ITransfer[] }) {
               className="p-4 items-center grid grid-cols-10 w-full cursor-pointer hover:bg-slate-100 rounded-lg dark:hover:bg-slate-700/50"
             >
               <h4 className="text-sm dark:text-white col-span-3 pr-5">
-                {prod.payment.ticket?.event_ticket?.event.title}
+                {prod.payment.ticket?.event_ticket && (
+                  <>{prod.payment.ticket?.event_ticket?.event.title}</>
+                )}
+
+                {!prod.payment.ticket?.event_ticket && (
+                  <>{prod.payment.event_ticket_name}</>
+                )}
               </h4>
 
               <h4 className="text-sm dark:text-white text-nowrap col-span-2">
