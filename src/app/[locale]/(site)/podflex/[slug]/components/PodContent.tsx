@@ -23,7 +23,7 @@ export default function PodContent({ podflex }: { podflex: IPodcast }) {
       </div>
       <div className="flex flex-col gap-4 md:p-0 p-4">
         <div className="md:hidden flex flex-col gap-3">
-          <h4 className="text-[1.2rems] dark:text-white font-bold">
+          <h4 className="text-[1.7rems] dark:text-white font-bold">
             {podflex.title}
           </h4>
           <PodFlexCaster podcaster={podflex.podcaster} />
