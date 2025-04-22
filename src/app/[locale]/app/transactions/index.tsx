@@ -25,7 +25,6 @@ export default function TransactionPage() {
   const [allBaseTransaction, setAllBaseTransaction] = useState<IPayment[]>([]);
   const { fetchTransaction } = useTransactionProvider();
 
-  // Initial load effect
   useEffect(() => {
     if (!isLoadingAllTransactions) {
       setAllBaseTransaction(allTransactions);
