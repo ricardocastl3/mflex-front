@@ -125,7 +125,7 @@ export default function PodFlexContainer() {
 
         {isLoadingAllPodcasts && (
           <>
-            <div className="grid md:grid-cols-3 grid-cols-1 gap-6 animate-fade">
+            <div className="grid md:grid-cols-3 grid-cols-1 gap-6">
               {Array.from({ length: 4 }).map((event, i) => {
                 return (
                   <div

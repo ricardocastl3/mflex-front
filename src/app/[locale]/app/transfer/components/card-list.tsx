@@ -41,7 +41,7 @@ export default function ProductCard({ transfers }: { transfers: ITransfer[] }) {
                 <>
                   {`${prod.payment.ticket.event_ticket.event.title} - `}
                   <b className="font-bold dark:text-green-600 text-green-500">
-                    ${prod.payment.ticket.event_ticket.name}
+                    {prod.payment.ticket.event_ticket.name}
                   </b>
                 </>
               )}

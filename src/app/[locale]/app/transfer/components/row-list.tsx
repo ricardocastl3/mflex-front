@@ -67,7 +67,7 @@ export default function ProductList({ transfers }: { transfers: ITransfer[] }) {
                   <>
                     {`${prod.payment.ticket.event_ticket.event.title} - `}
                     <b className="font-bold dark:text-yellow-400 text-yellow-500">
-                      ${prod.payment.ticket.event_ticket.name}
+                      {prod.payment.ticket.event_ticket.name}
                     </b>
                   </>
                 )}
