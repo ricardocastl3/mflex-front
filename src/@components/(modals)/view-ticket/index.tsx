@@ -44,7 +44,7 @@ export default function ViewTicketModal() {
             <ReactIcons.BiIcon.BiX size={20} />
           </button>
         </div>
-        <div className="p-8 flex justify-center h-full flex-col items-center gap-4">
+        <div className="p-5 flex text-center flex-col items-center gap-4 md:mb-4 mb-2">
           <div
             ref={componentRef}
             className="flex flex-col items-center justify-center gap-2"
@@ -62,7 +62,7 @@ export default function ViewTicketModal() {
                 pt="Use este QRCode no local do evento, para validar o seu ingresso"
               />
             </h4>
-            <div className="bg-white p-2 rounded-xl">
+            <div className="bg-white p-2 rounded-xl mt-1">
               <AQRCode size={150} url={selectedTicket?.id!} />
             </div>
           </div>
