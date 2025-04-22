@@ -83,13 +83,23 @@ export default function AddTicketModal() {
         });
       }
 
-      handleAddTextOnBoxSuccess({
-        text_en:
-          "Many congratulations! Your ticket has been registered successfully",
-        text_pt: "Muitos parabéns! O seu ingresso foi cadastrado com sucesso",
-        title_en: "Ticket added successfully",
-        title_pt: "Ingresso adicionado com sucesso",
-      });
+      if (selectedEventTicket) {
+        handleAddTextOnBoxSuccess({
+          text_en:
+            "Many congratulations! Your ticket has been updated successfully",
+          text_pt: "Muitos parabéns! O seu ingresso foi atualizado com sucesso",
+          title_en: "Ticket updated successfully",
+          title_pt: "Ingresso atualizado com sucesso",
+        });
+      } else {
+        handleAddTextOnBoxSuccess({
+          text_en:
+            "Many congratulations! Your ticket has been registered successfully",
+          text_pt: "Muitos parabéns! O seu ingresso foi cadastrado com sucesso",
+          title_en: "Ticket added successfully",
+          title_pt: "Ingresso adicionado com sucesso",
+        });
+      }
 
       handleOpenModal("box-success");
       setIsSubmitting(false);

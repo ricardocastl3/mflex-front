@@ -15,17 +15,9 @@ export default function BoxSuccessModal() {
   const { handleOpenModal, boxSuccessText } = useModal();
   const { userLogged } = useAuth();
   const { selectedTicket, handleFetchTicket } = useTicketProvider();
-  const {
-    selectedTicket: selectedMerchant,
-    handleFetchTicket: handleFetchMerchant,
-  } = useTicketProvider();
 
   function handleCloseBox() {
     handleOpenModal("");
-
-    if (selectedMerchant) {
-      handleFetchMerchant(false);
-    }
 
     if (selectedTicket) {
       handleFetchTicket(false);
