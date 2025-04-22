@@ -20,13 +20,15 @@ import ARegisterProgress from "@/@components/(ausoft)/ARegisterProgress";
 export default function SignInPage() {
   // Context
   const { handleAddToastOnArray } = useAppProvider();
-  const { fetchUserInformations } = useAuth();
+  const { fetchUserInformations, userLogged } = useAuth();
 
   // Controls
   const [sentConde, setSentCode] = useState(false);
   const [isLoadingSendCode, setIsLoadingSendCode] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [secondaryPhone, setSecondaryPhone] = useState("");
+  const [secondaryPhone, setSecondaryPhone] = useState(
+    userLogged && userLogged.profile ? userLogged.profile?.phone_number : ""
+  );
 
   // Schema
   const schema = new RecoverPwdSchema(langByCookies);
@@ -60,7 +62,7 @@ export default function SignInPage() {
         });
       }
 
-      if (!data.code || data.code && data.code.length <= 0) {
+      if (!data.code || (data.code && data.code.length <= 0)) {
         return AuSoftUI.Component.ToastifyWithTranslation({
           description_en: "Click on send code button, if you don't click after",
           description_pt:
