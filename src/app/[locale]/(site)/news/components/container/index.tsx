@@ -117,6 +117,22 @@ export default function NewsContainer() {
             )}
           </div>
         )}
+
+        {isLoadingAllNews && (
+          <>
+            <div className="grid md:grid-cols-3 grid-cols-1 gap-x-6 gap-y-8 animate-fade">
+              {Array.from({ length: 4 }).map((event, i) => {
+                return (
+                  <div
+                    key={i}
+                    className="p-8 h-[40vh] rounded-xl bg-slate-300/40 dark:bg-ausoft-slate-900 animate-pulse"
+                  ></div>
+                );
+              })}
+            </div>
+          </>
+        )}
+
         {!isLoadingAllNews && !isLoadingMoreNews && allNews.length <= 0 && (
           <div className="w-full h-full flex justify-center py-12 md:px-[3rem] px-5 flex-col">
             <AuSoftUI.Component.ListEmpty

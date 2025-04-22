@@ -123,6 +123,21 @@ export default function PodFlexContainer() {
           </div>
         )}
 
+        {isLoadingAllPodcasts && (
+          <>
+            <div className="grid md:grid-cols-3 grid-cols-1 gap-6 animate-fade">
+              {Array.from({ length: 4 }).map((event, i) => {
+                return (
+                  <div
+                    key={i}
+                    className="p-8 h-[50vh] rounded-xl bg-slate-300/40 dark:bg-ausoft-slate-900 animate-pulse"
+                  ></div>
+                );
+              })}
+            </div>
+          </>
+        )}
+
         {!isLoadingAllPodcasts &&
           !isLoadingMorePodcasts &&
           allPodcasts.length <= 0 && (
