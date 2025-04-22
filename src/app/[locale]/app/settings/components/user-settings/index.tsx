@@ -9,7 +9,7 @@ import Link from "next/link";
 export default function UserSettingsBox() {
   return (
     <BaseBox className="md:px-5 px-4 md:py-4 py-4">
-      <div className="flex items-start gap-2 border-b pb-2 border-slate-300/80 dark:border-slate-800">
+      <div className="flex items-start gap-2">
         <div className="flex flex-col gap-0.5">
           <div className="flex items-center gap-2 dark:text-slate-100">
             <h3 className="text-md font-bold">
