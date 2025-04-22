@@ -130,7 +130,7 @@ const flex4 =
   "https://firebasestorage.googleapis.com/v0/b/lora-538b7.appspot.com/o/mflex%2Fbns%2F4.jpg?alt=media&token=dd9e980f-363d-4ecc-a4ac-0fa9ad6613af";
 
 const flex5 =
-  "https://firebasestorage.googleapis.com/v0/b/lora-538b7.appspot.com/o/mflex%2Fbns%2F5.jpg?alt=media&token=8061b136-06bc-4305-8d74-e49c3334eaf0";
+  "https://firebasestorage.googleapis.com/v0/b/lora-538b7.appspot.com/o/mflex%2Fbns%2F5.JPG?alt=media&token=1eb94bb3-ad0f-4018-b56e-671f95a14ced";
 
 const flex6 =
   "https://firebasestorage.googleapis.com/v0/b/lora-538b7.appspot.com/o/mflex%2Fbns%2F6.jpg?alt=media&token=d8b7da77-4d6c-45ac-b554-6fa3819fc725";
