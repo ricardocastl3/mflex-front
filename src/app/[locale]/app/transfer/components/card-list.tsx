@@ -36,11 +36,11 @@ export default function ProductCard({ transfers }: { transfers: ITransfer[] }) {
             key={i}
             className="p-4 flex flex-col gap-2 border-b pb-2 border-slate-300 dark:border-slate-700/50"
           >
-            <h4 className="text-yellow-500 dark:text-yellow-400 md:text-sm text-[0.9rem] font-bold">
+            <h4 className="dark:text-white md:text-sm text-[0.9rem] font-bold">
               {prod.payment.ticket?.event_ticket && (
                 <>
                   {`${prod.payment.ticket.event_ticket.event.title} - `}
-                  <b className="font-bold dark:text-green-600 text-green-500">
+                  <b className="font-bold text-yellow-500 dark:text-yellow-400">
                     {prod.payment.ticket.event_ticket.name}
                   </b>
                 </>
@@ -49,7 +49,7 @@ export default function ProductCard({ transfers }: { transfers: ITransfer[] }) {
               {!prod.payment.ticket?.event_ticket && (
                 <>
                   {`${prod.payment.event_name} - `}
-                  <b className="font-bold dark:text-green-600 text-green-500">
+                  <b className="font-bold text-yellow-500 dark:text-yellow-400">
                     {prod.payment.event_ticket_name}
                   </b>
                 </>
