@@ -64,11 +64,11 @@ export default function ProductList({ transfers }: { transfers: ITransfer[] }) {
             >
               <h4 className="text-sm dark:text-white col-span-3 pr-5">
                 {prod.payment.ticket?.event_ticket && (
-                  <>{prod.payment.ticket?.event_ticket?.event.title}</>
+                  <>{`${prod.payment.ticket.event_ticket.event.title} - ${prod.payment.ticket.event_ticket.name}`}</>
                 )}
 
                 {!prod.payment.ticket?.event_ticket && (
-                  <>{prod.payment.event_ticket_name}</>
+                  <>{`${prod.payment.event_name} - ${prod.payment.event_ticket_name}`}</>
                 )}
               </h4>
 

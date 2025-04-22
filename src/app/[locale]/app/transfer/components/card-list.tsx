@@ -38,11 +38,11 @@ export default function ProductCard({ transfers }: { transfers: ITransfer[] }) {
           >
             <h4 className="text-yellow-500 dark:text-yellow-300 md:text-sm text-[0.9rem] font-bold">
               {prod.payment.ticket?.event_ticket && (
-                <>{prod.payment.ticket?.event_ticket?.event.title}</>
+                <>{`${prod.payment.ticket.event_ticket.event.title} - ${prod.payment.ticket.event_ticket.name}`}</>
               )}
 
               {!prod.payment.ticket?.event_ticket && (
-                <>{prod.payment.event_ticket_name}</>
+                <>{`${prod.payment.event_name} - ${prod.payment.event_ticket_name}`}</>
               )}
             </h4>
 
