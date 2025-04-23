@@ -227,9 +227,25 @@ export default function AddTicketModal() {
             </div>
           </div>
           <div className="flex flex-col gap-2">
-            <h3 className="dark:text-white">
-              <CTranslateTo eng="Ticket Limit" pt="Limite dos Ingressos" />
-            </h3>
+            <div className="flex items-center gap-2">
+              <h3 className="dark:text-white">
+                <CTranslateTo eng="Ticket Limit" pt="Limite dos Ingressos" />
+              </h3>
+              <h3 className="dark:text-yellow-400 text-yellow-500">
+                <CTranslateTo
+                  eng=" - Bought Total:"
+                  pt=" - Total já comprado:"
+                />
+                {` (${
+                  selectedEventTicket
+                    ? selectedEventTicket.tickets.reduce(
+                        (acc, curr) => acc + Number(curr.quantity),
+                        0
+                      )
+                    : 0
+                })`}
+              </h3>
+            </div>
             <AuSoftUI.UI.TextField.Default
               {...register("limit", { valueAsNumber: true })}
               requiredField={errors.limit?.message ? true : false}

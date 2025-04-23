@@ -54,8 +54,9 @@ export default function PayPayPayment() {
       setAngolanDetail({ link: resp.data.link });
       setIsLoading(false);
     } catch (err) {
+      CAxiosErrorToastify({ err, openToast: handleAddToastOnArray });
+      handleOpenModal("angolan-payment-modal");
       setIsLoading(false);
-      return CAxiosErrorToastify({ err, openToast: handleAddToastOnArray });
     }
   }, []);
 

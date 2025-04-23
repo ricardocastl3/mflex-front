@@ -4,7 +4,7 @@ import { useAppProvider } from "@/providers/app/AppProvider";
 import { useCallback, useEffect, useState } from "react";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { useCheckoutProvider } from "@/providers/app/CheckoutProvider";
-import { useTicketProvider } from "@/providers/features/TicketProvider";
+import { useModal } from "@/providers/app/ModalProvider";
 
 import CurrencyServices from "@/services/CurrencyServices";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
@@ -12,6 +12,7 @@ import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 
 export default function ReferencePayment() {
   // Contexts
+  const { handleOpenModal } = useModal();
   const { handleAddToastOnArray } = useAppProvider();
   const { selectedCustomerBuyed } = useCheckoutProvider();
 
@@ -37,8 +38,9 @@ export default function ReferencePayment() {
       });
       setIsLoading(false);
     } catch (err) {
+      CAxiosErrorToastify({ err, openToast: handleAddToastOnArray });
+      handleOpenModal("angolan-payment-modal");
       setIsLoading(false);
-      return CAxiosErrorToastify({ err, openToast: handleAddToastOnArray });
     }
   }, []);
 
