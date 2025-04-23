@@ -39,11 +39,13 @@ export default function AddTicketModal() {
     resolver: zodResolver(schema.ticketSchema),
     defaultValues: selectedEventTicket
       ? {
+          limit: selectedEventTicket.limit,
           amount: selectedEventTicket.amount,
           description: selectedEventTicket.description,
           name: selectedEventTicket.name,
         }
       : {
+          limit: 0,
           amount: 0,
           description: "",
           name: "",
@@ -72,10 +74,12 @@ export default function AddTicketModal() {
           description: data.description,
           amount: data.amount,
           status: ticketStatus,
+          limit: data.limit,
         });
       } else {
         await internalApi.post("/events/tickets", {
           name: data.name,
+          limit: data.limit,
           description: data.description,
           amount: data.amount,
           status: ticketStatus,
@@ -221,6 +225,24 @@ export default function AddTicketModal() {
                 </option>
               </AuSoftUI.UI.Select>
             </div>
+          </div>
+          <div className="flex flex-col gap-2">
+            <h3 className="dark:text-white">
+              <CTranslateTo eng="Ticket Limit" pt="Limite dos Ingressos" />
+            </h3>
+            <AuSoftUI.UI.TextField.Default
+              {...register("limit", { valueAsNumber: true })}
+              requiredField={errors.limit?.message ? true : false}
+              weight={"md"}
+              className="w-full"
+              placeholder="Ex: 50..."
+            />
+            {errors.limit?.message && (
+              <AuSoftUI.Component.RequiredTextField
+                text={errors.limit.message!}
+                color="red"
+              />
+            )}
           </div>
           <div className="flex flex-col gap-2">
             <h3 className="dark:text-white">

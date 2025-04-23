@@ -93,6 +93,7 @@ export default function EventTicketCard({ ticket }: { ticket: IEventTicket }) {
           <CTranslateTo eng="Available" pt="Disponível" />
         </h3>
       )}
+      
       {ticket.status == "unavailable" && (
         <h3 className="dark:text-red-500 text-red-500 font-bold">
           <CTranslateTo eng="Unavailable" pt="Indisponível" />

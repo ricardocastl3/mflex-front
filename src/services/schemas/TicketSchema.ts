@@ -9,6 +9,9 @@ class TicketSchemas {
         message:
           lang === "en" ? "Amount is required" : "Montante é obrigatório",
       }),
+      limit: z.number({
+        message: lang === "en" ? "Limit is required" : "Limite é obrigatório",
+      }),
       name: z
         .string({
           message: lang === "en" ? "Name is required" : "Nome é obrigatório",

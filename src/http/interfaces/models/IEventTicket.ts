@@ -9,6 +9,7 @@ export interface IEventTicket {
   status: string;
   event_id: string;
   tickets: ITicket[];
+  limit: number;
   created_at: Date;
   event: IEvent;
 }
