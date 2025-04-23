@@ -8,10 +8,12 @@ export default function DateCategory({
   category_name,
   date,
   right,
+  hourVisible,
 }: {
   category_name: string;
   date: Date;
   right?: boolean;
+  hourVisible?: boolean;
 }) {
   return (
     <div className="flex items-center gap-3 flex-wrap">
@@ -26,7 +28,13 @@ export default function DateCategory({
         <ReactIcons.Hi2Icon.HiCalendar size={15} />
         {format(
           date,
-          langByCookies === "pt" ? "d 'de' MMMM 'de' yyyy" : "MMMM d, yyyy",
+          hourVisible
+            ? langByCookies === "pt"
+              ? "d 'de' MMMM 'às' HH:mm"
+              : "d MMMM 'at' HH:mm"
+            : langByCookies === "pt"
+            ? "d 'de' MMMM 'de' yyyy"
+            : "MMMM d, yyyy",
           { locale: langByCookies === "pt" ? ptBR : enUS }
         )}
       </h4>

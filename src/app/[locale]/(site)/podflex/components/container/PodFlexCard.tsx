@@ -64,8 +64,8 @@ export default function PodFlexCard({
                   {format(
                     podcast.started_at,
                     langByCookies === "pt"
-                      ? "d 'de' MMMM 'às' HH:mm"
-                      : "d MMMM 'at' HH:mm",
+                      ? "d 'de' MMMM 'de' yyyy"
+                      : "MMMM d, yyyy",
                     { locale: langByCookies === "pt" ? ptBR : enUS }
                   )}
                 </h4>

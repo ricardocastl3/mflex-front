@@ -72,6 +72,7 @@ export default function EventCard({
             right
             category_name={event.category ? event.category.name : "no"}
             date={event.start_at}
+            hourVisible
           />
           <h4 className="flex items-center gap-2 dark:text-slate-300 text-slate-700">
             <ReactIcons.Hi2Icon.HiMap size={15} />
