@@ -1,5 +1,6 @@
 import { internalApi } from "@/http/axios/api";
 import { useModal } from "@/providers/app/ModalProvider";
+import { ECOOKIES } from "@/utils/enums";
 import { useEffect, useState } from "react";
 
 const VAPID_PUBLIC_KEY = process.env.VAPID_PUBLIC_KEY;
@@ -33,6 +34,11 @@ export const useWebPush = (userId: string) => {
             });
             setSubscription(newSubscription);
             await sendSubscriptionToServer(newSubscription);
+
+            localStorage.setItem(
+              ECOOKIES.localStorage.alreadySign,
+              `s_${new Date().getTime()}_${userId}`
+            );
           }
         } catch (error) {
           console.error("Erro ao registrar push:", error);
