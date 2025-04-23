@@ -17,7 +17,7 @@ export default function BoxCategories({
 
   return (
     <BaseBox className="md:w-auto w-[88vw] flex md:py-4 py-3 justify-center md:px-8 px-8 overflow-x-auto md:mt-8 mt-6 md:mb-4 mb-4 my-4 md:mx-[3rem] mx-5">
-      <div className="flex items-center md:gap-4 gap-4 overflow-x-auto px-0.5">
+      <div className="flex items-center md:gap-4 gap-4 overflow-x-auto px-[0.1rem]">
         {!isLoadingCategory && allCategory.length > 0 && (
           <>
             <button
@@ -28,7 +28,7 @@ export default function BoxCategories({
                 !selectedCategory
                   ? "bg-slate-200/50 dark:bg-slate-800/50"
                   : "hover:scale-[1.05] hover:bg-slate-200/50 hover:dark:bg-slate-800/50"
-              } flex gap-2 items-center transition-all md:ml-4 ml-8 pl-1 pr-3 py-1 rounded-full border border-slate-300 dark:border-slate-800`}
+              } flex gap-2 items-center transition-all pl-1 pr-3 py-1 rounded-full border border-slate-300 dark:border-slate-800`}
             >
               <div
                 className={`${
