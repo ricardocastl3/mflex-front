@@ -36,6 +36,7 @@ export const useWebPush = (userId: string) => {
           }
         } catch (error) {
           console.error("Erro ao registrar push:", error);
+          return;
         }
       });
     }
