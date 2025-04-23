@@ -6,7 +6,7 @@ import { ReactIcons } from "@/utils/icons";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import Link from "next/link";
 
-export default function UserSettingsBox() {
+export default function UserSecurityBox() {
   return (
     <BaseBox className="md:px-5 px-4 md:py-4 py-4">
       <div className="flex items-start gap-2">

@@ -11,6 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { useState } from "react";
 import { useAuth } from "@/providers/auth/AuthProvider";
+import { useRouter } from "next/navigation";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
@@ -29,6 +30,8 @@ export default function SignInPage() {
   const [secondaryPhone, setSecondaryPhone] = useState(
     userLogged && userLogged.profile ? userLogged.profile?.phone_number : ""
   );
+
+  const router = useRouter();
 
   // Schema
   const schema = new RecoverPwdSchema(langByCookies);
@@ -84,6 +87,12 @@ export default function SignInPage() {
       });
 
       await fetchUserInformations();
+
+      if (userLogged) {
+        router.push(`/${langByCookies}/app`);
+      } else {
+        router.push(`/${langByCookies}/sign-in`);
+      }
     } catch (err) {
       setIsSubmitting(false);
       return CAxiosErrorToastify({
@@ -192,6 +201,7 @@ export default function SignInPage() {
                   </div>
                   <AuSoftUI.UI.TextField.Default
                     value={secondaryPhone}
+                    disabled={userLogged ? true : false}
                     onChange={(e) => setSecondaryPhone(e.target.value)}
                     placeholder="Ex: 935567356"
                     className="w-full"
