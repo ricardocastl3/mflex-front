@@ -17,7 +17,15 @@ export default function BoxCategories({
 
   return (
     <BaseBox className="md:w-auto w-[88vw] flex md:py-4 py-3 justify-center md:px-8 px-8 md:mt-8 mt-6 md:mb-4 mb-4 my-4 md:mx-[3rem] mx-5">
-      <div className="flex md:w-[85vw] w-full justify-stretch overflow-hidden items-center md:gap-4 overflow-x-auto gap-4 px-[0.1rem]">
+      <div
+        className={` ${
+          !isLoadingCategory && allCategory.length >= 6
+            ? "justify-stretch"
+            : "md:justify-center justify-stretch"
+        } ${
+          isLoadingCategory ? "justify-center" : ""
+        } flex md:w-[85vw] w-full  overflow-hidden items-center md:gap-4 overflow-x-auto gap-4 px-[0.1rem]`}
+      >
         {!isLoadingCategory && allCategory.length > 0 && (
           <>
             <button
@@ -72,7 +80,7 @@ export default function BoxCategories({
                     />
                   </div>
                   <h3 className="text-sm text-nowrap font-bold dark:text-white">
-                    {category.name} 
+                    {category.name}
                   </h3>
                 </button>
               );
