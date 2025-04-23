@@ -229,7 +229,10 @@ export default function AddTicketModal() {
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
               <h3 className="dark:text-white">
-                <CTranslateTo eng="Ticket Limit" pt="Limite dos Ingressos" />
+                <CTranslateTo
+                  eng="Tickets Available"
+                  pt="Ingressos Disponíveis"
+                />
               </h3>
               {selectedEventTicket && (
                 <h3 className="dark:text-yellow-400 text-yellow-500">

@@ -17,7 +17,7 @@ export default function BoxCategories({
 
   return (
     <BaseBox className="md:w-auto w-[88vw] flex md:py-4 py-3 justify-center md:px-8 px-8 overflow-x-auto md:mt-8 mt-6 md:mb-4 mb-4 my-4 md:mx-[3rem] mx-5">
-      <div className="flex items-center md:gap-4 gap-4 overflowx-x-auto">
+      <div className="flex items-center md:gap-4 gap-4 overflow-x-auto px-1">
         {!isLoadingCategory && allCategory.length > 0 && (
           <>
             <button
