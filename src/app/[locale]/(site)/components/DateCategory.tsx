@@ -26,9 +26,7 @@ export default function DateCategory({
         <ReactIcons.Hi2Icon.HiCalendar size={15} />
         {format(
           date,
-          langByCookies === "pt"
-            ? "d 'de' MMMM 'às' HH:mm"
-            : "d MMMM 'at' HH:mm",
+          langByCookies === "pt" ? "d 'de' MMMM 'de' yyyy" : "MMMM d, yyyy",
           { locale: langByCookies === "pt" ? ptBR : enUS }
         )}
       </h4>
