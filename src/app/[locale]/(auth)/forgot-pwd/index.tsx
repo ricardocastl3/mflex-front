@@ -201,7 +201,7 @@ export default function SignInPage() {
                   </div>
                   <AuSoftUI.UI.TextField.Default
                     value={secondaryPhone}
-                    disabled={userLogged ? true : false}
+                    readOnly={userLogged ? true : false}
                     onChange={(e) => setSecondaryPhone(e.target.value)}
                     placeholder="Ex: 935567356"
                     className="w-full"
