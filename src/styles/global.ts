@@ -19,7 +19,7 @@ export const GlobalStyles = globalCss({
 
   "::-webkit-scrollbar": {
     width: "4px",
-    height: "2px",
+    height: "0px",
     "@sm": {
       height: "2px",
     },
