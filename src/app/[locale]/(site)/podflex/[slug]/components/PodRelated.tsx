@@ -53,7 +53,7 @@ export default function PodRelated({
         />
 
         {(LocalStorageServices.hasSubscriber() && !isNotifyGranted) ||
-          (!LocalStorageServices.hasSubscriber() && (
+          !LocalStorageServices.hasSubscriber() && (
             <>
               {podcasts
                 .filter(
@@ -67,7 +67,7 @@ export default function PodRelated({
                   );
                 })}
             </>
-          ))}
+          )}
 
         {LocalStorageServices.hasSubscriber() && isNotifyGranted && (
           <>

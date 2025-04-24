@@ -51,7 +51,7 @@ export default function NewsRelated({
         />
 
         {(LocalStorageServices.hasSubscriber() && !isNotifyGranted) ||
-          (!LocalStorageServices.hasSubscriber() && (
+          !LocalStorageServices.hasSubscriber() && (
             <>
               {news
                 .filter(
@@ -63,7 +63,7 @@ export default function NewsRelated({
                   return i < 1 && <NewsCard index={i} key={i} news={newEl} />;
                 })}
             </>
-          ))}
+          )}
 
         {LocalStorageServices.hasSubscriber() && isNotifyGranted && (
           <>
