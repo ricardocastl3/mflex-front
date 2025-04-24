@@ -44,7 +44,10 @@ export default function SubscribeBanner({
     }
   }
 
-  if (!LocalStorageServices.hasSubscriber() || (userLogged && !isNotifyGranted))
+  if (
+    !LocalStorageServices.hasSubscriber() ||
+    (LocalStorageServices.hasSubscriber() && !isNotifyGranted)
+  )
     return (
       <div
         style={{
