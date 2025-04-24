@@ -52,9 +52,9 @@ export default function NewsRelated({
 
         {!LocalStorageServices.hasSubscriber() ||
           (userLogged && !isNotifyGranted) ||
-          !userLogged &&
+          (!userLogged &&
             LocalStorageServices.hasSubscriber() &&
-            !isNotifyGranted && (
+            !isNotifyGranted) && (
               <>
                 {news
                   .filter(
