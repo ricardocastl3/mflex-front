@@ -32,7 +32,7 @@ export default function PodFlexSection() {
         </div>
 
         <div className="mt-6">
-          <div className="grid md:grid-cols-3 grid-cols-1 gap-6">
+          <div className="grid md:grid-cols-3 grid-cols-1 items-start gap-6">
             {isLoadingAllPodcasts &&
               Array.from({ length: 3 }).map((_, i) => {
                 return (

@@ -30,7 +30,7 @@ export default function NewsSection() {
         </div>
 
         <div className="mt-6">
-          <div className="grid md:grid-cols-3 grid-cols-1 gap-6">
+          <div className="grid md:grid-cols-3 grid-cols-1 gap-6 items-start">
             {isLoadingAllNews &&
               Array.from({ length: 3 }).map((_, i) => {
                 return (
