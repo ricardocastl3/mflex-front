@@ -52,7 +52,7 @@ export default function PodRelated({
           title_pt="Bem-vindo ao nosso mundo de podcasts! 🎧"
         />
 
-        {!LocalStorageServices.hasSubscriber() && !isNotifyGranted && (
+        {!LocalStorageServices.hasSubscriber() && (
           <>
             {podcasts
               .filter(

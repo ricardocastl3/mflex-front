@@ -50,7 +50,7 @@ export default function NewsRelated({
           title_pt="Parabéns por ter chegado 😀"
         />
 
-        {!LocalStorageServices.hasSubscriber() && !isNotifyGranted && (
+        {!LocalStorageServices.hasSubscriber() && (
           <>
             {news
               .filter(
