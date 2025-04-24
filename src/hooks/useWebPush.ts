@@ -1,6 +1,8 @@
 import { internalApi } from "@/http/axios/api";
 import { useModal } from "@/providers/app/ModalProvider";
+import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 import { ECOOKIES } from "@/utils/enums";
+import { permission } from "process";
 import { useEffect, useState } from "react";
 
 const VAPID_PUBLIC_KEY = process.env.VAPID_PUBLIC_KEY;
@@ -21,6 +23,11 @@ export const useWebPush = (userId: string) => {
           const existingSubscription = await reg.pushManager.getSubscription();
           if (existingSubscription) {
             setSubscription(existingSubscription);
+            const permission = await Notification.requestPermission();
+            if (permission == "granted") {
+              LocalStorageServices.setSubscriber();
+              LocalStorageServices.removeRedirectSubscriber();
+            }
           } else {
             const permission = await Notification.requestPermission();
             if (permission !== "granted") {

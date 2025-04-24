@@ -1,3 +1,5 @@
+"use client";
+
 import HeroNews from "./components/Hero";
 import NewsContainer from "./components/container";
 

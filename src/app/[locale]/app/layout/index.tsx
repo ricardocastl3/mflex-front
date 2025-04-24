@@ -5,7 +5,6 @@ import { AuSoftUI } from "@/@components/(ausoft)";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { useWebPush } from "@/hooks/useWebPush";
 import { langByCookies } from "@/http/axios/api";
-import { useModal } from "@/providers/app/ModalProvider";
 
 import AHeader from "@/@components/(system)/AHeader";
 import LoadingLayout from "@/app/onload-pages/_loading-layouts";

@@ -5,6 +5,8 @@ export const ECOOKIES = {
 
   localStorage: {
     alreadySign: "nsi",
+    subscriber: "sb",
+    redirectSubscriber: "sbr",
   },
 };
 

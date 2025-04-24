@@ -16,6 +16,8 @@ import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import AuthSchemas from "@/services/schemas/AuthSchemas";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 import ARegisterProgress from "@/@components/(ausoft)/ARegisterProgress";
+import { ECOOKIES } from "@/utils/enums";
+import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 export default function ConfirmAccountPage() {
   // Context
@@ -67,6 +69,13 @@ export default function ConfirmAccountPage() {
             ? secondaryPhone
             : userLogged?.profile?.phone_number,
       });
+
+      if (LocalStorageServices.hasRedirectSubscriber()) {
+        LocalStorageServices.removeRedirectSubscriber();
+        LocalStorageServices.setSubscriber();
+        window.location.href = `/${langByCookies}`;
+        return;
+      }
 
       await fetchUserInformations();
     } catch (err) {

@@ -13,6 +13,7 @@ export interface IToast {
 
 interface IAppContext {
   isDarkMode: boolean;
+  isNotifyGranted: boolean;
   currentPageByUrl: string;
   currentAppPageUrl: string;
   openToast: IToast[];
@@ -49,6 +50,8 @@ export default function AppProvider({
   const [canCloseSubscribe, setCanCloseSubscribe] = useState(true);
 
   const [hiddenMobileHeader, setHiddenMobileHeader] = useState(false);
+
+  const [isNotifyGranted, setIsNotifyGranted] = useState(false);
 
   const segmentedLayout = useSelectedLayoutSegment();
   const [segmentedLayoutByLocalStorage, setSegmentedLayoutByLocalStorage] =
@@ -92,6 +95,13 @@ export default function AppProvider({
     setSegmentedLayoutByLocalStorage(lang?.toString().toLowerCase()!);
   }, [path]);
 
+  useEffect(() => {
+    Notification.requestPermission().then((e) => {
+      if (e == "granted") setIsNotifyGranted(true);
+      else setIsNotifyGranted(false);
+    });
+  }, []);
+
   return (
     <AppContext.Provider
       value={{
@@ -100,6 +110,7 @@ export default function AppProvider({
         handleOpenBanner,
         canCloseSubscribe,
 
+        isNotifyGranted,
         hiddenMobileHeader,
         openBanner,
         segmentedLayoutByLocalStorage,

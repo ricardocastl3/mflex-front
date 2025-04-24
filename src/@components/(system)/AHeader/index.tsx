@@ -3,9 +3,7 @@
 import { CSwitcherTheme } from "@/@components/(theme)/CSwitcherTheme";
 import { CUserProfileBox } from "@/@components/(box)/profile/CUserProfileBox";
 import { useAppProvider } from "@/providers/app/AppProvider";
-import { AuSoftUI } from "@/@components/(ausoft)";
 import { langByCookies } from "@/http/axios/api";
-import { ReactIcons } from "@/utils/icons";
 
 import Link from "next/link";
 import AAuSoftLogo from "@/@components/(ausoft)/AAuSoftLogo";
@@ -13,7 +11,7 @@ import CTranslate from "@/@components/(translation)/CCTranslate/CTranslate";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 
 export default function AHeader() {
-  const { segmentedLayout, openBanner } = useAppProvider();
+  const { openBanner } = useAppProvider();
 
   return (
     <div

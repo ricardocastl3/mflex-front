@@ -115,6 +115,7 @@ export default function AuthProvider({
   }, []);
 
   function handleRedirectToSign() {
+    localStorage.removeItem(ECOOKIES.localStorage.subscriber);
     window.location.href = "/" + langByCookies + "/sign-in";
   }
 
