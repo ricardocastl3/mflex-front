@@ -52,22 +52,37 @@ export default function PodRelated({
           title_pt="Bem-vindo ao nosso mundo de podcasts! 🎧"
         />
 
-        {(LocalStorageServices.hasSubscriber() && !isNotifyGranted) ||
-          !LocalStorageServices.hasSubscriber() && (
-            <>
-              {podcasts
-                .filter(
-                  (i) =>
-                    i.category_id == podElement.category_id &&
-                    i.id != podElement.id
-                )
-                .map((newEl, i) => {
-                  return (
-                    i < 1 && <PodFlexCard index={i} key={i} podcast={newEl} />
-                  );
-                })}
-            </>
-          )}
+        {!LocalStorageServices.hasSubscriber() && !isNotifyGranted && (
+          <>
+            {podcasts
+              .filter(
+                (i) =>
+                  i.category_id == podElement.category_id &&
+                  i.id != podElement.id
+              )
+              .map((newEl, i) => {
+                return (
+                  i < 1 && <PodFlexCard index={i} key={i} podcast={newEl} />
+                );
+              })}
+          </>
+        )}
+
+        {LocalStorageServices.hasSubscriber() && !isNotifyGranted && (
+          <>
+            {podcasts
+              .filter(
+                (i) =>
+                  i.category_id == podElement.category_id &&
+                  i.id != podElement.id
+              )
+              .map((newEl, i) => {
+                return (
+                  i < 1 && <PodFlexCard index={i} key={i} podcast={newEl} />
+                );
+              })}
+          </>
+        )}
 
         {LocalStorageServices.hasSubscriber() && isNotifyGranted && (
           <>

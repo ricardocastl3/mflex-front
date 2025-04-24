@@ -50,20 +50,33 @@ export default function NewsRelated({
           title_pt="Parabéns por ter chegado 😀"
         />
 
-        {(LocalStorageServices.hasSubscriber() && !isNotifyGranted) ||
-          !LocalStorageServices.hasSubscriber() && (
-            <>
-              {news
-                .filter(
-                  (i) =>
-                    i.category?.id == newElement.category?.id &&
-                    i.id != newElement.id
-                )
-                .map((newEl, i) => {
-                  return i < 1 && <NewsCard index={i} key={i} news={newEl} />;
-                })}
-            </>
-          )}
+        {!LocalStorageServices.hasSubscriber() && !isNotifyGranted && (
+          <>
+            {news
+              .filter(
+                (i) =>
+                  i.category?.id == newElement.category?.id &&
+                  i.id != newElement.id
+              )
+              .map((newEl, i) => {
+                return i < 1 && <NewsCard index={i} key={i} news={newEl} />;
+              })}
+          </>
+        )}
+
+        {LocalStorageServices.hasSubscriber() && !isNotifyGranted && (
+          <>
+            {news
+              .filter(
+                (i) =>
+                  i.category?.id == newElement.category?.id &&
+                  i.id != newElement.id
+              )
+              .map((newEl, i) => {
+                return i < 1 && <NewsCard index={i} key={i} news={newEl} />;
+              })}
+          </>
+        )}
 
         {LocalStorageServices.hasSubscriber() && isNotifyGranted && (
           <>
