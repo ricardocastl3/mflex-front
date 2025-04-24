@@ -52,24 +52,21 @@ export default function PodRelated({
         />
 
         {!LocalStorageServices.hasSubscriber() ||
-          (userLogged && !isNotifyGranted) ||
-          (!userLogged &&
-            LocalStorageServices.hasSubscriber() &&
-            !isNotifyGranted) && (
-              <>
-                {podcasts
-                  .filter(
-                    (i) =>
-                      i.category_id == podElement.category_id &&
-                      i.id != podElement.id
-                  )
-                  .map((newEl, i) => {
-                    return (
-                      i < 1 && <PodFlexCard index={i} key={i} podcast={newEl} />
-                    );
-                  })}
-              </>
-            )}
+          (LocalStorageServices.hasSubscriber() && !isNotifyGranted) && (
+            <>
+              {podcasts
+                .filter(
+                  (i) =>
+                    i.category_id == podElement.category_id &&
+                    i.id != podElement.id
+                )
+                .map((newEl, i) => {
+                  return (
+                    i < 1 && <PodFlexCard index={i} key={i} podcast={newEl} />
+                  );
+                })}
+            </>
+          )}
 
         {LocalStorageServices.hasSubscriber() && isNotifyGranted && (
           <>
