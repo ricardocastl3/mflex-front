@@ -34,10 +34,11 @@ export default function SubscribeBanner({
         }`
       );
     } else {
-      LocalStorageServices.setRedirectSubscriber();
       if (userLogged) {
+        LocalStorageServices.setSubscriber();
         window.location.reload();
       } else {
+        LocalStorageServices.setRedirectSubscriber();
         router.push(`/${langByCookies}/sign-up`);
       }
     }
@@ -70,7 +71,7 @@ export default function SubscribeBanner({
             variant={"primary"}
             className="rounded-full animate-pulse"
           >
-            <CTranslateTo eng="Subscribe Me 🚀" pt="Me Inscreva 🚀" />
+            <CTranslateTo eng="Subscribe Me 🚀" pt="Me Inscrever 🚀" />
           </AuSoftUI.UI.Button>
         </div>
       </div>

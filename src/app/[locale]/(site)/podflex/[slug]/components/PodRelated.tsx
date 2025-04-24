@@ -1,8 +1,8 @@
 import { BaseBox } from "@/@components/(box)/BaseBox";
 import { IPodcast } from "@/http/interfaces/models/IPodCast";
 import { localImages } from "@/utils/images";
-import { useAuth } from "@/providers/auth/AuthProvider";
 import { useAppProvider } from "@/providers/app/AppProvider";
+import { useAuth } from "@/providers/auth/AuthProvider";
 
 import PodFlexCard from "../../components/container/PodFlexCard";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
@@ -17,8 +17,9 @@ export default function PodRelated({
   podElement: IPodcast;
   podcasts: IPodcast[];
 }) {
-  const { userLogged } = useAuth();
   const { isNotifyGranted } = useAppProvider();
+
+  const { userLogged } = useAuth();
 
   return (
     <div className="flex flex-col gap-4 md:px-0 px-5 md:pb-12 pb-2">
@@ -51,8 +52,8 @@ export default function PodRelated({
           title_pt="Bem-vindo ao nosso mundo de podcasts! 🎧"
         />
 
-        {!LocalStorageServices.hasSubscriber() ||
-          (LocalStorageServices.hasSubscriber() && !isNotifyGranted) && (
+        {(LocalStorageServices.hasSubscriber() && !isNotifyGranted) ||
+          (!LocalStorageServices.hasSubscriber() && (
             <>
               {podcasts
                 .filter(
@@ -66,7 +67,7 @@ export default function PodRelated({
                   );
                 })}
             </>
-          )}
+          ))}
 
         {LocalStorageServices.hasSubscriber() && isNotifyGranted && (
           <>
