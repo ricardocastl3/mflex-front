@@ -57,7 +57,7 @@ export default function SubscribeBanner({
         <div className="p-5 rounded-lg text-center flex flex-col items-center gap-2">
           <ReactIcons.CgIcon.CgNotifications
             size={30}
-            className="text-white animate-pulse"
+            className="text-white animate-spin"
           />
           <h1 className="text-base text-white font-bold">
             <CTranslateTo eng={title_en} pt={title_pt} />
@@ -68,7 +68,7 @@ export default function SubscribeBanner({
           <AuSoftUI.UI.Button
             onClick={handleSubscribe}
             variant={"primary"}
-            className="rounded-full"
+            className="rounded-full animate-pulse"
           >
             <CTranslateTo eng="Subscribe Me 🚀" pt="Me Inscreva 🚀" />
           </AuSoftUI.UI.Button>
