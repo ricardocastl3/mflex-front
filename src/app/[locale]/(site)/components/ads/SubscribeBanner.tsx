@@ -35,7 +35,11 @@ export default function SubscribeBanner({
       );
     } else {
       LocalStorageServices.setRedirectSubscriber();
-      router.push(`/${langByCookies}/sign-up`);
+      if (userLogged) {
+        window.location.reload();
+      } else {
+        router.push(`/${langByCookies}/sign-up`);
+      }
     }
   }
 
