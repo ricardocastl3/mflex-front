@@ -2,7 +2,6 @@ import { BaseBox } from "@/@components/(box)/BaseBox";
 import { IPodcast } from "@/http/interfaces/models/IPodCast";
 import { localImages } from "@/utils/images";
 import { useAppProvider } from "@/providers/app/AppProvider";
-import { useAuth } from "@/providers/auth/AuthProvider";
 
 import PodFlexCard from "../../components/container/PodFlexCard";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
@@ -19,8 +18,6 @@ export default function PodRelated({
 }) {
   const { isNotifyGranted } = useAppProvider();
 
-  const { userLogged } = useAuth();
-
   return (
     <div className="flex flex-col gap-4 md:px-0 px-5 md:pb-12 pb-2">
       <BaseBox className="p-4 dark:bg-ausoft-slate-900 dark:text-white font-bold text-lg">
@@ -30,7 +27,7 @@ export default function PodRelated({
       <div className="flex flex-col md:gap-4 gap-6 md:w-[20rem] w-full">
         {podcasts.filter(
           (i) =>
-            i.category_id == podElement.category_id && i.id != podElement.id
+            i.category?.id == podElement.category?.id && i.id != podElement.id
         ).length <= 0 && (
           <BaseBox className="flex flex-col items-center gap-2 p-8 text-center font-bold dark:text-white">
             <Image
@@ -40,11 +37,12 @@ export default function PodRelated({
               src={localImages.vectors.emptyBox}
             />
             <CTranslateTo
-              eng="No related news"
-              pt="Sem novidades relacionadas"
+              eng="No related podcasts"
+              pt="Sem podcasts relacionados"
             />
           </BaseBox>
         )}
+
         <SubscribeBanner
           desc_en="Subscribe now and be the first to enjoy the best podcasts!"
           desc_pt="Inscreva-se agora e seja o primeiro a ouvir os melhores podcasts!"
@@ -57,7 +55,7 @@ export default function PodRelated({
             {podcasts
               .filter(
                 (i) =>
-                  i.category_id == podElement.category_id &&
+                  i.category?.id == podElement.category?.id &&
                   i.id != podElement.id
               )
               .map((newEl, i) => {
@@ -73,7 +71,7 @@ export default function PodRelated({
             {podcasts
               .filter(
                 (i) =>
-                  i.category_id == podElement.category_id &&
+                  i.category?.id == podElement.category?.id &&
                   i.id != podElement.id
               )
               .map((newEl, i) => {
@@ -89,7 +87,7 @@ export default function PodRelated({
             {podcasts
               .filter(
                 (i) =>
-                  i.category_id == podElement.category_id &&
+                  i.category?.id == podElement.category?.id &&
                   i.id != podElement.id
               )
               .map((newEl, i) => {
