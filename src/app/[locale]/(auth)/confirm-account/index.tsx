@@ -17,6 +17,7 @@ import AuthSchemas from "@/services/schemas/AuthSchemas";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 import ARegisterProgress from "@/@components/(ausoft)/ARegisterProgress";
 import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
+import WebPushServices from "@/services/web-push/WebPushServices";
 
 export default function ConfirmAccountPage() {
   // Context
@@ -71,7 +72,7 @@ export default function ConfirmAccountPage() {
 
       if (LocalStorageServices.hasRedirectSubscriber()) {
         LocalStorageServices.removeRedirectSubscriber();
-        LocalStorageServices.setSubscriber();
+        await WebPushServices.register();
         window.location.href = `/${langByCookies}`;
         return;
       }

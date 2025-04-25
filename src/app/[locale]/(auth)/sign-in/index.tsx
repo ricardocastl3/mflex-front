@@ -17,6 +17,8 @@ import AuthSchemas from "@/services/schemas/AuthSchemas";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 import Link from "next/link";
 import ARegisterProgress from "@/@components/(ausoft)/ARegisterProgress";
+import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
+import WebPushServices from "@/services/web-push/WebPushServices";
 
 export default function SignInPage() {
   // Context
@@ -51,6 +53,13 @@ export default function SignInPage() {
         phone: data.phone,
         password: data.password,
       });
+
+      if (LocalStorageServices.hasRedirectSubscriber()) {
+        LocalStorageServices.removeRedirectSubscriber();
+        await WebPushServices.register();
+        window.location.href = `/${langByCookies}/`;
+        return;
+      }
 
       await fetchUserInformations();
     } catch (err) {
