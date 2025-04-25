@@ -74,10 +74,12 @@ export default function NewsContainer() {
           value={searchField}
           onChange={(e) => {
             setSearchField(e.target.value);
-            handleSeachByName({
-              name: e.target.value,
-              category_id: selectedCategory?.id,
-            });
+            setTimeout(() => {
+              handleSeachByName({
+                name: e.target.value,
+                category_id: selectedCategory?.id,
+              });
+            }, 600);
           }}
           placeholder="Ex: Concursos Públicos"
           weight={"lg"}

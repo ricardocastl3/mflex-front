@@ -76,11 +76,13 @@ export default function EventContainer() {
         <AuSoftUI.UI.TextField.Default
           value={searchField}
           onChange={(e) => {
-            setSearchField(e.target.value),
+            setSearchField(e.target.value);
+            setTimeout(() => {
               handleSeachByName({
                 name: e.target.value,
                 category_id: selectedCategory?.id,
               });
+            }, 600);
           }}
           placeholder="Ex: WorkShop de Segurança da Informação"
           weight={"lg"}

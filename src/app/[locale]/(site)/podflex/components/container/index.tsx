@@ -77,10 +77,12 @@ export default function PodFlexContainer() {
           value={searchField}
           onChange={(e) => {
             setSearchField(e.target.value);
-            handleSeachByName({
-              name: e.target.value,
-              category_id: selectedCategory?.id,
-            });
+            setTimeout(() => {
+              handleSeachByName({
+                name: e.target.value,
+                category_id: selectedCategory?.id,
+              });
+            }, 600);
           }}
           placeholder="Ex: Fly PodCast...."
           weight={"lg"}
