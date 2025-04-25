@@ -12,7 +12,7 @@ export default function PodOthers({
 }) {
   if (
     podcasts.filter(
-      (i) => i.category_id != podElement.category_id && i.id != podElement.id
+      (i) => i.category?.id != podElement.category?.id && i.id != podElement.id
     ).length <= 0
   ) {
     return <></>;
@@ -27,7 +27,7 @@ export default function PodOthers({
         {podcasts
           .filter(
             (i) =>
-              i.category_id != podElement.category_id && i.id != podElement.id
+              i.category?.id != podElement.category?.id && i.id != podElement.id
           )
           .map((newEl, i) => {
             return i <= 2 && <PodFlexCard podcast={newEl} index={i} key={i} />;
