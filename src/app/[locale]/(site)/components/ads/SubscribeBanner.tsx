@@ -8,6 +8,7 @@ import { useAppProvider } from "@/providers/app/AppProvider";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
+import WebPushServices from "@/services/web-push/WebPushServices";
 
 export default function SubscribeBanner({
   desc_en,
@@ -25,7 +26,7 @@ export default function SubscribeBanner({
   const router = useRouter();
 
   async function handleSubscribe() {
-    if (userLogged && !isNotifyGranted) {
+    if (!isNotifyGranted) {
       alert(
         `${
           langByCookies == "en"
@@ -37,6 +38,7 @@ export default function SubscribeBanner({
       if (userLogged) {
         LocalStorageServices.setSubscriber();
         window.location.reload();
+        await WebPushServices.register();
       } else {
         LocalStorageServices.setRedirectSubscriber();
         router.push(`/${langByCookies}/sign-up`);
