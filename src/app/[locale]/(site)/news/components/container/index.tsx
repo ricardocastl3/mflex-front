@@ -79,7 +79,7 @@ export default function NewsContainer() {
                 name: e.target.value,
                 category_id: selectedCategory?.id,
               });
-            }, 600);
+            }, 800);
           }}
           placeholder="Ex: Concursos Públicos"
           weight={"lg"}

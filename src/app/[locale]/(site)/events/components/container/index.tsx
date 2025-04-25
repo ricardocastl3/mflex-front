@@ -82,7 +82,7 @@ export default function EventContainer() {
                 name: e.target.value,
                 category_id: selectedCategory?.id,
               });
-            }, 600);
+            }, 800);
           }}
           placeholder="Ex: WorkShop de Segurança da Informação"
           weight={"lg"}
