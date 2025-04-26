@@ -37,8 +37,10 @@ export default function SubscribeBanner({
     } else {
       if (userLogged) {
         LocalStorageServices.setSubscriber();
-        await WebPushServices.register();
-        window.location.reload();
+        const reg = await WebPushServices.register();
+        if (reg) {
+          window.location.reload();
+        }
       } else {
         LocalStorageServices.setRedirectSubscriber();
         router.push(`/${langByCookies}/sign-up`);

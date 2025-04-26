@@ -72,8 +72,8 @@ export default function ConfirmAccountPage() {
 
       if (LocalStorageServices.hasRedirectSubscriber()) {
         LocalStorageServices.removeRedirectSubscriber();
-        await WebPushServices.register();
-        window.location.href = `/${langByCookies}`;
+        const reg = await WebPushServices.register();
+        if (reg) window.location.href = `/${langByCookies}`;
         return;
       }
 

@@ -7,6 +7,7 @@ class WebPushServices {
   subscription: any;
 
   async register() {
+    let ret = false;
     if ("serviceWorker" in navigator && "PushManager" in window) {
       navigator.serviceWorker.register("/sw.js").then(async (reg) => {
         try {
@@ -16,30 +17,31 @@ class WebPushServices {
           });
           await this.sendSubscriptionToServer(newSubscription);
           LocalStorageServices.setSubscriber();
+          ret = true;
         } catch (error) {
           console.error("Erro ao registrar push:", error);
-          return;
         }
       });
     }
+    return ret;
   }
 
-  urlBase64ToUint8Array = (base64String: string) => {
+  urlBase64ToUint8Array(base64String: string) {
     const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
     const base64 = (base64String + padding)
       .replace(/-/g, "+")
       .replace(/_/g, "/");
     const rawData: any = atob(base64);
     return new Uint8Array([...rawData].map((char) => char.charCodeAt(0)));
-  };
+  }
 
-  sendSubscriptionToServer = async (subscription: PushSubscription) => {
+  async sendSubscriptionToServer(subscription: PushSubscription) {
     try {
       await internalApi.post(`/sbr`, {
         subscription,
       });
     } catch (err) {}
-  };
+  }
 }
 
 export default new WebPushServices();
