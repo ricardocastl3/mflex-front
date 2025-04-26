@@ -33,7 +33,7 @@ export default function RootLayout({
   usePWA();
   useAOS();
   return (
-    <html lang="en">
+    <html lang="en" translate="no">
       <body
         className={`${anek.className} transition-all duration-500 bg-slate-200/80 dark:bg-ausoft-slate-950`}
       >
@@ -41,8 +41,8 @@ export default function RootLayout({
           <SocketProvider>
             <TranslateProvider>
               <ModalProvider>
-                <AppProvider>
-                  <AuthProvider>
+                <AuthProvider>
+                  <AppProvider>
                     <CheckoutProvider>
                       <TransactionProvider>
                         <TicketProvider>
@@ -62,8 +62,8 @@ export default function RootLayout({
                       options={{ showSpinner: false }}
                     />
                     <GoogleAnalytics gaId="G-998HC7V4FQ" />
-                  </AuthProvider>
-                </AppProvider>
+                  </AppProvider>
+                </AuthProvider>
               </ModalProvider>
             </TranslateProvider>
           </SocketProvider>

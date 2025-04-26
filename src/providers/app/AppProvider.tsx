@@ -1,6 +1,8 @@
 "use client";
 
 import { usePathname, useSelectedLayoutSegment } from "next/navigation";
+import { useAuth } from "../auth/AuthProvider";
+
 import React, { createContext, useContext, useEffect, useState } from "react";
 import CookieServices from "@/services/auth/CookieServices";
 
@@ -57,6 +59,8 @@ export default function AppProvider({
   const [segmentedLayoutByLocalStorage, setSegmentedLayoutByLocalStorage] =
     useState("");
 
+  const { userLogged } = useAuth();
+
   function handleAddToastOnArray({ ...toast }: IToast) {
     const id = Math.round(Math.PI * new Date().getTime());
     setOpenToast((state) => [...state, { ...toast, id: id }]);
@@ -96,11 +100,12 @@ export default function AppProvider({
   }, [path]);
 
   useEffect(() => {
-    Notification.requestPermission().then((e) => {
-      if (e == "granted") setIsNotifyGranted(true);
-      else setIsNotifyGranted(false);
-    });
-  }, []);
+    if (userLogged)
+      Notification.requestPermission().then((e) => {
+        if (e == "granted") setIsNotifyGranted(true);
+        else setIsNotifyGranted(false);
+      });
+  }, [userLogged]);
 
   return (
     <AppContext.Provider
