@@ -1,6 +1,6 @@
 import { internalApi } from "@/http/axios/api";
-import LocalStorageServices from "../localStorage/LocalStorageServices";
 
+import LocalStorageServices from "../localStorage/LocalStorageServices";
 const VAPID_PUBLIC_KEY = process.env.VAPID_PUBLIC_KEY;
 
 class WebPushServices {
@@ -10,24 +10,11 @@ class WebPushServices {
     if ("serviceWorker" in navigator && "PushManager" in window) {
       navigator.serviceWorker.register("/sw.js").then(async (reg) => {
         try {
-          const existingSubscription = await reg.pushManager.getSubscription();
-          if (existingSubscription) {
-            reg.unregister();
-            existingSubscription.unsubscribe();
-            const newSubscription = await reg.pushManager.subscribe({
-              userVisibleOnly: true,
-              applicationServerKey:
-                this.urlBase64ToUint8Array(VAPID_PUBLIC_KEY),
-            });
-            await this.sendSubscriptionToServer(newSubscription);
-          } else {
-            const newSubscription = await reg.pushManager.subscribe({
-              userVisibleOnly: true,
-              applicationServerKey:
-                this.urlBase64ToUint8Array(VAPID_PUBLIC_KEY),
-            });
-            await this.sendSubscriptionToServer(newSubscription);
-          }
+          const newSubscription = await reg.pushManager.subscribe({
+            userVisibleOnly: true,
+            applicationServerKey: this.urlBase64ToUint8Array(VAPID_PUBLIC_KEY),
+          });
+          await this.sendSubscriptionToServer(newSubscription);
           LocalStorageServices.setSubscriber();
         } catch (error) {
           console.error("Erro ao registrar push:", error);
