@@ -12,7 +12,14 @@ class WebPushServices {
         try {
           const existingSubscription = await reg.pushManager.getSubscription();
           if (existingSubscription) {
-            this.subscription = existingSubscription;
+            reg.unregister();
+            existingSubscription.unsubscribe();
+            const newSubscription = await reg.pushManager.subscribe({
+              userVisibleOnly: true,
+              applicationServerKey:
+                this.urlBase64ToUint8Array(VAPID_PUBLIC_KEY),
+            });
+            await this.sendSubscriptionToServer(newSubscription);
           } else {
             const newSubscription = await reg.pushManager.subscribe({
               userVisibleOnly: true,
