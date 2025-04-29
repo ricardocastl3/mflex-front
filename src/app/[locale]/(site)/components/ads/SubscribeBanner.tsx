@@ -26,25 +26,15 @@ export default function SubscribeBanner({
   const router = useRouter();
 
   async function handleSubscribe() {
-    if (!isNotifyGranted) {
-      alert(
-        `${
-          langByCookies == "en"
-            ? "To subsribe, open your browser settings, go to notifications, search for the website www.marcaflex.com, and authorize"
-            : "Para se inscrever, abra as definições do seu navegador, entre em notificações, procure pelo site www.marcaflex.com, e autorize"
-        }`
-      );
+    if (userLogged) {
+      LocalStorageServices.setSubscriber();
+      await WebPushServices.register();
+      setTimeout(() => {
+        window.location.reload();
+      }, 400);
     } else {
-      if (userLogged) {
-        LocalStorageServices.setSubscriber();
-        await WebPushServices.register();
-        setTimeout(() => {
-          window.location.reload();
-        }, 400);
-      } else {
-        LocalStorageServices.setRedirectSubscriber();
-        router.push(`/${langByCookies}/sign-up`);
-      }
+      LocalStorageServices.setRedirectSubscriber();
+      router.push(`/${langByCookies}/sign-up`);
     }
   }
 
