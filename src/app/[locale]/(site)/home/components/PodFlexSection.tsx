@@ -8,6 +8,7 @@ import usePodcasts from "@/hooks/api/usePodCasts";
 import PodFlexCard from "../../podflex/components/container/PodFlexCard";
 import AAnimated from "@/@components/(ausoft)/AAnimated";
 import SubscribeBanner from "../../components/ads/SubscribeBanner";
+import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 export default function PodFlexSection() {
   const { allPodcasts, isLoadingAllPodcasts } = usePodcasts({
@@ -53,11 +54,29 @@ export default function PodFlexSection() {
                   title_pt="Bem-vindo ao nosso mundo de podcasts! 🎧"
                 />
 
-                {allPodcasts.map((news, i) => {
-                  return (
-                    i < 3 && <PodFlexCard key={i} podcast={news} index={i} />
-                  );
-                })}
+                {!LocalStorageServices.hasSubscriber() && (
+                  <>
+                    {allPodcasts.map((news, i) => {
+                      return (
+                        i < 2 && (
+                          <PodFlexCard key={i} podcast={news} index={i} />
+                        )
+                      );
+                    })}
+                  </>
+                )}
+
+                {LocalStorageServices.hasSubscriber() && (
+                  <>
+                    {allPodcasts.map((news, i) => {
+                      return (
+                        i < 3 && (
+                          <PodFlexCard key={i} podcast={news} index={i} />
+                        )
+                      );
+                    })}
+                  </>
+                )}
               </>
             )}
           </div>
