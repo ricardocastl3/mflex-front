@@ -9,18 +9,20 @@ export default function PodFlexCaster({
   const allSources = podcaster.source.split(",");
   return (
     <div className="flex items-center gap-2 flex-wrap">
-      <div
-        style={{
-          backgroundImage: `url(${podcaster.photo})`,
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          backgroundSize: "contain",
-          objectFit: "cover",
-          height: "48px",
-          width: "48px",
-        }}
-        className="rounded-full bg-yellow-500"
-      ></div>
+      <div className="p-0.5 rounded-full bg-yellow-500">
+        <div
+          style={{
+            backgroundImage: `url(${podcaster.photo})`,
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            backgroundSize: "contain",
+            objectFit: "cover",
+            height: "48px",
+            width: "48px",
+          }}
+          className="rounded-full bg-yellow-500"
+        ></div>
+      </div>
       <div className="flex-1 flex flex-col gap-1 ">
         <h1 className="text-sm dark:text-white">{podcaster.name}</h1>
 
