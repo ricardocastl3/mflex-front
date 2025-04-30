@@ -11,6 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { useState } from "react";
 import { useAuth } from "@/providers/auth/AuthProvider";
+import { useRouter } from "next/navigation";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import AuthSchemas from "@/services/schemas/AuthSchemas";
@@ -23,6 +24,8 @@ export default function ConfirmAccountPage() {
   // Context
   const { handleAddToastOnArray } = useAppProvider();
   const { fetchUserInformations, userLogged } = useAuth();
+
+  const router = useRouter();
 
   // Controls
   const [wrongNumber, setWrongNumber] = useState(false);
@@ -80,6 +83,7 @@ export default function ConfirmAccountPage() {
       }
 
       await fetchUserInformations();
+      router.push(`/${langByCookies}/confirm-account`);
     } catch (err) {
       setIsSubmitting(false);
       return CAxiosErrorToastify({
