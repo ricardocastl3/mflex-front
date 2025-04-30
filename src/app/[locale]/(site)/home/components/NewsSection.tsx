@@ -7,6 +7,8 @@ import useNews from "@/hooks/api/useNews";
 import NewsCard from "../../news/components/container/NewsCard";
 import Link from "next/link";
 import AAnimated from "@/@components/(ausoft)/AAnimated";
+import SubscribeBanner from "../../components/ads/SubscribeBanner";
+import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 export default function NewsSection() {
   const { allNews, isLoadingAllNews } = useNews({ route: "slug" });
@@ -41,10 +43,26 @@ export default function NewsSection() {
                 );
               })}
 
-            {!isLoadingAllNews &&
-              allNews.map((news, i) => {
-                return i < 3 && <NewsCard key={i} news={news} index={i} />;
-              })}
+            {!isLoadingAllNews && (
+              <>
+                <SubscribeBanner
+                  desc_en="Subscribe now and be the first to catch the latest news before anyone else!"
+                  desc_pt="Inscreva-se agora e fique por dentro das últimas notícias antes de todo mundo!"
+                  title_en="Welcome to come  😀"
+                  title_pt="Parabéns por ter chegado 😀"
+                />
+
+                {!LocalStorageServices.hasSubscriber() &&
+                  allNews.map((news, i) => {
+                    return i < 2 && <NewsCard key={i} news={news} index={i} />;
+                  })}
+
+                {LocalStorageServices.hasSubscriber() &&
+                  allNews.map((news, i) => {
+                    return i < 3 && <NewsCard key={i} news={news} index={i} />;
+                  })}
+              </>
+            )}
           </div>
 
           <div className="flex justify-center items-center text-center py-14">

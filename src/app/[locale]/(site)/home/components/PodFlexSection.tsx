@@ -7,6 +7,7 @@ import Link from "next/link";
 import usePodcasts from "@/hooks/api/usePodCasts";
 import PodFlexCard from "../../podflex/components/container/PodFlexCard";
 import AAnimated from "@/@components/(ausoft)/AAnimated";
+import SubscribeBanner from "../../components/ads/SubscribeBanner";
 
 export default function PodFlexSection() {
   const { allPodcasts, isLoadingAllPodcasts } = usePodcasts({
@@ -43,12 +44,22 @@ export default function PodFlexSection() {
                 );
               })}
 
-            {!isLoadingAllPodcasts &&
-              allPodcasts.map((news, i) => {
-                return (
-                  i < 3 && <PodFlexCard key={i} podcast={news} index={i} />
-                );
-              })}
+            {!isLoadingAllPodcasts && (
+              <>
+                <SubscribeBanner
+                  desc_en="Subscribe now and be the first to enjoy the best podcasts!"
+                  desc_pt="Inscreva-se agora e seja o primeiro a ouvir os melhores podcasts!"
+                  title_en="Welcome to Your Podcast Hub! 🎧"
+                  title_pt="Bem-vindo ao nosso mundo de podcasts! 🎧"
+                />
+
+                {allPodcasts.map((news, i) => {
+                  return (
+                    i < 3 && <PodFlexCard key={i} podcast={news} index={i} />
+                  );
+                })}
+              </>
+            )}
           </div>
 
           <div className="flex justify-center items-center text-center py-14">
