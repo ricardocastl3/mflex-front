@@ -9,7 +9,7 @@ export default function PodFlexCaster({
   const allSources = podcaster.source.split(",");
   return (
     <div className="flex items-center gap-2 flex-wrap">
-      <div className="p-0.5 rounded-full bg-yellow-500">
+      <div className="p-[0.1rem] rounded-full dark:bg-yellow-500 bg-yellow-300">
         <div
           style={{
             backgroundImage: `url(${podcaster.photo})`,
