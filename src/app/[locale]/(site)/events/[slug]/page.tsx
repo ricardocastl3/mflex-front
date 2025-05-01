@@ -1,6 +1,7 @@
 import { langByCookies } from "@/http/axios/api";
 import { IEvent } from "@/http/interfaces/models/IEvent";
 import { NextResponse } from "next/server";
+import { Metadata } from "next";
 
 import axios from "axios";
 
@@ -8,7 +9,7 @@ export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
-}) {
+}): Promise<Metadata> {
   try {
     const slug = (await params).slug;
 
@@ -27,7 +28,17 @@ export async function generateMetadata({
 
     return {
       title: findEvent.title + " 🟡 | Marca Flex",
-      description: "",
+      description: findEvent.description,
+      openGraph: {
+        images: [
+          {
+            url: findEvent.image_url,
+            width: 1200,
+            height: 630,
+            alt: findEvent.title,
+          },
+        ],
+      },
     };
   } catch (err) {
     console.log(err);

@@ -1,6 +1,7 @@
 import { langByCookies } from "@/http/axios/api";
 import { IPodcast } from "@/http/interfaces/models/IPodCast";
 export { default } from ".";
+import { Metadata } from "next";
 
 import axios from "axios";
 
@@ -8,7 +9,7 @@ export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
-}) {
+}): Promise<Metadata> {
   try {
     const pars = await params;
     const resp = await axios.get<{ podcast: IPodcast }>(
@@ -30,6 +31,16 @@ export async function generateMetadata({
     return {
       title: findPodflex.title + " 🎙️ | Marca Flex",
       description: findPodflex.description,
+      openGraph: {
+        images: [
+          {
+            url: findPodflex.thumbnail,
+            width: 1200,
+            height: 630,
+            alt: findPodflex.title,
+          },
+        ],
+      },
     };
   } catch (err) {
     return {
