@@ -24,6 +24,7 @@ interface IAppContext {
   openBanner: boolean;
   canCloseSubscribe: boolean;
   hiddenMobileHeader: boolean;
+  isScrolledWindow: boolean;
 
   handleCanCloseSubscribe: (mode: boolean) => void;
   handleOpenBanner: (mode: boolean) => void;
@@ -54,6 +55,7 @@ export default function AppProvider({
   const [hiddenMobileHeader, setHiddenMobileHeader] = useState(false);
 
   const [isNotifyGranted, setIsNotifyGranted] = useState(false);
+  const [isScrolledWindow, setIsScrolledWindow] = useState(false);
 
   const segmentedLayout = useSelectedLayoutSegment();
   const [segmentedLayoutByLocalStorage, setSegmentedLayoutByLocalStorage] =
@@ -107,6 +109,16 @@ export default function AppProvider({
       });
   }, [userLogged]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPercentage = (window.scrollY / window.innerHeight) * 100;
+      setIsScrolledWindow(scrollPercentage > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <AppContext.Provider
       value={{
@@ -115,6 +127,7 @@ export default function AppProvider({
         handleOpenBanner,
         canCloseSubscribe,
 
+        isScrolledWindow,
         isNotifyGranted,
         hiddenMobileHeader,
         openBanner,
