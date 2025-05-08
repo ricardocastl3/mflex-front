@@ -20,6 +20,7 @@ import CategoryProvider from "@/providers/features/CategoryProvider";
 import EventProvider from "@/providers/features/EventProvider";
 import EventTicketProvider from "@/providers/features/EventTicketProvider";
 import useAOS from "@/hooks/app/useAOS";
+import FacebookPixel from "@/services/meta/FacebookPixel";
 
 const anek = Abel({ weight: "400", subsets: ["latin"] });
 
@@ -32,6 +33,7 @@ export default function RootLayout({
 }>) {
   usePWA();
   useAOS();
+  <FacebookPixel pixelId="1182352936527746" />;
   return (
     <html lang="en" translate="no">
       <body

@@ -18,6 +18,7 @@ import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 import Link from "next/link";
 import signUpSchema from "@/services/schemas/SignUpSchema";
 import ARegisterProgress from "@/@components/(ausoft)/ARegisterProgress";
+import FacebookEventServices from "@/services/meta/FacebookEventServices";
 
 export default function SignUpPage() {
   // Context
@@ -27,6 +28,8 @@ export default function SignUpPage() {
   // Controls
   const [termCheck, setTermCheck] = useState(false);
   const [isSubmit, setIsSubmit] = useState(false);
+
+  const router = useRouter();
 
   // Schema
   const schema = new signUpSchema(langByCookies);
@@ -73,7 +76,11 @@ export default function SignUpPage() {
         confirmPassword: data.confirmPassword,
       });
 
+      FacebookEventServices.send("Register");
+
       await fetchUserInformations();
+
+      router.push(`/${langByCookies}/confirm-account`);
     } catch (err) {
       setIsSubmit(false);
       return CAxiosErrorToastify({
