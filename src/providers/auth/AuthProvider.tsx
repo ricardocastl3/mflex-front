@@ -101,6 +101,7 @@ export default function AuthProvider({
         (startRoutes == "confirm-account" && user.status == 1)
       ) {
         window.location.href = "/" + langByCookies + "/app";
+        return;
       }
 
       setUserLogged(user);
