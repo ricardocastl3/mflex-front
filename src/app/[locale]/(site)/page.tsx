@@ -12,8 +12,8 @@ export async function generateMetadata({
   return LocalePageServices.metadatas({
     titleENG: "Hi 😌",
     titlePT: "Olá 😌",
-    descriptionENG: "Boost your brand 🚀",
-    descriptionPT: "Turbine sua marca 🚀",
+    descriptionENG: "The best entertainment in one place 🚀",
+    descriptionPT: "O melhor do entretenimento em um só lugar 🚀",
     params: pars.locale,
   });
 }
