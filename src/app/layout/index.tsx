@@ -33,7 +33,7 @@ export default function RootLayout({
 }>) {
   usePWA();
   useAOS();
-  <FacebookPixel pixelId="1182352936527746" />;
+  FacebookPixel({ pixelId: "1182352936527746" });
   return (
     <html lang="en" translate="no">
       <body
