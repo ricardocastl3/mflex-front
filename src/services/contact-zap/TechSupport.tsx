@@ -14,25 +14,32 @@ export default function TechSupport() {
       bottomSafe = "3.5rem";
       rightSafe = "2rem";
     } else {
-      bottomSafe = "4.5rem";
+      bottomSafe = "4.8rem";
       rightSafe = "4rem";
     }
 
-    if (!path.startsWith("/en/app") && !path.startsWith("/pt/app")) {
+    if (
+      !path.startsWith("/en/app") &&
+      !path.startsWith("/pt/app") &&
+      !path.startsWith("/pt/games") &&
+      !path.startsWith("/en/games")
+    ) {
       return (
         <div
           style={{
             bottom: bottomSafe,
             right: rightSafe,
           }}
-          className="fixed  z-20 animate-fade-up"
+          className="fixed  z-10 animate-fade-up"
         >
-          <div className="dark:bg-orange-900 bg-orange-600 p-1.5 rounded-full">
+          <div className="dark:bg-orange-900 bg-orange-600 rounded-full">
             <button
               onClick={() => handleOpenModal("technical-support")}
-              className="p-2 flex cursor-pointer hover:animate-jump hover:dark:bg-orange-700 hover:bg-orange-600 transition-all duration-300 dark:bg-orange-600 bg-orange-500 text-white rounded-full"
+              className="p-3.5 flex cursor-pointer hover:animate-jump hover:dark:bg-orange-700 hover:bg-orange-600 transition-all duration-300 dark:bg-orange-600 bg-orange-500 text-white rounded-full"
             >
-              <ReactIcons.AiICon.AiFillCustomerService size={27} />
+              <ReactIcons.AiICon.AiFillCustomerService
+                size={window.innerWidth > 765 ? 27 : 18}
+              />
             </button>
           </div>
         </div>

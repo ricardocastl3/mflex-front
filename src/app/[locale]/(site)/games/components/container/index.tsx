@@ -1,69 +1,23 @@
 "use client";
 
 import { AuSoftUI } from "@/@components/(ausoft)";
-import { useEffect, useState } from "react";
-import { useCategoryProvider } from "@/providers/features/CategoryProvider";
+import { useState } from "react";
+import { BaseBox } from "@/@components/(box)/BaseBox";
+import { ReactIcons } from "@/utils/icons";
+import { addDays, subDays } from "date-fns";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import BoxCategories from "../../../components/BoxCategories";
-import useNews from "@/hooks/api/useNews";
-import ScorebatWidget from "@/styles/scorebat/ScoreBatWidget";
-import WatchGameModal from "@/@components/(modals)/watch-game";
-import { ReactIcons } from "@/utils/icons";
-import LiveGame from "./LiveGame";
+import useFixtures from "@/hooks/api/useFootball";
+import TradingLeagues from "./TradingLeagues";
 
 export default function NewsContainer() {
   // Contexts
-  const {
-    allNews,
-    hasMoreNews,
-    isLoadingMoreNews,
-    handleLoadMore,
-    handleSeachByName,
-    isLoadingAllNews,
-  } = useNews({ route: "news" });
-  const { selectedCategory } = useCategoryProvider();
-
-  // Controls
-  const getItemIndex = (i: number) => {
-    return i % 4; // Retorna 0, 1, 2 ou 3 ciclicamente
-  };
+  const { isLoadingAllFixtures, handleSeachByName, allFixtures } =
+    useFixtures();
 
   const [searchField, setSearchField] = useState("");
 
-  useEffect(() => {
-    if (
-      !hasMoreNews ||
-      isLoadingAllNews ||
-      isLoadingMoreNews ||
-      (!isLoadingMoreNews && !hasMoreNews)
-    )
-      return;
-
-    let isLoading = false; // Controle para evitar chamadas repetidas
-
-    const handleScroll = () => {
-      const scrollHeight = document.documentElement.scrollHeight;
-      const scrollTop = window.scrollY;
-      const clientHeight = document.documentElement.clientHeight;
-
-      const height = window.innerWidth > 765 ? 1000 : 800;
-
-      if (scrollTop + clientHeight >= scrollHeight - height && !isLoading) {
-        isLoading = true; // Marcar como carregando
-        setTimeout(async () => {
-          await handleLoadMore({
-            category_id: selectedCategory?.id,
-            name: searchField,
-          });
-          isLoading = false;
-        }, 500);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [isLoadingMoreNews, isLoadingAllNews]);
+  const [selectedDate, setSelectedDate] = useState("today");
 
   return (
     <div className="flex flex-col gap-5 relative md:mb-28 mb-12">
@@ -76,27 +30,84 @@ export default function NewsContainer() {
             />
           </h4>
         </div>
-
-        <AuSoftUI.UI.TextField.Default
-          value={searchField}
-          onChange={(e) => {
-            setSearchField(e.target.value);
-            setTimeout(() => {
-              handleSeachByName({
-                name: e.target.value,
-                category_id: selectedCategory?.id,
-              });
-            }, 800);
-          }}
-          placeholder="Ex: Manchester United"
-          weight={"lg"}
-          className="rounded-full md:text-lg text-base text-center dark:bg-ausoft-slate-950 bg-slate-100 md:w-[50vw] w-[90vw]"
-        />
       </div>
 
-      <div className="md:m-8 m-4 flex flex-col">
-        <LiveGame />
-      </div>
+      {isLoadingAllFixtures && (
+        <div className="flex flex-col gap-4 md:m-12 m-6">
+          {Array.from({ length: 5 }).map((_, i) => {
+            return (
+              <div
+                key={i}
+                className="bg-white rounded-xl animate-pulse dark:bg-slate-800/50 p-8"
+              ></div>
+            );
+          })}
+        </div>
+      )}
+
+      {!isLoadingAllFixtures && allFixtures.length <= 0 && (
+        <div className="md:mt-24 mt-8 md:mb-8 mb-4">
+          <AuSoftUI.Component.ListEmpty
+            hasAction
+            action_en="Go to PodCasts"
+            action_pt="Ver PodCasts"
+            action_url="podflex"
+            description_en="It looks like we couldn't get the games for you, while we sort it out, how about checking out the podcasts?"
+            description_pt="Parece que não conseguimos pegar os jogos para você, enquanto resolvemos, que tal aproveitar ver os podcasts?"
+            title_en="No Available Games"
+            title_pt="Sem Jogos Disponíveis"
+          />
+        </div>
+      )}
+
+      {!isLoadingAllFixtures && allFixtures.length > 0 && (
+        <div className="md:m-12 m-4 flex flex-col gap-4">
+          <BaseBox className="p-4">
+            <div className="flex items-center gap-4">
+              <AuSoftUI.UI.Button
+                onClick={() => {
+                  setSelectedDate("yesterday");
+                  handleSeachByName({
+                    date: subDays(new Date(), 1).toISOString(),
+                  });
+                }}
+                variant={selectedDate == "yesterday" ? "primary" : "outline"}
+                className="items-center md:w-fit w-full justify-center"
+              >
+                <ReactIcons.CgIcon.CgCalendar size={15} />
+                <CTranslateTo eng="Yesterday" pt="Ontem" />
+              </AuSoftUI.UI.Button>
+              <AuSoftUI.UI.Button
+                onClick={() => {
+                  setSelectedDate("today");
+                  handleSeachByName({
+                    date: new Date().toISOString(),
+                  });
+                }}
+                variant={selectedDate == "today" ? "primary" : "outline"}
+                className="items-center md:w-fit w-full justify-center"
+              >
+                <ReactIcons.CgIcon.CgCalendar size={15} />
+                <CTranslateTo eng="Today" pt="Hoje" />
+              </AuSoftUI.UI.Button>
+              <AuSoftUI.UI.Button
+                onClick={() => {
+                  setSelectedDate("tomorrow");
+                  handleSeachByName({
+                    date: addDays(new Date(), 1).toISOString(),
+                  });
+                }}
+                variant={selectedDate == "tomorrow" ? "primary" : "outline"}
+                className="items-center md:w-fit w-full justify-center"
+              >
+                <ReactIcons.CgIcon.CgCalendar size={15} />
+                <CTranslateTo eng="Tomorrow" pt="Amanhã" />
+              </AuSoftUI.UI.Button>
+            </div>
+          </BaseBox>
+          <TradingLeagues leagues={allFixtures} />
+        </div>
+      )}
     </div>
   );
 }

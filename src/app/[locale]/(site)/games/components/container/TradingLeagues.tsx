@@ -4,16 +4,13 @@ import LeagueItem from "../leagues/LeagueItem";
 import { ReactIcons } from "@/utils/icons";
 import { ILeagues } from "@/http/interfaces/models/IFixtures";
 
-export default function LiveGame({ leagues }: { leagues: ILeagues[] }) {
+export default function TradingLeagues({ leagues }: { leagues: ILeagues[] }) {
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex items-center gap-2">
-        <ReactIcons.MdIcon.MdCircle
-          size={20}
-          className="text-green-500 animate-pulse"
-        />
+    <section  className="flex flex-col gap-4">
+      <div className="flex items-center gap-2 text-yellow-500">
+        <ReactIcons.MdIcon.MdCircle size={20} className="animate-pulse" />
         <h1 className="text-xl font-bold">
-          <CTranslateTo eng="Live Game" pt="Jogos Ao Vivo" />
+          <CTranslateTo eng="Trading Games" pt="Jogos Em Destaques" />
         </h1>
       </div>
       <div className="">
@@ -23,6 +20,6 @@ export default function LiveGame({ leagues }: { leagues: ILeagues[] }) {
           })}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

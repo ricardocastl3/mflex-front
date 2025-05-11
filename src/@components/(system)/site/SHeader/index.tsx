@@ -80,14 +80,14 @@ export default function SHeader() {
             title_en="PodCasts"
             title_pt="PodCasts"
           />
- {/*          <LinkHeader
+          <LinkHeader
             isSelected={currentPageByUrl == "games"}
             isScrolled={isScrolled}
             Icon={ReactIcons.Io5Icon.IoFootball}
             action="games"
             title_en="Games"
             title_pt="Jogos"
-          /> */}
+          />
           <ServicesDropdown isScrolled={isScrolled} />
         </div>
       </div>

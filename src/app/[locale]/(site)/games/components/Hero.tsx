@@ -2,7 +2,7 @@ import VideoBackground from "../../components/video/VideoBackground";
 
 export default function HeroNews() {
   return (
-    <div className="md:h-[55vh] h-[35vh] w-full relative">
+    <div id="start" className="md:h-[55vh] h-[35vh] w-full relative">
       <div className="absolute z-20 inset-0 bg-black/50"></div>
       <VideoBackground
         fallback_url="https://images.pexels.com/photos/269948/pexels-photo-269948.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
