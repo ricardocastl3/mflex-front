@@ -76,9 +76,11 @@ export default function SignUpPage() {
         confirmPassword: data.confirmPassword,
       });
 
+      FacebookEventServices.send("Register");
+
       await fetchUserInformations();
 
-      window.location.href = `/${langByCookies}/confirm-account`;
+      router.push(`/${langByCookies}/confirm-account`);
     } catch (err) {
       setIsSubmit(false);
       return CAxiosErrorToastify({

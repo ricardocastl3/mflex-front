@@ -83,7 +83,7 @@ export default function ConfirmAccountPage() {
       }
 
       await fetchUserInformations();
-      router.push(`/${langByCookies}/confirm-account`);
+      router.push(`/${langByCookies}/app`);
     } catch (err) {
       setIsSubmitting(false);
       return CAxiosErrorToastify({
