@@ -34,7 +34,7 @@ export default function MobileMoreSiteOptions() {
           <h4 className="text-normal text-slate-500 dark:text-slate-300">
             <CTranslateTo eng="Navigation" pt="Navegação" />
           </h4>
-          <div className="flex flex-col gap-2">
+         {/*  <div className="flex flex-col gap-2">
             <LinkButton
               isExpanded={true}
               Icon={ReactIcons.Io5Icon.IoFootball}
@@ -43,7 +43,7 @@ export default function MobileMoreSiteOptions() {
               title_en="Games"
               title_pt="Jogos"
             />
-          </div>
+          </div> */}
         </div>
         <div className="border-t border-slate-300 dark:border-t-slate-700 px-4 py-2.5">
           <AuSoftUI.UI.Button

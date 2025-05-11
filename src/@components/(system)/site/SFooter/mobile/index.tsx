@@ -13,7 +13,7 @@ export default function SMobileFooter() {
 
   return (
     <div>
-    {/*   <div className="md:hidden flex fixed bottom-[4.9rem] right-3 z-20 animate-fade-up">
+      <div className="md:hidden flex fixed bottom-[4.9rem] right-3 z-20 animate-fade-up">
         <AuSoftUI.UI.Button
           onClick={() => handleOpenModal("mobile-site-more-options")}
           className="rounded-full p-3"
@@ -21,7 +21,7 @@ export default function SMobileFooter() {
         >
           <ReactIcons.BiIcon.BiDotsHorizontal size={18} />
         </AuSoftUI.UI.Button>
-      </div> */}
+      </div>
       <BaseBox className="dark:bg-ausoft-slate-950 transition-all w-full z-20 md:hidden border-t rounded-t-xl border-slate-200 dark:border-slate-800 fixed bottom-0 rounded-none grid grid-cols-4 inset-x-0">
         <LinkMButton
           Icon={ReactIcons.AiICon.AiFillFire}
