@@ -60,54 +60,55 @@ export default function NewsContainer() {
         </div>
       )}
 
-      {!isLoadingAllFixtures && allFixtures.length > 0 && (
-        <div className="md:m-12 m-4 flex flex-col gap-4">
-          <BaseBox className="p-4">
-            <div className="flex items-center gap-4">
-              <AuSoftUI.UI.Button
-                onClick={() => {
-                  setSelectedDate("yesterday");
-                  handleSeachByName({
-                    date: subDays(new Date(), 1).toISOString(),
-                  });
-                }}
-                variant={selectedDate == "yesterday" ? "primary" : "outline"}
-                className="items-center md:w-fit w-full justify-center"
-              >
-                <ReactIcons.CgIcon.CgCalendar size={15} />
-                <CTranslateTo eng="Yesterday" pt="Ontem" />
-              </AuSoftUI.UI.Button>
-              <AuSoftUI.UI.Button
-                onClick={() => {
-                  setSelectedDate("today");
-                  handleSeachByName({
-                    date: new Date().toISOString(),
-                  });
-                }}
-                variant={selectedDate == "today" ? "primary" : "outline"}
-                className="items-center md:w-fit w-full justify-center"
-              >
-                <ReactIcons.CgIcon.CgCalendar size={15} />
-                <CTranslateTo eng="Today" pt="Hoje" />
-              </AuSoftUI.UI.Button>
-              <AuSoftUI.UI.Button
-                onClick={() => {
-                  setSelectedDate("tomorrow");
-                  handleSeachByName({
-                    date: addDays(new Date(), 1).toISOString(),
-                  });
-                }}
-                variant={selectedDate == "tomorrow" ? "primary" : "outline"}
-                className="items-center md:w-fit w-full justify-center"
-              >
-                <ReactIcons.CgIcon.CgCalendar size={15} />
-                <CTranslateTo eng="Tomorrow" pt="Amanhã" />
-              </AuSoftUI.UI.Button>
-            </div>
-          </BaseBox>
+      <div className="md:m-12 m-4 flex flex-col gap-4">
+        <BaseBox className="p-4">
+          <div className="flex items-center gap-4">
+            <AuSoftUI.UI.Button
+              onClick={() => {
+                setSelectedDate("yesterday");
+                handleSeachByName({
+                  date: subDays(new Date(), 1).toISOString(),
+                });
+              }}
+              variant={selectedDate == "yesterday" ? "primary" : "outline"}
+              className="items-center md:w-fit w-full justify-center"
+            >
+              <ReactIcons.CgIcon.CgCalendar size={15} />
+              <CTranslateTo eng="Yesterday" pt="Ontem" />
+            </AuSoftUI.UI.Button>
+            <AuSoftUI.UI.Button
+              onClick={() => {
+                setSelectedDate("today");
+                handleSeachByName({
+                  date: new Date().toISOString(),
+                });
+              }}
+              variant={selectedDate == "today" ? "primary" : "outline"}
+              className="items-center md:w-fit w-full justify-center"
+            >
+              <ReactIcons.CgIcon.CgCalendar size={15} />
+              <CTranslateTo eng="Today" pt="Hoje" />
+            </AuSoftUI.UI.Button>
+            <AuSoftUI.UI.Button
+              onClick={() => {
+                setSelectedDate("tomorrow");
+                handleSeachByName({
+                  date: addDays(new Date(), 1).toISOString(),
+                });
+              }}
+              variant={selectedDate == "tomorrow" ? "primary" : "outline"}
+              className="items-center md:w-fit w-full justify-center"
+            >
+              <ReactIcons.CgIcon.CgCalendar size={15} />
+              <CTranslateTo eng="Tomorrow" pt="Amanhã" />
+            </AuSoftUI.UI.Button>
+          </div>
+        </BaseBox>
+
+        {!isLoadingAllFixtures && allFixtures.length > 0 && (
           <TradingLeagues leagues={allFixtures} />
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }
