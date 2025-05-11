@@ -25,6 +25,7 @@ type modalType =
   | "checkout-failed"
   | "subscribe"
   | "mobile-more-options"
+  | "mobile-site-more-options"
   | "resource-unavailable"
   | "blocked-extension"
   | "angolan-details"

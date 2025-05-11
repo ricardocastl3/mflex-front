@@ -77,9 +77,17 @@ export default function SHeader() {
             isScrolled={isScrolled}
             Icon={ReactIcons.AiICon.AiOutlineAudio}
             action="podflex"
-            title_en="PodFlex"
-            title_pt="PodFlex"
+            title_en="PodCasts"
+            title_pt="PodCasts"
           />
+ {/*          <LinkHeader
+            isSelected={currentPageByUrl == "games"}
+            isScrolled={isScrolled}
+            Icon={ReactIcons.Io5Icon.IoFootball}
+            action="games"
+            title_en="Games"
+            title_pt="Jogos"
+          /> */}
           <ServicesDropdown isScrolled={isScrolled} />
         </div>
       </div>

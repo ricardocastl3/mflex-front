@@ -17,6 +17,7 @@ import ApproveTicketModal from "./approve-ticket";
 import AngolanPaymentModal from "./angolan-payment";
 import TechnicalSupport from "./technical-support";
 import AllowNotificationModal from "./allow-notifications";
+import MobileMoreSiteOptions from "../(system)/site/SFooter/mobile/components/MobileMoreSiteOptions";
 
 export default function ModalOpenProvider() {
   const { openModal } = useModal();
@@ -30,6 +31,9 @@ export default function ModalOpenProvider() {
 
     case "mobile-more-options":
       return <MobileMoreOptions />;
+
+    case "mobile-site-more-options":
+      return <MobileMoreSiteOptions />;
 
     case "resource-unavailable":
       return <ResourceUnvailableModal />;
