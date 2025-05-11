@@ -80,7 +80,7 @@ export default function SHeader() {
             title_en="PodCasts"
             title_pt="PodCasts"
           />
- {/*          <LinkHeader
+          {/*    <LinkHeader
             isSelected={currentPageByUrl == "games"}
             isScrolled={isScrolled}
             Icon={ReactIcons.Io5Icon.IoFootball}

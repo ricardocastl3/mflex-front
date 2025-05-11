@@ -13,7 +13,7 @@ export default function SMobileFooter() {
 
   return (
     <div>
-      {/* <div className="md:hidden flex fixed bottom-[4.9rem] right-3 z-20 animate-fade-up">
+    {/*   <div className="md:hidden flex fixed bottom-[4.9rem] right-3 z-20 animate-fade-up">
         <AuSoftUI.UI.Button
           onClick={() => handleOpenModal("mobile-site-more-options")}
           className="rounded-full p-3"
