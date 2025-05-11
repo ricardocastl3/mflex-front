@@ -32,34 +32,6 @@ export default function NewsContainer() {
         </div>
       </div>
 
-      {isLoadingAllFixtures && (
-        <div className="flex flex-col gap-4 md:m-12 m-6">
-          {Array.from({ length: 5 }).map((_, i) => {
-            return (
-              <div
-                key={i}
-                className="bg-white rounded-xl animate-pulse dark:bg-slate-800/50 p-8"
-              ></div>
-            );
-          })}
-        </div>
-      )}
-
-      {!isLoadingAllFixtures && allFixtures.length <= 0 && (
-        <div className="md:mt-24 mt-8 md:mb-8 mb-4">
-          <AuSoftUI.Component.ListEmpty
-            hasAction
-            action_en="Go to PodCasts"
-            action_pt="Ver PodCasts"
-            action_url="podflex"
-            description_en="It looks like we couldn't get the games for you, while we sort it out, how about checking out the podcasts?"
-            description_pt="Parece que não conseguimos pegar os jogos para você, enquanto resolvemos, que tal aproveitar ver os podcasts?"
-            title_en="No Available Games"
-            title_pt="Sem Jogos Disponíveis"
-          />
-        </div>
-      )}
-
       <div className="md:m-12 m-4 flex flex-col gap-4">
         <BaseBox className="p-4">
           <div className="flex items-center gap-4">
@@ -105,8 +77,36 @@ export default function NewsContainer() {
           </div>
         </BaseBox>
 
+        {isLoadingAllFixtures && (
+          <div className="flex flex-col gap-4 md:m-12 m-6">
+            {Array.from({ length: 5 }).map((_, i) => {
+              return (
+                <div
+                  key={i}
+                  className="bg-white rounded-xl animate-pulse dark:bg-slate-800/50 p-8"
+                ></div>
+              );
+            })}
+          </div>
+        )}
+
         {!isLoadingAllFixtures && allFixtures.length > 0 && (
           <TradingLeagues leagues={allFixtures} />
+        )}
+
+        {!isLoadingAllFixtures && allFixtures.length <= 0 && (
+          <div className="md:mt-24 mt-8 md:mb-8 mb-4">
+            <AuSoftUI.Component.ListEmpty
+              hasAction
+              action_en="Go to PodCasts"
+              action_pt="Ver PodCasts"
+              action_url="podflex"
+              description_en="It looks like we couldn't get the games for you, while we sort it out, how about checking out the podcasts?"
+              description_pt="Parece que não conseguimos pegar os jogos para você, enquanto resolvemos, que tal aproveitar ver os podcasts?"
+              title_en="No Available Games"
+              title_pt="Sem Jogos Disponíveis"
+            />
+          </div>
         )}
       </div>
     </div>
