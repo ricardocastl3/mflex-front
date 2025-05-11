@@ -12,7 +12,7 @@ export default function useFixtures() {
         leagues: ILeagues[];
       }>(`/football/events`, {
         params: {
-          datePars: new Date().toISOString(),
+          date: new Date().toISOString(),
         },
       });
 
@@ -36,7 +36,7 @@ export default function useFixtures() {
       const resp = await internalApi.get<{
         leagues: ILeagues[];
       }>(`/football/events`, {
-        params: { datePars: date, teamName },
+        params: { date, teamName },
       });
 
       setAllFixtures(resp.data.leagues);
