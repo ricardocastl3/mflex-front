@@ -5,6 +5,7 @@ import { useAppProvider } from "@/providers/app/AppProvider";
 import Image from "next/image";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import Link from "next/link";
+import { ReactIcons } from "@/utils/icons";
 
 interface IAListEmpty {
   title_pt: string;
@@ -49,20 +50,21 @@ export default function AListEmpty({
         </h4>
       </div>
       {hasAction && (
-        <AuSoftUI.UI.Button variant={"primary"}>
-          <Link
-            target={action_blank ? "_blank" : "_self"}
-            href={`${
-              !action_blank
-                ? `/${segmentedLayout}/${
-                    currentPageByUrl == "app" ? `app/${action_url}` : action_url
-                  }`
-                : action_url
-            }`}
-          >
+        <Link
+          target={action_blank ? "_blank" : "_self"}
+          href={`${
+            !action_blank
+              ? `/${segmentedLayout}/${
+                  currentPageByUrl == "app" ? `app/${action_url}` : action_url
+                }`
+              : action_url
+          }`}
+        >
+          <AuSoftUI.UI.Button variant={"primary"} className="items-center">
             <CTranslateTo eng={action_en} pt={action_pt} />
-          </Link>
-        </AuSoftUI.UI.Button>
+            <ReactIcons.AiICon.AiOutlineLink />
+          </AuSoftUI.UI.Button>
+        </Link>
       )}
     </div>
   );
