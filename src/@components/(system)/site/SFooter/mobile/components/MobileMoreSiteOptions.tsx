@@ -29,7 +29,7 @@ export default function MobileMoreSiteOptions() {
         </div>
         <div
           onClick={() => handleOpenModal("")}
-          className="flex flex-col gap-3 px-4 py-5 h-[30vh] overflow-y-auto"
+          className="flex flex-col gap-3 px-4 py-5 h-[20vh] overflow-y-auto"
         >
           <h4 className="text-normal text-slate-500 dark:text-slate-300">
             <CTranslateTo eng="Navigation" pt="Navegação" />
@@ -37,6 +37,7 @@ export default function MobileMoreSiteOptions() {
           <div className="flex flex-col gap-2">
             <LinkButton
               isExpanded={true}
+              isPublic
               Icon={ReactIcons.Io5Icon.IoFootball}
               href="games"
               isSelected={currentAppPageUrl == "games"}

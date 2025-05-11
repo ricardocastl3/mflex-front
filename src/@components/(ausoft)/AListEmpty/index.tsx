@@ -1,11 +1,11 @@
 import { localImages } from "@/utils/images";
 import { AuSoftUI } from "..";
 import { useAppProvider } from "@/providers/app/AppProvider";
+import { ReactIcons } from "@/utils/icons";
 
 import Image from "next/image";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import Link from "next/link";
-import { ReactIcons } from "@/utils/icons";
 
 interface IAListEmpty {
   title_pt: string;

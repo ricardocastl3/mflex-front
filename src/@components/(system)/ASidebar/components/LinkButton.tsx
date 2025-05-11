@@ -3,7 +3,6 @@ import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import CPopever from "@/@components/(tips)/CPopover";
 
-import { useAppProvider } from "@/providers/app/AppProvider";
 import { IconType } from "react-icons";
 import { langByCookies } from "@/http/axios/api";
 
@@ -14,18 +13,19 @@ interface ILinkButton extends React.ComponentPropsWithRef<"a"> {
   Icon: IconType;
   title_en: string;
   title_pt: string;
+  isPublic?: boolean;
 }
 
 export default function LinkButton({
   isSelected,
   isExpanded,
+  isPublic,
   href,
   title_en,
   title_pt,
   Icon,
   ...props
 }: ILinkButton) {
-  const { segmentedLayout } = useAppProvider();
   const [openPopover, setOpenPopover] = useState("none");
   const [popoverPosition, setPopoverPosition] = useState({ top: 0, left: 0 });
 
@@ -43,7 +43,9 @@ export default function LinkButton({
       onMouseOver={() => setOpenPopover(href)}
       onMouseOut={() => setOpenPopover("none")}
       {...props}
-      href={`/${langByCookies}/${href == "" ? "app" : `app/${href}`}`}
+      href={`/${langByCookies}/${
+        isPublic ? `${href}` : `${href == "" ? "app" : `app/${href}`}`
+      }`}
       className={`${
         isSelected
           ? "bg-yellow-100/50 dark:bg-yellow-800/10"
