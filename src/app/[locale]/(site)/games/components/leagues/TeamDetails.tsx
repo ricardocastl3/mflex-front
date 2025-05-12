@@ -1,31 +1,37 @@
+import { IFixture } from "@/http/interfaces/models/IFixtures";
+
 export default function TeamDetails({
-  logo,
-  name,
-  score,
-  status,
+  side,
+  team,
 }: {
-  status: string;
-  name: string;
-  logo: string;
-  score: number;
+  team: IFixture;
+  side: "away" | "home";
 }) {
+  const score =
+    side == "away" ? team.score.fulltime.away : team.score.fulltime.home;
+
   return (
     <div className="flex flex-col gap-2 items-center justify-between">
       <div className="flex flex-col items-center gap-3.5">
-        <img src={logo} alt={name} width={27} height={27} />
+        <img
+          src={side == "away" ? team.teams.away.logo : team.teams.home.logo}
+          alt={side == "away" ? team.teams.away.name : team.teams.home.name}
+          width={27}
+          height={27}
+        />
         <h1 className="md:text-sm text-[0.85rem] dark:text-white text-center">
-          {name}
+          {side == "away" ? team.teams.away.name : team.teams.home.name}
         </h1>
       </div>
       <b className="text-lg dark:text-white">
         {score
           ? score
           : `${
-              status == "FT" ||
-              status == "1H" ||
-              status == "2H" ||
-              status == "AET" ||
-              status == "PEN"
+              team.fixture.status.short == "FT" ||
+              team.fixture.status.short == "1H" ||
+              team.fixture.status.short == "2H" ||
+              team.fixture.status.short == "AET" ||
+              team.fixture.status.short == "PEN"
                 ? 0
                 : "-------"
             }`}

@@ -14,6 +14,8 @@ type modalType =
   | "add-ticket"
   | "approve-ticket"
   | "technical-support"
+  | "view-football-event"
+  | "view-football-team"
   | "list-ticket"
   | "allow-notifications"
   | "angolan-payment-modal"

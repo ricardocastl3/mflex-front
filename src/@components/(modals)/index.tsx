@@ -18,6 +18,8 @@ import AngolanPaymentModal from "./angolan-payment";
 import TechnicalSupport from "./technical-support";
 import AllowNotificationModal from "./allow-notifications";
 import MobileMoreSiteOptions from "../(system)/site/SFooter/mobile/components/MobileMoreSiteOptions";
+import ViewFootballEventModal from "./football/view-event";
+import ViewFootballTeamModal from "./football/view-team";
 
 export default function ModalOpenProvider() {
   const { openModal } = useModal();
@@ -67,6 +69,12 @@ export default function ModalOpenProvider() {
 
     case "allow-notifications":
       return <AllowNotificationModal />;
+
+    case "view-football-event":
+      return <ViewFootballEventModal />;
+
+    case "view-football-team":
+      return <ViewFootballTeamModal />;
 
     default:
       return <></>;

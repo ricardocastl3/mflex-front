@@ -32,7 +32,7 @@ export   const statusMap: any = {
   ET: { pt: "Prorrogação", eng: "Extra Time" },
   BT: { pt: "Intervalo da Prorrogação", eng: "Break Time" },
   P: { pt: "Disputa de Pênaltis", eng: "Penalty In Progress" },
-  FT: { pt: "Finalizado", eng: "Full Time" },
+  FT: { pt: "Fim de Jogo", eng: "Full Time" },
   AET: { pt: "Finalizado após Prorrogação", eng: "After Extra Time" },
   PEN: { pt: "Finalizado nos Pênaltis", eng: "Full Time After Penalties" },
   SUSP: { pt: "Suspenso", eng: "Suspended" },

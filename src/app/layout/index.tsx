@@ -21,6 +21,7 @@ import EventProvider from "@/providers/features/EventProvider";
 import EventTicketProvider from "@/providers/features/EventTicketProvider";
 import useAOS from "@/hooks/app/useAOS";
 import FacebookPixel from "@/services/meta/FacebookPixel";
+import FootballProvider from "@/providers/features/FootballProvider";
 
 const anek = Abel({ weight: "400", subsets: ["latin"] });
 
@@ -51,7 +52,7 @@ export default function RootLayout({
                           <CategoryProvider>
                             <EventProvider>
                               <EventTicketProvider>
-                                {children}
+                                <FootballProvider>{children}</FootballProvider>
                               </EventTicketProvider>
                             </EventProvider>
                           </CategoryProvider>
@@ -63,7 +64,9 @@ export default function RootLayout({
                       color="#d4b548"
                       options={{ showSpinner: false }}
                     />
-                    <GoogleAnalytics gaId="G-998HC7V4FQ" />
+                    {process.env.NODE_ENV == "production" && (
+                      <GoogleAnalytics gaId="G-998HC7V4FQ" />
+                    )}
                   </AppProvider>
                 </AuthProvider>
               </ModalProvider>

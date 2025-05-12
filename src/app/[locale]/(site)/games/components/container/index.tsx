@@ -7,7 +7,7 @@ import { ReactIcons } from "@/utils/icons";
 import { addDays, subDays } from "date-fns";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import useFixtures from "@/hooks/api/useFootball";
+import useFixtures from "@/hooks/api/football/useFootball";
 import TradingLeagues from "./TradingLeagues";
 
 export default function NewsContainer() {
