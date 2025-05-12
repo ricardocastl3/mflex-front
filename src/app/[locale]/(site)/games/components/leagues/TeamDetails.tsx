@@ -13,7 +13,9 @@ export default function TeamDetails({
     <div className="flex flex-col gap-2 items-center justify-between">
       <div className="flex flex-col items-center gap-3.5">
         <img src={logo} alt={name} width={27} height={27} />
-        <h1 className="text-sm dark:text-white text-center">{name}</h1>
+        <h1 className="md:text-sm text-[0.85rem] dark:text-white text-center">
+          {name}
+        </h1>
       </div>
       <b className="text-lg dark:text-white">
         {score

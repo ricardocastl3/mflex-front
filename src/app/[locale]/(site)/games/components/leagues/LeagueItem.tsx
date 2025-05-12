@@ -1,13 +1,20 @@
 import { BaseBox } from "@/@components/(box)/BaseBox";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ReactIcons } from "@/utils/icons";
 import { ILeagues } from "@/http/interfaces/models/IFixtures";
+import { useAppProvider } from "@/providers/app/AppProvider";
 
 import TeamItem from "./TeamItem";
 
 export default function LeagueItem({ league }: { league: ILeagues }) {
   const [show, setShow] = useState(false);
+
+  const { closeLeagueBox } = useAppProvider();
+
+  useEffect(() => {
+    setShow(false);
+  }, [closeLeagueBox]);
 
   return (
     <div className="relative animate-fade-up">
@@ -24,10 +31,12 @@ export default function LeagueItem({ league }: { league: ILeagues }) {
             width={20}
             height={20}
           />
-          <div className="md:text-[1rem] text-base flex items-center gap-2">
-            <h1 className="dark:text-white font-bold">{league.leagueName}</h1>
-            <h1 className="text-base dark:text-slate-00 text-slate-500 font-bold">
-              {` • ${league.country}`}
+          <div className="md:text-[1rem] text-[0.85rem]">
+            <h1 className="dark:text-white font-bold">
+              {league.leagueName}
+              <b className="dark:text-slate-00 text-slate-500 font-bold">
+                {` • ${league.country}`}
+              </b>
             </h1>
           </div>
         </div>

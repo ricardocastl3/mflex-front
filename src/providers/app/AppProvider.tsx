@@ -25,12 +25,14 @@ interface IAppContext {
   canCloseSubscribe: boolean;
   hiddenMobileHeader: boolean;
   isScrolledWindow: boolean;
+  closeLeagueBox: boolean;
 
   handleCanCloseSubscribe: (mode: boolean) => void;
   handleOpenBanner: (mode: boolean) => void;
   handleAddToastOnArray: (toast: IToast) => void;
   handleResetToast: (id: number) => void;
   handleSetDarkMode: (value: boolean) => void;
+  handleCloseLeagueBox: () => void;
 }
 
 export function useAppProvider() {
@@ -52,9 +54,11 @@ export default function AppProvider({
   const [openBanner, setOpenBanner] = useState(false);
   const [canCloseSubscribe, setCanCloseSubscribe] = useState(true);
 
-  const [hiddenMobileHeader, setHiddenMobileHeader] = useState(false);
+  const [closeLeagueBox, setCloseLeagueBox] = useState(false);
 
   const [isNotifyGranted, setIsNotifyGranted] = useState(false);
+
+  const [hiddenMobileHeader, setHiddenMobileHeader] = useState(false);
   const [isScrolledWindow, setIsScrolledWindow] = useState(false);
 
   const segmentedLayout = useSelectedLayoutSegment();
@@ -66,6 +70,10 @@ export default function AppProvider({
   function handleAddToastOnArray({ ...toast }: IToast) {
     const id = Math.round(Math.PI * new Date().getTime());
     setOpenToast((state) => [...state, { ...toast, id: id }]);
+  }
+
+  function handleCloseLeagueBox() {
+    setCloseLeagueBox((state) => !state);
   }
 
   function handleResetToast(id: number) {
@@ -125,6 +133,9 @@ export default function AppProvider({
         handleSetDarkMode,
         handleResetToast,
         handleOpenBanner,
+        handleCloseLeagueBox,
+
+        closeLeagueBox,
         canCloseSubscribe,
 
         isScrolledWindow,
