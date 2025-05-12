@@ -7,7 +7,7 @@ import { ILeagues } from "@/http/interfaces/models/IFixtures";
 export default function TradingLeagues({ leagues }: { leagues: ILeagues[] }) {
   return (
     <section  className="flex flex-col gap-4">
-      <div className="flex items-center gap-2 text-yellow-500">
+      <div className="flex items-center gap-2 dark:text-yellow-500 text-yellow-600">
         <ReactIcons.MdIcon.MdCircle size={20} className="animate-pulse" />
         <h1 className="text-xl font-bold">
           <CTranslateTo eng="Trading Games" pt="Jogos Em Destaques" />

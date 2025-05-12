@@ -24,9 +24,12 @@ export default function LeagueItem({ league }: { league: ILeagues }) {
             width={20}
             height={20}
           />
-          <h1 className="md:text-[1rem] text-base dark:text-white font-bold">
-            {league.leagueName}
-          </h1>
+          <div className="md:text-[1rem] text-base flex items-center gap-2">
+            <h1 className="dark:text-white font-bold">{league.leagueName}</h1>
+            <h1 className="text-base dark:text-slate-00 text-slate-500 font-bold">
+              {` • ${league.country}`}
+            </h1>
+          </div>
         </div>
 
         <button className="dark:text-white">
@@ -40,7 +43,7 @@ export default function LeagueItem({ league }: { league: ILeagues }) {
         <motion.div
           initial={{ translateY: "-0.5rem" }}
           animate={{ translateY: "0rem" }}
-          className="w-full z-0 rounded-b-xl top-[3rem] px-4 pt-4 pb-4 text-base dark:bg-ausoft-slate-900 bg-slate-300/50 text-slate-800 dark:text-slate-400"
+          className="w-full z-0 rounded-b-xl top-[3rem] px-4 pt-4 pb-4 text-base dark:bg-ausoft-slate-900 bg-white/50 text-slate-800 dark:text-slate-400"
         >
           {league.teams.map((team, i) => {
             return <TeamItem key={i} team={team} />;

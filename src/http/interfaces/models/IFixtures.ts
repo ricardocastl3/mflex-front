@@ -72,6 +72,7 @@ export interface IFixture {
 export interface ILeagues {
   leagueId: number;
   leagueName: string;
+  country: string;
   logo: string;
   teams: IFixture[];
 }

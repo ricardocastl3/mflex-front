@@ -78,12 +78,12 @@ export default function NewsContainer() {
         </BaseBox>
 
         {isLoadingAllFixtures && (
-          <div className="flex flex-col gap-4 md:m-12 m-6">
-            {Array.from({ length: 5 }).map((_, i) => {
+          <div className="flex flex-col gap-4">
+            {Array.from({ length: 7 }).map((_, i) => {
               return (
                 <div
                   key={i}
-                  className="bg-white rounded-xl animate-pulse dark:bg-slate-800/50 p-8"
+                  className="bg-white rounded-xl animate-pulse dark:bg-slate-800/30 p-8"
                 ></div>
               );
             })}

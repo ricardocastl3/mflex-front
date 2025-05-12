@@ -9,7 +9,7 @@ export default function TeamDetails({
 }) {
   return (
     <div className="flex flex-col gap-2 items-center justify-between">
-      <div className="flex flex-col items-center gap-4">
+      <div className="flex flex-col items-center gap-3.5">
         <img src={logo} alt={name} width={27} height={27} />
         <h1 className="text-sm dark:text-white text-center">{name}</h1>
       </div>
