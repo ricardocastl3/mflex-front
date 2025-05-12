@@ -10,7 +10,7 @@ export default function LeagueItem({ league }: { league: ILeagues }) {
   const [show, setShow] = useState(false);
 
   return (
-    <div className="relative">
+    <div className="relative animate-fade-up">
       <BaseBox
         onClick={() => setShow((state) => !state)}
         className={`${
