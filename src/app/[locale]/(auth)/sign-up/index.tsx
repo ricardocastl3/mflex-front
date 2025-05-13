@@ -93,7 +93,8 @@ export default function SignUpPage() {
   useEffect(() => {
     if (navigator.userAgent.split("FBLC").length > 0) {
       window.open(
-        `${process.env.MFLEX_NEXT_PUBLIC_URL}/${langByCookies}/sign-up`
+        `${process.env.MFLEX_NEXT_PUBLIC_URL}/${langByCookies}/sign-up`,
+        "_blank"
       );
     }
   }, []);
