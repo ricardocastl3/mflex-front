@@ -12,6 +12,7 @@ import { useAppProvider } from "@/providers/app/AppProvider";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/providers/auth/AuthProvider";
+import { useModal } from "@/providers/app/ModalProvider";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
@@ -24,6 +25,7 @@ export default function SignUpPage() {
   // Context
   const { handleAddToastOnArray } = useAppProvider();
   const { fetchUserInformations } = useAuth();
+  const { handleOpenModal } = useModal();
 
   // Controls
   const [termCheck, setTermCheck] = useState(false);
@@ -91,11 +93,13 @@ export default function SignUpPage() {
   }
 
   useEffect(() => {
-    if (navigator.userAgent.split("FBLC").length > 0) {
-      window.open(
-        `${process.env.MFLEX_NEXT_PUBLIC_URL}/${langByCookies}/sign-up`,
-        "_blank"
-      );
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    const isFacebookWebView =
+      userAgent.includes("FBAN") || userAgent.includes("FBAV");
+    const isInstagram = userAgent.includes("Instagram");
+
+    if (isFacebookWebView || isInstagram) {
+      handleOpenModal("open-in-your-browser");
     }
   }, []);
 

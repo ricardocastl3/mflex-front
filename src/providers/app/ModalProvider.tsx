@@ -31,6 +31,7 @@ type modalType =
   | "resource-unavailable"
   | "blocked-extension"
   | "angolan-details"
+  | "open-in-your-browser"
   | "";
 
 interface IOnboardingType {
