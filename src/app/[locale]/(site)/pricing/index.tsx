@@ -2,6 +2,7 @@
 
 import { ReactIcons } from "@/utils/icons";
 import { AuSoftUI } from "@/@components/(ausoft)";
+import { useAuth } from "@/providers/auth/AuthProvider";
 
 import usePlan from "@/hooks/api/usePlan";
 import HeroPlans from "./components/Hero";
@@ -9,12 +10,13 @@ import SubsCard from "./components/SubsCard";
 
 export default function NewsPage() {
   const { isLoadingAllPlans, allPlans } = usePlan();
+  const { isLoadingUserData } = useAuth();
 
   return (
     <div className="flex flex-col gap-4">
       <HeroPlans />
       <div className="md:m-32 m-6">
-        {isLoadingAllPlans && (
+        {(isLoadingAllPlans || isLoadingUserData) && (
           <div className="p-4 flex justify-center items-center">
             <div>
               <ReactIcons.CgIcon.CgSpinner
@@ -25,7 +27,7 @@ export default function NewsPage() {
           </div>
         )}
 
-        {!isLoadingAllPlans && allPlans.length <= 0 && (
+        {!isLoadingAllPlans && allPlans.length <= 0 && !isLoadingUserData && (
           <div className="flex items-center w-full h-full justify-center">
             <AuSoftUI.Component.ListEmpty
               action_en="Get In Touch"
@@ -41,7 +43,7 @@ export default function NewsPage() {
           </div>
         )}
 
-        {!isLoadingAllPlans && allPlans.length > 0 && (
+        {!isLoadingAllPlans && allPlans.length > 0 && !isLoadingUserData && (
           <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
             {allPlans.map((plan, i) => {
               return <SubsCard plan={plan} key={i} />;

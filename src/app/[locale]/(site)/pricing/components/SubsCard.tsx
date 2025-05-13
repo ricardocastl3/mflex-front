@@ -79,15 +79,9 @@ export default function SubsCard({ plan }: { plan: IPlan }) {
       <div className="p-2 w-full">
         <AuSoftUI.UI.Button
           onClick={handleSubscribe}
-          disabled={isExpired && samePlan ? true : false}
+          disabled={!isExpired && samePlan ? true : false}
           className="w-full"
-          variant={
-            currentSubscription &&
-            !currentSubscription.subscription.is_expired &&
-            currentSubscription.subscription.plan?.id == plan.id
-              ? "outline"
-              : "primary"
-          }
+          variant={!isExpired && samePlan ? "outline" : "primary"}
         >
           {!isExpired && samePlan ? (
             <CTranslateTo eng="Your Current Plan" pt="Seu plano atual" />
