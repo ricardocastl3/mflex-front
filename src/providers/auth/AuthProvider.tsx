@@ -13,13 +13,17 @@ import { IUserResponse } from "@/http/interfaces/responses/IUserResponse";
 import { getCookie, hasCookie, setCookie } from "cookies-next";
 import { internalApi, langByCookies } from "@/http/axios/api";
 import { usePathname, useRouter } from "next/navigation";
+import { ISubscriptionUsage } from "@/http/interfaces/models/subscriptions/ISubscriptionUsage";
 
 import CookieServices from "@/services/auth/CookieServices";
+import useSubscription from "@/hooks/api/useSubscription";
+import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 interface IAuthContextProps {
   isLoadingUserData: boolean;
   isUserConfirmed: boolean;
   userLogged: IUserResponse | undefined;
+  currentSubscription: ISubscriptionUsage | undefined;
 
   handleRedirectToSign: () => void;
   fetchUserInformations: () => void;
@@ -41,6 +45,12 @@ export default function AuthProvider({
   const [isLoadingUserData, setIsLoadingUserData] = useState(true);
   const [userLogged, setUserLogged] = useState<IUserResponse | undefined>();
   const [isUserConfirmed, setIsUserConfirmed] = useState(false);
+
+  const [currentSubscription, setCurrentSubscription] = useState<
+    ISubscriptionUsage | undefined
+  >();
+
+  const { currentSubsUsage } = useSubscription({ loadUser: isLoadingUserData });
 
   const path = usePathname();
   const startRoutes = path.slice(4);
@@ -95,6 +105,13 @@ export default function AuthProvider({
       }
 
       if (
+        LocalStorageServices.getKey(LocalStorageServices.keys.redirectToPricing)
+      ) {
+        window.location.href = `/${langByCookies}/pricing`;
+        return;
+      }
+
+      if (
         startRoutes == "sign-in" ||
         startRoutes == "sign-up" ||
         startRoutes == "forgot-pwd" ||
@@ -129,11 +146,16 @@ export default function AuthProvider({
     fetchUserInformations();
   }, []);
 
+  useEffect(() => {
+    setCurrentSubscription(currentSubsUsage);
+  }, [currentSubsUsage]);
+
   return (
     <AuthContext.Provider
       value={{
         isLoadingUserData,
         isUserConfirmed,
+        currentSubscription,
 
         fetchUserInformations,
         handleRedirectToSign,

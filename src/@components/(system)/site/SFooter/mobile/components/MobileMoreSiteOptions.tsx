@@ -38,6 +38,15 @@ export default function MobileMoreSiteOptions() {
             <LinkButton
               isExpanded={true}
               isPublic
+              Icon={ReactIcons.Io5Icon.IoStar}
+              href="pricing"
+              isSelected={currentAppPageUrl == "pricing"}
+              title_en="Flex Plans"
+              title_pt="Planos Flex"
+            />
+            <LinkButton
+              isExpanded={true}
+              isPublic
               Icon={ReactIcons.Io5Icon.IoFootball}
               href="games"
               isSelected={currentAppPageUrl == "games"}

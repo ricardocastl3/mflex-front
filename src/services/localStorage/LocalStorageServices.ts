@@ -1,6 +1,18 @@
 import { ECOOKIES } from "@/utils/enums";
 
 class LocalStorageServices {
+  keys = {
+    redirectToPricing: "rc-pricing",
+  };
+
+  setKey(key: string, data: any) {
+    localStorage.setItem(key, data);
+  }
+
+  getKey(key: string) {
+    return localStorage.getItem(key);
+  }
+
   removeRedirectSubscriber() {
     localStorage.removeItem(ECOOKIES.localStorage.redirectSubscriber);
   }

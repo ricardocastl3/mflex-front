@@ -142,7 +142,7 @@ export default function NewsContainer() {
                 onChange={(e) => {
                   handleDateTextField(e.target.value);
                 }}
-                className="md:w-full w-[8rem] z-0 text-[0.85rem] cursor-pointer h-[40px] px-[15px] py-[18px]"
+                className="md:w-full w-[15rem] text-[0.85rem] cursor-pointer h-[40px] px-[15px] py-[18px]"
               />
             </div>
 

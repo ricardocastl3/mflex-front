@@ -3,19 +3,21 @@ import { AuSoftUI } from "@/@components/(ausoft)";
 import { ReactIcons } from "@/utils/icons";
 import { useState } from "react";
 import { useFootballProvider } from "@/providers/features/FootballProvider";
+import { useAuth } from "@/providers/auth/AuthProvider";
 
 import BaseModal from "../../base";
 import TeamHeader from "./components/TeamHeader";
 import TeamDetails from "@/app/[locale]/(site)/games/components/leagues/teams/TeamDetails";
 import EventFootballMiddleResult from "@/app/[locale]/(site)/games/components/leagues/teams/TeamMiddleResult";
-import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import TeamPlayer from "./components/TeamPlayer";
+import ButtonTab from "./components/ButtonTab";
 
 export default function ViewFootballEventModal() {
+  // Contexts
   const { handleOpenModal } = useModal();
   const { selectedFootballTeam } = useFootballProvider();
 
-  const [isLoading, setIsLoading] = useState(true);
+  const { userLogged } = useAuth();
 
   const [tab, setTab] = useState("overview");
 
@@ -72,9 +74,20 @@ export default function ViewFootballEventModal() {
             </div>
             <div className="md:w-[70vw] w-[90vw]">
               <div className=" flex items-center gap-3 border-b border-slate-200 dark:border-slate-800">
-                <button className="p-3 dark:text-white font-bold rounded-t-xl bg-white dark:bg-slate-800/30">
-                  <CTranslateTo eng="Overview" pt="Visão Geral" />
-                </button>
+                <ButtonTab
+                  setTab={setTab}
+                  tab={tab}
+                  value="overview"
+                  t_en="Overview"
+                  t_pt="Visão Geral"
+                />
+                <ButtonTab
+                  setTab={setTab}
+                  tab={tab}
+                  value="overview"
+                  t_en="AI Analises"
+                  t_pt="Análise com IA"
+                />
               </div>
 
               {tab == "overview" && (
