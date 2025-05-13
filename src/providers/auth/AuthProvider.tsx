@@ -21,6 +21,8 @@ import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 interface IAuthContextProps {
   isLoadingUserData: boolean;
+  isLoadingCurrentSubsUsage: boolean;
+
   isUserConfirmed: boolean;
   userLogged: IUserResponse | undefined;
   currentSubscription: ISubscriptionUsage | undefined;
@@ -50,9 +52,7 @@ export default function AuthProvider({
     ISubscriptionUsage | undefined
   >();
 
-  const { currentSubsUsage, isLoadingCurrentSubsUsage } = useSubscription({
-    loadUser: isLoadingUserData,
-  });
+  const { currentSubsUsage, isLoadingCurrentSubsUsage } = useSubscription();
 
   const path = usePathname();
   const startRoutes = path.slice(4);
@@ -159,6 +159,8 @@ export default function AuthProvider({
     <AuthContext.Provider
       value={{
         isLoadingUserData,
+        isLoadingCurrentSubsUsage,
+
         isUserConfirmed,
         currentSubscription,
 

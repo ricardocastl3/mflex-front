@@ -2,7 +2,7 @@ import { internalApi } from "@/http/axios/api";
 import { ISubscriptionUsage } from "@/http/interfaces/models/subscriptions/ISubscriptionUsage";
 import { useCallback, useEffect, useState } from "react";
 
-export default function useSubscription({ loadUser }: { loadUser: boolean }) {
+export default function useSubscription() {
   const [currentSubsUsage, setCurrentSubsUsage] = useState<
     ISubscriptionUsage | undefined
   >();
@@ -23,8 +23,8 @@ export default function useSubscription({ loadUser }: { loadUser: boolean }) {
   }, []);
 
   useEffect(() => {
-    if (!loadUser) fetchCurrentSubsUsage();
-  }, [loadUser]);
+    fetchCurrentSubsUsage();
+  }, [fetchCurrentSubsUsage]);
 
   return {
     fetchCurrentSubsUsage,
