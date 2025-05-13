@@ -60,9 +60,7 @@ export default function SubsCard({ plan }: { plan: IPlan }) {
           <h1 className="text-lg font-bold dark:text-white">{plan.name}</h1>
           <h1 className="text-base dark:text-slate-200 font-bold">
             {CurrencyServices.decimal(plan.amount)}
-
-            {currentSubscription && JSON.stringify(currentSubscription)}
-            {"Kz"}
+            {" Kz"}
           </h1>
         </div>
 
