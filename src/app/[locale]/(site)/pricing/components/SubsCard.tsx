@@ -2,7 +2,7 @@ import { IPlan } from "@/http/interfaces/models/IPlan";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { useAuth } from "@/providers/auth/AuthProvider";
 import { AuSoftUI } from "@/@components/(ausoft)";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { langByCookies } from "@/http/axios/api";
 
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
