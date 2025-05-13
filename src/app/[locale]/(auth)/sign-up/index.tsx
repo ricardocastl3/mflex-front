@@ -90,6 +90,8 @@ export default function SignUpPage() {
     }
   }
 
+  const navigator = new Navigator();
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -258,17 +260,13 @@ export default function SignUpPage() {
                       setValue={setTermCheck}
                       value={termCheck}
                     />
-                    <h1
-                      onClick={() => {
-                        const navigator = new Navigator();
-                        alert("AS: " + navigator.userAgent);
-                      }}
-                      className="dark:text-white text-base"
-                    >
+                    <h1 className="dark:text-white text-base">
                       <CTranslateTo
                         eng="Agree with Terms & Conditions"
                         pt="Concordar com os termos e condições"
                       />
+
+                      {navigator.userAgent}
                     </h1>
                   </div>
                   <AuSoftUI.UI.Button
