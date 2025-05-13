@@ -1,5 +1,6 @@
-import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import { localImages } from "@/utils/images";
+
+import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 
 export default function HeroPlans() {
   return (
@@ -14,7 +15,7 @@ export default function HeroPlans() {
       className="md:h-[55vh] h-[40vh] flex-col relative flex md:items-start items-center md:text-start text-center justify-center md:px-14 px-4"
     >
       <div className="absolute inset-0 bg-black/50"></div>
-      <div className="flex flex-col gap-2 z-20">
+      <div className="flex flex-col gap-2 z-20 md:px-0 px-8">
         <h1 className="md:text-[2rem] text-[1.7rem] font-bold text-white">
           <CTranslateTo eng="Flex Plans" pt="Planos Flex" />
         </h1>
