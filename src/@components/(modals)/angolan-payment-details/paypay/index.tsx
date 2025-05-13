@@ -180,20 +180,6 @@ export default function PayPayPayment() {
                     />
                   </h4>
                 </div>
-                <div className="flex justify-center">
-                  <AuSoftUI.UI.Button
-                    onClick={() => {
-                      setAlreadyPay(true);
-                    }}
-                    className="rounded-full px-4"
-                    variant={"primary"}
-                  >
-                    <CTranslateTo
-                      eng="I already pay"
-                      pt="Já realizei o pagamento"
-                    />
-                  </AuSoftUI.UI.Button>
-                </div>
                 {window.innerWidth <= 765 && (
                   <div className="w-full flex justify-center">
                     <AuSoftUI.UI.Button
