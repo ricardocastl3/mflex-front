@@ -17,9 +17,9 @@ export default function ViewFootballEventModal() {
   const { handleOpenModal } = useModal();
   const { selectedFootballTeam } = useFootballProvider();
 
-  const { userLogged } = useAuth();
+  const { currentSubscription } = useAuth();
 
-  const [tab, setTab] = useState("overview");
+  const [tab, setTab] = useState("players");
 
   return (
     <BaseModal
@@ -73,7 +73,7 @@ export default function ViewFootballEventModal() {
               </div>
             </div>
             <div className="md:w-[70vw] w-[90vw]">
-              <div className=" flex items-center gap-3 border-b border-slate-200 dark:border-slate-800">
+              <div className="flex items-center border-b border-slate-200 dark:border-slate-800">
                 <ButtonTab
                   setTab={setTab}
                   tab={tab}
@@ -84,13 +84,20 @@ export default function ViewFootballEventModal() {
                 <ButtonTab
                   setTab={setTab}
                   tab={tab}
-                  value="overview"
+                  value="players"
+                  t_en="Players"
+                  t_pt="Jogadores"
+                />
+                <ButtonTab
+                  setTab={setTab}
+                  tab={tab}
+                  value="ai-football"
                   t_en="AI Analises"
                   t_pt="Análise com IA"
                 />
               </div>
 
-              {tab == "overview" && (
+              {tab == "players" && (
                 <div className="flex bg-white md:flex-row flex-col gap-4 w-full py-8 dark:bg-slate-800/30 md:px-4 px-4 mb-4 rounded-b-xl">
                   <TeamPlayer side="home" team={selectedFootballTeam!} />
                   <div className="md:flex hidden justify-center w-[8px]">
