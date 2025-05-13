@@ -1,6 +1,5 @@
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { BaseBox } from "@/@components/(box)/BaseBox";
-import { useAuth } from "@/providers/auth/AuthProvider";
 import { ReactIcons } from "@/utils/icons";
 import { langByCookies } from "@/http/axios/api";
 
@@ -24,8 +23,8 @@ export default function OpenInYourBrowserModal() {
           </h4>
           <h4 className="flex md:flex-row flex-col md:w-[30vw] w-[80vw] text-center items-center gap-2 text-sm dark:text-slate-400 text-slate-800">
             <CTranslateTo
-              eng={`You're smart 😀, to proceed we need you to copy the link by clicking the button below, and then paste it into your favorite browser 👏`}
-              pt={`Você é inteligente 😀, para prosseguir precisamos que copies o link clicando no botão abaixo, e depois cole no seu navegador favorito 👏`}
+              eng={`Great choice! 🎉 To continue, please click the button below to copy the link, and then paste it into your favorite browser. Let's get started! 🚀`}
+              pt={`Ótima escolha! 🎉 Para continuar, clique no botão abaixo para copiar o link e depois cole no seu navegador favorito. Vamos começar! 🚀`}
             />
           </h4>
         </div>
@@ -41,8 +40,8 @@ export default function OpenInYourBrowserModal() {
               </AuSoftUI.UI.Button>
             }
             text={`${process.env.MFLEX_NEXT_PUBLIC_URL}/${langByCookies}/sign-up`}
-            title_en="Link copied, now paste it into your browser 😀"
-            title_pt="Link Copiado, agora cole no seu navegador 😀"
+            title_en="Link copied, now paste it into your browser"
+            title_pt="Link Copiado, agora cole no seu navegador"
           />
         </div>
       </BaseBox>
