@@ -40,15 +40,35 @@ export default function PayPayPayment() {
   const [isLoading, setIsLoading] = useState(true);
   const [isOpenPayPay, setIsOpenPayPay] = useState(false);
 
+  const details: { amount?: number; quantity?: number; price?: string } =
+    itemPriceIdCheckoutSelected
+      ? {
+          amount: itemPriceIdCheckoutSelected.amount,
+          price: itemPriceIdCheckoutSelected.price,
+        }
+      : {
+          amount: selectedCustomerBuyed?.amount,
+          price: selectedCustomerBuyed?.ticket_id,
+          quantity: selectedCustomerBuyed?.quantity,
+        };
+
   const handleGetRef = useCallback(async () => {
     try {
-      const resp = await internalApi.post(`/payments/checkout/tickets`, {
-        price: selectedCustomerBuyed?.ticket_id,
-        quantity: selectedCustomerBuyed?.quantity,
-        angolan_method: "paypay",
-        payment_method: "angolan",
-        d: socketEvent?.metadata,
-      });
+      const resp = await internalApi.post(
+        `/payments/checkout/${
+          itemPriceIdCheckoutSelected &&
+          itemPriceIdCheckoutSelected.type == "subs"
+            ? "subs"
+            : "tickets"
+        }`,
+        {
+          price: details?.price,
+          quantity: details?.quantity,
+          angolan_method: "paypay",
+          payment_method: "angolan",
+          d: socketEvent?.metadata,
+        }
+      );
 
       setAlreadySentRequest(resp.data.d);
       setAngolanDetail({ link: resp.data.link });
@@ -142,7 +162,7 @@ export default function PayPayPayment() {
                   <h4 className="pb-1 pt-1.5 px-3 bg-green-200/45 md:w-fit w-full rounded-full dark:bg-green-700/15 text-green-800 dark:text-green-400 text-[0.9rem] font-bold text-nowrap">
                     <CTranslateTo eng="Money: " pt="Valor: " />{" "}
                     {CurrencyServices.formatWithCurrencyValue(
-                      Number(selectedCustomerBuyed?.amount),
+                      Number(details?.amount),
                       "AOA"
                     )}
                   </h4>

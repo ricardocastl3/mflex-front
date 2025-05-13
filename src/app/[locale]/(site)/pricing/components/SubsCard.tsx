@@ -4,15 +4,21 @@ import { useAuth } from "@/providers/auth/AuthProvider";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { useRouter } from "next/navigation";
 import { langByCookies } from "@/http/axios/api";
+import { useCheckoutProvider } from "@/providers/app/CheckoutProvider";
+import { useModal } from "@/providers/app/ModalProvider";
 
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
+import CurrencyServices from "@/services/CurrencyServices";
 
 export default function SubsCard({ plan }: { plan: IPlan }) {
   const { currentSubscription, userLogged } = useAuth();
 
   const { handleAddToastOnArray } = useAppProvider();
+  const { handleOpenModal } = useModal();
+  const { handleAddItemOnCheckout } = useCheckoutProvider();
+
   const router = useRouter();
 
   function handleSubscribe() {
@@ -23,6 +29,15 @@ export default function SubsCard({ plan }: { plan: IPlan }) {
           new Date().getTime()
         );
         router.push(`/${langByCookies}/sign-in`);
+      } else {
+        handleAddItemOnCheckout({
+          type: "subs",
+          amount: plan.amount,
+          price: plan.id,
+          monthly: "no",
+        });
+
+        handleOpenModal("angolan-payment-modal");
       }
     } catch (err) {
       return CAxiosErrorToastify({ err, openToast: handleAddToastOnArray });
@@ -32,14 +47,18 @@ export default function SubsCard({ plan }: { plan: IPlan }) {
   return (
     <div className="flex flex-col gap-4 justify-between border border-yellow-600 p-4">
       <div className="flex flex-col gap-4">
-        <div>
+        <div className="flex flex-col gap-4">
           <h1 className="text-lg font-bold dark:text-white">{plan.name}</h1>
+          <h1 className="text-base dark:text-slate-200 font-bold">
+            {CurrencyServices.decimal(plan.amount)}
+            {"Kz"}
+          </h1>
         </div>
 
         <div>
           {plan.features?.map((feature, i) => {
             return (
-              <div key={i}>
+              <div key={i} className="flex items-center gap-4">
                 <h1 className="text-base dark:text-slate-200">
                   {feature.name}
                 </h1>

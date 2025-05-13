@@ -7,7 +7,7 @@ export default function HeroPlans() {
         objectFit: "fill",
         backgroundRepeat: "no-repeat",
         backgroundPosition: window.innerWidth <= 765 ? "center" : "",
-        backgroundImage: `url(https://img.freepik.com/free-photo/smiling-asian-woman-pointing-fingers-left-showing-advertisement-empty-copy-space-standing-yellow-background_1258-92225.jpg?t=st=1744019799~exp=1744023399~hmac=159cead594fdb9f5c02ddd613111f8ed32ccc67fee30c691a2c23404e54c3e15&w=1380)`,
+        backgroundImage: `url(https://img.freepik.com/free-vector/speed-motion-lines-curvy-style_1017-37409.jpg?t=st=1747163123~exp=1747166723~hmac=ebbd1cb9b53526bf2c66b0f6c60ca04113a6d3507676a6842d7ce9582879132b&w=1380)`,
         backgroundSize: "cover",
       }}
       className="md:h-[55vh] h-[40vh] flex-col relative flex md:items-start items-center md:text-start text-center justify-center md:px-14 px-4"

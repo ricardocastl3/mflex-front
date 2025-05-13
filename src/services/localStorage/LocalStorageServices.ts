@@ -5,6 +5,10 @@ class LocalStorageServices {
     redirectToPricing: "rc-pricing",
   };
 
+  delKey(key:string){
+    localStorage.removeItem(key)
+  }
+
   setKey(key: string, data: any) {
     localStorage.setItem(key, data);
   }

@@ -17,28 +17,24 @@ import PayPayPayment from "./paypay";
 export default function AngolanPaymentDetailsModal() {
   //Contexts
   const { handleOpenModal } = useModal();
-  const { selectedAngolanMethod, isPurchased } = useCheckoutProvider();
+  const { selectedAngolanMethod, itemPriceIdCheckoutSelected, isPurchased } =
+    useCheckoutProvider();
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const router = useRouter();
-
   async function handleCloseModal() {
-    /*
-    router.push(
-      `/${langByCookies}/payments?tab=${
-        itemPriceIdCheckoutSelected?.type == "others"
-          ? "others"
-          : itemPriceIdCheckoutSelected?.type == "packs"
-          ? "ausoft-coins"
-          : "subscriptions"
-      }
-    );*/
-
     if (!isPurchased) handleOpenModal("");
 
-    if (isPurchased)
-      window.location.href = "/" + langByCookies + "/app/tickets";
+    if (isPurchased) {
+      if (
+        itemPriceIdCheckoutSelected &&
+        itemPriceIdCheckoutSelected.type == "subs"
+      ) {
+        window.location.href = "/" + langByCookies;
+      } else {
+        window.location.href = "/" + langByCookies + "/app/tickets";
+      }
+    }
   }
 
   return (

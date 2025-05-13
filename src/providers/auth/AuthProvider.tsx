@@ -107,6 +107,9 @@ export default function AuthProvider({
       if (
         LocalStorageServices.getKey(LocalStorageServices.keys.redirectToPricing)
       ) {
+        LocalStorageServices.delKey(
+          LocalStorageServices.keys.redirectToPricing
+        );
         window.location.href = `/${langByCookies}/pricing`;
         return;
       }

@@ -14,7 +14,8 @@ export default function ReferencePayment() {
   // Contexts
   const { handleOpenModal } = useModal();
   const { handleAddToastOnArray } = useAppProvider();
-  const { selectedCustomerBuyed } = useCheckoutProvider();
+  const { selectedCustomerBuyed, itemPriceIdCheckoutSelected } =
+    useCheckoutProvider();
 
   const [angolanDetail, setAngolanDetail] = useState<{
     reference: string;
@@ -24,14 +25,34 @@ export default function ReferencePayment() {
   //Controls
   const [isLoading, setIsLoading] = useState(true);
 
+  const details: { amount?: number; quantity?: number; price?: string } =
+    itemPriceIdCheckoutSelected
+      ? {
+          amount: itemPriceIdCheckoutSelected.amount,
+          price: itemPriceIdCheckoutSelected.price,
+        }
+      : {
+          amount: selectedCustomerBuyed?.amount,
+          price: selectedCustomerBuyed?.ticket_id,
+          quantity: selectedCustomerBuyed?.quantity,
+        };
+
   const handleGetRef = useCallback(async () => {
     try {
-      const resp = await internalApi.post(`/payments/checkout/tickets`, {
-        quantity: selectedCustomerBuyed?.quantity,
-        price: selectedCustomerBuyed?.ticket_id,
-        angolan_method: "reference",
-        payment_method: "angolan",
-      });
+      const resp = await internalApi.post(
+        `/payments/checkout/${
+          itemPriceIdCheckoutSelected &&
+          itemPriceIdCheckoutSelected.type == "subs"
+            ? "subs"
+            : "tickets"
+        }`,
+        {
+          quantity: details?.quantity,
+          price: details?.price,
+          angolan_method: "reference",
+          payment_method: "angolan",
+        }
+      );
       setAngolanDetail({
         entity: resp.data.entity,
         reference: resp.data.reference,
@@ -95,7 +116,7 @@ export default function ReferencePayment() {
               <h4 className="pb-1 pt-1.5 px-3 bg-green-200/45 md:w-fit w-full rounded-full dark:bg-green-700/15 text-green-800 dark:text-green-400 text-[0.9rem] font-bold text-nowrap">
                 <CTranslateTo eng="Money: " pt="Valor: " />
                 {CurrencyServices.formatWithCurrencyValue(
-                  Number(selectedCustomerBuyed?.amount),
+                  Number(details?.amount),
                   "AOA"
                 )}
               </h4>

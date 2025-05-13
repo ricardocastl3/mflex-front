@@ -111,7 +111,7 @@ export default function NewsContainer() {
                   handleButtonSelectedDate("yesterday");
                 }}
                 variant={selectedDate == "yesterday" ? "primary" : "outline"}
-                className="items-center md:w-fit w-full justify-center"
+                className="items-center w-fit justify-center"
               >
                 <ReactIcons.CgIcon.CgCalendar size={15} />
                 <CTranslateTo eng="Yesterday" pt="Ontem" />
@@ -121,7 +121,7 @@ export default function NewsContainer() {
                   handleButtonSelectedDate("today");
                 }}
                 variant={selectedDate == "today" ? "primary" : "outline"}
-                className="items-center md:w-fit w-full justify-center"
+                className="items-center w-fit justify-center"
               >
                 <ReactIcons.CgIcon.CgCalendar size={15} />
                 <CTranslateTo eng="Today" pt="Hoje" />
@@ -131,7 +131,7 @@ export default function NewsContainer() {
                   handleButtonSelectedDate("tomorrow");
                 }}
                 variant={selectedDate == "tomorrow" ? "primary" : "outline"}
-                className="items-center md:w-fit w-full justify-center"
+                className="items-center w-fit justify-center"
               >
                 <ReactIcons.CgIcon.CgCalendar size={15} />
                 <CTranslateTo eng="Tomorrow" pt="Amanhã" />
@@ -155,7 +155,7 @@ export default function NewsContainer() {
             <AuSoftUI.UI.Button
               onClick={handleCleanFilter}
               variant={"primary"}
-              className="items-center md:w-fit w-full justify-center"
+              className="items-center w-fit justify-center"
             >
               <ReactIcons.CgIcon.CgCalendar size={15} />
               <CTranslateTo eng="Clean filters" pt="Limpar Filtros" />
