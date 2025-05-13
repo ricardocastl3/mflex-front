@@ -12,10 +12,10 @@ export default function useSubscription() {
   const fetchCurrentSubsUsage = useCallback(async () => {
     try {
       const resp = await internalApi.get<{
-        subs: ISubscriptionUsage;
+        subscription: ISubscriptionUsage;
       }>(`/subs/me`);
 
-      setCurrentSubsUsage(resp.data.subs);
+      setCurrentSubsUsage(resp.data.subscription);
       setIsLoadingCurrentSubsUsage(false);
     } catch (err) {
       setIsLoadingCurrentSubsUsage(false);
