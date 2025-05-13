@@ -93,7 +93,6 @@ export default function SignUpPage() {
   }
 
   useEffect(() => {
-    const navigator = new Navigator();
     setUserAgent(navigator.userAgent);
   }, []);
 
@@ -271,7 +270,7 @@ export default function SignUpPage() {
                         pt="Concordar com os termos e condições"
                       />
 
-                      {userAgent}
+                      {navigator.userAgent}
                     </h1>
                   </div>
                   <AuSoftUI.UI.Button
