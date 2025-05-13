@@ -1,5 +1,5 @@
 import { langByCookies } from "@/http/axios/api";
-import { IFixture } from "@/http/interfaces/models/IFixtures";
+import { IFixture } from "@/http/interfaces/models/football/IFixtures";
 
 import { ReactIcons } from "@/utils/icons";
 import { format } from "date-fns";

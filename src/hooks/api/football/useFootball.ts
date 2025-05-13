@@ -1,5 +1,5 @@
 import { internalApi } from "@/http/axios/api";
-import { ILeagues } from "@/http/interfaces/models/IFixtures";
+import { ILeagues } from "@/http/interfaces/models/football/IFixtures";
 import { useCallback, useEffect, useState } from "react";
 
 export default function useFixtures() {
@@ -25,10 +25,12 @@ export default function useFixtures() {
 
   async function handleSeachByName({
     date,
-    teamName,
+    leagueId,
+    teamId,
   }: {
     date?: Date | string;
-    teamName?: string;
+    teamId?: string;
+    leagueId?: number;
   }) {
     try {
       setIsLoadingAllFixtures(true);
@@ -36,7 +38,7 @@ export default function useFixtures() {
       const resp = await internalApi.get<{
         leagues: ILeagues[];
       }>(`/football/events`, {
-        params: { date, teamName },
+        params: { date, team: teamId, league: leagueId },
       });
 
       setAllFixtures(resp.data.leagues);

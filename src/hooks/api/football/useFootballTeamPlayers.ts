@@ -1,5 +1,5 @@
 import { internalApi } from "@/http/axios/api";
-import { IFixture } from "@/http/interfaces/models/IFixtures";
+import { IFixture } from "@/http/interfaces/models/football/IFixtures";
 import { useCallback, useEffect, useState } from "react";
 
 export default function useFootballTeamPlayers({
@@ -26,7 +26,9 @@ export default function useFootballTeamPlayers({
         },
       });
 
-      setAllFootballPlayers(resp.data.team == null ? undefined : resp.data.team );
+      setAllFootballPlayers(
+        resp.data.team == null ? undefined : resp.data.team
+      );
       setIsLoadingAllFootballPlayers(false);
     } catch (err) {
       setIsLoadingAllFootballPlayers(false);

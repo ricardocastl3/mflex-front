@@ -1,4 +1,4 @@
-import { IFixture } from "@/http/interfaces/models/IFixtures";
+import { IFixture } from "@/http/interfaces/models/football/IFixtures";
 
 export default function TeamHeader({
   side,
@@ -22,12 +22,12 @@ export default function TeamHeader({
           className="md:hidden flex"
         />
       )}
-      <h3 className="text-normal font-bold md:flex hidden">
+      <h3 className="text-normal dark:text-white font-bold md:flex hidden">
         {side == "home" ? team?.teams.home.name : team?.teams.away.name}
       </h3>
 
       {showTitle && (
-        <h3 className="text-normal font-bold">
+        <h3 className="text-normal dark:text-white font-bold">
           {side == "home" ? team?.teams.home.name : team?.teams.away.name}
         </h3>
       )}

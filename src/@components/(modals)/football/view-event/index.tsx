@@ -6,8 +6,8 @@ import { useFootballProvider } from "@/providers/features/FootballProvider";
 
 import BaseModal from "../../base";
 import TeamHeader from "./components/TeamHeader";
-import TeamDetails from "@/app/[locale]/(site)/games/components/leagues/TeamDetails";
-import EventFootballMiddleResult from "@/app/[locale]/(site)/games/components/leagues/TeamMiddleResult";
+import TeamDetails from "@/app/[locale]/(site)/games/components/leagues/teams/TeamDetails";
+import EventFootballMiddleResult from "@/app/[locale]/(site)/games/components/leagues/teams/TeamMiddleResult";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import TeamPlayer from "./components/TeamPlayer";
 
@@ -50,6 +50,7 @@ export default function ViewFootballEventModal() {
           <div className="flex flex-col gap-4 items-center justify-center w-full">
             <div
               style={{
+                backgroundAttachment: "fixed",
                 backgroundImage: `url(https://images.pexels.com/photos/4219812/pexels-photo-4219812.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)`,
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
@@ -71,15 +72,15 @@ export default function ViewFootballEventModal() {
             </div>
             <div className="md:w-[70vw] w-[90vw]">
               <div className=" flex items-center gap-3 border-b border-slate-200 dark:border-slate-800">
-                <button className="p-3 font-bold rounded-t-xl bg-white">
+                <button className="p-3 dark:text-white font-bold rounded-t-xl bg-white dark:bg-slate-800/30">
                   <CTranslateTo eng="Overview" pt="Visão Geral" />
                 </button>
               </div>
 
               {tab == "overview" && (
-                <div className="grid md:grid-cols-3 grid-cols-1 gap-4 py-8 dark:bg-slate-800 bg-white md:px-4 px-2 mb-4  rounded-b-xl">
+                <div className="flex bg-white md:flex-row flex-col gap-4 w-full py-8 dark:bg-slate-800/30 md:px-4 px-4 mb-4 rounded-b-xl">
                   <TeamPlayer side="home" team={selectedFootballTeam!} />
-                  <div className="md:flex hidden justify-center">
+                  <div className="md:flex hidden justify-center w-[8px]">
                     <div className="w-[2px] h-full bg-slate-200 dark:bg-slate-800"></div>
                   </div>
                   <TeamPlayer side="away" team={selectedFootballTeam!} />

@@ -15,7 +15,7 @@ export default function Hero() {
         video_url="/assets/party.mp4"
       />
 
-      <div className="z-20 absolute inset-0 bg-black/50 flex justify-center h-full items-center">
+      <div className="z-10 absolute inset-0 bg-black/50 flex justify-center h-full items-center">
         <div className="flex flex-col items-center">
           <AAuSoftLogo size={90} />
           <h4 className="md:text-[2rem] text-xl font-bold text-yellow-500 md:mt-2 mt-2">

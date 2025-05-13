@@ -2,11 +2,11 @@ import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import LeagueItem from "../leagues/LeagueItem";
 
 import { ReactIcons } from "@/utils/icons";
-import { ILeagues } from "@/http/interfaces/models/IFixtures";
+import { ILeagues } from "@/http/interfaces/models/football/IFixtures";
 
 export default function TradingLeagues({ leagues }: { leagues: ILeagues[] }) {
   return (
-    <section  className="flex flex-col gap-4">
+    <section className="flex flex-col gap-4">
       <div className="flex items-center gap-2 dark:text-yellow-500 text-yellow-600">
         <ReactIcons.MdIcon.MdCircle size={20} className="animate-pulse" />
         <h1 className="md:text-xl text-lg font-bold">

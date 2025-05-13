@@ -1,4 +1,4 @@
-import { IFixture } from "@/http/interfaces/models/IFixtures";
+import { IFixture } from "@/http/interfaces/models/football/IFixtures";
 
 export default function TeamDetails({
   side,

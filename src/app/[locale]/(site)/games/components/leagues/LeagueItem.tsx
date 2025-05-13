@@ -2,10 +2,10 @@ import { BaseBox } from "@/@components/(box)/BaseBox";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { ReactIcons } from "@/utils/icons";
-import { ILeagues } from "@/http/interfaces/models/IFixtures";
+import { ILeagues } from "@/http/interfaces/models/football/IFixtures";
 import { useAppProvider } from "@/providers/app/AppProvider";
 
-import TeamItem from "./TeamItem";
+import TeamItem from "./teams/TeamItem";
 
 export default function LeagueItem({ league }: { league: ILeagues }) {
   const [show, setShow] = useState(false);
@@ -25,15 +25,10 @@ export default function LeagueItem({ league }: { league: ILeagues }) {
         } z-10 w-full p-4 flex items-center justify-between cursor-pointer`}
       >
         <div className="flex items-center gap-3">
-          <img
-            src={league.logo}
-            alt={league.leagueName}
-            width={20}
-            height={20}
-          />
+          <img src={league.logo} alt={league.name} width={20} height={20} />
           <div className="md:text-[1rem] text-[0.85rem]">
             <h1 className="dark:text-white font-bold">
-              {league.leagueName}
+              {league.name}
               <b className="dark:text-slate-00 text-slate-500 font-bold">
                 {` • ${league.country}`}
               </b>

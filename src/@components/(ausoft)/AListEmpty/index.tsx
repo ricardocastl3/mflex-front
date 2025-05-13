@@ -17,6 +17,7 @@ interface IAListEmpty {
   action_pt: string;
   action_en: string;
   hasAction?: boolean;
+  size?: number;
 }
 
 export default function AListEmpty({
@@ -29,14 +30,15 @@ export default function AListEmpty({
   title_en,
   title_pt,
   hasAction = true,
+  size,
 }: IAListEmpty) {
   const { segmentedLayout, currentPageByUrl } = useAppProvider();
 
   return (
     <div className="flex items-center flex-col gap-3 justify-center">
       <Image
-        width={100}
-        height={100}
+        width={size ? size : 100}
+        height={size ? size : 100}
         src={localImages.vectors.emptyBox}
         alt="Imagem de lista não encontrado"
       />

@@ -1,4 +1,4 @@
-import { IFixture } from "@/http/interfaces/models/IFixtures";
+import { IFixture } from "@/http/interfaces/models/football/IFixtures";
 import { ReactIcons } from "@/utils/icons";
 import { format } from "date-fns";
 import { langByCookies } from "@/http/axios/api";
@@ -22,7 +22,7 @@ export default function TeamItem({ team }: { team: IFixture }) {
         handleSelectFootballTeam(team);
         handleOpenModal("view-football-event");
       }}
-      className="flex cursor-pointer transition-all items-center w-full gap-4 border-b justify-center  rounded-xl border-slate-400/50 dark:border-slate-800 hover:bg-slate-200 dark:hover:bg-slate-800/80"
+      className="flex cursor-pointer transition-all items-center w-full gap-4 border-b justify-center  rounded-xl border-slate-400/50 dark:border-slate-800 hover:bg-slate-200 dark:hover:bg-slate-800/50"
     >
       <div className="grid grid-cols-3 p-6 md:w-[50vw] w-[90vw] rounded-xl dark:text-white font-bold text-md gap-4">
         <TeamDetails side="home" team={team} />
