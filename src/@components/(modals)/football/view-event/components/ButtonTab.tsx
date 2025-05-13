@@ -21,7 +21,7 @@ export default function ButtonTab({
         value == tab
           ? " bg-white dark:bg-slate-800/30"
           : " hover:bg-white hover:dark:bg-slate-800/30"
-      } p-3 dark:text-white font-bold rounded-t-xl`}
+      } py-3 px-4 dark:text-white font-bold rounded-t-xl`}
     >
       <CTranslateTo eng={t_en} pt={t_pt} />
     </button>
