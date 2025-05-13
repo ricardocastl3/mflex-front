@@ -50,7 +50,9 @@ export default function AuthProvider({
     ISubscriptionUsage | undefined
   >();
 
-  const { currentSubsUsage } = useSubscription({ loadUser: isLoadingUserData });
+  const { currentSubsUsage, isLoadingCurrentSubsUsage } = useSubscription({
+    loadUser: isLoadingUserData,
+  });
 
   const path = usePathname();
   const startRoutes = path.slice(4);
@@ -150,8 +152,8 @@ export default function AuthProvider({
   }, []);
 
   useEffect(() => {
-    setCurrentSubscription(currentSubsUsage);
-  }, [currentSubsUsage]);
+    if (!isLoadingCurrentSubsUsage) setCurrentSubscription(currentSubsUsage);
+  }, [isLoadingCurrentSubsUsage]);
 
   return (
     <AuthContext.Provider

@@ -138,6 +138,8 @@ const flex6 =
 const flexSocial =
   "https://firebasestorage.googleapis.com/v0/b/lora-538b7.appspot.com/o/mflex%2Fbns%2Fsocial.JPG?alt=media&token=232994ed-fc58-477c-b88e-42495a27eae8";
 
+import planBanner from "@/@assets/bgs/banners/plan_banner.jpg";
+
 export const localImages = {
   logos: {
     ausoftBlack,
@@ -171,6 +173,7 @@ export const localImages = {
     flex5,
     flex6,
     flexSocial,
+    planBanner,
   },
   vectors: {
     emptyBox,

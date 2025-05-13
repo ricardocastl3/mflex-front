@@ -1,4 +1,5 @@
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
+import { localImages } from "@/utils/images";
 
 export default function HeroPlans() {
   return (
@@ -7,7 +8,7 @@ export default function HeroPlans() {
         objectFit: "fill",
         backgroundRepeat: "no-repeat",
         backgroundPosition: window.innerWidth <= 765 ? "center" : "",
-        backgroundImage: `url(https://img.freepik.com/free-vector/speed-motion-lines-curvy-style_1017-37409.jpg?t=st=1747163123~exp=1747166723~hmac=ebbd1cb9b53526bf2c66b0f6c60ca04113a6d3507676a6842d7ce9582879132b&w=1380)`,
+        backgroundImage: `url(${localImages.banner.planBanner.src})`,
         backgroundSize: "cover",
       }}
       className="md:h-[55vh] h-[40vh] flex-col relative flex md:items-start items-center md:text-start text-center justify-center md:px-14 px-4"
