@@ -71,8 +71,8 @@ export default function ContentCategory({
                 <div className="flex flex-col gap-0.5 items-start">
                   <h4 className="text-md dark:text-white font-bold">
                     <CTranslateTo
-                      eng="Ver todas as ligas"
-                      pt="View all Leagues"
+                      eng="View all Leagues"
+                      pt="Ver todas as ligas"
                     />
                   </h4>
                   <h4 className="text-md text-slate-600 dark:text-slate-400">
