@@ -90,7 +90,7 @@ export default function SignUpPage() {
     }
   }
 
-  const navigator = new Navigator();
+  const navigator = Navigator();
 
   return (
     <motion.div
