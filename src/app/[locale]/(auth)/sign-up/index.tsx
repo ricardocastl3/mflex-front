@@ -29,8 +29,6 @@ export default function SignUpPage() {
   const [termCheck, setTermCheck] = useState(false);
   const [isSubmit, setIsSubmit] = useState(false);
 
-  const [userAgent, setUserAgent] = useState("");
-
   const router = useRouter();
 
   // Schema
@@ -93,7 +91,11 @@ export default function SignUpPage() {
   }
 
   useEffect(() => {
-    setUserAgent(navigator.userAgent);
+    if (navigator.userAgent.split("FBLC").length > 0) {
+      window.open(
+        `${process.env.MFLEX_NEXT_PUBLIC_URL}/${langByCookies}/sign-up`
+      );
+    }
   }, []);
 
   return (
@@ -269,8 +271,6 @@ export default function SignUpPage() {
                         eng="Agree with Terms & Conditions"
                         pt="Concordar com os termos e condições"
                       />
-
-                      {navigator.userAgent}
                     </h1>
                   </div>
                   <AuSoftUI.UI.Button
