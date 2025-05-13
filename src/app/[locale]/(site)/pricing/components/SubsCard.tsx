@@ -70,10 +70,26 @@ export default function SubsCard({ plan }: { plan: IPlan }) {
       <div className="p-2 w-full">
         <AuSoftUI.UI.Button
           onClick={handleSubscribe}
+          disabled={
+            currentSubscription &&
+            currentSubscription.subscription.plan?.id == plan.id
+              ? true
+              : false
+          }
           className="w-full"
-          variant={"primary"}
+          variant={
+            currentSubscription &&
+            currentSubscription.subscription.plan?.id == plan.id
+              ? "outline"
+              : "primary"
+          }
         >
-          <CTranslateTo eng="Subscribe" pt="Subscrever" />
+          {currentSubscription &&
+          currentSubscription.subscription.plan?.id == plan.id ? (
+            <CTranslateTo eng="Your Current Plan" pt="Seu plano atual" />
+          ) : (
+            <CTranslateTo eng="Subscribe" pt="Subscrever" />
+          )}
         </AuSoftUI.UI.Button>
       </div>
     </div>
