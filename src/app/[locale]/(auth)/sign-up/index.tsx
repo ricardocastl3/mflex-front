@@ -9,7 +9,7 @@ import { internalApi, langByCookies } from "@/http/axios/api";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAppProvider } from "@/providers/app/AppProvider";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/providers/auth/AuthProvider";
 
@@ -28,6 +28,8 @@ export default function SignUpPage() {
   // Controls
   const [termCheck, setTermCheck] = useState(false);
   const [isSubmit, setIsSubmit] = useState(false);
+
+  const [userAgent, setUserAgent] = useState("");
 
   const router = useRouter();
 
@@ -90,7 +92,10 @@ export default function SignUpPage() {
     }
   }
 
-  const navigator = Navigator();
+  useEffect(() => {
+    const navigator = new Navigator();
+    setUserAgent(navigator.userAgent);
+  }, []);
 
   return (
     <motion.div
@@ -266,7 +271,7 @@ export default function SignUpPage() {
                         pt="Concordar com os termos e condições"
                       />
 
-                      {navigator.userAgent}
+                      {userAgent}
                     </h1>
                   </div>
                   <AuSoftUI.UI.Button
