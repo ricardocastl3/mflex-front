@@ -111,7 +111,7 @@ export default function SubsCard({
             <CTranslateTo eng="Your Current Plan" pt="Seu plano atual" />
           )}
 
-          {currentSubscription && !samePlan && (
+          {currentSubscription && (
             <>
               {isExpired ? (
                 <>
@@ -128,13 +128,14 @@ export default function SubsCard({
                 </>
               ) : (
                 <>
-                  {!userLogged?.is_trialed && !plan.is_trial && (
+                  {!userLogged?.is_trialed && !plan.is_trial && !samePlan && (
                     <CTranslateTo
                       eng="Switch to this plan"
                       pt="Mudar para este plano"
                     />
                   )}
-                  {userLogged?.is_trialed && plan.is_trial && (
+
+                  {userLogged?.is_trialed && plan.is_trial && !samePlan && (
                     <CTranslateTo
                       eng="Stage Test Done"
                       pt="Fase de testes concluída"
