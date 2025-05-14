@@ -113,7 +113,7 @@ export default function ViewFootballEventModal() {
                 />
               </div>
 
-              <div className="flex bg-white w-full py-8 dark:bg-slate-800/30 md:px-4 px-4 mb-4 rounded-b-xl">
+              <div className="flex  bg-white w-full py-8 dark:bg-slate-800/30 md:px-4 px-4 mb-4 rounded-b-xl">
                 <TabContent tab={tab} />
               </div>
             </div>

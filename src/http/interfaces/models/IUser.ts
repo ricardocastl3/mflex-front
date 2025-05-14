@@ -5,5 +5,6 @@ export interface IUser {
   email?: string;
   status?: number;
   password?: string;
+  is_trialed?: boolean;
   photo?: string;
 }

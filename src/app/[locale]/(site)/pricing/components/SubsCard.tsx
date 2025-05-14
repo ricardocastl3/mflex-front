@@ -37,6 +37,9 @@ export default function SubsCard({
       ? true
       : false;
 
+  const buttonDisabled =
+    (!isExpired && samePlan) || (userLogged?.is_trialed && plan.is_trial);
+
   function handleSubscribe() {
     try {
       if (!userLogged) {
@@ -63,7 +66,9 @@ export default function SubsCard({
   return (
     <div
       className={`${
-        index == 1 ? "md:scale-110 scale-100 md:shadow-md shadow-none dark:md:shadow-slate-800" : ""
+        index == 1
+          ? "md:scale-110 scale-100 md:shadow-md shadow-none dark:md:shadow-slate-800"
+          : ""
       } flex flex-col gap-4 bg-white dark:bg-transparent justify-between rounded-xl border border-white dark:border-slate-800 p-4`}
     >
       <div className="flex flex-col gap-2">
@@ -97,9 +102,9 @@ export default function SubsCard({
       <div className="w-full border-t pt-3 mt-3 border-slate-400/60 dark:border-slate-800">
         <AuSoftUI.UI.Button
           onClick={handleSubscribe}
-          disabled={!isExpired && samePlan ? true : false}
+          disabled={buttonDisabled ? true : false}
           className="w-full rounded-full pl-4 items-center font-bold"
-          variant={!isExpired && samePlan ? "outline" : "primary"}
+          variant={buttonDisabled ? "outline" : "primary"}
         >
           <ReactIcons.HiIcon.HiOutlineArrowCircleUp size={15} />
           {!isExpired && samePlan && (
@@ -108,18 +113,19 @@ export default function SubsCard({
 
           {currentSubscription && !samePlan && (
             <>
-              {!isExpired && (
+              {!isExpired && !userLogged?.is_trialed && !plan.is_trial && (
                 <CTranslateTo
                   eng="Switch to this plan"
                   pt="Mudar para este plano"
                 />
               )}
 
-              {isExpired &&
-                currentSubscription.subscription.plan?.id == plan.id &&
-                plan.is_trial && (
-                  <CTranslateTo eng="Done Test" pt="Teste Concluído" />
-                )}
+              {userLogged?.is_trialed && plan.is_trial && (
+                <CTranslateTo
+                  eng="Stage Test Done"
+                  pt="Fase testes concluída"
+                />
+              )}
             </>
           )}
 

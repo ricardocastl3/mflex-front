@@ -18,7 +18,7 @@ export default function NewsPage() {
       <HeroPlans />
       <div className="relative">
         {(isLoadingAllPlans || isLoadingCurrentSubsUsage) && (
-          <div className="p-4 flex justify-center items-center">
+          <div className="p-4 flex justify-center items-centerm-16">
             <div>
               <ReactIcons.CgIcon.CgSpinner
                 size={30}
@@ -31,7 +31,7 @@ export default function NewsPage() {
         {!isLoadingAllPlans &&
           allPlans.length <= 0 &&
           !isLoadingCurrentSubsUsage && (
-            <div className="flex items-center w-full h-full justify-center md:m-32 m-6">
+            <div className="animate-fade flex items-center w-full h-full justify-center md:m-32 m-6">
               <AuSoftUI.Component.ListEmpty
                 action_en="Get In Touch"
                 action_pt="Entrar em contacto"
@@ -49,7 +49,7 @@ export default function NewsPage() {
         {!isLoadingAllPlans &&
           allPlans.length > 0 &&
           !isLoadingCurrentSubsUsage && (
-            <div className="flex flex-col gap-12 md:mx-36 mx-6 md:mt-16 mt-8 md:mb-16 mb-8">
+            <div className="animate-fade flex flex-col gap-12 md:mx-36 mx-6 md:mt-16 mt-8 md:mb-16 mb-8">
               <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
                 {allPlans.map((plan, i) => {
                   return <SubsCard plan={plan} index={i} key={i} />;

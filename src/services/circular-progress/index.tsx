@@ -1,8 +1,8 @@
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
-
 import { yellow, slate } from "tailwindcss/colors";
+
+import "react-circular-progressbar/dist/styles.css";
 
 export default function CircularProgress({
   percentage,
