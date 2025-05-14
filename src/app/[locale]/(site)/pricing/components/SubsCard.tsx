@@ -79,7 +79,14 @@ export default function SubsCard({
           </h1>
           <h1 className="md:text-xl text-lg dark:text-slate-200 font-bold">
             {CurrencyServices.decimal(plan.amount)}
-            {" Kz"}
+            {` Kz`}
+            <b className="text-[0.9rem] ml-2  text-yellow-600 dark:text-yellow-500">
+              {plan.is_trial ? (
+                <CTranslateTo eng="for 5 days" pt="por 5 dias" />
+              ) : (
+                <CTranslateTo eng="for month" pt="por mês" />
+              )}
+            </b>
           </h1>
         </div>
 
@@ -145,8 +152,8 @@ export default function SubsCard({
 
                   {userLogged?.is_trialed && plan.is_trial && !samePlan && (
                     <CTranslateTo
-                      eng="Stage Test Done"
-                      pt="Fase de testes concluída"
+                      eng="You have already used your trial plan."
+                      pt="Já usou o seu plano de teste"
                     />
                   )}
                 </>
