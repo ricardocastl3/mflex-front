@@ -1,9 +1,9 @@
 import { AuSoftUI } from "@/@components/(ausoft)";
+import { localImages } from "@/utils/images";
 
 import React from "react";
 import CContent from "./CContent";
 import ADropdownBase from "@/@components/(ausoft)/ADropdownBase";
-import { localImages } from "@/utils/images";
 
 export function CUserProfileBox() {
   return (

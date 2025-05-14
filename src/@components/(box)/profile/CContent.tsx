@@ -1,16 +1,18 @@
 import { useAuth } from "@/providers/auth/AuthProvider";
 import { ReactIcons } from "@/utils/icons";
 import { AuSoftUI } from "@/@components/(ausoft)";
-import { useModal } from "@/providers/app/ModalProvider";
 import { localImages } from "@/utils/images";
 import { langByCookies } from "@/http/axios/api";
+import { useModal } from "@/providers/app/ModalProvider";
 
 import React from "react";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import Link from "next/link";
+import CardSubsStatus from "@/app/[locale]/app/subscriptions/components/card-status";
 
 export default function CContent({ callback }: { callback?: () => void }) {
-  const { userLogged, handleLogout } = useAuth();
+  const { userLogged, currentSubscription, handleLogout } = useAuth();
+  const { handleOpenModal } = useModal();
 
   return (
     <div className="md:w-[26vw] w-[82vw]">
@@ -44,11 +46,45 @@ export default function CContent({ callback }: { callback?: () => void }) {
           </h3>
         </div>
       </div>
+      <div
+        className={`${
+          currentSubscription
+            ? "dark:bg-yellow-900/20 bg-yellow-100 "
+            : "bg-slate-200 dark:bg-slate-800/60"
+        } flex items-center gap-2 rounded-lg  p-2 mt-3`}
+      >
+        {currentSubscription && (
+          <>
+            <h1 className="text-sm dark:text-yellow-400 text-yellow-700">
+              <CTranslateTo eng="Plan: " pt="Plano: "/>
+              {currentSubscription.subscription.plan?.name}
+            </h1>
+            <CardSubsStatus
+              isExpired={currentSubscription.subscription.is_expired}
+            />
+          </>
+        )}
 
-      <div onClick={callback} className="flex flex-col mt-3 ">
-        <h4 className="text-sm dark:text-slate-400 text-slate-600">
-          <CTranslateTo eng="Your Menu" pt="Seu Menu" />
-        </h4>
+        {!currentSubscription && (
+          <>
+            <h1 className="text-sm  dark:text-slate-400 text-slate-700">
+              <CTranslateTo eng="No active plane: " pt="Sem plano ativo:" />
+            </h1>
+            <Link
+              onClick={() => {
+                {
+                  callback && callback();
+                }
+              }}
+              href={`/${langByCookies}/pricing`}
+              className="dark:text-white animate-pulse font-bold text-[0.8rem]"
+            >
+              <CTranslateTo eng="View Plans" pt="Ver Planos" />
+            </Link>
+          </>
+        )}
+      </div>
+      <div onClick={callback} className="flex flex-col">
         <Link
           href={`/${langByCookies}/app`}
           className="mt-2.5 rounded-full flex text-sm items-center gap-2 px-4 dark:text-slate-200 dark:hover:bg-slate-800/40 hover:bg-slate-200 transition-all py-3"

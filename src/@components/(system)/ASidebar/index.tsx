@@ -108,7 +108,31 @@ export default function ASidebar() {
               title_en="Home"
               title_pt="Página Inicial"
             />
-
+            <LinkButton
+              isExpanded={showText}
+              Icon={ReactIcons.HiIcon.HiCreditCard}
+              href="subscriptions"
+              isSelected={currentAppPageUrl == "subscriptions"}
+              title_en="Subscriptions"
+              title_pt="Assinaturas"
+            />
+            <LinkButton
+              isExpanded={showText}
+              Icon={ReactIcons.AiICon.AiFillTool}
+              href="settings"
+              isSelected={currentAppPageUrl == "settings"}
+              title_en="Settings"
+              title_pt="Definições"
+            />
+          </div>
+          <h4 className="text-normal text-slate-500 dark:text-slate-300">
+            {isExpanded ? (
+              <CTranslateTo eng="Events" pt="Eventos" />
+            ) : (
+              <CTranslateTo eng="Event." pt="Event." />
+            )}
+          </h4>
+          <div className="flex flex-col gap-2">
             <LinkButton
               isExpanded={showText}
               Icon={ReactIcons.Hi2Icon.HiTag}
@@ -129,11 +153,11 @@ export default function ASidebar() {
 
             <LinkButton
               isExpanded={showText}
-              Icon={ReactIcons.AiICon.AiOutlineTransaction}
+              Icon={ReactIcons.AiICon.AiOutlineShoppingCart}
               href="transactions"
               isSelected={currentAppPageUrl == "transactions"}
-              title_en="Transactions"
-              title_pt="Transações"
+              title_en="My Sells"
+              title_pt="Minhas Vendas"
             />
 
             <LinkButton
@@ -144,16 +168,14 @@ export default function ASidebar() {
               title_en="Transferences"
               title_pt="Transferências"
             />
-
-            <LinkButton
-              isExpanded={showText}
-              Icon={ReactIcons.AiICon.AiFillTool}
-              href="settings"
-              isSelected={currentAppPageUrl == "settings"}
-              title_en="Settings"
-              title_pt="Definições"
-            />
           </div>
+          <h4 className="text-normal text-slate-500 dark:text-slate-300">
+            {isExpanded ? (
+              <CTranslateTo eng="General" pt="Geral" />
+            ) : (
+              <CTranslateTo eng="Gener." pt="Geral" />
+            )}
+          </h4>
         </div>
       </div>
     </BaseBox>

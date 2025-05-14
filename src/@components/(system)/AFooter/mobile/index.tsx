@@ -51,11 +51,11 @@ export default function AMobileFooter() {
         />
 
         <LinkMButton
-          Icon={ReactIcons.AiICon.AiOutlineTransaction}
+          Icon={ReactIcons.AiICon.AiOutlineShoppingCart}
           action="transactions"
           isSelected={currentAppPageUrl == "transactions"}
-          title_en="Transactions"
-          title_pt="Transações"
+          title_en="My Sells"
+          title_pt="Minhas Vendas"
           bar
         />
       </BaseBox>

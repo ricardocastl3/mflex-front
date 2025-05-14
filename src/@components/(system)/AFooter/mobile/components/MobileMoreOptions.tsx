@@ -31,10 +31,10 @@ export default function MobileMoreOptions() {
         </div>
         <div
           onClick={() => handleOpenModal("")}
-          className="flex flex-col gap-3 px-4 py-5 h-[30vh] overflow-y-auto"
+          className="flex flex-col gap-3 px-4 py-5 h-[35vh] overflow-y-auto"
         >
           <h4 className="text-normal text-slate-500 dark:text-slate-300">
-            <CTranslateTo eng="Navigation" pt="Navegação" />
+            <CTranslateTo eng="Events" pt="Eventos" />
           </h4>
           <div className="flex flex-col gap-2">
             <LinkButton
@@ -45,6 +45,20 @@ export default function MobileMoreOptions() {
               title_en="Transferences"
               title_pt="Transferências"
             />
+          </div>
+          <h4 className="text-normal text-slate-500 dark:text-slate-300">
+            <CTranslateTo eng="Navigation" pt="Navegação" />
+          </h4>
+          <div className="flex flex-col gap-2">
+            <LinkButton
+              isExpanded={true}
+              Icon={ReactIcons.HiIcon.HiCreditCard}
+              href="subscriptions"
+              isSelected={currentAppPageUrl == "subscriptions"}
+              title_en="Subscriptions"
+              title_pt="Assinaturas"
+            />
+
             <LinkButton
               isExpanded={true}
               Icon={ReactIcons.AiICon.AiFillTool}
