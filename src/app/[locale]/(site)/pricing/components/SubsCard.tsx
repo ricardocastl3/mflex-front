@@ -115,9 +115,10 @@ export default function SubsCard({
             <>
               {isExpired ? (
                 <>
-                  {!userLogged?.is_trialed && !plan.is_trial && (
+                  {!plan.is_trial && (
                     <CTranslateTo eng="Subscribe" pt="Assinar plano" />
                   )}
+
                   {userLogged?.is_trialed && plan.is_trial && (
                     <CTranslateTo
                       eng="Stage Test Done"
