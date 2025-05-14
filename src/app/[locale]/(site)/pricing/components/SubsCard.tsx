@@ -113,27 +113,27 @@ export default function SubsCard({
 
           {currentSubscription && !samePlan && (
             <>
-              {!isExpired && !userLogged?.is_trialed && !plan.is_trial && (
-                <CTranslateTo
-                  eng="Switch to this plan"
-                  pt="Mudar para este plano"
-                />
-              )}
-
-              {!isExpired && !userLogged?.is_trialed && plan.is_trial && (
-                <CTranslateTo
-                  eng="Switch to this plan"
-                  pt="Mudar para este plano"
-                />
-              )}
-
-              {isExpired && <CTranslateTo eng="Subscribe" pt="Subscrever" />}
-
-              {userLogged?.is_trialed && plan.is_trial && (
-                <CTranslateTo
-                  eng="Stage Test Done"
-                  pt="Fase testes concluída"
-                />
+              {isExpired ? (
+                <>
+                  {!plan.is_trial && (
+                    <CTranslateTo eng="Subscribe" pt="Subscrever" />
+                  )}
+                </>
+              ) : (
+                <>
+                  {!userLogged?.is_trialed && !plan.is_trial && (
+                    <CTranslateTo
+                      eng="Switch to this plan"
+                      pt="Mudar para este plano"
+                    />
+                  )}
+                  {userLogged?.is_trialed && plan.is_trial && (
+                    <CTranslateTo
+                      eng="Stage Test Done"
+                      pt="Fase de testes concluída"
+                    />
+                  )}
+                </>
               )}
             </>
           )}
