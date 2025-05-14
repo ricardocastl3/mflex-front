@@ -115,8 +115,14 @@ export default function SubsCard({
             <>
               {isExpired ? (
                 <>
-                  {!plan.is_trial && (
-                    <CTranslateTo eng="Subscribe" pt="Subscrever" />
+                  {!userLogged?.is_trialed && !plan.is_trial && (
+                    <CTranslateTo eng="Subscribe" pt="Assinar plano" />
+                  )}
+                  {userLogged?.is_trialed && plan.is_trial && (
+                    <CTranslateTo
+                      eng="Stage Test Done"
+                      pt="Fase de testes concluída"
+                    />
                   )}
                 </>
               ) : (
@@ -139,7 +145,7 @@ export default function SubsCard({
           )}
 
           {!currentSubscription && (
-            <CTranslateTo eng="Subscribe" pt="Subscrever" />
+            <CTranslateTo eng="Subscribe" pt="Assinar plano" />
           )}
         </AuSoftUI.UI.Button>
       </div>
