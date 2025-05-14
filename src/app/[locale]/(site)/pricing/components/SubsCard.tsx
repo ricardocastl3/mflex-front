@@ -120,12 +120,14 @@ export default function SubsCard({
                 />
               )}
 
-              {!isExpired && userLogged?.is_trialed && plan.is_trial && (
+              {!isExpired && !userLogged?.is_trialed && plan.is_trial && (
                 <CTranslateTo
                   eng="Switch to this plan"
                   pt="Mudar para este plano"
                 />
               )}
+
+              {isExpired && <CTranslateTo eng="Subscribe" pt="Subscrever" />}
 
               {userLogged?.is_trialed && plan.is_trial && (
                 <CTranslateTo

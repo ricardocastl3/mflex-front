@@ -3,26 +3,18 @@ import { AuSoftUI } from "@/@components/(ausoft)";
 import { ReactIcons } from "@/utils/icons";
 import { useState } from "react";
 import { useFootballProvider } from "@/providers/features/FootballProvider";
-import { useAuth } from "@/providers/auth/AuthProvider";
 
 import BaseModal from "../../base";
 import TeamHeader from "./components/TeamHeader";
 import TeamDetails from "@/app/[locale]/(site)/games/components/leagues/teams/TeamDetails";
 import EventFootballMiddleResult from "@/app/[locale]/(site)/games/components/leagues/teams/TeamMiddleResult";
-import PlayerItem from "./tabs/players/PlayerItem";
 import ButtonTab from "./components/ButtonTab";
-import TabFootballAI from "./tabs/football-ai/TabFootballAI";
-import TabOverview from "./tabs/overview/TabOverview";
-import TabStats from "./tabs/stats/TabStats";
-import TabPlayers from "./tabs/players/TabPlayer";
 import TabContent from "./tabs/TabContent";
 
 export default function ViewFootballEventModal() {
   // Contexts
   const { handleOpenModal } = useModal();
   const { selectedFootballTeam } = useFootballProvider();
-
-  const { currentSubscription } = useAuth();
 
   const [tab, setTab] = useState("players");
 
