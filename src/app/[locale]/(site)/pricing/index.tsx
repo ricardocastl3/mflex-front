@@ -18,7 +18,7 @@ export default function NewsPage() {
       <HeroPlans />
       <div className="relative">
         {(isLoadingAllPlans || isLoadingCurrentSubsUsage) && (
-          <div className="p-4 flex justify-center items-center m-16">
+          <div className="p-4 flex w-full h-full justify-center items-center m-16">
             <div>
               <ReactIcons.CgIcon.CgSpinner
                 size={30}
