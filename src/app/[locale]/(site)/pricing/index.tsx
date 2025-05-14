@@ -31,7 +31,7 @@ export default function NewsPage() {
         {!isLoadingAllPlans &&
           allPlans.length <= 0 &&
           !isLoadingCurrentSubsUsage && (
-            <div className="animate-fade flex items-center w-full h-full justify-center md:m-32 m-6">
+            <div className="animate-fade flex items-center w-full h-full justify-center md:my-32 my-16">
               <AuSoftUI.Component.ListEmpty
                 action_en="Get In Touch"
                 action_pt="Entrar em contacto"
@@ -49,7 +49,7 @@ export default function NewsPage() {
         {!isLoadingAllPlans &&
           allPlans.length > 0 &&
           !isLoadingCurrentSubsUsage && (
-            <div className="animate-fade flex flex-col gap-12 md:mx-36 mx-6 md:mt-16 mt-8 md:mb-16 mb-8">
+            <div className="animate-fade flex flex-col gap-12 md:mx-36 mx-6 md:mt-24 mt-8 md:mb-24 mb-8">
               <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
                 {allPlans.map((plan, i) => {
                   return <SubsCard plan={plan} index={i} key={i} />;
