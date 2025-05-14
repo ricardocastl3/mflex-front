@@ -38,7 +38,8 @@ export default function SubsCard({
       : false;
 
   const buttonDisabled =
-    (!isExpired && samePlan) || (userLogged?.is_trialed && plan.is_trial);
+    (!isExpired && samePlan) ||
+    (currentSubscription && userLogged?.is_trialed && plan.is_trial);
 
   function handleSubscribe() {
     try {
