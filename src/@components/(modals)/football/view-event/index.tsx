@@ -9,8 +9,13 @@ import BaseModal from "../../base";
 import TeamHeader from "./components/TeamHeader";
 import TeamDetails from "@/app/[locale]/(site)/games/components/leagues/teams/TeamDetails";
 import EventFootballMiddleResult from "@/app/[locale]/(site)/games/components/leagues/teams/TeamMiddleResult";
-import TeamPlayer from "./components/TeamPlayer";
+import PlayerItem from "./tabs/players/PlayerItem";
 import ButtonTab from "./components/ButtonTab";
+import TabFootballAI from "./tabs/football-ai/TabFootballAI";
+import TabOverview from "./tabs/overview/TabOverview";
+import TabStats from "./tabs/stats/TabStats";
+import TabPlayers from "./tabs/players/TabPlayer";
+import TabContent from "./tabs/TabContent";
 
 export default function ViewFootballEventModal() {
   // Contexts
@@ -72,9 +77,10 @@ export default function ViewFootballEventModal() {
                 <TeamDetails side="away" team={selectedFootballTeam!} />
               </div>
             </div>
-            <div className="md:w-[70vw] w-[90vw]">
-              <div className="flex items-center border-b border-slate-200 dark:border-slate-800">
+            <div className="md:w-[75vw] w-[90vw]">
+              <div className="overflow-x-auto flex items-center border-b border-slate-200 dark:border-slate-800">
                 <ButtonTab
+                  Icon={ReactIcons.AiICon.AiFillDashboard}
                   setTab={setTab}
                   tab={tab}
                   value="overview"
@@ -82,6 +88,7 @@ export default function ViewFootballEventModal() {
                   t_pt="Visão Geral"
                 />
                 <ButtonTab
+                  Icon={ReactIcons.Io5Icon.IoFootball}
                   setTab={setTab}
                   tab={tab}
                   value="players"
@@ -89,23 +96,26 @@ export default function ViewFootballEventModal() {
                   t_pt="Jogadores"
                 />
                 <ButtonTab
+                  Icon={ReactIcons.Io5Icon.IoStatsChart}
                   setTab={setTab}
                   tab={tab}
-                  value="ai-football"
+                  value="stats"
+                  t_en="Statistics"
+                  t_pt="Estatísticas"
+                />
+                <ButtonTab
+                  Icon={ReactIcons.FaIcon.FaRobot}
+                  setTab={setTab}
+                  tab={tab}
+                  value="football-ai"
                   t_en="AI Analises"
                   t_pt="Análise com IA"
                 />
               </div>
 
-              {tab == "players" && (
-                <div className="flex bg-white md:flex-row flex-col gap-4 w-full py-8 dark:bg-slate-800/30 md:px-4 px-4 mb-4 rounded-b-xl">
-                  <TeamPlayer side="home" team={selectedFootballTeam!} />
-                  <div className="md:flex hidden justify-center w-[8px]">
-                    <div className="w-[2px] h-full bg-slate-200 dark:bg-slate-800"></div>
-                  </div>
-                  <TeamPlayer side="away" team={selectedFootballTeam!} />
-                </div>
-              )}
+              <div className="flex bg-white w-full py-8 dark:bg-slate-800/30 md:px-4 px-4 mb-4 rounded-b-xl">
+                <TabContent tab={tab} />
+              </div>
             </div>
           </div>
         </div>

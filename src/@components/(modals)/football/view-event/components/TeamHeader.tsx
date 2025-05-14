@@ -16,10 +16,8 @@ export default function TeamHeader({
       {sideFlag == "left" && (
         <img
           src={side == "home" ? team?.teams.home.logo : team?.teams.away.logo}
-          width={15}
-          height={15}
           alt={side == "home" ? team?.teams.home.name : team?.teams.away.name}
-          className="md:hidden flex"
+          className="md:hidden flex w-[20px] h-[20px]"
         />
       )}
       <h3 className="text-normal dark:text-white font-bold md:flex hidden">
@@ -31,13 +29,12 @@ export default function TeamHeader({
           {side == "home" ? team?.teams.home.name : team?.teams.away.name}
         </h3>
       )}
+      
       {sideFlag == "right" && (
         <img
           src={side == "home" ? team?.teams.home.logo : team?.teams.away.logo}
-          width={15}
-          height={15}
           alt={side == "home" ? team?.teams.home.name : team?.teams.away.name}
-          className="md:hidden flex"
+          className="md:hidden flex w-[20px] h-[20px]"
         />
       )}
     </div>

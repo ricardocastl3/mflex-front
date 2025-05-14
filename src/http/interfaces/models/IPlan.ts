@@ -2,6 +2,8 @@ export interface IPlan {
   id: string;
   name: string;
   amount: number;
+  description: string;
+  is_trial?: boolean;
   features?: IPlanFeature[];
 }
 

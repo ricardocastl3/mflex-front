@@ -30,14 +30,14 @@ export default function CContentServices({
         )}
       </div>
 
-      <div onClick={() => callback!()} className="flex flex-col">
+      <div onClick={() => callback!()} className="flex flex-col my-1 gap-1">
         <Link
           href={`/${langByCookies}/about-us`}
           className={`${
             currentPageByUrl == "about-us"
               ? "dark:bg-yellow-800/50 bg-yellow-200/40"
               : "dark:hover:bg-yellow-800/50 hover:bg-yellow-200/40"
-          }  flex items-center gap-2 w-full md:py-2.5 py-4 my-1 px-4 dark:text-slate-100 rounded-full text-[0.85rem]`}
+          }  flex items-center gap-2 w-full md:py-2.5 py-4 px-4 dark:text-slate-100 rounded-full text-[0.85rem]`}
         >
           <ReactIcons.PiIcon.PiBuilding size={15} />
           <CTranslateTo
@@ -51,7 +51,7 @@ export default function CContentServices({
             currentPageByUrl == "services"
               ? "dark:bg-yellow-800/50 bg-yellow-200/40"
               : "dark:hover:bg-yellow-800/50 hover:bg-yellow-200/40"
-          } flex items-center gap-2 w-full md:py-2.5 py-4 my-1 px-4 dark:text-slate-100 rounded-full text-[0.85rem]`}
+          } flex items-center gap-2 w-full md:py-2.5 py-4 px-4 dark:text-slate-100 rounded-full text-[0.85rem]`}
         >
           <ReactIcons.PiIcon.PiMarkerCircle size={15} />
           <CTranslateTo eng="Marketing Services" pt="Serviços de Marketing" />
@@ -62,7 +62,7 @@ export default function CContentServices({
             currentPageByUrl == "about-us"
               ? "dark:bg-yellow-800/50 bg-yellow-200/40"
               : "dark:hover:bg-yellow-800/50 hover:bg-yellow-200/40"
-          }  flex items-center gap-2 w-full md:py-2.5 py-4 my-1 px-4 dark:text-slate-100 rounded-full text-[0.85rem]`}
+          }  flex items-center gap-2 w-full md:py-2.5 py-4 px-4 dark:text-slate-100 rounded-full text-[0.85rem]`}
         >
           <ReactIcons.PiIcon.PiStar size={15} />
           <CTranslateTo eng="Flex Plans" pt="Planos Flex" />

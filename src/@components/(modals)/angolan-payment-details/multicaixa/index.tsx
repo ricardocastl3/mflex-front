@@ -176,7 +176,7 @@ export default function MulticaixaPayment() {
         </div>
       )}
 
-      {!isLoading && alreadySent != "" && (
+      {!isLoading && alreadySent != "" && !isPurchased && (
         <div className="md:py-8 py-4 flex justify-center flex-col gap-4 items-center w-full md:px-8 px-4">
           <div className="md:w-[15vw] w-[20vw]">
             <CircularProgress percentage={seconds} />

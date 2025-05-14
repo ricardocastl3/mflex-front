@@ -3,6 +3,7 @@
 import { ReactIcons } from "@/utils/icons";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { useAuth } from "@/providers/auth/AuthProvider";
+import { Meteors } from "@/@components/(aceternity)/Meteors";
 
 import usePlan from "@/hooks/api/usePlan";
 import HeroPlans from "./components/Hero";
@@ -15,7 +16,7 @@ export default function NewsPage() {
   return (
     <div className="flex flex-col gap-4">
       <HeroPlans />
-      <div className="md:m-32 m-6">
+      <div className="relative">
         {(isLoadingAllPlans || isLoadingCurrentSubsUsage) && (
           <div className="p-4 flex justify-center items-center">
             <div>
@@ -30,7 +31,7 @@ export default function NewsPage() {
         {!isLoadingAllPlans &&
           allPlans.length <= 0 &&
           !isLoadingCurrentSubsUsage && (
-            <div className="flex items-center w-full h-full justify-center">
+            <div className="flex items-center w-full h-full justify-center md:m-32 m-6">
               <AuSoftUI.Component.ListEmpty
                 action_en="Get In Touch"
                 action_pt="Entrar em contacto"
@@ -48,12 +49,16 @@ export default function NewsPage() {
         {!isLoadingAllPlans &&
           allPlans.length > 0 &&
           !isLoadingCurrentSubsUsage && (
-            <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
-              {allPlans.map((plan, i) => {
-                return <SubsCard plan={plan} key={i} />;
-              })}
+            <div className="flex flex-col gap-12 md:mx-36 mx-6 md:mt-16 mt-8 md:mb-16 mb-8">
+              <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
+                {allPlans.map((plan, i) => {
+                  return <SubsCard plan={plan} index={i} key={i} />;
+                })}
+              </div>
             </div>
           )}
+
+        {window.innerWidth > 765 && <Meteors number={5} />}
       </div>
     </div>
   );

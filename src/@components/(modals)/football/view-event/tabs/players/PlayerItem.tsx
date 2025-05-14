@@ -1,5 +1,5 @@
 import useFootballTeamPlayers from "@/hooks/api/football/useFootballTeamPlayers";
-import TeamHeader from "./TeamHeader";
+import TeamHeader from "../../components/TeamHeader";
 import Image from "next/image";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 
@@ -7,7 +7,7 @@ import { localImages } from "@/utils/images";
 import { IFixture } from "@/http/interfaces/models/football/IFixtures";
 import { ReactIcons } from "@/utils/icons";
 
-export default function TeamPlayer({
+export default function PlayerItem({
   team,
   side,
 }: {
@@ -24,7 +24,7 @@ export default function TeamPlayer({
       </div>
 
       {isLoadingAllFootballPlayers && (
-        <div className="flex items-center justify-center p-8">
+        <div className="flex items-center justify-center md:p-12 p-8">
           <ReactIcons.CgIcon.CgSpinner
             size={32}
             className="animate-spin dark:text-slate-200 text-slate-700"
@@ -40,7 +40,6 @@ export default function TeamPlayer({
             src={localImages.vectors.emptyBox}
             alt="Imagem de jogos não encontrados"
           />
-
           <div className="flex flex-col gap-2">
             <h4 className="text-base text-center font-bold text-yellow-700 dark:text-yellow-400">
               <CTranslateTo
