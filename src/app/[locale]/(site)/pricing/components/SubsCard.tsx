@@ -120,6 +120,13 @@ export default function SubsCard({
                 />
               )}
 
+              {!isExpired && userLogged?.is_trialed && plan.is_trial && (
+                <CTranslateTo
+                  eng="Switch to this plan"
+                  pt="Mudar para este plano"
+                />
+              )}
+
               {userLogged?.is_trialed && plan.is_trial && (
                 <CTranslateTo
                   eng="Stage Test Done"
