@@ -169,13 +169,6 @@ export default function ASidebar() {
               title_pt="Transferências"
             />
           </div>
-          <h4 className="text-normal text-slate-500 dark:text-slate-300">
-            {isExpanded ? (
-              <CTranslateTo eng="General" pt="Geral" />
-            ) : (
-              <CTranslateTo eng="Gener." pt="Geral" />
-            )}
-          </h4>
         </div>
       </div>
     </BaseBox>

@@ -140,6 +140,8 @@ const flexSocial =
 
 import planBanner from "@/@assets/bgs/banners/plan_banner.jpg";
 
+import bannerTv from "@/@assets/bgs/banners/tv.jpg";
+
 export const localImages = {
   logos: {
     ausoftBlack,
@@ -174,6 +176,7 @@ export const localImages = {
     flex6,
     flexSocial,
     planBanner,
+    bannerTv,
   },
   vectors: {
     emptyBox,

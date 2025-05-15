@@ -32,6 +32,7 @@ type modalType =
   | "blocked-extension"
   | "angolan-details"
   | "open-in-your-browser"
+  | "watch-tv"
   | "";
 
 interface IOnboardingType {

@@ -101,7 +101,7 @@ export default function ContentCategory({
                     <img
                       alt={league.name}
                       src={league.logo}
-                      className="w-[40px] h-[40px]"
+                      className="w-[40px] h-[40px] object-contain"
                     />
                     <div className="flex flex-col gap-0.5 items-start">
                       <h4 className="text-md dark:text-white font-bold">

@@ -21,6 +21,7 @@ import MobileMoreSiteOptions from "../(system)/site/SFooter/mobile/components/Mo
 import ViewFootballEventModal from "./football/view-event";
 import ViewFootballTeamModal from "./football/view-team";
 import OpenInYourBrowserModal from "./open-in-your-browser/OpenInYourBrowserModal";
+import WatchTVModal from "./watch-tv";
 
 export default function ModalOpenProvider() {
   const { openModal } = useModal();
@@ -79,6 +80,9 @@ export default function ModalOpenProvider() {
 
     case "open-in-your-browser":
       return <OpenInYourBrowserModal />;
+
+    case "watch-tv":
+      return <WatchTVModal />;
 
     default:
       return <></>;

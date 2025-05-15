@@ -16,8 +16,7 @@ export default function TeamDetails({
         <img
           src={side == "away" ? team.teams.away.logo : team.teams.home.logo}
           alt={side == "away" ? team.teams.away.name : team.teams.home.name}
-          width={27}
-          height={27}
+          className="h-[27px] w-[27px] object-contain"
         />
         <h1 className="md:text-sm text-[0.85rem] dark:text-white text-center">
           {side == "away" ? team.teams.away.name : team.teams.home.name}

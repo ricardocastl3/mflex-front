@@ -81,6 +81,14 @@ export default function SHeader() {
             title_pt="PodCasts"
           />
           <LinkHeader
+            isSelected={currentPageByUrl == "flex-tv"}
+            isScrolled={isScrolled}
+            Icon={ReactIcons.BiIcon.BiTv}
+            action="flex-tv"
+            title_en="Flex TV"
+            title_pt="Flex TV"
+          />
+          <LinkHeader
             isSelected={currentPageByUrl == "games"}
             isScrolled={isScrolled}
             Icon={ReactIcons.Io5Icon.IoFootball}
