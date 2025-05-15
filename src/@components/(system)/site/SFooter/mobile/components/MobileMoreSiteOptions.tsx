@@ -47,11 +47,11 @@ export default function MobileMoreSiteOptions() {
             <LinkButton
               isExpanded={true}
               isPublic
-              Icon={ReactIcons.Io5Icon.IoTv}
+              Icon={ReactIcons.MdIcon.MdTv}
               href="flex-tv"
               isSelected={currentAppPageUrl == "flex-tv"}
               title_en="Flex TV"
-              title_pt="Flez TV"
+              title_pt="Flex TV"
             />
             <LinkButton
               isExpanded={true}
