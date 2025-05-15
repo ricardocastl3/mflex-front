@@ -20,7 +20,7 @@ export default function TVPlayer({ item }: { item: IWatchTV }) {
   const toggleFullscreen = () => {
     const el = containerRef.current;
     if (!document.fullscreenElement) {
-      //@ts-ignore
+      //@ts-expect-error
       el.requestFullscreen().catch((err: any) => {
         console.error(`Erro ao entrar em fullscreen: ${err.message}`);
       });
