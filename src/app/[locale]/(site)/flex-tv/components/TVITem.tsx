@@ -27,7 +27,12 @@ export default function TVItem({ item }: { item: ITVChannelSafed }) {
         />
         <div className="flex flex-col gap-0.5">
           <div className="flex items-center gap-3">
-            <h1 className="font-bold dark:text-white">{item.name}</h1>
+            <h1 className="font-bold dark:text-white">
+              {item.name
+                .replace("PT|", "")
+                .replace("BR|", "")
+                .replace("FHD", "")}
+            </h1>
           </div>
         </div>
       </div>
@@ -46,7 +51,7 @@ export default function TVItem({ item }: { item: ITVChannelSafed }) {
           <CTranslateTo eng="Watch TV" pt="Assistir" />
         </AuSoftUI.UI.Button>
       )}
-      {!item.me && !item.public&& (
+      {!item.me && !item.public && (
         <Link href={`/${langByCookies}/pricing`} className="w-full">
           <AuSoftUI.UI.Button
             variant={"primary"}
