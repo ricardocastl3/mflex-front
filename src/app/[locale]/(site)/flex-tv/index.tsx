@@ -148,9 +148,10 @@ export default function NewsPage() {
       });
       setNewCategory(categories);
     }
+
     if (selectedTypeChannel == "noactive") {
       const categories = previousNewCategory.map((cat) => {
-        const tvs = cat.tv.filter((i) => !i.me || !i.public);
+        const tvs = cat.tv.filter((i) => !i.me && !i.public);
         return {
           id: cat.id,
           name: cat.name,
@@ -160,6 +161,7 @@ export default function NewsPage() {
       setNewCategory(categories);
     }
   }, [selectedTypeChannel]);
+
   return (
     <div className="flex flex-col gap-4">
       <HeroTV />
