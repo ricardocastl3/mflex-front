@@ -1,39 +1,205 @@
 "use client";
 
-import { ReactIcons } from "@/utils/icons";
 import { useAuth } from "@/providers/auth/AuthProvider";
-import { Meteors } from "@/@components/(aceternity)/Meteors";
+import { useEffect, useState } from "react";
+import { ITVCategorySafed } from "@/http/interfaces/models/ITVChannel";
+import { AuSoftUI } from "@/@components/(ausoft)";
 
-import usePlan from "@/hooks/api/usePlan";
 import HeroTV from "./components/Hero";
-import TVItem from "./components/TVITem";
-import { localImages } from "@/utils/images";
+import useMyChannels from "@/hooks/api/flex-tv/useMyChannels";
+import TVCategorysItem from "./components/TVCategorysItem";
+import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 
 export default function NewsPage() {
-  const { isLoadingAllPlans, allPlans } = usePlan();
-  const { isLoadingCurrentSubsUsage } = useAuth();
+  const { isLoadingCurrentSubsUsage, currentSubscription } = useAuth();
+
+  const { allTVChannels, handleSeachByName, isLoadingAllTVChannels } =
+    useMyChannels();
+
+  const [newCategory, setNewCategory] = useState<ITVCategorySafed[]>([]);
+  const [searchField, setSearchField] = useState("");
+
+  useEffect(() => {
+    if (!allTVChannels) return;
+
+    const meRawCategory = allTVChannels.me;
+    const otherRawCategory = allTVChannels.others;
+
+    const safedCategory: ITVCategorySafed[] = [];
+
+    meRawCategory.forEach((cat) => {
+      if (cat.tv_channels.length <= 0) return;
+
+      const find = safedCategory.find((i) => i.id == cat.id);
+
+      if (!find) {
+        safedCategory.push({
+          id: cat.id,
+          name: cat.name,
+          tv: [
+            {
+              id: cat.tv_channels[0].id,
+              logo: cat.tv_channels[0].logo,
+              name: cat.tv_channels[0].name,
+              plan: cat.tv_channels[0].plan,
+              public: cat.tv_channels[0].is_public,
+              me:
+                cat.tv_channels[0].plan.id ==
+                currentSubscription?.subscription.plan?.id
+                  ? true
+                  : false,
+            },
+          ],
+        });
+
+        const updateCategory = safedCategory.find((i) => i.id == cat.id);
+        if (updateCategory)
+          cat.tv_channels.forEach((tv) => {
+            if (tv.id != cat.tv_channels[0].id) {
+              updateCategory.tv.push({
+                id: tv.id,
+                logo: tv.logo,
+                name: tv.name,
+                plan: tv.plan,
+                public: tv.is_public,
+                me: true,
+              });
+            }
+          });
+      }
+    });
+
+    otherRawCategory.forEach((cat) => {
+      if (cat.tv_channels.length <= 0) return;
+
+      const findCategory = safedCategory.find((i) => i.id == cat.id);
+      if (findCategory) {
+        cat.tv_channels.forEach((tv) => {
+          const findTV = findCategory.tv.find((i) => i.id == tv.id);
+          if (!findTV)
+            findCategory.tv.push({
+              id: tv.id,
+              logo: tv.logo,
+              name: tv.name,
+              plan: tv.plan,
+              public: tv.is_public,
+              me: false,
+            });
+        });
+      } else {
+        safedCategory.push({
+          id: cat.id,
+          name: cat.name,
+          tv: [
+            {
+              id: cat.tv_channels[0].id,
+              logo: cat.tv_channels[0].logo,
+              name: cat.tv_channels[0].name,
+              plan: cat.tv_channels[0].plan,
+              public: cat.tv_channels[0].is_public,
+              me:
+                cat.tv_channels[0].plan.id ==
+                currentSubscription?.subscription.plan?.id
+                  ? true
+                  : false,
+            },
+          ],
+        });
+
+        const updateCategory = safedCategory.find((i) => i.id == cat.id);
+        if (updateCategory)
+          cat.tv_channels.forEach((tv) => {
+            if (tv.id != cat.tv_channels[0].id) {
+              updateCategory.tv.push({
+                id: tv.id,
+                logo: tv.logo,
+                name: tv.name,
+                plan: tv.plan,
+                public: tv.is_public,
+                me: false,
+              });
+            }
+          });
+      }
+    });
+
+    setNewCategory(safedCategory);
+  }, [allTVChannels]);
 
   return (
     <div className="flex flex-col gap-4">
       <HeroTV />
-      <div className="relative">
-        {(isLoadingAllPlans || isLoadingCurrentSubsUsage) && (
-          <div className="p-4 flex w-full h-full justify-center items-center md:my-16 my-12">
-            <div>
-              <ReactIcons.CgIcon.CgSpinner
-                size={30}
-                className="dark:text-white animate-spin"
+      <div className="flex flex-col gap-4 relative">
+        <div className="z-20 flex w-full items-center justify-center absolute -top-28 flex-col gap-4">
+          <div className="w-full justify-center text-center flex flex-col gap-2">
+            <h4 className="text-white font-bold md:text-2xl text-xl">
+              <CTranslateTo eng="Flex TV 📺" pt="Flex TV 📺" />
+            </h4>
+            <h2 className="text-white text-base">
+              <CTranslateTo
+                eng="Search for the channel name"
+                pt="Procure pelo nome do seu canal"
               />
-            </div>
+            </h2>
           </div>
-        )}
-        <div className="flex flex-col gap-2 md:p-12 m-6">
-          <TVItem
+          <AuSoftUI.UI.TextField.Default
+            value={searchField}
+            onChange={(e) => {
+              setSearchField(e.target.value);
+              setTimeout(() => {
+                handleSeachByName(e.target.value);
+              }, 800);
+            }}
+            placeholder="Ex: SIC K"
+            weight={"lg"}
+            className="rounded-full md:text-lg text-base text-center dark:bg-ausoft-slate-950 bg-slate-100 md:w-[50vw] w-[90vw]"
+          />
+        </div>
+
+        <div className="relative">
+          <div className="flex flex-col gap-4 md:p-12 m-6">
+            {(isLoadingAllTVChannels || isLoadingCurrentSubsUsage) && (
+              <div className="flex flex-col gap-4">
+                {Array.from({ length: 7 }).map((_, i) => {
+                  return (
+                    <div
+                      key={i}
+                      className="bg-white rounded-xl animate-pulse dark:bg-slate-800/30 p-8"
+                    ></div>
+                  );
+                })}
+              </div>
+            )}
+            {!isLoadingAllTVChannels && newCategory.length > 0 && (
+              <>
+                {newCategory.map((cat, i) => {
+                  return <TVCategorysItem key={i} category={cat} />;
+                })}
+              </>
+            )}
+
+            {!isLoadingAllTVChannels && newCategory.length <= 0 && (
+              <div className="animate-fade flex items-center w-full h-full justify-center md:mt-16 mt-12 md:mb-24 mb-12">
+                <AuSoftUI.Component.ListEmpty
+                  action_en="Get In Touch"
+                  action_pt="Entrar em contacto"
+                  action_url="https://wa.me/244954974069?text=Olá, preciso de ajuda com a plataforma"
+                  description_en="OOops! The channels were not loaded correctly, please refresh the page. If the error persists, please contact us!"
+                  description_pt="OOops! Os canais não foram carregados corretamente, atualize a página. Caso o erro persista, entre em contacto conosco!"
+                  title_en="Unavailable Channels"
+                  title_pt="Canais Indisponíveis"
+                  action_blank
+                  hasAction
+                />
+              </div>
+            )}
+
+            {/*         <TVItem
             item={{
               channel: "TV Zimbo",
               id: "ddsd",
               image: localImages.logos.mflex.src,
-              url: "https://sgn-cdn-video.vods2africa.com/Tv-Zimbo/index.fmp4.m3u8",
+              url: `http://localhost:3080/api/streams/pbc/lg3026f-3d08-4ae1-a2cd-f35b0a98791a`,
             }}
           />
           <TVItem
@@ -51,7 +217,8 @@ export default function NewsPage() {
               image: localImages.logos.mflex.src,
               url: "https://linear-181.frequency.stream/mt/brightcove/181/hls/master/playlist.m3u8",
             }}
-          />
+          /> */}
+          </div>
         </div>
       </div>
     </div>

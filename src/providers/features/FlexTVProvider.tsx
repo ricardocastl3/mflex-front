@@ -1,12 +1,13 @@
 "use client";
 
-import { IWatchTV } from "@/http/interfaces/models/IWatchTV";
+import { ITVChannelSafed } from "@/http/interfaces/models/ITVChannel";
+import {  } from "@/http/interfaces/models/IWatchTV";
 import { createContext, ReactNode, useContext, useState } from "react";
 
 interface IWatchTVProviderProps {
-  selectedFlexTV: IWatchTV | undefined;
+  selectedFlexTV: ITVChannelSafed | undefined;
 
-  handleSelectFlexTV: (flexTV: IWatchTV | undefined) => void;
+  handleSelectFlexTV: (flexTV: ITVChannelSafed | undefined) => void;
 }
 
 export const FlexTVContext = createContext({} as IWatchTVProviderProps);
@@ -17,9 +18,11 @@ export function useFlexTVProvider() {
 }
 
 export default function FlexTVProvider({ children }: { children: ReactNode }) {
-  const [selectedFlexTV, setSelectedFlexTV] = useState<IWatchTV | undefined>();
+  const [selectedFlexTV, setSelectedFlexTV] = useState<
+    ITVChannelSafed | undefined
+  >();
 
-  function handleSelectFlexTV(merchant: IWatchTV | undefined) {
+  function handleSelectFlexTV(merchant: ITVChannelSafed | undefined) {
     setSelectedFlexTV(merchant);
   }
 

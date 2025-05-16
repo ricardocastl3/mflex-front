@@ -5,7 +5,7 @@ import { ReactIcons } from "@/utils/icons";
 import { useAppProvider } from "@/providers/app/AppProvider";
 
 import HeroNews from "./components/Hero";
-import NewsContainer from "./components/container";
+import GameContainer from "./components/container";
 import Link from "next/link";
 
 export default function NewsPage() {
@@ -23,7 +23,7 @@ export default function NewsPage() {
         </Link>
       </div>
       <HeroNews />
-      <NewsContainer />
+      <GameContainer />
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { validateTokenSignOnRequest } from "@/services/auth/TokenServices";
 import axios, { AxiosError } from "axios";
+import { Readable } from "stream";
 
 const mflexApi = axios.create({
   baseURL: `${process.env.MFLEX_SERVER_URL}/api/v1`,
@@ -18,6 +19,43 @@ export async function GET(
   { params }: { params: Promise<{ path: any }> }
 ) {
   try {
+    const { path } = await params;
+    const url = new URL(req.url);
+    const query = Object.fromEntries(url.searchParams.entries());
+    const cookieSafe = await cookies();
+    const authToken = cookieSafe.get(ECOOKIES.COOKIE_USER_AUTH_TOKEN)?.value;
+    const lang = req.headers.get("accept-language");
+
+    const pathFull = path.join("/");
+
+    if (pathFull.startsWith("streams/watch")) {
+      console.log("#### WATCH PUB  ####");
+      const res = await fetch(
+        `${process.env.MFLEX_SERVER_URL}/api/v1/` + pathFull,
+        {
+          headers: {
+            "accept-language": lang || "pt",
+            mf: authToken || "",
+          },
+        }
+      );
+
+      if (!res.ok || !res.body) {
+        return NextResponse.json(
+          { message: "Erro ao buscar vídeo" },
+          { status: 500 }
+        );
+      }
+
+      return new NextResponse(res.body, {
+        status: 200,
+        headers: {
+          "Content-Type": "video/mp2t",
+          "Cache-Control": "no-cache",
+        },
+      });
+    }
+
     const validateToken = await validateTokenSignOnRequest(req);
     if (!validateToken) {
       return NextResponse.json(
@@ -25,13 +63,6 @@ export async function GET(
         { status: 400 }
       );
     }
-
-    const { path } = await params;
-    const url = new URL(req.url);
-    const query = Object.fromEntries(url.searchParams.entries());
-    const cookieSafe = await cookies();
-    const authToken = cookieSafe.get(ECOOKIES.COOKIE_USER_AUTH_TOKEN)?.value;
-    const lang = req.headers.get("accept-language");
 
     const externalResponse = await mflexApi.get(path.join("/"), {
       params: { ...query },

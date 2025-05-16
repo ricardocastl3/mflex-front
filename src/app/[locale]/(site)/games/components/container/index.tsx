@@ -13,7 +13,7 @@ import TradingLeagues from "./TradingLeagues";
 import FootballLeagueDropdown from "../leagues/dropdowns/league";
 import FootballTeamDropdown from "../leagues/dropdowns/team";
 
-export default function NewsContainer() {
+export default function GameContainer() {
   // Contexts
   const { isLoadingAllFixtures, handleSeachByName, allFixtures } =
     useFixtures();

@@ -1,11 +1,11 @@
 import { AuSoftUI } from "@/@components/(ausoft)";
-import { IWatchTV } from "@/http/interfaces/models/IWatchTV";
+import { ITVChannelSafed } from "@/http/interfaces/models/ITVChannel";
 import { ReactIcons } from "@/utils/icons";
 import { useRef, useState } from "react";
 
 import ReactPlayer from "react-player";
 
-export default function TVPlayer({ item }: { item: IWatchTV }) {
+export default function TVPlayer({ item }: { item: ITVChannelSafed }) {
   const [playerState, setPlayerState] = useState<{
     play: boolean;
     fullscreen: boolean;
@@ -18,7 +18,7 @@ export default function TVPlayer({ item }: { item: IWatchTV }) {
   const [isLoading, setIsLoading] = useState(true);
 
   const toggleFullscreen = () => {
-    const el:any = containerRef.current;
+    const el: any = containerRef.current;
     if (!document.fullscreenElement) {
       el.requestFullscreen().catch((err: any) => {
         console.error(`Erro ao entrar em fullscreen: ${err.message}`);
@@ -39,7 +39,7 @@ export default function TVPlayer({ item }: { item: IWatchTV }) {
     <div className="flex flex-col w-full justify-between">
       <div
         ref={containerRef}
-        style={{ position: "relative", maxWidth: 700, margin: "0 auto" }}
+        style={{ position: "relative", maxWidth: 700 }}
         className="flex items-center justify-center"
       >
         <ReactPlayer
@@ -47,14 +47,14 @@ export default function TVPlayer({ item }: { item: IWatchTV }) {
           volume={playerState.volume / 100}
           playing={playerState.play}
           onPause={handlePause}
-          url={item.url}
+          url={`/api/streams/watch/${item.id}`}
           height={"100%"}
           width={"100%"}
           onReady={() => setIsLoading(false)}
         />
 
         {isLoading && (
-          <div className="flex items-center justify-center p-12">
+          <div className="flex p-12">
             <ReactIcons.CgIcon.CgSpinner
               size={30}
               className="animate-spin dark:text-white"

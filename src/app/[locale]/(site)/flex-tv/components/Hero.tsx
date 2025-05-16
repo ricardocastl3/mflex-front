@@ -1,31 +1,15 @@
 import { localImages } from "@/utils/images";
 
-import CTranslateTo from "@/@components/(translation)/CTranslateTo";
+import VideoBackground from "../../components/video/VideoBackground";
 
 export default function HeroTV() {
   return (
-    <div
-      style={{
-        objectFit: "fill",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: window.innerWidth <= 765 ? "center" : "",
-        backgroundImage: `url(${localImages.banner.bannerTv.src})`,
-        backgroundSize: "cover",
-      }}
-      className="md:h-[60vh] h-[45vh] flex-col relative flex  items-center text-center justify-center md:px-14 px-4"
-    >
-      <div className="absolute inset-0 bg-black/50"></div>
-      <div className="flex flex-col gap-2 z-20 md:px-0 px-8 md:w-[50vw] w-full">
-        <h1 className="md:text-[2rem] text-[1.7rem] font-bold text-white">
-          <CTranslateTo eng="Flex TV" pt="Flex TV" />
-        </h1>
-        <h4 className="flex text-white md:mt-2 t-2 text-lg">
-          <CTranslateTo
-            eng="Enjoy unlimited access to exclusive features: AI Game Analysis, Ad-Free Live Gaming, and much more! 📺"
-            pt="Acompanhe aos melhores canais televisivos, onde quisers e quando quiser 📺"
-          />
-        </h4>
-      </div>
+    <div id="start" className="md:h-[50vh] h-[35vh] w-full relative">
+      <div className="absolute z-20 inset-0 bg-black/50"></div>
+      <VideoBackground
+        fallback_url={`${localImages.banner.bannerTv.src}`}
+        video_url="/assets/movie.mp4"
+      />
     </div>
   );
 }
