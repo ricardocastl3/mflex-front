@@ -30,7 +30,7 @@ export default function NewsPage() {
     if (!allTVChannels) return;
 
     setSelectedTypeChannel("all");
-    
+
     const meRawCategory = allTVChannels.me;
     const otherRawCategory = allTVChannels.others;
 
@@ -48,15 +48,12 @@ export default function NewsPage() {
           tv: [
             {
               id: cat.tv_channels[0].id,
+              st: cat.tv_channels[0].st,
               logo: cat.tv_channels[0].logo,
               name: cat.tv_channels[0].name,
               plan: cat.tv_channels[0].plan,
               public: cat.tv_channels[0].is_public,
-              me:
-                cat.tv_channels[0].plan.id ==
-                currentSubscription?.subscription.plan?.id
-                  ? true
-                  : false,
+              me: true,
             },
           ],
         });
@@ -64,9 +61,11 @@ export default function NewsPage() {
         const updateCategory = safedCategory.find((i) => i.id == cat.id);
         if (updateCategory)
           cat.tv_channels.forEach((tv) => {
-            if (tv.id != cat.tv_channels[0].id) {
+            const findTV = updateCategory.tv.find((i) => i.id == cat.id);
+            if (!findTV) {
               updateCategory.tv.push({
                 id: tv.id,
+                st: tv.st,
                 logo: tv.logo,
                 name: tv.name,
                 plan: tv.plan,
@@ -84,12 +83,13 @@ export default function NewsPage() {
       const findCategory = safedCategory.find((i) => i.id == cat.id);
       if (findCategory) {
         cat.tv_channels.forEach((tv) => {
-          const findTV = findCategory.tv.find((i) => i.id == tv.id);
+          const findTV = findCategory.tv.find((i) => i.st == tv.st);
           if (!findTV)
             findCategory.tv.push({
               id: tv.id,
               logo: tv.logo,
               name: tv.name,
+              st: tv.st,
               plan: tv.plan,
               public: tv.is_public,
               me: false,
@@ -104,13 +104,10 @@ export default function NewsPage() {
               id: cat.tv_channels[0].id,
               logo: cat.tv_channels[0].logo,
               name: cat.tv_channels[0].name,
+              st: cat.tv_channels[0].st,
               plan: cat.tv_channels[0].plan,
               public: cat.tv_channels[0].is_public,
-              me:
-                cat.tv_channels[0].plan.id ==
-                currentSubscription?.subscription.plan?.id
-                  ? true
-                  : false,
+              me: false,
             },
           ],
         });
@@ -118,12 +115,14 @@ export default function NewsPage() {
         const updateCategory = safedCategory.find((i) => i.id == cat.id);
         if (updateCategory)
           cat.tv_channels.forEach((tv) => {
-            if (tv.id != cat.tv_channels[0].id) {
+            const findTV = updateCategory.tv.find((i) => i.st == tv.st);
+            if (!findTV) {
               updateCategory.tv.push({
                 id: tv.id,
                 logo: tv.logo,
                 name: tv.name,
                 plan: tv.plan,
+                st: tv.st,
                 public: tv.is_public,
                 me: false,
               });

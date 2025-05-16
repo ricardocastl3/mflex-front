@@ -50,7 +50,7 @@ export async function GET(
       return new NextResponse(res.body, {
         status: 200,
         headers: {
-          "Content-Type": "video/mp2t",
+          "Content-Type": "application/vnd.apple.mpegurl",
           "Cache-Control": "no-cache",
         },
       });

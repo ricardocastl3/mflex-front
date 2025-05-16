@@ -7,6 +7,7 @@ export interface ITVChannel {
   logo?: string;
   available: boolean;
   is_public: boolean;
+  st: number
   description?: string;
   plan: IPlan;
   plan_id: string;
@@ -36,6 +37,7 @@ export interface ITVChannelSafed {
   id: string;
   name: string;
   logo?: string;
+  st: number
   me: boolean;
   public: boolean;
   plan: IPlan;

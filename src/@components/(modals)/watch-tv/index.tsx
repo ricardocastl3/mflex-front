@@ -16,7 +16,7 @@ export default function WatchTVModal() {
       callbackClose={() => handleOpenModal("")}
       customDesktop="pt-2 pb-2"
     >
-      <div className="md:w-[95vw] w-[95vw] md:h-[95vh] h-full flex flex-col">
+      <div className="md:w-[70vw] w-[100vw] md:h-[95vh] h-[50vh] flex flex-col">
         <div className="px-4 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
           <div className="flex items-end gap-2">
             <AuSoftUI.Component.AuSoftLogo size={36} />
@@ -33,9 +33,8 @@ export default function WatchTVModal() {
             <ReactIcons.BiIcon.BiX size={25} className="dark:text-white" />
           </button>
         </div>
-        <div className="">
-          <TVPlayer item={selectedFlexTV!} />
-        </div>
+
+        <TVPlayer item={selectedFlexTV!} />
       </div>
     </BaseModal>
   );
