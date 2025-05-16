@@ -1,42 +1,21 @@
 import { ITVChannelSafed } from "@/http/interfaces/models/ITVChannel";
+import { useEffect, useState } from "react";
+import { internalApi } from "@/http/axios/api";
 
 import VideoPlayer from "./players/VideoPlayer";
 
 export default function TVPlayer({ item }: { item: ITVChannelSafed }) {
+  const [url, setUrl] = useState("");
+
+  useEffect(() => {
+    internalApi.get(`/streams/watch/${item.id}`).then((e) => {
+      setUrl(e.data.url);
+    });
+  }, []);
+
   return (
     <div className="flex w-full h-full">
-      <VideoPlayer src={`/api/streams/watch/${item.id}`} />
-
-      {/* 
-      <div className="flex border-t border-slate-200 dark:border-slate-800  md:p-4 p-4 items-center gap-4 justify-self-end">
-        <AuSoftUI.UI.Button
-          onClick={() => {
-            setPlayerState((state) => ({
-              ...state,
-              play: !state.play,
-            }));
-          }}
-          variant={"outline"}
-        >
-          {playerState.play && <ReactIcons.MdIcon.MdPause size={18} />}
-          {!playerState.play && <ReactIcons.MdIcon.MdPlayCircle size={18} />}
-        </AuSoftUI.UI.Button>
-
-        <AuSoftUI.UI.Button onClick={toggleFullscreen} variant={"outline"}>
-          <ReactIcons.MdIcon.MdTv size={18} />
-        </AuSoftUI.UI.Button>
-        <input
-          type="range"
-          min={0}
-          max={100}
-          onChange={(e) =>
-            setPlayerState((state) => ({
-              ...state,
-              volume: Number(e.target.value),
-            }))
-          }
-        />
-      </div> */}
+      {url != "" && <VideoPlayer src={`${url}`} />}
     </div>
   );
 }

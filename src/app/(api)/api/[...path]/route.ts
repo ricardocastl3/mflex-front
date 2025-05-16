@@ -2,8 +2,8 @@ import { ECOOKIES } from "@/utils/enums";
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { validateTokenSignOnRequest } from "@/services/auth/TokenServices";
+import { mflexStreamAPI } from "@/http/axios/api";
 import axios, { AxiosError } from "axios";
-import { Readable } from "stream";
 
 const mflexApi = axios.create({
   baseURL: `${process.env.MFLEX_SERVER_URL}/api/v1`,
@@ -28,29 +28,19 @@ export async function GET(
 
     const pathFull = path.join("/");
 
-    if (pathFull.startsWith("streams/watch")) {
-      console.log("#### WATCH PUB  ####");
-      const res = await fetch(
-        `${process.env.MFLEX_SERVER_URL}/api/v1/` + pathFull,
+    if (pathFull.startsWith("strx")) {
+      const res = await mflexStreamAPI.get(
+        `${process.env.MFLEX_STREAMIN_SERVER_URL}/` + pathFull,
         {
-          headers: {
-            "accept-language": lang || "pt",
-            mf: authToken || "",
-          },
+          responseType: "stream",
         }
       );
 
-      if (!res.ok || !res.body) {
-        return NextResponse.json(
-          { message: "Erro ao buscar vídeo" },
-          { status: 500 }
-        );
-      }
-
-      return new NextResponse(res.body, {
+      return new NextResponse(res.data, {
         status: 200,
         headers: {
           "Content-Type": "application/vnd.apple.mpegurl",
+          Connection: "keep-live",
           "Cache-Control": "no-cache",
         },
       });

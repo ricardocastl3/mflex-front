@@ -22,10 +22,7 @@ export default function WatchTVModal() {
             <AuSoftUI.Component.AuSoftLogo size={36} />
             <div className="flex items-center gap-2 dark:text-white">
               <h3 className="text-normal font-bold dark:text-white">
-                <CTranslateTo
-                  eng="Watch TV - Online"
-                  pt="Transmissão em direto"
-                />
+                <CTranslateTo eng="Watch TV - Online" pt="TV - Online" />
               </h3>
             </div>
           </div>

@@ -12,7 +12,7 @@ import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import TVFilterBox from "./components/TVFilterBox";
 
 export default function NewsPage() {
-  const { isLoadingCurrentSubsUsage, currentSubscription } = useAuth();
+  const { isLoadingCurrentSubsUsage } = useAuth();
 
   const { allTVChannels, handleSeachByName, isLoadingAllTVChannels } =
     useMyChannels();
@@ -27,6 +27,7 @@ export default function NewsPage() {
   const [selectedTypeChannel, setSelectedTypeChannel] = useState("all");
 
   useEffect(() => {
+    if (isLoadingAllTVChannels) return;
     if (!allTVChannels) return;
 
     setSelectedTypeChannel("all");
@@ -133,7 +134,7 @@ export default function NewsPage() {
 
     setNewCategory(safedCategory);
     setPreviousNewCategory(safedCategory);
-  }, [allTVChannels]);
+  }, [allTVChannels, isLoadingAllTVChannels]);
 
   useEffect(() => {
     if (selectedTypeChannel == "all") setNewCategory(previousNewCategory);
