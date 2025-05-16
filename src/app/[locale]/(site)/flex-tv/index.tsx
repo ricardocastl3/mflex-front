@@ -9,6 +9,7 @@ import HeroTV from "./components/Hero";
 import useMyChannels from "@/hooks/api/flex-tv/useMyChannels";
 import TVCategorysItem from "./components/TVCategorysItem";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
+import TVFilterBox from "./components/TVFilterBox";
 
 export default function NewsPage() {
   const { isLoadingCurrentSubsUsage, currentSubscription } = useAuth();
@@ -17,11 +18,19 @@ export default function NewsPage() {
     useMyChannels();
 
   const [newCategory, setNewCategory] = useState<ITVCategorySafed[]>([]);
+  const [previousNewCategory, setPreviousNewCategory] = useState<
+    ITVCategorySafed[]
+  >([]);
+
   const [searchField, setSearchField] = useState("");
+
+  const [selectedTypeChannel, setSelectedTypeChannel] = useState("all");
 
   useEffect(() => {
     if (!allTVChannels) return;
 
+    setSelectedTypeChannel("all");
+    
     const meRawCategory = allTVChannels.me;
     const otherRawCategory = allTVChannels.others;
 
@@ -124,8 +133,34 @@ export default function NewsPage() {
     });
 
     setNewCategory(safedCategory);
+    setPreviousNewCategory(safedCategory);
   }, [allTVChannels]);
 
+  useEffect(() => {
+    if (selectedTypeChannel == "all") setNewCategory(previousNewCategory);
+    if (selectedTypeChannel == "active") {
+      const categories = previousNewCategory.map((cat) => {
+        const tvs = cat.tv.filter((i) => i.me || i.public);
+        return {
+          id: cat.id,
+          name: cat.name,
+          tv: tvs,
+        };
+      });
+      setNewCategory(categories);
+    }
+    if (selectedTypeChannel == "noactive") {
+      const categories = previousNewCategory.map((cat) => {
+        const tvs = cat.tv.filter((i) => !i.me || !i.public);
+        return {
+          id: cat.id,
+          name: cat.name,
+          tv: tvs,
+        };
+      });
+      setNewCategory(categories);
+    }
+  }, [selectedTypeChannel]);
   return (
     <div className="flex flex-col gap-4">
       <HeroTV />
@@ -156,45 +191,48 @@ export default function NewsPage() {
           />
         </div>
 
-        <div className="relative">
-          <div className="flex flex-col gap-4 md:p-12 m-6">
-            {(isLoadingAllTVChannels || isLoadingCurrentSubsUsage) && (
-              <div className="flex flex-col gap-4">
-                {Array.from({ length: 7 }).map((_, i) => {
-                  return (
-                    <div
-                      key={i}
-                      className="bg-white rounded-xl animate-pulse dark:bg-slate-800/30 p-8"
-                    ></div>
-                  );
-                })}
-              </div>
-            )}
-            {!isLoadingAllTVChannels && newCategory.length > 0 && (
-              <>
-                {newCategory.map((cat, i) => {
-                  return <TVCategorysItem key={i} category={cat} />;
-                })}
-              </>
-            )}
+        <div className="flex flex-col gap-4 md:p-12 m-6">
+          {(isLoadingAllTVChannels || isLoadingCurrentSubsUsage) && (
+            <div className="flex flex-col gap-4">
+              {Array.from({ length: 7 }).map((_, i) => {
+                return (
+                  <div
+                    key={i}
+                    className="bg-white rounded-xl animate-pulse dark:bg-slate-800/30 p-8"
+                  ></div>
+                );
+              })}
+            </div>
+          )}
+          {!isLoadingAllTVChannels && newCategory.length > 0 && (
+            <>
+              <TVFilterBox
+                setValue={setSelectedTypeChannel}
+                value={selectedTypeChannel}
+              />
+              {newCategory.map((cat, i) => {
+                return <TVCategorysItem key={i} category={cat} />;
+              })}
+            </>
+          )}
 
-            {!isLoadingAllTVChannels && newCategory.length <= 0 && (
-              <div className="animate-fade flex items-center w-full h-full justify-center md:mt-16 mt-12 md:mb-24 mb-12">
-                <AuSoftUI.Component.ListEmpty
-                  action_en="Get In Touch"
-                  action_pt="Entrar em contacto"
-                  action_url="https://wa.me/244954974069?text=Olá, preciso de ajuda com a plataforma"
-                  description_en="OOops! The channels were not loaded correctly, please refresh the page. If the error persists, please contact us!"
-                  description_pt="OOops! Os canais não foram carregados corretamente, atualize a página. Caso o erro persista, entre em contacto conosco!"
-                  title_en="Unavailable Channels"
-                  title_pt="Canais Indisponíveis"
-                  action_blank
-                  hasAction
-                />
-              </div>
-            )}
+          {!isLoadingAllTVChannels && newCategory.length <= 0 && (
+            <div className="animate-fade flex items-center w-full h-full justify-center md:mt-16 mt-12 md:mb-24 mb-12">
+              <AuSoftUI.Component.ListEmpty
+                action_en="Get In Touch"
+                action_pt="Entrar em contacto"
+                action_url="https://wa.me/244954974069?text=Olá, preciso de ajuda com a plataforma"
+                description_en="OOops! The channels were not loaded correctly, please refresh the page. If the error persists, please contact us!"
+                description_pt="OOops! Os canais não foram carregados corretamente, atualize a página. Caso o erro persista, entre em contacto conosco!"
+                title_en="Unavailable Channels"
+                title_pt="Canais Indisponíveis"
+                action_blank
+                hasAction
+              />
+            </div>
+          )}
 
-            {/*         <TVItem
+          {/*         <TVItem
             item={{
               channel: "TV Zimbo",
               id: "ddsd",
@@ -218,7 +256,6 @@ export default function NewsPage() {
               url: "https://linear-181.frequency.stream/mt/brightcove/181/hls/master/playlist.m3u8",
             }}
           /> */}
-          </div>
         </div>
       </div>
     </div>

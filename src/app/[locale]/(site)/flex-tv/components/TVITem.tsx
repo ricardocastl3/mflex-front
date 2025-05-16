@@ -60,7 +60,7 @@ export default function TVItem({ item }: { item: ITVChannelSafed }) {
             )}
 
             {!currentSubscription && (
-              <CTranslateTo eng="Updagre Plan" pt="Atualizar plano" />
+              <CTranslateTo eng="Subscribe Plan" pt="Assinar um plano" />
             )}
           </AuSoftUI.UI.Button>
         </Link>
