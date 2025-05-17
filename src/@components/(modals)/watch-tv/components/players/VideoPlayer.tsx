@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import videojs from "video.js";
 import "video.js/dist/video-js.css";
 
@@ -7,7 +7,7 @@ interface Props {
 }
 
 const VideoPlayer: React.FC<Props> = ({ src }) => {
-  const videoRef = useRef(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const playerRef = useRef<any>(null);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const VideoPlayer: React.FC<Props> = ({ src }) => {
         playerRef.current = null;
       }
     };
-  }, [src]);
+  }, [src]); // observe src e key para atualizar
 
   return (
     <div data-vjs-player>
