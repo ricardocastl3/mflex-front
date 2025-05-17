@@ -11,7 +11,7 @@ const VideoPlayer: React.FC<Props> = ({ src }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const playerRef = useRef<any>(null);
 
-  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [isRefreshing, setIsRefreshing] = useState(true);
 
   useEffect(() => {
     if (videoRef.current && !playerRef.current) {
