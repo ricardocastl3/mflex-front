@@ -13,6 +13,11 @@ const VideoPlayer: React.FC<Props> = ({ src }) => {
   useEffect(() => {
     if (videoRef.current && !playerRef.current) {
       playerRef.current = videojs(videoRef.current, {
+        html5: {
+          hls: {
+            lowLatencyMode: false,
+          },
+        },
         autoplay: true,
         controls: true,
         responsive: true,

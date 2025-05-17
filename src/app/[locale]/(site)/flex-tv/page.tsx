@@ -12,7 +12,7 @@ export async function generateMetadata({
 
   return LocalePageServices.metadatas({
     titleENG: "Flex TV 📺",
-    titlePT: "Planos FLEX 📺",
+    titlePT: "FLEX TV 📺",
     descriptionENG: "Watch TV anywhere where you want",
     descriptionPT: "Assista ao seus canais favoritos onde você quisers",
     params: pars.locale,
