@@ -15,19 +15,19 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const playerRef = useRef<any>(null);
   const tentativasRef = useRef(0);
-  const MAX_TENTATIVAS = 1;
+  const MAX_TENTATIVAS = 15;
   const INTERVALO_RECONEXAO = 3000; // 3 segundos
 
   const [isRefreshing, setIsRefreshing] = useState(true);
   const [checkUser, setCheckUser] = useState(false);
-  const [src, setUrl] = useState("");
+  const [initialSRC, setInitialSrc] = useState("");
 
   const { userLogged } = useAuth();
   const { handleOpenModal } = useModal();
 
   useEffect(() => {
     internalApi.get(`/streams/watch/${item_id}`).then((e) => {
-      setUrl(e.data.url);
+      setInitialSrc(e.data.url);
     });
   }, []);
 
@@ -53,19 +53,22 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
     if (playerRef.current) {
       setTimeout(async () => {
         setIsRefreshing(true);
-        const res = await internalApi.get(`/streams/watch/${item_id}`);
-        const newSrc = res.data.url;
+        //const res = await internalApi.get(`/streams/watch/${item_id}`);
+        //const newSrc = res.data.url;
 
         playerRef.current.reset();
-        playerRef.current.src({ src: newSrc, type: "application/x-mpegURL" });
+        playerRef.current.src({
+          src: initialSRC,
+          type: "application/x-mpegURL",
+        });
         playerRef.current.load();
         playerRef.current.play().catch(() => {});
-      }, INTERVALO_RECONEXAO);
+      }, 5000);
     }
   };
 
   useEffect(() => {
-    if (src == "") return;
+    if (initialSRC == "") return;
     if (videoRef.current && !playerRef.current) {
       playerRef.current = videojs(videoRef.current, {
         html5: {
@@ -78,7 +81,7 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
         responsive: true,
         sources: [
           {
-            src,
+            src: initialSRC,
             type: "application/x-mpegURL",
           },
         ],
@@ -112,7 +115,7 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
         playerRef.current = null;
       }
     };
-  }, [src]);
+  }, [initialSRC]);
 
   useEffect(() => {
     const interval = setInterval(() => {
