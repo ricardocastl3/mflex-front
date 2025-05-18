@@ -72,6 +72,7 @@ const VideoPlayer: React.FC<Props> = ({ src }) => {
         ],
       });
 
+      /*
       let duracaoAnterior = Infinity;
 
       const liveReconnecting = () => {
@@ -91,6 +92,7 @@ const VideoPlayer: React.FC<Props> = ({ src }) => {
 
         duracaoAnterior = novaDuracao;
       });
+*/
 
       playerRef.current.on("error", () => {
         console.error("Erro no vídeo. Tentando reconectar...");
@@ -129,6 +131,27 @@ const VideoPlayer: React.FC<Props> = ({ src }) => {
       }
     };
   }, [src]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (
+        playerRef.current &&
+        typeof playerRef.current.duration === "function" &&
+        typeof playerRef.current.playing === "function"
+      ) {
+        const duracao = playerRef.current.duration();
+        const isPlaying = playerRef.current.playing();
+
+        if ((duracao === Infinity || duracao === 0) && isPlaying) {
+          console.log("🟢 Transmissão ao vivo ativa e em reprodução.");
+        } else {
+          reconnect(); // se necessário
+        }
+      }
+    }, INTERVALO_RECONEXAO); // a cada 5 segundos
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="relative w-full h-full">
