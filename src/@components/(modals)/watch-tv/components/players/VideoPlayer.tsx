@@ -15,7 +15,7 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const playerRef = useRef<any>(null);
   const tentativasRef = useRef(0);
-  const MAX_TENTATIVAS = 10;
+  const MAX_TENTATIVAS = 1;
   const INTERVALO_RECONEXAO = 3000; // 3 segundos
 
   const [isRefreshing, setIsRefreshing] = useState(true);
