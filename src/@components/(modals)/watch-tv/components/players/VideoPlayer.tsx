@@ -63,7 +63,7 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
         });
         playerRef.current.load();
         playerRef.current.play().catch(() => {});
-      }, 5000);
+      }, 40000);
     }
   };
 
