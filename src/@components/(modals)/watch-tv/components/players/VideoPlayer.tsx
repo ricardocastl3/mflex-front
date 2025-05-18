@@ -86,14 +86,18 @@ const VideoPlayer: React.FC<Props> = ({ src }) => {
             playerRef.current.load();
             playerRef.current.play().catch(() => {});
           }
-        }, 3000); // esperar 3s para reconectar
+        }, INTERVALO_RECONEXAO); // esperar 3s para reconectar
       };
 
       playerRef.current.on("durationchange", () => {
         const novaDuracao = playerRef.current.duration();
         console.log("Nova duração:", novaDuracao);
 
-        if (duracaoAnterior === Infinity && isFinite(novaDuracao)) {
+        if (
+          duracaoAnterior === Infinity &&
+          isFinite(novaDuracao) &&
+          novaDuracao != 0
+        ) {
           liveReconnecting();
         }
 
