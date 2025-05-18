@@ -65,6 +65,7 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
   };
 
   useEffect(() => {
+    if (src == "") return;
     if (videoRef.current && !playerRef.current) {
       playerRef.current = videojs(videoRef.current, {
         html5: {
