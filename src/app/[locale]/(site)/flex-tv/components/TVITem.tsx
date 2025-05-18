@@ -41,7 +41,8 @@ export default function TVItem({ item }: { item: ITVChannelSafed }) {
               {item.name
                 .replace("PT|", "")
                 .replace("BR|", "")
-                .replace("FHD", "")}
+                .replace("FHD", "")
+                .replace("HD", "")}
             </h1>
           </div>
         </div>
