@@ -72,7 +72,6 @@ const VideoPlayer: React.FC<Props> = ({ src }) => {
 
       const player = playerRef.current;
 
-      // Listener para o evento durationchange
       player.on("durationchange", () => {
         const duration = player.duration();
         if (isFinite(duration) && duration > 0) {
@@ -81,17 +80,15 @@ const VideoPlayer: React.FC<Props> = ({ src }) => {
         }
       });
 
-      // Listener para erros
       player.on("error", () => {
         console.error("Erro no vídeo. Tentando reconectar...");
         reconnect();
       });
 
-      // Listener para quando o vídeo começa a tocar
       player.on("playing", () => {
         setCheckUser(true);
         setIsRefreshing(false);
-        tentativasRef.current = 0; // Resetar tentativas ao voltar
+        tentativasRef.current = 0;
       });
     }
 
