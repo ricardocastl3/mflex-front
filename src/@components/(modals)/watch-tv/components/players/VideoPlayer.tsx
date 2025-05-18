@@ -42,17 +42,17 @@ const VideoPlayer: React.FC<Props> = ({ src }) => {
     tentativasRef.current += 1;
     console.log(`Tentando reconectar... tentativa ${tentativasRef.current}`);
 
-    if (playerRef.current) {
-      setIsRefreshing(true);
-      playerRef.current.reset();
-      playerRef.current.src({
-        src,
-        type: "application/x-mpegURL",
-      });
-      playerRef.current.load();
-      playerRef.current.play().catch(() => {});
-    }
+    setTimeout(() => {
+      if (playerRef.current) {
+        setIsRefreshing(true);
+        playerRef.current.reset();
+        playerRef.current.src({ src, type: "application/x-mpegURL" });
+        playerRef.current.load();
+        playerRef.current.play().catch(() => {});
+      }
+    }, INTERVALO_RECONEXAO);
   };
+
   useEffect(() => {
     if (videoRef.current && !playerRef.current) {
       playerRef.current = videojs(videoRef.current, {
@@ -75,33 +75,32 @@ const VideoPlayer: React.FC<Props> = ({ src }) => {
       let duracaoAnterior = Infinity;
 
       const liveReconnecting = () => {
-        console.warn(
-          "Transmissão parece ter sido finalizada. Tentando reconectar..."
-        );
-        setIsRefreshing(true);
-        setTimeout(() => {
-          if (playerRef.current) {
-            playerRef.current.reset();
-            playerRef.current.src({ src, type: "application/x-mpegURL" });
-            playerRef.current.load();
-            playerRef.current.play().catch(() => {});
-          }
-        }, INTERVALO_RECONEXAO); // esperar 3s para reconectar
+        reconnect();
       };
 
       playerRef.current.on("durationchange", () => {
         const novaDuracao = playerRef.current.duration();
-        console.log("Nova duração:", novaDuracao);
 
         if (
           duracaoAnterior === Infinity &&
           isFinite(novaDuracao) &&
-          novaDuracao != 0
+          novaDuracao !== 0
         ) {
           liveReconnecting();
         }
 
         duracaoAnterior = novaDuracao;
+      });
+
+      playerRef.current.on("error", () => {
+        console.error("Erro no vídeo. Tentando reconectar...");
+        reconnect();
+      });
+
+      playerRef.current.on("playing", () => {
+        setCheckUser(true);
+        setIsRefreshing(false);
+        tentativasRef.current = 0; // resetar tentativas ao voltar
       });
 
       playerRef.current.on("error", () => {
