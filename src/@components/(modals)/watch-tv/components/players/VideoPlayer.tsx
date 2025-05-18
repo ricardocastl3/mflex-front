@@ -5,12 +5,13 @@ import "video.js/dist/video-js.css";
 import { ReactIcons } from "@/utils/icons";
 import { useAuth } from "@/providers/auth/AuthProvider";
 import { useModal } from "@/providers/app/ModalProvider";
+import { internalApi } from "@/http/axios/api";
 
 interface Props {
-  src: string;
+  item_id: string;
 }
 
-const VideoPlayer: React.FC<Props> = ({ src }) => {
+const VideoPlayer: React.FC<Props> = ({ item_id }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const playerRef = useRef<any>(null);
   const tentativasRef = useRef(0);
@@ -19,9 +20,16 @@ const VideoPlayer: React.FC<Props> = ({ src }) => {
 
   const [isRefreshing, setIsRefreshing] = useState(true);
   const [checkUser, setCheckUser] = useState(false);
+  const [src, setUrl] = useState("");
 
   const { userLogged } = useAuth();
   const { handleOpenModal } = useModal();
+
+  useEffect(() => {
+    internalApi.get(`/streams/watch/${item_id}`).then((e) => {
+      setUrl(e.data.url);
+    });
+  }, []);
 
   useEffect(() => {
     if (checkUser) {
@@ -43,11 +51,16 @@ const VideoPlayer: React.FC<Props> = ({ src }) => {
     console.log(`Tentando reconectar... tentativa ${tentativasRef.current}`);
 
     if (playerRef.current) {
-      setIsRefreshing(true);
-      playerRef.current.reset();
-      playerRef.current.src({ src, type: "application/x-mpegURL" });
-      playerRef.current.load();
-      playerRef.current.play().catch(() => {});
+      setTimeout(async () => {
+        setIsRefreshing(true);
+        const res = await internalApi.get(`/streams/watch/${item_id}`);
+        const newSrc = res.data.url;
+
+        playerRef.current.reset();
+        playerRef.current.src({ src: newSrc, type: "application/x-mpegURL" });
+        playerRef.current.load();
+        playerRef.current.play().catch(() => {});
+      }, INTERVALO_RECONEXAO);
     }
   };
 
@@ -111,11 +124,11 @@ const VideoPlayer: React.FC<Props> = ({ src }) => {
         const isPlaying = !playerRef.current.paused();
 
         if ((duration === Infinity || duration === 0) && isPlaying) {
-          console.log("🟢 Transmissão ao vivo ativa e em reprodução.");
+          //  console.log("🟢 Transmissão ao vivo ativa e em reprodução.");
         } else if (isPlaying && isFinite(duration)) {
-          console.warn(
+          /*console.warn(
             "⚠️ Possível interrupção na transmissão. Tentando reconectar..."
-          );
+          );*/
           reconnect();
         }
       }
