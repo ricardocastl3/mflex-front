@@ -109,10 +109,14 @@ export default function AuthProvider({
       if (
         LocalStorageServices.getKey(LocalStorageServices.keys.redirectToPricing)
       ) {
-        LocalStorageServices.delKey(
-          LocalStorageServices.keys.redirectToPricing
-        );
+        LocalStorageServices.resetAllKeys();
         window.location.href = `/${langByCookies}/pricing`;
+        return;
+      }
+
+      if (LocalStorageServices.getKey(LocalStorageServices.keys.watchTv)) {
+        LocalStorageServices.resetAllKeys();
+        window.location.href = `/${langByCookies}/flex-tv`;
         return;
       }
 
@@ -139,6 +143,7 @@ export default function AuthProvider({
 
   function handleRedirectToSign() {
     localStorage.removeItem(ECOOKIES.localStorage.subscriber);
+    LocalStorageServices.resetAllKeys();
     window.location.href = "/" + langByCookies + "/sign-in";
   }
 

@@ -23,6 +23,13 @@ export default function WatchTVModal() {
             <div className="flex items-center gap-2 dark:text-white">
               <h3 className="text-normal font-bold dark:text-white">
                 <CTranslateTo eng="Watch TV - Online" pt="TV - Online" />
+                <b>
+                  {` - ${selectedFlexTV?.name
+                    .replace("HD", "")
+                    .replace("FHD", "")
+                    .replace("PT|", "")
+                    .replace("BR|", "")}`}
+                </b>
               </h3>
             </div>
           </div>

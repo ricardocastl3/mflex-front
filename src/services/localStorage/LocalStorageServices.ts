@@ -3,10 +3,16 @@ import { ECOOKIES } from "@/utils/enums";
 class LocalStorageServices {
   keys = {
     redirectToPricing: "rc-pricing",
+    watchTv: "rc-watch-tv",
   };
 
-  delKey(key:string){
-    localStorage.removeItem(key)
+  delKey(key: string) {
+    localStorage.removeItem(key);
+  }
+
+  resetAllKeys() {
+    localStorage.removeItem(this.keys.redirectToPricing);
+    localStorage.removeItem(this.keys.watchTv);
   }
 
   setKey(key: string, data: any) {

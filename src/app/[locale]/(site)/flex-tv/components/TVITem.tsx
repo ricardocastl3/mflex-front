@@ -9,12 +9,22 @@ import { langByCookies } from "@/http/axios/api";
 import { useAuth } from "@/providers/auth/AuthProvider";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import Link from "next/link";
+import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 export default function TVItem({ item }: { item: ITVChannelSafed }) {
   const { handleSelectFlexTV } = useFlexTVProvider();
   const { handleOpenModal } = useModal();
   const { currentSubscription } = useAuth();
+
+  function handleSubscribe() {
+    LocalStorageServices.resetAllKeys();
+    LocalStorageServices.setKey(
+      LocalStorageServices.keys.watchTv,
+      `wt_${new Date().getTime()}`
+    );
+
+    window.location.href = `/${langByCookies}/pricing`;
+  }
 
   return (
     <BaseBox className="p-3 flex w-full flex-col justify-between gap-4">
@@ -52,23 +62,22 @@ export default function TVItem({ item }: { item: ITVChannelSafed }) {
         </AuSoftUI.UI.Button>
       )}
       {!item.me && !item.public && (
-        <Link href={`/${langByCookies}/pricing`} className="w-full">
-          <AuSoftUI.UI.Button
-            variant={"primary"}
-            className="items-center justify-center w-full"
-            size={"sm"}
-          >
-            <ReactIcons.MdIcon.MdTv size={14} />
+        <AuSoftUI.UI.Button
+          onClick={handleSubscribe}
+          variant={"primary"}
+          className="items-center justify-center w-full"
+          size={"sm"}
+        >
+          <ReactIcons.MdIcon.MdTv size={14} />
 
-            {currentSubscription && (
-              <CTranslateTo eng="Updagre Plan" pt="Atualizar plano" />
-            )}
+          {currentSubscription && (
+            <CTranslateTo eng="Upgrade Plan" pt="Atualizar plano" />
+          )}
 
-            {!currentSubscription && (
-              <CTranslateTo eng="Subscribe Plan" pt="Assinar um plano" />
-            )}
-          </AuSoftUI.UI.Button>
-        </Link>
+          {!currentSubscription && (
+            <CTranslateTo eng="Subscribe Plan" pt="Assinar um plano" />
+          )}
+        </AuSoftUI.UI.Button>
       )}
     </BaseBox>
   );

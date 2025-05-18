@@ -8,7 +8,6 @@ import { langByCookies } from "@/http/axios/api";
 import Link from "next/link";
 import AAuSoftLogo from "@/@components/(ausoft)/AAuSoftLogo";
 import CTranslate from "@/@components/(translation)/CCTranslate/CTranslate";
-import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 
 export default function AHeader() {
   const { openBanner } = useAppProvider();

@@ -4,7 +4,6 @@ import { AuSoftUI } from "@/@components/(ausoft)";
 import { useCheckoutProvider } from "@/providers/app/CheckoutProvider";
 import { useState } from "react";
 import { ReactIcons } from "@/utils/icons";
-import { useRouter } from "next/navigation";
 import { langByCookies } from "@/http/axios/api";
 
 import BaseModal from "../base";
@@ -13,6 +12,7 @@ import Image from "next/image";
 import ReferencePayment from "./reference";
 import MulticaixaPayment from "./multicaixa";
 import PayPayPayment from "./paypay";
+import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 export default function AngolanPaymentDetailsModal() {
   //Contexts
@@ -30,7 +30,16 @@ export default function AngolanPaymentDetailsModal() {
         itemPriceIdCheckoutSelected &&
         itemPriceIdCheckoutSelected.type == "subs"
       ) {
-        window.location.href = "/" + langByCookies;
+        if (selectedAngolanMethod != "reference")
+          if (LocalStorageServices.getKey(LocalStorageServices.keys.watchTv)) {
+            LocalStorageServices.resetAllKeys();
+            window.location.href = "/" + langByCookies + "/flex-tv";
+            return;
+          } else {
+            window.location.href = "/" + langByCookies;
+            return;
+          }
+        handleOpenModal("");
       } else {
         window.location.href = "/" + langByCookies + "/app/tickets";
       }

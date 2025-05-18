@@ -2,6 +2,7 @@ import { AuSoftUI } from "@/@components/(ausoft)";
 import { BaseBox } from "@/@components/(box)/BaseBox";
 import { ReactIcons } from "@/utils/icons";
 import { Dispatch, SetStateAction } from "react";
+import { useAuth } from "@/providers/auth/AuthProvider";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 
@@ -15,7 +16,7 @@ export default function TVFilterBox({
   return (
     <BaseBox className="p-4 md:w-auto w-full">
       <div
-        className={`md:overflow-x-visible overflow-x-auto flex items-center md:w-[88vw] w-full py-1 gap-4 px-[0.1rem]`}
+        className={`overflow-x-auto flex items-center md:w-[88vw] w-full py-1 gap-4 px-[0.1rem]`}
       >
         <div className="flex items-center md:pr-4 pr-4 gap-4">
           <AuSoftUI.UI.Button
@@ -36,7 +37,7 @@ export default function TVFilterBox({
             className="items-center w-fit justify-center"
           >
             <ReactIcons.CgIcon.CgTv size={15} />
-            <CTranslateTo eng="Active" pt="Ativos" />
+            <CTranslateTo eng="My Channels" pt="Meus Canais" />
           </AuSoftUI.UI.Button>
           <AuSoftUI.UI.Button
             onClick={() => {
@@ -46,7 +47,7 @@ export default function TVFilterBox({
             className="items-center w-fit justify-center"
           >
             <ReactIcons.CgIcon.CgTv size={15} />
-            <CTranslateTo eng="No active" pt="Não ativos" />
+            <CTranslateTo eng="Other Channels" pt="Outros Canais" />
           </AuSoftUI.UI.Button>
         </div>
       </div>

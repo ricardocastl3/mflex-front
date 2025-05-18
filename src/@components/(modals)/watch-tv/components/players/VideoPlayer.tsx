@@ -1,7 +1,10 @@
-import { ReactIcons } from "@/utils/icons";
 import React, { useRef, useEffect, useState } from "react";
 import videojs from "video.js";
 import "video.js/dist/video-js.css";
+
+import { ReactIcons } from "@/utils/icons";
+import { useAuth } from "@/providers/auth/AuthProvider";
+import { useModal } from "@/providers/app/ModalProvider";
 
 interface Props {
   src: string;
@@ -12,6 +15,21 @@ const VideoPlayer: React.FC<Props> = ({ src }) => {
   const playerRef = useRef<any>(null);
 
   const [isRefreshing, setIsRefreshing] = useState(true);
+  const [checkUser, setCheckUser] = useState(false);
+
+  // Context
+  const { userLogged } = useAuth();
+  const { handleOpenModal } = useModal();
+
+  useEffect(() => {
+    if (checkUser) {
+      setTimeout(() => {
+        if (!userLogged) {
+          handleOpenModal("watch-no-ads");
+        }
+      }, 60000);
+    }
+  }, [checkUser]);
 
   useEffect(() => {
     if (videoRef.current && !playerRef.current) {
@@ -37,6 +55,7 @@ const VideoPlayer: React.FC<Props> = ({ src }) => {
       });
 
       playerRef.current.on("playing", () => {
+        setCheckUser(true);
         setIsRefreshing(false);
       });
     }

@@ -47,36 +47,11 @@ export default function PodFlexSection() {
 
             {!isLoadingAllPodcasts && (
               <>
-                <SubscribeBanner
-                  desc_en="Subscribe now and be the first to enjoy the best podcasts!"
-                  desc_pt="Inscreva-se agora e seja o primeiro a ouvir os melhores podcasts!"
-                  title_en="Welcome to Your Podcast Hub! 🎧"
-                  title_pt="Bem-vindo ao nosso mundo de podcasts! 🎧"
-                />
-
-                {!LocalStorageServices.hasSubscriber() && (
-                  <>
-                    {allPodcasts.map((news, i) => {
-                      return (
-                        i < 2 && (
-                          <PodFlexCard key={i} podcast={news} index={i} />
-                        )
-                      );
-                    })}
-                  </>
-                )}
-
-                {LocalStorageServices.hasSubscriber() && (
-                  <>
-                    {allPodcasts.map((news, i) => {
-                      return (
-                        i < 3 && (
-                          <PodFlexCard key={i} podcast={news} index={i} />
-                        )
-                      );
-                    })}
-                  </>
-                )}
+                {allPodcasts.map((news, i) => {
+                  return (
+                    i < 3 && <PodFlexCard key={i} podcast={news} index={i} />
+                  );
+                })}
               </>
             )}
           </div>

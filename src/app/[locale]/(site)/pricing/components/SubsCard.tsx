@@ -44,6 +44,7 @@ export default function SubsCard({
   function handleSubscribe() {
     try {
       if (!userLogged) {
+        LocalStorageServices.resetAllKeys();
         LocalStorageServices.setKey(
           LocalStorageServices.keys.redirectToPricing,
           new Date().getTime()
