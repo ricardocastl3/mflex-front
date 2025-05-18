@@ -13,11 +13,13 @@ interface Props {
 const VideoPlayer: React.FC<Props> = ({ src }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const playerRef = useRef<any>(null);
+  const tentativasRef = useRef(0);
+  const MAX_TENTATIVAS = 10;
+  const INTERVALO_RECONEXAO = 3000; // 3 segundos
 
   const [isRefreshing, setIsRefreshing] = useState(true);
   const [checkUser, setCheckUser] = useState(false);
 
-  // Context
   const { userLogged } = useAuth();
   const { handleOpenModal } = useModal();
 
@@ -30,6 +32,27 @@ const VideoPlayer: React.FC<Props> = ({ src }) => {
       }, 60000);
     }
   }, [checkUser]);
+
+  const reconnect = () => {
+    if (tentativasRef.current >= MAX_TENTATIVAS) {
+      console.warn("Número máximo de tentativas de reconexão atingido.");
+      return;
+    }
+
+    tentativasRef.current += 1;
+    console.log(`Tentando reconectar... tentativa ${tentativasRef.current}`);
+
+    if (playerRef.current) {
+      setIsRefreshing(true);
+      playerRef.current.reset();
+      playerRef.current.src({
+        src,
+        type: "application/x-mpegURL",
+      });
+      playerRef.current.load();
+      playerRef.current.play().catch(() => {});
+    }
+  };
 
   useEffect(() => {
     if (videoRef.current && !playerRef.current) {
@@ -51,13 +74,23 @@ const VideoPlayer: React.FC<Props> = ({ src }) => {
       });
 
       playerRef.current.on("error", () => {
+        console.error("Erro no vídeo. Tentando reconectar...");
         setIsRefreshing(true);
+        setTimeout(reconnect, INTERVALO_RECONEXAO);
       });
 
       playerRef.current.on("playing", () => {
         setCheckUser(true);
         setIsRefreshing(false);
+        tentativasRef.current = 0; // Resetar tentativas ao voltar
       });
+
+      /* playerRef.current.on("loadedmetadata", () => {
+        playerRef.current.on("durationchange", () => {
+          const duration = playerRef.current.duration();
+          console.log("Duration:", duration);
+        });
+      }); */
     }
 
     return () => {
@@ -71,10 +104,7 @@ const VideoPlayer: React.FC<Props> = ({ src }) => {
   return (
     <div className="relative w-full h-full">
       {isRefreshing && (
-        <div
-          className="
-        absolute inset-0 flex justify-center items-center z-20 bg-black"
-        >
+        <div className="absolute inset-0 flex justify-center items-center z-20 bg-black">
           <ReactIcons.CgIcon.CgSpinner
             size={25}
             className="text-white animate-spin"
