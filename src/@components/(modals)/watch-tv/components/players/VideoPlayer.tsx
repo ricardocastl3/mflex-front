@@ -42,15 +42,13 @@ const VideoPlayer: React.FC<Props> = ({ src }) => {
     tentativasRef.current += 1;
     console.log(`Tentando reconectar... tentativa ${tentativasRef.current}`);
 
-    setTimeout(() => {
-      if (playerRef.current) {
-        setIsRefreshing(true);
-        playerRef.current.reset();
-        playerRef.current.src({ src, type: "application/x-mpegURL" });
-        playerRef.current.load();
-        playerRef.current.play().catch(() => {});
-      }
-    }, INTERVALO_RECONEXAO);
+    if (playerRef.current) {
+      setIsRefreshing(true);
+      playerRef.current.reset();
+      playerRef.current.src({ src, type: "application/x-mpegURL" });
+      playerRef.current.load();
+      playerRef.current.play().catch(() => {});
+    }
   };
 
   useEffect(() => {
@@ -72,55 +70,28 @@ const VideoPlayer: React.FC<Props> = ({ src }) => {
         ],
       });
 
-      /*
-      let duracaoAnterior = Infinity;
+      const player = playerRef.current;
 
-      const liveReconnecting = () => {
-        reconnect();
-      };
-
-      playerRef.current.on("durationchange", () => {
-        const novaDuracao = playerRef.current.duration();
-
-        if (
-          duracaoAnterior === Infinity &&
-          isFinite(novaDuracao) &&
-          novaDuracao !== 0
-        ) {
-          liveReconnecting();
+      // Listener para o evento durationchange
+      player.on("durationchange", () => {
+        const duration = player.duration();
+        if (isFinite(duration) && duration > 0) {
+          console.log("⚠️ Transmissão ao vivo encerrada.");
+          reconnect();
         }
-
-        duracaoAnterior = novaDuracao;
       });
-*/
 
-      playerRef.current.on("error", () => {
+      // Listener para erros
+      player.on("error", () => {
         console.error("Erro no vídeo. Tentando reconectar...");
         reconnect();
       });
 
-      playerRef.current.on("playing", () => {
+      // Listener para quando o vídeo começa a tocar
+      player.on("playing", () => {
         setCheckUser(true);
         setIsRefreshing(false);
-        tentativasRef.current = 0; // resetar tentativas ao voltar
-      });
-
-      playerRef.current.on("error", () => {
-        console.error("Erro no vídeo. Tentando reconectar...");
-        setIsRefreshing(true);
-        setTimeout(() => {
-          if (playerRef.current) {
-            playerRef.current.reset();
-            playerRef.current.src({ src, type: "application/x-mpegURL" });
-            playerRef.current.load();
-            playerRef.current.play().catch(() => {});
-          }
-        }, 3000);
-      });
-
-      playerRef.current.on("playing", () => {
-        setCheckUser(true);
-        setIsRefreshing(false);
+        tentativasRef.current = 0; // Resetar tentativas ao voltar
       });
     }
 
@@ -137,18 +108,21 @@ const VideoPlayer: React.FC<Props> = ({ src }) => {
       if (
         playerRef.current &&
         typeof playerRef.current.duration === "function" &&
-        typeof playerRef.current.playing === "function"
+        typeof playerRef.current.paused === "function"
       ) {
-        const duracao = playerRef.current.duration();
-        const isPlaying = playerRef.current.playing();
+        const duration = playerRef.current.duration();
+        const isPlaying = !playerRef.current.paused();
 
-        if ((duracao === Infinity || duracao === 0) && isPlaying) {
+        if ((duration === Infinity || duration === 0) && isPlaying) {
           console.log("🟢 Transmissão ao vivo ativa e em reprodução.");
-        } else {
-          reconnect(); // se necessário
+        } else if (isPlaying && isFinite(duration)) {
+          console.warn(
+            "⚠️ Possível interrupção na transmissão. Tentando reconectar..."
+          );
+          reconnect();
         }
       }
-    }, INTERVALO_RECONEXAO); // a cada 5 segundos
+    }, INTERVALO_RECONEXAO);
 
     return () => clearInterval(interval);
   }, []);
