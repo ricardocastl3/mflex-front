@@ -1,4 +1,4 @@
-import { ITVChannelSafed } from "@/http/interfaces/models/ITVChannel";
+import { ITVChannelSafed } from "@/http/interfaces/models/tv/ITVChannel";
 
 import VideoPlayer from "./players/VideoPlayer";
 

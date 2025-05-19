@@ -47,6 +47,15 @@ export default function MobileMoreSiteOptions() {
             <LinkButton
               isExpanded={true}
               isPublic
+              Icon={ReactIcons.Io5Icon.IoFootball}
+              href="games"
+              isSelected={currentAppPageUrl == "games"}
+              title_en="Games"
+              title_pt="Jogos"
+            />
+            <LinkButton
+              isExpanded={true}
+              isPublic
               Icon={ReactIcons.MdIcon.MdTv}
               href="flex-tv"
               isSelected={currentAppPageUrl == "flex-tv"}
@@ -56,11 +65,11 @@ export default function MobileMoreSiteOptions() {
             <LinkButton
               isExpanded={true}
               isPublic
-              Icon={ReactIcons.Io5Icon.IoFootball}
-              href="games"
-              isSelected={currentAppPageUrl == "games"}
-              title_en="Games"
-              title_pt="Jogos"
+              Icon={ReactIcons.PiIcon.PiPlay}
+              href="flex-tv"
+              isSelected={currentAppPageUrl == "flex-tv"}
+              title_en="Flex Movie"
+              title_pt="Flex Movie"
             />
           </div>
         </div>

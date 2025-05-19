@@ -1,4 +1,4 @@
-import { IPlan } from "./IPlan";
+import { IPlan } from "../IPlan";
 
 export interface ITVChannel {
   id: string;
@@ -7,13 +7,14 @@ export interface ITVChannel {
   logo?: string;
   available: boolean;
   is_public: boolean;
-  st: number
+  is_live: boolean;
+  st: number;
   description?: string;
   plan: IPlan;
   plan_id: string;
 }
 
-export interface ITVCategoryChannels {
+export interface ITVCategoryChannelsAPI {
   me: {
     id: string;
     name: string;
@@ -37,8 +38,9 @@ export interface ITVChannelSafed {
   id: string;
   name: string;
   logo?: string;
-  st: number
+  st: number;
   me: boolean;
+  is_live: boolean;
   public: boolean;
   plan: IPlan;
 }

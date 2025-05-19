@@ -143,7 +143,6 @@ export default function AuthProvider({
 
   function handleRedirectToSign() {
     localStorage.removeItem(ECOOKIES.localStorage.subscriber);
-    LocalStorageServices.resetAllKeys();
     window.location.href = "/" + langByCookies + "/sign-in";
   }
 

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ReactIcons } from "@/utils/icons";
 import { ITVCategorySafed } from "@/http/interfaces/models/tv/ITVChannel";
 
-import TVItem from "./TVITem";
+import TVItem from "./MovieITem";
 
 export default function TVCategorysItem({
   category,
@@ -38,7 +38,7 @@ export default function TVCategorysItem({
         <motion.div
           initial={{ translateY: "-0.5rem" }}
           animate={{ translateY: "0rem" }}
-          className="w-full z-0 rounded-b-xl grid md:grid-cols-4 grid-cols-1 gap-4 top-[3rem] px-4 pt-4 pb-4 text-base dark:bg-ausoft-slate-900 bg-white/50 text-slate-800 dark:text-slate-400"
+          className="w-full z-0 rounded-b-xl grid md:grid-cols-5 grid-cols-1 gap-4 top-[3rem] px-4 md:py-7 py-4 text-base dark:bg-ausoft-slate-900 bg-white/50 text-slate-800 dark:text-slate-400"
         >
           {category.tv.map((item, i) => {
             return <TVItem index={i} key={i} item={item} />;

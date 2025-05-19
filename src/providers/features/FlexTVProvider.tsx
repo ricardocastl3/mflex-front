@@ -1,7 +1,7 @@
 "use client";
 
-import { ITVChannelSafed } from "@/http/interfaces/models/ITVChannel";
-import {  } from "@/http/interfaces/models/IWatchTV";
+import { ITVChannelSafed } from "@/http/interfaces/models/tv/ITVChannel";
+import {} from "@/http/interfaces/models/IWatchTV";
 import { createContext, ReactNode, useContext, useState } from "react";
 
 interface IWatchTVProviderProps {

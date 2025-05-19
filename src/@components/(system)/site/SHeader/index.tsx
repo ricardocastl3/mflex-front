@@ -14,6 +14,8 @@ import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CTranslate from "@/@components/(translation)/CCTranslate/CTranslate";
 import LinkHeader from "./components/LinkHeader";
 import ServicesDropdown from "./components/services";
+import FlexTvDropdown from "./components/flex-tv";
+import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 export default function SHeader() {
   // Contexts
@@ -80,14 +82,9 @@ export default function SHeader() {
             title_en="PodCasts"
             title_pt="PodCasts"
           />
-          <LinkHeader
-            isSelected={currentPageByUrl == "flex-tv"}
-            isScrolled={isScrolled}
-            Icon={ReactIcons.BiIcon.BiTv}
-            action="flex-tv"
-            title_en="Flex TV"
-            title_pt="Flex TV"
-          />
+
+          <FlexTvDropdown isScrolled={isScrolled} />
+
           <LinkHeader
             isSelected={currentPageByUrl == "games"}
             isScrolled={isScrolled}
@@ -112,7 +109,10 @@ export default function SHeader() {
           {!userLogged && !isLoadingUserData && (
             <AuSoftUI.UI.Button
               variant={"primary"}
-              onClick={() => handleRedirectToSign()}
+              onClick={() => {
+                LocalStorageServices.resetAllKeys();
+                handleRedirectToSign();
+              }}
               className="rounded-full"
             >
               <ReactIcons.AiICon.AiOutlineUser size={18} />

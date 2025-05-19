@@ -11,10 +11,10 @@ export async function generateMetadata({
   const pars = await params;
 
   return LocalePageServices.metadatas({
-    titleENG: "Flex TV 📺",
-    titlePT: "Flex TV 📺",
-    descriptionENG: "Watch TV anywhere where you want",
-    descriptionPT: "Assista ao seus canais favoritos onde você quisers",
+    titleENG: "Flex Movie  🎬",
+    titlePT: "Flex Movie 🎬",
+    descriptionENG: "Watch your favourite movies anywhere where you want",
+    descriptionPT: "Assista aos seus filmes favoritos onde você quisers",
     params: pars.locale,
   });
 }

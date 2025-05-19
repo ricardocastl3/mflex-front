@@ -4,20 +4,21 @@ import { useAuth } from "@/providers/auth/AuthProvider";
 import { useEffect, useState } from "react";
 import { ITVCategorySafed } from "@/http/interfaces/models/tv/ITVChannel";
 import { AuSoftUI } from "@/@components/(ausoft)";
+import { ITVCategoryMovieSafed } from "@/http/interfaces/models/tv/ITVMovie";
 
-import HeroTV from "./components/Hero";
-import useMyChannels from "@/hooks/api/flex-tv/useMyChannels";
-import TVCategorysItem from "./components/TVCategorysItem";
+import HeroMovie from "./components/Hero";
+import TVCategorysItem from "./components/MovieCategorysItem";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import TVFilterBox from "./components/TVFilterBox";
+import TVFilterBox from "./components/MovieFilterBox";
+import useMyMovies from "@/hooks/api/flex-tv/useMyMovies";
 
-export default function NewsPage() {
+export default function FlexMoviePage() {
   const { isLoadingCurrentSubsUsage } = useAuth();
 
-  const { allTVChannels, handleSeachByName, isLoadingAllTVChannels } =
-    useMyChannels();
+  const { allTVMovies, handleSeachByName, isLoadingAllTVMovies } =
+    useMyMovies();
 
-  const [newCategory, setNewCategory] = useState<ITVCategorySafed[]>([]);
+  const [newCategory, setNewCategory] = useState<ITVCategoryMovieSafed[]>([]);
   const [previousNewCategory, setPreviousNewCategory] = useState<
     ITVCategorySafed[]
   >([]);
@@ -27,18 +28,18 @@ export default function NewsPage() {
   const [selectedTypeChannel, setSelectedTypeChannel] = useState("all");
 
   useEffect(() => {
-    if (isLoadingAllTVChannels) return;
-    if (!allTVChannels) return;
+    if (isLoadingAllTVMovies) return;
+    if (!allTVMovies) return;
 
     setSelectedTypeChannel("all");
 
-    const meRawCategory = allTVChannels.me;
-    const otherRawCategory = allTVChannels.others;
+    const meRawCategory = allTVMovies.me;
+    const otherRawCategory = allTVMovies.others;
 
-    const safedCategory: ITVCategorySafed[] = [];
+    const safedCategory: ITVCategoryMovieSafed[] = [];
 
     meRawCategory.forEach((cat) => {
-      if (cat.tv_channels.length <= 0) return;
+      if (cat.tv_movies.length <= 0) return;
 
       const find = safedCategory.find((i) => i.id == cat.id);
 
@@ -48,13 +49,13 @@ export default function NewsPage() {
           name: cat.name,
           tv: [
             {
-              id: cat.tv_channels[0].id,
-              st: cat.tv_channels[0].st,
-              logo: cat.tv_channels[0].logo,
-              name: cat.tv_channels[0].name,
-              plan: cat.tv_channels[0].plan,
-              public: cat.tv_channels[0].is_public,
-              is_live: cat.tv_channels[0].is_live,
+              id: cat.tv_movies[0].id,
+              st: cat.tv_movies[0].st,
+              logo: cat.tv_movies[0].thumbnail,
+              name: cat.tv_movies[0].name,
+              plan: cat.tv_movies[0].plan,
+              public: cat.tv_movies[0].is_public,
+              is_live: cat.tv_movies[0].is_live,
               me: true,
             },
           ],
@@ -62,17 +63,17 @@ export default function NewsPage() {
 
         const updateCategory = safedCategory.find((i) => i.id == cat.id);
         if (updateCategory)
-          cat.tv_channels.forEach((tv) => {
+          cat.tv_movies.forEach((tv) => {
             const findTV = updateCategory.tv.find((i) => i.id == cat.id);
             if (!findTV) {
               updateCategory.tv.push({
                 id: tv.id,
                 st: tv.st,
-                logo: tv.logo,
+                logo: tv.thumbnail,
                 name: tv.name,
                 plan: tv.plan,
-                is_live: tv.is_live,
                 public: tv.is_public,
+                is_live: tv.is_live,
                 me: true,
               });
             }
@@ -81,21 +82,21 @@ export default function NewsPage() {
     });
 
     otherRawCategory.forEach((cat) => {
-      if (cat.tv_channels.length <= 0) return;
+      if (cat.tv_movies.length <= 0) return;
 
       const findCategory = safedCategory.find((i) => i.id == cat.id);
       if (findCategory) {
-        cat.tv_channels.forEach((tv) => {
+        cat.tv_movies.forEach((tv) => {
           const findTV = findCategory.tv.find((i) => i.st == tv.st);
           if (!findTV)
             findCategory.tv.push({
               id: tv.id,
-              logo: tv.logo,
+              logo: tv.thumbnail,
               name: tv.name,
-              is_live: tv.is_live,
               st: tv.st,
               plan: tv.plan,
               public: tv.is_public,
+              is_live: tv.is_live,
               me: false,
             });
         });
@@ -105,13 +106,13 @@ export default function NewsPage() {
           name: cat.name,
           tv: [
             {
-              id: cat.tv_channels[0].id,
-              logo: cat.tv_channels[0].logo,
-              name: cat.tv_channels[0].name,
-              is_live: cat.tv_channels[0].is_live,
-              st: cat.tv_channels[0].st,
-              plan: cat.tv_channels[0].plan,
-              public: cat.tv_channels[0].is_public,
+              id: cat.tv_movies[0].id,
+              logo: cat.tv_movies[0].thumbnail,
+              name: cat.tv_movies[0].name,
+              st: cat.tv_movies[0].st,
+              plan: cat.tv_movies[0].plan,
+              public: cat.tv_movies[0].is_public,
+              is_live: cat.tv_movies[0].is_live,
               me: false,
             },
           ],
@@ -119,17 +120,17 @@ export default function NewsPage() {
 
         const updateCategory = safedCategory.find((i) => i.id == cat.id);
         if (updateCategory)
-          cat.tv_channels.forEach((tv) => {
+          cat.tv_movies.forEach((tv) => {
             const findTV = updateCategory.tv.find((i) => i.st == tv.st);
             if (!findTV) {
               updateCategory.tv.push({
                 id: tv.id,
-                logo: tv.logo,
+                logo: tv.thumbnail,
                 name: tv.name,
-                is_live: tv.is_live,
                 plan: tv.plan,
                 st: tv.st,
                 public: tv.is_public,
+                is_live: tv.is_live,
                 me: false,
               });
             }
@@ -139,7 +140,7 @@ export default function NewsPage() {
 
     setNewCategory(safedCategory);
     setPreviousNewCategory(safedCategory);
-  }, [allTVChannels, isLoadingAllTVChannels]);
+  }, [allTVMovies, isLoadingAllTVMovies]);
 
   useEffect(() => {
     if (selectedTypeChannel == "all") setNewCategory(previousNewCategory);
@@ -170,18 +171,15 @@ export default function NewsPage() {
 
   return (
     <div className="flex flex-col gap-4">
-      <HeroTV />
+      <HeroMovie />
       <div className="flex flex-col gap-4 relative">
         <div className="z-20 flex w-full items-center justify-center absolute -top-28 flex-col gap-4">
           <div className="w-full justify-center text-center flex flex-col gap-2">
             <h4 className="text-white font-bold md:text-2xl text-xl">
-              <CTranslateTo eng="Flex TV 📺" pt="Flex TV 📺" />
+              <CTranslateTo eng="Flex Movie 🎬" pt="Flex Movie 🎬" />
             </h4>
             <h2 className="text-white text-base">
-              <CTranslateTo
-                eng="Search for the channel name"
-                pt="Procure pelo nome do seu canal"
-              />
+              <CTranslateTo eng="Search for the movie that you want" pt="Pesquise pelo filme que deseja" />
             </h2>
           </div>
           <AuSoftUI.UI.TextField.Default
@@ -199,7 +197,7 @@ export default function NewsPage() {
         </div>
 
         <div className="flex flex-col gap-4 md:p-12 m-6">
-          {(isLoadingAllTVChannels || isLoadingCurrentSubsUsage) && (
+          {(isLoadingAllTVMovies || isLoadingCurrentSubsUsage) && (
             <div className="flex flex-col gap-4">
               {Array.from({ length: 7 }).map((_, i) => {
                 return (
@@ -211,7 +209,7 @@ export default function NewsPage() {
               })}
             </div>
           )}
-          {!isLoadingAllTVChannels && newCategory.length > 0 && (
+          {!isLoadingAllTVMovies && newCategory.length > 0 && (
             <>
               <TVFilterBox
                 setValue={setSelectedTypeChannel}
@@ -223,46 +221,21 @@ export default function NewsPage() {
             </>
           )}
 
-          {!isLoadingAllTVChannels && newCategory.length <= 0 && (
+          {!isLoadingAllTVMovies && newCategory.length <= 0 && (
             <div className="animate-fade flex items-center w-full h-full justify-center md:mt-16 mt-12 md:mb-24 mb-12">
               <AuSoftUI.Component.ListEmpty
                 action_en="Get In Touch"
                 action_pt="Entrar em contacto"
                 action_url="https://wa.me/244954974069?text=Olá, preciso de ajuda com a plataforma"
-                description_en="OOops! The channels were not loaded correctly, please refresh the page. If the error persists, please contact us!"
-                description_pt="OOops! Os canais não foram carregados corretamente, atualize a página. Caso o erro persista, entre em contacto conosco!"
-                title_en="Unavailable Channels"
-                title_pt="Canais Indisponíveis"
+                description_en="OOops! The movies were not loaded correctly, please refresh the page. If the error persists, please contact us!"
+                description_pt="OOops! Os filmes não foram carregados corretamente, atualize a página. Caso o erro persista, entre em contacto conosco!"
+                title_en="Unavailable Movies"
+                title_pt="Filmes Indisponíveis"
                 action_blank
                 hasAction
               />
             </div>
           )}
-
-          {/*         <TVItem
-            item={{
-              channel: "TV Zimbo",
-              id: "ddsd",
-              image: localImages.logos.mflex.src,
-              url: `http://localhost:3080/api/streams/pbc/lg3026f-3d08-4ae1-a2cd-f35b0a98791a`,
-            }}
-          />
-          <TVItem
-            item={{
-              channel: "TV Vitoria",
-              id: "ddsd",
-              image: localImages.logos.mflex.src,
-              url: "https://stmv1.srvif.com/tvvitoriamz/tvvitoriamz/playlist.m3u8",
-            }}
-          />
-          <TVItem
-            item={{
-              channel: "Revry Brasil",
-              id: "ddsd",
-              image: localImages.logos.mflex.src,
-              url: "https://linear-181.frequency.stream/mt/brightcove/181/hls/master/playlist.m3u8",
-            }}
-          /> */}
         </div>
       </div>
     </div>
