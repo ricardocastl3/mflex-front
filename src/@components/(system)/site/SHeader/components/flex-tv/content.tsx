@@ -34,7 +34,7 @@ export default function CContentFlexTV({
         <Link
           href={`/${langByCookies}/flex-tv`}
           className={`${
-            currentPageByUrl == "services"
+            currentPageByUrl == "flex-tv"
               ? "dark:bg-yellow-800/50 bg-yellow-200/40"
               : "dark:hover:bg-yellow-800/50 hover:bg-yellow-200/40"
           } flex items-center gap-2 w-full md:py-2.5 py-4 px-4 dark:text-slate-100 rounded-full text-[0.85rem]`}
@@ -45,7 +45,7 @@ export default function CContentFlexTV({
         <Link
           href={`/${langByCookies}/flex-movie`}
           className={`${
-            currentPageByUrl == "about-us"
+            currentPageByUrl == "flex-movie"
               ? "dark:bg-yellow-800/50 bg-yellow-200/40"
               : "dark:hover:bg-yellow-800/50 hover:bg-yellow-200/40"
           }  flex items-center gap-2 w-full md:py-2.5 py-4 px-4 dark:text-slate-100 rounded-full text-[0.85rem]`}
