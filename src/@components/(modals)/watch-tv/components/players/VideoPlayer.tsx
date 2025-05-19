@@ -6,6 +6,7 @@ import { ReactIcons } from "@/utils/icons";
 import { useAuth } from "@/providers/auth/AuthProvider";
 import { useModal } from "@/providers/app/ModalProvider";
 import { internalApi } from "@/http/axios/api";
+import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 
 interface Props {
   item_id: string;
@@ -26,6 +27,7 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
   const { handleOpenModal } = useModal();
 
   useEffect(() => {
+    return;
     internalApi.get(`/streams/watch/${item_id}`).then((e) => {
       setInitialSrc(e.data.url);
     });
@@ -144,11 +146,19 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
   return (
     <div className="relative w-full h-full">
       {isRefreshing && (
-        <div className="absolute inset-0 flex justify-center items-center z-20 bg-black">
-          <ReactIcons.CgIcon.CgSpinner
-            size={25}
-            className="text-white animate-spin"
-          />
+        <div className="absolute inset-0 flex flex-col gap-2 justify-center items-center z-20 bg-black">
+          <div className="flex flex-col gap-4 md:w-[50vw] w-[90vw] items-center justify-center text-center">
+            <ReactIcons.CgIcon.CgSpinner
+              size={35}
+              className="text-white animate-spin"
+            />
+            <h1 className="text-white text-base">
+              <CTranslateTo
+                eng="The broadcast is under maintenance, we will resume soon..."
+                pt="A transmissão está em manutenção, em breve retomaremos..."
+              />
+            </h1>
+          </div>
         </div>
       )}
       <div data-vjs-player>
