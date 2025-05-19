@@ -22,7 +22,11 @@ export default function TechSupport() {
       !path.startsWith("/en/app") &&
       !path.startsWith("/pt/app") &&
       !path.startsWith("/pt/games") &&
-      !path.startsWith("/en/games")
+      !path.startsWith("/en/games") &&
+      !path.startsWith("/pt/flex-tv") &&
+      !path.startsWith("/en/flex-tv") &&
+      !path.startsWith("/pt/flex-movie") &&
+      !path.startsWith("/en/flex-movie")
     ) {
       return (
         <div

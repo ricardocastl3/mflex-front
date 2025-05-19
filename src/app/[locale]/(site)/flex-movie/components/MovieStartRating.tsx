@@ -36,7 +36,7 @@ export default function MovieStartRating({ item }: MovieStartRatingProps) {
         })}
       </div>
       <span className="mt-0.5 md:text-[0.88rem] text-[0.9rem] dark:text-gray-400 text-slate-600">
-        {`${rating}/10 `}
+        {`${rating.toFixed(1)}/10 `}
         <CTranslateTo eng="Rating" pt="Avaliação" />
       </span>
     </div>

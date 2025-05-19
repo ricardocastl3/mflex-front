@@ -4,18 +4,22 @@ import { useAuth } from "@/providers/auth/AuthProvider";
 import { useEffect, useState } from "react";
 import { ITVCategorySafed } from "@/http/interfaces/models/tv/ITVChannel";
 import { AuSoftUI } from "@/@components/(ausoft)";
+import { ReactIcons } from "@/utils/icons";
+import { useAppProvider } from "@/providers/app/AppProvider";
 
 import HeroTV from "./components/Hero";
 import useMyChannels from "@/hooks/api/flex-tv/useMyChannels";
 import TVCategorysItem from "./components/TVCategorysItem";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import TVFilterBox from "./components/TVFilterBox";
+import Link from "next/link";
 
 export default function NewsPage() {
   const { isLoadingCurrentSubsUsage } = useAuth();
 
   const { allTVChannels, handleSeachByName, isLoadingAllTVChannels } =
     useMyChannels();
+  const { handleCloseLeagueBox } = useAppProvider();
 
   const [newCategory, setNewCategory] = useState<ITVCategorySafed[]>([]);
   const [previousNewCategory, setPreviousNewCategory] = useState<
@@ -170,6 +174,16 @@ export default function NewsPage() {
 
   return (
     <div className="flex flex-col gap-4">
+      <div className="flex fixed md:bottom-[4rem] bottom-[4.9rem] md:right-[4rem] right-[4rem] z-20 animate-fade-up">
+        <Link href="#start">
+          <AuSoftUI.UI.Button
+            onClick={handleCloseLeagueBox}
+            className="rounded-full p-3 animate-pulse  hover:dark:bg-orange-700 hover:bg-orange-600 transition-all duration-300 dark:bg-orange-600 bg-orange-500 "
+          >
+            <ReactIcons.BiIcon.BiCaretUp size={18} />
+          </AuSoftUI.UI.Button>
+        </Link>
+      </div>
       <HeroTV />
       <div className="flex flex-col gap-4 relative">
         <div className="z-20 flex w-full items-center justify-center absolute -top-28 flex-col gap-4">

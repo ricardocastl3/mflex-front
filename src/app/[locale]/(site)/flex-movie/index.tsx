@@ -4,18 +4,23 @@ import { useAuth } from "@/providers/auth/AuthProvider";
 import { useEffect, useState } from "react";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { ITVCategoryMovieSafed } from "@/http/interfaces/models/tv/ITVMovie";
+import { useAppProvider } from "@/providers/app/AppProvider";
+import { ReactIcons } from "@/utils/icons";
 
 import HeroMovie from "./components/Hero";
 import TVCategorysItem from "./components/MovieCategorysItem";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import TVFilterBox from "./components/MovieFilterBox";
 import useMyMovies from "@/hooks/api/flex-tv/useMyMovies";
+import Link from "next/link";
 
 export default function FlexMoviePage() {
   const { isLoadingCurrentSubsUsage } = useAuth();
 
   const { allTVMovies, handleSeachByName, isLoadingAllTVMovies } =
     useMyMovies();
+
+  const { handleCloseLeagueBox } = useAppProvider();
 
   const [newCategory, setNewCategory] = useState<ITVCategoryMovieSafed[]>([]);
   const [previousNewCategory, setPreviousNewCategory] = useState<
@@ -175,6 +180,16 @@ export default function FlexMoviePage() {
 
   return (
     <div className="flex flex-col gap-4">
+      <div className="flex fixed md:bottom-[4rem] bottom-[4.9rem] md:right-[4rem] right-[4rem] z-20 animate-fade-up">
+        <Link href="#start">
+          <AuSoftUI.UI.Button
+            onClick={handleCloseLeagueBox}
+            className="rounded-full p-3 animate-pulse  hover:dark:bg-orange-700 hover:bg-orange-600 transition-all duration-300 dark:bg-orange-600 bg-orange-500 "
+          >
+            <ReactIcons.BiIcon.BiCaretUp size={18} />
+          </AuSoftUI.UI.Button>
+        </Link>
+      </div>
       <HeroMovie />
       <div className="flex flex-col gap-4 relative">
         <div className="z-20 flex w-full items-center justify-center absolute -top-28 flex-col gap-4">
