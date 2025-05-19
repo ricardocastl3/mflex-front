@@ -11,7 +11,7 @@ import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 export default function MobileMoreSiteOptions() {
   //Contexts
   const { handleOpenModal } = useModal();
-  const { currentAppPageUrl } = useAppProvider();
+  const { currentPageByUrl } = useAppProvider();
 
   return (
     <BaseModal callbackClose={() => handleOpenModal("")}>
@@ -29,7 +29,7 @@ export default function MobileMoreSiteOptions() {
         </div>
         <div
           onClick={() => handleOpenModal("")}
-          className="flex flex-col gap-3 px-4 py-5 h-[30vh] overflow-y-auto"
+          className="flex flex-col gap-3 px-4 py-5 h-[35vh] overflow-y-auto"
         >
           <h4 className="text-normal text-slate-500 dark:text-slate-300">
             <CTranslateTo eng="Navigation" pt="Navegação" />
@@ -40,7 +40,7 @@ export default function MobileMoreSiteOptions() {
               isPublic
               Icon={ReactIcons.Io5Icon.IoStar}
               href="pricing"
-              isSelected={currentAppPageUrl == "pricing"}
+              isSelected={currentPageByUrl == "pricing"}
               title_en="Flex Plans"
               title_pt="Planos Flex"
             />
@@ -49,7 +49,7 @@ export default function MobileMoreSiteOptions() {
               isPublic
               Icon={ReactIcons.Io5Icon.IoFootball}
               href="games"
-              isSelected={currentAppPageUrl == "games"}
+              isSelected={currentPageByUrl == "games"}
               title_en="Games"
               title_pt="Jogos"
             />
@@ -58,7 +58,7 @@ export default function MobileMoreSiteOptions() {
               isPublic
               Icon={ReactIcons.MdIcon.MdTv}
               href="flex-tv"
-              isSelected={currentAppPageUrl == "flex-tv"}
+              isSelected={currentPageByUrl == "flex-tv"}
               title_en="Flex TV"
               title_pt="Flex TV"
             />
@@ -67,7 +67,7 @@ export default function MobileMoreSiteOptions() {
               isPublic
               Icon={ReactIcons.PiIcon.PiPlay}
               href="flex-movie"
-              isSelected={currentAppPageUrl == "flex-movie"}
+              isSelected={currentPageByUrl == "flex-movie"}
               title_en="Flex Movie"
               title_pt="Flex Movie"
             />
