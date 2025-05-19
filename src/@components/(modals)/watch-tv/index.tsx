@@ -10,7 +10,15 @@ import TVPlayer from "./components/TVPlayer";
 export default function WatchTVModal() {
   // Contexts
   const { handleOpenModal } = useModal();
-  const { selectedFlexTV } = useFlexTVProvider();
+  const { selectedFlexTV, selectedFlexTVMovie } = useFlexTVProvider();
+
+  function sliceName(name: string) {
+    return name
+      .replace("HD", "")
+      .replace("FHD", "")
+      .replace("PT|", "")
+      .replace("BR|", "");
+  }
   return (
     <BaseModal
       callbackClose={() => handleOpenModal("")}
@@ -24,11 +32,11 @@ export default function WatchTVModal() {
               <h3 className="text-normal font-bold dark:text-white">
                 <CTranslateTo eng="Watch TV - Online" pt="TV - Online" />
                 <b>
-                  {` - ${selectedFlexTV?.name
-                    .replace("HD", "")
-                    .replace("FHD", "")
-                    .replace("PT|", "")
-                    .replace("BR|", "")}`}
+                  {` - ${
+                    selectedFlexTV
+                      ? sliceName(selectedFlexTV.name)
+                      : sliceName(selectedFlexTVMovie?.name!)
+                  }`}
                 </b>
               </h3>
             </div>
@@ -38,7 +46,9 @@ export default function WatchTVModal() {
           </button>
         </div>
 
-        <TVPlayer item={selectedFlexTV!} />
+        <TVPlayer
+          item={selectedFlexTV ? selectedFlexTV : selectedFlexTVMovie!}
+        />
       </div>
     </BaseModal>
   );
