@@ -46,11 +46,16 @@ export default function TVMovieItem({
           <div className="flex justify-center w-full rounded-xl">
             <div className="relative w-full md:h-[300px] h-[250px]">
               <Image
-                src={item.logo || localImages.bgs.moviePlaceholder}
+                src={
+                  imageError || !item.logo
+                    ? localImages.bgs.moviePlaceholder
+                    : item.logo
+                }
                 alt={item.name}
                 fill
                 className="object-contain rounded-2xl"
                 onError={() => setImageError(true)}
+                unoptimized
               />
             </div>
           </div>
