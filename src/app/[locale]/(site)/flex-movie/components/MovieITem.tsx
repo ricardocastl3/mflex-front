@@ -5,6 +5,7 @@ import { ITVMovieSafed } from "@/http/interfaces/models/tv/ITVMovie";
 import { langByCookies } from "@/http/axios/api";
 import { useAuth } from "@/providers/auth/AuthProvider";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 import MovieStartRating from "./MovieStartRating";
@@ -30,6 +31,26 @@ export default function TVMovieItem({
     window.location.href = `/${langByCookies}/pricing`;
   }
 
+  const [url, setUrl] = useState("");
+
+  useEffect(() => {
+    if (!item.logo) return;
+
+    fetch(item.logo)
+      .then((data) => data.blob())
+      .then((blob) => {
+        const objectUrl = URL.createObjectURL(blob);
+        setUrl(objectUrl);
+      });
+
+    // Cleanup function to revoke the object URL when component unmounts
+    return () => {
+      if (url) {
+        URL.revokeObjectURL(url);
+      }
+    };
+  }, [item.logo]);
+
   return (
     <>
       <motion.div
@@ -46,7 +67,7 @@ export default function TVMovieItem({
                 objectFit: "fill",
                 backgroundSize: "contain",
                 backgroundPosition: "center",
-                backgroundImage: `url(${item.logo})`,
+                backgroundImage: url ? `url(${url})` : `url(${item.logo})`,
                 backgroundRepeat: "no-repeat",
               }}
               className="flex flex-col md:h-[300px] h-[250px] gap-2 justify-between p-0"
