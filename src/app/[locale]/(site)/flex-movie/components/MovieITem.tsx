@@ -51,7 +51,6 @@ export default function TVMovieItem({
                 fill
                 className="object-contain rounded-2xl"
                 onError={() => setImageError(true)}
-                unoptimized
               />
             </div>
           </div>
