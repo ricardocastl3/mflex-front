@@ -52,7 +52,7 @@ export default function TVMovieItem({
             }}
             className="flex flex-col gap-2 justify-between p-0"
           ></BaseBox>
-          <div className="flex flex-col gap-2 dark:px-0 px-2 dark:pb-0 pb-4">
+          <div className="flex flex-col gap-1.5 dark:px-0 px-2 dark:pb-0 pb-4">
             <MovieStartRating item={item} />
             <h4 className="font-bold text-lg dark:text-white">
               {item.name.replace("PT|", "").replace("BR|", "")}

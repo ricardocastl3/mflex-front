@@ -22,12 +22,12 @@ export default function MovieStartRating({ item }: MovieStartRatingProps) {
             <div key={index} className="">
               {isFilled ? (
                 <ReactIcons.PiIcon.PiStarFill
-                  size={16}
+                  size={15}
                   className="text-yellow-500"
                 />
               ) : (
                 <ReactIcons.PiIcon.PiStar
-                  size={16}
+                  size={15}
                   className="text-yellow-500"
                 />
               )}
