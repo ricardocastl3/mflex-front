@@ -1,15 +1,11 @@
 import { useFlexTVProvider } from "@/providers/features/FlexTVProvider";
 import { useModal } from "@/providers/app/ModalProvider";
 import { ITVMovieSafed } from "@/http/interfaces/models/tv/ITVMovie";
-import { langByCookies } from "@/http/axios/api";
-import { useAuth } from "@/providers/auth/AuthProvider";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { localImages } from "@/utils/images";
 
 import Image from "next/image";
-
-import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 import MovieStartRating from "./MovieStartRating";
 
 export default function TVMovieItem({
@@ -19,24 +15,20 @@ export default function TVMovieItem({
   item: ITVMovieSafed;
   index: number;
 }) {
-  const { handleSelectFlexTV } = useFlexTVProvider();
+  const { handleSelectFlexTVMovie } = useFlexTVProvider();
   const { handleOpenModal } = useModal();
-  const { currentSubscription } = useAuth();
+
   const [imageError, setImageError] = useState(false);
 
   function handleSubscribe() {
-    LocalStorageServices.resetAllKeys();
-    LocalStorageServices.setKey(
-      LocalStorageServices.keys.watchTv,
-      `wt_${new Date().getTime()}`
-    );
-
-    window.location.href = `/${langByCookies}/pricing`;
+    handleSelectFlexTVMovie(item);
+    handleOpenModal("watch-tv");
   }
 
   return (
     <>
       <motion.div
+        onClick={handleSubscribe}
         initial={{ y: "9rem", opacity: 0 }}
         animate={{ y: "0rem", opacity: 1 }}
         transition={{ type: "spring", delay: 0.3 * index, duration: 2 }}

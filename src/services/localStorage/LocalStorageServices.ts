@@ -4,6 +4,7 @@ class LocalStorageServices {
   keys = {
     redirectToPricing: "rc-pricing",
     watchTv: "rc-watch-tv",
+    watchMovie: "rc-watch-movie",
   };
 
   delKey(key: string) {

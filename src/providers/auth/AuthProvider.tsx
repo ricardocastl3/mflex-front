@@ -120,6 +120,12 @@ export default function AuthProvider({
         return;
       }
 
+      if (LocalStorageServices.getKey(LocalStorageServices.keys.watchMovie)) {
+        LocalStorageServices.resetAllKeys();
+        window.location.href = `/${langByCookies}/flex-movie`;
+        return;
+      }
+
       if (
         startRoutes == "sign-in" ||
         startRoutes == "sign-up" ||

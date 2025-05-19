@@ -2,6 +2,7 @@ import { AuSoftUI } from "@/@components/(ausoft)";
 import { BaseBox } from "@/@components/(box)/BaseBox";
 import { ReactIcons } from "@/utils/icons";
 import { langByCookies } from "@/http/axios/api";
+import { useFlexTVProvider } from "@/providers/features/FlexTVProvider";
 
 import React from "react";
 import BaseModal from "../base";
@@ -9,13 +10,24 @@ import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 export default function WatchNodAdsModal() {
+  const { selectedFlexTV, selectedFlexTVMovie } = useFlexTVProvider();
+
   function handleRegister() {
     LocalStorageServices.resetAllKeys();
-    LocalStorageServices.setKey(
-      LocalStorageServices.keys.watchTv,
-      `wt_${new Date().getTime()}`
-    );
 
+    if (selectedFlexTV) {
+      LocalStorageServices.setKey(
+        LocalStorageServices.keys.watchTv,
+        `wt_${new Date().getTime()}`
+      );
+    }
+
+    if (selectedFlexTVMovie) {
+      LocalStorageServices.setKey(
+        LocalStorageServices.keys.watchMovie,
+        `wtm_${new Date().getTime()}`
+      );
+    }
     window.location.href = `/${langByCookies}/sign-up`;
   }
 
