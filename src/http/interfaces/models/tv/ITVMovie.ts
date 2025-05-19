@@ -45,6 +45,7 @@ export interface ITVMovieSafed {
   logo?: string;
   st: number;
   me: boolean;
+  rating: string;
   public: boolean;
   is_live: boolean;
   plan: IPlan;

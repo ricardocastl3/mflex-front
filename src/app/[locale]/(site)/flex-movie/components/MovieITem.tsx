@@ -7,8 +7,9 @@ import { useAuth } from "@/providers/auth/AuthProvider";
 import { motion } from "framer-motion";
 
 import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
+import MovieStartRating from "./MovieStartRating";
 
-export default function TVItem({
+export default function TVMovieItem({
   item,
   index,
 }: {
@@ -40,17 +41,19 @@ export default function TVItem({
         <div className="flex flex-col gap-4 dark:p-0 p-2 md:hover:scale-[1.03] scale-100 transition-all bg-white dark:bg-transparent rounded-2xl">
           <BaseBox
             style={{
-              height: "300px",
-              width: window.innerWidth < 765 ? "100%" : "100%",
-              objectFit: "cover",
+              height: "250px",
+              width: "100%",
+              objectFit: "contain",
               backgroundSize: "cover",
-              backgroundPosition: "center",
+              backgroundPosition: "left",
               backgroundImage: `url(${item.logo})`,
               backgroundRepeat: "no-repeat",
+              borderRadius: "1rem",
             }}
-            className="flex flex-col gap-2  justify-between"
+            className="flex flex-col gap-2 justify-between p-0"
           ></BaseBox>
           <div className="flex flex-col gap-2 dark:px-0 px-2 dark:pb-0 pb-4">
+            <MovieStartRating item={item} />
             <h4 className="font-bold text-lg dark:text-white">
               {item.name.replace("PT|", "").replace("BR|", "")}
             </h4>

@@ -2,7 +2,6 @@
 
 import { useAuth } from "@/providers/auth/AuthProvider";
 import { useEffect, useState } from "react";
-import { ITVCategorySafed } from "@/http/interfaces/models/tv/ITVChannel";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { ITVCategoryMovieSafed } from "@/http/interfaces/models/tv/ITVMovie";
 
@@ -20,7 +19,7 @@ export default function FlexMoviePage() {
 
   const [newCategory, setNewCategory] = useState<ITVCategoryMovieSafed[]>([]);
   const [previousNewCategory, setPreviousNewCategory] = useState<
-    ITVCategorySafed[]
+    ITVCategoryMovieSafed[]
   >([]);
 
   const [searchField, setSearchField] = useState("");
@@ -56,6 +55,7 @@ export default function FlexMoviePage() {
               plan: cat.tv_movies[0].plan,
               public: cat.tv_movies[0].is_public,
               is_live: cat.tv_movies[0].is_live,
+              rating: cat.tv_movies[0].rating,
               me: true,
             },
           ],
@@ -74,6 +74,7 @@ export default function FlexMoviePage() {
                 plan: tv.plan,
                 public: tv.is_public,
                 is_live: tv.is_live,
+                rating: tv.rating,
                 me: true,
               });
             }
@@ -97,6 +98,7 @@ export default function FlexMoviePage() {
               plan: tv.plan,
               public: tv.is_public,
               is_live: tv.is_live,
+              rating: tv.rating,
               me: false,
             });
         });
@@ -113,6 +115,7 @@ export default function FlexMoviePage() {
               plan: cat.tv_movies[0].plan,
               public: cat.tv_movies[0].is_public,
               is_live: cat.tv_movies[0].is_live,
+              rating: cat.tv_movies[0].rating,
               me: false,
             },
           ],
@@ -132,6 +135,7 @@ export default function FlexMoviePage() {
                 public: tv.is_public,
                 is_live: tv.is_live,
                 me: false,
+                rating: tv.rating,
               });
             }
           });
@@ -179,7 +183,10 @@ export default function FlexMoviePage() {
               <CTranslateTo eng="Flex Movie 🎬" pt="Flex Movie 🎬" />
             </h4>
             <h2 className="text-white text-base">
-              <CTranslateTo eng="Search for the movie that you want" pt="Pesquise pelo filme que deseja" />
+              <CTranslateTo
+                eng="Search for the movie that you want"
+                pt="Pesquise pelo filme que deseja"
+              />
             </h2>
           </div>
           <AuSoftUI.UI.TextField.Default
