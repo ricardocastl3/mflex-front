@@ -38,7 +38,7 @@ export default function TVMovieItem({
         transition={{ type: "spring", delay: 0.3 * index, duration: 2 }}
         className="cursor-pointer w-full "
       >
-        <div className="flex flex-col gap-4 dark:p-0 p-2 md:hover:scale-[1.03] scale-100 transition-all bg-white dark:bg-transparent rounded-2xl">
+        <div className="flex flex-col md:gap-4 gap-2.5 dark:p-0 p-2 md:hover:scale-[1.03] scale-100 transition-all bg-white dark:bg-transparent rounded-2xl">
           <BaseBox
             style={{
               height: "250px",
