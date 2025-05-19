@@ -1,11 +1,12 @@
-import { BaseBox } from "@/@components/(box)/BaseBox";
 import { useFlexTVProvider } from "@/providers/features/FlexTVProvider";
 import { useModal } from "@/providers/app/ModalProvider";
 import { ITVMovieSafed } from "@/http/interfaces/models/tv/ITVMovie";
 import { langByCookies } from "@/http/axios/api";
 import { useAuth } from "@/providers/auth/AuthProvider";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { localImages } from "@/utils/images";
+
 import Image from "next/image";
 
 import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
@@ -45,10 +46,10 @@ export default function TVMovieItem({
           <div className="flex justify-center w-full rounded-xl">
             <div className="relative w-full md:h-[300px] h-[250px]">
               <Image
-                src={item.logo || "/placeholder-image.png"}
+                src={item.logo || localImages.bgs.moviePlaceholder}
                 alt={item.name}
                 fill
-                className="object-contain rounded-xl"
+                className="object-contain rounded-2xl"
                 onError={() => setImageError(true)}
                 unoptimized
               />
