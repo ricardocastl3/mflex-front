@@ -51,7 +51,7 @@ export default function TVItem({
             className="flex flex-col gap-2  justify-between"
           ></BaseBox>
           <div className="flex flex-col gap-2 dark:px-0 px-2 dark:pb-0 pb-4">
-            <h4 className="font-bold text-base dark:text-white">
+            <h4 className="font-bold text-lg dark:text-white">
               {item.name.replace("PT|", "").replace("BR|", "")}
             </h4>
           </div>
