@@ -66,8 +66,8 @@ export default function MobileMoreSiteOptions() {
               isExpanded={true}
               isPublic
               Icon={ReactIcons.PiIcon.PiPlay}
-              href="flex-tv"
-              isSelected={currentAppPageUrl == "flex-tv"}
+              href="flex-movie"
+              isSelected={currentAppPageUrl == "flex-movie"}
               title_en="Flex Movie"
               title_pt="Flex Movie"
             />
