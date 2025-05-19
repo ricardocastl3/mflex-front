@@ -44,14 +44,25 @@ export default function TVMovieItem({
               height: "250px",
               width: "100%",
               objectFit: "contain",
-              backgroundSize: "cover",
-              backgroundPosition: "left",
+              backgroundSize: "contain",
+              backgroundPosition: "center",
               backgroundImage: `url(${item.logo})`,
               backgroundRepeat: "no-repeat",
               borderRadius: "1rem",
+              backgroundColor: "transparent",
             }}
             className="flex flex-col gap-2 justify-between p-0"
-          ></BaseBox>
+          >
+            <img
+              src={item.logo}
+              alt={item.name}
+              className="w-full h-full object-contain"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.style.display = "none";
+              }}
+            />
+          </BaseBox>
           <div className="flex flex-col gap-1.5 dark:px-0 px-2 dark:pb-0 pb-4">
             <MovieStartRating item={item} />
             <h4 className="font-bold text-lg dark:text-white">
