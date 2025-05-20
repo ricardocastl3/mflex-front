@@ -32,7 +32,10 @@ export default function FlexMoviePage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (isLoadingAllTVMovies) return;
+    if (isLoadingAllTVMovies) {
+      setIsLoading(true);
+      return;
+    }
     if (!allTVMovies) return;
 
     const safedCategory: ITVCategoryMovieSafed[] = [];

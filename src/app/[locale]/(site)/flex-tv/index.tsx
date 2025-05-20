@@ -31,7 +31,10 @@ export default function NewsPage() {
   const [isLoading, setIsLoadings] = useState(true);
 
   useEffect(() => {
-    if (isLoadingAllTVChannels) return;
+    if (isLoadingAllTVChannels) {
+      setIsLoadings(true);
+      return;
+    }
     if (!allTVChannels) return;
 
     const meRawCategory = allTVChannels;

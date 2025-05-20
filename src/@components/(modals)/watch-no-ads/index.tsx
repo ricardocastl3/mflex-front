@@ -16,18 +16,13 @@ export default function WatchNodAdsModal() {
     LocalStorageServices.resetAllKeys();
 
     if (selectedFlexTV) {
-      LocalStorageServices.setKey(
-        LocalStorageServices.keys.rc_watchTv,
-        `wt_${new Date().getTime()}`
-      );
+      LocalStorageServices.setWatchID(selectedFlexTV.id);
     }
 
     if (selectedFlexTVMovie) {
-      LocalStorageServices.setKey(
-        LocalStorageServices.keys.rc_watchMovie,
-        `wtm_${new Date().getTime()}`
-      );
+      LocalStorageServices.setWatchMovieID(selectedFlexTVMovie.id);
     }
+
     window.location.href = `/${langByCookies}/sign-up`;
   }
 
