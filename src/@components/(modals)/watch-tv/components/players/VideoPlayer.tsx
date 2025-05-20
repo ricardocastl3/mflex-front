@@ -26,12 +26,11 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
 
   const { userLogged } = useAuth();
   const { handleOpenModal } = useModal();
-  const { selectedFlexTV, handleSelectFlexTV } = useFlexTVProvider();
+  const { selectedFlexTV } = useFlexTVProvider();
 
   const watchUrl = selectedFlexTV ? "streams" : "movies";
 
   useEffect(() => {
-    if (process.env.NODE_ENV == "production") return;
     internalApi.get(`/${watchUrl}/watch/${item_id}`).then((e) => {
       setInitialSrc(e.data.url);
     });
@@ -156,14 +155,13 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
               size={35}
               className="text-white animate-spin"
             />
-            {process.env.NODE_ENV == "production" && (
-              <h1 className="text-white text-base">
-                <CTranslateTo
-                  eng="The broadcast is under maintenance, we will resume soon..."
-                  pt="A transmissão está em manutenção, em breve retomaremos..."
-                />
-              </h1>
-            )}
+
+            <h1 className="text-white text-base hidden">
+              <CTranslateTo
+                eng="The broadcast is under maintenance, we will resume soon..."
+                pt="A transmissão está em manutenção, em breve retomaremos..."
+              />
+            </h1>
           </div>
         </div>
       )}

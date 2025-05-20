@@ -15,7 +15,7 @@ export default function TVMovieFilterBox({
 }) {
   const { currentSubscription } = useAuth();
 
-  const [hasMovie, setHasMovie] = useState(false);
+  const [hasMovie, setHasMovie] = useState(true);
 
   useEffect(() => {
     if (!currentSubscription) return;

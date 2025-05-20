@@ -15,11 +15,11 @@ export default function TVFilterBox({
 }) {
   const { currentSubscription } = useAuth();
 
-  const [hasChannels, setHasChannel] = useState(false);
+  const [hasChannels, setHasChannel] = useState(true);
 
   useEffect(() => {
     if (!currentSubscription) return;
-    const has = currentSubscription.subscription.plan?.flex_tv
+    const has = Boolean(currentSubscription.subscription.plan?.flex_tv)
       ? true
       : false;
 
