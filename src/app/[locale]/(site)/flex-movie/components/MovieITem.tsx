@@ -22,7 +22,7 @@ export default function TVMovieItem({
   item: ITVMovieSafed;
   index: number;
 }) {
-  const { handleSelectFlexTVMovie } = useFlexTVProvider();
+  const { handleSelectFlexTVMovie, handleSelectFlexTV } = useFlexTVProvider();
   const { handleOpenModal } = useModal();
   const { currentSubscription } = useAuth();
 
@@ -51,6 +51,7 @@ export default function TVMovieItem({
         onClick={() => {
           if (item.public) {
             handleSelectFlexTVMovie(item);
+            handleSelectFlexTV(undefined);
             handleOpenModal("watch-tv");
           } else {
             if (

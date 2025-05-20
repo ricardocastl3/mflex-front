@@ -20,7 +20,7 @@ export default function TVItem({
   index: number;
   item: ITVChannelSafed;
 }) {
-  const { handleSelectFlexTV } = useFlexTVProvider();
+  const { handleSelectFlexTV, handleSelectFlexTVMovie } = useFlexTVProvider();
   const { handleOpenModal } = useModal();
   const { currentSubscription } = useAuth();
 
@@ -65,6 +65,7 @@ export default function TVItem({
             currentSubscription.subscription.plan?.flex_tv)) && (
           <AuSoftUI.UI.Button
             onClick={() => {
+              handleSelectFlexTVMovie(undefined);
               handleSelectFlexTV(item);
               handleOpenModal("watch-tv");
             }}
