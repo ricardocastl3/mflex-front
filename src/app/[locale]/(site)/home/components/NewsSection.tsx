@@ -45,12 +45,9 @@ export default function NewsSection() {
 
             {!isLoadingAllNews && (
               <>
-  
-
-                {LocalStorageServices.hasSubscriber() &&
-                  allNews.map((news, i) => {
-                    return i < 3 && <NewsCard key={i} news={news} index={i} />;
-                  })}
+                {allNews.map((news, i) => {
+                  return i < 3 && <NewsCard key={i} news={news} index={i} />;
+                })}
               </>
             )}
           </div>
