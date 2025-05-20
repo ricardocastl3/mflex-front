@@ -37,13 +37,13 @@ export default function NewsPage() {
     }
     if (!allTVChannels) return;
 
-    const meRawCategory = allTVChannels;
+    const meRawCategory = allTVChannels.filter(
+      (cat) => cat.tv_channels.length > 0
+    );
 
     const safedCategory: ITVCategorySafed[] = [];
 
     meRawCategory.forEach((cat) => {
-      if (cat.tv_channels.length <= 0) return;
-
       const find = safedCategory.find((i) => i.id == cat.id);
 
       if (!find) {

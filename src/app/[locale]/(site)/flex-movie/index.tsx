@@ -40,52 +40,51 @@ export default function FlexMoviePage() {
 
     const safedCategory: ITVCategoryMovieSafed[] = [];
 
-    if (allTVMovies.length > 0) {
-      allTVMovies.forEach((cat) => {
-        if (cat.tv_movies.length <= 0) return;
+    const newRawMovies = allTVMovies.filter((cat) => cat.tv_movies.length > 0);
 
-        const find = safedCategory.find((i) => i.id == cat.id);
+    newRawMovies.forEach((cat) => {
+      const find = safedCategory.find((i) => i.id == cat.id);
 
-        if (!find) {
-          safedCategory.push({
-            id: cat.id,
-            name: cat.name,
-            tv: [
-              {
-                id: cat.tv_movies[0].id,
-                st: cat.tv_movies[0].st,
-                logo: cat.tv_movies[0].thumbnail,
-                name: cat.tv_movies[0].name,
-                plan: cat.tv_movies[0].plan,
-                public: cat.tv_movies[0].is_public,
-                is_live: cat.tv_movies[0].is_live,
-                rating: cat.tv_movies[0].rating,
+      if (!find) {
+        safedCategory.push({
+          id: cat.id,
+          name: cat.name,
+          tv: [
+            {
+              id: cat.tv_movies[0].id,
+              st: cat.tv_movies[0].st,
+              logo: cat.tv_movies[0].thumbnail,
+              name: cat.tv_movies[0].name,
+              plan: cat.tv_movies[0].plan,
+              public: cat.tv_movies[0].is_public,
+              is_live: cat.tv_movies[0].is_live,
+              rating: cat.tv_movies[0].rating,
+              me: true,
+            },
+          ],
+        });
+
+        const updateCategory = safedCategory.find((i) => i.id == cat.id);
+        if (updateCategory)
+          cat.tv_movies.forEach((tv) => {
+            const findTV = updateCategory.tv.find((i) => i.st == tv.st);
+            if (!findTV) {
+              updateCategory.tv.push({
+                id: tv.id,
+                st: tv.st,
+                logo: tv.thumbnail,
+                name: tv.name,
+                plan: tv.plan,
+                public: tv.is_public,
+                is_live: tv.is_live,
+                rating: tv.rating,
                 me: true,
-              },
-            ],
+              });
+            }
           });
+      }
+    });
 
-          const updateCategory = safedCategory.find((i) => i.id == cat.id);
-          if (updateCategory)
-            cat.tv_movies.forEach((tv) => {
-              const findTV = updateCategory.tv.find((i) => i.st == tv.st);
-              if (!findTV) {
-                updateCategory.tv.push({
-                  id: tv.id,
-                  st: tv.st,
-                  logo: tv.thumbnail,
-                  name: tv.name,
-                  plan: tv.plan,
-                  public: tv.is_public,
-                  is_live: tv.is_live,
-                  rating: tv.rating,
-                  me: true,
-                });
-              }
-            });
-        }
-      });
-    }
     setNewCategory(safedCategory);
     setPreviousNewCategory(safedCategory);
     setSelectedTypeChannel("all");

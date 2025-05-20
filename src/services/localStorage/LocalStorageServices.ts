@@ -38,6 +38,7 @@ class LocalStorageServices {
   resetAllKeys() {
     localStorage.removeItem(this.keys.rc_pricing);
     localStorage.removeItem(this.keys.rc_watchTv);
+    localStorage.removeItem(this.keys.rc_watchMovie);
   }
 
   setKey(key: string, data: any) {
