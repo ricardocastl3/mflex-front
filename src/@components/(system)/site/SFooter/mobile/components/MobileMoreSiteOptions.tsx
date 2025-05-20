@@ -7,6 +7,7 @@ import { ReactIcons } from "@/utils/icons";
 import BaseModal from "@/@components/(modals)/base";
 import LinkButton from "@/@components/(system)/ASidebar/components/LinkButton";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
+import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 export default function MobileMoreSiteOptions() {
   //Contexts
@@ -28,7 +29,10 @@ export default function MobileMoreSiteOptions() {
           </button>
         </div>
         <div
-          onClick={() => handleOpenModal("")}
+          onClick={() => {
+            handleOpenModal("");
+            LocalStorageServices.resetAllKeys();
+          }}
           className="flex flex-col gap-3 px-4 py-5 h-[35vh] overflow-y-auto"
         >
           <h4 className="text-normal text-slate-500 dark:text-slate-300">

@@ -4,14 +4,70 @@ import { ReactIcons } from "@/utils/icons";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { useAuth } from "@/providers/auth/AuthProvider";
 import { Meteors } from "@/@components/(aceternity)/Meteors";
+import { useSearchParams } from "next/navigation";
+import { useCallback, useEffect } from "react";
+import { internalApi } from "@/http/axios/api";
+import { IPlan } from "@/http/interfaces/models/IPlan";
+import { useModal } from "@/providers/app/ModalProvider";
+import { useCheckoutProvider } from "@/providers/app/CheckoutProvider";
 
 import usePlan from "@/hooks/api/usePlan";
 import HeroPlans from "./components/Hero";
 import SubsCard from "./components/SubsCard";
+import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 export default function NewsPage() {
   const { isLoadingAllPlans, allPlans } = usePlan();
   const { isLoadingCurrentSubsUsage } = useAuth();
+  const { handleOpenModal } = useModal();
+  const { handleAddItemOnCheckout } = useCheckoutProvider();
+  const { currentSubscription } = useAuth();
+
+  function openSubsModal(plan: IPlan) {
+    handleAddItemOnCheckout({
+      type: "subs",
+      amount: plan.amount,
+      price: plan.id,
+      monthly: "no",
+    });
+    handleOpenModal("angolan-payment-modal");
+  }
+
+  const searchParams = useSearchParams();
+  const fetchTV = useCallback(
+    async (id: string) => {
+      try {
+        const resp = await internalApi.get<{ sb: IPlan }>("/plans/sb", {
+          params: { id },
+        });
+        const plan = resp.data.sb;
+
+        if (currentSubscription) {
+          if (currentSubscription.subscription.plan?.id != plan.id) {
+            openSubsModal(plan);
+          } else {
+            if (
+              currentSubscription?.subscription.plan?.flex_movies &&
+              !currentSubscription.subscription.is_expired
+            ) {
+              LocalStorageServices.checkRedirects();
+            } else {
+              openSubsModal(plan);
+            }
+          }
+        } else {
+          openSubsModal(plan);
+        }
+      } catch (err) {}
+    },
+    [currentSubscription]
+  );
+
+  useEffect(() => {
+    const id = searchParams.get("sb") || "";
+    if (id == "") return;
+    fetchTV(id);
+  }, []);
 
   return (
     <div className="flex flex-col gap-4">

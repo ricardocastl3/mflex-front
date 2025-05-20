@@ -7,17 +7,16 @@ import { AuSoftUI } from "@/@components/(ausoft)";
 import { useCheckoutProvider } from "@/providers/app/CheckoutProvider";
 import { useSocketProvider } from "@/providers/auth/SocketProvider";
 import { useModal } from "@/providers/app/ModalProvider";
-import { useTicketProvider } from "@/providers/features/TicketProvider";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 import CurrencyServices from "@/services/CurrencyServices";
 import CircularProgress from "@/services/circular-progress";
+import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 export default function PayPayPayment() {
   // Contexts
   const { handleAddToastOnArray } = useAppProvider();
-  const { selectedTicket } = useTicketProvider();
   const { socketEvent } = useSocketProvider();
   const {
     selectedCustomerBuyed,
@@ -109,6 +108,7 @@ export default function PayPayPayment() {
   useEffect(() => {
     if (socketEvent?.name == "reference-pay") {
       handleIsPurchased(true);
+      LocalStorageServices.checkRedirects();
     }
   }, [socketEvent]);
 

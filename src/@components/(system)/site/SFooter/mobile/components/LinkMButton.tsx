@@ -3,6 +3,7 @@ import { useAppProvider } from "@/providers/app/AppProvider";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import Link from "next/link";
+import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 interface ILinkMButton {
   title_pt: string;
@@ -25,7 +26,7 @@ export default function LinkMButton({
 }: ILinkMButton) {
   const { segmentedLayout, currentPageByUrl } = useAppProvider();
   return (
-    <>
+   <div onClick={() => LocalStorageServices.resetAllKeys()}>
       {action != "#" && (
         <Link
           href={`${
@@ -70,6 +71,6 @@ export default function LinkMButton({
           </div>
         </button>
       )}
-    </>
+    </div>
   );
 }

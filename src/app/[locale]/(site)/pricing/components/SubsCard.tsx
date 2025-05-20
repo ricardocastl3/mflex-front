@@ -44,17 +44,8 @@ export default function SubsCard({
   function handleSubscribe() {
     try {
       if (!userLogged) {
-        if (
-          !LocalStorageServices.getKey(LocalStorageServices.keys.rc_watchTv) &&
-          !LocalStorageServices.getKey(LocalStorageServices.keys.rc_watchMovie)
-        ) {
-          LocalStorageServices.resetAllKeys();
-          LocalStorageServices.setKey(
-            LocalStorageServices.keys.rc_pricing,
-            new Date().getTime()
-          );
-          router.push(`/${langByCookies}/sign-up`);
-        }
+        LocalStorageServices.setPricingID(plan.id);
+        router.push(`/${langByCookies}/sign-up`);
       } else {
         handleAddItemOnCheckout({
           type: "subs",

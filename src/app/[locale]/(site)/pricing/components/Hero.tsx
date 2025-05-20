@@ -5,6 +5,7 @@ import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 export default function HeroPlans() {
   return (
     <div
+      id="start"
       style={{
         objectFit: "fill",
         backgroundRepeat: "no-repeat",

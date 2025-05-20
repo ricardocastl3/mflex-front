@@ -23,10 +23,10 @@ export default function Home() {
       </div>
       <ContainerBase>
         <div className="grid md:grid-cols-4 grid-cols-1m gap-4">
-          <CardTicket />
           <CardEvent />
           <CardTransactions />
           <CardTransfers />
+          <CardTicket />
         </div>
 
         <BaseBox className="flex-1 p-8 flex-col gap-4 h-full items-center flex justify-center">

@@ -9,6 +9,7 @@ import React from "react";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import Link from "next/link";
 import CardSubsStatus from "@/app/[locale]/app/subscriptions/components/card-status";
+import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 export default function CContent({ callback }: { callback?: () => void }) {
   const { userLogged, currentSubscription, handleLogout } = useAuth();
@@ -56,7 +57,7 @@ export default function CContent({ callback }: { callback?: () => void }) {
         {currentSubscription && (
           <>
             <h1 className="text-sm dark:text-yellow-400 text-yellow-700">
-              <CTranslateTo eng="Plan: " pt="Plano: "/>
+              <CTranslateTo eng="Plan: " pt="Plano: " />
               {currentSubscription.subscription.plan?.name}
             </h1>
             <CardSubsStatus
@@ -84,7 +85,15 @@ export default function CContent({ callback }: { callback?: () => void }) {
           </>
         )}
       </div>
-      <div onClick={callback} className="flex flex-col">
+      <div
+        onClick={() => {
+          {
+            callback && callback();
+          }
+          LocalStorageServices.resetAllKeys();
+        }}
+        className="flex flex-col"
+      >
         <Link
           href={`/${langByCookies}/app`}
           className="mt-2.5 rounded-full flex text-sm items-center gap-2 px-4 dark:text-slate-200 dark:hover:bg-slate-800/40 hover:bg-slate-200 transition-all py-3"

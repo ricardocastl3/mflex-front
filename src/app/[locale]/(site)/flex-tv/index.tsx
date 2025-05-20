@@ -1,11 +1,17 @@
 "use client";
 
-import { useAuth } from "@/providers/auth/AuthProvider";
-import { useEffect, useState } from "react";
-import { ITVCategorySafed } from "@/http/interfaces/models/tv/ITVChannel";
+import { useCallback, useEffect, useState } from "react";
+import {
+  ITVCategorySafed,
+  ITVChannel,
+} from "@/http/interfaces/models/tv/ITVChannel";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { ReactIcons } from "@/utils/icons";
 import { useAppProvider } from "@/providers/app/AppProvider";
+import { useSearchParams } from "next/navigation";
+import { internalApi } from "@/http/axios/api";
+import { useModal } from "@/providers/app/ModalProvider";
+import { useFlexTVProvider } from "@/providers/features/FlexTVProvider";
 
 import HeroTV from "./components/Hero";
 import useMyChannels from "@/hooks/api/flex-tv/useMyChannels";
@@ -15,11 +21,12 @@ import TVFilterBox from "./components/TVFilterBox";
 import Link from "next/link";
 
 export default function NewsPage() {
-  const { isLoadingCurrentSubsUsage } = useAuth();
-
   const { allTVChannels, handleSeachByName, isLoadingAllTVChannels } =
     useMyChannels();
   const { handleCloseLeagueBox } = useAppProvider();
+
+  const { handleOpenModal } = useModal();
+  const { handleSelectFlexTV } = useFlexTVProvider();
 
   const [newCategory, setNewCategory] = useState<ITVCategorySafed[]>([]);
   const [previousNewCategory, setPreviousNewCategory] = useState<
@@ -56,7 +63,6 @@ export default function NewsPage() {
               st: cat.tv_channels[0].st,
               logo: cat.tv_channels[0].logo,
               name: cat.tv_channels[0].name,
-              plan: cat.tv_channels[0].plan,
               public: cat.tv_channels[0].is_public,
               is_live: cat.tv_channels[0].is_live,
               me: true,
@@ -74,7 +80,6 @@ export default function NewsPage() {
                 st: tv.st,
                 logo: tv.logo,
                 name: tv.name,
-                plan: tv.plan,
                 is_live: tv.is_live,
                 public: tv.is_public,
                 me: true,
@@ -104,6 +109,32 @@ export default function NewsPage() {
       setNewCategory(categories);
     }
   }, [selectedTypeChannel]);
+
+  const searchParams = useSearchParams();
+  const fetchTV = useCallback(async (id: string) => {
+    try {
+      const resp = await internalApi.get<{ tv: ITVChannel }>("/streams/chl", {
+        params: { id },
+      });
+      const tv = resp.data.tv;
+      handleSelectFlexTV({
+        id: tv.id,
+        is_live: tv.is_live,
+        me: true,
+        name: tv.name,
+        public: tv.is_public,
+        st: tv.st,
+        logo: tv.logo,
+      });
+      handleOpenModal("watch-tv");
+    } catch (err) {}
+  }, []);
+
+  useEffect(() => {
+    const id = searchParams.get("chl") || "";
+    if (id == "") return;
+    fetchTV(id);
+  }, []);
 
   return (
     <div className="flex flex-col gap-4">
@@ -190,31 +221,6 @@ export default function NewsPage() {
               />
             </div>
           )}
-
-          {/*         <TVItem
-            item={{
-              channel: "TV Zimbo",
-              id: "ddsd",
-              image: localImages.logos.mflex.src,
-              url: `http://localhost:3080/api/streams/pbc/lg3026f-3d08-4ae1-a2cd-f35b0a98791a`,
-            }}
-          />
-          <TVItem
-            item={{
-              channel: "TV Vitoria",
-              id: "ddsd",
-              image: localImages.logos.mflex.src,
-              url: "https://stmv1.srvif.com/tvvitoriamz/tvvitoriamz/playlist.m3u8",
-            }}
-          />
-          <TVItem
-            item={{
-              channel: "Revry Brasil",
-              id: "ddsd",
-              image: localImages.logos.mflex.src,
-              url: "https://linear-181.frequency.stream/mt/brightcove/181/hls/master/playlist.m3u8",
-            }}
-          /> */}
         </div>
       </div>
     </div>

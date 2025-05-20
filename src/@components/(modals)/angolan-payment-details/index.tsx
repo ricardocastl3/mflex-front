@@ -5,6 +5,7 @@ import { useCheckoutProvider } from "@/providers/app/CheckoutProvider";
 import { useState } from "react";
 import { ReactIcons } from "@/utils/icons";
 import { langByCookies } from "@/http/axios/api";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import BaseModal from "../base";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
@@ -21,9 +22,13 @@ export default function AngolanPaymentDetailsModal() {
     useCheckoutProvider();
 
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
   async function handleCloseModal() {
     setIsLoading(true);
+
+    if (searchParams.has("sb")) router.push(`/${langByCookies}/pricing#start`);
 
     if (!isPurchased) handleOpenModal("");
 

@@ -64,7 +64,7 @@ class LocalStorageServices {
 
   redirectForPricing() {
     const id = this.getPricingID();
-    this.resetAllKeys();
+    this.delKey(this.keys.rc_pricing);
     window.location.href = `/${langByCookies}/pricing?sb=${id}`;
   }
 

@@ -112,6 +112,7 @@ export default function AuthProvider({
         startRoutes == "forgot-pwd" ||
         (startRoutes == "confirm-account" && user.status == 1)
       ) {
+        LocalStorageServices.resetAllKeys();
         window.location.href = "/" + langByCookies + "/app";
         return;
       }
@@ -134,6 +135,7 @@ export default function AuthProvider({
 
   async function handleLogout() {
     CookieServices.setLogoutCookies();
+    LocalStorageServices.resetAllKeys();
     window.location.href = "/" + langByCookies;
   }
 

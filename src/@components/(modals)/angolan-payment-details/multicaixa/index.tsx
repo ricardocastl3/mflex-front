@@ -12,6 +12,7 @@ import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CurrencyServices from "@/services/CurrencyServices";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 import CircularProgress from "@/services/circular-progress";
+import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 export default function MulticaixaPayment() {
   // Contexts
@@ -101,6 +102,7 @@ export default function MulticaixaPayment() {
   useEffect(() => {
     if (socketEvent?.name == "reference-pay") {
       handleIsPurchased(true);
+      LocalStorageServices.checkRedirects();
     }
   }, [socketEvent]);
 

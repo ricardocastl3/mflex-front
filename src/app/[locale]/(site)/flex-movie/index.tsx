@@ -1,11 +1,17 @@
 "use client";
 
-import { useAuth } from "@/providers/auth/AuthProvider";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { AuSoftUI } from "@/@components/(ausoft)";
-import { ITVCategoryMovieSafed } from "@/http/interfaces/models/tv/ITVMovie";
+import {
+  ITVCategoryMovieSafed,
+  ITVMovie,
+} from "@/http/interfaces/models/tv/ITVMovie";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { ReactIcons } from "@/utils/icons";
+import { useSearchParams } from "next/navigation";
+import { internalApi } from "@/http/axios/api";
+import { useFlexTVProvider } from "@/providers/features/FlexTVProvider";
+import { useModal } from "@/providers/app/ModalProvider";
 
 import HeroMovie from "./components/Hero";
 import TVCategorysItem from "./components/MovieCategorysItem";
@@ -15,12 +21,12 @@ import useMyMovies from "@/hooks/api/flex-tv/useMyMovies";
 import Link from "next/link";
 
 export default function FlexMoviePage() {
-  const { isLoadingCurrentSubsUsage } = useAuth();
-
   const { allTVMovies, handleSeachByName, isLoadingAllTVMovies } =
     useMyMovies();
 
   const { handleCloseLeagueBox } = useAppProvider();
+  const { handleSelectFlexTVMovie } = useFlexTVProvider();
+  const { handleOpenModal } = useModal();
 
   const [newCategory, setNewCategory] = useState<ITVCategoryMovieSafed[]>([]);
   const [previousNewCategory, setPreviousNewCategory] = useState<
@@ -55,7 +61,7 @@ export default function FlexMoviePage() {
               st: cat.tv_movies[0].st,
               logo: cat.tv_movies[0].thumbnail,
               name: cat.tv_movies[0].name,
-              plan: cat.tv_movies[0].plan,
+
               public: cat.tv_movies[0].is_public,
               is_live: cat.tv_movies[0].is_live,
               rating: cat.tv_movies[0].rating,
@@ -74,7 +80,7 @@ export default function FlexMoviePage() {
                 st: tv.st,
                 logo: tv.thumbnail,
                 name: tv.name,
-                plan: tv.plan,
+
                 public: tv.is_public,
                 is_live: tv.is_live,
                 rating: tv.rating,
@@ -105,6 +111,33 @@ export default function FlexMoviePage() {
       setNewCategory(categories);
     }
   }, [selectedTypeChannel]);
+
+  const searchParams = useSearchParams();
+  const fetchMovie = useCallback(async (id: string) => {
+    try {
+      const resp = await internalApi.get<{ mv: ITVMovie }>("/movie/mv", {
+        params: { id },
+      });
+      const mv = resp.data.mv;
+      handleSelectFlexTVMovie({
+        id: mv.id,
+        is_live: mv.is_live,
+        me: true,
+        name: mv.name,
+        public: mv.is_public,
+        st: mv.st,
+        logo: mv.thumbnail,
+        rating: mv.rating,
+      });
+      handleOpenModal("watch-tv");
+    } catch (err) {}
+  }, []);
+
+  useEffect(() => {
+    const id = searchParams.get("mv") || "";
+    if (id == "") return;
+    fetchMovie(id);
+  }, [searchParams]);
 
   return (
     <div className="flex flex-col gap-4">

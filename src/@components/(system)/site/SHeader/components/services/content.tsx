@@ -31,7 +31,13 @@ export default function CContentServices({
         )}
       </div>
 
-      <div onClick={() => callback!()} className="flex flex-col my-1 gap-1">
+      <div
+        onClick={() => {
+          callback!();
+          LocalStorageServices.resetAllKeys();
+        }}
+        className="flex flex-col my-1 gap-1"
+      >
         <Link
           href={`/${langByCookies}/about-us`}
           className={`${
@@ -58,7 +64,6 @@ export default function CContentServices({
           <CTranslateTo eng="Marketing Services" pt="Serviços de Marketing" />
         </Link>
         <Link
-          onClick={() => LocalStorageServices.resetAllKeys()}
           href={`/${langByCookies}/pricing`}
           className={`${
             currentPageByUrl == "about-us"

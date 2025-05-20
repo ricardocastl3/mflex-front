@@ -10,8 +10,6 @@ export interface ITVChannel {
   is_live: boolean;
   st: number;
   description?: string;
-  plan: IPlan;
-  plan_id: string;
 }
 
 export interface ITVCategoryChannelsAPI {
@@ -35,5 +33,4 @@ export interface ITVChannelSafed {
   me: boolean;
   is_live: boolean;
   public: boolean;
-  plan: IPlan;
 }

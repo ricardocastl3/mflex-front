@@ -2,6 +2,8 @@ import { useModal } from "@/providers/app/ModalProvider";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { ReactIcons } from "@/utils/icons";
 import { useFlexTVProvider } from "@/providers/features/FlexTVProvider";
+import { useRouter, useSearchParams } from "next/navigation";
+import { langByCookies } from "@/http/axios/api";
 
 import BaseModal from "../base";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
@@ -19,6 +21,20 @@ export default function WatchTVModal() {
       .replace("PT|", "")
       .replace("BR|", "");
   }
+
+  const router = useRouter();
+  const searParams = useSearchParams();
+
+  function handleCloseModal() {
+    handleOpenModal("");
+    if (searParams.has("mv") || searParams.has("chl"))
+      if (selectedFlexTV) {
+        router.push(`/${langByCookies}/flex-tv#start`);
+      } else {
+        router.push(`/${langByCookies}/flex-movie#start`);
+      }
+  }
+
   return (
     <BaseModal
       callbackClose={() => handleOpenModal("")}
@@ -41,7 +57,7 @@ export default function WatchTVModal() {
               </h3>
             </div>
           </div>
-          <button onClick={() => handleOpenModal("")}>
+          <button onClick={handleCloseModal}>
             <ReactIcons.BiIcon.BiX size={25} className="dark:text-white" />
           </button>
         </div>

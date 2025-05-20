@@ -4,6 +4,7 @@ import Link from "next/link";
 import { langByCookies } from "@/http/axios/api";
 import { IconType } from "react-icons";
 import { useAppProvider } from "@/providers/app/AppProvider";
+import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 export default function LinkHeader({
   Icon,
@@ -25,7 +26,7 @@ export default function LinkHeader({
   const { currentPageByUrl } = useAppProvider();
 
   return (
-    <>
+    <div onClick={() => LocalStorageServices.resetAllKeys()}>
       {!isButton && (
         <Link
           href={`/${langByCookies}/${action}`}
@@ -55,6 +56,6 @@ export default function LinkHeader({
           <CTranslateTo eng={title_en} pt={title_pt} />
         </button>
       )}
-    </>
+    </div>
   );
 }
