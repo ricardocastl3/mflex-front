@@ -17,7 +17,7 @@ export default function usePodcasts({ route }: { route: "slug" | "podflex" }) {
       }>(`/podcasts`, {
         params: {
           currentPage: 0,
-          nextPage: route == "slug" ? 999 : 3,
+          nextPage: route == "slug" ? 999 : 6,
         },
       });
 
@@ -43,7 +43,7 @@ export default function usePodcasts({ route }: { route: "slug" | "podflex" }) {
       const resp = await internalApi.get<{
         podcasts: IPodcast[];
       }>(`/podcasts`, {
-        params: { name, category_id, currentPage: 0, nextPage: 3 },
+        params: { name, category_id, currentPage: 0, nextPage: 6 },
       });
 
       if (resp.data.podcasts.length > 0) {

@@ -17,7 +17,7 @@ export default function useNews({ route }: { route: "slug" | "news" }) {
       }>(`/news`, {
         params: {
           currentPage: 0,
-          nextPage: route == "slug" ? 9999 : 3,
+          nextPage: route == "slug" ? 9999 : 6,
         },
       });
 
@@ -40,7 +40,7 @@ export default function useNews({ route }: { route: "slug" | "news" }) {
       const resp = await internalApi.get<{
         news: INews[];
       }>(`/news`, {
-        params: { name, category_id, currentPage: 0, nextPage: 4 },
+        params: { name, category_id, currentPage: 0, nextPage: 6 },
       });
 
       if (resp.data.news.length > 0) {
