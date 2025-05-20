@@ -38,7 +38,7 @@ export default function TVCategorysItem({
         <motion.div
           initial={{ translateY: "-0.5rem" }}
           animate={{ translateY: "0rem" }}
-          className="w-full z-0 rounded-b-xl grid md:grid-cols-5 grid-cols-2 md:gap-4 gap-2 top-[3rem] px-4 md:py-7 py-4 text-base dark:bg-ausoft-slate-900 bg-white/50 text-slate-800 dark:text-slate-400"
+          className="w-full z-0 rounded-b-xl grid md:grid-cols-5 grid-cols-2 md:gap-x-4 gap-x-2 md:gap-y-4 gap-y-6 top-[3rem] px-4 md:py-7 py-4 text-base dark:bg-ausoft-slate-900 bg-white/50 text-slate-800 dark:text-slate-400"
         >
           {category.tv.map((item, i) => {
             return <TVMovieItem index={i} key={i} item={item} />;

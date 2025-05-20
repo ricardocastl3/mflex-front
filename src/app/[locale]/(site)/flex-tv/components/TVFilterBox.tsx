@@ -16,8 +16,7 @@ export default function TVFilterBox({
   const { currentSubscription } = useAuth();
 
   const hasChannels =
-    !currentSubscription ||
-    (currentSubscription && !currentSubscription.subscription.plan?.flex_movies)
+    currentSubscription && !currentSubscription.subscription.plan?.flex_movies
       ? false
       : true;
 
