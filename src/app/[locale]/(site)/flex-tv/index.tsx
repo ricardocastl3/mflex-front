@@ -73,7 +73,7 @@ export default function NewsPage() {
         const updateCategory = safedCategory.find((i) => i.id == cat.id);
         if (updateCategory)
           cat.tv_channels.forEach((tv) => {
-            const findTV = updateCategory.tv.find((i) => i.id == cat.id);
+            const findTV = updateCategory.tv.find((i) => i.id == tv.id);
             if (!findTV) {
               updateCategory.tv.push({
                 id: tv.id,
