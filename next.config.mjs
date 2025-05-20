@@ -5,9 +5,6 @@ const isDev = process.env.NODE_ENV === "development";
 
 const nextConfig = withPWA({
   disable: true, //isDev,
-  dest: "public",
-  register: true,
-  skipWaiting: true,
 })({
   reactStrictMode: false,
   images: {
