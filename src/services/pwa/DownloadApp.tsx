@@ -1,8 +1,4 @@
-import { AuSoftUI } from "@/@components/(ausoft)";
-import { ReactIcons } from "@/utils/icons";
 import { ReactNode, useEffect, useState } from "react";
-
-import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 
 // Tipagem extra para o evento especial do PWA
 interface BeforeInstallPromptEvent extends Event {

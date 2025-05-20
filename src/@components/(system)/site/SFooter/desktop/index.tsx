@@ -41,16 +41,16 @@ export default function SFooter() {
                   </h4>
                   <div className="flex flex-col gap-2">
                     <DownloadAppButton>
-                      <span className="text-slate-500 dark:text-slate-400 items-start flex gap-2 md:text-base text-base hover:opacity-50">
+                      <button className="appearance-none text-slate-500 dark:text-slate-400 items-start flex gap-2 md:text-base text-base hover:opacity-50">
                         <ReactIcons.AiICon.AiFillAndroid size={18} />
                         Android
-                      </span>
+                      </button>
                     </DownloadAppButton>
                     <DownloadAppButton>
-                      <span className="text-slate-500 dark:text-slate-400 items-start flex gap-2 md:text-base text-base hover:opacity-50">
+                      <button className="appearance-none text-slate-500 dark:text-slate-400 items-start flex gap-2 md:text-base text-base hover:opacity-50">
                         <ReactIcons.AiICon.AiFillApple size={18} />
                         iOS
-                      </span>
+                      </button>
                     </DownloadAppButton>
                   </div>
                 </div>

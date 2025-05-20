@@ -148,7 +148,7 @@ export default function FlexMoviePage() {
         </div>
 
         <div className="flex flex-col gap-4 md:p-12 m-6">
-          {(isLoading || isLoadingCurrentSubsUsage) && (
+          {isLoading && (
             <div className="flex flex-col gap-4">
               {Array.from({ length: 7 }).map((_, i) => {
                 return (
