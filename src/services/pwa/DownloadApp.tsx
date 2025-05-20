@@ -55,7 +55,9 @@ export default function DownloadAppButton({
 
   return (
     <>
-      <div onClick={handleInstallClick}>{children}</div>
+      <div className="cursor-pointer" onClick={handleInstallClick}>
+        {children}
+      </div>
     </>
   );
 }
