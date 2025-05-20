@@ -63,6 +63,7 @@ export default function SignInPage() {
         return;
       }
 
+      await LocalStorageServices.checkRedirects();
       await fetchUserInformations();
     } catch (err) {
       setIsSubmit(false);

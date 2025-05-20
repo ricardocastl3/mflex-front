@@ -82,6 +82,7 @@ export default function ConfirmAccountPage() {
         return;
       }
 
+      await LocalStorageServices.checkRedirects();
       await fetchUserInformations();
       router.push(`/${langByCookies}/app`);
     } catch (err) {

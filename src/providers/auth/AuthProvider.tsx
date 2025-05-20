@@ -106,23 +106,6 @@ export default function AuthProvider({
         return;
       }
 
-      if (startRoutes == "sign-in" || startRoutes == "confirm-account") {
-        if (LocalStorageServices.getPricingID()) {
-          LocalStorageServices.redirectForPricing();
-          return;
-        }
-
-        if (LocalStorageServices.getWatchID()) {
-          LocalStorageServices.redirectWatchTv();
-          return;
-        }
-
-        if (LocalStorageServices.getWatchMovieID()) {
-          LocalStorageServices.redirectWatchMovie();
-          return;
-        }
-      }
-
       if (
         startRoutes == "sign-in" ||
         startRoutes == "sign-up" ||

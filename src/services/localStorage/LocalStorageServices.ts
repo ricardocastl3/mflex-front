@@ -8,6 +8,29 @@ class LocalStorageServices {
     rc_watchMovie: "rc-watch-movie",
   };
 
+  async checkRedirects() {
+    return new Promise((resolv, reject) => {
+      if (this.getPricingID()) {
+        this.redirectForPricing();
+        return;
+      }
+
+      if (this.getWatchID()) {
+        this.redirectWatchTv();
+        return;
+      }
+
+      if (this.getWatchMovieID()) {
+        this.redirectWatchMovie();
+        return;
+      }
+
+      setTimeout(() => {
+        resolv(true);
+      }, 500);
+    });
+  }
+
   delKey(key: string) {
     localStorage.removeItem(key);
   }

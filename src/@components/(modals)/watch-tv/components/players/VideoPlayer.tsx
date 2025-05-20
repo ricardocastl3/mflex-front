@@ -156,15 +156,14 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
               size={35}
               className="text-white animate-spin"
             />
-            {process.env.NODE_ENV == "production"}{" "}
-            {
+            {process.env.NODE_ENV == "production" && (
               <h1 className="text-white text-base">
                 <CTranslateTo
                   eng="The broadcast is under maintenance, we will resume soon..."
                   pt="A transmissão está em manutenção, em breve retomaremos..."
                 />
               </h1>
-            }
+            )}
           </div>
         </div>
       )}

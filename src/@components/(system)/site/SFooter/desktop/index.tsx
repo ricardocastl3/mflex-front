@@ -5,6 +5,7 @@ import { langByCookies } from "@/http/axios/api";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import Link from "next/link";
+import DownloadAppButton from "@/services/pwa/DownloadApp";
 
 export default function SFooter() {
   const { segmentedLayout } = useAppProvider();
@@ -39,20 +40,18 @@ export default function SFooter() {
                     <CTranslateTo eng="Download App" pt="Baixar Aplicativo" />
                   </h4>
                   <div className="flex flex-col gap-2">
-                    <Link
-                      className="text-slate-500 dark:text-slate-400 items-start flex gap-2 md:text-base text-base hover:opacity-50"
-                      href={"mailto:contacto@ausoftdevelop.com"}
-                    >
-                      <ReactIcons.AiICon.AiFillAndroid size={18} />
-                      Android
-                    </Link>
-                    <Link
-                      className="text-slate-500 dark:text-slate-400 items-start flex gap-2 md:text-base text-base hover:opacity-50"
-                      href={"mailto:contacto@ausoftdevelop.com"}
-                    >
-                      <ReactIcons.AiICon.AiFillApple size={18} />
-                      iOS
-                    </Link>
+                    <DownloadAppButton>
+                      <span className="text-slate-500 dark:text-slate-400 items-start flex gap-2 md:text-base text-base hover:opacity-50">
+                        <ReactIcons.AiICon.AiFillAndroid size={18} />
+                        Android
+                      </span>
+                    </DownloadAppButton>
+                    <DownloadAppButton>
+                      <span className="text-slate-500 dark:text-slate-400 items-start flex gap-2 md:text-base text-base hover:opacity-50">
+                        <ReactIcons.AiICon.AiFillApple size={18} />
+                        iOS
+                      </span>
+                    </DownloadAppButton>
                   </div>
                 </div>
               </div>

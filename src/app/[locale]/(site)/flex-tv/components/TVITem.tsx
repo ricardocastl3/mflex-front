@@ -28,11 +28,7 @@ export default function TVItem({
 
   function handleSubscribe() {
     LocalStorageServices.resetAllKeys();
-    LocalStorageServices.setKey(
-      LocalStorageServices.keys.rc_watchTv,
-      `wtv_${item.id}`
-    );
-
+    LocalStorageServices.setWatchID(item.id);
     router.push(`/${langByCookies}/pricing`);
   }
 
@@ -81,27 +77,25 @@ export default function TVItem({
           </AuSoftUI.UI.Button>
         )}
 
-        {!item.public &&
-          currentSubscription &&
-          !currentSubscription.subscription.plan?.flex_tv && (
-            <AuSoftUI.UI.Button
-              onClick={handleSubscribe}
-              variant={"primary"}
-              className="items-center justify-center w-full"
-              size={"sm"}
-            >
-              <ReactIcons.MdIcon.MdTv size={14} />
+        {!item.public && (
+          <AuSoftUI.UI.Button
+            onClick={handleSubscribe}
+            variant={"primary"}
+            className="items-center justify-center w-full"
+            size={"sm"}
+          >
+            <ReactIcons.MdIcon.MdTv size={14} />
 
-              {currentSubscription &&
-                !currentSubscription.subscription.plan?.flex_tv && (
-                  <CTranslateTo eng="Upgrade Plan" pt="Atualizar plano" />
-                )}
-
-              {!currentSubscription && (
-                <CTranslateTo eng="Subscribe Plan" pt="Assinar um plano" />
+            {currentSubscription &&
+              !currentSubscription.subscription.plan?.flex_tv && (
+                <CTranslateTo eng="Upgrade Plan" pt="Atualizar plano" />
               )}
-            </AuSoftUI.UI.Button>
-          )}
+
+            {!currentSubscription && (
+              <CTranslateTo eng="Subscribe Plan" pt="Assinar um plano" />
+            )}
+          </AuSoftUI.UI.Button>
+        )}
       </BaseBox>
     </motion.div>
   );

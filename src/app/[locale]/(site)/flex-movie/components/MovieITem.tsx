@@ -32,10 +32,7 @@ export default function TVMovieItem({
 
   function handleSubscribe() {
     LocalStorageServices.resetAllKeys();
-    LocalStorageServices.setKey(
-      LocalStorageServices.keys.rc_watchMovie,
-      `wtm_${item.id}`
-    );
+    LocalStorageServices.setWatchMovieID(item.id);
 
     router.push(`/${langByCookies}/pricing`);
   }
