@@ -77,25 +77,28 @@ export default function TVItem({
           </AuSoftUI.UI.Button>
         )}
 
-        {!item.public && (
-          <AuSoftUI.UI.Button
-            onClick={handleSubscribe}
-            variant={"primary"}
-            className="items-center justify-center w-full"
-            size={"sm"}
-          >
-            <ReactIcons.MdIcon.MdTv size={14} />
+        {!item.public &&
+          ((currentSubscription &&
+            !currentSubscription.subscription.plan?.flex_tv) ||
+            !currentSubscription) && (
+            <AuSoftUI.UI.Button
+              onClick={handleSubscribe}
+              variant={"primary"}
+              className="items-center justify-center w-full"
+              size={"sm"}
+            >
+              <ReactIcons.MdIcon.MdTv size={14} />
 
-            {currentSubscription &&
-              !currentSubscription.subscription.plan?.flex_tv && (
-                <CTranslateTo eng="Upgrade Plan" pt="Atualizar plano" />
+              {currentSubscription &&
+                !currentSubscription.subscription.plan?.flex_tv && (
+                  <CTranslateTo eng="Upgrade Plan" pt="Atualizar plano" />
+                )}
+
+              {!currentSubscription && (
+                <CTranslateTo eng="Subscribe Plan" pt="Assinar um plano" />
               )}
-
-            {!currentSubscription && (
-              <CTranslateTo eng="Subscribe Plan" pt="Assinar um plano" />
-            )}
-          </AuSoftUI.UI.Button>
-        )}
+            </AuSoftUI.UI.Button>
+          )}
       </BaseBox>
     </motion.div>
   );
