@@ -18,9 +18,10 @@ export default function TVMovieFilterBox({
   const [hasMovie, setHasMovie] = useState(true);
 
   useEffect(() => {
-    if (!currentSubscription) return;
-    const has = Boolean(currentSubscription.subscription.plan?.flex_movie)
-      ? true
+    const has = currentSubscription
+      ? Boolean(currentSubscription?.subscription.plan?.flex_movie)
+        ? true
+        : false
       : false;
 
     setHasMovie(has);
