@@ -16,7 +16,7 @@ import { useModal } from "@/providers/app/ModalProvider";
 import HeroMovie from "./components/Hero";
 import TVCategorysItem from "./components/MovieCategorysItem";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import TVFilterBox from "./components/MovieFilterBox";
+import TVMovieFilterBox from "./components/MovieFilterBox";
 import useMyMovies from "@/hooks/api/flex-tv/useMyMovies";
 import Link from "next/link";
 
@@ -199,7 +199,7 @@ export default function FlexMoviePage() {
           )}
           {!isLoading && newCategory.length > 0 && (
             <>
-              <TVFilterBox
+              <TVMovieFilterBox
                 setValue={setSelectedTypeChannel}
                 value={selectedTypeChannel}
               />

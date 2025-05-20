@@ -3,7 +3,7 @@ export interface IPlan {
   name: string;
   amount: number;
   description: string;
-  flex_movies: boolean;
+  flex_movie: boolean;
   flex_tv: boolean;
   is_trial?: boolean;
   features?: IPlanFeature[];

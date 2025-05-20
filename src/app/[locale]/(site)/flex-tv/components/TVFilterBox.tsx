@@ -19,7 +19,7 @@ export default function TVFilterBox({
 
   useEffect(() => {
     if (!currentSubscription) return;
-    const has = currentSubscription.subscription.plan?.flex_movies
+    const has = currentSubscription.subscription.plan?.flex_tv
       ? true
       : false;
 

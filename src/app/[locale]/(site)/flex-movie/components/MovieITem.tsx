@@ -41,7 +41,7 @@ export default function TVMovieItem({
     !item.public &&
     (!currentSubscription ||
       (currentSubscription &&
-        !currentSubscription.subscription.plan?.flex_movies))
+        !currentSubscription.subscription.plan?.flex_movie))
       ? false
       : true;
 
@@ -55,7 +55,7 @@ export default function TVMovieItem({
           } else {
             if (
               currentSubscription &&
-              currentSubscription.subscription.plan?.flex_movies
+              currentSubscription.subscription.plan?.flex_movie
             ) {
               handleSelectFlexTVMovie(item);
               handleOpenModal("watch-tv");

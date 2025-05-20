@@ -6,7 +6,7 @@ import { useAuth } from "@/providers/auth/AuthProvider";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 
-export default function TVFilterBox({
+export default function TVMovieFilterBox({
   setValue,
   value,
 }: {
@@ -19,7 +19,7 @@ export default function TVFilterBox({
 
   useEffect(() => {
     if (!currentSubscription) return;
-    const has = currentSubscription.subscription.plan?.flex_movies
+    const has = Boolean(currentSubscription.subscription.plan?.flex_movie)
       ? true
       : false;
 

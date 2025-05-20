@@ -47,7 +47,7 @@ export default function NewsPage() {
             openSubsModal(plan);
           } else {
             if (
-              currentSubscription?.subscription.plan?.flex_movies &&
+              currentSubscription?.subscription.plan?.flex_movie &&
               !currentSubscription.subscription.is_expired
             ) {
               LocalStorageServices.checkRedirects();
