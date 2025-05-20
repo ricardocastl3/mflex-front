@@ -44,12 +44,17 @@ export default function SubsCard({
   function handleSubscribe() {
     try {
       if (!userLogged) {
-        LocalStorageServices.resetAllKeys();
-        LocalStorageServices.setKey(
-          LocalStorageServices.keys.redirectToPricing,
-          new Date().getTime()
-        );
-        router.push(`/${langByCookies}/sign-in`);
+        if (
+          !LocalStorageServices.getKey(LocalStorageServices.keys.rc_watchTv) &&
+          !LocalStorageServices.getKey(LocalStorageServices.keys.rc_watchMovie)
+        ) {
+          LocalStorageServices.resetAllKeys();
+          LocalStorageServices.setKey(
+            LocalStorageServices.keys.rc_pricing,
+            new Date().getTime()
+          );
+          router.push(`/${langByCookies}/sign-up`);
+        }
       } else {
         handleAddItemOnCheckout({
           type: "subs",

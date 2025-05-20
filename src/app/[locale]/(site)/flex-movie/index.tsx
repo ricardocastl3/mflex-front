@@ -29,12 +29,11 @@ export default function FlexMoviePage() {
 
   const [searchField, setSearchField] = useState("");
   const [selectedTypeChannel, setSelectedTypeChannel] = useState("all");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (isLoadingAllTVMovies) return;
     if (!allTVMovies) return;
-
-    setSelectedTypeChannel("all");
 
     const safedCategory: ITVCategoryMovieSafed[] = [];
 
@@ -86,6 +85,8 @@ export default function FlexMoviePage() {
     }
     setNewCategory(safedCategory);
     setPreviousNewCategory(safedCategory);
+    setSelectedTypeChannel("all");
+    setIsLoading(false);
   }, [allTVMovies, isLoadingAllTVMovies]);
 
   useEffect(() => {
@@ -144,19 +145,24 @@ export default function FlexMoviePage() {
         </div>
 
         <div className="flex flex-col gap-4 md:p-12 m-6">
-          {(isLoadingAllTVMovies || isLoadingCurrentSubsUsage) && (
+          {(isLoading || isLoadingCurrentSubsUsage) && (
             <div className="flex flex-col gap-4">
               {Array.from({ length: 7 }).map((_, i) => {
                 return (
                   <div
                     key={i}
-                    className="bg-white rounded-xl animate-pulse dark:bg-slate-800/30 p-8"
-                  ></div>
+                    className="bg-white rounded-xl flex justify-center items-center animate-pulse dark:bg-slate-800/30 p-8"
+                  >
+                    <ReactIcons.PiIcon.PiSpinner
+                      size={20}
+                      className="animate-spin dark:text-slate-500"
+                    />
+                  </div>
                 );
               })}
             </div>
           )}
-          {!isLoadingAllTVMovies && newCategory.length > 0 && (
+          {!isLoading && newCategory.length > 0 && (
             <>
               <TVFilterBox
                 setValue={setSelectedTypeChannel}
@@ -168,7 +174,7 @@ export default function FlexMoviePage() {
             </>
           )}
 
-          {!isLoadingAllTVMovies && newCategory.length <= 0 && (
+          {!isLoading && newCategory.length <= 0 && (
             <div className="animate-fade flex items-center w-full h-full justify-center md:mt-16 mt-12 md:mb-24 mb-12">
               <AuSoftUI.Component.ListEmpty
                 action_en="Get In Touch"

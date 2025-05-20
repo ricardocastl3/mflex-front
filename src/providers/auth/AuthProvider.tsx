@@ -106,33 +106,21 @@ export default function AuthProvider({
         return;
       }
 
-      if (
-        LocalStorageServices.getKey(
-          LocalStorageServices.keys.redirectToPricing
-        ) &&
-        (startRoutes == "sign-in" || startRoutes == "confirm-account")
-      ) {
-        LocalStorageServices.resetAllKeys();
-        window.location.href = `/${langByCookies}/pricing`;
-        return;
-      }
+      if (startRoutes == "sign-in" || startRoutes == "confirm-account") {
+        if (LocalStorageServices.getPricingID()) {
+          LocalStorageServices.redirectForPricing();
+          return;
+        }
 
-      if (
-        LocalStorageServices.getKey(LocalStorageServices.keys.watchTv) &&
-        (startRoutes == "sign-in" || startRoutes == "confirm-account")
-      ) {
-        LocalStorageServices.resetAllKeys();
-        window.location.href = `/${langByCookies}/flex-tv`;
-        return;
-      }
+        if (LocalStorageServices.getWatchID()) {
+          LocalStorageServices.redirectWatchTv();
+          return;
+        }
 
-      if (
-        LocalStorageServices.getKey(LocalStorageServices.keys.watchMovie) &&
-        (startRoutes == "sign-in" || startRoutes == "confirm-account")
-      ) {
-        LocalStorageServices.resetAllKeys();
-        window.location.href = `/${langByCookies}/flex-movie`;
-        return;
+        if (LocalStorageServices.getWatchMovieID()) {
+          LocalStorageServices.redirectWatchMovie();
+          return;
+        }
       }
 
       if (

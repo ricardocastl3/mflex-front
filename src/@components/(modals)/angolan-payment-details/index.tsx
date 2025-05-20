@@ -23,6 +23,8 @@ export default function AngolanPaymentDetailsModal() {
   const [isLoading, setIsLoading] = useState(false);
 
   async function handleCloseModal() {
+    setIsLoading(true);
+
     if (!isPurchased) handleOpenModal("");
 
     if (isPurchased) {
@@ -31,9 +33,15 @@ export default function AngolanPaymentDetailsModal() {
         itemPriceIdCheckoutSelected.type == "subs"
       ) {
         if (selectedAngolanMethod != "reference")
-          if (LocalStorageServices.getKey(LocalStorageServices.keys.watchTv)) {
-            LocalStorageServices.resetAllKeys();
-            window.location.href = "/" + langByCookies + "/flex-tv";
+          if (
+            LocalStorageServices.getKey(LocalStorageServices.keys.rc_watchTv)
+          ) {
+            LocalStorageServices.redirectWatchTv();
+            return;
+          } else if (
+            LocalStorageServices.getKey(LocalStorageServices.keys.rc_watchMovie)
+          ) {
+            LocalStorageServices.redirectWatchMovie();
             return;
           } else {
             window.location.href = "/" + langByCookies;
@@ -44,6 +52,7 @@ export default function AngolanPaymentDetailsModal() {
         window.location.href = "/" + langByCookies + "/app/tickets";
       }
     }
+    setIsLoading(false);
   }
 
   return (

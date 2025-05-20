@@ -8,6 +8,7 @@ import { localImages } from "@/utils/images";
 import { langByCookies } from "@/http/axios/api";
 import { useAuth } from "@/providers/auth/AuthProvider";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
@@ -23,14 +24,16 @@ export default function TVItem({
   const { handleOpenModal } = useModal();
   const { currentSubscription } = useAuth();
 
+  const router = useRouter();
+
   function handleSubscribe() {
     LocalStorageServices.resetAllKeys();
     LocalStorageServices.setKey(
-      LocalStorageServices.keys.watchTv,
+      LocalStorageServices.keys.rc_watchTv,
       `wtv_${item.id}`
     );
 
-    window.location.href = `/${langByCookies}/pricing`;
+    router.push(`/${langByCookies}/pricing`);
   }
 
   return (
@@ -61,7 +64,9 @@ export default function TVItem({
           </div>
         </div>
 
-        {item.public && (
+        {(item.public ||
+          (currentSubscription &&
+            currentSubscription.subscription.plan?.flex_tv)) && (
           <AuSoftUI.UI.Button
             onClick={() => {
               handleSelectFlexTV(item);
@@ -76,25 +81,27 @@ export default function TVItem({
           </AuSoftUI.UI.Button>
         )}
 
-        {!item.public && (
-          <AuSoftUI.UI.Button
-            onClick={handleSubscribe}
-            variant={"primary"}
-            className="items-center justify-center w-full"
-            size={"sm"}
-          >
-            <ReactIcons.MdIcon.MdTv size={14} />
+        {!item.public &&
+          currentSubscription &&
+          !currentSubscription.subscription.plan?.flex_tv && (
+            <AuSoftUI.UI.Button
+              onClick={handleSubscribe}
+              variant={"primary"}
+              className="items-center justify-center w-full"
+              size={"sm"}
+            >
+              <ReactIcons.MdIcon.MdTv size={14} />
 
-            {currentSubscription &&
-              !currentSubscription.subscription.plan?.flex_tv && (
-                <CTranslateTo eng="Upgrade Plan" pt="Atualizar plano" />
+              {currentSubscription &&
+                !currentSubscription.subscription.plan?.flex_tv && (
+                  <CTranslateTo eng="Upgrade Plan" pt="Atualizar plano" />
+                )}
+
+              {!currentSubscription && (
+                <CTranslateTo eng="Subscribe Plan" pt="Assinar um plano" />
               )}
-
-            {!currentSubscription && (
-              <CTranslateTo eng="Subscribe Plan" pt="Assinar um plano" />
-            )}
-          </AuSoftUI.UI.Button>
-        )}
+            </AuSoftUI.UI.Button>
+          )}
       </BaseBox>
     </motion.div>
   );

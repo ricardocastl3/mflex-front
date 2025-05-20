@@ -2,6 +2,7 @@
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import Link from "next/link";
+import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 import { langByCookies } from "@/http/axios/api";
 import { ReactIcons } from "@/utils/icons";
@@ -57,6 +58,7 @@ export default function CContentServices({
           <CTranslateTo eng="Marketing Services" pt="Serviços de Marketing" />
         </Link>
         <Link
+          onClick={() => LocalStorageServices.resetAllKeys()}
           href={`/${langByCookies}/pricing`}
           className={`${
             currentPageByUrl == "about-us"

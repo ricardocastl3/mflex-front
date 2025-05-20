@@ -12,7 +12,7 @@ export default function CardTransactions() {
       <div className="flex flex-col gap-2">
         <div className="w-full flex justify-between items-center">
           <h1 className="text-base dark:text-white font-bold">
-            <CTranslateTo eng="Transactions" pt="Transações" />
+            <CTranslateTo eng="Transactions" pt="Minhas vendas" />
           </h1>
           <ReactIcons.PiIcon.PiMoney size={15} className="text-green-500" />
         </div>

@@ -8,6 +8,7 @@ import { langByCookies } from "@/http/axios/api";
 import { useAuth } from "@/providers/auth/AuthProvider";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { ReactIcons } from "@/utils/icons";
+import { useRouter } from "next/navigation";
 
 import Image from "next/image";
 import MovieStartRating from "./MovieStartRating";
@@ -27,14 +28,16 @@ export default function TVMovieItem({
 
   const [imageError, setImageError] = useState(false);
 
+  const router = useRouter();
+
   function handleSubscribe() {
     LocalStorageServices.resetAllKeys();
     LocalStorageServices.setKey(
-      LocalStorageServices.keys.watchMovie,
+      LocalStorageServices.keys.rc_watchMovie,
       `wtm_${item.id}`
     );
 
-    window.location.href = `/${langByCookies}/pricing`;
+    router.push(`/${langByCookies}/pricing`);
   }
 
   const hasSubscription =
@@ -80,14 +83,12 @@ export default function TVMovieItem({
                 }
                 alt={item.name}
                 fill
-                className="object-contain rounded-2xl"
+                className={`${
+                  hasSubscription ? "object-cover" : "object-cover"
+                }  rounded-xl`}
                 onError={() => setImageError(true)}
                 unoptimized
               />
-
-              {hasSubscription && (
-                <div className="z-20 flex-col rounded-xl gap-2 absolute inset-0 flex justify-center items-center"></div>
-              )}
 
               {!hasSubscription && (
                 <div className="z-20 flex-col rounded-xl gap-2 absolute bg-black/60  h-full flex justify-center items-center">

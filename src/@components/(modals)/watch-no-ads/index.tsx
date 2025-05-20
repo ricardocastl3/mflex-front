@@ -17,14 +17,14 @@ export default function WatchNodAdsModal() {
 
     if (selectedFlexTV) {
       LocalStorageServices.setKey(
-        LocalStorageServices.keys.watchTv,
+        LocalStorageServices.keys.rc_watchTv,
         `wt_${new Date().getTime()}`
       );
     }
 
     if (selectedFlexTVMovie) {
       LocalStorageServices.setKey(
-        LocalStorageServices.keys.watchMovie,
+        LocalStorageServices.keys.rc_watchMovie,
         `wtm_${new Date().getTime()}`
       );
     }
