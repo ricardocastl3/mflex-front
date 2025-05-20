@@ -3,15 +3,13 @@ import { ITVCategoryChannelsAPI } from "@/http/interfaces/models/tv/ITVChannel";
 import { useCallback, useEffect, useState } from "react";
 
 export default function useMyChannels() {
-  const [allTVChannels, setAllTVChannels] = useState<
-    ITVCategoryChannelsAPI | undefined
-  >();
+  const [allTVChannels, setAllTVChannels] = useState<ITVCategoryChannelsAPI[]>([]);
   const [isLoadingAllTVChannels, setIsLoadingAllTVChannels] = useState(true);
 
   const fetchAllTVChannels = useCallback(async () => {
     try {
       const resp = await internalApi.get<{
-        tvs: ITVCategoryChannelsAPI;
+        tvs: ITVCategoryChannelsAPI[];
       }>(`/streams/me`);
 
       setAllTVChannels(resp.data.tvs);
@@ -26,7 +24,7 @@ export default function useMyChannels() {
       name = name == "" ? undefined : name;
       setIsLoadingAllTVChannels(true);
       const resp = await internalApi.get<{
-        tvs: ITVCategoryChannelsAPI;
+        tvs: ITVCategoryChannelsAPI[];
       }>("/streams/me", {
         params: {
           name,

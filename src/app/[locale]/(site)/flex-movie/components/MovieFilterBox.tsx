@@ -38,16 +38,6 @@ export default function TVFilterBox({
             <ReactIcons.CgIcon.CgTv size={15} />
             <CTranslateTo eng="My Movies" pt="Meus Filmes" />
           </AuSoftUI.UI.Button>
-          <AuSoftUI.UI.Button
-            onClick={() => {
-              setValue("noactive");
-            }}
-            variant={value == "noactive" ? "primary" : "outline"}
-            className="items-center w-fit justify-center"
-          >
-            <ReactIcons.CgIcon.CgTv size={15} />
-            <CTranslateTo eng="Other Movies" pt="Outros Filmes" />
-          </AuSoftUI.UI.Button>
         </div>
       </div>
     </BaseBox>

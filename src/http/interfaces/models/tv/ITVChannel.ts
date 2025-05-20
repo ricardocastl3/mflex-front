@@ -15,16 +15,9 @@ export interface ITVChannel {
 }
 
 export interface ITVCategoryChannelsAPI {
-  me: {
-    id: string;
-    name: string;
-    tv_channels: ITVChannel[];
-  }[];
-  others: {
-    id: string;
-    name: string;
-    tv_channels: ITVChannel[];
-  }[];
+  id: string;
+  name: string;
+  tv_channels: ITVChannel[];
 }
 
 // SAFED TO FRONT

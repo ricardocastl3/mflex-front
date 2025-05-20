@@ -1,12 +1,13 @@
 import React, { useRef, useEffect, useState } from "react";
+import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import videojs from "video.js";
 import "video.js/dist/video-js.css";
 
+import { useFlexTVProvider } from "@/providers/features/FlexTVProvider";
 import { ReactIcons } from "@/utils/icons";
 import { useAuth } from "@/providers/auth/AuthProvider";
 import { useModal } from "@/providers/app/ModalProvider";
 import { internalApi } from "@/http/axios/api";
-import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 
 interface Props {
   item_id: string;
@@ -25,10 +26,12 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
 
   const { userLogged } = useAuth();
   const { handleOpenModal } = useModal();
+  const { selectedFlexTV, handleSelectFlexTV } = useFlexTVProvider();
+
+  const watchUrl = selectedFlexTV ? "streams" : "movies";
 
   useEffect(() => {
-    return;
-    internalApi.get(`/streams/watch/${item_id}`).then((e) => {
+    internalApi.get(`/${watchUrl}/watch/${item_id}`).then((e) => {
       setInitialSrc(e.data.url);
     });
   }, []);
@@ -152,7 +155,7 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
               size={35}
               className="text-white animate-spin"
             />
-            <h1 className="text-white text-base">
+            <h1 className="text-white text-base hidden">
               <CTranslateTo
                 eng="The broadcast is under maintenance, we will resume soon..."
                 pt="A transmissão está em manutenção, em breve retomaremos..."

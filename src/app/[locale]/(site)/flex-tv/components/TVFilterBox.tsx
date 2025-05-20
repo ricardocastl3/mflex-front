@@ -2,7 +2,6 @@ import { AuSoftUI } from "@/@components/(ausoft)";
 import { BaseBox } from "@/@components/(box)/BaseBox";
 import { ReactIcons } from "@/utils/icons";
 import { Dispatch, SetStateAction } from "react";
-import { useAuth } from "@/providers/auth/AuthProvider";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 
@@ -38,16 +37,6 @@ export default function TVFilterBox({
           >
             <ReactIcons.CgIcon.CgTv size={15} />
             <CTranslateTo eng="My Channels" pt="Meus Canais" />
-          </AuSoftUI.UI.Button>
-          <AuSoftUI.UI.Button
-            onClick={() => {
-              setValue("noactive");
-            }}
-            variant={value == "noactive" ? "primary" : "outline"}
-            className="items-center w-fit justify-center"
-          >
-            <ReactIcons.CgIcon.CgTv size={15} />
-            <CTranslateTo eng="Other Channels" pt="Outros Canais" />
           </AuSoftUI.UI.Button>
         </div>
       </div>

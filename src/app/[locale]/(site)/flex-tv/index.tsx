@@ -34,10 +34,7 @@ export default function NewsPage() {
     if (isLoadingAllTVChannels) return;
     if (!allTVChannels) return;
 
-    setSelectedTypeChannel("all");
-
-    const meRawCategory = allTVChannels.me;
-    const otherRawCategory = allTVChannels.others;
+    const meRawCategory = allTVChannels;
 
     const safedCategory: ITVCategorySafed[] = [];
 
@@ -84,84 +81,16 @@ export default function NewsPage() {
       }
     });
 
-    otherRawCategory.forEach((cat) => {
-      if (cat.tv_channels.length <= 0) return;
-
-      const findCategory = safedCategory.find((i) => i.id == cat.id);
-      if (findCategory) {
-        cat.tv_channels.forEach((tv) => {
-          const findTV = findCategory.tv.find((i) => i.st == tv.st);
-          if (!findTV)
-            findCategory.tv.push({
-              id: tv.id,
-              logo: tv.logo,
-              name: tv.name,
-              is_live: tv.is_live,
-              st: tv.st,
-              plan: tv.plan,
-              public: tv.is_public,
-              me: false,
-            });
-        });
-      } else {
-        safedCategory.push({
-          id: cat.id,
-          name: cat.name,
-          tv: [
-            {
-              id: cat.tv_channels[0].id,
-              logo: cat.tv_channels[0].logo,
-              name: cat.tv_channels[0].name,
-              is_live: cat.tv_channels[0].is_live,
-              st: cat.tv_channels[0].st,
-              plan: cat.tv_channels[0].plan,
-              public: cat.tv_channels[0].is_public,
-              me: false,
-            },
-          ],
-        });
-
-        const updateCategory = safedCategory.find((i) => i.id == cat.id);
-        if (updateCategory)
-          cat.tv_channels.forEach((tv) => {
-            const findTV = updateCategory.tv.find((i) => i.st == tv.st);
-            if (!findTV) {
-              updateCategory.tv.push({
-                id: tv.id,
-                logo: tv.logo,
-                name: tv.name,
-                is_live: tv.is_live,
-                plan: tv.plan,
-                st: tv.st,
-                public: tv.is_public,
-                me: false,
-              });
-            }
-          });
-      }
-    });
-
     setNewCategory(safedCategory);
     setPreviousNewCategory(safedCategory);
+    setSelectedTypeChannel("all");
   }, [allTVChannels, isLoadingAllTVChannels]);
 
   useEffect(() => {
     if (selectedTypeChannel == "all") setNewCategory(previousNewCategory);
     if (selectedTypeChannel == "active") {
       const categories = previousNewCategory.map((cat) => {
-        const tvs = cat.tv.filter((i) => i.me || i.public);
-        return {
-          id: cat.id,
-          name: cat.name,
-          tv: tvs,
-        };
-      });
-      setNewCategory(categories);
-    }
-
-    if (selectedTypeChannel == "noactive") {
-      const categories = previousNewCategory.map((cat) => {
-        const tvs = cat.tv.filter((i) => !i.me && !i.public);
+        const tvs = cat.tv.filter((i) => i.public);
         return {
           id: cat.id,
           name: cat.name,

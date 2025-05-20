@@ -28,7 +28,6 @@ export default function FlexMoviePage() {
   >([]);
 
   const [searchField, setSearchField] = useState("");
-
   const [selectedTypeChannel, setSelectedTypeChannel] = useState("all");
 
   useEffect(() => {
@@ -37,116 +36,54 @@ export default function FlexMoviePage() {
 
     setSelectedTypeChannel("all");
 
-    const meRawCategory = allTVMovies.me;
-    const otherRawCategory = allTVMovies.others;
-
     const safedCategory: ITVCategoryMovieSafed[] = [];
 
-    meRawCategory.forEach((cat) => {
-      if (cat.tv_movies.length <= 0) return;
+    if (allTVMovies.length > 0) {
+      allTVMovies.forEach((cat) => {
+        if (cat.tv_movies.length <= 0) return;
 
-      const find = safedCategory.find((i) => i.id == cat.id);
+        const find = safedCategory.find((i) => i.id == cat.id);
 
-      if (!find) {
-        safedCategory.push({
-          id: cat.id,
-          name: cat.name,
-          tv: [
-            {
-              id: cat.tv_movies[0].id,
-              st: cat.tv_movies[0].st,
-              logo: cat.tv_movies[0].thumbnail,
-              name: cat.tv_movies[0].name,
-              plan: cat.tv_movies[0].plan,
-              public: cat.tv_movies[0].is_public,
-              is_live: cat.tv_movies[0].is_live,
-              rating: cat.tv_movies[0].rating,
-              me: true,
-            },
-          ],
-        });
-
-        const updateCategory = safedCategory.find((i) => i.id == cat.id);
-        if (updateCategory)
-          cat.tv_movies.forEach((tv) => {
-            const findTV = updateCategory.tv.find((i) => i.id == cat.id);
-            if (!findTV) {
-              updateCategory.tv.push({
-                id: tv.id,
-                st: tv.st,
-                logo: tv.thumbnail,
-                name: tv.name,
-                plan: tv.plan,
-                public: tv.is_public,
-                is_live: tv.is_live,
-                rating: tv.rating,
+        if (!find) {
+          safedCategory.push({
+            id: cat.id,
+            name: cat.name,
+            tv: [
+              {
+                id: cat.tv_movies[0].id,
+                st: cat.tv_movies[0].st,
+                logo: cat.tv_movies[0].thumbnail,
+                name: cat.tv_movies[0].name,
+                plan: cat.tv_movies[0].plan,
+                public: cat.tv_movies[0].is_public,
+                is_live: cat.tv_movies[0].is_live,
+                rating: cat.tv_movies[0].rating,
                 me: true,
-              });
-            }
+              },
+            ],
           });
-      }
-    });
 
-    otherRawCategory.forEach((cat) => {
-      if (cat.tv_movies.length <= 0) return;
-
-      const findCategory = safedCategory.find((i) => i.id == cat.id);
-      if (findCategory) {
-        cat.tv_movies.forEach((tv) => {
-          const findTV = findCategory.tv.find((i) => i.st == tv.st);
-          if (!findTV)
-            findCategory.tv.push({
-              id: tv.id,
-              logo: tv.thumbnail,
-              name: tv.name,
-              st: tv.st,
-              plan: tv.plan,
-              public: tv.is_public,
-              is_live: tv.is_live,
-              rating: tv.rating,
-              me: false,
+          const updateCategory = safedCategory.find((i) => i.id == cat.id);
+          if (updateCategory)
+            cat.tv_movies.forEach((tv) => {
+              const findTV = updateCategory.tv.find((i) => i.st == tv.st);
+              if (!findTV) {
+                updateCategory.tv.push({
+                  id: tv.id,
+                  st: tv.st,
+                  logo: tv.thumbnail,
+                  name: tv.name,
+                  plan: tv.plan,
+                  public: tv.is_public,
+                  is_live: tv.is_live,
+                  rating: tv.rating,
+                  me: true,
+                });
+              }
             });
-        });
-      } else {
-        safedCategory.push({
-          id: cat.id,
-          name: cat.name,
-          tv: [
-            {
-              id: cat.tv_movies[0].id,
-              logo: cat.tv_movies[0].thumbnail,
-              name: cat.tv_movies[0].name,
-              st: cat.tv_movies[0].st,
-              plan: cat.tv_movies[0].plan,
-              public: cat.tv_movies[0].is_public,
-              is_live: cat.tv_movies[0].is_live,
-              rating: cat.tv_movies[0].rating,
-              me: false,
-            },
-          ],
-        });
-
-        const updateCategory = safedCategory.find((i) => i.id == cat.id);
-        if (updateCategory)
-          cat.tv_movies.forEach((tv) => {
-            const findTV = updateCategory.tv.find((i) => i.st == tv.st);
-            if (!findTV) {
-              updateCategory.tv.push({
-                id: tv.id,
-                logo: tv.thumbnail,
-                name: tv.name,
-                plan: tv.plan,
-                st: tv.st,
-                public: tv.is_public,
-                is_live: tv.is_live,
-                me: false,
-                rating: tv.rating,
-              });
-            }
-          });
-      }
-    });
-
+        }
+      });
+    }
     setNewCategory(safedCategory);
     setPreviousNewCategory(safedCategory);
   }, [allTVMovies, isLoadingAllTVMovies]);
@@ -155,19 +92,7 @@ export default function FlexMoviePage() {
     if (selectedTypeChannel == "all") setNewCategory(previousNewCategory);
     if (selectedTypeChannel == "active") {
       const categories = previousNewCategory.map((cat) => {
-        const tvs = cat.tv.filter((i) => i.me || i.public);
-        return {
-          id: cat.id,
-          name: cat.name,
-          tv: tvs,
-        };
-      });
-      setNewCategory(categories);
-    }
-
-    if (selectedTypeChannel == "noactive") {
-      const categories = previousNewCategory.map((cat) => {
-        const tvs = cat.tv.filter((i) => !i.me && !i.public);
+        const tvs = cat.tv.filter((i) => i.public);
         return {
           id: cat.id,
           name: cat.name,

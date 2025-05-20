@@ -20,16 +20,9 @@ export interface ITVMovie {
 }
 
 export interface ITVMovieChannelsAPI {
-  me: {
-    id: string;
-    name: string;
-    tv_movies: ITVMovie[];
-  }[];
-  others: {
-    id: string;
-    name: string;
-    tv_movies: ITVMovie[];
-  }[];
+  id: string;
+  name: string;
+  tv_movies: ITVMovie[];
 }
 
 // SAFED TO FRONT

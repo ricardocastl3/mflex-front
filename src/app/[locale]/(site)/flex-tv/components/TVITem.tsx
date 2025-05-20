@@ -27,7 +27,7 @@ export default function TVItem({
     LocalStorageServices.resetAllKeys();
     LocalStorageServices.setKey(
       LocalStorageServices.keys.watchTv,
-      `wt_${new Date().getTime()}`
+      `wtv_${item.id}`
     );
 
     window.location.href = `/${langByCookies}/pricing`;
@@ -61,7 +61,7 @@ export default function TVItem({
           </div>
         </div>
 
-        {(item.me || item.public) && (
+        {item.public && (
           <AuSoftUI.UI.Button
             onClick={() => {
               handleSelectFlexTV(item);
@@ -75,7 +75,8 @@ export default function TVItem({
             <CTranslateTo eng="Watch TV" pt="Assistir" />
           </AuSoftUI.UI.Button>
         )}
-        {!item.me && !item.public && (
+
+        {!item.public && (
           <AuSoftUI.UI.Button
             onClick={handleSubscribe}
             variant={"primary"}
@@ -84,9 +85,10 @@ export default function TVItem({
           >
             <ReactIcons.MdIcon.MdTv size={14} />
 
-            {currentSubscription && (
-              <CTranslateTo eng="Upgrade Plan" pt="Atualizar plano" />
-            )}
+            {currentSubscription &&
+              !currentSubscription.subscription.plan?.flex_tv && (
+                <CTranslateTo eng="Upgrade Plan" pt="Atualizar plano" />
+              )}
 
             {!currentSubscription && (
               <CTranslateTo eng="Subscribe Plan" pt="Assinar um plano" />

@@ -4,17 +4,17 @@ import { useCallback, useEffect, useState } from "react";
 
 export default function useMyMovies() {
   const [allTVMovies, setAllTVMovies] = useState<
-    ITVMovieChannelsAPI | undefined
-  >();
+    ITVMovieChannelsAPI[]
+  >([]);
   const [isLoadingAllTVMovies, setIsLoadingAllTVMovies] = useState(true);
 
   const fetchAllTVMovies = useCallback(async () => {
     try {
       const resp = await internalApi.get<{
-        tvs: ITVMovieChannelsAPI;
+        movies: ITVMovieChannelsAPI[];
       }>(`/movies`);
 
-      setAllTVMovies(resp.data.tvs);
+      setAllTVMovies(resp.data.movies);
       setIsLoadingAllTVMovies(false);
     } catch (err) {
       setIsLoadingAllTVMovies(false);
@@ -26,14 +26,14 @@ export default function useMyMovies() {
       name = name == "" ? undefined : name;
       setIsLoadingAllTVMovies(true);
       const resp = await internalApi.get<{
-        tvs: ITVMovieChannelsAPI;
+        movies: ITVMovieChannelsAPI[];
       }>("/movies", {
         params: {
           name,
         },
       });
 
-      setAllTVMovies(resp.data.tvs);
+      setAllTVMovies(resp.data.movies);
       setIsLoadingAllTVMovies(false);
     } catch (err) {
       setIsLoadingAllTVMovies(false);
