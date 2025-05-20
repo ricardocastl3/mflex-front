@@ -1,7 +1,7 @@
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { BaseBox } from "@/@components/(box)/BaseBox";
 import { ReactIcons } from "@/utils/icons";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useAuth } from "@/providers/auth/AuthProvider";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
@@ -15,10 +15,16 @@ export default function TVFilterBox({
 }) {
   const { currentSubscription } = useAuth();
 
-  const hasChannels =
-    currentSubscription && currentSubscription.subscription.plan?.flex_tv
+  const [hasChannels, setHasChannel] = useState(false);
+
+  useEffect(() => {
+    if (!currentSubscription) return;
+    const has = currentSubscription.subscription.plan?.flex_movies
       ? true
       : false;
+
+    setHasChannel(has);
+  }, [currentSubscription]);
 
   return (
     <BaseBox className="p-4 md:w-auto w-full">
