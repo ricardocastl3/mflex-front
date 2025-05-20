@@ -16,9 +16,9 @@ export default function TVFilterBox({
   const { currentSubscription } = useAuth();
 
   const hasChannels =
-    currentSubscription && !currentSubscription.subscription.plan?.flex_movies
-      ? false
-      : true;
+    currentSubscription && currentSubscription.subscription.plan?.flex_movies
+      ? true
+      : false;
 
   return (
     <BaseBox className="p-4 md:w-auto w-full">
