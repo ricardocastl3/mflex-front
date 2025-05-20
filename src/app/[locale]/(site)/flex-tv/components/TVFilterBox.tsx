@@ -2,6 +2,7 @@ import { AuSoftUI } from "@/@components/(ausoft)";
 import { BaseBox } from "@/@components/(box)/BaseBox";
 import { ReactIcons } from "@/utils/icons";
 import { Dispatch, SetStateAction } from "react";
+import { useAuth } from "@/providers/auth/AuthProvider";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 
@@ -12,6 +13,14 @@ export default function TVFilterBox({
   value: string;
   setValue: Dispatch<SetStateAction<string>>;
 }) {
+  const { currentSubscription } = useAuth();
+
+  const hasChannels =
+    !currentSubscription ||
+    (currentSubscription && !currentSubscription.subscription.plan?.flex_movies)
+      ? false
+      : true;
+
   return (
     <BaseBox className="p-4 md:w-auto w-full">
       <div
@@ -28,16 +37,18 @@ export default function TVFilterBox({
             <ReactIcons.CgIcon.CgTv size={15} />
             <CTranslateTo eng="All Channels" pt="Todos os canais" />
           </AuSoftUI.UI.Button>
-          <AuSoftUI.UI.Button
-            onClick={() => {
-              setValue("active");
-            }}
-            variant={value == "active" ? "primary" : "outline"}
-            className="items-center w-fit justify-center"
-          >
-            <ReactIcons.CgIcon.CgTv size={15} />
-            <CTranslateTo eng="My Channels" pt="Meus Canais" />
-          </AuSoftUI.UI.Button>
+          {!hasChannels && (
+            <AuSoftUI.UI.Button
+              onClick={() => {
+                setValue("active");
+              }}
+              variant={value == "active" ? "primary" : "outline"}
+              className="items-center w-fit justify-center"
+            >
+              <ReactIcons.CgIcon.CgTv size={15} />
+              <CTranslateTo eng="My Channels" pt="Meus Canais" />
+            </AuSoftUI.UI.Button>
+          )}
         </div>
       </div>
     </BaseBox>
