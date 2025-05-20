@@ -53,6 +53,7 @@ export default function SHeader() {
       <div className="flex items-center gap-4">
         <Link
           href={`/${segmentedLayout}`}
+          onClick={()=>LocalStorageServices.resetAllKeys()}
           className="flex items-center font-bold gap-1.5 md:text-xl text-md text-yellow-500 dark:text-yellow-500"
         >
           <AAuSoftLogo size={70} />
