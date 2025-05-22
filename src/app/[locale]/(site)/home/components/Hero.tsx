@@ -20,24 +20,24 @@ export default function Hero() {
           <AAuSoftLogo size={90} />
           <h4 className="md:text-[2rem] text-xl font-bold text-yellow-500 md:mt-2 mt-2">
             <CTranslateTo
-              eng="The best event at moment"
-              pt="Os melhores eventos da atualidade"
+              eng="Your Entertainment Universe"
+              pt="O Seu Universo de Entretenimento"
             />
           </h4>
           <h4 className="md:text-[1.2rem] text-lg font-bold text-white md:mt-2 mt-2">
             <CTranslateTo
-              eng="Here you have, the good and the best 🔥"
-              pt="Aqui você tem, do bom e do melhor 🔥"
+              eng="Create, and Connect with the Best Content"
+              pt="Crie e Conecte-se com o Melhor Conteúdo"
             />
           </h4>
-          <Link data-aos="fade-up" href={`/${langByCookies}/events`}>
+          <Link data-aos="fade-up" href={`/${langByCookies}/podflex`}>
             <AuSoftUI.UI.Button
               size={"lg"}
               className="rounded-full md:mt-4 mt-2.5 animate-pulse items-center"
               variant={"primary"}
             >
-              <ReactIcons.AiICon.AiFillEnvironment size={19} />
-              <CTranslateTo eng="View Events" pt="Acessar eventos" />
+              <ReactIcons.AiICon.AiFillPlayCircle size={19} />
+              <CTranslateTo eng="View Podcasts" pt="Ver Podcasts" />
             </AuSoftUI.UI.Button>
           </Link>
         </div>

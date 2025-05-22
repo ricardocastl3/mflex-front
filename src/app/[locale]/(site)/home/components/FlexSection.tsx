@@ -11,19 +11,19 @@ export default function FlexSection() {
     <AAnimated animate="animate-fade-up mb-12">
       <section className="md:h-[70vh] h-[60vh] flex items-center justify-center bg-yellow-500  md:my-8 my-6">
         <div className="md:w-[60vw] w-[90vw] text-center flex-col gap-6 items-center flex justify-center">
-          <div className="p-2 rounded-full bg-yellow-600 text-white">
+          <div className="p-2 rounded-full dark:bg-yellow-600 bg-yellow-800 text-white">
             <ReactIcons.AiICon.AiFillStar size={14} />
           </div>
           <h1 className="text-[2rem] text-white font-extrabold border-b-4 border-white">
             <CTranslateTo eng="Who We Are" pt="Quem Somos" />
           </h1>
-          <h3 className="text-lg text-yellow-900">
+          <h3 className="md:text-xl text-lg text-yellow-900 font-medium">
             <CTranslateTo
-              eng="At Marca Flex, we don't just build brands; we create a vibrant platform where you can explore events, discover the latest news, and dive into engaging podcasts. Our passion for creativity drives us to blend strategy and innovation, turning visions into impactful realities."
-              pt="Na Marca Flex, não apenas construímos marcas; criamos uma plataforma vibrante onde você pode explorar eventos, descobrir as últimas novidades e mergulhar em podcasts envolventes. Nossa paixão pela criatividade nos impulsiona a unir estratégia e inovação, transformando visões em realidades impactantes."
+              eng="Welcome to MFLEX, your all-in-one entertainment platform! We bring you the best podcasts, latest news, and a unique space to sell your event tickets. Whether you're looking to discover amazing content or create and monetize your own events, we're here to make your entertainment journey extraordinary."
+              pt="Bem-vindo à MFLEX, sua plataforma completa de entretenimento! Oferecemos os melhores podcasts, as últimas novidades e um espaço exclusivo para vender seus ingressos de eventos. Seja para descobrir conteúdo incrível ou criar e monetizar seus próprios eventos, estamos aqui para tornar sua jornada de entretenimento extraordinária."
             />
           </h3>
-          <div className="flex justify-center items-center text-center">
+          <div className="flex justify-center items-center text-center mt-3">
             <Link
               href={`/${langByCookies}/about-us`}
               className="animate-bounce"
