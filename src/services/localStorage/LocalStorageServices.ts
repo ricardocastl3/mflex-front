@@ -1,6 +1,5 @@
 import { langByCookies } from "@/http/axios/api";
-import { appConfigs, ECOOKIES } from "@/utils/enums";
-import { deleteCookie, getCookie, setCookie } from "cookies-next";
+import { ECOOKIES } from "@/utils/enums";
 
 class LocalStorageServices {
   keys = {
@@ -82,19 +81,6 @@ class LocalStorageServices {
 
   setWatchID(id: string) {
     localStorage.setItem(this.keys.rc_watchTv, `wtv_${id}`);
-  }
-
-  getWatchToken() {
-    const res = getCookie(this.keys.watch_token);
-    return res || false;
-  }
-
-  setWatchToken(token: string) {
-    deleteCookie(this.keys.watch_token);
-    setCookie(this.keys.watch_token, token, {
-      domain: appConfigs.domain,
-      maxAge: 3600,
-    });
   }
 
   setWatchMovieID(id: string) {

@@ -2,6 +2,9 @@ import { appConfigs, ECOOKIES } from "@/utils/enums";
 import { getCookie, hasCookie, setCookie } from "cookies-next";
 
 class CookieServices {
+  keys = {
+    watch_token: "wtn",
+  };
   getLocale() {
     let lang = "";
     if (typeof window != "undefined") {
@@ -14,6 +17,25 @@ class CookieServices {
     }
     return lang;
   }
+
+  getWatchToken() {
+    const res = getCookie(this.keys.watch_token);
+    return res || false;
+  }
+
+  setWatchToken(token: string) {
+    setCookie(this.keys.watch_token, "", {
+      domain:
+        process.env.NODE_ENV == "production" ? appConfigs.domain : "localhost",
+      expires: new Date(0),
+      maxAge: 0,
+    });
+
+    setCookie(this.keys.watch_token, token, {
+      domain: appConfigs.domain,
+    });
+  }
+
   setLogoutCookies() {
     setCookie(ECOOKIES.COOKIE_USER_AUTH_TOKEN, "", {
       domain:
