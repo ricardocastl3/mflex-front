@@ -35,6 +35,7 @@ export default function NewsPage() {
 
   const [searchField, setSearchField] = useState("");
   const [selectedTypeChannel, setSelectedTypeChannel] = useState("active");
+  const [firstWatch, setFirstWatch] = useState(false);
   const [isLoading, setIsLoadings] = useState(true);
 
   useEffect(() => {
@@ -48,7 +49,7 @@ export default function NewsPage() {
       (cat) => cat.tv_channels.length > 0
     );
 
-    const safedCategory: ITVCategorySafed[] = [];
+    let safedCategory: ITVCategorySafed[] = [];
 
     meRawCategory.forEach((cat) => {
       const find = safedCategory.find((i) => i.id == cat.id);
@@ -89,19 +90,21 @@ export default function NewsPage() {
       }
     });
 
-    // Set new category
-    const categories = safedCategory.map((cat) => {
-      const tvs = cat.tv.filter((i) => i.public);
-      return {
-        id: cat.id,
-        name: cat.name,
-        tv: tvs,
-      };
-    });
+    // Set new category in first use
+    if (firstWatch) {
+      safedCategory = safedCategory.map((cat) => {
+        const tvs = cat.tv.filter((i) => i.public);
+        return {
+          id: cat.id,
+          name: cat.name,
+          tv: tvs,
+        };
+      });
+    }
 
-    setNewCategory(categories);
+    setNewCategory(safedCategory);
     setPreviousNewCategory(safedCategory);
-    setSelectedTypeChannel("active");
+    setSelectedTypeChannel(firstWatch ? "active" : "all");
     setIsLoadings(false);
   }, [allTVChannels, isLoadingAllTVChannels]);
 
