@@ -1,6 +1,6 @@
 import { langByCookies } from "@/http/axios/api";
 import { appConfigs, ECOOKIES } from "@/utils/enums";
-import { getCookie, setCookie } from "cookies-next";
+import { deleteCookie, getCookie, setCookie } from "cookies-next";
 
 class LocalStorageServices {
   keys = {
@@ -88,8 +88,9 @@ class LocalStorageServices {
     const res = getCookie(this.keys.watch_token);
     return res || false;
   }
-  
+
   setWatchToken(token: string) {
+    deleteCookie(this.keys.watch_token);
     setCookie(this.keys.watch_token, token, {
       domain: appConfigs.domain,
       maxAge: 3600,
