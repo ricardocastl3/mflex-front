@@ -31,7 +31,7 @@ export default function Home() {
           <CardTicket />
         </div>
 
-        <BaseBox className="flex-1 p-8 flex-col gap-4">
+        <BaseBox className="flex-1 md:px-8 px-2.5 md:py-8 py-5 flex-col gap-4">
           <div className="flex flex-col gap-3 items-center justify-center pb-6">
             <AAuSoftLogo size={50} />
             <h3 className="text-lg font-bold text-center dark:text-white">

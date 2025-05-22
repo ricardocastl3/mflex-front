@@ -8,6 +8,7 @@ import { langByCookies } from "@/http/axios/api";
 import BaseModal from "../base";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import TVPlayer from "./components/TVPlayer";
+import CookieServices from "@/services/auth/CookieServices";
 
 export default function WatchTVModal() {
   // Contexts
@@ -27,6 +28,7 @@ export default function WatchTVModal() {
 
   function handleCloseModal() {
     handleOpenModal("");
+    CookieServices.deleteWatchCookie();
     if (searParams.has("mv") || searParams.has("chl"))
       if (selectedFlexTV) {
         router.push(`/${langByCookies}/flex-tv#start`);

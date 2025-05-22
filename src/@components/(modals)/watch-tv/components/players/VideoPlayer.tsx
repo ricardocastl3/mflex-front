@@ -42,13 +42,19 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
   }, []);
 
   useEffect(() => {
+    let timeout;
     if (checkUser) {
-      setTimeout(() => {
+      timeout = setTimeout(() => {
         if (!userLogged) {
           handleOpenModal("watch-no-ads");
         }
-      }, 60000);
+      }, 30000);
     }
+
+    if (timeout)
+      return () => {
+        clearTimeout(timeout);
+      };
   }, [checkUser]);
 
   const reconnect = () => {

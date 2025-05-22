@@ -24,15 +24,17 @@ class CookieServices {
   }
 
   setWatchToken(token: string) {
+    setCookie(this.keys.watch_token, token, {
+      domain: appConfigs.domain,
+    });
+  }
+
+  deleteWatchCookie() {
     setCookie(this.keys.watch_token, "", {
       domain:
         process.env.NODE_ENV == "production" ? appConfigs.domain : "localhost",
       expires: new Date(0),
       maxAge: 0,
-    });
-
-    setCookie(this.keys.watch_token, token, {
-      domain: appConfigs.domain,
     });
   }
 
