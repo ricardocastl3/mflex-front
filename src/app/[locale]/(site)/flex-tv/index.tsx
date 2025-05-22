@@ -150,7 +150,7 @@ export default function NewsPage() {
       </div>
       <HeroTV />
       <div className="flex flex-col gap-4 relative">
-        <div className="z-20 flex w-full items-center justify-center absolute -top-28 flex-col gap-4">
+        <div className="z-20 flex w-full items-center justify-center absolute -top-32 flex-col gap-4">
           <div className="w-full justify-center text-center flex flex-col gap-2">
             <h4 className="text-white font-bold md:text-2xl text-xl">
               <CTranslateTo eng="Flex TV 📺" pt="Flex TV 📺" />
@@ -176,7 +176,7 @@ export default function NewsPage() {
           />
         </div>
 
-        <div className="flex flex-col gap-4 md:p-12 m-6">
+        <div className="flex flex-col gap-4 md:mx-[4.5rem] mx-6 md:my-8 my-6">
           {isLoading && (
             <div className="flex flex-col gap-4">
               {Array.from({ length: 7 }).map((_, i) => {

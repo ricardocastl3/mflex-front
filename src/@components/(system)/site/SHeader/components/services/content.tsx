@@ -58,7 +58,7 @@ export default function CContentServices({
             currentPageByUrl == "services"
               ? "dark:bg-yellow-800/50 bg-yellow-200/40"
               : "dark:hover:bg-yellow-800/50 hover:bg-yellow-200/40"
-          } flex items-center gap-2 w-full md:py-2.5 py-4 px-4 dark:text-slate-100 rounded-full text-[0.85rem]`}
+          } hidden  items-center gap-2 w-full md:py-2.5 py-4 px-4 dark:text-slate-100 rounded-full text-[0.85rem]`}
         >
           <ReactIcons.PiIcon.PiMarkerCircle size={15} />
           <CTranslateTo eng="Marketing Services" pt="Serviços de Marketing" />
