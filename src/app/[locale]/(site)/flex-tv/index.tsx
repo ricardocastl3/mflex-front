@@ -89,7 +89,7 @@ export default function NewsPage() {
       }
     });
 
-    // Set my movies
+    // Set new category
     const categories = previousNewCategory.map((cat) => {
       const tvs = cat.tv.filter((i) => i.public);
       return {
