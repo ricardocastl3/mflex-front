@@ -9,6 +9,14 @@ export interface IHomeFeature {
 
 export const homeFeatures: IHomeFeature[] = [
   {
+    t_en: "Watch TV",
+    t_pt: "Assistir Canais Televisivos",
+    d_en: "Watch your favorite TV channels live, with high quality streaming and exclusive content",
+    d_pt: "Assista seus canais de TV favoritos ao vivo, com streaming de alta qualidade e conteúdo exclusivo ",
+    color: "bg-blue-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400",
+    action_url: "/flex-tv",
+  },
+  {
     t_en: "View Subscriptions",
     t_pt: "Ver Assinaturas",
     d_en: "Access and manage all your active subscriptions in one place",
