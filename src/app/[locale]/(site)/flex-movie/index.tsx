@@ -92,6 +92,8 @@ export default function FlexMoviePage() {
       }
     });
 
+    setPreviousNewCategory(safedCategory);
+
     // Set new category in first use
     if (firstWatch) {
       setFirstWatch(false);
@@ -106,7 +108,6 @@ export default function FlexMoviePage() {
     }
 
     setNewCategory(safedCategory);
-    setPreviousNewCategory(safedCategory);
     setSelectedTypeChannel(firstWatch ? "active" : "all");
     setIsLoading(false);
   }, [allTVMovies, isLoadingAllTVMovies]);

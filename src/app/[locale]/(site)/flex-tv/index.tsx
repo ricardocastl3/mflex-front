@@ -90,6 +90,8 @@ export default function NewsPage() {
       }
     });
 
+    setPreviousNewCategory(safedCategory);
+
     // Set new category in first use
     if (firstWatch) {
       setFirstWatch(false);
@@ -104,7 +106,6 @@ export default function NewsPage() {
     }
 
     setNewCategory(safedCategory);
-    setPreviousNewCategory(safedCategory);
     setSelectedTypeChannel(firstWatch ? "active" : "all");
     setIsLoadings(false);
   }, [allTVChannels, isLoadingAllTVChannels]);
