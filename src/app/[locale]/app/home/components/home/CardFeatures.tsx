@@ -20,7 +20,7 @@ export default function CardHomeFeature({
         <div className="p-3 flex items-center gap-2 border-b pb-3 border-slate-300 dark:border-slate-800">
           <ReactIcons.AiICon.AiFillCiCircle
             size={20}
-            className={`${feature.color}`}
+            className={`${feature.color} rounded-full`}
           />
           <h1 className="text-sm dark:text-white">
             <CTranslateTo eng={feature.t_en} pt={feature.t_pt} />
