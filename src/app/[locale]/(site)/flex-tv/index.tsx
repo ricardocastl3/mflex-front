@@ -34,7 +34,7 @@ export default function NewsPage() {
   >([]);
 
   const [searchField, setSearchField] = useState("");
-  const [selectedTypeChannel, setSelectedTypeChannel] = useState("all");
+  const [selectedTypeChannel, setSelectedTypeChannel] = useState("active");
   const [isLoading, setIsLoadings] = useState(true);
 
   useEffect(() => {
