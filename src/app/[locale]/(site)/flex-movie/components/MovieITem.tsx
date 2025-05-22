@@ -94,8 +94,8 @@ export default function TVMovieItem({
                   <div className="z-20 flex-col rounded-xl gap-2 absolute bg-black/60  h-full flex justify-center items-center">
                     <h1 className="text-sm text-white md:px-8 px-4 text-center">
                       <CTranslateTo
-                        eng="Comming Soon 😀"
-                        pt="Brevemente disponível 😀"
+                        eng="Comming Soon in MFLEX 🚀"
+                        pt="Brevemente disponível na MFLEX 🚀"
                       />
                     </h1>
                   </div>

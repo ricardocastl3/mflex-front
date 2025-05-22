@@ -11,6 +11,8 @@ import CardEvent from "./components/CardEvent";
 import CardTransactions from "./components/CardTransactions";
 import CardTransfers from "./components/CardTransfers";
 import AAuSoftLogo from "@/@components/(ausoft)/AAuSoftLogo";
+import { homeFeatures } from "./components/home/features";
+import CardHomeFeature from "./components/home/CardFeatures";
 
 export default function Home() {
   const { userLogged } = useAuth();
@@ -29,17 +31,21 @@ export default function Home() {
           <CardTicket />
         </div>
 
-        <BaseBox className="flex-1 p-8 flex-col gap-4 h-full items-center flex justify-center">
-          <AAuSoftLogo size={70} />
-          <h3 className="text-lg font-bold text-center dark:text-white">
-            <CTranslateTo
-              eng="Welcome in Flex Zone"
-              pt="Bem-vindo a Flex Zone"
-            />
-          </h3>
-          <h3>
-            <CTranslateTo eng=""  pt="Aqui você pode, ver as suas assinaturas, consultas a venda"/>
-          </h3>
+        <BaseBox className="flex-1 p-8 flex-col gap-4">
+          <div className="flex flex-col gap-3 items-center justify-center pb-6">
+            <AAuSoftLogo size={50} />
+            <h3 className="text-lg font-bold text-center dark:text-white">
+              <CTranslateTo
+                eng="Welcome in Flex Zone"
+                pt="Bem-vindo a Flex Zone"
+              />
+            </h3>
+          </div>
+          <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
+            {homeFeatures.map((feat, i) => {
+              return <CardHomeFeature key={i} feature={feat} />;
+            })}
+          </div>
         </BaseBox>
       </ContainerBase>
     </PageBase>
