@@ -22,7 +22,9 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
 
   const [isRefreshing, setIsRefreshing] = useState(true);
   const [checkUser, setCheckUser] = useState(false);
-  const [initialSRC, setInitialSrc] = useState("");
+  const [initialSRC, setInitialSrc] = useState(
+    "https://sgn-cdn-video.vods2africa.com/Tv-Zimbo/index.fmp4.m3u8"
+  );
 
   const { userLogged } = useAuth();
   const { handleOpenModal } = useModal();
@@ -32,7 +34,7 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
 
   useEffect(() => {
     internalApi.get(`/${watchUrl}/watch/${item_id}`).then((e) => {
-      setInitialSrc(e.data.url);
+      //setInitialSrc(e.data.url);
     });
   }, []);
 

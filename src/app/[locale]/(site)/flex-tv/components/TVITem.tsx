@@ -44,8 +44,7 @@ export default function TVItem({
           <img
             src={item.logo ? item.logo : localImages.logos.mflex.src}
             alt=""
-            width={50}
-            height={50}
+            className="w-[40px] h-[20px] object-contain"
           />
           <div className="flex flex-col gap-0.5">
             <div className="flex items-center gap-3">

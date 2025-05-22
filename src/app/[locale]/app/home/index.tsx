@@ -33,9 +33,12 @@ export default function Home() {
           <AAuSoftLogo size={70} />
           <h3 className="text-lg font-bold text-center dark:text-white">
             <CTranslateTo
-              eng="Flexibility & Strategy"
-              pt="Flexibilidade & Estratégia"
+              eng="Welcome in Flex Zone"
+              pt="Bem-vindo a Flex Zone"
             />
+          </h3>
+          <h3>
+            <CTranslateTo eng=""  pt="Aqui você pode, ver as suas assinaturas, consultas a venda"/>
           </h3>
         </BaseBox>
       </ContainerBase>

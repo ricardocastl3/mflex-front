@@ -49,19 +49,21 @@ export default function TVMovieItem({
     <>
       <motion.div
         onClick={() => {
-          if (item.public) {
-            handleSelectFlexTVMovie(item);
-            handleSelectFlexTV(undefined);
-            handleOpenModal("watch-tv");
-          } else {
-            if (
-              currentSubscription &&
-              currentSubscription.subscription.plan?.flex_movie
-            ) {
+          if (process.env.NODE_ENV != "production") {
+            if (item.public) {
               handleSelectFlexTVMovie(item);
+              handleSelectFlexTV(undefined);
               handleOpenModal("watch-tv");
             } else {
-              handleSubscribe();
+              if (
+                currentSubscription &&
+                currentSubscription.subscription.plan?.flex_movie
+              ) {
+                handleSelectFlexTVMovie(item);
+                handleOpenModal("watch-tv");
+              } else {
+                handleSubscribe();
+              }
             }
           }
         }}
@@ -87,24 +89,43 @@ export default function TVMovieItem({
                 onError={() => setImageError(true)}
                 unoptimized
               />
+              {process.env.NODE_ENV == "production" && (
+                <>
+                  <div className="z-20 flex-col rounded-xl gap-2 absolute bg-black/60  h-full flex justify-center items-center">
+                    <h1 className="text-sm text-white md:px-8 px-4 text-center">
+                      <CTranslateTo
+                        eng="Comming Soon 😀"
+                        pt="Brevemente disponível 😀"
+                      />
+                    </h1>
+                  </div>
+                </>
+              )}
 
-              {!hasSubscription && (
-                <div className="z-20 flex-col rounded-xl gap-2 absolute bg-black/60  h-full flex justify-center items-center">
-                  <h1 className="text-sm text-white md:px-8 px-4 text-center">
-                    <CTranslateTo
-                      eng="You don't have an subscription"
-                      pt="Você não tem uma assinatura ativa"
-                    />
-                  </h1>
-                  <AuSoftUI.UI.Button
-                    variant={"primary"}
-                    size={"sm"}
-                    className="items-center h-fit pt-1.5"
-                  >
-                    <ReactIcons.MdIcon.MdTv size={14} />
-                    <CTranslateTo eng="I want to watch" pt="Quero assistir" />
-                  </AuSoftUI.UI.Button>
-                </div>
+              {process.env.NODE_ENV != "production" && (
+                <>
+                  {!hasSubscription && (
+                    <div className="z-20 flex-col rounded-xl gap-2 absolute bg-black/60  h-full flex justify-center items-center">
+                      <h1 className="text-sm text-white md:px-8 px-4 text-center">
+                        <CTranslateTo
+                          eng="You don't have an subscription"
+                          pt="Você não tem uma assinatura ativa"
+                        />
+                      </h1>
+                      <AuSoftUI.UI.Button
+                        variant={"primary"}
+                        size={"sm"}
+                        className="items-center h-fit pt-1.5"
+                      >
+                        <ReactIcons.MdIcon.MdTv size={14} />
+                        <CTranslateTo
+                          eng="I want to watch"
+                          pt="Quero assistir"
+                        />
+                      </AuSoftUI.UI.Button>
+                    </div>
+                  )}{" "}
+                </>
               )}
             </div>
           </div>
