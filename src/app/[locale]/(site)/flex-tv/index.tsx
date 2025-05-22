@@ -91,7 +91,7 @@ export default function NewsPage() {
 
     setNewCategory(safedCategory);
     setPreviousNewCategory(safedCategory);
-    setSelectedTypeChannel("all");
+    setSelectedTypeChannel("active");
     setIsLoadings(false);
   }, [allTVChannels, isLoadingAllTVChannels]);
 

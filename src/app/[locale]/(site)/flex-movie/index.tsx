@@ -93,7 +93,7 @@ export default function FlexMoviePage() {
 
     setNewCategory(safedCategory);
     setPreviousNewCategory(safedCategory);
-    setSelectedTypeChannel("all");
+    setSelectedTypeChannel("active");
     setIsLoading(false);
   }, [allTVMovies, isLoadingAllTVMovies]);
 
