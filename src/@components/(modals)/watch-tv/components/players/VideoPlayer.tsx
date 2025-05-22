@@ -1,7 +1,14 @@
 import React, { useRef, useEffect, useState } from "react";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import videojs from "video.js";
+
 import "video.js/dist/video-js.css";
+
+import "@videojs/themes/dist/city/index.css";
+import '@videojs/themes/dist/fantasy/index.css';
+import '@videojs/themes/dist/forest/index.css';
+import '@videojs/themes/dist/sea/index.css';
+
 import CookieServices from "@/services/auth/CookieServices";
 
 import { useFlexTVProvider } from "@/providers/features/FlexTVProvider";
@@ -178,7 +185,7 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
       <div data-vjs-player>
         <video
           ref={videoRef}
-          className="video-js vjs-big-play-centered w-full h-full"
+          className="video-js vjs-big-play-centered vjs-theme-forest w-full h-full"
         />
       </div>
     </div>

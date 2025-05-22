@@ -17,6 +17,7 @@
     "@types/jsonwebtoken": "^9.0.7",
     "@types/react-copy-to-clipboard": "^5.0.7",
     "@uides/react-qr-reader": "^3.0.1-rc.29",
+    "@videojs/themes": "^1.0.1",
     "aos": "^2.3.4",
     "axios": "^1.7.7",
     "class-variance-authority": "^0.7.0",
