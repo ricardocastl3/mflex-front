@@ -89,7 +89,17 @@ export default function NewsPage() {
       }
     });
 
-    setNewCategory(safedCategory);
+    // Set my movies
+    const categories = previousNewCategory.map((cat) => {
+      const tvs = cat.tv.filter((i) => i.public);
+      return {
+        id: cat.id,
+        name: cat.name,
+        tv: tvs,
+      };
+    });
+
+    setNewCategory(categories);
     setPreviousNewCategory(safedCategory);
     setSelectedTypeChannel("active");
     setIsLoadings(false);
