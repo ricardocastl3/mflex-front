@@ -34,6 +34,7 @@ export default function FlexMoviePage() {
   >([]);
 
   const [searchField, setSearchField] = useState("");
+  const [firstWatch, setFirstWatch] = useState(true);
   const [selectedTypeChannel, setSelectedTypeChannel] = useState("all");
   const [isLoading, setIsLoading] = useState(true);
 
@@ -44,7 +45,7 @@ export default function FlexMoviePage() {
     }
     if (!allTVMovies) return;
 
-    const safedCategory: ITVCategoryMovieSafed[] = [];
+    let safedCategory: ITVCategoryMovieSafed[] = [];
 
     const newRawMovies = allTVMovies.filter((cat) => cat.tv_movies.length > 0);
 
@@ -91,9 +92,22 @@ export default function FlexMoviePage() {
       }
     });
 
+    // Set new category in first use
+    if (firstWatch) {
+      setFirstWatch(false);
+      safedCategory = safedCategory.map((cat) => {
+        const tvs = cat.tv.filter((i) => i.public);
+        return {
+          id: cat.id,
+          name: cat.name,
+          tv: tvs,
+        };
+      });
+    }
+
     setNewCategory(safedCategory);
     setPreviousNewCategory(safedCategory);
-    setSelectedTypeChannel("all");
+    setSelectedTypeChannel(firstWatch ? "active" : "all");
     setIsLoading(false);
   }, [allTVMovies, isLoadingAllTVMovies]);
 
