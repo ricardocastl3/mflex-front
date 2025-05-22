@@ -90,7 +90,7 @@ export default function NewsPage() {
     });
 
     // Set new category
-    const categories = previousNewCategory.map((cat) => {
+    const categories = safedCategory.map((cat) => {
       const tvs = cat.tv.filter((i) => i.public);
       return {
         id: cat.id,
