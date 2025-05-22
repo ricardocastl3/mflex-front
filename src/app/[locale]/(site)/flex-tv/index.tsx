@@ -35,7 +35,7 @@ export default function NewsPage() {
 
   const [searchField, setSearchField] = useState("");
   const [selectedTypeChannel, setSelectedTypeChannel] = useState("active");
-  const [firstWatch, setFirstWatch] = useState(false);
+  const [firstWatch, setFirstWatch] = useState(true);
   const [isLoading, setIsLoadings] = useState(true);
 
   useEffect(() => {
@@ -92,6 +92,7 @@ export default function NewsPage() {
 
     // Set new category in first use
     if (firstWatch) {
+      setFirstWatch(false);
       safedCategory = safedCategory.map((cat) => {
         const tvs = cat.tv.filter((i) => i.public);
         return {
