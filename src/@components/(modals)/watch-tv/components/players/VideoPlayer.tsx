@@ -42,7 +42,8 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
   }, []);
 
   useEffect(() => {
-    let timeout;
+    let timeout: NodeJS.Timeout;
+
     if (checkUser) {
       timeout = setTimeout(() => {
         if (!userLogged) {
@@ -51,11 +52,12 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
       }, 30000);
     }
 
-    if (timeout)
-      return () => {
+    return () => {
+      if (timeout) {
         clearTimeout(timeout);
-      };
-  }, [checkUser]);
+      }
+    };
+  }, [checkUser, userLogged, handleOpenModal]);
 
   const reconnect = () => {
     if (tentativasRef.current >= MAX_TENTATIVAS) {
