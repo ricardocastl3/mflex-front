@@ -2,13 +2,13 @@ import React, { useRef, useEffect, useState } from "react";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import videojs from "video.js";
 import "video.js/dist/video-js.css";
+import CookieServices from "@/services/auth/CookieServices";
 
 import { useFlexTVProvider } from "@/providers/features/FlexTVProvider";
 import { ReactIcons } from "@/utils/icons";
 import { useAuth } from "@/providers/auth/AuthProvider";
 import { useModal } from "@/providers/app/ModalProvider";
 import { internalApi } from "@/http/axios/api";
-import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 interface Props {
   item_id: string;
@@ -36,7 +36,7 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
       setInitialSrc(e.data.url);
       if (e.data.url != "") {
         const url = e.data.url.split("k=")[1];
-        LocalStorageServices.setWatchToken(url);
+        CookieServices.setWatchToken(url);
       }
     });
   }, []);
