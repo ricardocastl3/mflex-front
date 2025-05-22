@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import { validateTokenSignOnRequest } from "@/services/auth/TokenServices";
 import { mflexStreamAPI } from "@/http/axios/api";
 import axios, { AxiosError } from "axios";
+import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 const mflexApi = axios.create({
   baseURL: `${process.env.MFLEX_SERVER_URL}/api/v1`,
@@ -29,10 +30,17 @@ export async function GET(
     const pathFull = path.join("/");
 
     if (pathFull.startsWith("strx")) {
+      const watchToken = cookieSafe.get(
+        LocalStorageServices.keys.watch_token
+      )?.value;
+
       const res = await mflexStreamAPI.get(
         `${process.env.MFLEX_STREAMIN_SERVER_URL}/` + pathFull,
         {
           responseType: "stream",
+          params: {
+            token: watchToken,
+          },
         }
       );
 

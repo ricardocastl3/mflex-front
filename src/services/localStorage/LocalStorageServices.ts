@@ -1,11 +1,13 @@
 import { langByCookies } from "@/http/axios/api";
-import { ECOOKIES } from "@/utils/enums";
+import { appConfigs, ECOOKIES } from "@/utils/enums";
+import { getCookie, setCookie } from "cookies-next";
 
 class LocalStorageServices {
   keys = {
     rc_pricing: "rc-pricing",
     rc_watchTv: "rc-watch-tv",
     rc_watchMovie: "rc-watch-movie",
+    watch_token: "wtn",
   };
 
   async checkRedirects() {
@@ -80,6 +82,18 @@ class LocalStorageServices {
 
   setWatchID(id: string) {
     localStorage.setItem(this.keys.rc_watchTv, `wtv_${id}`);
+  }
+
+  getWatchToken() {
+    const res = getCookie(this.keys.watch_token);
+    return res || false;
+  }
+  
+  setWatchToken(token: string) {
+    setCookie(this.keys.watch_token, token, {
+      domain: appConfigs.domain,
+      maxAge: 3600,
+    });
   }
 
   setWatchMovieID(id: string) {

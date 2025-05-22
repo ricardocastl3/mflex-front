@@ -8,6 +8,7 @@ import { ReactIcons } from "@/utils/icons";
 import { useAuth } from "@/providers/auth/AuthProvider";
 import { useModal } from "@/providers/app/ModalProvider";
 import { internalApi } from "@/http/axios/api";
+import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 interface Props {
   item_id: string;
@@ -33,6 +34,10 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
   useEffect(() => {
     internalApi.get(`/${watchUrl}/watch/${item_id}`).then((e) => {
       setInitialSrc(e.data.url);
+      if (e.data.url != "") {
+        const url = e.data.url.split("k=")[1];
+        LocalStorageServices.setWatchToken(url);
+      }
     });
   }, []);
 
@@ -58,9 +63,6 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
     if (playerRef.current) {
       setTimeout(async () => {
         setIsRefreshing(true);
-        //const res = await internalApi.get(`/streams/watch/${item_id}`);
-        //const newSrc = res.data.url;
-
         playerRef.current.reset();
         playerRef.current.src({
           src: initialSRC,
