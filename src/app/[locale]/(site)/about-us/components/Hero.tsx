@@ -21,8 +21,8 @@ export default function HeroAbout() {
         </h1>
         <h4 className="text-white md:mt-2 t-2 text-lg">
           <CTranslateTo
-            eng="We turn your ideas into extraordinary results 🚀"
-            pt="Transformamos suas ideias em resultados extraordinários 🚀"
+            eng="Your Entertainment Universe 🚀"
+            pt="O Seu Universo Do Entretenimento 🚀"
           />
         </h4>
       </div>

@@ -21,12 +21,8 @@ export default function SFooter() {
               </h4>
               <h4 className="md:text-base text-base text-slate-600 dark:text-slate-400">
                 <CTranslateTo
-                  eng="At Marca Flex, we are more than just an agency — we are creative partners in the growth of brands that want to be remembered.
-                  We combine strategy, innovation and passion for communication to transform ideas into real connections. We work in digital marketing,
-                  advertising and brand promotion with comprehensive and affordable solutions, adapted to local reality and the global scenario."
-                  pt="Na Marca Flex, somos mais do que uma agência — somos parceiros criativos no crescimento de marcas que querem ser lembradas.
-                  Unimos estratégia, inovação e paixão pela comunicação para transformar ideias em conexões reais. Atuamos no marketing digital, 
-                  publicidade e promoção de marcas com soluções completas e acessíveis, adaptadas à realidade local e ao cenário global."
+                  eng="At Marca Flex, we are your ultimate entertainment destination. We bring you an immersive experience through our TV content, engaging podcasts, and seamless ticket marketplace. Whether you're looking for the latest game analysis, exclusive content, or event tickets, we've got you covered. Join us in creating memorable moments and connecting with your favorite entertainment."
+                  pt="Na Marca Flex, somos seu destino definitivo de entretenimento. Oferecemos uma experiência imersiva através do nosso conteúdo de TV, podcasts envolventes e uma plataforma integrada de ingressos. Seja para análises de jogos, conteúdo exclusivo ou ingressos para eventos, estamos aqui para você. Junte-se a nós para criar momentos memoráveis e se conectar com seu entretenimento favorito."
                 />
               </h4>
             </div>

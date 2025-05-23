@@ -6,7 +6,6 @@ import { Meteors } from "@/@components/(aceternity)/Meteors";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import HeroAbout from "./components/Hero";
 import SocialItem from "./components/SocialItem";
-import AAnimated from "@/@components/(ausoft)/AAnimated";
 import AboutItem from "./components/AboutItem";
 
 export default function ServicesPage() {
@@ -24,8 +23,8 @@ export default function ServicesPage() {
           </h4>
           <h2 className="text-lg dark:text-slate-400 text-slate-600">
             <CTranslateTo
-              eng="Marketing & Advertising Agency"
-              pt="Agência de Marketing & Publicidade"
+              eng="Entertainment Digital Platform"
+              pt="Plataforma de Entretenimento Digital"
             />
           </h2>
         </div>
@@ -34,35 +33,35 @@ export default function ServicesPage() {
           Icon={ReactIcons.PiIcon.PiStar}
           title_en="Our Essence"
           title_pt="Nossa Essência"
-          des_en="More than just an agency, we are a vibrant platform where you can explore podcasts, events, and must-see news. Join us and discover how we can turn your ideas into reality!"
-          des_pt="Mais do que uma agência, somos uma plataforma vibrante onde você pode explorar podcasts, eventos e novidades imperdíveis. Junte-se a nós e descubra como podemos transformar suas ideias em realidade!"
+          des_en="We are your ultimate entertainment destination, bringing together TV content, engaging podcasts, and a seamless ticket marketplace. We create immersive experiences that connect you with the best in entertainment, sports, and cultural events."
+          des_pt="Somos seu destino definitivo de entretenimento, unindo conteúdo de TV, podcasts envolventes e uma plataforma integrada de ingressos. Criamos experiências imersivas que conectam você ao melhor do entretenimento, esportes e eventos culturais."
         />
 
         <AboutItem
           Icon={ReactIcons.PiIcon.PiMapPin}
-          des_en="Our mission is to empower our clients to achieve their goals through creative and innovative solutions, turning ideas into tangible results."
-          des_pt="Nossa missão é capacitar nossos clientes a alcançarem seus objetivos por meio de soluções criativas e inovadoras, transformando ideias em resultados tangíveis."
+          des_en="To revolutionize entertainment access by providing a comprehensive platform where fans can enjoy premium content, secure event tickets, and engage with their favorite shows and games through expert analysis."
+          des_pt="Revolucionar o acesso ao entretenimento oferecendo uma plataforma completa onde os fãs podem desfrutar de conteúdo premium, garantir ingressos para eventos e se envolver com seus programas e jogos favoritos através de análises especializadas."
           title_en="Mission"
           title_pt="Missão"
         />
         <AboutItem
           Icon={ReactIcons.AiICon.AiFillEye}
-          des_en="To be recognized as the leading marketing and communication platform, where creativity and strategy meet to create a positive impact."
-          des_pt="Ser reconhecida como a principal plataforma de marketing e comunicação, onde a criatividade e a estratégia se encontram para gerar impacto positivo."
+          des_en="To become the leading entertainment hub in Angola, where fans can discover, engage, and experience the best in TV, podcasts, sports analysis, and live events all in one place."
+          des_pt="Tornar-se o principal hub de entretenimento em Angola, onde os fãs podem descobrir, se envolver e vivenciar o melhor da TV, podcasts, análises esportivas e eventos ao vivo, tudo em um só lugar."
           title_en="Vision"
           title_pt="Visão"
         />
         <AboutItem
           Icon={ReactIcons.PiIcon.PiBird}
-          des_en="Innovation, Transparency, Collaboration, and Commitment are the core values that guide our actions and decisions."
-          des_pt="Inovação, Transparência, Colaboração e Compromisso são os valores fundamentais que orientam nossas ações e decisões."
+          des_en="Entertainment Excellence, Innovation, Community Engagement, and Authentic Content Creation drive everything we do, ensuring we deliver the best experience to our audience."
+          des_pt="Excelência no Entretenimento, Inovação, Engajamento Comunitário e Criação de Conteúdo Autêntico impulsionam tudo o que fazemos, garantindo a melhor experiência para nosso público."
           title_en="Values"
           title_pt="Valores"
         />
         <AboutItem
           Icon={ReactIcons.PiIcon.PiAngle}
-          des_en="On our platform, you can buy and sell tickets, explore must-see events, follow inspiring podcasts, and stay updated with the latest trends. We are here to connect you to the best in the market, making access to unique experiences easier."
-          des_pt="Na nossa plataforma, você pode comprar e vender ingressos, explorar eventos imperdíveis, acompanhar podcasts inspiradores e ficar por dentro das novidades do momento. Estamos aqui para conectar você ao que há de melhor no mercado, facilitando o acesso a experiências únicas e enriquecedoras."
+          des_en="We offer a complete entertainment ecosystem: stream exclusive TV content, listen to engaging podcasts, buy and sell event tickets, and get expert analysis of games and sports events. Our platform brings together the best of entertainment, making it easy for you to stay connected with what matters most."
+          des_pt="Oferecemos um ecossistema completo de entretenimento: assista conteúdo exclusivo de TV, ouça podcasts envolventes, compre e venda ingressos para eventos, e obtenha análises especializadas de jogos e eventos esportivos. Nossa plataforma reúne o melhor do entretenimento, facilitando sua conexão com o que mais importa."
           title_en="What We Do"
           title_pt="O que Fazemos"
         />
