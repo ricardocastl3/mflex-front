@@ -12,6 +12,7 @@ import { useSearchParams } from "next/navigation";
 import { internalApi } from "@/http/axios/api";
 import { useModal } from "@/providers/app/ModalProvider";
 import { useFlexTVProvider } from "@/providers/features/FlexTVProvider";
+import { useAuth } from "@/providers/auth/AuthProvider";
 
 import HeroTV from "./components/Hero";
 import useMyChannels from "@/hooks/api/flex-tv/useMyChannels";
@@ -24,6 +25,7 @@ export default function NewsPage() {
   const { allTVChannels, handleSeachByName, isLoadingAllTVChannels } =
     useMyChannels();
   const { handleCloseLeagueBox } = useAppProvider();
+  const { currentSubscription } = useAuth();
 
   const { handleOpenModal } = useModal();
   const { handleSelectFlexTV } = useFlexTVProvider();
@@ -92,8 +94,13 @@ export default function NewsPage() {
 
     setPreviousNewCategory(safedCategory);
 
+    const isFlexed =
+      currentSubscription && currentSubscription.subscription.plan?.flex_tv
+        ? true
+        : false;
+
     // Set new category in first use
-    if (firstWatch) {
+    if (firstWatch && !isFlexed) {
       setFirstWatch(false);
       safedCategory = safedCategory.map((cat) => {
         const tvs = cat.tv.filter((i) => i.public);
@@ -106,7 +113,7 @@ export default function NewsPage() {
     }
 
     setNewCategory(safedCategory);
-    setSelectedTypeChannel(firstWatch ? "active" : "all");
+    setSelectedTypeChannel(firstWatch && !isFlexed ? "active" : "all");
     setIsLoadings(false);
   }, [allTVChannels, isLoadingAllTVChannels]);
 

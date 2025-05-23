@@ -12,6 +12,7 @@ import { useSearchParams } from "next/navigation";
 import { internalApi } from "@/http/axios/api";
 import { useFlexTVProvider } from "@/providers/features/FlexTVProvider";
 import { useModal } from "@/providers/app/ModalProvider";
+import { useAuth } from "@/providers/auth/AuthProvider";
 
 import HeroMovie from "./components/Hero";
 import TVCategorysItem from "./components/MovieCategorysItem";
@@ -27,6 +28,7 @@ export default function FlexMoviePage() {
   const { handleCloseLeagueBox } = useAppProvider();
   const { handleSelectFlexTVMovie } = useFlexTVProvider();
   const { handleOpenModal } = useModal();
+  const { currentSubscription } = useAuth();
 
   const [newCategory, setNewCategory] = useState<ITVCategoryMovieSafed[]>([]);
   const [previousNewCategory, setPreviousNewCategory] = useState<
@@ -94,8 +96,13 @@ export default function FlexMoviePage() {
 
     setPreviousNewCategory(safedCategory);
 
+    const isFlexed =
+      currentSubscription && currentSubscription.subscription.plan?.flex_movie
+        ? true
+        : false;
+
     // Set new category in first use
-    if (firstWatch) {
+    if (firstWatch && !isFlexed) {
       setFirstWatch(false);
       safedCategory = safedCategory.map((cat) => {
         const tvs = cat.tv.filter((i) => i.public);
@@ -108,7 +115,7 @@ export default function FlexMoviePage() {
     }
 
     setNewCategory(safedCategory);
-    setSelectedTypeChannel(firstWatch ? "active" : "all");
+    setSelectedTypeChannel(firstWatch && !isFlexed ? "active" : "all");
     setIsLoading(false);
   }, [allTVMovies, isLoadingAllTVMovies]);
 
