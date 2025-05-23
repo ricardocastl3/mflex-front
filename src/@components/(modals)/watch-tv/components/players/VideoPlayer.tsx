@@ -173,10 +173,10 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
               className="text-white animate-spin"
             />
 
-            <h1 className="text-white text-base hidden">
+            <h1 className="text-white text-base">
               <CTranslateTo
-                eng="The broadcast is under maintenance, we will resume soon..."
-                pt="A transmissão está em manutenção, em breve retomaremos..."
+                eng="Just a moment 😀, it won't take long..."
+                pt="Só um instantezinho 😀, não vai demorar..."
               />
             </h1>
           </div>
