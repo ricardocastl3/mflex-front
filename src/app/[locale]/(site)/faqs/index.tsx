@@ -9,13 +9,13 @@ import CollapseItem from "./components/CollapseItem";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 
 export default function FaqsPage() {
-  const [currectSection, setCurrentSection] = useState("services");
+  const [currectSection, setCurrentSection] = useState("flex-tv");
 
   return (
     <div className="flex flex-col w-full md:pb-4 pb-4">
       <HeroFaqs />
       <div className="flex flex-col gap-5 md:px-[7rem] px-5 md:py-12 py-8">
-        <div className="md:w-[20vw] w-full">
+        <div className="md:w-[15vw] w-full">
           <h1 className="text-base dark:text-white"></h1>
           <AuSoftUI.UI.Select
             className="w-full md:text-[1.07rem] font-bold text-base dark:bg-transparent bg-white"
@@ -33,7 +33,7 @@ export default function FaqsPage() {
               value={"flex-movie"}
               className="dark:bg-ausoft-slate-950 dark:text-white"
             >
-              <CTranslateTo eng="Flex TV" pt="Flex TV" />
+              <CTranslateTo eng="Flex Movie" pt="Flex Movie" />
             </option>
             <option
               value={"tickets"}

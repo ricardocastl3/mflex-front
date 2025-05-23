@@ -1,5 +1,4 @@
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import { localImages } from "@/utils/images";
 
 export default function HeroAbout() {
   return (
@@ -17,12 +16,12 @@ export default function HeroAbout() {
       <div className="absolute inset-0 bg-black/50"></div>
       <div className="flex flex-col gap-2 z-20">
         <h1 className="md:text-[2rem] text-[1.7rem] font-bold text-white">
-          <CTranslateTo eng="Discover Who We Are" pt="Descubra Quem Somos" />
+          <CTranslateTo eng="Who We Are?" pt="Quem Somos?" />
         </h1>
         <h4 className="text-white md:mt-2 t-2 text-lg">
           <CTranslateTo
-            eng="Your Entertainment Universe 🚀"
-            pt="O Seu Universo Do Entretenimento 🚀"
+            eng="Your Digital Entertainment Universe 🚀"
+            pt="O Seu Universo Do Entretenimento Digital 🚀"
           />
         </h4>
       </div>
