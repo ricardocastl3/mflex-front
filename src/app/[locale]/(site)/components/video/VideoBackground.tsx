@@ -22,6 +22,7 @@ export default function VideoBackground({
         loop
         muted
         autoPlay
+        playsInline
         className="animate-fade absolute z-0 inset-0 h-full w-full object-cover"
       >
         <source src={video_url} type="video/mp4" />
