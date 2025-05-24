@@ -5,9 +5,9 @@ import videojs from "video.js";
 import "video.js/dist/video-js.css";
 
 import "@videojs/themes/dist/city/index.css";
-import '@videojs/themes/dist/fantasy/index.css';
-import '@videojs/themes/dist/forest/index.css';
-import '@videojs/themes/dist/sea/index.css';
+import "@videojs/themes/dist/fantasy/index.css";
+import "@videojs/themes/dist/forest/index.css";
+import "@videojs/themes/dist/sea/index.css";
 
 import CookieServices from "@/services/auth/CookieServices";
 
@@ -25,10 +25,12 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const playerRef = useRef<any>(null);
   const tentativasRef = useRef(0);
-  const MAX_TENTATIVAS = 15;
+  const MAX_TENTATIVAS = 4;
   const INTERVALO_RECONEXAO = 3000; // 3 segundos
 
   const [isRefreshing, setIsRefreshing] = useState(true);
+  const [isReconnecting, setIsReconnecting] = useState(false);
+
   const [checkUser, setCheckUser] = useState(false);
   const [initialSRC, setInitialSrc] = useState("");
 
@@ -72,15 +74,26 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
       return;
     }
 
+    setIsReconnecting(true);
+
     tentativasRef.current += 1;
     console.log(`Tentando reconectar... tentativa ${tentativasRef.current}`);
 
     if (playerRef.current) {
       setTimeout(async () => {
         setIsRefreshing(true);
+        setIsReconnecting(true);
+
+        const resp = await internalApi.get(`/${watchUrl}/watch/${item_id}`);
+
+        if (resp.data.url == "") return;
+
+        const urlSplitted = resp.data.url.split("k=")[1];
+        CookieServices.setWatchToken(urlSplitted);
+
         playerRef.current.reset();
         playerRef.current.src({
-          src: initialSRC,
+          src: resp.data.url,
           type: "application/x-mpegURL",
         });
         playerRef.current.load();
@@ -127,6 +140,7 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
       player.on("playing", () => {
         setCheckUser(true);
         setIsRefreshing(false);
+        setIsReconnecting(false);
         tentativasRef.current = 0;
       });
     }
@@ -173,12 +187,19 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
               className="text-white animate-spin"
             />
 
-            <h1 className="text-white text-base">
-              <CTranslateTo
-                eng="Just a moment 😀, it won't take long..."
-                pt="Só um instantezinho 😀, não vai demorar..."
-              />
-            </h1>
+            {!isReconnecting && (
+              <h1 className="text-white text-base">
+                <CTranslateTo
+                  eng="Just a moment 😀, it won't take long..."
+                  pt="Só um instantezinho 😀, não vai demorar..."
+                />
+              </h1>
+            )}
+            {isReconnecting && (
+              <h1 className="text-white text-base">
+                <CTranslateTo eng="Reconnecting..." pt="Reconectando..." />
+              </h1>
+            )}
           </div>
         </div>
       )}
