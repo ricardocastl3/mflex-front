@@ -77,6 +77,7 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
     tentativasRef.current += 1;
     console.log(`Tentando reconectar... tentativa ${tentativasRef.current}`);
 
+    return
     if (playerRef.current) {
       setIsRefreshing(true);
       setIsReconnecting(true);
