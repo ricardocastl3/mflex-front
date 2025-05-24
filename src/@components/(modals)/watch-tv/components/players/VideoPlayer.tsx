@@ -78,25 +78,23 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
     console.log(`Tentando reconectar... tentativa ${tentativasRef.current}`);
 
     if (playerRef.current) {
-      setTimeout(() => {
-        setIsRefreshing(true);
-        setIsReconnecting(true);
+      setIsRefreshing(true);
+      setIsReconnecting(true);
 
-        internalApi.get(`/${watchUrl}/watch/${item_id}`).then((resp) => {
-          if (resp.data.url == "") return;
+      internalApi.get(`/${watchUrl}/watch/${item_id}`).then((resp) => {
+        if (resp.data.url == "") return;
 
-          const urlSplitted = resp.data.url.split("k=")[1];
-          CookieServices.setWatchToken(urlSplitted);
+        const urlSplitted = resp.data.url.split("k=")[1];
+        CookieServices.setWatchToken(urlSplitted);
 
-          playerRef.current.reset();
-          playerRef.current.src({
-            src: resp.data.url,
-            type: "application/x-mpegURL",
-          });
-          playerRef.current.load();
-          playerRef.current.play().catch(() => {});
+        playerRef.current.reset();
+        playerRef.current.src({
+          src: resp.data.url,
+          type: "application/x-mpegURL",
         });
-      }, 40000);
+        playerRef.current.load();
+        playerRef.current.play().catch(() => {});
+      });
     }
   };
 
@@ -151,7 +149,7 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
     };
   }, [initialSRC]);
 
-  useEffect(() => {
+  /*  useEffect(() => {
     const interval = setInterval(() => {
       if (
         playerRef.current &&
@@ -162,18 +160,18 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
         const isPlaying = !playerRef.current.paused();
 
         if ((duration === Infinity || duration === 0) && isPlaying) {
-          //  console.log("🟢 Transmissão ao vivo ativa e em reprodução.");
+          console.log("🟢 Transmissão ao vivo ativa e em reprodução.");
         } else if (isPlaying && isFinite(duration)) {
-          /*console.warn(
+          console.warn(
             "⚠️ Possível interrupção na transmissão. Tentando reconectar..."
-          );*/
+          );
           reconnect();
         }
       }
     }, INTERVALO_RECONEXAO);
 
     return () => clearInterval(interval);
-  }, []);
+  }, []); */
 
   return (
     <div className="relative w-full h-full">
