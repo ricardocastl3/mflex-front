@@ -74,30 +74,28 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
       return;
     }
 
-    setIsReconnecting(true);
-
     tentativasRef.current += 1;
     console.log(`Tentando reconectar... tentativa ${tentativasRef.current}`);
 
     if (playerRef.current) {
-      setTimeout(async () => {
+      setTimeout(() => {
         setIsRefreshing(true);
         setIsReconnecting(true);
 
-        const resp = await internalApi.get(`/${watchUrl}/watch/${item_id}`);
+        internalApi.get(`/${watchUrl}/watch/${item_id}`).then((resp) => {
+          if (resp.data.url == "") return;
 
-        if (resp.data.url == "") return;
+          const urlSplitted = resp.data.url.split("k=")[1];
+          CookieServices.setWatchToken(urlSplitted);
 
-        const urlSplitted = resp.data.url.split("k=")[1];
-        CookieServices.setWatchToken(urlSplitted);
-
-        playerRef.current.reset();
-        playerRef.current.src({
-          src: resp.data.url,
-          type: "application/x-mpegURL",
+          playerRef.current.reset();
+          playerRef.current.src({
+            src: resp.data.url,
+            type: "application/x-mpegURL",
+          });
+          playerRef.current.load();
+          playerRef.current.play().catch(() => {});
         });
-        playerRef.current.load();
-        playerRef.current.play().catch(() => {});
       }, 40000);
     }
   };
