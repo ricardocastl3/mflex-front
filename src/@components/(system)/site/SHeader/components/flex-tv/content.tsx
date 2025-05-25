@@ -41,7 +41,7 @@ export default function CContentFlexTV({
           onClick={() => {
             GAEventsServices.send({
               event_name: `page-view-flex-tv`,
-              metadata: "Click Button",
+              action: "buttonClicked",
             });
           }}
           href={`/${langByCookies}/flex-tv`}
@@ -58,7 +58,7 @@ export default function CContentFlexTV({
           onClick={() => {
             GAEventsServices.send({
               event_name: `page-view-flex-movie`,
-              metadata: "Click Button",
+              action: "buttonClicked",
             });
           }}
           href={`/${langByCookies}/flex-movie`}

@@ -32,7 +32,7 @@ export default function LinkHeader({
         LocalStorageServices.resetAllKeys(),
           GAEventsServices.send({
             event_name: `desktop-cl-header-${action}`,
-            metadata: "Click Button",
+            action: "buttonClicked",
           });
       }}
     >

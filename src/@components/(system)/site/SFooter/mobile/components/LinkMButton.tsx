@@ -32,7 +32,7 @@ export default function LinkMButton({
         LocalStorageServices.resetAllKeys(),
           GAEventsServices.send({
             event_name: `mobile-cl-footer-${action}`,
-            metadata: "Click Button",
+            action: "buttonClikcked",
           });
       }}
     >
