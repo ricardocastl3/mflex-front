@@ -1,6 +1,6 @@
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
-import GAEventsServices from "@/services/GAEventsServices";
+import GAEventsServices from "@/services/google/GAEventsServices";
 import Link from "next/link";
 
 import { langByCookies } from "@/http/axios/api";

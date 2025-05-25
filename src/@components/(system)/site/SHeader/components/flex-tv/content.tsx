@@ -2,7 +2,7 @@
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import Link from "next/link";
-import GAEventsServices from "@/services/GAEventsServices";
+import GAEventsServices from "@/services/google/GAEventsServices";
 
 import { langByCookies } from "@/http/axios/api";
 import { ReactIcons } from "@/utils/icons";
