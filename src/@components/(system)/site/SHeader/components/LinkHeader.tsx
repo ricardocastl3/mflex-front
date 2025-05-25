@@ -1,10 +1,11 @@
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
+import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
+import GAEventsServices from "@/services/GAEventsServices";
 import Link from "next/link";
 
 import { langByCookies } from "@/http/axios/api";
 import { IconType } from "react-icons";
 import { useAppProvider } from "@/providers/app/AppProvider";
-import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 export default function LinkHeader({
   Icon,
@@ -26,7 +27,15 @@ export default function LinkHeader({
   const { currentPageByUrl } = useAppProvider();
 
   return (
-    <div onClick={() => LocalStorageServices.resetAllKeys()}>
+    <div
+      onClick={() => {
+        LocalStorageServices.resetAllKeys(),
+          GAEventsServices.send({
+            event_name: `desktop-cl-header-${action}`,
+            metadata: "Click Button",
+          });
+      }}
+    >
       {!isButton && (
         <Link
           href={`/${langByCookies}/${action}`}

@@ -2,6 +2,7 @@
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import Link from "next/link";
+import GAEventsServices from "@/services/GAEventsServices";
 
 import { langByCookies } from "@/http/axios/api";
 import { ReactIcons } from "@/utils/icons";
@@ -30,8 +31,19 @@ export default function CContentFlexTV({
         )}
       </div>
 
-      <div onClick={() => callback!()} className="flex flex-col my-1 gap-1">
+      <div
+        onClick={() => {
+          callback!();
+        }}
+        className="flex flex-col my-1 gap-1"
+      >
         <Link
+          onClick={() => {
+            GAEventsServices.send({
+              event_name: `page-view-flex-tv`,
+              metadata: "Click Button",
+            });
+          }}
           href={`/${langByCookies}/flex-tv`}
           className={`${
             currentPageByUrl == "flex-tv"
@@ -43,6 +55,12 @@ export default function CContentFlexTV({
           <CTranslateTo eng="TV Channels" pt="Canais Televisivos" />
         </Link>
         <Link
+          onClick={() => {
+            GAEventsServices.send({
+              event_name: `page-view-flex-movie`,
+              metadata: "Click Button",
+            });
+          }}
           href={`/${langByCookies}/flex-movie`}
           className={`${
             currentPageByUrl == "flex-movie"

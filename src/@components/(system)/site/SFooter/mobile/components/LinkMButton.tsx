@@ -4,6 +4,7 @@ import { useAppProvider } from "@/providers/app/AppProvider";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import Link from "next/link";
 import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
+import GAEventsServices from "@/services/GAEventsServices";
 
 interface ILinkMButton {
   title_pt: string;
@@ -26,7 +27,15 @@ export default function LinkMButton({
 }: ILinkMButton) {
   const { segmentedLayout, currentPageByUrl } = useAppProvider();
   return (
-   <div onClick={() => LocalStorageServices.resetAllKeys()}>
+    <div
+      onClick={() => {
+        LocalStorageServices.resetAllKeys(),
+          GAEventsServices.send({
+            event_name: `mobile-cl-footer-${action}`,
+            metadata: "Click Button",
+          });
+      }}
+    >
       {action != "#" && (
         <Link
           href={`${
