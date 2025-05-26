@@ -44,7 +44,7 @@ export default function GameContainer() {
     const date =
       datePars == "today"
         ? new Date().toISOString()
-        : selectedDate == "tomorow"
+        : selectedDate == "tomorrow"
         ? addDays(new Date(), 1)
         : subDays(new Date(), 1).toISOString();
 
