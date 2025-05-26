@@ -228,7 +228,11 @@ export default function ConfirmAccountPage() {
                     <AuSoftUI.UI.TextField.Default
                       value={secondaryPhone}
                       onChange={(e) => setSecondaryPhone(e.target.value)}
-                      placeholder="Ex: 934567865"
+                      placeholder={`${
+                        langByCookies == "pt"
+                          ? "Por favor, informe o seu whatsapp..."
+                          : "Please, enter your whatsapp"
+                      }`}
                       className="w-full"
                       requiredField={secondaryPhone.length < 9 ? true : false}
                       weight={"md"}

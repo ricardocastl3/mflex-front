@@ -156,7 +156,11 @@ export default function SignUpPage() {
                   </div>
                   <AuSoftUI.UI.TextField.Default
                     {...register("phone")}
-                    placeholder="Ex: 935567356"
+                    placeholder={`${
+                      langByCookies == "pt"
+                        ? "Por favor, informe o seu whatsapp..."
+                        : "Please, enter your whatsapp"
+                    }`}
                     className="w-full"
                     requiredField={errors.phone?.message ? true : false}
                     weight={"md"}
