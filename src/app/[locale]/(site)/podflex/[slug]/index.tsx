@@ -29,7 +29,7 @@ export default function PreviewNew({ params }: Props) {
     try {
       const resp = await internalApi.get("/podcasts", {
         params: {
-          slug: pars.slug,
+          slug: decodeURIComponent(pars.slug),
         },
       });
 
@@ -37,6 +37,7 @@ export default function PreviewNew({ params }: Props) {
         window.location.href = `/${langByCookies}/podflex`;
         return;
       }
+
       setSelectedPodcasts(resp.data.podcast);
       setIsLoading(false);
     } catch (err) {
