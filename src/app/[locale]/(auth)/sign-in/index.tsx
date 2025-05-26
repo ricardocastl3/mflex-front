@@ -114,7 +114,7 @@ export default function SignInPage() {
                   />
                 </h4>
               </div>
-              <div className="flex flex-col gap-2 w-full">
+              <div className="flex flex-col gap-3.5 w-full">
                 <div className="flex flex-col gap-2 w-full">
                   <div className="dark:text-white flex items-center gap-2">
                     <ReactIcons.AiICon.AiOutlineWhatsApp size={16} />
