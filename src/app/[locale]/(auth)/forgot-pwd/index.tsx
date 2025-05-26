@@ -191,7 +191,7 @@ export default function SignInPage() {
                         <CTranslateTo eng="Sending" pt="Enviando" />
                         <ReactIcons.PiIcon.PiSpinner
                           className="animate-spin"
-                          size={15}
+                          size={16}
                         />
                       </h2>
                     )}
@@ -243,7 +243,7 @@ export default function SignInPage() {
                   <div className="flex flex-col gap-2 w-full">
                     <div className="flex items-center justify-between">
                       <div className="dark:text-white flex items-center gap-2">
-                        <ReactIcons.AiICon.AiFillLock size={15} />
+                        <ReactIcons.AiICon.AiFillLock size={16} />
                         <h1 className="text-base ">
                           <CTranslateTo eng="Password" pt="Senha" />
                         </h1>
@@ -264,7 +264,7 @@ export default function SignInPage() {
                   <div className="flex flex-col gap-2 w-full">
                     <div className="flex items-center justify-between">
                       <div className="dark:text-white flex items-center gap-2">
-                        <ReactIcons.AiICon.AiFillLock size={15} />
+                        <ReactIcons.AiICon.AiFillLock size={16} />
                         <h1 className="text-base ">
                           <CTranslateTo
                             eng="Confirm Password"

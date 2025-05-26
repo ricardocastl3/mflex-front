@@ -173,7 +173,7 @@ export default function SignUpPage() {
                 <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
                   <div className="flex flex-col gap-2 w-full">
                     <div className="dark:text-white flex items-center gap-2">
-                      <ReactIcons.AiICon.AiOutlineUser size={15} />
+                      <ReactIcons.AiICon.AiOutlineUser size={16} />
                       <h1 className="text-base ">
                         <CTranslateTo eng="First name" pt="Primeiro nome" />
                       </h1>
@@ -195,7 +195,7 @@ export default function SignUpPage() {
                   </div>
                   <div className="flex flex-col gap-2 w-full">
                     <div className="dark:text-white flex items-center gap-2">
-                      <ReactIcons.AiICon.AiOutlineUser size={15} />
+                      <ReactIcons.AiICon.AiOutlineUser size={16} />
                       <h1 className="text-base ">
                         <CTranslateTo eng="Last name" pt="Último nome" />
                       </h1>
@@ -220,7 +220,7 @@ export default function SignUpPage() {
                   <div className="flex flex-col gap-2 w-full">
                     <div className="flex items-center justify-between">
                       <div className="dark:text-white flex items-center gap-2">
-                        <ReactIcons.AiICon.AiFillLock size={15} />
+                        <ReactIcons.AiICon.AiFillLock size={16} />
                         <h1 className="text-base ">
                           <CTranslateTo eng="Password" pt="Senha" />
                         </h1>
@@ -241,7 +241,7 @@ export default function SignUpPage() {
                   <div className="flex flex-col gap-2 w-full">
                     <div className="flex items-center justify-between">
                       <div className="dark:text-white flex items-center gap-2">
-                        <ReactIcons.AiICon.AiFillLock size={15} />
+                        <ReactIcons.AiICon.AiFillLock size={16} />
                         <h1 className="text-base ">
                           <CTranslateTo
                             eng="Confirm Password"
