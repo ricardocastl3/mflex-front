@@ -45,7 +45,7 @@ export default function GameContainer() {
       datePars == "today"
         ? new Date().toISOString()
         : selectedDate == "tomorrow"
-        ? addDays(new Date(), 1)
+        ? addDays(new Date(), 1).toISOString()
         : subDays(new Date(), 1).toISOString();
 
     handleSeachByName({
@@ -72,7 +72,7 @@ export default function GameContainer() {
       selectedDate == "today"
         ? new Date().toISOString()
         : selectedDate == "tomorrow"
-        ? addDays(new Date(), 1)
+        ? addDays(new Date(), 1).toISOString()
         : subDays(new Date(), 1).toISOString();
 
     if (selectedFootballAPILeague) {
