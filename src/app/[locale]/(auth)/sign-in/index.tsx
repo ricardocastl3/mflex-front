@@ -117,7 +117,7 @@ export default function SignInPage() {
               <div className="flex flex-col gap-2 w-full">
                 <div className="flex flex-col gap-2 w-full">
                   <div className="dark:text-white flex items-center gap-2">
-                    <ReactIcons.AiICon.AiFillPhone
+                    <ReactIcons.AiICon.AiOutlineWhatsApp
                       size={15}
                       className="rotate-90"
                     />
