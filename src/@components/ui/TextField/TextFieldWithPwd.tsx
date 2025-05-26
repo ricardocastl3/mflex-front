@@ -30,7 +30,7 @@ export function TextFieldWithPwd({
           disabled={disabled ? true : false}
           {...register(name)}
           type={show ? "text" : "password"}
-          placeholder="Ex.: 123456..."
+          placeholder="***********"
           className="p-3.5 bg-transparent w-full disabled:cursor-not-allowed "
         />
         <button

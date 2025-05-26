@@ -143,10 +143,7 @@ export default function SignUpPage() {
               <div className="flex flex-col gap-2 w-full">
                 <div className="flex flex-col gap-2 w-full">
                   <div className="dark:text-white flex items-center gap-2">
-                    <ReactIcons.AiICon.AiOutlineWhatsApp
-                      size={15}
-                      className="rotate-90"
-                    />
+                    <ReactIcons.AiICon.AiOutlineWhatsApp size={15} />
                     <h1 className="text-base ">
                       <CTranslateTo
                         eng="WhatsApp number"
