@@ -106,8 +106,6 @@ export default function GameContainer() {
         LocalStorageServices.getFootballAITeam() as string
       );
 
-      console.log("TEAM: ", team);
-
       LocalStorageServices.resetAllKeys();
 
       handleSelectFootballTeam(team);
