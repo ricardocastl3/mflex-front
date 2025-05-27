@@ -101,10 +101,12 @@ export default function GameContainer() {
 
     if (!reopen) return;
 
-    if (LocalStorageServices.getFootballAITeam() != "") {
+    if (LocalStorageServices.getFootballAITeam()) {
       const team: IFixtureAPI | undefined = JSON.parse(
         LocalStorageServices.getFootballAITeam() as string
       );
+
+      console.log("TEAM: ", team);
 
       LocalStorageServices.resetAllKeys();
 
