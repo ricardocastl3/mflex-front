@@ -1,14 +1,17 @@
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import Image from "next/image";
 import Link from "next/link";
+import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 import { langByCookies } from "@/http/axios/api";
 import { localImages } from "@/utils/images";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { useModal } from "@/providers/app/ModalProvider";
+import { useFootballProvider } from "@/providers/features/FootballProvider";
 
 export default function NoSubscription() {
   const { handleOpenModal } = useModal();
+  const { selectedFootballTeam } = useFootballProvider();
 
   return (
     <div className="w-full h-full flex justify-center items-center md:p-12 p-6">
@@ -39,7 +42,12 @@ export default function NoSubscription() {
           </h4>
           <Link href={`/${langByCookies}/pricing`}>
             <AuSoftUI.UI.Button
-              onClick={() => handleOpenModal("")}
+              onClick={() => {
+                LocalStorageServices.setFootballAITeam(
+                  JSON.stringify(selectedFootballTeam)
+                );
+                handleOpenModal("");
+              }}
               variant={"primary"}
               size={"sm"}
             >

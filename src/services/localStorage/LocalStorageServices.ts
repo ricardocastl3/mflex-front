@@ -6,6 +6,7 @@ class LocalStorageServices {
     rc_pricing: "rc-pricing",
     rc_watchTv: "rc-watch-tv",
     rc_watchMovie: "rc-watch-movie",
+    rc_football: "gm_rc",
     watch_token: "wtn",
   };
 
@@ -26,6 +27,11 @@ class LocalStorageServices {
         return;
       }
 
+      if (this.getFootballAITeam()) {
+        this.redirectFootballAITeam();
+        return;
+      }
+
       setTimeout(() => {
         resolv(true);
       }, 500);
@@ -40,6 +46,7 @@ class LocalStorageServices {
     localStorage.removeItem(this.keys.rc_pricing);
     localStorage.removeItem(this.keys.rc_watchTv);
     localStorage.removeItem(this.keys.rc_watchMovie);
+    localStorage.removeItem(this.keys.rc_football);
   }
 
   setKey(key: string, data: any) {
@@ -63,6 +70,12 @@ class LocalStorageServices {
     window.location.href = `/${langByCookies}/flex-movie?mv=${id}`;
   }
 
+  redirectFootballAITeam() {
+    const id = this.getFootballAITeam();
+    this.resetAllKeys();
+    window.location.href = `/${langByCookies}/games?gm=yes`;
+  }
+
   redirectForPricing() {
     const id = this.getPricingID();
     this.delKey(this.keys.rc_pricing);
@@ -74,6 +87,11 @@ class LocalStorageServices {
     return res?.split("_")[1] || false;
   }
 
+  getFootballAITeam() {
+    const res = localStorage.getItem(this.keys.rc_watchTv);
+    return res;
+  }
+
   getWatchMovieID() {
     const res = localStorage.getItem(this.keys.rc_watchMovie);
     return res?.split("_")[1] || false;
@@ -81,6 +99,10 @@ class LocalStorageServices {
 
   setWatchID(id: string) {
     localStorage.setItem(this.keys.rc_watchTv, `wtv_${id}`);
+  }
+
+  setFootballAITeam(team: string) {
+    localStorage.setItem(this.keys.rc_football, team);
   }
 
   setWatchMovieID(id: string) {

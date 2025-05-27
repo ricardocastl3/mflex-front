@@ -1,4 +1,4 @@
-import { IFixture } from "@/http/interfaces/models/football/IFixtures";
+import { IFixtureAPI } from "@/http/interfaces/models/football/IFixturesAPI";
 import { ReactIcons } from "@/utils/icons";
 import { format } from "date-fns";
 import { langByCookies } from "@/http/axios/api";
@@ -12,7 +12,7 @@ import DateServices from "@/services/DateServices";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import EventFootballMiddleResult from "./TeamMiddleResult";
 
-export default function TeamItem({ team }: { team: IFixture }) {
+export default function TeamItem({ team }: { team: IFixtureAPI }) {
   const { handleOpenModal } = useModal();
   const { handleSelectFootballTeam } = useFootballProvider();
 

@@ -4,14 +4,14 @@ import Image from "next/image";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 
 import { localImages } from "@/utils/images";
-import { IFixture } from "@/http/interfaces/models/football/IFixtures";
+import { IFixtureAPI } from "@/http/interfaces/models/football/IFixturesAPI";
 import { ReactIcons } from "@/utils/icons";
 
 export default function PlayerItem({
   team,
   side,
 }: {
-  team: IFixture;
+  team: IFixtureAPI;
   side: "away" | "home";
 }) {
   const { isLoadingAllFootballPlayers, allFootballPlayers } =

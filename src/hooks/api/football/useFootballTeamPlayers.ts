@@ -1,12 +1,12 @@
 import { internalApi } from "@/http/axios/api";
-import { IFixture } from "@/http/interfaces/models/football/IFixtures";
+import { IFixtureAPI } from "@/http/interfaces/models/football/IFixturesAPI";
 import { useCallback, useEffect, useState } from "react";
 
 export default function useFootballTeamPlayers({
   team,
   side,
 }: {
-  team: IFixture;
+  team: IFixtureAPI;
   side: "away" | "home";
 }) {
   const [allFootballPlayers, setAllFootballPlayers] = useState<

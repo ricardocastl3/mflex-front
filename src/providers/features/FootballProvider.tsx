@@ -1,10 +1,10 @@
-import { IFixture } from "@/http/interfaces/models/football/IFixtures";
+import { IFixtureAPI } from "@/http/interfaces/models/football/IFixturesAPI";
 import { IFootballLeague } from "@/http/interfaces/models/football/IFootballLeague";
 import { IFootballAPITeam } from "@/http/interfaces/models/football/IFootballAPITeam";
 import React, { createContext, useContext, useState } from "react";
 
 interface IFootballContextProps {
-  selectedFootballTeam: IFixture | undefined;
+  selectedFootballTeam: IFixtureAPI | undefined;
   selectedFootballAPITeam: IFootballAPITeam | undefined;
   selectedFootballAPILeague: IFootballLeague | undefined;
 
@@ -12,7 +12,7 @@ interface IFootballContextProps {
     league: IFootballLeague | undefined
   ) => void;
   handleSelectedFootballAPITeam: (team: IFootballAPITeam | undefined) => void;
-  handleSelectFootballTeam: (team: IFixture | undefined) => void;
+  handleSelectFootballTeam: (team: IFixtureAPI | undefined) => void;
 }
 
 const FootballContext = createContext({} as IFootballContextProps);
@@ -28,7 +28,7 @@ export default function FootballProvider({
   children: React.ReactNode;
 }) {
   const [selectedFootballTeam, setSelectedFootballTeam] = useState<
-    IFixture | undefined
+    IFixtureAPI | undefined
   >();
 
   const [selectedFootballAPITeam, setSelectedFootballAPITeam] = useState<
@@ -39,7 +39,7 @@ export default function FootballProvider({
     IFootballLeague | undefined
   >();
 
-  function handleSelectFootballTeam(team: IFixture | undefined) {
+  function handleSelectFootballTeam(team: IFixtureAPI | undefined) {
     setSelectedFootballTeam(team);
   }
 

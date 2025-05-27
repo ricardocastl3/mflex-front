@@ -10,6 +10,9 @@ import TeamDetails from "@/app/[locale]/(site)/games/components/leagues/teams/Te
 import EventFootballMiddleResult from "@/app/[locale]/(site)/games/components/leagues/teams/TeamMiddleResult";
 import ButtonTab from "./components/ButtonTab";
 import TabContent from "./tabs/TabContent";
+import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
+import { useRouter } from "next/navigation";
+import { langByCookies } from "@/http/axios/api";
 
 export default function ViewFootballEventModal() {
   // Contexts
@@ -17,6 +20,15 @@ export default function ViewFootballEventModal() {
   const { selectedFootballTeam } = useFootballProvider();
 
   const [tab, setTab] = useState("players");
+
+  const router = useRouter();
+  function handleClose() {
+    if (LocalStorageServices.getFootballAITeam()) {
+      LocalStorageServices.resetAllKeys();
+      router.push(`/${langByCookies}/games#start`);
+    }
+    handleOpenModal("");
+  }
 
   return (
     <BaseModal
@@ -41,7 +53,7 @@ export default function ViewFootballEventModal() {
               />
             </div>
           </div>
-          <button onClick={() => handleOpenModal("")}>
+          <button onClick={handleClose}>
             <ReactIcons.BiIcon.BiX size={25} className="dark:text-white" />
           </button>
         </div>
@@ -100,8 +112,8 @@ export default function ViewFootballEventModal() {
                   setTab={setTab}
                   tab={tab}
                   value="football-ai"
-                  t_en="AI Analises"
-                  t_pt="Análise com IA"
+                  t_en="Intelligent Analises"
+                  t_pt="Análise Inteligente"
                 />
               </div>
 

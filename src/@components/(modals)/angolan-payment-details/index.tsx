@@ -38,15 +38,14 @@ export default function AngolanPaymentDetailsModal() {
         itemPriceIdCheckoutSelected.type == "subs"
       ) {
         if (selectedAngolanMethod != "reference")
-          if (
-            LocalStorageServices.getKey(LocalStorageServices.keys.rc_watchTv)
-          ) {
+          if (LocalStorageServices.getWatchID()) {
             LocalStorageServices.redirectWatchTv();
             return;
-          } else if (
-            LocalStorageServices.getKey(LocalStorageServices.keys.rc_watchMovie)
-          ) {
+          } else if (LocalStorageServices.getWatchMovieID()) {
             LocalStorageServices.redirectWatchMovie();
+            return;
+          } else if (LocalStorageServices.getFootballAITeam()) {
+            LocalStorageServices.redirectFootballAITeam();
             return;
           } else {
             window.location.href = "/" + langByCookies;

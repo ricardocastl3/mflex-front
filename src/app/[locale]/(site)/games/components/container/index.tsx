@@ -6,20 +6,27 @@ import { BaseBox } from "@/@components/(box)/BaseBox";
 import { ReactIcons } from "@/utils/icons";
 import { addDays, addHours, subDays } from "date-fns";
 import { useFootballProvider } from "@/providers/features/FootballProvider";
+import { useSearchParams } from "next/navigation";
+import { useModal } from "@/providers/app/ModalProvider";
+import { IFixtureAPI } from "@/http/interfaces/models/football/IFixturesAPI";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import useFixtures from "@/hooks/api/football/useFootball";
 import TradingLeagues from "./TradingLeagues";
 import FootballLeagueDropdown from "../leagues/dropdowns/league";
 import FootballTeamDropdown from "../leagues/dropdowns/team";
+import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 export default function GameContainer() {
   // Contexts
   const { isLoadingAllFixtures, handleSeachByName, allFixtures } =
     useFixtures();
 
+  const { handleOpenModal } = useModal();
+
   const {
     selectedFootballAPILeague,
+    handleSelectFootballTeam,
     handleSelectedFootballAPITeam,
     handleSelectedFootballAPILeague,
   } = useFootballProvider();
@@ -86,6 +93,23 @@ export default function GameContainer() {
       });
     }
   }, [selectedFootballAPILeague]);
+
+  const params = useSearchParams();
+
+  useEffect(() => {
+    const reopen = params.has("gm");
+
+    if (!reopen) return;
+
+    if (LocalStorageServices.getFootballAITeam() != "") {
+      const team: IFixtureAPI | undefined = JSON.parse(
+        LocalStorageServices.getFootballAITeam() as string
+      );
+
+      handleSelectFootballTeam(team);
+      handleOpenModal("view-football-event");
+    }
+  }, [params]);
 
   return (
     <div className="flex flex-col gap-3 relative md:mb-28 mb-12">

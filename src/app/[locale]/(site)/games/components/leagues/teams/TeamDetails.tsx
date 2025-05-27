@@ -1,10 +1,10 @@
-import { IFixture } from "@/http/interfaces/models/football/IFixtures";
+import { IFixtureAPI } from "@/http/interfaces/models/football/IFixturesAPI";
 
 export default function TeamDetails({
   side,
   team,
 }: {
-  team: IFixture;
+  team: IFixtureAPI;
   side: "away" | "home";
 }) {
   const score =

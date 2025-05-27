@@ -2,7 +2,7 @@ import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import LeagueItem from "../leagues/LeagueItem";
 
 import { ReactIcons } from "@/utils/icons";
-import { ILeagues } from "@/http/interfaces/models/football/IFixtures";
+import { ILeagues } from "@/http/interfaces/models/football/IFixturesAPI";
 
 export default function TradingLeagues({ leagues }: { leagues: ILeagues[] }) {
   return (

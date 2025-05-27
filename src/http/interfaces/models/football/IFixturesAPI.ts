@@ -1,4 +1,4 @@
-export interface IFixture {
+export interface IFixtureAPI {
   fixture: {
     id: number;
     referee: string;
@@ -74,5 +74,5 @@ export interface ILeagues {
   name: string;
   country: string;
   logo: string;
-  teams: IFixture[];
+  teams: IFixtureAPI[];
 }

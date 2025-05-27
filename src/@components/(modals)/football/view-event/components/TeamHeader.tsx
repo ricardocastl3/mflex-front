@@ -1,4 +1,4 @@
-import { IFixture } from "@/http/interfaces/models/football/IFixtures";
+import { IFixtureAPI } from "@/http/interfaces/models/football/IFixturesAPI";
 
 export default function TeamHeader({
   side,
@@ -6,7 +6,7 @@ export default function TeamHeader({
   sideFlag,
   showTitle = false,
 }: {
-  team: IFixture | undefined;
+  team: IFixtureAPI | undefined;
   side: "away" | "home";
   sideFlag: "right" | "left";
   showTitle?: boolean;
@@ -29,7 +29,7 @@ export default function TeamHeader({
           {side == "home" ? team?.teams.home.name : team?.teams.away.name}
         </h3>
       )}
-      
+
       {sideFlag == "right" && (
         <img
           src={side == "home" ? team?.teams.home.logo : team?.teams.away.logo}

@@ -1,5 +1,5 @@
 import { internalApi } from "@/http/axios/api";
-import { ILeagues } from "@/http/interfaces/models/football/IFixtures";
+import { ILeagues } from "@/http/interfaces/models/football/IFixturesAPI";
 import { useCallback, useEffect, useState } from "react";
 
 export default function useFixtures() {

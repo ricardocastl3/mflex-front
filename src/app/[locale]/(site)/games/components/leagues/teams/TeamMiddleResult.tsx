@@ -1,5 +1,5 @@
 import { langByCookies } from "@/http/axios/api";
-import { IFixture } from "@/http/interfaces/models/football/IFixtures";
+import { IFixtureAPI } from "@/http/interfaces/models/football/IFixturesAPI";
 
 import { ReactIcons } from "@/utils/icons";
 import { format } from "date-fns";
@@ -12,7 +12,7 @@ import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 export default function EventFootballMiddleResult({
   eventFootball,
 }: {
-  eventFootball: IFixture;
+  eventFootball: IFixtureAPI;
 }) {
   const status = eventFootball.fixture.status.short;
   const translation = statusMap[status];

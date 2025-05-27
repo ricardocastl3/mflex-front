@@ -2,7 +2,7 @@ import { BaseBox } from "@/@components/(box)/BaseBox";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { ReactIcons } from "@/utils/icons";
-import { ILeagues } from "@/http/interfaces/models/football/IFixtures";
+import { ILeagues } from "@/http/interfaces/models/football/IFixturesAPI";
 import { useAppProvider } from "@/providers/app/AppProvider";
 
 import TeamItem from "./teams/TeamItem";
