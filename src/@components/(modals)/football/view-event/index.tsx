@@ -3,6 +3,8 @@ import { AuSoftUI } from "@/@components/(ausoft)";
 import { ReactIcons } from "@/utils/icons";
 import { useState } from "react";
 import { useFootballProvider } from "@/providers/features/FootballProvider";
+import { useRouter } from "next/navigation";
+import { langByCookies } from "@/http/axios/api";
 
 import BaseModal from "../../base";
 import TeamHeader from "./components/TeamHeader";
@@ -11,8 +13,6 @@ import EventFootballMiddleResult from "@/app/[locale]/(site)/games/components/le
 import ButtonTab from "./components/ButtonTab";
 import TabContent from "./tabs/TabContent";
 import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
-import { useRouter } from "next/navigation";
-import { langByCookies } from "@/http/axios/api";
 
 export default function ViewFootballEventModal() {
   // Contexts

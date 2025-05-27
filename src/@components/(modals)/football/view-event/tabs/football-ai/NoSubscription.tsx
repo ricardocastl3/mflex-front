@@ -1,17 +1,26 @@
-import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import Image from "next/image";
-import Link from "next/link";
-import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
-
 import { langByCookies } from "@/http/axios/api";
 import { localImages } from "@/utils/images";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { useModal } from "@/providers/app/ModalProvider";
 import { useFootballProvider } from "@/providers/features/FootballProvider";
+import { useAuth } from "@/providers/auth/AuthProvider";
+
+import CTranslateTo from "@/@components/(translation)/CTranslateTo";
+import Image from "next/image";
+import Link from "next/link";
+import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 export default function NoSubscription() {
   const { handleOpenModal } = useModal();
+  const { currentSubscription } = useAuth();
   const { selectedFootballTeam } = useFootballProvider();
+
+  const needUpgradePlan =
+    currentSubscription &&
+    (currentSubscription?.subscription?.subscription_usage?.football_ai! <= 0 ||
+      currentSubscription.subscription.is_expired)
+      ? true
+      : false;
 
   return (
     <div className="w-full h-full flex justify-center items-center md:p-12 p-6">
@@ -25,10 +34,21 @@ export default function NoSubscription() {
 
         <div className="flex flex-col gap-4 items-center">
           <h4 className="text-base text-center font-bold text-yellow-700 dark:text-yellow-400">
-            <CTranslateTo
-              eng={"Oops! It looks like you don't have an active subscription."}
-              pt={"Ops! Parece que você não tem uma subscrição ativa."}
-            />
+            {!needUpgradePlan && (
+              <CTranslateTo
+                eng={
+                  "Oops! It looks like you don't have an active subscription."
+                }
+                pt={"Ops! Parece que você não tem uma subscrição ativa."}
+              />
+            )}
+
+            {needUpgradePlan && (
+              <CTranslateTo
+                eng={"Oops! Your subscription doesn't offer smart analytics"}
+                pt={"Ops! A sua assinatura não oferece análise inteligente"}
+              />
+            )}
           </h4>
           <h4 className="text-base text-center text-slate-600 dark:text-slate-400">
             <CTranslateTo
@@ -51,10 +71,16 @@ export default function NoSubscription() {
               variant={"primary"}
               size={"sm"}
             >
-              <CTranslateTo
-                eng="Get Started with a Subscription"
-                pt="Comece com uma Subscrição"
-              />
+              {!needUpgradePlan && (
+                <CTranslateTo
+                  eng="Get Started with a Subscription"
+                  pt="Comece com uma Subscrição"
+                />
+              )}
+
+              {needUpgradePlan && (
+                <CTranslateTo eng="Upgrade Plan" pt="Atualizar plano" />
+              )}
             </AuSoftUI.UI.Button>
           </Link>
         </div>

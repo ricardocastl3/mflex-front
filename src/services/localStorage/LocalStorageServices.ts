@@ -88,7 +88,7 @@ class LocalStorageServices {
   }
 
   getFootballAITeam() {
-    const res = localStorage.getItem(this.keys.rc_watchTv);
+    const res = localStorage.getItem(this.keys.rc_football);
     return res;
   }
 

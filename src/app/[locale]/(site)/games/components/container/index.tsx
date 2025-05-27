@@ -106,6 +106,8 @@ export default function GameContainer() {
         LocalStorageServices.getFootballAITeam() as string
       );
 
+      LocalStorageServices.resetAllKeys();
+
       handleSelectFootballTeam(team);
       handleOpenModal("view-football-event");
     }
