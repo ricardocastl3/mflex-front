@@ -72,7 +72,7 @@ export default function PredictionCard({
               <CTranslateTo eng={final?.en!} pt={final?.pt!} />
             </h1>
             <h3 className="font-bold text-[0.9rem] text-yellow-500">
-              <CTranslateTo eng="💡 Tips:" pt="💡 Dica:" />
+              <CTranslateTo eng="💡 Tips: " pt="💡 Dica: " />{" "}
               <CTranslateTo eng={tips?.en!} pt={tips?.pt!} />
             </h3>
           </div>
