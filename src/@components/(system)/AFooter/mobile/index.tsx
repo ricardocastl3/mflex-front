@@ -54,7 +54,7 @@ export default function AMobileFooter() {
           Icon={ReactIcons.AiICon.AiOutlineShoppingCart}
           action="transactions"
           isSelected={currentAppPageUrl == "transactions"}
-          title_en="My Sells"
+          title_en="My Sales"
           title_pt="Minhas Vendas"
           bar
         />

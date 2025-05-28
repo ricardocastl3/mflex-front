@@ -41,7 +41,7 @@ export default function TransactionPage() {
       <div className="flex items-center border-b pb-2 border-slate-300 dark:border-slate-800">
         <h4 className="flex items-center gap-2 font-bold text-xl dark:text-white">
           <ReactIcons.AiICon.AiOutlineTransaction size={18} />
-          <CTranslateTo eng="My Sells" pt="Minhas Vendas" />
+          <CTranslateTo eng="My Sales" pt="Minhas Vendas" />
         </h4>
       </div>
 

@@ -32,7 +32,7 @@ export default function UsageSubsModal() {
           </button>
         </div>
 
-        <div className="md:h-[55vh] h-[50vh] overflow-y-auto p-4">
+        <div className="md:h-[55vh] h-[45vh] overflow-y-auto p-4">
           <div
             className={`${
               isExpired
