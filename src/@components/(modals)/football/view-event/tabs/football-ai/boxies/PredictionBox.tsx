@@ -14,15 +14,11 @@ import OtherMarkets from "./sections/OtherMarkets";
 
 export default function PredictionBox() {
   const { handleAddToastOnArray } = useAppProvider();
-  const { selectedFootballTeam } = useFootballProvider();
+  const { selectedFootballTeam, predictedJSON, handlePredictedJSON } =
+    useFootballProvider();
 
   // Controls
-  const [isPredicted, setIsPredicted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const [predictedJSON, setPredictedJSON] = useState<
-    IJSONPrediction | undefined
-  >();
 
   async function handleAnalyze() {
     try {
@@ -35,9 +31,8 @@ export default function PredictionBox() {
         ft: selectedFootballTeam?.fixture.id,
       });
 
-      setPredictedJSON(resp.data.result);
+      handlePredictedJSON(resp.data.result);
 
-      setIsPredicted(true);
       setIsSubmitting(false);
     } catch (err) {
       setIsSubmitting(false);
@@ -47,7 +42,7 @@ export default function PredictionBox() {
 
   return (
     <div className="w-full h-full flex flex-col gap-4">
-      {!isSubmitting && isPredicted && predictedJSON && (
+      {!isSubmitting && predictedJSON && (
         <div className="rounded-xl flex flex-col gap-3 md:p-2 p-4 bg-slate-200 dark:bg-slate-800/60">
           <h2 className="text-lg font-bold text-yellow-600 dark:text-yellow-500">
             <CTranslateTo eng="Results:" pt="Resultados:" />
@@ -73,7 +68,7 @@ export default function PredictionBox() {
         </div>
       )}
 
-      {!isSubmitting && !isPredicted && !predictedJSON && (
+      {!isSubmitting && !predictedJSON && (
         <div className="flex justify-center items-center w-full h-full md:px-8 px-4">
           <div className="flex flex-col gap-2 md:w-[50vw] w-full items-center text-center">
             <div className="text-yellow-500">
@@ -90,7 +85,7 @@ export default function PredictionBox() {
                 eng="Ready to receive tips, and a complete analysis of the game,"
                 pt="Pronto para receber dicas, e uma análise completa do jogo, "
               />
-              <b className="font-bold">{`${selectedFootballTeam?.teams.home.name} X ${selectedFootballTeam?.teams.away.name}`}</b>
+              <b className="font-bold">{` ${selectedFootballTeam?.teams.home.name} - ${selectedFootballTeam?.teams.away.name}`}</b>
             </h1>
             <h1 className="text-base text-slate-600 dark:text-slate-400">
               <CTranslateTo

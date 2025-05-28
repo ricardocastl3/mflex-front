@@ -30,7 +30,7 @@ export default function OtherMarkets({
             </h3>
           </div>
           <div className="flex ">
-            <h3 className="font-bold">
+            <h3 className="font-bold text-[0.9rem]">
               {prediction.markets.others.both_score}
             </h3>
           </div>
@@ -45,7 +45,7 @@ export default function OtherMarkets({
             </h3>
           </div>
           <div className="flex">
-            <h3 className="font-bold">
+            <h3 className="font-bold text-[0.9rem]">
               {prediction.markets.others.home_team_scores}
             </h3>
           </div>
@@ -60,7 +60,7 @@ export default function OtherMarkets({
             </h3>
           </div>
           <div className="flex ">
-            <h3 className="font-bold">
+            <h3 className="font-bold text-[0.9rem]">
               {prediction.markets.others.away_team_scores}
             </h3>
           </div>

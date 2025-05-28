@@ -19,7 +19,7 @@ import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 export default function ViewFootballEventModal() {
   // Contexts
   const { handleOpenModal } = useModal();
-  const { selectedFootballTeam } = useFootballProvider();
+  const { selectedFootballTeam, handlePredictedJSON } = useFootballProvider();
 
   const [tab, setTab] = useState("players");
 
@@ -29,6 +29,7 @@ export default function ViewFootballEventModal() {
       LocalStorageServices.resetAllKeys();
       router.push(`/${langByCookies}/games#start`);
     }
+    handlePredictedJSON(undefined);
     handleOpenModal("");
   }
 

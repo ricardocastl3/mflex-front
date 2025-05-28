@@ -67,11 +67,11 @@ export default function PredictionCard({
         >
           <section>{children}</section>
           <div className="pt-3 mt-2 flex flex-col gap-2 border-t-2 border-slate-200 dark:border-slate-800">
-            <h1 className="text-green-500 font-bold md:text-base text-[0.9rem]">
+            <h1 className="text-green-500 font-bold text-[0.9rem]">
               ⚽ <CTranslateTo eng="Final Result: " pt="Análise final: " />{" "}
               <CTranslateTo eng={final?.en!} pt={final?.pt!} />
             </h1>
-            <h3 className="font-bold md:text-base text-[0.9rem] text-yellow-500">
+            <h3 className="font-bold text-[0.9rem] text-yellow-500">
               <CTranslateTo eng="💡 Tips:" pt="💡 Dica:" />
               <CTranslateTo eng={tips?.en!} pt={tips?.pt!} />
             </h3>
