@@ -73,8 +73,8 @@ export default function UsageSubsModal() {
               </h2>
               <h2 className="text-sm dark:text-slate-300">
                 <CTranslateTo
-                  eng="Analyzes performed: "
-                  pt="Análises realizadas: "
+                  eng="Remaining analyses for today: "
+                  pt="Análises restantes para hoje: "
                 />{" "}
                 <b className="font-bold"> {currentSubscription?.football_ai}</b>
               </h2>
