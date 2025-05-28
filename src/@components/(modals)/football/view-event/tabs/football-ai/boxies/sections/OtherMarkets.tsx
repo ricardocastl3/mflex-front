@@ -39,8 +39,8 @@ export default function OtherMarkets({
           <div className="flex ">
             <h3 className="text-[0.9rem] font-bold dark:text-white">
               <CTranslateTo
-                eng="A equipe da casa marca"
-                pt="The home team score"
+                eng="The home team score"
+                pt="A equipe da casa marca"
               />
             </h3>
           </div>
@@ -54,8 +54,8 @@ export default function OtherMarkets({
           <div className="flex ">
             <h3 className="text-[0.9rem] font-bold dark:text-white">
               <CTranslateTo
-                eng="A equipe de fora marca"
-                pt="The away team score"
+                eng="The away team score"
+                pt="A equipe de fora marca"
               />
             </h3>
           </div>
