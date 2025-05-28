@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useFootballProvider } from "@/providers/features/FootballProvider";
 import { useRouter } from "next/navigation";
 import { langByCookies } from "@/http/axios/api";
+import { useAuth } from "@/providers/auth/AuthProvider";
 
 import BaseModal from "../../base";
 import TeamHeader from "./components/TeamHeader";
@@ -19,6 +20,7 @@ import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 export default function ViewFootballEventModal() {
   // Contexts
   const { handleOpenModal } = useModal();
+  const { handleFetchCurrentSubs } = useAuth();
   const { selectedFootballTeam, handlePredictedJSON } = useFootballProvider();
 
   const [tab, setTab] = useState("players");
@@ -29,6 +31,7 @@ export default function ViewFootballEventModal() {
       LocalStorageServices.resetAllKeys();
       router.push(`/${langByCookies}/games#start`);
     }
+    handleFetchCurrentSubs(false);
     handlePredictedJSON(undefined);
     handleOpenModal("");
   }

@@ -5,6 +5,7 @@ import { AuSoftUI } from "@/@components/(ausoft)";
 import { useFootballProvider } from "@/providers/features/FootballProvider";
 import { ReactIcons } from "@/utils/icons";
 import { internalApi } from "@/http/axios/api";
+import { useAuth } from "@/providers/auth/AuthProvider";
 
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
@@ -13,6 +14,7 @@ import OverUnder from "./sections/over_under/OverUnder";
 import OtherMarkets from "./sections/OtherMarkets";
 
 export default function PredictionBox() {
+  const { handleFetchCurrentSubs } = useAuth();
   const { handleAddToastOnArray } = useAppProvider();
   const { selectedFootballTeam, predictedJSON, handlePredictedJSON } =
     useFootballProvider();
@@ -32,7 +34,7 @@ export default function PredictionBox() {
       });
 
       handlePredictedJSON(resp.data.result);
-
+      handleFetchCurrentSubs(true);
       setIsSubmitting(false);
     } catch (err) {
       setIsSubmitting(false);

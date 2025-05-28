@@ -27,6 +27,7 @@ interface IAuthContextProps {
   userLogged: IUserResponse | undefined;
   currentSubscription: ISubscriptionUsage | undefined;
 
+  handleFetchCurrentSubs: (val: boolean) => void;
   handleRedirectToSign: () => void;
   fetchUserInformations: () => void;
   handleLogout: () => void;
@@ -52,7 +53,11 @@ export default function AuthProvider({
     ISubscriptionUsage | undefined
   >();
 
-  const { currentSubsUsage, isLoadingCurrentSubsUsage } = useSubscription();
+  const [fetchCurrentSubscription, setFetchCurrentSubscription] =
+    useState(false);
+
+  const { currentSubsUsage, fetchCurrentSubsUsage, isLoadingCurrentSubsUsage } =
+    useSubscription();
 
   const path = usePathname();
   const startRoutes = path.slice(4);
@@ -139,13 +144,24 @@ export default function AuthProvider({
     window.location.href = "/" + langByCookies;
   }
 
+  function handleFetchCurrentSubs(val: boolean) {
+    setFetchCurrentSubscription(val);
+  }
+
   useEffect(() => {
     fetchUserInformations();
   }, []);
 
   useEffect(() => {
-    if (!isLoadingCurrentSubsUsage) setCurrentSubscription(currentSubsUsage);
-  }, [isLoadingCurrentSubsUsage]);
+    if (fetchCurrentSubscription) {
+      fetchCurrentSubsUsage();
+    }
+
+    if (!isLoadingCurrentSubsUsage) {
+      setFetchCurrentSubscription(false);
+      setCurrentSubscription(currentSubsUsage);
+    }
+  }, [isLoadingCurrentSubsUsage, fetchCurrentSubscription]);
 
   return (
     <AuthContext.Provider
@@ -157,6 +173,7 @@ export default function AuthProvider({
         currentSubscription,
 
         fetchUserInformations,
+        handleFetchCurrentSubs,
         handleRedirectToSign,
         userLogged,
         handleLogout,
