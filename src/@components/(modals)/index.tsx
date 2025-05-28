@@ -23,6 +23,7 @@ import ViewFootballTeamModal from "./football/view-team";
 import OpenInYourBrowserModal from "./open-in-your-browser/OpenInYourBrowserModal";
 import WatchTVModal from "./watch-tv";
 import WatchNodAdsModal from "./watch-no-ads";
+import UsageSubsModal from "./usage-subs";
 
 export default function ModalOpenProvider() {
   const { openModal } = useModal();
@@ -87,7 +88,10 @@ export default function ModalOpenProvider() {
 
     case "watch-no-ads":
       return <WatchNodAdsModal />;
-      
+
+    case "usage-susb":
+      return <UsageSubsModal />;
+
     default:
       return <></>;
   }

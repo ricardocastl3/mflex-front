@@ -26,6 +26,7 @@ type modalType =
   | "checkout-success"
   | "checkout-failed"
   | "subscribe"
+  | "usage-susb"
   | "mobile-more-options"
   | "mobile-site-more-options"
   | "resource-unavailable"

@@ -15,6 +15,11 @@ export default function CContent({ callback }: { callback?: () => void }) {
   const { userLogged, currentSubscription, handleLogout } = useAuth();
   const { handleOpenModal } = useModal();
 
+  const subscriptionExpired =
+    currentSubscription && currentSubscription.subscription.is_expired
+      ? true
+      : false;
+
   return (
     <div className="md:w-[26vw] w-[82vw]">
       <div className="flex items-center gap-4 pb-4 border-b border-slate-300 dark:border-slate-700/60">
@@ -50,19 +55,38 @@ export default function CContent({ callback }: { callback?: () => void }) {
       <div
         className={`${
           currentSubscription
-            ? "dark:bg-yellow-900/20 bg-yellow-100 "
+            ? currentSubscription.subscription.is_expired
+              ? "dark:bg-red-900/20 bg-red-100"
+              : "dark:bg-yellow-900/20 bg-yellow-100"
             : "bg-slate-200 dark:bg-slate-800/60"
         } flex items-center gap-2 rounded-lg  p-2 mt-3`}
       >
         {currentSubscription && (
           <>
-            <h1 className="text-sm dark:text-yellow-400 text-yellow-700">
+            <h1
+              className={`${
+                subscriptionExpired
+                  ? "dark:text-red-400 text-red-700"
+                  : "dark:text-yellow-400 text-yellow-700"
+              } text-sm `}
+            >
               <CTranslateTo eng="Plan: " pt="Plano: " />
               {currentSubscription.subscription.plan?.name}
             </h1>
-            <CardSubsStatus
-              isExpired={currentSubscription.subscription.is_expired}
-            />
+            <CardSubsStatus isExpired={subscriptionExpired} />
+            <button
+              onClick={() => handleOpenModal("usage-susb")}
+              className={`${
+                !subscriptionExpired
+                  ? "text-yellow-700 dark:text-yellow-400 bg-yellow-200 dark:bg-yellow-800/40"
+                  : "text-red-700 dark:text-red-400 bg-red-200 dark:bg-red-800/40"
+              } animate-pulse flex items-center gap-2 px-2 py-0.5 rounded-full`}
+            >
+              <ReactIcons.PiIcon.PiDatabase size={12} />
+              <p className="text-xs font-bold">
+                <CTranslateTo eng="Usage" pt="Uso geral" />
+              </p>
+            </button>
           </>
         )}
 

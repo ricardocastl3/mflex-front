@@ -18,7 +18,7 @@ export default function SubscriptionBox({
     <ContainerBase>
       <BaseBox className={`w-full pb-5`}>
         <div className="flex md:items-center items-start md:flex-row flex-col gap-4 py-1 mb-4 px-4 justify-between border-b border-slate-200 dark:border-slate-800">
-          <h4 className="md:text-lg text-base font-bold dark:text-white md:px-2 px-1 md:py-1 py-3">
+          <h4 className="md:text-lg text-base font-bold dark:text-white md:px-2 px-1 md:py-2 py-3">
             <CTranslateTo eng="Register" pt="Registos" /> (
             {subscriptions.length})
           </h4>

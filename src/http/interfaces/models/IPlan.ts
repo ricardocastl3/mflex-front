@@ -6,6 +6,8 @@ export interface IPlan {
   flex_movie: boolean;
   flex_tv: boolean;
   is_trial?: boolean;
+  football_ai?: number;
+  tickets_amount?: number;
   features?: IPlanFeature[];
 }
 
