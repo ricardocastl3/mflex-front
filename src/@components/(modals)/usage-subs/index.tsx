@@ -96,8 +96,8 @@ export default function UsageSubsModal() {
               </h2>
               <h2 className="text-sm dark:text-slate-300">
                 <CTranslateTo
-                  eng="Sales performed: "
-                  pt="Vendas realizadas: "
+                  eng="Remaining Sales for today: "
+                  pt="Vendas restantes para hoje: "
                 />
                 <b className="font-bold">
                   {currentSubscription?.tickets_amount}
