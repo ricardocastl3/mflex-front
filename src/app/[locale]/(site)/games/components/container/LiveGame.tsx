@@ -1,8 +1,8 @@
-import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import LeagueItem from "../leagues/LeagueItem";
-
 import { ReactIcons } from "@/utils/icons";
 import { ILeagues } from "@/http/interfaces/models/football/IFixturesAPI";
+
+import CTranslateTo from "@/@components/(translation)/CTranslateTo";
+import LeagueItem from "../leagues/LeagueItem";
 
 export default function LiveGame({ leagues }: { leagues: ILeagues[] }) {
   return (

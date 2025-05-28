@@ -1,7 +1,9 @@
+"use client";
+
 import { useModal } from "@/providers/app/ModalProvider";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { ReactIcons } from "@/utils/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFootballProvider } from "@/providers/features/FootballProvider";
 import { useRouter } from "next/navigation";
 import { langByCookies } from "@/http/axios/api";
@@ -29,6 +31,13 @@ export default function ViewFootballEventModal() {
     }
     handleOpenModal("");
   }
+
+  useEffect(() => {
+    if (LocalStorageServices.getFootballAITeam()) {
+      setTab("football-ai");
+      LocalStorageServices.resetAllKeys();
+    }
+  }, []);
 
   return (
     <BaseModal
@@ -81,7 +90,7 @@ export default function ViewFootballEventModal() {
                 <TeamDetails side="away" team={selectedFootballTeam!} />
               </div>
             </div>
-            <div className="md:w-[75vw] w-[90vw]">
+            <div className="md:w-[80vw] w-[90vw]">
               <div className="overflow-x-auto flex items-center border-b border-slate-200 dark:border-slate-800">
                 <ButtonTab
                   Icon={ReactIcons.AiICon.AiFillDashboard}
@@ -107,14 +116,25 @@ export default function ViewFootballEventModal() {
                   t_en="Statistics"
                   t_pt="Estatísticas"
                 />
-                <ButtonTab
-                  Icon={ReactIcons.FaIcon.FaRobot}
-                  setTab={setTab}
-                  tab={tab}
-                  value="football-ai"
-                  t_en="Intelligent Analises"
-                  t_pt="Análise Inteligente"
-                />
+
+                {selectedFootballTeam &&
+                  selectedFootballTeam?.fixture.status.short != "FT" &&
+                  selectedFootballTeam.fixture.status.short != "AET" &&
+                  selectedFootballTeam.fixture.status.short != "PEN" &&
+                  selectedFootballTeam.fixture.status.short != "CANC" &&
+                  selectedFootballTeam.fixture.status.short != "SUSP" &&
+                  selectedFootballTeam.fixture.status.short != "INT" &&
+                  selectedFootballTeam.fixture.status.short != "ABD" &&
+                  selectedFootballTeam.fixture.status.short != "DELETED" && (
+                    <ButtonTab
+                      Icon={ReactIcons.FaIcon.FaRobot}
+                      setTab={setTab}
+                      tab={tab}
+                      value="football-ai"
+                      t_en="Intelligent Analises"
+                      t_pt="Análise Inteligente"
+                    />
+                  )}
               </div>
 
               <div className="flex  bg-white w-full py-8 dark:bg-slate-800/30 md:px-4 px-4 mb-4 rounded-b-xl">

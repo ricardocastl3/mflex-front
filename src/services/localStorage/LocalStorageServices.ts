@@ -71,8 +71,6 @@ class LocalStorageServices {
   }
 
   redirectFootballAITeam() {
-    const id = this.getFootballAITeam();
-    this.resetAllKeys();
     window.location.href = `/${langByCookies}/games?gm=yes`;
   }
 

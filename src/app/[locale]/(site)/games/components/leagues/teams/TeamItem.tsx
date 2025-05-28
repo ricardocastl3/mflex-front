@@ -1,15 +1,8 @@
 import { IFixtureAPI } from "@/http/interfaces/models/football/IFixturesAPI";
-import { ReactIcons } from "@/utils/icons";
-import { format } from "date-fns";
-import { langByCookies } from "@/http/axios/api";
-import { enUS, ptBR } from "date-fns/locale";
-import { statusColors, statusMap } from "./team";
 import { useModal } from "@/providers/app/ModalProvider";
 import { useFootballProvider } from "@/providers/features/FootballProvider";
 
 import TeamDetails from "./TeamDetails";
-import DateServices from "@/services/DateServices";
-import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import EventFootballMiddleResult from "./TeamMiddleResult";
 
 export default function TeamItem({ team }: { team: IFixtureAPI }) {

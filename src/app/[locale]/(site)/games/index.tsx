@@ -8,7 +8,7 @@ import HeroNews from "./components/Hero";
 import GameContainer from "./components/container";
 import Link from "next/link";
 
-export default function NewsPage() {
+export default function GamePage() {
   const { handleCloseLeagueBox } = useAppProvider();
   return (
     <div className="flex flex-col gap-4">

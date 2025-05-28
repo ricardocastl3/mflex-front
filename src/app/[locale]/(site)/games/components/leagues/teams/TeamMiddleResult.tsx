@@ -1,6 +1,5 @@
 import { langByCookies } from "@/http/axios/api";
 import { IFixtureAPI } from "@/http/interfaces/models/football/IFixturesAPI";
-
 import { ReactIcons } from "@/utils/icons";
 import { format } from "date-fns";
 import { enUS, ptBR } from "date-fns/locale";

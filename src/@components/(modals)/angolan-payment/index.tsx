@@ -1,5 +1,5 @@
 import { useModal } from "@/providers/app/ModalProvider";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { useCheckoutProvider } from "@/providers/app/CheckoutProvider";
 
@@ -12,7 +12,12 @@ export default function AngolanPaymentModal() {
   const { handleOpenModal } = useModal();
 
   const [isLoading, setIsLoading] = useState(false);
-  const { selectedAngolanMethod } = useCheckoutProvider();
+  const { selectedAngolanMethod, handleSelectAngolanMethod } =
+    useCheckoutProvider();
+
+  useEffect(() => {
+    handleSelectAngolanMethod("paypay");
+  }, []);
 
   return (
     <BaseModal callbackClose={() => handleOpenModal("")}>

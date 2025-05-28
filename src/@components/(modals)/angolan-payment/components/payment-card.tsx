@@ -74,6 +74,11 @@ export default function PaymentCard({
 
       <h4 className="text-sm text-center font-bold flex flex-col items-center gap-4">
         <CTranslateTo pt={title_pt} eng={title_en} />
+        {method == "paypay" && (
+          <b className="text-yellow">
+            <CTranslateTo eng="3% discount" pt="3% disconto" />
+          </b>
+        )}
       </h4>
 
       {active && (

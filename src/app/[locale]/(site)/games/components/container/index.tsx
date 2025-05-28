@@ -101,17 +101,14 @@ export default function GameContainer() {
 
     if (!reopen) return;
 
-    if (LocalStorageServices.getFootballAITeam()) {
-      const team: IFixtureAPI | undefined = JSON.parse(
-        LocalStorageServices.getFootballAITeam() as string
-      );
-
-      LocalStorageServices.resetAllKeys();
+    const val = LocalStorageServices.getFootballAITeam();
+    if (val) {
+      const team: IFixtureAPI | undefined = JSON.parse(val);
 
       handleSelectFootballTeam(team);
       handleOpenModal("view-football-event");
     }
-  }, [params]);
+  }, []);
 
   return (
     <div className="flex flex-col gap-3 relative md:mb-28 mb-12">
