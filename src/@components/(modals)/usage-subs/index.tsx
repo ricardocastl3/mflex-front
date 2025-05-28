@@ -49,13 +49,13 @@ export default function UsageSubsModal() {
             >
               {isExpired ? (
                 <CTranslateTo
-                  eng="Assinatura expirada 😭"
-                  pt="Expired Subscription 😭"
+                  eng="Expired Subscription 😭"
+                  pt="Assinatura expirada 😭"
                 />
               ) : (
                 <CTranslateTo
-                  eng="Assinatura ativa, e em uso 😀"
-                  pt="Subscription active and in use 😀"
+                  eng="Subscription active and in use 😀"
+                  pt="Assinatura ativa, e em uso 😀"
                 />
               )}
             </h1>
