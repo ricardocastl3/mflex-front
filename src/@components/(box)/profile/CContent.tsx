@@ -75,7 +75,10 @@ export default function CContent({ callback }: { callback?: () => void }) {
             </h1>
             <CardSubsStatus isExpired={subscriptionExpired} />
             <button
-              onClick={() => handleOpenModal("usage-susb")}
+              onClick={() => {
+                if (callback) callback();
+                handleOpenModal("usage-susb");
+              }}
               className={`${
                 !subscriptionExpired
                   ? "text-yellow-700 dark:text-yellow-400 bg-yellow-200 dark:bg-yellow-800/40"
