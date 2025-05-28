@@ -3,12 +3,14 @@ import { useState } from "react";
 import { IJSONPrediction } from "@/http/interfaces/models/football/IJSONPrediction";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { useFootballProvider } from "@/providers/features/FootballProvider";
+import { ReactIcons } from "@/utils/icons";
+import { internalApi } from "@/http/axios/api";
 
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import PredictionCard from "./PredictionCard";
-import { ReactIcons } from "@/utils/icons";
-import { internalApi } from "@/http/axios/api";
+import PercentageChance from "./sections/PercentageChance";
+import OverUnder from "./sections/over_under/OverUnder";
+import OtherMarkets from "./sections/OtherMarkets";
 
 export default function PredictionBox() {
   const { handleAddToastOnArray } = useAppProvider();
@@ -45,42 +47,15 @@ export default function PredictionBox() {
 
   return (
     <div className="w-full h-full flex flex-col gap-4">
-      {!isSubmitting && isPredicted && (
+      {!isSubmitting && isPredicted && predictedJSON && (
         <div className="rounded-xl flex flex-col gap-3 md:p-2 p-4 bg-slate-200 dark:bg-slate-800/60">
           <h2 className="text-lg font-bold text-yellow-600 dark:text-yellow-500">
             <CTranslateTo eng="Results:" pt="Resultados:" />
           </h2>
-          <PredictionCard
-            t_en="Percentage of chances"
-            t_pt="Percentual de chances"
-          >
-            <div className="flex justify-center gap-4 items-center">
-              <div className="flex ">
-                <h3>
-                  <CTranslateTo eng="HOME" pt="CASA" />
-                </h3>
-              </div>
-              <div className="flex ">
-                <h3>
-                  <CTranslateTo eng="AWAY" pt="FORA" />
-                </h3>
-              </div>
-            </div>
-          </PredictionCard>
-          <PredictionCard t_en="Markets" t_pt="Mercados">
-            <div className="flex justify-center gap-4 items-center">
-              <div className="flex ">
-                <h3>
-                  <CTranslateTo eng="Ambas marcam" pt="Both Goals" />
-                </h3>
-              </div>
-              <div className="flex ">
-                <h3>
-                  <CTranslateTo eng="Over Under" pt="Under Over" />
-                </h3>
-              </div>
-            </div>
-          </PredictionCard>
+
+          <PercentageChance prediction={predictedJSON} />
+          <OverUnder prediction={predictedJSON} />
+          <OtherMarkets prediction={predictedJSON} />
         </div>
       )}
 
@@ -98,9 +73,9 @@ export default function PredictionBox() {
         </div>
       )}
 
-      {!isSubmitting && !isPredicted && (
+      {!isSubmitting && !isPredicted && !predictedJSON && (
         <div className="flex justify-center items-center w-full h-full md:px-8 px-4">
-          <div className="flex flex-col gap-2 md:w-[50vw] w-full items-center">
+          <div className="flex flex-col gap-2 md:w-[50vw] w-full items-center text-center">
             <div className="text-yellow-500">
               <ReactIcons.FaIcon.FaRobot size={50} />
             </div>
@@ -115,7 +90,7 @@ export default function PredictionBox() {
                 eng="Ready to receive tips, and a complete analysis of the game,"
                 pt="Pronto para receber dicas, e uma análise completa do jogo, "
               />
-              <b className="font-bold">{`${selectedFootballTeam?.teams.home.name} X ${selectedFootballTeam?.teams.away.name} 😀`}</b>
+              <b className="font-bold">{`${selectedFootballTeam?.teams.home.name} X ${selectedFootballTeam?.teams.away.name}`}</b>
             </h1>
             <h1 className="text-base text-slate-600 dark:text-slate-400">
               <CTranslateTo

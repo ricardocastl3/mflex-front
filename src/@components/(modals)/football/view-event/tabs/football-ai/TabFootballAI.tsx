@@ -1,7 +1,7 @@
 import { useAuth } from "@/providers/auth/AuthProvider";
 
 import NoSubscription from "./NoSubscription";
-import PredictionBox from "./cmps/PredictionBox";
+import PredictionBox from "./boxies/PredictionBox";
 
 export default function TabFootballAI() {
   const { currentSubscription } = useAuth();

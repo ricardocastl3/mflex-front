@@ -3,20 +3,30 @@ import { motion } from "framer-motion";
 import { ReactIcons } from "@/utils/icons";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { ReactNode, useEffect, useState } from "react";
+import { IJSONPrediction } from "@/http/interfaces/models/football/IJSONPrediction";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import { IJSONPrediction } from "@/http/interfaces/models/football/IJSONPrediction";
 
 export default function PredictionCard({
   children,
   t_en,
   t_pt,
+  tips,
   prediction,
+  final,
 }: {
   t_pt: string;
   t_en: string;
   children: ReactNode;
   prediction?: IJSONPrediction;
+  final?: {
+    pt: string;
+    en: string;
+  };
+  tips?: {
+    pt: string;
+    en: string;
+  };
 }) {
   const [show, setShow] = useState(false);
 
@@ -35,7 +45,7 @@ export default function PredictionCard({
         } z-10 w-full p-4 flex items-center justify-between cursor-pointer`}
       >
         <div className="flex items-center gap-3">
-          <div className="md:text-[1rem] text-[0.85rem]">
+          <div className="md:text-[1rem] text-[0.94rem]">
             <h1 className="dark:text-white font-bold">
               <CTranslateTo eng={t_en} pt={t_pt} />
             </h1>
@@ -56,9 +66,14 @@ export default function PredictionCard({
           className="w-full z-0 rounded-b-xl top-[3rem] flex flex-col justify-between h-full px-4 pt-4 pb-4 text-base dark:bg-ausoft-slate-900 bg-white/50 text-slate-800 dark:text-slate-400"
         >
           <section>{children}</section>
-          <div className="pt-3 flex items-center border-t border-slate-300 dark:border-slate-800">
-            <h3 className="font-bold text-base text-yellow-500">
-              <CTranslateTo eng="Tips:" pt="Dica:" />
+          <div className="pt-3 mt-2 flex flex-col gap-2 border-t-2 border-slate-200 dark:border-slate-800">
+            <h1 className="text-green-500 font-bold md:text-base text-[0.9rem]">
+              ⚽ <CTranslateTo eng="Final Result: " pt="Análise final: " />{" "}
+              <CTranslateTo eng={final?.en!} pt={final?.pt!} />
+            </h1>
+            <h3 className="font-bold md:text-base text-[0.9rem] text-yellow-500">
+              <CTranslateTo eng="💡 Tips:" pt="💡 Dica:" />
+              <CTranslateTo eng={tips?.en!} pt={tips?.pt!} />
             </h3>
           </div>
         </motion.div>
