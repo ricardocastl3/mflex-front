@@ -16,7 +16,7 @@ export default function AngolanPaymentModal() {
     useCheckoutProvider();
 
   useEffect(() => {
-    handleSelectAngolanMethod("paypay");
+    handleSelectAngolanMethod("express");
   }, []);
 
   return (
