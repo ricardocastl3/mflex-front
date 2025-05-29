@@ -18,8 +18,13 @@ import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 export default function AngolanPaymentDetailsModal() {
   //Contexts
   const { handleOpenModal } = useModal();
-  const { selectedAngolanMethod, itemPriceIdCheckoutSelected, isPurchased } =
-    useCheckoutProvider();
+  const {
+    selectedAngolanMethod,
+    handleAddItemOnCheckout,
+    handlePriceAmountSelected,
+    itemPriceIdCheckoutSelected,
+    isPurchased,
+  } = useCheckoutProvider();
 
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -27,6 +32,8 @@ export default function AngolanPaymentDetailsModal() {
 
   async function handleCloseModal() {
     setIsLoading(true);
+    handleAddItemOnCheckout(undefined);
+    handlePriceAmountSelected(undefined);
 
     if (searchParams.has("sb")) router.push(`/${langByCookies}/pricing#start`);
 
