@@ -108,7 +108,7 @@ export default function UsageSubsModal() {
           <div className="flex flex-col gap-2 mt-4 pt-4 border-t border-slate-200 dark:border-slate-800">
             <h1 className="text-base dark:text-yellow-500 text-yellow-600 font-bold">
               <CTranslateTo
-                eng="Flex TV Access & Flex Movie"
+                eng="Flex TV & Flex Movie Access"
                 pt="Acesso á Flex TV & Flex Movie "
               />
             </h1>
