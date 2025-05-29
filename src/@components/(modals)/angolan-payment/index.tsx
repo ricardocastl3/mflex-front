@@ -12,15 +12,25 @@ export default function AngolanPaymentModal() {
   const { handleOpenModal } = useModal();
 
   const [isLoading, setIsLoading] = useState(false);
-  const { selectedAngolanMethod, handleSelectAngolanMethod } =
-    useCheckoutProvider();
+  const {
+    selectedAngolanMethod,
+    handleAddItemOnCheckout,
+    handlePriceAmountSelected,
+    handleSelectAngolanMethod,
+  } = useCheckoutProvider();
+
+  function handleClose() {
+    handleAddItemOnCheckout(undefined);
+    handlePriceAmountSelected(undefined);
+    handleOpenModal("");
+  }
 
   useEffect(() => {
     handleSelectAngolanMethod("express");
   }, []);
 
   return (
-    <BaseModal callbackClose={() => handleOpenModal("")}>
+    <BaseModal callbackClose={handleClose}>
       <div className="md:w-[50vw] w-[90vw]">
         <div className="p-4 border-b pb-2 border-slate-300 dark:border-slate-800 flex items-center gap-2">
           <AuSoftUI.Component.AuSoftLogo size={36} style="mb-1" />
@@ -60,7 +70,7 @@ export default function AngolanPaymentModal() {
         <div className="p-4 border-t flex items-center md:flex-row flex-col-reverse gap-4 border-slate-300 dark:border-slate-800">
           <AuSoftUI.UI.Button
             disabled={isLoading}
-            onClick={() => handleOpenModal("")}
+            onClick={handleClose}
             className="rounded-full w-full justify-center"
             variant={"outline"}
           >
