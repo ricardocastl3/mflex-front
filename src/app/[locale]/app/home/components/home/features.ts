@@ -11,10 +11,29 @@ export const homeFeatures: IHomeFeature[] = [
   {
     t_en: "Watch TV",
     t_pt: "Assistir Canais Televisivos",
-    d_en: "Watch your favorite TV channels live, with high quality streaming and exclusive content",
-    d_pt: "Assista seus canais de TV favoritos ao vivo, com streaming de alta qualidade e conteúdo exclusivo ",
-    color: "bg-blue-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400",
+    d_en: "Watch your favorite TV channels live, with high quality streaming",
+    d_pt: "Assista seus canais de TV favoritos ao vivo, com streaming de alta qualidade",
+    color:
+      "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400",
     action_url: "/flex-tv",
+  },
+  {
+    t_en: "Games Track",
+    t_pt: "Analisar Jogos",
+    d_en: "Analyze and track your favorite games with detailed statistics and insights",
+    d_pt: "Analise e acompanhe seus jogos favoritos com estatísticas e insights detalhados",
+    color:
+      "bg-violet-100 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400",
+    action_url: "/games",
+  },
+  {
+    t_en: "Watch Movies",
+    t_pt: "Assistir Filmes",
+    d_en: "Watch your favorite movies, with high quality streaming",
+    d_pt: "Assista seus films favoritos, com streaming de alta qualidade",
+    color:
+      "bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400",
+    action_url: "/flex-motive",
   },
   {
     t_en: "View Subscriptions",
