@@ -23,7 +23,7 @@ export const homeFeatures: IHomeFeature[] = [
     d_en: "Analyze and track your favorite games with detailed statistics and insights",
     d_pt: "Analise e acompanhe seus jogos favoritos com estatísticas e insights detalhados",
     color:
-      "bg-violet-100 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400",
+      "bg-cyan-100 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-400",
     action_url: "/games",
   },
   {
@@ -32,8 +32,8 @@ export const homeFeatures: IHomeFeature[] = [
     d_en: "Watch your favorite movies, with high quality streaming",
     d_pt: "Assista seus films favoritos, com streaming de alta qualidade",
     color:
-      "bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400",
-    action_url: "/flex-motive",
+      "bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400",
+    action_url: "/flex-movie",
   },
   {
     t_en: "View Subscriptions",
