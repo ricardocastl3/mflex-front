@@ -62,5 +62,30 @@ export interface IJSONPrediction {
         en: string;
       };
     };
+    goals_in_both_times: {
+      yes: string;
+      no: string;
+      tips: {
+        pt: string;
+        en: string;
+      };
+      final: {
+        pt: string;
+        en: string;
+      };
+    };
+    first_time_winner: {
+      draw: string;
+      home: string;
+      away: string;
+      tips: {
+        pt: string;
+        en: string;
+      };
+      final: {
+        pt: string;
+        en: string;
+      };
+    };
   };
 }

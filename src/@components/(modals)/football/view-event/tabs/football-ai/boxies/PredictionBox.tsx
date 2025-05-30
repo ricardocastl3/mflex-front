@@ -12,6 +12,8 @@ import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import PercentageChance from "./sections/PercentageChance";
 import OverUnder from "./sections/over_under/OverUnder";
 import OtherMarkets from "./sections/OtherMarkets";
+import GoalsBothTimes from "./sections/GoalsBothTimes";
+import FirstTimeWinner from "./sections/FirstTimeWinner";
 
 export default function PredictionBox() {
   const { handleFetchCurrentSubs } = useAuth();
@@ -51,7 +53,9 @@ export default function PredictionBox() {
           </h2>
 
           <PercentageChance prediction={predictedJSON} />
+          <GoalsBothTimes prediction={predictedJSON} />
           <OverUnder prediction={predictedJSON} />
+          <FirstTimeWinner prediction={predictedJSON} />
           <OtherMarkets prediction={predictedJSON} />
         </div>
       )}
