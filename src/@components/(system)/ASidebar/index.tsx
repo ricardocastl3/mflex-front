@@ -156,7 +156,7 @@ export default function ASidebar() {
               Icon={ReactIcons.AiICon.AiOutlineShoppingCart}
               href="transactions"
               isSelected={currentAppPageUrl == "transactions"}
-              title_en="My Sells"
+              title_en="My Sales"
               title_pt="Minhas Vendas"
             />
 
