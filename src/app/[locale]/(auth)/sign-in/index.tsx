@@ -125,17 +125,24 @@ export default function SignInPage() {
                       />
                     </h1>
                   </div>
-                  <AuSoftUI.UI.TextField.Default
-                    {...register("phone")}
-                    placeholder={`${
-                      langByCookies == "pt"
-                        ? "Por favor, informe o seu whatsapp..."
-                        : "Please, enter your whatsapp"
-                    }`}
-                    className="w-full"
-                    requiredField={errors.phone?.message ? true : false}
-                    weight={"md"}
-                  />
+                  <div className="flex items-center w-full">
+                    <div className="mr-1 rounded-lg flex justify-center items-center border-[1.8px] border-slate-300 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/60 h-[48px] w-[3.7rem] px-[15px] py-[18px] text-[0.9rem] focus:ring-1">
+                      <span className="text-sm text-slate-700 dark:text-white">
+                        +244
+                      </span>
+                    </div>
+                    <AuSoftUI.UI.TextField.Default
+                      {...register("phone")}
+                      placeholder={`${
+                        langByCookies == "pt"
+                          ? "Por favor, informe o seu whatsapp..."
+                          : "Please, enter your whatsapp"
+                      }`}
+                      className="w-full flex-1"
+                      requiredField={errors.phone?.message ? true : false}
+                      weight={"md"}
+                    />
+                  </div>
 
                   {errors.phone?.message && (
                     <AuSoftUI.Component.RequiredTextField
