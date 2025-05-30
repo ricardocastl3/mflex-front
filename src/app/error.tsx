@@ -9,8 +9,8 @@ import { langByCookies } from "@/http/axios/api";
 import Image from "next/image";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 
-export default function NotFound() {
-  const { segmentedLayoutByLocalStorage, currentPageByUrl } = useAppProvider();
+export default function ErrorPage() {
+  const { currentPageByUrl } = useAppProvider();
 
   return (
     <div className="flex flex-col justify-center h-screen items-center pt-16">
@@ -37,7 +37,9 @@ export default function NotFound() {
           variant={"primary"}
           size={"md"}
           className="w-full justify-center mt-4 rounded-full"
-          onClick={() => (window.location.href = `/${langByCookies}/${currentPageByUrl}`)}
+          onClick={() =>
+            (window.location.href = `/${langByCookies}/${currentPageByUrl}`)
+          }
         >
           <CTranslateTo eng="Update page" pt="Refresh page" />
         </Button>
