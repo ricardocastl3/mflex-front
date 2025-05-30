@@ -16,7 +16,7 @@ export async function generateMetadata({
       process.env.MFLEX_SERVER_URL + "/api/v1" + "/podcasts",
       {
         params: {
-          slug: decodeURI(pars.slug),
+          slug: pars.slug.replaceAll("%20", "-"),
         },
         headers: {
           "accept-language": langByCookies,

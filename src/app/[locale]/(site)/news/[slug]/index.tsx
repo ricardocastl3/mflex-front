@@ -27,7 +27,7 @@ export default function PreviewNew({ params }: Props) {
     try {
       const resp = await internalApi.get("/news", {
         params: {
-          slug: decodeURI(pars.slug),
+          slug: pars.slug.replaceAll("%20", "-"),
         },
       });
 
