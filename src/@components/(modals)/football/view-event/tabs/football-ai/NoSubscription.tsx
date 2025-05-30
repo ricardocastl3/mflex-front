@@ -45,8 +45,8 @@ export default function NoSubscription() {
 
             {needUpgradePlan && (
               <CTranslateTo
-                eng={"Oops! Your subscription doesn't offer smart analytics"}
-                pt={"Ops! A sua assinatura não oferece análise inteligente"}
+                eng={"Oops! Your current subscription doesn't offer smart analytics"}
+                pt={"Ops! A sua assinatura atual não oferece análise inteligente"}
               />
             )}
           </h4>

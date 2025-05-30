@@ -8,7 +8,9 @@ export default function TabFootballAI() {
 
   const isExpired =
     !currentSubscription ||
-    (currentSubscription && currentSubscription.subscription.is_expired)
+    (currentSubscription &&
+      (currentSubscription.subscription.is_expired ||
+        Number(currentSubscription.football_ai) <= 0))
       ? true
       : false;
 
