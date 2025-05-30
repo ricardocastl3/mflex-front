@@ -28,34 +28,24 @@ export default function GoalsBothTimes({
         <div className="grid grid-cols-2 gap-4 items-center pt-2">
           <div className="flex ">
             <h3 className="text-[0.9rem] font-bold dark:text-white">
-              {selectedFootballTeam?.teams.home.name}
+              <CTranslateTo eng="Yes" pt="Sim" />
             </h3>
           </div>
           <div className="flex ">
-            <h3 className="font-bold">{prediction.winner.home}</h3>
+            <h3 className="font-bold">
+              {prediction.markets.goals_in_both_times.yes}
+            </h3>
           </div>
         </div>
         <div className="grid grid-cols-2 gap-4 items-center pt-2">
           <div className="flex ">
             <h3 className="text-[0.9rem] font-bold dark:text-white">
-              {selectedFootballTeam?.teams.away.name}
+              <CTranslateTo eng="No" pt="Não" />
             </h3>
           </div>
           <div className="flex">
             <h3 className="font-bold text-[0.9rem]">
-              {prediction.winner.away}
-            </h3>
-          </div>
-        </div>
-        <div className="grid grid-cols-2 gap-4 items-center pt-2">
-          <div className="flex ">
-            <h3 className="text-[0.9rem] font-bold dark:text-white">
-              <CTranslateTo eng="Draw" pt="Empate" />
-            </h3>
-          </div>
-          <div className="flex ">
-            <h3 className="font-bold text-[0.9rem]">
-              {prediction.winner.draw}
+              {prediction.markets.goals_in_both_times.no}
             </h3>
           </div>
         </div>

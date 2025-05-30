@@ -32,7 +32,7 @@ export default function FirstTimeWinner({
             </h3>
           </div>
           <div className="flex ">
-            <h3 className="font-bold">{prediction.winner.home}</h3>
+            <h3 className="font-bold">{prediction.markets.first_time_winner.home}</h3>
           </div>
         </div>
         <div className="grid grid-cols-2 gap-4 items-center pt-2">
@@ -43,7 +43,7 @@ export default function FirstTimeWinner({
           </div>
           <div className="flex">
             <h3 className="font-bold text-[0.9rem]">
-              {prediction.winner.away}
+              {prediction.markets.first_time_winner.away}
             </h3>
           </div>
         </div>
@@ -55,7 +55,7 @@ export default function FirstTimeWinner({
           </div>
           <div className="flex ">
             <h3 className="font-bold text-[0.9rem]">
-              {prediction.winner.draw}
+              {prediction.markets.first_time_winner.draw}
             </h3>
           </div>
         </div>
