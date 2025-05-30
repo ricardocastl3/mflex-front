@@ -29,7 +29,7 @@ export default function PreviewNew({ params }: Props) {
     try {
       const resp = await internalApi.get("/podcasts", {
         params: {
-          slug: pars.slug.replaceAll("%20", "-"),
+          slug: pars.slug
         },
       });
 
