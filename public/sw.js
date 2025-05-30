@@ -34,7 +34,8 @@ self.addEventListener("notificationclick", (event) => {
   event.notification.close();
 
   const urlToOpen =
-    event.notification.data.url || process.env.MFLEX_NEXT_PUBLIC_URL;
+    decodeURIComponent(decodeURI(event.notification.data.url)) ||
+    process.env.MFLEX_NEXT_PUBLIC_URL;
 
   event.waitUntil(
     clients.matchAll({ type: "window" }).then((clientList) => {
