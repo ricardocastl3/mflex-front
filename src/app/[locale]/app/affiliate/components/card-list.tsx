@@ -58,26 +58,13 @@ export default function ProductCard({ transfers }: { transfers: ITransfer[] }) {
 
             <div className="grid grid-cols-2 gap-2">
               <h4 className="dark:text-white text-sm">
-                <CTranslateTo eng="Real Money" pt="Montante Real" />
+                <CTranslateTo eng="Sent Money" pt="Montante Enviado" />
               </h4>
 
               <h4 className="text-sm text-green-500">
                 {`${CurrencyServices.decimal(Number(prod.payment.amount))} Kz`}
               </h4>
-
-              <h4 className="dark:text-white text-sm">
-                <CTranslateTo eng="Sent Money" pt="Montante Enviado" />
-              </h4>
-
-              <h4 className="text-sm text-green-500">
-                {`${CurrencyServices.decimal(
-                  Number(prod.payment.amount) * Number(0.92)
-                )} Kz`}
-              </h4>
-              <h4 className="dark:text-white text-sm">
-                <CTranslateTo eng="Sent Fee" pt="Taxa de envio" />
-              </h4>
-              <h4 className="text-sm dark:text-white font-bold">8%</h4>
+         
               <h4 className="dark:text-white text-sm">IBAN:</h4>
 
               <h4 className="text-sm dark:text-white text-nowrap">

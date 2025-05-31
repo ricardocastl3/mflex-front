@@ -39,13 +39,7 @@ export default function ProductList({ transfers }: { transfers: ITransfer[] }) {
         </h4>
 
         <h4 className="font-bold dark:text-white text-sm">
-          <CTranslateTo eng="Real money" pt="M. Real" />
-        </h4>
-        <h4 className="font-bold dark:text-white text-sm w-fit">
-          <CTranslateTo eng="Fee" pt="Taxa" />
-        </h4>
-        <h4 className="font-bold dark:text-white text-sm">
-          <CTranslateTo eng="Sent money" pt="M. Enviado" />
+          <CTranslateTo eng="Sent money" pt="Montante Enviado" />
         </h4>
 
         <h4 className="font-bold dark:text-white text-sm">
@@ -94,12 +88,6 @@ export default function ProductList({ transfers }: { transfers: ITransfer[] }) {
                 )}
                 {prod.iban}
               </h4>
-
-              <h4 className="text-sm text-green-500">
-                {`${CurrencyServices.decimal(Number(prod.payment.amount))} Kz`}
-              </h4>
-
-              <h4 className="text-sm dark:text-white font-bold w-fit">{}</h4>
 
               <h4 className="text-sm text-green-500">
                 {`${CurrencyServices.decimal(
