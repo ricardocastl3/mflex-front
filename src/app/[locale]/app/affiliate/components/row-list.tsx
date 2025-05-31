@@ -39,7 +39,7 @@ export default function ProductList({ transfers }: { transfers: ITransfer[] }) {
         </h4>
 
         <h4 className="font-bold dark:text-white text-sm">
-          <CTranslateTo eng="Sent money" pt="Montante Enviado" />
+          <CTranslateTo eng="Sent" pt="Enviado" />
         </h4>
 
         <h4 className="font-bold dark:text-white text-sm">
