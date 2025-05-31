@@ -83,6 +83,8 @@ export default function useEvents({ route }: { route: "app" | "public" }) {
           const find = allSafed.find((i) => i.id == event.id);
           if (!find) {
             allSafed.push(event);
+          } else {
+            allSafed.filter((i) => i.id == event.id);
           }
         });
 
