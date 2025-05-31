@@ -30,7 +30,7 @@ export default function RequestAffiliation() {
   return (
     <BaseBox className="md:p-4 p-3 w-full">
       <div className="flex flex-col gap-2">
-        <div className="flex flex-row  md:items-center items-start gap-2 justify-between">
+        <div className="flex flex-row  md:items-center items-start gap-2 ">
           <h4 className="md:text-base text-[0.9rem] text-slate-600 dark:text-slate-300">
             <CTranslateTo
               eng={"My affiliate code"}
@@ -38,7 +38,8 @@ export default function RequestAffiliation() {
             />
           </h4>
           <ReactIcons.MdIcon.MdQrCode
-            size={window.innerWidth > 765 ? 20 : 17}
+            size={window.innerWidth > 765 ? 17 : 17}
+            className="dark:text-violet-500 text-violet-500"
           />
         </div>
 

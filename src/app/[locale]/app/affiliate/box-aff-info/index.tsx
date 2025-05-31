@@ -18,12 +18,13 @@ export default function BoxAffliateInfo({
     <div className="grid md:grid-cols-3 grid-cols-1 gap-4 h-full">
       <BaseBox className="md:p-4 p-3 w-full">
         <div className="flex flex-col gap-2">
-          <div className="flex flex-row md:items-center items-start gap-2 justify-between">
+          <div className="flex flex-row md:items-center items-start gap-2 ">
             <h4 className="md:text-base text-[0.9rem] text-slate-600 dark:text-slate-300">
               <CTranslateTo eng={"Gains"} pt={"Ganhos"} />
             </h4>
             <ReactIcons.MdIcon.MdWallet
-              size={window.innerWidth > 765 ? 20 : 17}
+              size={window.innerWidth > 765 ? 17 : 17}
+              className="dark:text-green-500 text-green-500"
             />
           </div>
 
@@ -43,12 +44,13 @@ export default function BoxAffliateInfo({
       </BaseBox>
       <BaseBox className="md:p-4 p-3 w-full">
         <div className="flex flex-col gap-2">
-          <div className="flex flex-row md:items-center items-start gap-2 justify-between">
+          <div className="flex flex-row md:items-center items-start gap-2 ">
             <h4 className="md:text-base text-[0.9rem] text-slate-600 dark:text-slate-300">
               <CTranslateTo eng={"Active Events"} pt={"Eventos ativos"} />
             </h4>
             <ReactIcons.MdIcon.MdCalendarMonth
-              size={window.innerWidth > 765 ? 20 : 17}
+              size={window.innerWidth > 765 ? 17 : 17}
+              className="dark:text-blue-500 text-blue-500"
             />
           </div>
 

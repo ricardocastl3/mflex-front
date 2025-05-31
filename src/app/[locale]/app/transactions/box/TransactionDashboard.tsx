@@ -38,7 +38,7 @@ export default function TransactionDashboard({
 
   return (
     <div className="w-full">
-      <div className="grid md:grid-cols-4 grid-cols-4 md:gap-4 gap-2">
+      <div className="grid md:grid-cols-4 grid-cols-2 md:gap-4 gap-2">
         {isLoading && (
           <>
             {Array.from({ length: 4 }).map((_, i) => {
