@@ -79,7 +79,7 @@ export default function useEvents({ route }: { route: "app" | "public" }) {
       } else {
         const allSafed: IEvent[] = allEvents;
 
-        resp.data.events.map((event) => {
+        resp.data.events.forEach((event) => {
           const find = allSafed.find((i) => i.id == event.id);
           if (!find) {
             allSafed.push(event);
