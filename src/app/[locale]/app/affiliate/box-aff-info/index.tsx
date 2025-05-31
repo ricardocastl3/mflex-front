@@ -32,10 +32,12 @@ export default function BoxAffliateInfo({
             {`${
               commissions.length > 0
                 ? CurrencyServices.decimal(
-                    commissions.reduce(
-                      (acc, curr) => acc + Number(curr.payment.amount),
-                      0
-                    )
+                    commissions
+                      .filter((i) => i.status == "success")
+                      .reduce(
+                        (acc, curr) => acc + Number(curr.payment.amount),
+                        0
+                      )
                   )
                 : 0
             } Kz`}
