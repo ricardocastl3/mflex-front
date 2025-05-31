@@ -30,7 +30,7 @@ export default function ProductList({ transfers }: { transfers: ITransfer[] }) {
 
   return (
     <div className="flex flex-col w-full px-2">
-      <div className="grid grid-cols-10 w-full p-4 border-b border-slate-200 dark:border-slate-800">
+      <div className="grid grid-cols-8 w-full p-4 border-b border-slate-200 dark:border-slate-800">
         <h4 className="font-bold dark:text-white text-sm col-span-3">
           <CTranslateTo eng="Name" pt="Nome" />
         </h4>
@@ -55,7 +55,7 @@ export default function ProductList({ transfers }: { transfers: ITransfer[] }) {
           return (
             <div
               key={i}
-              className="p-4 items-center grid grid-cols-10 w-full cursor-pointer hover:bg-slate-100 rounded-lg dark:hover:bg-slate-700/50"
+              className="p-4 items-center grid grid-cols-8 w-full cursor-pointer hover:bg-slate-100 rounded-lg dark:hover:bg-slate-700/50"
             >
               <h4 className="text-sm dark:text-white col-span-3 pr-5">
                 {prod.payment.ticket?.event_ticket && (
