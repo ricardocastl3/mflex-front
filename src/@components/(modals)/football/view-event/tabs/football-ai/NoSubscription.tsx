@@ -15,10 +15,11 @@ export default function NoSubscription() {
   const { currentSubscription } = useAuth();
   const { selectedFootballTeam } = useFootballProvider();
 
-  const needUpgradePlan =
-    currentSubscription && !currentSubscription.subscription.is_expired
-      ? false
-      : true;
+  const isExpired =
+    !currentSubscription ||
+    (currentSubscription && currentSubscription.subscription.is_expired)
+      ? true
+      : false;
 
   return (
     <div className="w-full h-full flex justify-center items-center md:p-12 p-6">
@@ -32,7 +33,7 @@ export default function NoSubscription() {
 
         <div className="flex flex-col gap-4 items-center">
           <h4 className="text-base text-center font-bold text-yellow-700 dark:text-yellow-400">
-            {needUpgradePlan && (
+            {isExpired && (
               <CTranslateTo
                 eng={
                   "Oops! It looks like you don't have an active subscription."
@@ -41,7 +42,7 @@ export default function NoSubscription() {
               />
             )}
 
-            {!needUpgradePlan &&
+            {!isExpired &&
               currentSubscription?.subscription?.subscription_usage
                 ?.football_ai! <= 0 && (
                 <CTranslateTo
@@ -71,14 +72,14 @@ export default function NoSubscription() {
               variant={"primary"}
               size={"sm"}
             >
-              {needUpgradePlan && (
+              {isExpired && (
                 <CTranslateTo
                   eng="Get Started with a Subscription"
                   pt="Comece com uma Subscrição"
                 />
               )}
 
-              {!needUpgradePlan &&
+              {!isExpired &&
                 currentSubscription?.subscription?.subscription_usage
                   ?.football_ai! <= 0 && (
                   <CTranslateTo eng="Upgrade Plan" pt="Atualizar plano" />
