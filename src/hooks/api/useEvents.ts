@@ -77,7 +77,16 @@ export default function useEvents({ route }: { route: "app" | "public" }) {
       if (resp.data.events.length <= 0) {
         setHasMoreEvents(false);
       } else {
-        setAllEvents((state) => [...state, ...resp.data.events]);
+        const allSafed: IEvent[] = allEvents;
+
+        resp.data.events.map((event) => {
+          const find = allSafed.find((i) => i.id == event.id);
+          if (!find) {
+            allSafed.push(event);
+          }
+        });
+
+        setAllEvents((state) => [...state, ...allSafed]);
       }
 
       setIsLoadingMoreEvents(false);
