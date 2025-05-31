@@ -16,11 +16,9 @@ export default function NoSubscription() {
   const { selectedFootballTeam } = useFootballProvider();
 
   const needUpgradePlan =
-    currentSubscription &&
-    (currentSubscription?.subscription?.subscription_usage?.football_ai! <= 0 ||
-      currentSubscription.subscription.is_expired)
-      ? true
-      : false;
+    currentSubscription && !currentSubscription.subscription.is_expired
+      ? false
+      : true;
 
   return (
     <div className="w-full h-full flex justify-center items-center md:p-12 p-6">
@@ -34,7 +32,7 @@ export default function NoSubscription() {
 
         <div className="flex flex-col gap-4 items-center">
           <h4 className="text-base text-center font-bold text-yellow-700 dark:text-yellow-400">
-            {!needUpgradePlan && (
+            {needUpgradePlan && (
               <CTranslateTo
                 eng={
                   "Oops! It looks like you don't have an active subscription."
@@ -43,10 +41,12 @@ export default function NoSubscription() {
               />
             )}
 
-            {needUpgradePlan && (
+            {(!needUpgradePlan &&
+              currentSubscription?.subscription?.subscription_usage
+                ?.football_ai! <= 0) && (
               <CTranslateTo
-                eng={"Oops! Your current subscription doesn't offer smart analytics"}
-                pt={"Ops! A sua assinatura atual não oferece análise inteligente"}
+                eng={"Oops! Your daily analysis total is over"}
+                pt={"Ops! O seu total de análise diária terminou"}
               />
             )}
           </h4>
