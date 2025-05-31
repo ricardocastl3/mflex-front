@@ -5,7 +5,7 @@ import { ISubscription } from "@/http/interfaces/models/subscriptions/ISubscript
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import SubsList from "./row-list";
 import SubsCard from "./card-list";
-import ContainerBase from "../../cmps/ContainerBase";
+import ContainerBase from "../../components/ContainerBase";
 
 export default function SubscriptionBox({
   subscriptions,

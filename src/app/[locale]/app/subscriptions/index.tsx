@@ -4,7 +4,7 @@ import { ReactIcons } from "@/utils/icons";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import SubscriptionBox from "./components/SubscriptionBox";
-import PageBase from "../cmps/PageBase";
+import PageBase from "../components/PageBase";
 
 import useSubscriptionTransactions from "@/hooks/api/useSubscriptionTransactions";
 

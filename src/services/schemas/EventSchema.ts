@@ -64,6 +64,7 @@ class EventSchemas {
               ? "Reference address cannot be empty"
               : "Endereço de referência não pode estar vazio",
         }),
+      affiliate: z.string().nullish(),
     });
   }
 }

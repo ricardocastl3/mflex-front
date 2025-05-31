@@ -45,6 +45,14 @@ export default function MobileMoreOptions() {
               title_en="Transferences"
               title_pt="Transferências"
             />
+            <LinkButton
+              isExpanded={true}
+              Icon={ReactIcons.MdIcon.MdDashboard}
+              href="affiliate"
+              isSelected={currentAppPageUrl == "affiliate"}
+              title_en="Affiliate Dashboard"
+              title_pt="Painel do afiliado"
+            />
           </div>
           <h4 className="text-normal text-slate-500 dark:text-slate-300">
             <CTranslateTo eng="Navigation" pt="Navegação" />

@@ -46,6 +46,9 @@ export default function AddEventModal() {
           description: selectedEvent.description,
           map_location: selectedEvent.map_location,
           reference_address: selectedEvent.reference_address,
+          affiliate: selectedEvent.affiliation
+            ? selectedEvent.affiliation.affiliate?.profile?.affiliate_code
+            : "",
           start_at: new Date(selectedEvent.start_at),
           title: selectedEvent.title,
         }
@@ -53,6 +56,7 @@ export default function AddEventModal() {
           description: "",
           map_location: "",
           reference_address: "",
+          affiliate: "",
           title: "",
         },
   });
@@ -105,8 +109,13 @@ export default function AddEventModal() {
         formData.append("event_id", selectedEvent?.id);
       }
 
+      if (data.affiliate) {
+        formData.append("affiliate", data.affiliate);
+      }
+
       formData.append("category_id", selectedCategory.id);
       formData.append("title", data.title);
+
       formData.append("description", data.description);
       formData.append("reference_address", data.reference_address);
       formData.append("main_address", mainAddress);
@@ -377,28 +386,55 @@ export default function AddEventModal() {
               )}
             </div>
           </div>
-
-          <div className="flex flex-col gap-2">
-            <h1 className="text-base dark:text-white">
-              <CTranslateTo eng="Map Location" pt="Localização no Mapa" />
-            </h1>
-            <AuSoftUI.UI.TextField.Default
-              requiredField={errors.map_location?.message ? true : false}
-              {...register("map_location")}
-              placeholder={`${
-                langByCookies == "pt"
-                  ? "Ex: FGW9+48D, Luanda"
-                  : "Ex: FGW9+48D, Luanda"
-              }`}
-              className="w-full"
-              weight={"md"}
-            />
-            {errors.map_location?.message && (
-              <AuSoftUI.Component.RequiredTextField
-                text={errors.map_location.message}
-                color="red"
+          <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
+            <div className="flex flex-col gap-2">
+              <h1 className="text-base dark:text-white">
+                <CTranslateTo eng="Map Location" pt="Localização no Mapa" />
+              </h1>
+              <AuSoftUI.UI.TextField.Default
+                requiredField={errors.map_location?.message ? true : false}
+                {...register("map_location")}
+                placeholder={`${
+                  langByCookies == "pt"
+                    ? "Ex: FGW9+48D, Luanda"
+                    : "Ex: FGW9+48D, Luanda"
+                }`}
+                className="w-full"
+                weight={"md"}
               />
-            )}
+              {errors.map_location?.message && (
+                <AuSoftUI.Component.RequiredTextField
+                  text={errors.map_location.message}
+                  color="red"
+                />
+              )}
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <h1 className="text-base dark:text-white">
+                <CTranslateTo
+                  eng="Affiliate (Optional)"
+                  pt="Afiliado (Opcional)"
+                />
+              </h1>
+              <AuSoftUI.UI.TextField.Default
+                requiredField={errors.map_location?.message ? true : false}
+                {...register("affiliate")}
+                placeholder={`${
+                  langByCookies == "pt"
+                    ? "Ex: FLX-pkFlhdAd"
+                    : "Ex: FLX-pkFlhdAd"
+                }`}
+                className="w-full"
+                weight={"md"}
+              />
+              {errors.affiliate?.message && (
+                <AuSoftUI.Component.RequiredTextField
+                  text={errors.affiliate.message}
+                  color="red"
+                />
+              )}
+            </div>
           </div>
 
           <div className="flex flex-col gap-2">

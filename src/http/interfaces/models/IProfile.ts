@@ -6,4 +6,7 @@ export interface IProfile {
   phone_verified?: boolean;
   user: IUser;
   address: string;
+  affiliate_code?: string;
+  affiliate_active?: boolean;
+  affiliate_request?: boolean;
 }

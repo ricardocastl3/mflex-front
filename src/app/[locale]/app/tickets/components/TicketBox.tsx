@@ -1,7 +1,7 @@
 import { ITicket } from "@/http/interfaces/models/ITicket";
 import { AuSoftUI } from "@/@components/(ausoft)";
 
-import ContainerBase from "../../cmps/ContainerBase";
+import ContainerBase from "../../components/ContainerBase";
 import TicketCard from "./TicketCard";
 
 export default function TicketBox({

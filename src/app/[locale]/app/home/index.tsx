@@ -3,9 +3,9 @@
 import { useAuth } from "@/providers/auth/AuthProvider";
 import { BaseBox } from "@/@components/(box)/BaseBox";
 
-import PageBase from "../cmps/PageBase";
+import PageBase from "../components/PageBase";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import ContainerBase from "../cmps/ContainerBase";
+import ContainerBase from "../components/ContainerBase";
 import CardTicket from "./components/CardTicket";
 import CardEvent from "./components/CardEvent";
 import CardTransactions from "./components/CardTransactions";

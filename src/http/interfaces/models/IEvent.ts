@@ -1,5 +1,6 @@
 import { IEventTicket } from "./IEventTicket";
 import { ICategory } from "./ICategory";
+import { IUserResponse } from "../responses/IUserResponse";
 
 export interface IEvent {
   id: string;
@@ -15,6 +16,7 @@ export interface IEvent {
   created_at: Date;
   category: ICategory;
   rejected_reason?: string;
+  affiliation: { affiliate: IUserResponse };
   organizer: {
     email?: string;
     first_name: string;

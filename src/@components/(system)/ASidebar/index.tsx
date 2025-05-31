@@ -10,7 +10,6 @@ import LinkButton from "./components/LinkButton";
 export default function ASidebar() {
   //Contexts
   const { currentAppPageUrl, openBanner } = useAppProvider();
-  const { userLogged } = useAuth();
 
   //Controls
   const [showText, setShowText] = useState(false);
@@ -118,6 +117,14 @@ export default function ASidebar() {
             />
             <LinkButton
               isExpanded={showText}
+              Icon={ReactIcons.Hi2Icon.HiTag}
+              href="tickets"
+              isSelected={currentAppPageUrl == "tickets"}
+              title_en="My Tickets"
+              title_pt="Meus Ingressos"
+            />
+            <LinkButton
+              isExpanded={showText}
               Icon={ReactIcons.AiICon.AiFillTool}
               href="settings"
               isSelected={currentAppPageUrl == "settings"}
@@ -135,11 +142,11 @@ export default function ASidebar() {
           <div className="flex flex-col gap-2">
             <LinkButton
               isExpanded={showText}
-              Icon={ReactIcons.Hi2Icon.HiTag}
-              href="tickets"
-              isSelected={currentAppPageUrl == "tickets"}
-              title_en="My Tickets"
-              title_pt="Meus Ingressos"
+              Icon={ReactIcons.MdIcon.MdDashboard}
+              href="affiliate"
+              isSelected={currentAppPageUrl == "affiliate"}
+              title_en="Affiliate Dashboard"
+              title_pt="Painel do afiliado"
             />
 
             <LinkButton
