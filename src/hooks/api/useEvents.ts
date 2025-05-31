@@ -84,7 +84,7 @@ export default function useEvents({ route }: { route: "app" | "public" }) {
           if (!find) {
             allSafed.push(event);
           } else {
-            allSafed = allSafed.filter((i) => i.id == event.id);
+            allSafed = allSafed.filter((i) => i.id != event.id);
           }
         });
 
