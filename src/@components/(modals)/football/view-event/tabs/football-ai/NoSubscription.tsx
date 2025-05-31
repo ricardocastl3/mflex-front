@@ -42,14 +42,12 @@ export default function NoSubscription() {
               />
             )}
 
-            {!isExpired &&
-              currentSubscription?.subscription?.subscription_usage
-                ?.football_ai! <= 0 && (
-                <CTranslateTo
-                  eng={"Oops! Your daily analysis total is over"}
-                  pt={"Ops! O seu total de análise diária terminou"}
-                />
-              )}
+            {!isExpired && currentSubscription?.football_ai! <= 0 && (
+              <CTranslateTo
+                eng={"Oops! Your daily analysis total is over"}
+                pt={"Ops! O seu total de análise diária terminou"}
+              />
+            )}
           </h4>
           <h4 className="text-base text-center text-slate-600 dark:text-slate-400">
             <CTranslateTo
@@ -79,11 +77,9 @@ export default function NoSubscription() {
                 />
               )}
 
-              {!isExpired &&
-                currentSubscription?.subscription?.subscription_usage
-                  ?.football_ai! <= 0 && (
-                  <CTranslateTo eng="Upgrade Plan" pt="Atualizar plano" />
-                )}
+              {!isExpired && currentSubscription?.football_ai! <= 0 && (
+                <CTranslateTo eng="Upgrade Plan" pt="Atualizar plano" />
+              )}
             </AuSoftUI.UI.Button>
           </Link>
         </div>
