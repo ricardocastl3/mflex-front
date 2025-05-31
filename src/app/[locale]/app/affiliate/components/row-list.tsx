@@ -90,9 +90,7 @@ export default function ProductList({ transfers }: { transfers: ITransfer[] }) {
               </h4>
 
               <h4 className="text-sm text-green-500">
-                {`${CurrencyServices.decimal(
-                  Number(prod.payment.amount) * Number(0.92)
-                )} Kz`}
+                {`${CurrencyServices.decimal(Number(prod.payment.amount))} Kz`}
               </h4>
 
               <CardStatus status={prod.status} />
