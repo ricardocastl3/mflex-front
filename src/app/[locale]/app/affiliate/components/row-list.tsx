@@ -27,6 +27,7 @@ export default function ProductList({ transfers }: { transfers: ITransfer[] }) {
       return CAxiosErrorToastify({ err, openToast: handleAddToastOnArray });
     }
   }
+
   return (
     <div className="flex flex-col w-full px-2">
       <div className="grid grid-cols-10 w-full p-4 border-b border-slate-200 dark:border-slate-800">
@@ -98,7 +99,7 @@ export default function ProductList({ transfers }: { transfers: ITransfer[] }) {
                 {`${CurrencyServices.decimal(Number(prod.payment.amount))} Kz`}
               </h4>
 
-              <h4 className="text-sm dark:text-white font-bold w-fit">8%</h4>
+              <h4 className="text-sm dark:text-white font-bold w-fit">{}</h4>
 
               <h4 className="text-sm text-green-500">
                 {`${CurrencyServices.decimal(
