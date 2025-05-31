@@ -3,6 +3,5 @@ import { IEvent } from "./IEvent";
 
 export interface IAffiliate {
   affiliate?: IUserResponse;
-
   event?: IEvent;
 }
