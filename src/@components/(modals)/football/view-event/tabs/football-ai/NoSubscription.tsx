@@ -41,14 +41,14 @@ export default function NoSubscription() {
               />
             )}
 
-            {(!needUpgradePlan &&
+            {!needUpgradePlan &&
               currentSubscription?.subscription?.subscription_usage
-                ?.football_ai! <= 0) && (
-              <CTranslateTo
-                eng={"Oops! Your daily analysis total is over"}
-                pt={"Ops! O seu total de análise diária terminou"}
-              />
-            )}
+                ?.football_ai! <= 0 && (
+                <CTranslateTo
+                  eng={"Oops! Your daily analysis total is over"}
+                  pt={"Ops! O seu total de análise diária terminou"}
+                />
+              )}
           </h4>
           <h4 className="text-base text-center text-slate-600 dark:text-slate-400">
             <CTranslateTo
@@ -71,16 +71,18 @@ export default function NoSubscription() {
               variant={"primary"}
               size={"sm"}
             >
-              {!needUpgradePlan && (
+              {needUpgradePlan && (
                 <CTranslateTo
                   eng="Get Started with a Subscription"
                   pt="Comece com uma Subscrição"
                 />
               )}
 
-              {needUpgradePlan && (
-                <CTranslateTo eng="Upgrade Plan" pt="Atualizar plano" />
-              )}
+              {!needUpgradePlan &&
+                currentSubscription?.subscription?.subscription_usage
+                  ?.football_ai! <= 0 && (
+                  <CTranslateTo eng="Upgrade Plan" pt="Atualizar plano" />
+                )}
             </AuSoftUI.UI.Button>
           </Link>
         </div>
