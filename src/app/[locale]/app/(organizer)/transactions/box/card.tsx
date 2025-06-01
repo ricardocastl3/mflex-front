@@ -26,7 +26,10 @@ export default function CardDashboard({
           <h4 className="md:text-base text-sm text-slate-600 dark:text-slate-300">
             <CTranslateTo eng={title_en} pt={title_pt} />
           </h4>
-          <Icon size={20} className={`${iconColor}`} />
+          <Icon
+            size={window.innerWidth > 765 ? 20 : 17}
+            className={`${iconColor}`}
+          />
         </div>
 
         <h4 className="md:text-xl text-sm font-bold text-yellow-500 dark:text-yellow-300">
