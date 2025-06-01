@@ -70,8 +70,8 @@ export const homeFeatures: IHomeFeature[] = [
   {
     t_en: "Affiliate Dashboard",
     t_pt: "Painel do Affiliado",
-    d_en: "Monitor your sales as event affiliate",
-    d_pt: "Monitore suas vendas como afiliados de eventos",
+    d_en: "Monitor your commissions and transfers as event affiliate",
+    d_pt: "Monitore suas comissões e transferências como afiliados de eventos",
     color:
       "bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400",
     action_url: "/app/affiliate",
@@ -79,7 +79,7 @@ export const homeFeatures: IHomeFeature[] = [
   {
     t_en: "Flex Plans",
     t_pt: "Planos Flex",
-    d_en: "Make the most of our services with our plans",
+    d_en: "Make the most of our services with our top-quality plans",
     d_pt: "Aproveite ao máximo dos nossos serviços com os nossos planos",
     color:
       "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400",

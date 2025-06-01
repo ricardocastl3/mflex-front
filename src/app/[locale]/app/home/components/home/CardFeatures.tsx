@@ -16,7 +16,7 @@ export default function CardHomeFeature({
       href={`/${langByCookies}${feature.action_url}`}
       className="w-full h-full md:hover:scale-[1.03] scale-100 transition-all"
     >
-      <BaseBox className="p-2 bg-slate-200/40">
+      <BaseBox className="p-2 bg-slate-200/40 h-full">
         <div className="p-3 flex items-center gap-2 border-b pb-3 border-slate-300 dark:border-slate-800">
           <ReactIcons.AiICon.AiFillCiCircle
             size={20}
