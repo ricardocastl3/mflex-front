@@ -23,7 +23,7 @@ export default function TransferModal() {
       <div className="flex items-center border-b pb-2 border-slate-300 dark:border-slate-800">
         <h4 className="flex items-center gap-2 font-bold text-xl dark:text-white">
           <ReactIcons.MdIcon.MdDashboard size={18} />
-          <CTranslateTo eng="Affliate Dashboard" pt="Painel do afiliado" />
+          <CTranslateTo eng="Affiliate Dashboard" pt="Painel do afiliado" />
         </h4>
       </div>
 

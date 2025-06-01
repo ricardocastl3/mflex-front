@@ -21,7 +21,7 @@ export default function CardDashboard({
 }) {
   return (
     <BaseBox className="md:p-4 p-3 w-full h-fit">
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col md:gap-2 gap-1.5">
         <div className="flex flex-row md:items-center items-start gap-2 justify-between">
           <h4 className="md:text-base text-sm text-slate-600 dark:text-slate-300">
             <CTranslateTo eng={title_en} pt={title_pt} />

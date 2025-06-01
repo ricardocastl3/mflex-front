@@ -10,7 +10,7 @@ export async function generateMetadata({
 }: IlocalePage): Promise<Metadata> {
   const pars = await params;
   return LocalePageServices.metadatas({
-    titleENG: "Afflite Dashboard",
+    titleENG: "Affiliate Dashboard",
     titlePT: "Painel do afiliado",
     descriptionENG: "Manage your affliate gain",
     descriptionPT: "Gerencie seus ganhos como afiliado",
