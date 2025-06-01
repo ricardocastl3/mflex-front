@@ -9,7 +9,7 @@ import { useEventProvider } from "@/providers/features/EventProvider";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import EventBox from "./components/EventBox";
 
-import PageBase from "../components/PageBase";
+import PageBase from "../../components/PageBase";
 import useEvents from "@/hooks/api/useEvents";
 
 export default function EventAppPage() {
@@ -45,15 +45,6 @@ export default function EventAppPage() {
           />
           <div className="md:flex hidden items-center gap-3">
             <AuSoftUI.UI.Button
-              onClick={() => handleOpenModal("validate-ticket")}
-              size={"sm"}
-              className="rounded-full py-2"
-              variant={"primary"}
-            >
-              <CTranslateTo eng="Validate Ticket" pt="Validar Ingresso" />
-              <ReactIcons.PiIcon.PiScan size={18} />
-            </AuSoftUI.UI.Button>
-            <AuSoftUI.UI.Button
               onClick={() => {
                 handleSelectEvent(undefined), handleOpenModal("add-event");
               }}
@@ -67,14 +58,6 @@ export default function EventAppPage() {
           </div>
         </div>
         <div className="md:hidden flex fixed gap-4 bottom-[4.9rem] right-[4.4rem] z-20">
-          <AuSoftUI.UI.Button
-            size={"sm"}
-            onClick={() => handleOpenModal("validate-ticket")}
-            className="rounded-full p-3"
-            variant={"primary"}
-          >
-            <ReactIcons.PiIcon.PiScan size={18} />
-          </AuSoftUI.UI.Button>
           <AuSoftUI.UI.Button
             size={"sm"}
             onClick={() => {

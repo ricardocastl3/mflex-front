@@ -4,8 +4,8 @@ import { ReactIcons } from "@/utils/icons";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import TransferBox from "./components/TransferBox";
-import PageBase from "../components/PageBase";
-import ContainerBase from "../components/ContainerBase";
+import PageBase from "../../components/PageBase";
+import ContainerBase from "../../components/ContainerBase";
 import BoxAffliateInfo from "./box-aff-info";
 import useAffiliations from "@/hooks/api/useAffiliations";
 

@@ -20,17 +20,13 @@ export default function CardDashboard({
   currency?: boolean;
 }) {
   return (
-    <BaseBox className="md:p-4 p-3 w-full">
+    <BaseBox className="md:p-4 p-3 w-full h-fit">
       <div className="flex flex-col gap-2">
-        <div className="flex md:flex-row flex-col md:items-center items-start gap-2 md:justify-between justify-start">
-          <Icon
-            size={window.innerWidth > 765 ? 20 : 14}
-            className={`${iconColor} md:hidden flex`}
-          />
+        <div className="flex flex-row md:items-center items-start gap-2 justify-between">
           <h4 className="md:text-base text-sm text-slate-600 dark:text-slate-300">
             <CTranslateTo eng={title_en} pt={title_pt} />
           </h4>
-          <Icon size={20} className={`${iconColor} md:flex hidden`} />
+          <Icon size={20} className={`${iconColor}`} />
         </div>
 
         <h4 className="md:text-xl text-sm font-bold text-yellow-500 dark:text-yellow-300">

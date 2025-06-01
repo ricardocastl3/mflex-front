@@ -12,7 +12,7 @@ export default function LoadingVal({
       )}
 
       {!isLoading && (
-        <h1 className="text-base animate-fade text-yellow-600 dark:text-yellow-500">
+        <h1 className="text-[1.1rem] animate-fade font-bold text-yellow-600 dark:text-yellow-500">
           {val}
         </h1>
       )}

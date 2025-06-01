@@ -39,41 +39,19 @@ export default function MobileMoreOptions() {
           <div className="flex flex-col gap-2">
             <LinkButton
               isExpanded={true}
-              Icon={ReactIcons.AiICon.AiFillMoneyCollect}
-              href="transfer"
-              isSelected={currentAppPageUrl == "transfer"}
-              title_en="Transferences"
-              title_pt="Transferências"
-            />
-            <LinkButton
-              isExpanded={true}
               Icon={ReactIcons.MdIcon.MdDashboard}
               href="affiliate"
               isSelected={currentAppPageUrl == "affiliate"}
               title_en="Affiliate Dashboard"
               title_pt="Painel do afiliado"
             />
-          </div>
-          <h4 className="text-normal text-slate-500 dark:text-slate-300">
-            <CTranslateTo eng="Navigation" pt="Navegação" />
-          </h4>
-          <div className="flex flex-col gap-2">
             <LinkButton
               isExpanded={true}
-              Icon={ReactIcons.HiIcon.HiCreditCard}
-              href="subscriptions"
-              isSelected={currentAppPageUrl == "subscriptions"}
-              title_en="Subscriptions"
-              title_pt="Assinaturas"
-            />
-
-            <LinkButton
-              isExpanded={true}
-              Icon={ReactIcons.AiICon.AiFillTool}
-              href="settings"
-              isSelected={currentAppPageUrl == "settings"}
-              title_en="Settings"
-              title_pt="Definições"
+              Icon={ReactIcons.FaIcon.FaCalendarWeek}
+              href="organizer"
+              isSelected={currentAppPageUrl == "organizer"}
+              title_en="Organizer Dashboard"
+              title_pt="Painel do organizador"
             />
           </div>
         </div>

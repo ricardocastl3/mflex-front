@@ -2,7 +2,6 @@ import { BaseBox } from "@/@components/(box)/BaseBox";
 import { ReactIcons } from "@/utils/icons";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { useEffect, useState } from "react";
-import { useAuth } from "@/providers/auth/AuthProvider";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import LinkButton from "./components/LinkButton";
@@ -101,7 +100,7 @@ export default function ASidebar() {
           <div className="flex flex-col gap-2">
             <LinkButton
               isExpanded={showText}
-              Icon={ReactIcons.PiIcon.PiHouse}
+              Icon={ReactIcons.PiIcon.PiHouseFill}
               href=""
               isSelected={currentAppPageUrl == "" || !currentAppPageUrl}
               title_en="Home"
@@ -151,29 +150,11 @@ export default function ASidebar() {
 
             <LinkButton
               isExpanded={showText}
-              Icon={ReactIcons.BiIcon.BiSolidCalendarEvent}
-              href="events"
-              isSelected={currentAppPageUrl == "events"}
-              title_en="My Events"
-              title_pt="Meus Eventos"
-            />
-
-            <LinkButton
-              isExpanded={showText}
-              Icon={ReactIcons.AiICon.AiOutlineShoppingCart}
-              href="transactions"
-              isSelected={currentAppPageUrl == "transactions"}
-              title_en="My Sales"
-              title_pt="Minhas Vendas"
-            />
-
-            <LinkButton
-              isExpanded={showText}
-              Icon={ReactIcons.AiICon.AiOutlineMoneyCollect}
-              href="transfer"
-              isSelected={currentAppPageUrl == "transfer"}
-              title_en="Transferences"
-              title_pt="Transferências"
+              Icon={ReactIcons.FaIcon.FaCalendarWeek}
+              href="organizer"
+              isSelected={currentAppPageUrl == "organizer"}
+              title_en="Organizer Dashboard"
+              title_pt="Painel do organizador"
             />
           </div>
         </div>

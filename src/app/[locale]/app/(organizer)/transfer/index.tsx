@@ -5,9 +5,9 @@ import { ReactIcons } from "@/utils/icons";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import useTransferences from "@/hooks/api/useTransferences";
 import TransferBox from "./components/TransferBox";
-import PageBase from "../components/PageBase";
+import PageBase from "../../components/PageBase";
 
-export default function TransferModal() {
+export default function TransferPage() {
   const {
     allTransfer,
     isLoadingAllTransfer,

@@ -22,8 +22,7 @@ export const homeFeatures: IHomeFeature[] = [
     t_pt: "Analisar Jogos",
     d_en: "Analyze and track your favorite games with detailed statistics and insights",
     d_pt: "Analise e acompanhe seus jogos favoritos com estatísticas e insights detalhados",
-    color:
-      "bg-cyan-100 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-400",
+    color: "bg-cyan-100 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-400",
     action_url: "/games",
   },
   {
@@ -31,8 +30,7 @@ export const homeFeatures: IHomeFeature[] = [
     t_pt: "Assistir Filmes",
     d_en: "Watch your favorite movies, with high quality streaming",
     d_pt: "Assista seus films favoritos, com streaming de alta qualidade",
-    color:
-      "bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400",
+    color: "bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400",
     action_url: "/flex-movie",
   },
   {
@@ -42,15 +40,6 @@ export const homeFeatures: IHomeFeature[] = [
     d_pt: "Acesse e gerencie todas as suas assinaturas ativas em um só lugar",
     color: "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400",
     action_url: "/app/subscriptions",
-  },
-  {
-    t_en: "Create Events with Tickets",
-    t_pt: "Criar Eventos com Ingressos",
-    d_en: "Create and manage your own events, set up ticket sales and track attendance",
-    d_pt: "Crie e gerencie seus próprios eventos e comece a vender ingressos",
-    color:
-      "bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400",
-    action_url: "/app/events",
   },
   {
     t_en: "View Purchased Tickets",
@@ -70,21 +59,30 @@ export const homeFeatures: IHomeFeature[] = [
     action_url: "/app/settings",
   },
   {
-    t_en: "Event Sales Dashboard",
-    t_pt: "Vendas dos Eventos",
-    d_en: "Monitor your event sales and track revenue in real-time",
-    d_pt: "Monitore suas vendas de eventos e acompanhe a receita em tempo real",
+    t_en: "Organizer Dashboard",
+    t_pt: "Painel do Organizador",
+    d_en: "Create and manage your own events, set up ticket sales and track attendance",
+    d_pt: "Crie e gerencie seus próprios eventos e comece a vender ingressos",
+    color:
+      "bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400",
+    action_url: "/app/organizer",
+  },
+  {
+    t_en: "Affiliate Dashboard",
+    t_pt: "Painel do Affiliado",
+    d_en: "Monitor your sales as event affiliate",
+    d_pt: "Monitore suas vendas como afiliados de eventos",
     color:
       "bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400",
     action_url: "/app/transactions",
   },
   {
-    t_en: "Transfer Monitoring",
-    t_pt: "Monitorar Transferências",
-    d_en: "Track all your financial transfers and payment history",
-    d_pt: "Acompanhe todas as suas transferências financeiras e histórico de pagamentos",
+    t_en: "Flex Plans",
+    t_pt: "Planos Flex",
+    d_en: "Make the most of our services with our plans",
+    d_pt: "Aproveite ao máximo dos nossos serviços com os nossos planos",
     color:
-      "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400",
-    action_url: "/app/transfer",
+      "bg-black dark:bg-slate-900/30 text-white dark:text-slate-200",
+    action_url: "/pricing",
   },
 ];

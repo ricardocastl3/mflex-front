@@ -42,20 +42,20 @@ export default function AMobileFooter() {
         />
 
         <LinkMButton
-          Icon={ReactIcons.BiIcon.BiSolidCalendarEvent}
-          action="events"
-          isSelected={currentAppPageUrl == "events"}
-          title_en="My Events"
-          title_pt="Meus Eventos"
+          Icon={ReactIcons.HiIcon.HiCreditCard}
+          action="subscriptions"
+          isSelected={currentAppPageUrl == "subscriptions"}
+          title_en="Subscriptions"
+          title_pt="Assinaturas"
           bar
         />
 
         <LinkMButton
-          Icon={ReactIcons.AiICon.AiOutlineShoppingCart}
-          action="transactions"
-          isSelected={currentAppPageUrl == "transactions"}
-          title_en="My Sales"
-          title_pt="Minhas Vendas"
+          Icon={ReactIcons.AiICon.AiFillTool}
+          action="settings"
+          isSelected={currentAppPageUrl == "settings"}
+          title_en="Settings"
+          title_pt="Definições"
           bar
         />
       </BaseBox>

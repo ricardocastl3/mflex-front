@@ -9,6 +9,7 @@ import * as BiIcons from "react-icons/bi";
 import * as AiIcons from "react-icons/ai";
 import * as RxIcons from "react-icons/rx";
 import * as VScIcons from "react-icons/vsc";
+import * as TBIcons from "react-icons/tb";
 
 export const ReactIcons = {
   PiIcon: PiIcons,
@@ -22,4 +23,5 @@ export const ReactIcons = {
   RxIcon: RxIcons,
   VSCIcon: VScIcons,
   HiIcon: HiIcons,
+  TBIcon: TBIcons,
 };
