@@ -74,7 +74,7 @@ export const homeFeatures: IHomeFeature[] = [
     d_pt: "Monitore suas vendas como afiliados de eventos",
     color:
       "bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400",
-    action_url: "/app/transactions",
+    action_url: "/app/affiliate",
   },
   {
     t_en: "Flex Plans",
@@ -82,7 +82,7 @@ export const homeFeatures: IHomeFeature[] = [
     d_en: "Make the most of our services with our plans",
     d_pt: "Aproveite ao máximo dos nossos serviços com os nossos planos",
     color:
-      "bg-black dark:bg-slate-900/30 text-white dark:text-slate-200",
+      "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400",
     action_url: "/pricing",
   },
 ];
