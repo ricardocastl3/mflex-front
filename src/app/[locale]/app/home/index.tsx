@@ -2,6 +2,7 @@
 
 import { useAuth } from "@/providers/auth/AuthProvider";
 import { BaseBox } from "@/@components/(box)/BaseBox";
+import { homeFeatures } from "./components/home/features";
 
 import PageBase from "../components/PageBase";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
@@ -11,7 +12,6 @@ import CardEvent from "./components/CardEvent";
 import CardTransactions from "./components/CardTransactions";
 import CardTransfers from "./components/CardTransfers";
 import AAuSoftLogo from "@/@components/(ausoft)/AAuSoftLogo";
-import { homeFeatures } from "./components/home/features";
 import CardHomeFeature from "./components/home/CardFeatures";
 
 export default function Home() {
@@ -25,10 +25,10 @@ export default function Home() {
       </div>
       <ContainerBase>
         <div className="grid md:grid-cols-4 grid-cols-1m gap-4">
+          <CardTicket />
           <CardEvent />
           <CardTransactions />
           <CardTransfers />
-          <CardTicket />
         </div>
 
         <BaseBox className="flex-1 md:px-8 px-2.5 md:py-8 py-5 flex-col gap-4">
