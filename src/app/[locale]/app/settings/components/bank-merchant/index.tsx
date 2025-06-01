@@ -133,10 +133,11 @@ export default function BankMerchantBox() {
           )}
 
           {!isSubmitting && (
-            <CTranslateTo eng="Save changes" pt="Salvar alterações" />
+            <>
+              <CTranslateTo eng="Save changes" pt="Salvar alterações" />
+              <ReactIcons.AiICon.AiOutlineForm size={14} />
+            </>
           )}
-
-          <ReactIcons.AiICon.AiOutlineForm size={14} />
         </AuSoftUI.UI.Button>
       </div>
     </BaseBox>

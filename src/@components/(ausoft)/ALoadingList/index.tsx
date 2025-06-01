@@ -11,7 +11,7 @@ export default function ALoadingList({
         <div
           className={`${height} dark:text-white flex flex-col gap-4 overflow-y-auto md:px-2 px-2 md:mt-0 mt-2`}
         >
-          {Array.from({ length: 5 }).map((_, i) => {
+          {Array.from({ length: 6 }).map((_, i) => {
             return (
               <div
                 key={i}

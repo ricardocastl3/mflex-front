@@ -2,7 +2,7 @@
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import TicketBox from "./components/TicketBox";
-import PageBase from "../components/PageBase";
+import PageBase from "../@components/PageBase";
 import useTickets from "@/hooks/api/useTickets";
 
 import { ReactIcons } from "@/utils/icons";

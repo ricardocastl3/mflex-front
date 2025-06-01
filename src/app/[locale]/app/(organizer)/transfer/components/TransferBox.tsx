@@ -8,7 +8,7 @@ import { ITransfer } from "@/http/interfaces/models/ITransfer";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import ProductList from "./row-list";
 import ProductCard from "./card-list";
-import ContainerBase from "../../../components/ContainerBase";
+import ContainerBase from "../../../@components/ContainerBase";
 
 export default function TransferBox({
   transfers,
@@ -52,11 +52,11 @@ export default function TransferBox({
           </h4>
         </div>
 
-        {isLoading && (
-          <div className="h-[50vh] overflow-y-auto">
-            <AuSoftUI.Component.LoadingList isLoading={isLoading} />
-          </div>
-        )}
+        <AuSoftUI.Component.LoadingList
+          height="h-[52vh]"
+          isLoading={isLoading}
+        />
+
         {transfers.length <= 0 && !isLoading && (
           <div className="md:pt-14 pt-12 md:pb-16 pb-16 py-12">
             <AuSoftUI.Component.ListEmpty

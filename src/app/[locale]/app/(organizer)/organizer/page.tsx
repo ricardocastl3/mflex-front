@@ -11,7 +11,7 @@ export async function generateMetadata({
   const pars = await params;
   return LocalePageServices.metadatas({
     titleENG: "Event Organizer Dashboard",
-    titlePT: "Painel do organizador de eventos",
+    titlePT: "Painel do organizador",
     descriptionENG: "Manage your events gain",
     descriptionPT: "Gerencie os seus eventos",
     params: pars.locale,

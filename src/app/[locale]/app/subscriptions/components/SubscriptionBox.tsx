@@ -5,7 +5,7 @@ import { ISubscription } from "@/http/interfaces/models/subscriptions/ISubscript
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import SubsList from "./row-list";
 import SubsCard from "./card-list";
-import ContainerBase from "../../components/ContainerBase";
+import ContainerBase from "../../@components/ContainerBase";
 
 export default function SubscriptionBox({
   subscriptions,
@@ -25,10 +25,11 @@ export default function SubscriptionBox({
         </div>
 
         {isLoading && (
-          <div className="h-[50vh] overflow-y-auto">
+          <div className="h-[52vh] overflow-y-auto">
             <AuSoftUI.Component.LoadingList isLoading={isLoading} />
           </div>
         )}
+
         {subscriptions.length <= 0 && !isLoading && (
           <div className="md:pt-14 pt-12 md:pb-16 pb-16 py-12">
             <AuSoftUI.Component.ListEmpty

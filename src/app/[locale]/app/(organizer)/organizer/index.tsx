@@ -4,9 +4,9 @@ import { ReactIcons } from "@/utils/icons";
 import { organizerServices } from "./components/services";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import PageBase from "../../components/PageBase";
-import ContainerBase from "../../components/ContainerBase";
-import CardItem from "./components/card-items";
+import PageBase from "../../@components/PageBase";
+import ContainerBase from "../../@components/ContainerBase";
+import CardOrganizerItem from "./components/card-items";
 
 export default function OrganizerPage() {
   return (
@@ -21,7 +21,7 @@ export default function OrganizerPage() {
       <ContainerBase>
         <div className="grid md:grid-cols-4 grid-cols-1 gap-4 md:p-4 p-0.5">
           {organizerServices.map((service, i) => {
-            return <CardItem service={service} key={i} />;
+            return <CardOrganizerItem service={service} key={i} />;
           })}
         </div>
       </ContainerBase>

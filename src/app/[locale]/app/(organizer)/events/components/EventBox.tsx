@@ -1,7 +1,7 @@
 import { IEvent } from "@/http/interfaces/models/IEvent";
 import { AuSoftUI } from "@/@components/(ausoft)";
 
-import ContainerBase from "../../../components/ContainerBase";
+import ContainerBase from "../../../@components/ContainerBase";
 import EventCard from "./EventCard";
 
 export default function EventBox({

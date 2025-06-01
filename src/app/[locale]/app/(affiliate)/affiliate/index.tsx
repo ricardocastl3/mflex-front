@@ -1,23 +1,14 @@
 "use client";
 
 import { ReactIcons } from "@/utils/icons";
+import { affiliateServices } from "./components/services";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import TransferBox from "./components/TransferBox";
-import PageBase from "../../components/PageBase";
-import ContainerBase from "../../components/ContainerBase";
-import BoxAffliateInfo from "./box-aff-info";
-import useAffiliations from "@/hooks/api/useAffiliations";
+import PageBase from "../../@components/PageBase";
+import ContainerBase from "../../@components/ContainerBase";
+import CardAffiliateItem from "./components/card-items";
 
-export default function TransferModal() {
-  const {
-    allAffiliations,
-    allCommisions,
-    isLoadingAllAffiliations,
-    fetchAllAffiliations,
-    handleSeachByName,
-  } = useAffiliations();
-
+export default function OrganizerPage() {
   return (
     <PageBase>
       <div className="flex items-center border-b pb-2 border-slate-300 dark:border-slate-800">
@@ -28,16 +19,11 @@ export default function TransferModal() {
       </div>
 
       <ContainerBase>
-        <BoxAffliateInfo
-          affiliations={allAffiliations}
-          commissions={allCommisions}
-        />
-        <TransferBox
-          fetchAll={fetchAllAffiliations}
-          handleSearchName={handleSeachByName}
-          isLoading={isLoadingAllAffiliations}
-          transfers={allCommisions}
-        />
+        <div className="grid md:grid-cols-4 grid-cols-1 gap-4 md:p-4 p-0.5">
+          {affiliateServices.map((service, i) => {
+            return <CardAffiliateItem service={service} key={i} />;
+          })}
+        </div>
       </ContainerBase>
     </PageBase>
   );

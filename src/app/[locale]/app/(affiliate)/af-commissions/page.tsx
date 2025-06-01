@@ -12,8 +12,8 @@ export async function generateMetadata({
   return LocalePageServices.metadatas({
     titleENG: "Affiliate Dashboard",
     titlePT: "Painel do afiliado",
-    descriptionENG: "Manage your events gain",
-    descriptionPT: "Gerencie as suas comissões",
+    descriptionENG: "Manage your affliate gain",
+    descriptionPT: "Gerencie seus ganhos como afiliado",
     params: pars.locale,
   });
 }

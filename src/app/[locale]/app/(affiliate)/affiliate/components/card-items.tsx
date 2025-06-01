@@ -1,15 +1,15 @@
 import { BaseBox } from "@/@components/(box)/BaseBox";
-import { IServiceOrganizer } from "./services";
+import { IAffiliateService } from "./services";
 import { langByCookies } from "@/http/axios/api";
 import { useModal } from "@/providers/app/ModalProvider";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import Link from "next/link";
 
-export default function CardOrganizerItem({
+export default function CardAffiliateItem({
   service,
 }: {
-  service: IServiceOrganizer;
+  service: IAffiliateService;
 }) {
   const { handleOpenModal } = useModal();
 

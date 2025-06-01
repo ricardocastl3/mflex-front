@@ -16,15 +16,15 @@ export default function Hero() {
       />
 
       <div className="z-10 absolute inset-0 bg-black/50 flex justify-center h-full items-center">
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center text-center">
           <AAuSoftLogo size={90} />
-          <h4 className="md:text-[2rem] text-xl font-bold text-yellow-500 md:mt-2 mt-2">
+          <h4 className="md:text-[2rem] text-[1.5rem] font-bold text-yellow-500 md:mt-2 mt-2">
             <CTranslateTo
               eng="Your Entertainment Universe"
               pt="O Seu Universo de Entretenimento"
             />
           </h4>
-          <h4 className="md:text-[1.2rem] text-lg font-bold text-white md:mt-2 mt-2">
+          <h4 className="md:text-[1.2rem] text-lg font-bold text-white md:mt-2 mt-1">
             <CTranslateTo
               eng="Create, and Connect with the Best Content"
               pt="Crie e Conecte-se com o Melhor Conteúdo"
