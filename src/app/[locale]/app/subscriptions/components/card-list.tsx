@@ -28,7 +28,7 @@ export default function SubsCard({
               </h4>
 
               <h4 className="text-sm text-green-500">
-                {`${CurrencyServices.decimal(Number(prod.plan?.amount))} Kz`}
+                {`${CurrencyServices.decimal(Number(prod.amount))} Kz`}
               </h4>
 
               <h4 className="dark:text-white text-sm">

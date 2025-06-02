@@ -44,7 +44,7 @@ export default function SubsList({
               </h4>
 
               <h4 className="text-sm text-green-500">
-                {`${CurrencyServices.decimal(Number(prod.plan?.amount))} Kz`}
+                {`${CurrencyServices.decimal(Number(prod?.amount))} Kz`}
               </h4>
 
               <CardSubsStatus isExpired={prod.is_expired} />
