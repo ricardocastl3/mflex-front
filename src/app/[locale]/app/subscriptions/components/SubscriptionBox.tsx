@@ -25,9 +25,10 @@ export default function SubscriptionBox({
         </div>
 
         {isLoading && (
-          <div className="h-[52vh] overflow-y-auto">
-            <AuSoftUI.Component.LoadingList isLoading={isLoading} />
-          </div>
+          <AuSoftUI.Component.LoadingList
+            height="h-[52]"
+            isLoading={isLoading}
+          />
         )}
 
         {subscriptions.length <= 0 && !isLoading && (

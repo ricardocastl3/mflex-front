@@ -162,7 +162,7 @@ export default function TransactionList({
         </div>
       </div>
 
-      <AuSoftUI.Component.LoadingList isLoading={isLoading} />
+      <AuSoftUI.Component.LoadingList height="h-[52vh]" isLoading={isLoading} />
 
       {transactions.length <= 0 && !isLoading && (
         <div className="md:pt-14 pt-12 md:pb-16 pb-16 py-12">
