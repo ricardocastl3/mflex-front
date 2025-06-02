@@ -14,7 +14,7 @@ export default function CardAffiliateItem({
   const { handleOpenModal } = useModal();
 
   const action = `${
-    service.action.startsWith("modal-validate")
+    service.action.startsWith("modal")
       ? "#"
       : `/${langByCookies}/app/${service.action}`
   }`;
