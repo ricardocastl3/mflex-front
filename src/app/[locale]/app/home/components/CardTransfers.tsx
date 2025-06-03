@@ -19,7 +19,7 @@ export default function CardTransfers() {
             className="text-yellow-500"
           />
         </div>
-        <LoadingVal isLoading={isLoadingAllTransfer} val={allTransfer.length} />
+        <LoadingVal isLoading={isLoadingAllTransfer} val={allTransfer.total} />
       </div>
     </BaseBox>
   );

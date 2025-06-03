@@ -18,7 +18,7 @@ export default function CardTransactions() {
         </div>
         <LoadingVal
           isLoading={isLoadingAllTransactions}
-          val={allTransactions.length}
+          val={allTransactions.total}
         />
       </div>
     </BaseBox>
