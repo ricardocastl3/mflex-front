@@ -17,7 +17,7 @@ export default function CardTicket() {
           </h1>
           <ReactIcons.HiIcon.HiTicket size={12} className="dark:text-white" />
         </div>
-        <LoadingVal isLoading={isLoadingAllTickets} val={allTickets.length} />
+        <LoadingVal isLoading={isLoadingAllTickets} val={allTickets.total} />
       </div>
     </BaseBox>
   );
