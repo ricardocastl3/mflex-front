@@ -1,15 +1,24 @@
 "use client";
 
+import { ReactIcons } from "@/utils/icons";
+import { AuSoftUI } from "@/@components/(ausoft)";
+import { useState } from "react";
+
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import TicketBox from "./components/TicketBox";
 import PageBase from "../@components/PageBase";
 import useTickets from "@/hooks/api/useTickets";
 
-import { ReactIcons } from "@/utils/icons";
-import { AuSoftUI } from "@/@components/(ausoft)";
-
 export default function TicketPage() {
-  const { allTickets, isLoadingAllTickets, handleSeachByName } = useTickets();
+  const {
+    allTickets,
+    handleLoadMore,
+    isLoadingMoreTickets,
+    isLoadingAllTickets,
+    handleSeachByName,
+  } = useTickets();
+
+  const [searchField, setSearchField] = useState("");
 
   return (
     <PageBase>
@@ -17,18 +26,31 @@ export default function TicketPage() {
         <h4 className="flex items-center  gap-2 font-bold text-xl dark:text-white">
           <ReactIcons.Hi2Icon.HiTag size={18} />
           <CTranslateTo eng="My Tickets" pt="Meus Ingressos" />
-          {` (${allTickets.length})`}
+          {`${
+            allTickets.has
+              ? ` (${allTickets.tickets.length}/${allTickets.total})`
+              : ` (${allTickets.tickets.length})`
+          }`}
         </h4>
         <div>
           <AuSoftUI.UI.TextField.Default
+            value={searchField}
             weight={"sm"}
-            onChange={(e) => handleSeachByName({ name: e.target.value })}
+            onChange={(e) => {
+              setSearchField(e.target.value);
+              handleSeachByName({ name: e.target.value });
+            }}
             className="md:w-[19rem] w-full font-bold rounded-full border-slate-400"
             placeholder="Ex: Formação Você Rei..."
           />
         </div>
       </div>
-      <TicketBox isLoading={isLoadingAllTickets} tickets={allTickets} />
+      <TicketBox
+        isLoadingMore={isLoadingMoreTickets}
+        fetchMore={() => handleLoadMore(searchField)}
+        isLoading={isLoadingAllTickets}
+        ticketsAPI={allTickets}
+      />
     </PageBase>
   );
 }

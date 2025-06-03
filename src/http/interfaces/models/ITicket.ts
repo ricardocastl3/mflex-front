@@ -14,3 +14,9 @@ export interface ITicket {
   customer: IUserResponse;
   event_ticket?: IEventTicket;
 }
+
+export interface IUserTickerResponseAPI {
+  total: number;
+  has: boolean;
+  tickets: ITicket[];
+}

@@ -55,7 +55,7 @@ export default function TransactionPage() {
           />
 
           <TransactionList
-            fetchMore={() => handleLoadMore({ name: "" })}
+            fetchMore={handleLoadMore}
             apiTransactions={allTransactions}
             isLoadingMore={isLoadingMoreTransactions}
             transactions={allBaseTransaction}

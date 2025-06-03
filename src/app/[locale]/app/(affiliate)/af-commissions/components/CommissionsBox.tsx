@@ -54,7 +54,7 @@ export default function CommissionsBox({
           {` ${
             affiliations.has
               ? `(${affiliations.commissions.length}/${affiliations.total})`
-              : ``
+              : `(${affiliations.total})`
           }`}
         </h4>
       </div>

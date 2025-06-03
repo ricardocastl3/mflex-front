@@ -1,16 +1,27 @@
-import { ITicket } from "@/http/interfaces/models/ITicket";
+import {
+  ITicket,
+  IUserTickerResponseAPI,
+} from "@/http/interfaces/models/ITicket";
 import { AuSoftUI } from "@/@components/(ausoft)";
 
 import ContainerBase from "../../@components/ContainerBase";
 import TicketCard from "./TicketCard";
+import LoadMoreContent from "../../@components/api-query-pages/LoadMoreContent";
+import LoadingMoreButton from "../../@components/api-query-pages/LoadingMoreButton";
 
 export default function TicketBox({
   isLoading,
-  tickets,
+  isLoadingMore,
+  ticketsAPI,
+  fetchMore,
 }: {
   isLoading: boolean;
-  tickets: ITicket[];
+  isLoadingMore: boolean;
+  fetchMore: () => void;
+  ticketsAPI: IUserTickerResponseAPI;
 }) {
+  const tickets = ticketsAPI.tickets;
+
   return (
     <ContainerBase>
       <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
@@ -35,6 +46,14 @@ export default function TicketBox({
           </>
         )}
       </div>
+
+      <LoadMoreContent isLoading={isLoadingMore} />
+
+      <LoadingMoreButton
+        fetchMore={fetchMore}
+        has={ticketsAPI.has}
+        isLoading={isLoadingMore}
+      />
 
       {!isLoading && tickets.length <= 0 && (
         <div className="flex items-center justify-center w-full h-full">

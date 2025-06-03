@@ -26,7 +26,7 @@ export default function TransactionList({
   handleSearchName: (name: ISearchDataField) => void;
   isLoading: boolean;
   isLoadingMore: boolean;
-  fetchMore: () => void;
+  fetchMore: (search: ISearchDataField) => void;
   transactions: IPayment[];
   apiTransactions: IOrganizerTransactionAPI;
 }) {
@@ -202,7 +202,7 @@ export default function TransactionList({
           </div>
 
           <LoadingMoreButton
-            fetchMore={fetchMore}
+            fetchMore={() => fetchMore({name: searchName})}
             has={apiTransactions.has}
             isLoading={isLoadingMore}
           />
