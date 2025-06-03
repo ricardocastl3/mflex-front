@@ -2,11 +2,11 @@ import { BaseBox } from "@/@components/(box)/BaseBox";
 import { ReactIcons } from "@/utils/icons";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import useTransferences from "@/hooks/api/useTransferences";
+import useOrganizerTransfers from "@/hooks/api/panels/organizer/useOrganizerTransfers";
 import LoadingVal from "./LoadindVal";
 
 export default function CardTransfers() {
-  const { allTransfer, isLoadingAllTransfer } = useTransferences();
+  const { allTransfer, isLoadingAllTransfer } = useOrganizerTransfers();
   return (
     <BaseBox className="p-4">
       <div className="flex flex-col gap-2">

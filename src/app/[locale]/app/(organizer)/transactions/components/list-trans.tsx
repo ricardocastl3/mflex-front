@@ -1,20 +1,20 @@
+import { IPayment } from "@/http/interfaces/models/IPayment";
+
 import React from "react";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import DateServices from "@/services/DateServices";
 import CardStatus from "./card-status";
 import CurrencyServices from "@/services/CurrencyServices";
 import CardMethod from "./card-method";
-
-import { useAppProvider } from "@/providers/app/AppProvider";
-import { IPayment } from "@/http/interfaces/models/IPayment";
+import LoadMoreContent from "../../../@components/api-query-pages/LoadMoreContent";
 
 export default function ListTransactions({
   transactions,
+  isLoadingMore,
 }: {
+  isLoadingMore: boolean;
   transactions: IPayment[];
 }) {
-  const { openBanner } = useAppProvider();
-
   return (
     <div className="md:flex hidden w-full flex-col">
       <div
@@ -99,6 +99,8 @@ export default function ListTransactions({
             </div>
           );
         })}
+
+        <LoadMoreContent isLoading={isLoadingMore} />
       </div>
     </div>
   );

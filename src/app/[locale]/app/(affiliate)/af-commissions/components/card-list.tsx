@@ -4,13 +4,21 @@ import { useState } from "react";
 import { ITransfer } from "@/http/interfaces/models/ITransfer";
 import { ReactIcons } from "@/utils/icons";
 import { useAuth } from "@/providers/auth/AuthProvider";
+import { AuSoftUI } from "@/@components/(ausoft)";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 import CardStatus from "./card-status";
 import CurrencyServices from "@/services/CurrencyServices";
+import LoadMoreContent from "../../../@components/api-query-pages/LoadMoreContent";
 
-export default function ProductCard({ transfers }: { transfers: ITransfer[] }) {
+export default function CardCommissions({
+  isLoadingMore,
+  transfers,
+}: {
+  isLoadingMore: boolean;
+  transfers: ITransfer[];
+}) {
   const { handleAddToastOnArray } = useAppProvider();
   const { userLogged } = useAuth();
 
@@ -64,7 +72,7 @@ export default function ProductCard({ transfers }: { transfers: ITransfer[] }) {
               <h4 className="text-sm text-green-500">
                 {`${CurrencyServices.decimal(Number(prod.payment.amount))} Kz`}
               </h4>
-         
+
               <h4 className="dark:text-white text-sm">IBAN:</h4>
 
               <h4 className="text-sm dark:text-white text-nowrap">
@@ -100,6 +108,8 @@ export default function ProductCard({ transfers }: { transfers: ITransfer[] }) {
           </div>
         );
       })}
+
+      <LoadMoreContent isLoading={isLoadingMore} />
     </div>
   );
 }

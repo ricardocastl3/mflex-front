@@ -1,16 +1,23 @@
-import { ITransfer } from "@/http/interfaces/models/ITransfer";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { internalApi } from "@/http/axios/api";
 import { useState } from "react";
 import { ReactIcons } from "@/utils/icons";
 import { useAuth } from "@/providers/auth/AuthProvider";
+import { IOrganizerTransferResponseAPI } from "@/http/interfaces/models/transactions/ITransactionsAPI";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CardStatus from "./card-status";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 import CurrencyServices from "@/services/CurrencyServices";
+import LoadMoreContent from "../../../@components/api-query-pages/LoadMoreContent";
 
-export default function ProductList({ transfers }: { transfers: ITransfer[] }) {
+export default function RowOrganizerTranfers({
+  transfersAPI,
+  isLoadingMore,
+}: {
+  isLoadingMore: boolean;
+  transfersAPI: IOrganizerTransferResponseAPI;
+}) {
   const { handleAddToastOnArray } = useAppProvider();
   const { userLogged } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
@@ -27,6 +34,8 @@ export default function ProductList({ transfers }: { transfers: ITransfer[] }) {
       return CAxiosErrorToastify({ err, openToast: handleAddToastOnArray });
     }
   }
+  const transfers = transfersAPI.transfers;
+
   return (
     <div className="flex flex-col w-full px-2">
       <div className="grid grid-cols-10 w-full p-4 border-b border-slate-200 dark:border-slate-800">
@@ -130,6 +139,8 @@ export default function ProductList({ transfers }: { transfers: ITransfer[] }) {
             </div>
           );
         })}
+
+        <LoadMoreContent isLoading={isLoadingMore} />
       </div>
     </div>
   );

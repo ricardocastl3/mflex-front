@@ -2,30 +2,33 @@ import { AuSoftUI } from "@/@components/(ausoft)";
 import { BaseBox } from "@/@components/(box)/BaseBox";
 import { langByCookies } from "@/http/axios/api";
 import { methodTransactions, statusTransaction } from "../utils/vars";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { IPayment } from "@/http/interfaces/models/IPayment";
 import { ISearchDataField } from "@/@components/(system)/ASearch/SearchDataField";
+import { IOrganizerTransactionAPI } from "@/http/interfaces/models/transactions/ITransactionsAPI";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import ListTransactions from "../components/list-trans";
 import CardTransaction from "../components/card-trans";
+import LoadingMoreButton from "../../../@components/api-query-pages/LoadingMoreButton";
 
 export default function TransactionList({
   transactions,
   isLoading,
+  isLoadingMore,
   fetchAll,
+  fetchMore,
   handleSearchName,
-  rawTransactions,
-  local,
+  apiTransactions,
 }: {
   fetchAll: () => void;
   handleSearchName: (name: ISearchDataField) => void;
   isLoading: boolean;
+  isLoadingMore: boolean;
+  fetchMore: () => void;
   transactions: IPayment[];
-  setTransactions: Dispatch<SetStateAction<IPayment[]>>;
-  rawTransactions: IPayment[];
-  local: "merchant" | "transaction";
+  apiTransactions: IOrganizerTransactionAPI;
 }) {
   const { openBanner } = useAppProvider();
 
@@ -47,7 +50,6 @@ export default function TransactionList({
       } else {
         handleSearchName({
           name: searchName,
-          mode: local == "transaction" ? "merchant" : "all",
         });
       }
       setCanSearch(false);
@@ -58,7 +60,7 @@ export default function TransactionList({
 
   // Combined filter effect
   useEffect(() => {
-    const filteredTransactions = rawTransactions
+    const filteredTransactions = apiTransactions.transactions
       .sort(
         (a, b) =>
           new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
@@ -76,7 +78,7 @@ export default function TransactionList({
       });
 
     setTransactionBase(filteredTransactions);
-  }, [transactionStatus, transactionMethod, rawTransactions]);
+  }, [transactionStatus, transactionMethod, apiTransactions]);
 
   return (
     <BaseBox
@@ -89,12 +91,14 @@ export default function TransactionList({
       <div className="flex md:items-center items-start md:flex-row flex-col gap-4 pb-4 mb-4 px-4 justify-between border-b border-slate-200 dark:border-slate-800">
         <h4 className="md:text-lg text-base font-bold dark:text-white">
           <CTranslateTo eng="Registers" pt="Registros" />
-          {` (${transactionBase.length})`}
+          {`${
+            apiTransactions.has
+              ? ` (${transactionBase.length}/${apiTransactions.total})`
+              : ` (${transactionBase.length})`
+          }`}
         </h4>
         <div
-          className={`flex items-center md:flex-row flex-col gap-2 ${
-            local == "merchant" ? "md:w-fit" : "md:w-[30rem]"
-          } w-full`}
+          className={`flex items-center md:flex-row flex-col gap-2 md:w-[30rem] w-full`}
         >
           <AuSoftUI.UI.TextField.Default
             value={searchName}
@@ -110,8 +114,6 @@ export default function TransactionList({
             }
             className={`w-full text-sm font-bold`}
           />
-
-          {local == "merchant" && <div></div>}
 
           <AuSoftUI.UI.Select
             value={transactionStatus}
@@ -162,7 +164,11 @@ export default function TransactionList({
         </div>
       </div>
 
-      <AuSoftUI.Component.LoadingList height="h-[52vh]" isLoading={isLoading} />
+      <AuSoftUI.Component.LoadingList
+        overflow={false}
+        height="h-[52vh]"
+        isLoading={isLoading}
+      />
 
       {transactions.length <= 0 && !isLoading && (
         <div className="md:pt-14 pt-12 md:pb-16 pb-16 py-12">
@@ -182,12 +188,24 @@ export default function TransactionList({
       {transactions.length > 0 && !isLoading && (
         <>
           <div className="md:flex hidden">
-            <ListTransactions transactions={transactionBase} />
+            <ListTransactions
+              isLoadingMore={isLoadingMore}
+              transactions={transactionBase}
+            />
           </div>
 
           <div className={`md:hidden flex flex-col gap-4 overflow-y-auto`}>
-            <CardTransaction transactions={transactionBase} />
+            <CardTransaction
+              isLoadingMore={isLoadingMore}
+              transactions={transactionBase}
+            />
           </div>
+
+          <LoadingMoreButton
+            fetchMore={fetchMore}
+            has={apiTransactions.has}
+            isLoading={isLoadingMore}
+          />
         </>
       )}
     </BaseBox>

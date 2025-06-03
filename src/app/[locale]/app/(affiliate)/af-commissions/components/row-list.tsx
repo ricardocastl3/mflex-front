@@ -4,13 +4,21 @@ import { internalApi } from "@/http/axios/api";
 import { useState } from "react";
 import { ReactIcons } from "@/utils/icons";
 import { useAuth } from "@/providers/auth/AuthProvider";
+import { AuSoftUI } from "@/@components/(ausoft)";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CardStatus from "./card-status";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 import CurrencyServices from "@/services/CurrencyServices";
+import LoadMoreContent from "../../../@components/api-query-pages/LoadMoreContent";
 
-export default function ProductList({ transfers }: { transfers: ITransfer[] }) {
+export default function RowCommissions({
+  isLoadingMore,
+  transfers,
+}: {
+  isLoadingMore: boolean;
+  transfers: ITransfer[];
+}) {
   const { handleAddToastOnArray } = useAppProvider();
   const { userLogged } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
@@ -117,6 +125,8 @@ export default function ProductList({ transfers }: { transfers: ITransfer[] }) {
             </div>
           );
         })}
+
+        <LoadMoreContent isLoading={isLoadingMore} />
       </div>
     </div>
   );

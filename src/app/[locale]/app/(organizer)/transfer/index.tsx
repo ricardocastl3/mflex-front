@@ -3,8 +3,8 @@
 import { ReactIcons } from "@/utils/icons";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import useTransferences from "@/hooks/api/useTransferences";
-import TransferBox from "./components/TransferBox";
+import useOrganizerTransfers from "@/hooks/api/panels/organizer/useOrganizerTransfers";
+import OrganizerTransferBox from "./components/TransferBox";
 import PageBase from "../../@components/PageBase";
 
 export default function TransferPage() {
@@ -12,8 +12,10 @@ export default function TransferPage() {
     allTransfer,
     isLoadingAllTransfer,
     fetchAllTransfer,
+    handleLoadMore,
+    isLoadingMoreTransfers,
     handleSeachByName,
-  } = useTransferences();
+  } = useOrganizerTransfers();
 
   return (
     <PageBase>
@@ -24,11 +26,13 @@ export default function TransferPage() {
         </h4>
       </div>
 
-      <TransferBox
+      <OrganizerTransferBox
+        fetchMore={() => handleLoadMore({ name: "" })}
+        isLoadingMore={isLoadingMoreTransfers}
         fetchAll={fetchAllTransfer}
         handleSearchName={handleSeachByName}
         isLoading={isLoadingAllTransfer}
-        transfers={allTransfer}
+        transfersAPI={allTransfer}
       />
     </PageBase>
   );

@@ -10,3 +10,8 @@ export interface ISubscription {
   expires_at: Date;
   created_at: Date;
 }
+export interface ISubscriptionResponseAPI {
+  subs: ISubscription[];
+  has: boolean;
+  total: number;
+}

@@ -6,7 +6,7 @@ import { useTransactionProvider } from "@/providers/features/TransactionProvider
 import { ReactIcons } from "@/utils/icons";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import useTransactions from "@/hooks/api/useTransactions";
+import useOrganizerSales from "@/hooks/api/panels/organizer/useOrganizerSales";
 import TransactionDashboard from "./box/TransactionDashboard";
 import TransactionList from "./box/TransactionList";
 import PageBase from "../../@components/PageBase";
@@ -16,18 +16,20 @@ export default function TransactionPage() {
   const {
     allTransactions,
     isLoadingAllTransactions,
+    handleLoadMore,
     fetchAllTransactions,
+    isLoadingMoreTransactions,
     handleSeachByName,
-  } = useTransactions();
+  } = useOrganizerSales();
+  const { fetchTransaction } = useTransactionProvider();
 
   // Controls
   const [isLoadingBase, setIsLoadingBase] = useState(true);
   const [allBaseTransaction, setAllBaseTransaction] = useState<IPayment[]>([]);
-  const { fetchTransaction } = useTransactionProvider();
 
   useEffect(() => {
     if (!isLoadingAllTransactions) {
-      setAllBaseTransaction(allTransactions);
+      setAllBaseTransaction(allTransactions.transactions);
       setIsLoadingBase(false);
     }
   }, [isLoadingAllTransactions, allTransactions]);
@@ -49,13 +51,13 @@ export default function TransactionPage() {
         <div className="pb-8 gap-4 flex flex-col">
           <TransactionDashboard
             isLoading={isLoadingBase && isLoadingAllTransactions}
-            transactions={allBaseTransaction}
+            apiTransactions={allTransactions}
           />
 
           <TransactionList
-            local="transaction"
-            rawTransactions={allTransactions}
-            setTransactions={setAllBaseTransaction}
+            fetchMore={() => handleLoadMore({ name: "" })}
+            apiTransactions={allTransactions}
+            isLoadingMore={isLoadingMoreTransactions}
             transactions={allBaseTransaction}
             fetchAll={fetchAllTransactions}
             handleSearchName={handleSeachByName}

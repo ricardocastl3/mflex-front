@@ -1,16 +1,23 @@
 import { internalApi } from "@/http/axios/api";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { useState } from "react";
-import { ITransfer } from "@/http/interfaces/models/ITransfer";
 import { ReactIcons } from "@/utils/icons";
 import { useAuth } from "@/providers/auth/AuthProvider";
+import { IOrganizerTransferResponseAPI } from "@/http/interfaces/models/transactions/ITransactionsAPI";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 import CardStatus from "./card-status";
 import CurrencyServices from "@/services/CurrencyServices";
+import LoadMoreContent from "../../../@components/api-query-pages/LoadMoreContent";
 
-export default function ProductCard({ transfers }: { transfers: ITransfer[] }) {
+export default function CardOrganizerTransfers({
+  transfersAPI,
+  isLoadingMore,
+}: {
+  isLoadingMore: boolean;
+  transfersAPI: IOrganizerTransferResponseAPI;
+}) {
   const { handleAddToastOnArray } = useAppProvider();
   const { userLogged } = useAuth();
 
@@ -28,6 +35,9 @@ export default function ProductCard({ transfers }: { transfers: ITransfer[] }) {
       return CAxiosErrorToastify({ err, openToast: handleAddToastOnArray });
     }
   }
+
+  const transfers = transfersAPI.transfers;
+
   return (
     <div className="flex flex-col w-full h-full px-1">
       {transfers.map((prod, i) => {
@@ -113,6 +123,8 @@ export default function ProductCard({ transfers }: { transfers: ITransfer[] }) {
           </div>
         );
       })}
+
+      <LoadMoreContent isLoading={isLoadingMore} />
     </div>
   );
 }

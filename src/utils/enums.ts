@@ -12,6 +12,9 @@ export const ECOOKIES = {
 
 export const appConfigs = {
   title: "Marca Flex",
+  api: {
+    pageLoads: 1,
+  },
   domain:
     process.env.NODE_ENV == "development" ? "localhost" : ".marcaflex.com",
 };

@@ -6,10 +6,13 @@ import DateServices from "@/services/DateServices";
 import CardStatus from "./card-status";
 import CurrencyServices from "@/services/CurrencyServices";
 import CardMethod from "./card-method";
+import LoadMoreContent from "../../../@components/api-query-pages/LoadMoreContent";
 
 export default function CardTransaction({
   transactions,
+  isLoadingMore,
 }: {
+  isLoadingMore: boolean;
   transactions: IPayment[];
 }) {
   return (
@@ -73,6 +76,8 @@ export default function CardTransaction({
           </div>
         );
       })}
+
+      <LoadMoreContent isLoading={isLoadingMore} />
     </>
   );
 }

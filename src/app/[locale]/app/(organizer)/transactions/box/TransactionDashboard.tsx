@@ -1,14 +1,14 @@
-import { IPayment } from "@/http/interfaces/models/IPayment";
 import { ReactIcons } from "@/utils/icons";
+import { IOrganizerTransactionAPI } from "@/http/interfaces/models/transactions/ITransactionsAPI";
 
 import React, { useEffect, useState } from "react";
 import CardDashboard from "./card";
 
 export default function TransactionDashboard({
-  transactions,
+  apiTransactions,
   isLoading,
 }: {
-  transactions: IPayment[];
+  apiTransactions: IOrganizerTransactionAPI;
   isLoading: boolean;
 }) {
   const [transaDetail, setTransDetail] = useState<{
@@ -25,16 +25,22 @@ export default function TransactionDashboard({
 
   useEffect(() => {
     if (!isLoading) {
-      const pending = transactions.filter((i) => i.status == "pending").length;
-      const success = transactions.filter((i) => i.status == "success").length;
-      const failed = transactions.filter((i) => i.status == "failed").length;
-      const earns = transactions
+      const pending = apiTransactions.transactions.filter(
+        (i) => i.status == "pending"
+      ).length;
+      const success = apiTransactions.transactions.filter(
+        (i) => i.status == "success"
+      ).length;
+      const failed = apiTransactions.transactions.filter(
+        (i) => i.status == "failed"
+      ).length;
+      const earns = apiTransactions.transactions
         .filter((i) => i.status == "success")
         .reduce((acc, current) => acc + Number(current.amount), 0);
 
       setTransDetail({ failed, pending, success, earns });
     }
-  }, [isLoading, transactions]);
+  }, [isLoading, apiTransactions]);
 
   return (
     <div className="w-full">
@@ -59,7 +65,7 @@ export default function TransactionDashboard({
               iconColor="text-green-500 dark:text-green-300"
               title_en="Earns"
               title_pt="Ganhos"
-              value={transaDetail.earns}
+              value={apiTransactions.dash.gain}
               currency={true}
             />
 
@@ -68,7 +74,7 @@ export default function TransactionDashboard({
               iconColor="text-green-500 dark:text-green-300"
               title_en="Success"
               title_pt="Sucesso"
-              value={transaDetail.success}
+              value={apiTransactions.dash.success}
             />
 
             <CardDashboard
@@ -76,7 +82,7 @@ export default function TransactionDashboard({
               iconColor="text-red-500 dark:text-red-300"
               title_en="Cancel"
               title_pt="Canceladas"
-              value={transaDetail.failed}
+              value={apiTransactions.dash.failed}
             />
 
             <CardDashboard
@@ -84,7 +90,7 @@ export default function TransactionDashboard({
               iconColor="text-yellow-500 dark:text-yellow-300"
               title_en="Pending"
               title_pt="Pendentes"
-              value={transaDetail.pending}
+              value={apiTransactions.dash.pending}
             />
           </>
         )}

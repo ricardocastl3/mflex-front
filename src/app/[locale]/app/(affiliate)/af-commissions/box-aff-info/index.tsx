@@ -1,7 +1,6 @@
 import { BaseBox } from "@/@components/(box)/BaseBox";
 import { ReactIcons } from "@/utils/icons";
-import { ITransfer } from "@/http/interfaces/models/ITransfer";
-import { IAffiliate } from "@/http/interfaces/models/IAffiliate";
+import { IAffiliateCommissionsResponseAPI } from "@/http/interfaces/models/transactions/ITransactionsAPI";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CurrencyServices from "@/services/CurrencyServices";
@@ -9,10 +8,8 @@ import RequestAffiliation from "./RequestAffiliation";
 
 export default function BoxAffliateInfo({
   affiliations,
-  commissions,
 }: {
-  commissions: ITransfer[];
-  affiliations: IAffiliate[];
+  affiliations: IAffiliateCommissionsResponseAPI;
 }) {
   return (
     <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
@@ -30,15 +27,8 @@ export default function BoxAffliateInfo({
 
           <h4 className="md:text-xl text-base font-bold text-yellow-500 dark:text-yellow-300">
             {`${
-              commissions.length > 0
-                ? CurrencyServices.decimal(
-                    commissions
-                      .filter((i) => i.status == "success")
-                      .reduce(
-                        (acc, curr) => acc + Number(curr.payment.amount),
-                        0
-                      )
-                  )
+              affiliations.commissions.length > 0
+                ? CurrencyServices.decimal(affiliations.dash.gain)
                 : 0
             } Kz`}
           </h4>
@@ -57,7 +47,7 @@ export default function BoxAffliateInfo({
           </div>
 
           <h4 className="md:text-xl text-base font-bold text-yellow-500 dark:text-yellow-300">
-            {`${affiliations.length}`}
+            {`${affiliations.affiliations.length}`}
           </h4>
         </div>
       </BaseBox>

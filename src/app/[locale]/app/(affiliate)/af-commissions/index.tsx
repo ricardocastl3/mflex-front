@@ -3,20 +3,21 @@
 import { ReactIcons } from "@/utils/icons";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import TransferBox from "./components/TransferBox";
+import CommissionsBox from "./components/CommissionsBox";
 import PageBase from "../../@components/PageBase";
 import ContainerBase from "../../@components/ContainerBase";
 import BoxAffliateInfo from "./box-aff-info";
-import useAffiliations from "@/hooks/api/useAffiliations";
+import useAffiliationsCommissions from "@/hooks/api/panels/affiliate/useAffiliations";
 
 export default function TransferModal() {
   const {
-    allAffiliations,
-    allCommisions,
+    allAffiliationsAPI,
     isLoadingAllAffiliations,
     fetchAllAffiliations,
+    handleLoadMore,
+    isLoadingMoreCommissions,
     handleSeachByName,
-  } = useAffiliations();
+  } = useAffiliationsCommissions();
 
   return (
     <PageBase>
@@ -28,15 +29,14 @@ export default function TransferModal() {
       </div>
 
       <ContainerBase>
-        <BoxAffliateInfo
-          affiliations={allAffiliations}
-          commissions={allCommisions}
-        />
-        <TransferBox
+        <BoxAffliateInfo affiliations={allAffiliationsAPI} />
+        <CommissionsBox
+          fetchMoreCommissions={() => handleLoadMore({ name: "" })}
+          isLoadingMore={isLoadingMoreCommissions}
           fetchAll={fetchAllAffiliations}
           handleSearchName={handleSeachByName}
           isLoading={isLoadingAllAffiliations}
-          transfers={allCommisions}
+          affiliations={allAffiliationsAPI}
         />
       </ContainerBase>
     </PageBase>

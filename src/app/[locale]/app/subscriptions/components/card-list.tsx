@@ -1,18 +1,21 @@
+import { ISubscriptionResponseAPI } from "@/http/interfaces/models/subscriptions/ISubscription";
+
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CurrencyServices from "@/services/CurrencyServices";
-
-import { ISubscription } from "@/http/interfaces/models/subscriptions/ISubscription";
 import DateServices from "@/services/DateServices";
 import CardSubsStatus from "./card-status";
+import LoadMoreContent from "../../@components/api-query-pages/LoadMoreContent";
 
 export default function SubsCard({
   subscriptions,
+  isLoadingMore,
 }: {
-  subscriptions: ISubscription[];
+  isLoadingMore: boolean;
+  subscriptions: ISubscriptionResponseAPI;
 }) {
   return (
     <div className="flex flex-col w-full h-full px-1">
-      {subscriptions.map((prod, i) => {
+      {subscriptions.subs.map((prod, i) => {
         return (
           <div
             key={i}
@@ -55,6 +58,8 @@ export default function SubsCard({
           </div>
         );
       })}
+
+      <LoadMoreContent isLoading={isLoadingMore} />
     </div>
   );
 }

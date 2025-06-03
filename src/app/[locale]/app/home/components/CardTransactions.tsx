@@ -2,11 +2,11 @@ import { BaseBox } from "@/@components/(box)/BaseBox";
 import { ReactIcons } from "@/utils/icons";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import useTransactions from "@/hooks/api/useTransactions";
+import useOrganizerSales from "@/hooks/api/panels/organizer/useOrganizerSales";
 import LoadingVal from "./LoadindVal";
 
 export default function CardTransactions() {
-  const { allTransactions, isLoadingAllTransactions } = useTransactions();
+  const { allTransactions, isLoadingAllTransactions } = useOrganizerSales();
   return (
     <BaseBox className="p-4">
       <div className="flex flex-col gap-2">

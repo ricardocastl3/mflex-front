@@ -5,11 +5,11 @@ import { ReactIcons } from "@/utils/icons";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import SubscriptionBox from "./components/SubscriptionBox";
 import PageBase from "../@components/PageBase";
-
-import useSubscriptionTransactions from "@/hooks/api/useSubscriptionTransactions";
+import useSubsTransactions from "@/hooks/api/useSubsTransactions";
 
 export default function SubscriptionPage() {
-  const { allSubs, isLoadingAllSubs } = useSubscriptionTransactions();
+  const { allSubs, handleLoadMore, isLoadingMoreSubsTrans, isLoadingAllSubs } =
+    useSubsTransactions();
 
   return (
     <PageBase>
@@ -20,7 +20,12 @@ export default function SubscriptionPage() {
         </h4>
       </div>
 
-      <SubscriptionBox isLoading={isLoadingAllSubs} subscriptions={allSubs} />
+      <SubscriptionBox
+        fetcHasMore={handleLoadMore}
+        isLoadingMore={isLoadingMoreSubsTrans}
+        isLoading={isLoadingAllSubs}
+        subscriptions={allSubs}
+      />
     </PageBase>
   );
 }
