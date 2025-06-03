@@ -69,7 +69,7 @@ export const homeFeatures: IHomeFeature[] = [
   },
   {
     t_en: "Affiliate Dashboard",
-    t_pt: "Painel do Affiliado",
+    t_pt: "Painel do Afiliado",
     d_en: "Monitor your commissions and transfers as event affiliate",
     d_pt: "Monitore suas comissões e transferências como afiliados de eventos",
     color:
