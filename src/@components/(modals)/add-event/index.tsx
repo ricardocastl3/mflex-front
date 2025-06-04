@@ -1,11 +1,3 @@
-import AAuSoftLogo from "@/@components/(ausoft)/AAuSoftLogo";
-import BaseModal from "../base";
-import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import EventSchemas from "@/services/schemas/EventSchema";
-import SelectCategoryDropdown from "./category";
-import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
-import ARegisterProgress from "@/@components/(ausoft)/ARegisterProgress";
-
 import { ReactIcons } from "@/utils/icons";
 import { useModal } from "@/providers/app/ModalProvider";
 import { AuSoftUI } from "@/@components/(ausoft)";
@@ -19,6 +11,14 @@ import { useEventProvider } from "@/providers/features/EventProvider";
 import { localImages } from "@/utils/images";
 import { useCategoryProvider } from "@/providers/features/CategoryProvider";
 import { useAppProvider } from "@/providers/app/AppProvider";
+
+import AAuSoftLogo from "@/@components/(ausoft)/AAuSoftLogo";
+import BaseModal from "../base";
+import CTranslateTo from "@/@components/(translation)/CTranslateTo";
+import EventSchemas from "@/services/schemas/EventSchema";
+import SelectCategoryDropdown from "./category";
+import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
+import ARegisterProgress from "@/@components/(ausoft)/ARegisterProgress";
 
 export default function AddEventModal() {
   // Contexts
@@ -111,8 +111,7 @@ export default function AddEventModal() {
 
       if (
         data.affiliate &&
-        (!selectedEvent ||
-          (selectedEvent && !selectedEvent.affiliation))
+        (!selectedEvent || (selectedEvent && !selectedEvent.affiliation))
       ) {
         formData.append("affiliate", data.affiliate);
       }

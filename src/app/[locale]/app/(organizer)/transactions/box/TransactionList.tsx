@@ -92,7 +92,7 @@ export default function TransactionList({
         <h4 className="md:text-lg text-base font-bold dark:text-white">
           <CTranslateTo eng="Registers" pt="Registros" />
           {`${
-            apiTransactions.has
+            apiTransactions.total != transactionBase.length
               ? ` (${transactionBase.length}/${apiTransactions.total})`
               : ` (${transactionBase.length})`
           }`}
