@@ -112,7 +112,7 @@ export default function AddEventModal() {
       if (
         data.affiliate &&
         (!selectedEvent ||
-          (selectedEvent && !selectedEvent.affiliation.affiliate))
+          (selectedEvent && !selectedEvent.affiliation))
       ) {
         formData.append("affiliate", data.affiliate);
       }
