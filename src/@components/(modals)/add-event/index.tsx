@@ -109,7 +109,11 @@ export default function AddEventModal() {
         formData.append("event_id", selectedEvent?.id);
       }
 
-      if (data.affiliate && !selectedEvent) {
+      if (
+        data.affiliate &&
+        (!selectedEvent ||
+          (selectedEvent && !selectedEvent.affiliation.affiliate))
+      ) {
         formData.append("affiliate", data.affiliate);
       }
 
@@ -418,7 +422,7 @@ export default function AddEventModal() {
                 />
               </h1>
               <AuSoftUI.UI.TextField.Default
-                requiredField={errors.map_location?.message ? true : false}
+                requiredField={errors.affiliate?.message ? true : false}
                 {...register("affiliate")}
                 disabled={
                   selectedEvent && selectedEvent.affiliation ? true : false

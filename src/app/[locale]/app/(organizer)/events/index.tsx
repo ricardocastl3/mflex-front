@@ -8,7 +8,6 @@ import { useEventProvider } from "@/providers/features/EventProvider";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import EventBox from "./components/EventBox";
-
 import PageBase from "../../@components/PageBase";
 import useEvents from "@/hooks/api/useEvents";
 
