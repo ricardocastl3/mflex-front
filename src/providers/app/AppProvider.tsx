@@ -2,6 +2,8 @@
 
 import { usePathname, useSelectedLayoutSegment } from "next/navigation";
 import { useAuth } from "../auth/AuthProvider";
+import { IServerStats } from "@/http/interfaces/models/IServerStats";
+import { IAffiliateConfigs } from "@/http/interfaces/models/affiliate/IAffiliateConfigs";
 
 import React, { createContext, useContext, useEffect, useState } from "react";
 import CookieServices from "@/services/auth/CookieServices";
@@ -26,7 +28,11 @@ interface IAppContext {
   hiddenMobileHeader: boolean;
   isScrolledWindow: boolean;
   closeLeagueBox: boolean;
+  serverStats: IServerStats | undefined;
+  affiliateConfigs: IAffiliateConfigs | undefined;
 
+  handleAffiliateConfigs: (config: IAffiliateConfigs | undefined) => void;
+  handleServerStats: (stats: IServerStats | undefined) => void;
   handleCanCloseSubscribe: (mode: boolean) => void;
   handleOpenBanner: (mode: boolean) => void;
   handleAddToastOnArray: (toast: IToast) => void;
@@ -61,6 +67,11 @@ export default function AppProvider({
   const [hiddenMobileHeader, setHiddenMobileHeader] = useState(false);
   const [isScrolledWindow, setIsScrolledWindow] = useState(false);
 
+  const [serverStats, setServerStats] = useState<IServerStats | undefined>();
+  const [affiliateConfigs, setAffiliateConfigs] = useState<
+    IAffiliateConfigs | undefined
+  >();
+
   const segmentedLayout = useSelectedLayoutSegment();
   const [segmentedLayoutByLocalStorage, setSegmentedLayoutByLocalStorage] =
     useState("");
@@ -90,6 +101,14 @@ export default function AppProvider({
 
   function handleCanCloseSubscribe(mode: boolean) {
     setCanCloseSubscribe(mode);
+  }
+
+  function handleServerStats(stats: IServerStats | undefined) {
+    setServerStats(stats);
+  }
+
+  function handleAffiliateConfigs(configs: IAffiliateConfigs | undefined) {
+    setAffiliateConfigs(configs);
   }
 
   const path = usePathname();
@@ -134,7 +153,11 @@ export default function AppProvider({
         handleResetToast,
         handleOpenBanner,
         handleCloseLeagueBox,
+        handleAffiliateConfigs,
+        handleServerStats,
 
+        affiliateConfigs,
+        serverStats,
         closeLeagueBox,
         canCloseSubscribe,
 

@@ -10,14 +10,16 @@ import SHeader from "@/@components/(system)/site/SHeader";
 import SMobileFooter from "@/@components/(system)/site/SFooter/mobile";
 import SFooter from "@/@components/(system)/site/SFooter/desktop";
 import TechSupport from "@/services/contact-zap/TechSupport";
+import useServerStats from "@/hooks/api/useServerStats";
 
 export default function MFlexLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { isLoadingUserData } = useAuth();
+  const { isLoadingUserData, userLogged } = useAuth();
   const { openToast, openBanner } = useAppProvider();
+  useServerStats({ user: userLogged });
 
   if (isLoadingUserData) {
     return (

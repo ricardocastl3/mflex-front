@@ -13,6 +13,7 @@ import ASidebar from "@/@components/(system)/ASidebar";
 import AMobileFooter from "@/@components/(system)/AFooter/mobile";
 import ABanner from "@/@components/(system)/ABanner";
 import useViewPdf from "@/@components/(system)/AAdobePdfReader/useViewPdf";
+import useServerStats from "@/hooks/api/useServerStats";
 
 export default function MFlexLayout({
   children,
@@ -23,6 +24,7 @@ export default function MFlexLayout({
   const { openToast, openBanner } = useAppProvider();
   useWebPush(userLogged?.id!);
   useViewPdf();
+  useServerStats({ user: userLogged });
 
   // Controls
   const [isLoadingAll, setIsLoadingAll] = useState(true);

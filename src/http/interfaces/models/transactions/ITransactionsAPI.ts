@@ -1,4 +1,4 @@
-import { IAffiliate } from "../IAffiliate";
+import { IAffiliate } from "../affiliate/IAffiliate";
 import { IPayment } from "../IPayment";
 import { ITransfer } from "../ITransfer";
 

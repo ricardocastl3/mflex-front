@@ -3,8 +3,8 @@
 import { BaseBox } from "@/@components/(box)/BaseBox";
 import { ReactIcons } from "@/utils/icons";
 import { useModal } from "@/providers/app/ModalProvider";
-import { appConfigs } from "@/utils/enums";
 import { langByCookies } from "@/http/axios/api";
+import { useAppProvider } from "@/providers/app/AppProvider";
 
 import React from "react";
 import BaseModal from "../../base";
@@ -14,6 +14,7 @@ import InitEmbedAdobeReader from "@/@components/(system)/AAdobePdfReader/InitEmb
 export default function EventAffiliateMaterialModal() {
   //Contexts
   const { handleOpenModal } = useModal();
+  const { affiliateConfigs } = useAppProvider();
 
   function handleCloseBox() {
     handleOpenModal("");
@@ -23,10 +24,11 @@ export default function EventAffiliateMaterialModal() {
     langByCookies == "pt"
       ? "Material do Afiliado de Eventos"
       : "Event Affliate Material";
+
   InitEmbedAdobeReader({
     divMaster: "pdf-div",
     title,
-    url: appConfigs.programs.affiliate.eventUrl,
+    url: affiliateConfigs?.aff_event_link!,
   });
 
   return (
