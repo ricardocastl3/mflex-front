@@ -16,7 +16,11 @@ export default function InitEmbedAdobeReader({
     viewSDKClient.ready().then(() => {
       viewSDKClient.previewFile(divMaster, title, url, viewerConfig);
     });
-  }, []);
+
+    return () => {
+      viewSDKClient.destroy();
+    };
+  }, [divMaster, title, url]);
 
   return null;
 }
