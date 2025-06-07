@@ -20,7 +20,7 @@ export const appConfigs = {
   programs: {
     affiliate: {
       eliteUrl:
-        "https://cdn.marcaflex.com/mfs/afs/MFLEX%20-%20AFILIADO%20DE%20ELITE.pdf",
+        "https://cdn.marcaflex.com/mfs-afs/MFLEX%20-%20AFILIADO%20DE%20ELITE.pdf",
       eventUrl:
         "https://cdn.marcaflex.com/mfs/afs/MFLEX%20-%20AFILIADO%20DE%20EVENTOS.pdf",
     },
