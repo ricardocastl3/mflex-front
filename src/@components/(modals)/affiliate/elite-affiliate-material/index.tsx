@@ -23,6 +23,7 @@ export default function EliteAffiliateMaterialModal() {
     langByCookies == "pt"
       ? "Material do Afiliado de Elite"
       : "Elite Affliate - General Material";
+      
   InitEmbedAdobeReader({
     divMaster: "pdf-div",
     title,

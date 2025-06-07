@@ -20,6 +20,12 @@ class ViewSDKClient {
   previewFile(divId, fileName, filePath, viewerConfig) {
     const config = {
       clientId: "ebaf5c1f8f794b8abe6409a3a13f11dd",
+      defaultViewMode: "FIT_WIDTH",
+      showDownloadPDF: false,
+      showPrintPDF: false,
+      enableFormFilling: false,
+      defaultLocale: "pt-BR",
+      origin: window.location.origin,
     };
     if (divId) {
       config.divId = divId;
@@ -52,6 +58,12 @@ class ViewSDKClient {
       clientId: "ebaf5c1f8f794b8abe6409a3a13f11dd",
       /* Pass the div id in which PDF should be rendered */
       divId,
+      origin: window.location.origin,
+      defaultViewMode: "FIT_WIDTH",
+      showDownloadPDF: false,
+      showPrintPDF: false,
+      enableFormFilling: false,
+      defaultLocale: "pt-BR",
     });
 
     /* Invoke the file preview API on Adobe DC View object */
