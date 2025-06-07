@@ -29,6 +29,7 @@ export default function UpgradeSectionAffiliate() {
             <AuSoftUI.UI.Button
               variant={"primary"}
               className="w-fit rounded-full"
+              size={"lg"}
             >
               <CTranslateTo
                 eng="I want to be an FLEX Affiliate"

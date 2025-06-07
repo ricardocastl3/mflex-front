@@ -10,8 +10,9 @@ import SHeader from "@/@components/(system)/site/SHeader";
 import SMobileFooter from "@/@components/(system)/site/SFooter/mobile";
 import SFooter from "@/@components/(system)/site/SFooter/desktop";
 import TechSupport from "@/services/contact-zap/TechSupport";
+import useViewPdf from "@/@components/(system)/AAdobePdfReader/useViewPdf";
 
-export default function BweviPayLayout({
+export default function MFlexLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -26,6 +27,8 @@ export default function BweviPayLayout({
       </div>
     );
   }
+
+  useViewPdf();
 
   return (
     <>

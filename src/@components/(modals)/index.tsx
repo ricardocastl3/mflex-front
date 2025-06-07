@@ -24,6 +24,8 @@ import OpenInYourBrowserModal from "./open-in-your-browser/OpenInYourBrowserModa
 import WatchTVModal from "./watch-tv";
 import WatchNodAdsModal from "./watch-no-ads";
 import UsageSubsModal from "./usage-subs";
+import EventAffiliateMaterialModal from "./affiliate/event-affiliate-material";
+import EliteAffiliateMaterialModal from "./affiliate/elite-affiliate-material";
 
 export default function ModalOpenProvider() {
   const { openModal } = useModal();
@@ -91,6 +93,12 @@ export default function ModalOpenProvider() {
 
     case "usage-susb":
       return <UsageSubsModal />;
+
+    case "event-affiliate-material":
+      return <EventAffiliateMaterialModal />;
+
+    case "elite-affiliate-material":
+      return <EliteAffiliateMaterialModal />;
 
     default:
       return <></>;

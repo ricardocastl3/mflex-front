@@ -35,6 +35,8 @@ type modalType =
   | "open-in-your-browser"
   | "watch-no-ads"
   | "watch-tv"
+  | "event-affiliate-material"
+  | "elite-affiliate-material"
   | "";
 
 interface IOnboardingType {
