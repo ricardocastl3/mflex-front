@@ -1,4 +1,7 @@
+import { AuSoftUI } from "@/@components/(ausoft)";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
+import { langByCookies } from "@/http/axios/api";
+import Link from "next/link";
 
 export default function UpgradeSectionAffiliate() {
   return (
@@ -18,10 +21,21 @@ export default function UpgradeSectionAffiliate() {
           </h1>
           <h3 className="md:text-xl text-lg text-yellow-50 font-medium">
             <CTranslateTo
-              eng="Become a FLEX Affiliate and increase your success"
-              pt="Seja Afiliado FLEX e eleve  seu sucesso"
+              eng="Become a FLEX Affiliate and increase your success at maximum 🚀"
+              pt="Seja Afiliado FLEX e eleve o seu sucesso ao máximo  🚀"
             />
           </h3>
+          <Link href={`/${langByCookies}/sign-up`}>
+            <AuSoftUI.UI.Button
+              variant={"primary"}
+              className="w-fit rounded-full"
+            >
+              <CTranslateTo
+                eng="I want to be an FLEX Affiliate"
+                pt="Quer ser afiliado FLEX"
+              />
+            </AuSoftUI.UI.Button>
+          </Link>
         </div>
       </div>
     </section>
