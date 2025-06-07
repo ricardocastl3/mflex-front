@@ -27,7 +27,10 @@ export default function EventPage({
       const resp = await internalApi.get("/events" + `/${eventId.slug}`);
 
       setSelectedEvent(resp.data.event);
-      if (resp.data.event.status === "pending") {
+      if (
+        resp.data.event.status === "pending" ||
+        resp.data.event.status == "rejected"
+      ) {
         window.location.href = `${process.env.MFLEX_NEXT_PUBLIC_URL}/${langByCookies}`;
         return;
       }

@@ -8,7 +8,7 @@ import HeroAbout from "./components/Hero";
 import SocialItem from "./components/SocialItem";
 import AboutItem from "./components/AboutItem";
 
-export default function ServicesPage() {
+export default function AboutUsPage() {
   return (
     <div className="flex flex-col gap-4 md:mb-8 mb-8">
       <HeroAbout />

@@ -54,15 +54,15 @@ export default function CContentServices({
         </Link>
 
         <Link
-          href={`/${langByCookies}/services`}
+          href={`/${langByCookies}/affiliate`}
           className={`${
-            currentPageByUrl == "services"
+            currentPageByUrl == "affiliate"
               ? "dark:bg-yellow-800/50 bg-yellow-200/40"
               : "dark:hover:bg-yellow-800/50 hover:bg-yellow-200/40"
-          } hidden items-center gap-2 w-full md:py-2.5 py-4 px-4 dark:text-slate-100 rounded-full text-[0.85rem]`}
+          } flex items-center gap-2 w-full md:py-2.5 py-4 px-4 dark:text-slate-100 rounded-full text-[0.85rem]`}
         >
           <ReactIcons.PiIcon.PiMarkerCircle size={15} />
-          <CTranslateTo eng="Marketing Services" pt="Serviços de Marketing" />
+          <CTranslateTo eng="Become FLEX Affiliate" pt="Seja um afiliado FLEX" />
         </Link>
 
         <Link

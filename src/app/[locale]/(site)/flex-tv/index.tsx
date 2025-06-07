@@ -21,7 +21,7 @@ import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import TVFilterBox from "./components/TVFilterBox";
 import Link from "next/link";
 
-export default function NewsPage() {
+export default function FlexTVPage() {
   const { allTVChannels, handleSeachByName, isLoadingAllTVChannels } =
     useMyChannels();
   const { handleCloseLeagueBox } = useAppProvider();

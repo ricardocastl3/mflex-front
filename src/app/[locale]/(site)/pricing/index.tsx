@@ -16,7 +16,7 @@ import HeroPlans from "./components/Hero";
 import SubsCard from "./components/SubsCard";
 import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
-export default function NewsPage() {
+export default function PricingPage() {
   const { isLoadingAllPlans, allPlans } = usePlan();
   const { isLoadingCurrentSubsUsage } = useAuth();
   const { handleOpenModal } = useModal();
