@@ -31,15 +31,17 @@ export default function OrganizerPage() {
                 })}
             </div>
           </div>
-          <div className="pt-4 flex flex-col gap-4 border-t border-slate-300 dark:border-slate-800">
-            <div className="grid md:grid-cols-4 grid-cols-1 gap-4">
-              {affiliateServices
-                .filter((i) => i.type == "manual")
-                .map((service, i) => {
-                  return <CardAffiliateItem service={service} key={i} />;
-                })}
+          {userLogged?.profile?.affiliate_active && (
+            <div className="pt-4 flex flex-col gap-4 border-t border-slate-300 dark:border-slate-800">
+              <div className="grid md:grid-cols-4 grid-cols-1 gap-4">
+                {affiliateServices
+                  .filter((i) => i.type == "manual")
+                  .map((service, i) => {
+                    return <CardAffiliateItem service={service} key={i} />;
+                  })}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </ContainerBase>
     </PageBase>
