@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { viewerConfig } from "./configs";
+
 import ViewSDKClient from "./ViewSDKClient";
 
 export default function InitEmbedAdobeReader({

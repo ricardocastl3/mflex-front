@@ -118,22 +118,25 @@ class ViewSDKClient {
 
   destroy() {
     if (this.adobeDCView) {
-      // Remove all event listeners
-      this.adobeDCView.unregisterCallback(
-        window.AdobeDC.View.Enum.CallbackType.EVENT_LISTENER
-      );
-      this.adobeDCView.unregisterCallback(
-        window.AdobeDC.View.Enum.CallbackType.SAVE_API
-      );
+      try {
+        // Clear the container
+        const container = document.getElementById(
+          this.adobeDCView.config.divId
+        );
+        if (container) {
+          // Remove all child elements
+          while (container.firstChild) {
+            container.removeChild(container.firstChild);
+          }
+          // Clear any remaining content
+          container.innerHTML = "";
+        }
 
-      // Clear the container
-      const container = document.getElementById(this.adobeDCView.config.divId);
-      if (container) {
-        container.innerHTML = "";
+        // Clear the instance
+        this.adobeDCView = undefined;
+      } catch (error) {
+        console.error("Error destroying PDF viewer:", error);
       }
-
-      // Clear the instance
-      this.adobeDCView = undefined;
     }
   }
 }
