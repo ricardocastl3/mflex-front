@@ -19,7 +19,7 @@ class ViewSDKClient {
 
   previewFile(divId, fileName, filePath, viewerConfig) {
     const config = {
-      clientId: "3414d21946344505874b64136c3d605c",
+      clientId: "ebaf5c1f8f794b8abe6409a3a13f11dd",
     };
     if (divId) {
       config.divId = divId;
@@ -49,7 +49,7 @@ class ViewSDKClient {
     /* Initialize the AdobeDC View object */
     this.adobeDCView = new window.AdobeDC.View({
       /* Pass your registered client id */
-      clientId: "b8ab9da0faa148538c5026ae5c0aa826",
+      clientId: "ebaf5c1f8f794b8abe6409a3a13f11dd",
       /* Pass the div id in which PDF should be rendered */
       divId,
     });
