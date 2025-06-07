@@ -12,6 +12,7 @@ import React, { useEffect, useState } from "react";
 import ASidebar from "@/@components/(system)/ASidebar";
 import AMobileFooter from "@/@components/(system)/AFooter/mobile";
 import ABanner from "@/@components/(system)/ABanner";
+import useViewPdf from "@/@components/(system)/AAdobePdfReader/useViewPdf";
 
 export default function MFlexLayout({
   children,
@@ -21,6 +22,7 @@ export default function MFlexLayout({
   const { isLoadingUserData, userLogged, handleLogout } = useAuth();
   const { openToast, openBanner } = useAppProvider();
   useWebPush(userLogged?.id!);
+  useViewPdf();
 
   // Controls
   const [isLoadingAll, setIsLoadingAll] = useState(true);

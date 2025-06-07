@@ -10,7 +10,6 @@ import SHeader from "@/@components/(system)/site/SHeader";
 import SMobileFooter from "@/@components/(system)/site/SFooter/mobile";
 import SFooter from "@/@components/(system)/site/SFooter/desktop";
 import TechSupport from "@/services/contact-zap/TechSupport";
-import useViewPdf from "@/@components/(system)/AAdobePdfReader/useViewPdf";
 
 export default function MFlexLayout({
   children,
@@ -27,8 +26,6 @@ export default function MFlexLayout({
       </div>
     );
   }
-
-  useViewPdf();
 
   return (
     <>
