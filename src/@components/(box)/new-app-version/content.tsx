@@ -10,7 +10,7 @@ export default function ContentVersion() {
 
   return (
     <>
-      <BaseBox className="p-5 md:w-[35vw] w-[90vw]">
+      <BaseBox className="p-5 md:w-[35vw] w-[90vw] border border-slate-300 dark:border-slate-800">
         <div className="flex flex-col gap-1.5">
           <h1 className="dark:text-yellow-500 text-yellow-600 font-bold text-base">
             <CTranslateTo
