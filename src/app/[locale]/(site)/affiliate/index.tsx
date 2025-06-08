@@ -8,9 +8,9 @@ import UpLevelSectionAffiliate from "./components/sections/UpLevel";
 
 export default function AffiliatePublicPage() {
   return (
-    <div className="flex flex-col gap-4 md:mb-8 mb-8">
+    <div className="flex flex-col gap-4">
       <HeroServices />
-      <div className="flex flex-col gap-8 my-8">
+      <div className="flex flex-col gap-8 mt-8">
         <BecomeAffilate />
         <UpLevelSectionAffiliate />
         <BenefitsAffiliate />
