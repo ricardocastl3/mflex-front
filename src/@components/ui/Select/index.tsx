@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/utils/utils-ui";
 
 const selectVariants = cva(
-  "flex gap-2 border-slate-300  dark:border-slate-700/80 px-3 border-[1.8px] dark:text-white cursor-pointer focus:ring rounded-lg text-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:pointer-events-none disabled:opacity-50",
+  "flex gap-2 border-slate-300 dark:border-slate-700/80 px-3 border-[1.8px] dark:text-white cursor-pointer focus:ring rounded-lg text-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       bg: {
