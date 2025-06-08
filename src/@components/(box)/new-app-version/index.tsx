@@ -1,15 +1,15 @@
-import { useSocketProvider } from "@/providers/auth/SocketProvider";
 import { motion } from "framer-motion";
+import { useAppProvider } from "@/providers/app/AppProvider";
 
 import ContentVersion from "./content";
 import BaseModal from "@/@components/(modals)/base";
 
 export default function NewAppVersionBanner() {
-  const { socketEvent } = useSocketProvider();
+  const { appSystemModals } = useAppProvider();
 
   return (
     <>
-      {socketEvent?.name == "new-app-version" && (
+      {appSystemModals.openNewVersion && (
         <>
           {window.innerWidth > 765 && (
             <motion.div

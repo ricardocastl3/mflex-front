@@ -7,12 +7,17 @@ import { IAffiliateConfigs } from "@/http/interfaces/models/affiliate/IAffiliate
 
 import React, { createContext, useContext, useEffect, useState } from "react";
 import CookieServices from "@/services/auth/CookieServices";
+import { useSocketProvider } from "../auth/SocketProvider";
 
 export interface IToast {
   id?: number;
   title: string;
   description: string;
   type: "error" | "success" | "info";
+}
+
+export interface IAppSystem {
+  openNewVersion: boolean;
 }
 
 interface IAppContext {
@@ -30,7 +35,9 @@ interface IAppContext {
   closeLeagueBox: boolean;
   serverStats: IServerStats | undefined;
   affiliateConfigs: IAffiliateConfigs | undefined;
+  appSystemModals: IAppSystem;
 
+  handleAppSystemModal: (system: IAppSystem) => void;
   handleAffiliateConfigs: (config: IAffiliateConfigs | undefined) => void;
   handleServerStats: (stats: IServerStats | undefined) => void;
   handleCanCloseSubscribe: (mode: boolean) => void;
@@ -72,11 +79,18 @@ export default function AppProvider({
     IAffiliateConfigs | undefined
   >();
 
+  const [appSystemModals, setAppSystemModals] = useState<IAppSystem>({
+    openNewVersion: false,
+  });
+
+  // Contexts
   const segmentedLayout = useSelectedLayoutSegment();
   const [segmentedLayoutByLocalStorage, setSegmentedLayoutByLocalStorage] =
     useState("");
 
   const { userLogged } = useAuth();
+
+  const { socketEvent } = useSocketProvider();
 
   function handleAddToastOnArray({ ...toast }: IToast) {
     const id = Math.round(Math.PI * new Date().getTime());
@@ -109,6 +123,10 @@ export default function AppProvider({
 
   function handleAffiliateConfigs(configs: IAffiliateConfigs | undefined) {
     setAffiliateConfigs(configs);
+  }
+
+  function handleAppSystemModal(system: IAppSystem) {
+    setAppSystemModals((state) => ({ ...state, ...system }));
   }
 
   const path = usePathname();
@@ -146,6 +164,14 @@ export default function AppProvider({
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (socketEvent?.name == "new-app-version") {
+      handleAppSystemModal({ openNewVersion: true });
+    } else {
+      handleAppSystemModal({ openNewVersion: false });
+    }
+  }, [socketEvent]);
+
   return (
     <AppContext.Provider
       value={{
@@ -155,7 +181,9 @@ export default function AppProvider({
         handleCloseLeagueBox,
         handleAffiliateConfigs,
         handleServerStats,
+        handleAppSystemModal,
 
+        appSystemModals,
         affiliateConfigs,
         serverStats,
         closeLeagueBox,
