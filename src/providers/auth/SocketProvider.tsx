@@ -9,7 +9,7 @@ interface ISocketProviderProps {
 }
 
 interface ISocketEvent {
-  name: "reference-pay" | "";
+  name: "reference-pay" | "new-app-version" | "";
   metadata: string;
 }
 
@@ -37,8 +37,13 @@ export default function SocketProvider({
     socketClient.emit("hi", userId);
 
     setSocketEvent((state) => ({ ...state, metadata: userId }));
+
     socketClient.on("reference-pay", (data) => {
       setSocketEvent((state) => ({ ...state, name: "reference-pay" }));
+    });
+
+    socketClient.on("new-app-version", (data) => {
+      setSocketEvent((state) => ({ ...state, name: "new-app-version" }));
     });
   }, [socketClient]);
 

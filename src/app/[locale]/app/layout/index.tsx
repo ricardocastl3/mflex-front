@@ -14,6 +14,7 @@ import AMobileFooter from "@/@components/(system)/AFooter/mobile";
 import ABanner from "@/@components/(system)/ABanner";
 import useViewPdf from "@/@components/(system)/AAdobePdfReader/useViewPdf";
 import useServerStats from "@/hooks/api/useServerStats";
+import NewAppVersionBanner from "@/@components/(box)/new-app-version";
 
 export default function MFlexLayout({
   children,
@@ -48,6 +49,8 @@ export default function MFlexLayout({
 
   return (
     <>
+      <NewAppVersionBanner />
+
       {openToast.length > 0 && <AuSoftUI.Component.Toaster />}
       <AuSoftUI.Modal.ModalOpenProvider />
 

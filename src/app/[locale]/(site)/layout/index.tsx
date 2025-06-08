@@ -11,6 +11,7 @@ import SMobileFooter from "@/@components/(system)/site/SFooter/mobile";
 import SFooter from "@/@components/(system)/site/SFooter/desktop";
 import TechSupport from "@/services/contact-zap/TechSupport";
 import useServerStats from "@/hooks/api/useServerStats";
+import NewAppVersionBanner from "@/@components/(box)/new-app-version";
 
 export default function MFlexLayout({
   children,
@@ -19,6 +20,7 @@ export default function MFlexLayout({
 }) {
   const { isLoadingUserData, userLogged } = useAuth();
   const { openToast, openBanner } = useAppProvider();
+
   useServerStats({ user: userLogged });
 
   if (isLoadingUserData) {
@@ -31,6 +33,7 @@ export default function MFlexLayout({
 
   return (
     <>
+      <NewAppVersionBanner />
       {openToast.length > 0 && <AuSoftUI.Component.Toaster />}
       <AuSoftUI.Modal.ModalOpenProvider />
       <div className="flex flex-col w-full">
