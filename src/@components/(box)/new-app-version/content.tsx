@@ -25,7 +25,7 @@ export default function ContentVersion() {
                 pt="Uma nova versão está pronta para instalar"
               />
             </h2>
-            <h2 className="text-slate-600 text-sm dark:text-slate-200">
+            <h2 className="text-slate-800 text-sm dark:text-slate-200">
               <b className="font-bold mr-2">Obs:</b>
               <CTranslateTo
                 eng="If fefreshing now will clear any unsaved changes"
