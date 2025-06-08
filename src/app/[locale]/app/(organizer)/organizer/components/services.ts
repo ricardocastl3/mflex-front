@@ -9,6 +9,7 @@ export interface IServiceOrganizer {
   iconColor: string;
   Icon: IconType;
   action: string;
+  priority: number;
 }
 
 export const organizerServices: IServiceOrganizer[] = [
@@ -20,6 +21,7 @@ export const organizerServices: IServiceOrganizer[] = [
     iconColor: "text-emerald-500 hover:text-emerald-600",
     Icon: ReactIcons.MdIcon.MdEvent,
     action: "/events",
+    priority: 0,
   },
   {
     t_pt: "Minhas Vendas",
@@ -29,6 +31,7 @@ export const organizerServices: IServiceOrganizer[] = [
     iconColor: "text-blue-500 hover:text-blue-600",
     Icon: ReactIcons.MdIcon.MdPayments,
     action: "/transactions",
+    priority: 0,
   },
   {
     t_pt: "Transferências Bancárias",
@@ -38,6 +41,7 @@ export const organizerServices: IServiceOrganizer[] = [
     iconColor: "text-purple-500 hover:text-purple-600",
     Icon: ReactIcons.MdIcon.MdAccountBalance,
     action: "/transfer",
+    priority: 0,
   },
   {
     t_pt: "Validar Ingresso",
@@ -47,6 +51,7 @@ export const organizerServices: IServiceOrganizer[] = [
     iconColor: "text-orange-500 hover:text-orange-600",
     Icon: ReactIcons.MdIcon.MdQrCodeScanner,
     action: "modal-validate",
+    priority: 0,
   },
   {
     t_pt: "Meus Afiliados",
@@ -56,5 +61,6 @@ export const organizerServices: IServiceOrganizer[] = [
     iconColor: "text-yellow-500 hover:text-yellow-600",
     Icon: ReactIcons.FaIcon.FaUserAlt,
     action: "org-affiliates",
+    priority: 1,
   },
 ];

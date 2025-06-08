@@ -19,10 +19,24 @@ export default function OrganizerPage() {
       </div>
 
       <ContainerBase>
-        <div className="grid md:grid-cols-4 grid-cols-1 gap-4 md:p-4 p-0.5">
-          {organizerServices.map((service, i) => {
-            return <CardOrganizerItem service={service} key={i} />;
-          })}
+        <div className="md:p-4 p-0.5 flex flex-col gap-4">
+          <div className="grid md:grid-cols-4 grid-cols-1 gap-4">
+            {organizerServices
+              .filter((i) => i.priority == 0)
+              .map((service, i) => {
+                return <CardOrganizerItem service={service} key={i} />;
+              })}
+          </div>
+
+          <div className="pt-4 flex flex-col gap-4 border-t border-slate-300 dark:border-slate-800">
+            <div className="grid md:grid-cols-4 grid-cols-1 gap-4">
+              {organizerServices
+                .filter((i) => i.priority == 1)
+                .map((service, i) => {
+                  return <CardOrganizerItem service={service} key={i} />;
+                })}
+            </div>
+          </div>
         </div>
       </ContainerBase>
     </PageBase>

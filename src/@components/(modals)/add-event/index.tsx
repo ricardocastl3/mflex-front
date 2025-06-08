@@ -414,15 +414,15 @@ export default function AddEventModal() {
             </div>
 
             <div className="flex flex-col gap-2">
-              {!selectedEvent ||
-                (selectedEvent && !selectedEvent.affiliation) && (
-                  <h1 className="text-base dark:text-white">
-                    <CTranslateTo
-                      eng="Affiliate (Optional)"
-                      pt="Afiliado (Opcional)"
-                    />
-                  </h1>
-                )}
+              {(!selectedEvent ||
+                (selectedEvent && !selectedEvent.affiliation)) && (
+                <h1 className="text-base dark:text-white">
+                  <CTranslateTo
+                    eng="Affiliate (Optional)"
+                    pt="Afiliado (Opcional)"
+                  />
+                </h1>
+              )}
 
               {selectedEvent && selectedEvent.affiliation && (
                 <h1 className="text-base dark:text-yellow-500 text-yellow-600">
