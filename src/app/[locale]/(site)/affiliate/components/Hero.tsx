@@ -15,7 +15,10 @@ export default function HeroServices() {
       <div className="absolute inset-0 bg-black/50"></div>
       <div className="flex flex-col gap-2 z-20">
         <h1 className="md:text-[2rem] text-[1.7rem] font-bold text-white">
-          <CTranslateTo eng="FLEX Affiliate" pt="Afiliado FLEX" />
+          <CTranslateTo
+            eng="Become an Flex Affiliate"
+            pt="Seja um afiliado Flex"
+          />
         </h1>
         <h4 className="text-white md:mt-2 t-2 text-lg">
           <CTranslateTo
