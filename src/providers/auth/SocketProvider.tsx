@@ -34,7 +34,7 @@ export default function SocketProvider({
 
   useEffect(() => {
     const userId = uuid();
-    socketClient.emit("hi", userId);
+    socketClient.emit("k", userId);
 
     setSocketEvent((state) => ({ ...state, metadata: userId }));
 
