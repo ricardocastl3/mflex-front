@@ -17,8 +17,8 @@ export default function UpgradeSectionAffiliate() {
     >
       <div className="absolute z-0 flex-col gap-2 bg-black/50 inset-0 flex justify-center items-center">
         <div className="md:w-[60vw] w-[90vw] text-center flex-col gap-6 items-center flex justify-center">
-          <h1 className="md:text-[1.7rem] text-[1.5rem] text-white font-extrabold border-b-4 border-white">
-            <CTranslateTo eng="Start Now" pt="Comece agora" />
+          <h1 className="md:text-[1.7rem] text-[1.5rem] text-white font-extrabold border-b-2 border-white">
+            <CTranslateTo eng="Start Now" pt="Comece Agora" />
           </h1>
           <h3 className="md:text-xl text-lg text-yellow-50 font-medium">
             <CTranslateTo
