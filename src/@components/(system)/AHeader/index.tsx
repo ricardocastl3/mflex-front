@@ -34,7 +34,7 @@ export default function AHeader() {
           onClick={() => (window.location.href = `/${langByCookies}`)}
           variant={"primary"}
           size={"sm"}
-          className="py-0.5 px-0.5 w-fit items-center"
+          className="py-0.5 px-2 gap-1 w-fit items-center"
         >
           <ReactIcons.BiIcon.BiArrowToLeft size={15} />
           <CTranslateTo eng="Back" pt="Voltar" />
