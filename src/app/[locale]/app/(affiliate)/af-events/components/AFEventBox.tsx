@@ -15,7 +15,7 @@ export default function AFEventBox({
   isLoading: boolean;
   affiliations: IAffiliateCommissionsResponseAPI;
 }) {
-  const transfers = affiliations.commissions;
+  const affiliansRaw = affiliations.affiliations;
 
   return (
     <BaseBox className={`w-full pb-5`}>
@@ -32,7 +32,7 @@ export default function AFEventBox({
         isLoading={isLoading}
       />
 
-      {transfers.length <= 0 && !isLoading && (
+      {affiliansRaw.length <= 0 && !isLoading && (
         <div className="md:pt-14 pt-12 md:pb-16 pb-16 py-12">
           <AuSoftUI.Component.ListEmpty
             hasAction={false}
@@ -47,7 +47,7 @@ export default function AFEventBox({
         </div>
       )}
 
-      {transfers.length > 0 && !isLoading && (
+      {affiliansRaw.length > 0 && !isLoading && (
         <>
           <div className="md:flex hidden">
             <RowAFEvents
