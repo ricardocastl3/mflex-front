@@ -41,7 +41,7 @@ export default function ErrorPage() {
             (window.location.href = `/${langByCookies}/${currentPageByUrl}`)
           }
         >
-          <CTranslateTo eng="Update page" pt="Refresh page" />
+          <CTranslateTo eng="Refresh page" pt="Atualizar Página" />
         </Button>
       </BaseBox>
     </div>
