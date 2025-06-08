@@ -6,11 +6,10 @@ import { useSocketProvider } from "@/providers/auth/SocketProvider";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 
 export default function ContentVersion() {
-  const { socketEvent } = useSocketProvider();
-
+  
   return (
     <>
-      {socketEvent?.name == "new-app-version" && (
+   
         <BaseBox className="p-5 md:w-fit w-[90wv]">
           <div className="flex flex-col gap-2">
             <h1 className="dark:text-yellow-500 text-yellow-600 font-bold text-base">
@@ -37,7 +36,7 @@ export default function ContentVersion() {
             </AuSoftUI.UI.Button>
           </div>
         </BaseBox>
-      )}
+    
     </>
   );
 }
