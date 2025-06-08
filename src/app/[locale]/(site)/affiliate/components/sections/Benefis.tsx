@@ -15,8 +15,8 @@ export default function BenefitsAffiliate() {
         </h1>
         <h1 className="dark:text-slate-400 text-slate-600s">
           <CTranslateTo
-            eng="These are the simple steps to become our affiliate..."
-            pt="Estes são os passos simples para ser nosso afiliado..."
+            eng="Discover the benefits of being our affiliate..."
+            pt="Conheça os benefícios de ser nosso afiliado..."
           />
         </h1>
       </div>

@@ -1,4 +1,4 @@
-import { IAffiliate } from "../affiliate/IAffiliate";
+import { IAffiliation } from "../affiliate/IAffiliate";
 import { IPayment } from "../IPayment";
 import { ITransfer } from "../ITransfer";
 
@@ -19,7 +19,7 @@ export interface IAffiliateCommissionsResponseAPI {
   total: number;
   success: boolean;
   commissions: ITransfer[];
-  affiliations: IAffiliate[];
+  affiliations: IAffiliation[];
   dash: {
     gain: number;
   };

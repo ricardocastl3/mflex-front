@@ -27,6 +27,17 @@ export const affiliateServices: IAffiliateService[] = [
     type: "menu",
   },
   {
+    t_pt: "Eventos",
+    t_en: "Events",
+    d_pt: "Monitore todos os eventos em que realizou afiliação",
+    d_en: "Monitor all events you have joined",
+    iconColor: "text-yellow-500 hover:text-yellow-600",
+    Icon: ReactIcons.MdIcon.MdEditCalendar,
+    action: "af-events",
+    affiliateRequire: false,
+    type: "menu",
+  },
+  {
     t_pt: "Afiliado de Eventos",
     t_en: "Affiliate For Events",
     d_pt: "Saiba como o nosso programa de afiliados funciona",

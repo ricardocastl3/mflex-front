@@ -55,7 +55,7 @@ export default function NewsSection() {
           <div className="flex justify-center items-center text-center py-14">
             <Link href={`/${langByCookies}/news`} className="animate-bounce">
               <AuSoftUI.UI.Button
-                size={"md"}
+                size={"lg"}
                 className="rounded-full font-bold items-center"
                 variant={"primary"}
               >

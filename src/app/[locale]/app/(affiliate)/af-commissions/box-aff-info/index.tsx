@@ -47,7 +47,11 @@ export default function BoxAffliateInfo({
           </div>
 
           <h4 className="md:text-xl text-base font-bold text-yellow-500 dark:text-yellow-300">
-            {`${affiliations.affiliations.length}`}
+            {`${
+              affiliations.affiliations.filter(
+                (i) => new Date() < new Date(i.event?.start_at!)
+              ).length
+            }`}
           </h4>
         </div>
       </BaseBox>

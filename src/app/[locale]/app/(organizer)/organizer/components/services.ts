@@ -1,10 +1,5 @@
+import { ReactIcons } from "@/utils/icons";
 import { IconType } from "react-icons";
-import {
-  MdEvent,
-  MdPayments,
-  MdAccountBalance,
-  MdQrCodeScanner,
-} from "react-icons/md";
 
 export interface IServiceOrganizer {
   t_pt: string;
@@ -23,7 +18,7 @@ export const organizerServices: IServiceOrganizer[] = [
     d_pt: "Gerencie seus eventos e ingressos",
     d_en: "Manage your events and tickets",
     iconColor: "text-emerald-500 hover:text-emerald-600",
-    Icon: MdEvent,
+    Icon: ReactIcons.MdIcon.MdEvent,
     action: "/events",
   },
   {
@@ -32,7 +27,7 @@ export const organizerServices: IServiceOrganizer[] = [
     d_pt: "Acompanhe suas vendas e o estado das transações",
     d_en: "Track your sales and transaction status",
     iconColor: "text-blue-500 hover:text-blue-600",
-    Icon: MdPayments,
+    Icon: ReactIcons.MdIcon.MdPayments,
     action: "/transactions",
   },
   {
@@ -41,7 +36,7 @@ export const organizerServices: IServiceOrganizer[] = [
     d_pt: "Acompanhe os valores transferidos para sua conta",
     d_en: "Track the amounts transferred to your account",
     iconColor: "text-purple-500 hover:text-purple-600",
-    Icon: MdAccountBalance,
+    Icon: ReactIcons.MdIcon.MdAccountBalance,
     action: "/transfer",
   },
   {
@@ -50,7 +45,16 @@ export const organizerServices: IServiceOrganizer[] = [
     d_pt: "Valide ingressos comprados pelos clientes",
     d_en: "Validate tickets purchased by customers",
     iconColor: "text-orange-500 hover:text-orange-600",
-    Icon: MdQrCodeScanner,
+    Icon: ReactIcons.MdIcon.MdQrCodeScanner,
     action: "modal-validate",
+  },
+  {
+    t_pt: "Meus Afiliados",
+    t_en: "My Affiliates",
+    d_pt: "Monitore os seus afiliados, e gerencie os seus acessos",
+    d_en: "Monitor your affiliates and manage their access",
+    iconColor: "text-yellow-500 hover:text-yellow-600",
+    Icon: ReactIcons.FaIcon.FaUserAlt,
+    action: "org-affiliates",
   },
 ];

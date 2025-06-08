@@ -59,7 +59,7 @@ export default function PodFlexSection() {
           <div className="flex justify-center items-center text-center py-14">
             <Link href={`/${langByCookies}/podflex`} className="animate-bounce">
               <AuSoftUI.UI.Button
-                size={"sm"}
+                size={"lg"}
                 className="rounded-full font-bold items-center"
                 variant={"primary"}
               >
