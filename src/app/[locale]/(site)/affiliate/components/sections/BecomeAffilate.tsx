@@ -3,10 +3,12 @@ import { Meteors } from "@/@components/(aceternity)/Meteors";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CardItem from "../CardItem";
+import ASoundPlayer from "@/@components/(system)/ASoundPlayer";
 
 export default function BecomeAffilate() {
   return (
     <div className="flex flex-col gap-8 md:px-16 px-5">
+      <ASoundPlayer />
       <div className="flex flex-col gap-2">
         <h1 className="text-[1.2rem] font-bold dark:text-white">
           <CTranslateTo

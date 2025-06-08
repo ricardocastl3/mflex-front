@@ -4,10 +4,13 @@ import { CSwitcherTheme } from "@/@components/(theme)/CSwitcherTheme";
 import { CUserProfileBox } from "@/@components/(box)/profile/CUserProfileBox";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { langByCookies } from "@/http/axios/api";
+import { AuSoftUI } from "@/@components/(ausoft)";
+import { ReactIcons } from "@/utils/icons";
 
 import Link from "next/link";
 import AAuSoftLogo from "@/@components/(ausoft)/AAuSoftLogo";
 import CTranslate from "@/@components/(translation)/CCTranslate/CTranslate";
+import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 
 export default function AHeader() {
   const { openBanner } = useAppProvider();
@@ -27,6 +30,15 @@ export default function AHeader() {
         >
           <AAuSoftLogo size={70} />
         </Link>
+        <AuSoftUI.UI.Button
+          onClick={() => (window.location.href = `/${langByCookies}`)}
+          variant={"primary"}
+          size={"sm"}
+          className="py-0.5 w-fit items-center"
+        >
+          <ReactIcons.BiIcon.BiArrowToLeft size={15} />
+          <CTranslateTo eng="Back" pt="Voltar" />
+        </AuSoftUI.UI.Button>
       </div>
 
       <div className="flex items-center md:gap-2 gap-2 divide-x-2 divide-slate-300 dark:divide-slate-700/60">
