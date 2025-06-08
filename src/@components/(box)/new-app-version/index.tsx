@@ -15,7 +15,7 @@ export default function NewAppVersionBanner() {
             <motion.div
               initial={{ translateY: "2rem" }}
               animate={{ translateY: "0" }}
-              className="fixed bottom-8 right-8 z-40"
+              className="fixed bottom-8 right-8 z-30"
             >
               <ContentVersion />
             </motion.div>
