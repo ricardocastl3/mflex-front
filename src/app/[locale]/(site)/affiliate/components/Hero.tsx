@@ -22,8 +22,8 @@ export default function HeroServices() {
         </h1>
         <h4 className="text-white md:mt-2 t-2 text-lg">
           <CTranslateTo
-            eng="Earn money every day by being our affiliate 💸"
-            pt="Ganhe dinheiro todos os dias sendo nosso afiliado 💸"
+            eng="Earn money every day by being our affiliate, in different ways 💸"
+            pt="Ganhe dinheiro todos os dias sendo nosso afiliado, de diversas formas 💸"
           />
         </h4>
       </div>
