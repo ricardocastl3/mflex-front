@@ -2,9 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { Howl, Howler } from "howler";
 import { ReactIcons } from "@/utils/icons";
 
-const soundUrl = "/assets/ticket.mp3";
-
-export default function ASoundPlayer() {
+export default function ASoundPlayer({ url }: { url: string }) {
   const [volume, setVolume] = useState(50);
   const [isPlaying, setIsPlaying] = useState(false);
   const soundRef = useRef<Howl | null>(null);
@@ -12,18 +10,9 @@ export default function ASoundPlayer() {
   useEffect(() => {
     // Initialize Howl only once
     soundRef.current = new Howl({
-      src: [soundUrl],
+      src: [url],
       volume: 0.5,
       html5: true,
-      onload: () => {
-        console.log("Audio loaded successfully");
-      },
-      onloaderror: (id, error) => {
-        console.log("Error loading audio:", error);
-      },
-      onplayerror: (id, error) => {
-        console.log("Error playing audio:", error);
-      },
       onend: () => {
         setIsPlaying(false);
       },
@@ -49,7 +38,7 @@ export default function ASoundPlayer() {
 
   useEffect(() => {
     if (!soundRef.current) return;
-    Howler.volume(1)//volume / 100);
+    Howler.volume(1); //volume / 100);
   }, [volume]);
 
   return (

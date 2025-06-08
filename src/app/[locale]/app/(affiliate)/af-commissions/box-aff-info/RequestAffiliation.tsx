@@ -68,16 +68,18 @@ export default function RequestAffiliation() {
         {userLogged?.profile?.affiliate_request &&
           !userLogged?.profile?.affiliate_active && (
             <AuSoftUI.UI.Button
-              disabled
+              onClick={() =>
+                (window.location.href =
+                  "https://chat.whatsapp.com/LFuxjzNqpZ07EWa0RGgbr9")
+              }
               variant={"green"}
               size={"sm"}
               className="items-center"
             >
-              <ReactIcons.PiIcon.PiArrowUpFill size={14} />
-
+              <ReactIcons.PiIcon.PiWhatsappLogo size={14} />
               <CTranslateTo
-                eng="Checking Request..."
-                pt="Solicitação em análise..."
+                eng="Request affiliation analysis..."
+                pt="Pedir análise de afiliação..."
               />
             </AuSoftUI.UI.Button>
           )}

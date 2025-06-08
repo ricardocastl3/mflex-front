@@ -8,7 +8,7 @@ import ASoundPlayer from "@/@components/(system)/ASoundPlayer";
 export default function BecomeAffilate() {
   return (
     <div className="flex flex-col gap-8 md:px-16 px-5">
-      <ASoundPlayer />
+      <ASoundPlayer url="/snds/affiliate.mp3" />
       <div className="flex flex-col gap-2">
         <h1 className="text-[1.2rem] font-bold dark:text-white">
           <CTranslateTo
