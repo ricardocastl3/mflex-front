@@ -24,6 +24,9 @@ export default function ASoundPlayer() {
       onplayerror: (id, error) => {
         console.log("Error playing audio:", error);
       },
+      onend: () => {
+        setIsPlaying(false);
+      },
     });
 
     return () => {
@@ -46,7 +49,7 @@ export default function ASoundPlayer() {
 
   useEffect(() => {
     if (!soundRef.current) return;
-    Howler.volume(volume / 100);
+    Howler.volume(1)//volume / 100);
   }, [volume]);
 
   return (
@@ -59,7 +62,7 @@ export default function ASoundPlayer() {
           {!isPlaying && <ReactIcons.AiICon.AiFillPlayCircle size={25} />}
           {isPlaying && <ReactIcons.AiICon.AiFillPauseCircle size={25} />}
         </button>
-        <div>
+        <div className="hidden">
           <input
             type="range"
             className=""
