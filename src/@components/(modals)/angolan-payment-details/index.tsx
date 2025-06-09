@@ -54,6 +54,8 @@ export default function AngolanPaymentDetailsModal() {
           } else if (LocalStorageServices.getFootballAITeam()) {
             LocalStorageServices.redirectFootballAITeam();
             return;
+          } else if (LocalStorageServices.getAffiliateCode()) {
+            LocalStorageServices.resetAllKeys();
           } else {
             window.location.href = "/" + langByCookies;
             return;
