@@ -48,6 +48,7 @@ class LocalStorageServices {
     localStorage.removeItem(this.keys.rc_watchTv);
     localStorage.removeItem(this.keys.rc_watchMovie);
     localStorage.removeItem(this.keys.rc_football);
+    localStorage.removeItem(this.keys.aff_code);
   }
 
   setKey(key: string, data: any) {
