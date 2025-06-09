@@ -27,13 +27,10 @@ export default function CommissionsBox({
 }) {
   // Controls
   const [commissionType, setCommissionType] = useState("all");
-  const [transfers, setTransfers] = useState<ITransfer[]>(
-    affiliations.commissions
-  );
+  const [transfers, setTransfers] = useState<ITransfer[]>([]);
 
   useEffect(() => {
-    let commissions: ITransfer[] = affiliations.commissions;
-
+    let commissions: ITransfer[] = [];
     if (commissionType == "all") {
       commissions = affiliations.commissions;
     }
@@ -50,7 +47,7 @@ export default function CommissionsBox({
       );
     }
     setTransfers(commissions);
-  }, [commissionType]);
+  }, [commissionType, affiliations.commissions]);
 
   return (
     <BaseBox className={`w-full pb-5`}>
@@ -63,7 +60,7 @@ export default function CommissionsBox({
               : `(${affiliations.total})`
           }`}
         </h4>
-        {transfers.length > 0 && (
+        {affiliations.commissions.length > 0 && (
           <div className="md:w-[15vw] w-full">
             <AuSoftUI.UI.Select
               value={commissionType}
