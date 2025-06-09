@@ -25,7 +25,7 @@ export default function AffiliateInfoModal() {
             <h3 className="text-normal font-bold dark:text-white">
               <CTranslateTo
                 eng="My affiliate info"
-                pt="Meus dados de afiliados"
+                pt="Meus dados de afiliado"
               />
             </h3>
           </div>
