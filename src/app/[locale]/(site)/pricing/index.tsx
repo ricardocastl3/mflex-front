@@ -64,6 +64,12 @@ export default function PricingPage() {
   );
 
   useEffect(() => {
+    const bTag = searchParams.get("btag") || "";
+
+    if (bTag != "") {
+      LocalStorageServices.setAffiliateCode(bTag);
+    }
+
     const id = searchParams.get("sb") || "";
     if (id == "") return;
     fetchTV(id);

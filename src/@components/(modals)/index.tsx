@@ -26,6 +26,7 @@ import WatchNodAdsModal from "./watch-no-ads";
 import UsageSubsModal from "./usage-subs";
 import EventAffiliateMaterialModal from "./affiliate/event-affiliate-material";
 import EliteAffiliateMaterialModal from "./affiliate/elite-affiliate-material";
+import AffiliateInfoModal from "./affiliate/affiliate-info";
 
 export default function ModalOpenProvider() {
   const { openModal } = useModal();
@@ -99,6 +100,9 @@ export default function ModalOpenProvider() {
 
     case "elite-affiliate-material":
       return <EliteAffiliateMaterialModal />;
+
+    case "affiliate-info":
+      return <AffiliateInfoModal />;
 
     default:
       return <></>;

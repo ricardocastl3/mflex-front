@@ -38,6 +38,17 @@ export const affiliateServices: IAffiliateService[] = [
     type: "menu",
   },
   {
+    t_pt: "Meus Dados",
+    t_en: "My Affiliate Info",
+    d_pt: "Minhas informações de afiliado",
+    d_en: "My affiliate infonrmations",
+    iconColor: "text-blue-500 hover:text-blue-600",
+    Icon: ReactIcons.MdIcon.MdVerifiedUser,
+    action: "modal-affiliate-info",
+    affiliateRequire: true,
+    type: "menu",
+  },
+  {
     t_pt: "Afiliado de Eventos",
     t_en: "Affiliate For Events",
     d_pt: "Saiba como o nosso programa de afiliados funciona",

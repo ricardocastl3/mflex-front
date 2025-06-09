@@ -66,6 +66,7 @@ export default function PayPayPayment() {
           angolan_method: "paypay",
           payment_method: "angolan",
           d: socketEvent?.metadata,
+          btag: LocalStorageServices.getAffiliateCode() || undefined,
         }
       );
 

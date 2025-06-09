@@ -9,6 +9,7 @@ import { useModal } from "@/providers/app/ModalProvider";
 import CurrencyServices from "@/services/CurrencyServices";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
+import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 export default function ReferencePayment() {
   // Contexts
@@ -51,6 +52,7 @@ export default function ReferencePayment() {
           price: details?.price,
           angolan_method: "reference",
           payment_method: "angolan",
+          btag: LocalStorageServices.getAffiliateCode() || undefined,
         }
       );
       setAngolanDetail({

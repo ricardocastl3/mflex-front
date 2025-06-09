@@ -7,6 +7,7 @@ class LocalStorageServices {
     rc_watchTv: "rc-watch-tv",
     rc_watchMovie: "rc-watch-movie",
     rc_football: "gm_rc",
+    aff_code: "btag",
     watch_token: "wtn",
   };
 
@@ -95,8 +96,17 @@ class LocalStorageServices {
     return res?.split("_")[1] || false;
   }
 
+  getAffiliateCode() {
+    const res = localStorage.getItem(this.keys.aff_code);
+    return res;
+  }
+
   setWatchID(id: string) {
     localStorage.setItem(this.keys.rc_watchTv, `wtv_${id}`);
+  }
+
+  setAffiliateCode(id: string) {
+    localStorage.setItem(this.keys.aff_code, `${id}`);
   }
 
   setFootballAITeam(team: string) {

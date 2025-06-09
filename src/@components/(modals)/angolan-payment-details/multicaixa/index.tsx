@@ -65,6 +65,7 @@ export default function MulticaixaPayment() {
           angolan_method: "multicaixa",
           payment_method: "angolan",
           phone_number: phoneNumber,
+          btag: LocalStorageServices.getAffiliateCode() || undefined,
           d: socketEvent?.metadata,
         }
       );

@@ -37,6 +37,7 @@ type modalType =
   | "watch-tv"
   | "event-affiliate-material"
   | "elite-affiliate-material"
+  | "affiliate-info"
   | "";
 
 interface IOnboardingType {
