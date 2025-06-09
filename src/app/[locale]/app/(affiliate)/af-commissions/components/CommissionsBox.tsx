@@ -3,6 +3,7 @@ import { BaseBox } from "@/@components/(box)/BaseBox";
 import { ISearchDataField } from "@/@components/(system)/ASearch/SearchDataField";
 import { useEffect, useState } from "react";
 import { IAffiliateCommissionsResponseAPI } from "@/http/interfaces/models/transactions/ITransactionsAPI";
+import { ITransfer } from "@/http/interfaces/models/ITransfer";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import RowCommissions from "./row-list";
@@ -25,31 +26,36 @@ export default function CommissionsBox({
   affiliations: IAffiliateCommissionsResponseAPI;
 }) {
   // Controls
-  const [searchName, setSearchName] = useState("");
-  const [canSearch, setCanSearch] = useState(false);
+  const [commissionType, setCommissionType] = useState("all");
+  const [transfers, setTransfers] = useState<ITransfer[]>(
+    affiliations.commissions
+  );
 
-  // Debounced search effect
   useEffect(() => {
-    if (!canSearch) return;
+    let commissions: ITransfer[] = affiliations.commissions;
 
-    const handler = setTimeout(() => {
-      if (searchName === "") {
-        fetchAll();
-      } else {
-        handleSearchName({ name: searchName });
-      }
-      setCanSearch(false);
-    }, 200);
+    if (commissionType == "all") {
+      commissions = affiliations.commissions;
+    }
 
-    return () => clearTimeout(handler);
-  }, [searchName, canSearch]);
+    if (commissionType == "subs") {
+      commissions = affiliations.commissions.filter(
+        (i) => i.payment.event_name == "Comissão de subscrição"
+      );
+    }
 
-  const transfers = affiliations.commissions;
+    if (commissionType == "events") {
+      commissions = affiliations.commissions.filter(
+        (i) => i.payment.event_name != "Comissão de subscrição"
+      );
+    }
+    setTransfers(commissions);
+  }, [commissionType]);
 
   return (
     <BaseBox className={`w-full pb-5`}>
-      <div className="flex md:items-center items-start md:flex-row flex-col gap-4 py-1 mb-4 px-4 justify-between border-b border-slate-200 dark:border-slate-800">
-        <h4 className="md:text-lg text-base font-bold dark:text-white md:px-2 px-1 md:py-2 py-3">
+      <div className="flex md:items-center items-start md:flex-row flex-col gap-2 py-1 mb-4 px-4 justify-between border-b border-slate-200 dark:border-slate-800">
+        <h4 className="md:text-lg text-base font-bold dark:text-white md:px-2 px-1 md:py-3 py-3">
           <CTranslateTo eng="Register" pt="Registos" />{" "}
           {` ${
             affiliations.has
@@ -57,6 +63,28 @@ export default function CommissionsBox({
               : `(${affiliations.total})`
           }`}
         </h4>
+        {transfers.length > 0 && (
+          <div className="md:w-[15vw] w-full">
+            <AuSoftUI.UI.Select
+              value={commissionType}
+              onChange={(e) => {
+                setCommissionType(e.target.value);
+              }}
+              className="w-full text-sm"
+              weight={"sm"}
+            >
+              <option value={"all"} className="dark:bg-ausoft-slate-900">
+                <CTranslateTo eng="All Commissions" pt="Todas comissões" />
+              </option>
+              <option value={"events"} className="dark:bg-ausoft-slate-900">
+                <CTranslateTo eng="Events" pt="Eventos" />
+              </option>
+              <option value={"subs"} className="dark:bg-ausoft-slate-900">
+                <CTranslateTo eng="Subscriptions" pt="Assinaturas" />
+              </option>
+            </AuSoftUI.UI.Select>
+          </div>
+        )}
       </div>
 
       <AuSoftUI.Component.LoadingList
