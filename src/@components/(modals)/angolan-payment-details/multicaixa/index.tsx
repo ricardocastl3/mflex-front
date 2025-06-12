@@ -52,23 +52,25 @@ export default function MulticaixaPayment() {
   async function handleBuy() {
     try {
       setIsLoading(true);
-      const resp = await internalApi.post(
-        `/payments/checkout/${
-          itemPriceIdCheckoutSelected &&
-          itemPriceIdCheckoutSelected.type == "subs"
-            ? "subs"
-            : "tickets"
-        }`,
-        {
-          quantity: details.quantity,
-          price: details.price,
-          angolan_method: "multicaixa",
-          payment_method: "angolan",
-          phone_number: phoneNumber,
-          btag: LocalStorageServices.getAffiliateCode() || undefined,
-          d: socketEvent?.metadata,
-        }
-      );
+
+      const url =
+        itemPriceIdCheckoutSelected &&
+        (itemPriceIdCheckoutSelected.type == "subs"
+          ? "subs"
+          : itemPriceIdCheckoutSelected.type == "donations"
+          ? "donations"
+          : "tickets");
+
+      const resp = await internalApi.post(`/payments/checkout/${url}`, {
+        quantity: details.quantity,
+        price: details.price,
+        angolan_method: "multicaixa",
+        payment_method: "angolan",
+        phone_number: phoneNumber,
+        amount: itemPriceIdCheckoutSelected?.amount || undefined,
+        btag: LocalStorageServices.getAffiliateCode() || undefined,
+        d: socketEvent?.metadata,
+      });
 
       setAlreadySent(resp.data.d);
       setIsLoading(false);

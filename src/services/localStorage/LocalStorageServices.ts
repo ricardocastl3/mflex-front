@@ -7,6 +7,7 @@ class LocalStorageServices {
     rc_watchTv: "rc-watch-tv",
     rc_watchMovie: "rc-watch-movie",
     rc_football: "gm_rc",
+    rc_music: "rc-music",
     aff_code: "btag",
     watch_token: "wtn",
   };
@@ -30,6 +31,11 @@ class LocalStorageServices {
 
       if (this.getFootballAITeam()) {
         this.redirectFootballAITeam();
+        return;
+      }
+
+      if (this.getMusicSlug()) {
+        this.redirectForMusic();
         return;
       }
 
@@ -82,8 +88,19 @@ class LocalStorageServices {
     window.location.href = `/${langByCookies}/pricing?sb=${id}`;
   }
 
+  redirectForMusic() {
+    const slug = this.getMusicSlug();
+    this.delKey(this.keys.rc_music);
+    window.location.href = `/${langByCookies}/musics/${slug}`;
+  }
+
   getWatchID() {
     const res = localStorage.getItem(this.keys.rc_watchTv);
+    return res?.split("_")[1] || false;
+  }
+
+  getMusicSlug() {
+    const res = localStorage.getItem(this.keys.rc_music);
     return res?.split("_")[1] || false;
   }
 
@@ -104,6 +121,10 @@ class LocalStorageServices {
 
   setWatchID(id: string) {
     localStorage.setItem(this.keys.rc_watchTv, `wtv_${id}`);
+  }
+
+  setMusicSlug(id: string) {
+    localStorage.setItem(this.keys.rc_music, `msc_${id}`);
   }
 
   setAffiliateCode(id: string) {

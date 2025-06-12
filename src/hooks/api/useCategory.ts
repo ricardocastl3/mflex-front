@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 export default function useCategory({
   view,
 }: {
-  view: "events" | "news" | "podflex";
+  view: "events" | "news" | "podflex"|"musics";
 }) {
   const [isLoadingCategory, setIsLoadingCategory] = useState(true);
   const [allCategory, setAllCategory] = useState<ICategory[]>([]);

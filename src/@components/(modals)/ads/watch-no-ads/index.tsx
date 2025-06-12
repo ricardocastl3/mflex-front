@@ -5,7 +5,7 @@ import { langByCookies } from "@/http/axios/api";
 import { useFlexTVProvider } from "@/providers/features/FlexTVProvider";
 
 import React from "react";
-import BaseModal from "../base";
+import BaseModal from "../../base";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 

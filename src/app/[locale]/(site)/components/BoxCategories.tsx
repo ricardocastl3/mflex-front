@@ -9,7 +9,7 @@ export default function BoxCategories({
   callback,
   view,
 }: {
-  view: "events" | "news" | "podflex";
+  view: "events" | "news" | "podflex" | "musics";
   callback: (e: string) => void;
 }) {
   const { allCategory, isLoadingCategory } = useCategory({ view });

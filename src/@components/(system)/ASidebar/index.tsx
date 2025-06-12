@@ -124,6 +124,14 @@ export default function ASidebar() {
             />
             <LinkButton
               isExpanded={showText}
+              Icon={ReactIcons.FaIcon.FaDonate}
+              href="donations"
+              isSelected={currentAppPageUrl == "donations"}
+              title_en="My Donations"
+              title_pt="Minhas Doações"
+            />
+            <LinkButton
+              isExpanded={showText}
               Icon={ReactIcons.AiICon.AiFillTool}
               href="settings"
               isSelected={currentAppPageUrl == "settings"}
@@ -155,6 +163,15 @@ export default function ASidebar() {
               isSelected={currentAppPageUrl == "organizer"}
               title_en="Organizer Dashboard"
               title_pt="Painel do organizador"
+            />
+
+            <LinkButton
+              isExpanded={showText}
+              Icon={ReactIcons.FaIcon.FaMusic}
+              href="artist"
+              isSelected={currentAppPageUrl == "artist"}
+              title_en="Artist Dashboard"
+              title_pt="Painel do artista"
             />
           </div>
         </div>

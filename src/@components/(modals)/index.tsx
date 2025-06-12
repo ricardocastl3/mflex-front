@@ -22,11 +22,17 @@ import ViewFootballEventModal from "./football/view-event";
 import ViewFootballTeamModal from "./football/view-team";
 import OpenInYourBrowserModal from "./open-in-your-browser/OpenInYourBrowserModal";
 import WatchTVModal from "./watch-tv";
-import WatchNodAdsModal from "./watch-no-ads";
+import WatchNodAdsModal from "./ads/watch-no-ads";
 import UsageSubsModal from "./usage-subs";
 import EventAffiliateMaterialModal from "./affiliate/event-affiliate-material";
 import EliteAffiliateMaterialModal from "./affiliate/elite-affiliate-material";
 import AffiliateInfoModal from "./affiliate/affiliate-info";
+import ArtistInfoModal from "./artist/art-info";
+import ArtistAddMusicModal from "./artist/art-add-music";
+import ArtistViewPolicyModal from "./artist/art-view-policy";
+import ArtistSuccessMaterialModal from "./artist/art-success-material";
+import CropImageModal from "./cropper-image/easy/crop";
+import AdsListenMusicModal from "./ads/ads-listen-music";
 
 export default function ModalOpenProvider() {
   const { openModal } = useModal();
@@ -103,6 +109,24 @@ export default function ModalOpenProvider() {
 
     case "affiliate-info":
       return <AffiliateInfoModal />;
+
+    case "artist-info":
+      return <ArtistInfoModal />;
+
+    case "art-add-music":
+      return <ArtistAddMusicModal />;
+
+    case "art-success-material":
+      return <ArtistSuccessMaterialModal />;
+
+    case "art-view-policy":
+      return <ArtistViewPolicyModal />;
+
+    case "cropper-image":
+      return <CropImageModal />;
+
+    case "ads-listen-music":
+      return <AdsListenMusicModal />;
 
     default:
       return <></>;

@@ -23,6 +23,8 @@ import useAOS from "@/hooks/app/useAOS";
 import FacebookPixel from "@/services/meta/FacebookPixel";
 import FootballProvider from "@/providers/features/FootballProvider";
 import FlexTVProvider from "@/providers/features/FlexTVProvider";
+import MusicProvider from "@/providers/features/MusicProvider";
+import ArtistProvider from "@/providers/features/ArtistProvider";
 
 const anek = Abel({ weight: "400", subsets: ["latin"] });
 
@@ -53,11 +55,15 @@ export default function RootLayout({
                           <CategoryProvider>
                             <FlexTVProvider>
                               <EventProvider>
-                                <EventTicketProvider>
-                                  <FootballProvider>
-                                    {children}
-                                  </FootballProvider>
-                                </EventTicketProvider>
+                                <MusicProvider>
+                                  <ArtistProvider>
+                                    <EventTicketProvider>
+                                      <FootballProvider>
+                                        {children}
+                                      </FootballProvider>
+                                    </EventTicketProvider>
+                                  </ArtistProvider>
+                                </MusicProvider>
                               </EventProvider>
                             </FlexTVProvider>
                           </CategoryProvider>

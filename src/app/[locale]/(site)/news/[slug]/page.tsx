@@ -29,7 +29,7 @@ export async function generateMetadata({
     const findNews = resp.data.news;
 
     return {
-      title: findNews.title + "📰 | Marca Flex",
+      title: findNews.title + " 📰 | Marca Flex",
       description: findNews.content,
       openGraph: {
         images: [

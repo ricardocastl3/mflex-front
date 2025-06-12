@@ -34,10 +34,16 @@ type modalType =
   | "angolan-details"
   | "open-in-your-browser"
   | "watch-no-ads"
+  | "cropper-image"
   | "watch-tv"
+  | "ads-listen-music"
   | "event-affiliate-material"
   | "elite-affiliate-material"
   | "affiliate-info"
+  | "artist-info"
+  | "art-add-music"
+  | "art-view-policy"
+  | "art-success-material"
   | "";
 
 interface IOnboardingType {

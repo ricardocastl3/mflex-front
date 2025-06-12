@@ -53,22 +53,23 @@ export default function PayPayPayment() {
 
   const handleGetRef = useCallback(async () => {
     try {
-      const resp = await internalApi.post(
-        `/payments/checkout/${
-          itemPriceIdCheckoutSelected &&
-          itemPriceIdCheckoutSelected.type == "subs"
-            ? "subs"
-            : "tickets"
-        }`,
-        {
-          price: details?.price,
-          quantity: details?.quantity,
-          angolan_method: "paypay",
-          payment_method: "angolan",
-          d: socketEvent?.metadata,
-          btag: LocalStorageServices.getAffiliateCode() || undefined,
-        }
-      );
+      const url =
+        itemPriceIdCheckoutSelected &&
+        (itemPriceIdCheckoutSelected.type == "subs"
+          ? "subs"
+          : itemPriceIdCheckoutSelected.type == "donations"
+          ? "donations"
+          : "tickets");
+
+      const resp = await internalApi.post(`/payments/checkout/${url}`, {
+        price: details?.price,
+        quantity: details?.quantity,
+        angolan_method: "paypay",
+        payment_method: "angolan",
+        amount: itemPriceIdCheckoutSelected?.amount || undefined,
+        d: socketEvent?.metadata,
+        btag: LocalStorageServices.getAffiliateCode() || undefined,
+      });
 
       setAlreadySentRequest(resp.data.d);
       setAngolanDetail({ link: resp.data.link });

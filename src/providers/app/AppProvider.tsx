@@ -20,6 +20,12 @@ export interface IAppSystem {
   openNewVersion: boolean;
 }
 
+export interface ICroppImage {
+  selected?: string;
+  extracted?: string;
+  modal?: "artist-profile" | "";
+}
+
 interface IAppContext {
   isDarkMode: boolean;
   isNotifyGranted: boolean;
@@ -36,6 +42,9 @@ interface IAppContext {
   serverStats: IServerStats | undefined;
   affiliateConfigs: IAffiliateConfigs | undefined;
   appSystemModals: IAppSystem;
+  croppedImageSelected: ICroppImage | undefined;
+
+  handleSelectedCroppImage: (image: ICroppImage) => void;
 
   handleAppSystemModal: (system: IAppSystem) => void;
   handleAffiliateConfigs: (config: IAffiliateConfigs | undefined) => void;
@@ -83,6 +92,9 @@ export default function AppProvider({
     openNewVersion: false,
   });
 
+  const [croppedImageSelected, setCroppedImageSelected] =
+    useState<ICroppImage>();
+
   // Contexts
   const segmentedLayout = useSelectedLayoutSegment();
   const [segmentedLayoutByLocalStorage, setSegmentedLayoutByLocalStorage] =
@@ -95,6 +107,10 @@ export default function AppProvider({
   function handleAddToastOnArray({ ...toast }: IToast) {
     const id = Math.round(Math.PI * new Date().getTime());
     setOpenToast((state) => [...state, { ...toast, id: id }]);
+  }
+
+  function handleSelectedCroppImage(image: ICroppImage) {
+    setCroppedImageSelected((state) => ({ ...state, ...image }));
   }
 
   function handleCloseLeagueBox() {
@@ -136,7 +152,10 @@ export default function AppProvider({
     setCurrentPageByUrl(pathBase);
     setCurrentAppPageUrl(path.split("/")[3]);
 
-    if (pathBase == "podflex" && path.split("/").length == 4) {
+    if (
+      (pathBase == "podflex" || pathBase == "musics") &&
+      path.split("/").length == 4
+    ) {
       setHiddenMobileHeader(true);
     } else {
       setHiddenMobileHeader(false);
@@ -182,7 +201,9 @@ export default function AppProvider({
         handleAffiliateConfigs,
         handleServerStats,
         handleAppSystemModal,
+        handleSelectedCroppImage,
 
+        croppedImageSelected,
         appSystemModals,
         affiliateConfigs,
         serverStats,

@@ -8,7 +8,7 @@ import ContentCategory from "./CContentCategory";
 export default function SelectCategoryDropdown({
   view,
 }: {
-  view: "events" | "news" | "podflex";
+  view: "events" | "news" | "podflex" | "musics";
 }) {
   const { currentLang } = useTranslate();
   const { selectedCategory } = useCategoryProvider();

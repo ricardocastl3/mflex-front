@@ -6,7 +6,7 @@ import { internalApi, langByCookies } from "@/http/axios/api";
 import { IPodcast } from "@/http/interfaces/models/IPodCast";
 
 import HeroPodFlex from "../components/Hero";
-import PodSkeleton from "./PodSkeleton";
+import PodSkeleton from "./components/PodSkeleton";
 import usePodcasts from "@/hooks/api/usePodCasts";
 import PodContent from "./components/PodContent";
 import PodRelated from "./components/PodRelated";

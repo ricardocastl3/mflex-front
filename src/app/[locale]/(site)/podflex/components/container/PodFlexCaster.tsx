@@ -37,7 +37,7 @@ export default function PodFlexCaster({
                   </h2>
                 )}
                 {sr == "facebook" && (
-                  <h2 className="text-[0.7rem] flex items-center gap-1 dark:text-white w-fit font-bold text-white px-2 py-0.5 rounded-full bg-blue-200 dark:bg-blue-900/30">
+                  <h2 className="text-[0.7rem] flex items-center gap-1 dark:text-white w-fit font-bold text-blue-800 px-2 py-0.5 rounded-full bg-blue-200 dark:bg-blue-900/30">
                     <ReactIcons.MdIcon.MdFacebook size={17} />
                     Facebook
                   </h2>

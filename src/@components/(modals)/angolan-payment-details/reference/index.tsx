@@ -40,21 +40,22 @@ export default function ReferencePayment() {
 
   const handleGetRef = useCallback(async () => {
     try {
-      const resp = await internalApi.post(
-        `/payments/checkout/${
-          itemPriceIdCheckoutSelected &&
-          itemPriceIdCheckoutSelected.type == "subs"
-            ? "subs"
-            : "tickets"
-        }`,
-        {
-          quantity: details?.quantity,
-          price: details?.price,
-          angolan_method: "reference",
-          payment_method: "angolan",
-          btag: LocalStorageServices.getAffiliateCode() || undefined,
-        }
-      );
+      const url =
+        itemPriceIdCheckoutSelected &&
+        (itemPriceIdCheckoutSelected.type == "subs"
+          ? "subs"
+          : itemPriceIdCheckoutSelected.type == "donations"
+          ? "donations"
+          : "tickets");
+
+      const resp = await internalApi.post(`/payments/checkout/${url}`, {
+        quantity: details?.quantity,
+        price: details?.price,
+        angolan_method: "reference",
+        payment_method: "angolan",
+        amount: itemPriceIdCheckoutSelected?.amount || undefined,
+        btag: LocalStorageServices.getAffiliateCode() || undefined,
+      });
       setAngolanDetail({
         entity: resp.data.entity,
         reference: resp.data.reference,

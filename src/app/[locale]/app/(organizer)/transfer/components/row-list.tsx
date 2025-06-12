@@ -34,6 +34,7 @@ export default function RowOrganizerTranfers({
       return CAxiosErrorToastify({ err, openToast: handleAddToastOnArray });
     }
   }
+  
   const transfers = transfersAPI.transfers;
 
   return (

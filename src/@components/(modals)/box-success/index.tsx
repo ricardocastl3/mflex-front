@@ -5,6 +5,7 @@ import { localImages } from "@/utils/images";
 import { useAuth } from "@/providers/auth/AuthProvider";
 import { useTicketProvider } from "@/providers/features/TicketProvider";
 import { useEventProvider } from "@/providers/features/EventProvider";
+import { useMusicProvider } from "@/providers/features/MusicProvider";
 
 import React from "react";
 import BaseModal from "../base";
@@ -17,6 +18,7 @@ export default function BoxSuccessModal() {
   const { userLogged } = useAuth();
   const { selectedTicket, handleFetchTicket } = useTicketProvider();
   const { handleFetchEvent, selectedEvent } = useEventProvider();
+  const { selectedMusic, handleFetchMusic } = useMusicProvider();
 
   function handleCloseBox() {
     handleOpenModal("");
@@ -27,6 +29,10 @@ export default function BoxSuccessModal() {
 
     if (selectedEvent) {
       handleFetchEvent(false);
+    }
+
+    if (selectedMusic) {
+      handleFetchMusic(false);
     }
   }
 

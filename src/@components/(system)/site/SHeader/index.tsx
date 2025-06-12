@@ -53,7 +53,7 @@ export default function SHeader() {
       <div className="flex items-center gap-4">
         <Link
           href={`/${segmentedLayout}`}
-          onClick={()=>LocalStorageServices.resetAllKeys()}
+          onClick={() => LocalStorageServices.resetAllKeys()}
           className="flex items-center font-bold gap-1.5 md:text-xl text-md text-yellow-500 dark:text-yellow-500"
         >
           <AAuSoftLogo size={70} />
@@ -75,6 +75,7 @@ export default function SHeader() {
             title_en="Events"
             title_pt="Eventos"
           />
+
           <LinkHeader
             isSelected={currentPageByUrl == "podflex"}
             isScrolled={isScrolled}
@@ -82,6 +83,15 @@ export default function SHeader() {
             action="podflex"
             title_en="PodCasts"
             title_pt="PodCasts"
+          />
+
+          <LinkHeader
+            isSelected={currentPageByUrl == "musics"}
+            isScrolled={isScrolled}
+            Icon={ReactIcons.FaIcon.FaMusic}
+            action="musics"
+            title_en="Musics"
+            title_pt="Músicas"
           />
 
           <FlexTvDropdown isScrolled={isScrolled} />

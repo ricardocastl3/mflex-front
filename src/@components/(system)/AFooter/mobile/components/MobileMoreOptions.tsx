@@ -3,7 +3,6 @@ import { BaseBox } from "@/@components/(box)/BaseBox";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { useModal } from "@/providers/app/ModalProvider";
 import { ReactIcons } from "@/utils/icons";
-import { useAuth } from "@/providers/auth/AuthProvider";
 
 import BaseModal from "@/@components/(modals)/base";
 import LinkButton from "@/@components/(system)/ASidebar/components/LinkButton";
@@ -13,7 +12,6 @@ export default function MobileMoreOptions() {
   //Contexts
   const { handleOpenModal } = useModal();
   const { currentAppPageUrl } = useAppProvider();
-  const { userLogged } = useAuth();
 
   return (
     <BaseModal callbackClose={() => handleOpenModal("")}>
@@ -34,7 +32,20 @@ export default function MobileMoreOptions() {
           className="flex flex-col gap-3 px-4 py-5 h-[35vh] overflow-y-auto"
         >
           <h4 className="text-normal text-slate-500 dark:text-slate-300">
-            <CTranslateTo eng="Events" pt="Eventos" />
+            <CTranslateTo eng="Navigation" pt="Navegação" />
+          </h4>
+          <div className="flex flex-col gap-2">
+            <LinkButton
+              isExpanded={true}
+              Icon={ReactIcons.FaIcon.FaDonate}
+              href="donations"
+              isSelected={currentAppPageUrl == "donations"}
+              title_en="My Donations"
+              title_pt="Minhas doações"
+            />
+          </div>
+          <h4 className="text-normal text-slate-500 dark:text-slate-300">
+            <CTranslateTo eng="Panels" pt="Paineis" />
           </h4>
           <div className="flex flex-col gap-2">
             <LinkButton
@@ -52,6 +63,14 @@ export default function MobileMoreOptions() {
               isSelected={currentAppPageUrl == "organizer"}
               title_en="Organizer Dashboard"
               title_pt="Painel do organizador"
+            />
+            <LinkButton
+              isExpanded={true}
+              Icon={ReactIcons.FaIcon.FaMusic}
+              href="organizer"
+              isSelected={currentAppPageUrl == "organizer"}
+              title_en="Artists Dashboard"
+              title_pt="Painel do Artista"
             />
           </div>
         </div>
