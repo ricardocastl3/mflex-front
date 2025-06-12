@@ -27,7 +27,7 @@ export default function MusicPlayer({ music }: { music: IMusic }) {
           width={window.innerWidth > 765 ? 600 : 200}
           autostart={isPlayingMusic ? true : false}
           cover
-          speed={0.15}
+          speed={0.2}
         />
         <div className="flex flex-col gap-8 absolute justify-center items-center">
           <ASoundPlayer url={music.url} size="40" />

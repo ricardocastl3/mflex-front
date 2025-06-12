@@ -1,4 +1,4 @@
-import { IPayment } from "@/http/interfaces/models/IPayment";
+import { IMusicDonation } from "@/http/interfaces/models/artists/IMusicDonation";
 
 import React from "react";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
@@ -13,7 +13,7 @@ export default function ListTransactions({
   isLoadingMore,
 }: {
   isLoadingMore: boolean;
-  transactions: IPayment[];
+  transactions: IMusicDonation[];
 }) {
   return (
     <div className="md:flex hidden w-full flex-col">
@@ -56,11 +56,7 @@ export default function ListTransactions({
               </h3>
 
               <div className="pr-16">
-                <CardMethod
-                  method={transaction.payment_method}
-                  status={transaction.status}
-                  transaction={transaction}
-                />
+                <CardMethod method={transaction.payment_method} />
               </div>
 
               <h4 className="dark:text-green-400 w-fit rounded-full text-green-700 text-sm text-start px-2 py-0.5 bg-green-100 dark:bg-green-800/40">

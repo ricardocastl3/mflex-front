@@ -6,6 +6,7 @@ import { useAuth } from "@/providers/auth/AuthProvider";
 import { useTicketProvider } from "@/providers/features/TicketProvider";
 import { useEventProvider } from "@/providers/features/EventProvider";
 import { useMusicProvider } from "@/providers/features/MusicProvider";
+import { useCategoryProvider } from "@/providers/features/CategoryProvider";
 
 import React from "react";
 import BaseModal from "../base";
@@ -19,6 +20,7 @@ export default function BoxSuccessModal() {
   const { selectedTicket, handleFetchTicket } = useTicketProvider();
   const { handleFetchEvent, selectedEvent } = useEventProvider();
   const { selectedMusic, handleFetchMusic } = useMusicProvider();
+  const { selectedCategory, handleSelectCategory } = useCategoryProvider();
 
   function handleCloseBox() {
     handleOpenModal("");
@@ -33,6 +35,10 @@ export default function BoxSuccessModal() {
 
     if (selectedMusic) {
       handleFetchMusic(false);
+    }
+
+    if (selectedCategory) {
+      handleSelectCategory(undefined);
     }
   }
 

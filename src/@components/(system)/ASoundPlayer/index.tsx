@@ -83,7 +83,6 @@ export default function ASoundPlayer({
         // For general
         soundRef.current.pause();
       }
-
       if (hoverInButtonPlay && isPlayingMusic) soundRef.current.play();
     }
   }, [isPlaying, isPlayingMusic]);
@@ -91,6 +90,10 @@ export default function ASoundPlayer({
   useEffect(() => {
     if (!soundRef.current) return;
     Howler.volume(1); //volume / 100);
+
+    return () => {
+      handleIsPlayingMusic(false);
+    };
   }, [volume]);
 
   useEffect(() => {
@@ -100,7 +103,7 @@ export default function ASoundPlayer({
         if (typeof currentTime === "number") {
           seekPlayerSeconds(Math.floor(currentTime));
         }
-      }, 100); // Update every 100ms for smoother progress
+      }, 1000); // Update every 100ms for smoother progress
 
       return () => clearInterval(interval);
     }

@@ -1,20 +1,10 @@
-import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import { IPayment } from "@/http/interfaces/models/IPayment";
 import { useModal } from "@/providers/app/ModalProvider";
 import { useTransactionProvider } from "@/providers/features/TransactionProvider";
 import { ReactIcons } from "@/utils/icons";
 
-export default function CardMethod({
-  method,
-  status,
-  transaction,
-}: {
-  method: string;
-  status?: string;
-  transaction?: IPayment;
-}) {
-  const { handleSelectTransaction } = useTransactionProvider();
-  const { handleOpenModal } = useModal();
+import CTranslateTo from "@/@components/(translation)/CTranslateTo";
+
+export default function CardMethod({ method }: { method: string }) {
   return (
     <>
       {method == "multicaixa" && (

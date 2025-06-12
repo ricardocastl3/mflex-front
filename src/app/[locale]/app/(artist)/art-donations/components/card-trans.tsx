@@ -1,5 +1,6 @@
 import { ReactIcons } from "@/utils/icons";
 import { IPayment } from "@/http/interfaces/models/IPayment";
+import { IMusicDonation } from "@/http/interfaces/models/artists/IMusicDonation";
 
 import React from "react";
 import DateServices from "@/services/DateServices";
@@ -13,7 +14,7 @@ export default function CardTransaction({
   isLoadingMore,
 }: {
   isLoadingMore: boolean;
-  transactions: IPayment[];
+  transactions: IMusicDonation[];
 }) {
   return (
     <>
@@ -36,11 +37,7 @@ export default function CardTransaction({
 
             <div className="flex items-center gap-4">
               <CardStatus status={transaction.status!} />
-              <CardMethod
-                method={transaction.payment_method}
-                status={transaction.status}
-                transaction={transaction}
-              />
+              <CardMethod method={transaction.payment_method} />
             </div>
 
             <div className="flex items-center gap-5 pb-2 mt-2">

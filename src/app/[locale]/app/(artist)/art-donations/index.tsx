@@ -1,41 +1,43 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { IPayment } from "@/http/interfaces/models/IPayment";
 import { useTransactionProvider } from "@/providers/features/TransactionProvider";
 import { ReactIcons } from "@/utils/icons";
+import { IMusicDonation } from "@/http/interfaces/models/artists/IMusicDonation";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import useOrganizerSales from "@/hooks/api/panels/organizer/useOrganizerSales";
 import TransactionDashboard from "./box/TransactionDashboard";
 import TransactionList from "./box/TransactionList";
 import PageBase from "../../@components/PageBase";
 import ContainerBase from "../../@components/ContainerBase";
+import useDonations from "@/hooks/api/musics/useDonations";
 
 export default function MusicDonationPage() {
   const {
-    allTransactions,
-    isLoadingAllTransactions,
+    allDonations,
+    isLoadingAllDonations,
     handleLoadMore,
-    fetchAllTransactions,
-    isLoadingMoreTransactions,
+    fetchAllDonations,
+    isLoadingMoreDonationsTrans,
     handleSeachByName,
-  } = useOrganizerSales();
+  } = useDonations({ route: "artist" });
   const { fetchTransaction } = useTransactionProvider();
 
   // Controls
   const [isLoadingBase, setIsLoadingBase] = useState(true);
-  const [allBaseTransaction, setAllBaseTransaction] = useState<IPayment[]>([]);
+  const [allBaseTransaction, setAllBaseTransaction] = useState<
+    IMusicDonation[]
+  >([]);
 
   useEffect(() => {
-    if (!isLoadingAllTransactions) {
-      setAllBaseTransaction(allTransactions.transactions);
+    if (!isLoadingAllDonations) {
+      setAllBaseTransaction(allDonations.donations);
       setIsLoadingBase(false);
     }
-  }, [isLoadingAllTransactions, allTransactions]);
+  }, [isLoadingAllDonations, allDonations]);
 
   useEffect(() => {
-    if (fetchTransaction) fetchAllTransactions();
+    if (fetchTransaction) fetchAllDonations();
   }, [fetchTransaction]);
 
   return (
@@ -50,18 +52,18 @@ export default function MusicDonationPage() {
       <ContainerBase>
         <div className="pb-8 gap-4 flex flex-col">
           <TransactionDashboard
-            isLoading={isLoadingBase && isLoadingAllTransactions}
-            apiTransactions={allTransactions}
+            isLoading={isLoadingBase && isLoadingAllDonations}
+            apiTransactions={allDonations}
           />
 
           <TransactionList
             fetchMore={handleLoadMore}
-            apiTransactions={allTransactions}
-            isLoadingMore={isLoadingMoreTransactions}
-            transactions={allBaseTransaction}
-            fetchAll={fetchAllTransactions}
+            apiTransactions={allDonations}
+            isLoadingMore={isLoadingMoreDonationsTrans}
+            donations={allBaseTransaction}
+            fetchAll={fetchAllDonations}
             handleSearchName={handleSeachByName}
-            isLoading={isLoadingAllTransactions}
+            isLoading={isLoadingAllDonations}
           />
         </div>
       </ContainerBase>

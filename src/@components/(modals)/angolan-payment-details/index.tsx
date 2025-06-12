@@ -42,9 +42,17 @@ export default function AngolanPaymentDetailsModal() {
     if (isPurchased) {
       if (
         itemPriceIdCheckoutSelected &&
+        itemPriceIdCheckoutSelected.type == "donations"
+      ) {
+        handleOpenModal("art-gracefull-donate");
+        return;
+      }
+
+      if (
+        itemPriceIdCheckoutSelected &&
         itemPriceIdCheckoutSelected.type == "subs"
       ) {
-        if (selectedAngolanMethod != "reference")
+        if (selectedAngolanMethod != "reference") {
           if (LocalStorageServices.getWatchID()) {
             LocalStorageServices.redirectWatchTv();
             return;
@@ -60,6 +68,8 @@ export default function AngolanPaymentDetailsModal() {
             window.location.href = "/" + langByCookies;
             return;
           }
+        }
+
         handleOpenModal("");
       } else {
         window.location.href = "/" + langByCookies + "/app/tickets";

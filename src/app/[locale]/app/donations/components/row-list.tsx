@@ -45,7 +45,7 @@ export default function RowDonationsTranfers({
                 <div className="flex flex-col gap-1 w-full">
                   <h4 className="text-sm dark:text-white pr-5 text-wrap">
                     {prod.music && (
-                      <>{`${prod.music.title} wkjj sfjfkfkdf dkfkfn dkfjfkdf dkfjdkfnd dknfkdnfk`}</>
+                      <>{`${prod.music.title}`}</>
                     )}
                     {!prod.music && <>{`${prod.music_title}`}</>}
                   </h4>

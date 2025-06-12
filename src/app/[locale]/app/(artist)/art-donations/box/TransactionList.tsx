@@ -4,9 +4,11 @@ import { langByCookies } from "@/http/axios/api";
 import { methodTransactions, statusTransaction } from "../utils/vars";
 import { useEffect, useState } from "react";
 import { useAppProvider } from "@/providers/app/AppProvider";
-import { IPayment } from "@/http/interfaces/models/IPayment";
 import { ISearchDataField } from "@/@components/(system)/ASearch/SearchDataField";
-import { IOrganizerTransactionAPI } from "@/http/interfaces/models/transactions/ITransactionsAPI";
+import {
+  IMusicDonation,
+  IMusicDonationResponseAPI,
+} from "@/http/interfaces/models/artists/IMusicDonation";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import ListTransactions from "../components/list-trans";
@@ -14,7 +16,7 @@ import CardTransaction from "../components/card-trans";
 import LoadingMoreButton from "../../../@components/api-query-pages/LoadingMoreButton";
 
 export default function TransactionList({
-  transactions,
+  donations,
   isLoading,
   isLoadingMore,
   fetchAll,
@@ -27,8 +29,8 @@ export default function TransactionList({
   isLoading: boolean;
   isLoadingMore: boolean;
   fetchMore: (search: ISearchDataField) => void;
-  transactions: IPayment[];
-  apiTransactions: IOrganizerTransactionAPI;
+  donations: IMusicDonation[];
+  apiTransactions: IMusicDonationResponseAPI;
 }) {
   const { openBanner } = useAppProvider();
 
@@ -37,7 +39,7 @@ export default function TransactionList({
   const [canSearch, setCanSearch] = useState(false);
   const [transactionStatus, setTransactionStatus] = useState("all");
   const [transactionMethod, setTransactionMethod] = useState("all");
-  const [transactionBase, setTransactionBase] = useState<IPayment[]>([]);
+  const [transactionBase, setTransactionBase] = useState<IMusicDonation[]>([]);
 
   // Debounced search effect
   useEffect(() => {
@@ -60,7 +62,7 @@ export default function TransactionList({
 
   // Combined filter effect
   useEffect(() => {
-    const filteredTransactions = apiTransactions.transactions
+    const filteredTransactions = apiTransactions.donations
       .sort(
         (a, b) =>
           new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
@@ -170,7 +172,7 @@ export default function TransactionList({
         isLoading={isLoading}
       />
 
-      {transactions.length <= 0 && !isLoading && (
+      {donations.length <= 0 && !isLoading && (
         <div className="md:pt-14 pt-12 md:pb-16 pb-16 py-12">
           <AuSoftUI.Component.ListEmpty
             hasAction={false}
@@ -185,7 +187,7 @@ export default function TransactionList({
         </div>
       )}
 
-      {transactions.length > 0 && !isLoading && (
+      {donations.length > 0 && !isLoading && (
         <>
           <div className="md:flex hidden">
             <ListTransactions
@@ -202,7 +204,7 @@ export default function TransactionList({
           </div>
 
           <LoadingMoreButton
-            fetchMore={() => fetchMore({name: searchName})}
+            fetchMore={() => fetchMore({ name: searchName })}
             has={apiTransactions.has}
             isLoading={isLoadingMore}
           />

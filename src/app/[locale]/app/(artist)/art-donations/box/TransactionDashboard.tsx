@@ -1,5 +1,5 @@
 import { ReactIcons } from "@/utils/icons";
-import { IOrganizerTransactionAPI } from "@/http/interfaces/models/transactions/ITransactionsAPI";
+import { IMusicDonationResponseAPI } from "@/http/interfaces/models/artists/IMusicDonation";
 
 import React, { useEffect, useState } from "react";
 import CardDashboard from "./card";
@@ -8,7 +8,7 @@ export default function TransactionDashboard({
   apiTransactions,
   isLoading,
 }: {
-  apiTransactions: IOrganizerTransactionAPI;
+  apiTransactions: IMusicDonationResponseAPI;
   isLoading: boolean;
 }) {
   const [transaDetail, setTransDetail] = useState<{
@@ -25,16 +25,16 @@ export default function TransactionDashboard({
 
   useEffect(() => {
     if (!isLoading) {
-      const pending = apiTransactions.transactions.filter(
+      const pending = apiTransactions.donations.filter(
         (i) => i.status == "pending"
       ).length;
-      const success = apiTransactions.transactions.filter(
+      const success = apiTransactions.donations.filter(
         (i) => i.status == "success"
       ).length;
-      const failed = apiTransactions.transactions.filter(
+      const failed = apiTransactions.donations.filter(
         (i) => i.status == "failed"
       ).length;
-      const earns = apiTransactions.transactions
+      const earns = apiTransactions.donations
         .filter((i) => i.status == "success")
         .reduce((acc, current) => acc + Number(current.amount), 0);
 
@@ -58,7 +58,7 @@ export default function TransactionDashboard({
           </>
         )}
 
-        {!isLoading && (
+        {!isLoading && apiTransactions.dash && (
           <>
             <CardDashboard
               Icon={ReactIcons.BiIcon.BiMoney}

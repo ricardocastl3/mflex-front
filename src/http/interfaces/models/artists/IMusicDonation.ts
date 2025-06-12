@@ -13,7 +13,7 @@ export interface IMusicDonation {
   artist_profile_id: string;
   artist_profile?: IArtistProfile;
   music_title: string;
-  
+
   artist_name: string;
   artist_number: string;
 
@@ -24,6 +24,7 @@ export interface IMusicDonation {
   transferences?: ITransfer;
   music_id?: string;
   music?: IMusic;
+  created_at: Date | string;
 }
 
 export interface IMusicDonationResponseAPI {

@@ -8,7 +8,7 @@ import PageBase from "../@components/PageBase";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import ContainerBase from "../@components/ContainerBase";
 import CardTicket from "./components/CardTicket";
-import CardEvent from "./components/CardEvent";
+import CardDonations from "./components/CardDonations";
 import CardTransactions from "./components/CardTransactions";
 import CardTransfers from "./components/CardTransfers";
 import AAuSoftLogo from "@/@components/(ausoft)/AAuSoftLogo";
@@ -26,7 +26,7 @@ export default function Home() {
       <ContainerBase>
         <div className="grid md:grid-cols-4 grid-cols-1m gap-4">
           <CardTicket />
-          <CardEvent />
+          <CardDonations />
           <CardTransactions />
           <CardTransfers />
         </div>

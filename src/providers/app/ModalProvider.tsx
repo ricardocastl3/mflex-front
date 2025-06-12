@@ -39,6 +39,8 @@ type modalType =
   | "ads-listen-music"
   | "event-affiliate-material"
   | "elite-affiliate-material"
+  | "art-gracefull-donate"
+  | "art-view-donation-state"
   | "affiliate-info"
   | "artist-info"
   | "art-add-music"

@@ -15,8 +15,11 @@ export default function ReferencePayment() {
   // Contexts
   const { handleOpenModal } = useModal();
   const { handleAddToastOnArray } = useAppProvider();
-  const { selectedCustomerBuyed, itemPriceIdCheckoutSelected } =
-    useCheckoutProvider();
+  const {
+    selectedCustomerBuyed,
+    handleIsPurchased,
+    itemPriceIdCheckoutSelected,
+  } = useCheckoutProvider();
 
   const [angolanDetail, setAngolanDetail] = useState<{
     reference: string;
@@ -60,6 +63,7 @@ export default function ReferencePayment() {
         entity: resp.data.entity,
         reference: resp.data.reference,
       });
+      handleIsPurchased(true);
       setIsLoading(false);
     } catch (err) {
       CAxiosErrorToastify({ err, openToast: handleAddToastOnArray });
