@@ -13,7 +13,7 @@ export default function ContentCategory({
   view,
 }: {
   callback?: () => void;
-  view: "events" | "news" | "podflex";
+  view: "events" | "news" | "podflex" | "musics";
 }) {
   //Contexts
   const { currentLang } = useTranslate();
