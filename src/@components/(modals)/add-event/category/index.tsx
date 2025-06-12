@@ -10,6 +10,7 @@ export default function SelectCategoryDropdown({
 }: {
   view: "events" | "news" | "podflex" | "musics";
 }) {
+  
   const { currentLang } = useTranslate();
   const { selectedCategory } = useCategoryProvider();
 
