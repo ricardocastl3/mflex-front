@@ -74,8 +74,8 @@ export default function OrganizerTransferBox({
               action_en="Create Group"
               action_pt="Criar Grupo"
               action_url="customers?create-group=true"
-              description_en="All created transfers will be shown here"
-              description_pt="Todas as transferências criadas serão mostradas aqui"
+              description_en="All donations you make will be shown here."
+              description_pt="Todas as doações que fizeres serão mostradas aqui"
               title_en="No Result"
               title_pt="Nenhum Resultado"
             />

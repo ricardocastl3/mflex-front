@@ -1,7 +1,6 @@
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { internalApi } from "@/http/axios/api";
 import { useAppProvider } from "@/providers/app/AppProvider";
-import { localImages } from "@/utils/images";
 import { useEffect, useState } from "react";
 
 import { useAuth } from "@/providers/auth/AuthProvider";
@@ -109,8 +108,7 @@ export default function ProfilePictureBox({ profile_url }: IProfile) {
                   type="file"
                   className="appearance-none w-8 file:cursor-pointer file:border-none  file:text-transparent absolute file:bg-transparent"
                   onChange={async (e) => {
-                    //@ts-ignore
-                    const file = e.target.files[0];
+                    const file = e.target.files && e.target.files[0];
                     if (file && file.type.startsWith("image/")) {
                       handleSelectedCroppImage({
                         extracted: "",
