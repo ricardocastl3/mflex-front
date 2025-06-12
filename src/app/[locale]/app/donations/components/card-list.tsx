@@ -1,42 +1,18 @@
-import { internalApi } from "@/http/axios/api";
-import { useAppProvider } from "@/providers/app/AppProvider";
-import { useState } from "react";
-import { ReactIcons } from "@/utils/icons";
-import { useAuth } from "@/providers/auth/AuthProvider";
-import { IOrganizerTransferResponseAPI } from "@/http/interfaces/models/transactions/ITransactionsAPI";
+import { IMusicDonationResponseAPI } from "@/http/interfaces/models/artists/IMusicDonation";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
-import CardStatus from "./card-status";
 import CurrencyServices from "@/services/CurrencyServices";
 import LoadMoreContent from "../../@components/api-query-pages/LoadMoreContent";
+import MusicMiniCoverPlayer from "../../(artist)/art-musics/components/MusicMiniCoverPlayer";
 
-export default function CardOrganizerTransfers({
-  transfersAPI,
+export default function CardDonationsTransfers({
+  donationsAPI,
   isLoadingMore,
 }: {
   isLoadingMore: boolean;
-  transfersAPI: IOrganizerTransferResponseAPI;
+  donationsAPI: IMusicDonationResponseAPI;
 }) {
-  const { handleAddToastOnArray } = useAppProvider();
-  const { userLogged } = useAuth();
-
-  const [isLoading, setIsLoading] = useState(false);
-
-  async function handleResend(id: string) {
-    try {
-      setIsLoading(true);
-      await internalApi.post("/payments/transfer-rs", {
-        id,
-      });
-      window.location.href = "";
-    } catch (err) {
-      setIsLoading(false);
-      return CAxiosErrorToastify({ err, openToast: handleAddToastOnArray });
-    }
-  }
-
-  const transfers = transfersAPI.transfers;
+  const transfers = donationsAPI.donations;
 
   return (
     <div className="flex flex-col w-full h-full px-1">
@@ -44,81 +20,33 @@ export default function CardOrganizerTransfers({
         return (
           <div
             key={i}
-            className="p-4 flex flex-col gap-2 border-b pb-2 border-slate-300 dark:border-slate-700/50"
+            className="p-4 flex items-start gap-3 border-b pb-2 border-slate-300 dark:border-slate-700/50"
           >
-            <h4 className="dark:text-white md:text-sm text-[0.9rem] font-bold">
-              {prod.payment.ticket?.event_ticket && (
-                <>
-                  {`${prod.payment.ticket.event_ticket.event.title} - `}
-                  <b className="font-bold text-yellow-500 dark:text-yellow-400">
-                    {prod.payment.ticket.event_ticket.name}
-                  </b>
-                </>
-              )}
-
-              {!prod.payment.ticket?.event_ticket && (
-                <>
-                  {`${prod.payment.event_name} - `}
-                  <b className="font-bold text-yellow-500 dark:text-yellow-400">
-                    {prod.payment.event_ticket_name}
-                  </b>
-                </>
-              )}
-            </h4>
-
-            <div className="grid grid-cols-2 gap-2">
-              <h4 className="dark:text-white text-sm">
-                <CTranslateTo eng="Real Money" pt="Montante Real" />
+            <MusicMiniCoverPlayer
+              type="mini"
+              cover={
+                prod.music?.cover ||
+                "https://img.freepik.com/free-photo/beautifully-illustrate-musical-instrument_23-2151103366.jpg?t=st=1749755983~exp=1749759583~hmac=5237a40b588b949836fe336a42f16b8f9b55fad8eec9e41c92b5e2023c85ec93&w=740"
+              }
+              url={prod.music?.url}
+            />
+            <div className="flex-1 flex flex-col gap-0.5">
+              <h4 className="dark:text-white md:text-sm text-[0.9rem] font-bold">
+                <b className="font-bold text-yellow-500 dark:text-yellow-400">
+                  {prod.music && <>{`${prod.music.title}`}</>}
+                  {!prod.music && <>{`${prod.music_title}`}</>}
+                </b>
               </h4>
 
-              <h4 className="text-sm text-green-500">
-                {`${CurrencyServices.decimal(Number(prod.payment.amount))} Kz`}
-              </h4>
+              <div className="grid grid-cols-2 gap-1">
+                <h4 className="dark:text-white text-sm">
+                  <CTranslateTo eng="Sent Money" pt="Montante Enviado" />
+                </h4>
 
-              <h4 className="dark:text-white text-sm">
-                <CTranslateTo eng="Sent Money" pt="Montante Enviado" />
-              </h4>
-
-              <h4 className="text-sm text-green-500">
-                {`${CurrencyServices.decimal(
-                  Number(prod.payment.amount) * Number(0.92)
-                )} Kz`}
-              </h4>
-              <h4 className="dark:text-white text-sm">
-                <CTranslateTo eng="Sent Fee" pt="Taxa de envio" />
-              </h4>
-              <h4 className="text-sm dark:text-white font-bold">8%</h4>
-              <h4 className="dark:text-white text-sm">IBAN:</h4>
-
-              <h4 className="text-sm dark:text-white text-nowrap">
-                {!prod.iban && (
-                  <>
-                    {
-                      userLogged?.financial.filter((i) => i.type == "iban")[0]
-                        .iban
-                    }
-                  </>
-                )}
-                {prod.iban}
-              </h4>
-            </div>
-            <div className="flex items-center gap-4 flex-wrap">
-              <CardStatus status={prod.status} />
-              {prod.status == "failed" && (
-                <button
-                  onClick={() => handleResend(prod.id)}
-                  className="text-blue-500 font-bold justify-self-center dark:text-blue-500 text-sm text-center"
-                >
-                  {isLoading && (
-                    <ReactIcons.PiIcon.PiSpinner
-                      size={18}
-                      className="animate-spin"
-                    />
-                  )}
-
-                  {!isLoading && <CTranslateTo eng="Resend" pt="Reenviar" />}
-                </button>
-              )}
+                <h4 className="text-sm text-green-500">
+                  {`${CurrencyServices.decimal(Number(prod.amount))} Kz`}
+                </h4>
+              </div>
             </div>
           </div>
         );

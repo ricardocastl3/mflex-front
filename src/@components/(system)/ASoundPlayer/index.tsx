@@ -43,12 +43,6 @@ export default function ASoundPlayer({
 
   const [hoverInButtonPlay, setHoverInButtonPlay] = useState(false);
 
-  function setSeekingResumeMusic(seconds: number) {
-    if (soundRef.current) {
-      soundRef.current.seek(seconds);
-    }
-  }
-
   useEffect(() => {
     soundRef.current = new Howl({
       src: [url],
@@ -57,18 +51,6 @@ export default function ASoundPlayer({
       onend: () => {
         handleIsPlayingMusic(false);
         setIsPlaying(false);
-      },
-      onplay: () => {
-        const updateTime = () => {
-          if (soundRef.current && isPlaying) {
-            const currentTime = soundRef.current.seek();
-            if (typeof currentTime === "number") {
-              seekPlayerSeconds(Math.floor(currentTime));
-            }
-            requestAnimationFrame(updateTime);
-          }
-        };
-        updateTime();
       },
       onload: () => {
         if (soundRef.current) {
@@ -110,6 +92,19 @@ export default function ASoundPlayer({
     if (!soundRef.current) return;
     Howler.volume(1); //volume / 100);
   }, [volume]);
+
+  useEffect(() => {
+    if (soundRef.current && isPlaying) {
+      const interval = setInterval(() => {
+        const currentTime = soundRef.current?.seek();
+        if (typeof currentTime === "number") {
+          seekPlayerSeconds(Math.floor(currentTime));
+        }
+      }, 100); // Update every 100ms for smoother progress
+
+      return () => clearInterval(interval);
+    }
+  }, [isPlaying]);
 
   // Handle seek from click
   useEffect(() => {

@@ -1,4 +1,5 @@
 import { IUserResponse } from "../responses/IUserResponse";
+import { IMusicDonation } from "./artists/IMusicDonation";
 import { IPayment } from "./IPayment";
 
 export interface ITransfer {
@@ -7,4 +8,5 @@ export interface ITransfer {
   status: string;
   organizer?: IUserResponse;
   payment: IPayment;
+  music_donation?: IMusicDonation;
 }

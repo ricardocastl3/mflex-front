@@ -1,6 +1,7 @@
 import { ISearchDataField } from "@/@components/(system)/ASearch/SearchDataField";
 import { internalApi } from "@/http/axios/api";
 import { IMusicResponseAPI } from "@/http/interfaces/models/artists/IMusic";
+import { appConfigs } from "@/utils/enums";
 import { useCallback, useEffect, useState } from "react";
 
 export default function useMusics({
@@ -24,7 +25,7 @@ export default function useMusics({
       const resp = await internalApi.get<IMusicResponseAPI>(apiRoutes, {
         params: {
           currentPage: 0,
-          nextPage: route == "slug" ? 9999 : 20,
+          nextPage: route == "slug" ? 9999 : appConfigs.api.pageLoads,
         },
       });
 
@@ -43,7 +44,7 @@ export default function useMusics({
       category_id = category_id == "" ? undefined : category_id;
 
       const resp = await internalApi.get<IMusicResponseAPI>(apiRoutes, {
-        params: { name, category_id, currentPage: 0, nextPage: 6 },
+        params: { name, category_id, currentPage: 0, nextPage: appConfigs.api.pageLoads },
       });
 
       setAllMusics(resp.data);
@@ -63,7 +64,7 @@ export default function useMusics({
           name,
           category_id,
           currentPage: allMusics?.musics.length,
-          nextPage: 20,
+          nextPage: appConfigs.api.pageLoads,
         },
       });
 

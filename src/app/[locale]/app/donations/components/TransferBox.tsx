@@ -2,16 +2,16 @@ import { AuSoftUI } from "@/@components/(ausoft)";
 import { BaseBox } from "@/@components/(box)/BaseBox";
 import { ISearchDataField } from "@/@components/(system)/ASearch/SearchDataField";
 import { useEffect, useState } from "react";
-import { IOrganizerTransferResponseAPI } from "@/http/interfaces/models/transactions/ITransactionsAPI";
+import { IMusicDonationResponseAPI } from "@/http/interfaces/models/artists/IMusicDonation";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import RowOrganizerTranfers from "./row-list";
-import CardOrganizerTransfers from "./card-list";
+import RowDonationsTranfers from "./row-list";
+import CardOrganizerDonadonations from "./card-list";
 import ContainerBase from "../../@components/ContainerBase";
 import LoadingMoreButton from "../../@components/api-query-pages/LoadingMoreButton";
 
-export default function OrganizerTransferBox({
-  transfersAPI,
+export default function GeneralDonationsBox({
+  donationsAPI,
   isLoading,
   fetchAll,
   handleSearchName,
@@ -23,7 +23,7 @@ export default function OrganizerTransferBox({
   handleSearchName: (name: ISearchDataField) => void;
   isLoading: boolean;
   isLoadingMore: boolean;
-  transfersAPI: IOrganizerTransferResponseAPI;
+  donationsAPI: IMusicDonationResponseAPI;
 }) {
   // Controls
   const [searchName, setSearchName] = useState("");
@@ -45,7 +45,7 @@ export default function OrganizerTransferBox({
     return () => clearTimeout(handler);
   }, [searchName, canSearch]);
 
-  const transfers = transfersAPI.transfers;
+  const donations = donationsAPI.donations;
 
   return (
     <ContainerBase>
@@ -54,9 +54,9 @@ export default function OrganizerTransferBox({
           <h4 className="md:text-lg text-base font-bold dark:text-white md:px-2 px-1 md:py-2 py-3">
             <CTranslateTo eng="Register" pt="Registos" />
             {`${
-              transfersAPI.has
-                ? ` (${transfersAPI.transfers.length}/${transfersAPI.total})`
-                : ` (${transfersAPI.transfers.length})`
+              donationsAPI.has
+                ? ` (${donationsAPI.donations.length}/${donationsAPI.total})`
+                : ` (${donationsAPI.donations.length})`
             }`}
           </h4>
         </div>
@@ -67,7 +67,7 @@ export default function OrganizerTransferBox({
           isLoading={isLoading}
         />
 
-        {transfers.length <= 0 && !isLoading && (
+        {donations.length <= 0 && !isLoading && (
           <div className="md:pt-14 pt-12 md:pb-16 pb-16 py-12">
             <AuSoftUI.Component.ListEmpty
               hasAction={false}
@@ -82,25 +82,25 @@ export default function OrganizerTransferBox({
           </div>
         )}
 
-        {transfers.length > 0 && !isLoading && (
+        {donations.length > 0 && !isLoading && (
           <>
             <div className="md:flex hidden">
-              <RowOrganizerTranfers
+              <RowDonationsTranfers
                 isLoadingMore={isLoadingMore}
-                transfersAPI={transfersAPI}
+                donationsAPI={donationsAPI}
               />
             </div>
 
             <div className={`md:hidden flex flex-col gap-4 overflow-y-auto`}>
-              <CardOrganizerTransfers
+              <CardOrganizerDonadonations
                 isLoadingMore={isLoadingMore}
-                transfersAPI={transfersAPI}
+                donationsAPI={donationsAPI}
               />
             </div>
 
             <LoadingMoreButton
               fetchMore={fetchMore}
-              has={transfersAPI.has}
+              has={donationsAPI.has}
               isLoading={isLoadingMore}
             />
           </>

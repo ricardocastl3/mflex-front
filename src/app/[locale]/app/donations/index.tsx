@@ -5,19 +5,18 @@ import { ReactIcons } from "@/utils/icons";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import PageBase from "../@components/PageBase";
-import OrganizerTransferBox from "./components/TransferBox";
-import useOrganizerTransfers from "@/hooks/api/panels/organizer/useOrganizerTransfers";
+import GeneralDonationsBox from "./components/TransferBox";
+import useDonations from "@/hooks/api/musics/useDonations";
 
 export default function MyDonationsPage() {
-  const { fetchTransaction } = useTransactionProvider();
   const {
-    allTransfer,
-    isLoadingAllTransfer,
-    fetchAllTransfer,
+    allDonations,
+    isLoadingAllDonations,
+    fetchAllDonations,
     handleLoadMore,
-    isLoadingMoreTransfers,
+    isLoadingMoreDonationsTrans,
     handleSeachByName,
-  } = useOrganizerTransfers();
+  } = useDonations({ route: "general" });
 
   return (
     <PageBase>
@@ -28,13 +27,13 @@ export default function MyDonationsPage() {
         </h4>
       </div>
 
-      <OrganizerTransferBox
-        fetchMore={() => handleLoadMore({ name: "" })}
-        isLoadingMore={isLoadingMoreTransfers}
-        fetchAll={fetchAllTransfer}
+      <GeneralDonationsBox
+        fetchMore={handleLoadMore}
+        isLoadingMore={isLoadingMoreDonationsTrans}
+        fetchAll={fetchAllDonations}
         handleSearchName={handleSeachByName}
-        isLoading={isLoadingAllTransfer}
-        transfersAPI={allTransfer}
+        isLoading={isLoadingAllDonations}
+        donationsAPI={allDonations}
       />
     </PageBase>
   );

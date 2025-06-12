@@ -7,7 +7,7 @@ export default function MusicMiniCoverPlayer({
 }: {
   type: "mini" | "large";
   cover: string;
-  url: string;
+  url?: string;
 }) {
   const heightCover = type == "large" ? 150 : 60;
   const withCover = type == "large" ? "100%" : 60;
@@ -28,12 +28,14 @@ export default function MusicMiniCoverPlayer({
       className="rounded-xl relative"
     >
       <div className="absolute inset-0 flex justify-center items-center">
-        <ASoundPlayer
-          isListMusic={true}
-          padding={paddingIcon}
-          size={sizeIconPlayer}
-          url={url}
-        />
+        {url && (
+          <ASoundPlayer
+            isListMusic={true}
+            padding={paddingIcon}
+            size={sizeIconPlayer}
+            url={url}
+          />
+        )}
       </div>
     </div>
   );
