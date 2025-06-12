@@ -1,8 +1,6 @@
-import { IUserResponse } from "../../panel-users/users/IUserResponse";
-import { ITransference } from "../../panel-payments/transfer/ITransference";
-import { IIAngolanReference } from "../../panel-payments/angolan-reference/IAngolanReference";
-import { IMusic } from "../musics/IMusic";
-import { IArtistProfile } from "../artist_profile/IArtistProfile";
+import { IUserResponse } from "../../responses/IUserResponse";
+import { IArtistProfile } from "./IArtistProfile";
+import { IMusic } from "./IMusic";
 
 export interface IMusicDonation {
   id: string;
@@ -21,7 +19,4 @@ export interface IMusicDonation {
 
   music_id?: string;
   music?: IMusic;
-
-  transferences?: ITransference;
-  angolan_references?: IIAngolanReference;
 }
