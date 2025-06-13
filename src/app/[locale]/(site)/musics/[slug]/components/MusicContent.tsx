@@ -31,10 +31,11 @@ export default function MusicContent({ music }: { music: IMusic }) {
   const [checkUser, setCheckUser] = useState(false);
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout;
+    let timeoutUser: NodeJS.Timeout;
+    let timeoutView: NodeJS.Timeout;
 
     if (checkUser) {
-      timeout = setTimeout(async () => {
+      timeoutUser = setTimeout(async () => {
         if (!userLogged) {
           handleSelectMusic(music);
           handleIsPlayingMusic(false);
@@ -45,11 +46,21 @@ export default function MusicContent({ music }: { music: IMusic }) {
           });
         }
       }, 30000);
+
+      timeoutView = setTimeout(async () => {
+        if (!userLogged) return;
+        await internalApi.post("/artists/musics/v", {
+          m: music.id,
+        });
+      }, 10000);
     }
 
     return () => {
-      if (timeout) {
-        clearTimeout(timeout);
+      if (timeoutUser) {
+        clearTimeout(timeoutUser);
+      }
+      if (timeoutView) {
+        clearTimeout(timeoutView);
       }
     };
   }, [checkUser, userLogged, handleOpenModal]);
