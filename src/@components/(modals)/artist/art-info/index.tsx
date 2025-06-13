@@ -46,7 +46,14 @@ export default function ArtistInfoModal() {
       await internalApi.post("/artists/info", {
         ...profileInfo,
       });
-
+      AuSoftUI.Component.ToastifyWithTranslation({
+        description_en: "Your artistic informations went updated successfully",
+        description_pt: "Os seus dados artísticos foram atualizados com sucesso",
+        title_en: "Update artistic informations",
+        title_pt: "Dados artísicos atualizados",
+        toast: handleAddToastOnArray,
+        type: "success",
+      });
       await fetchUserInformations();
       setIsSubmitting(false);
     } catch (err) {
@@ -76,7 +83,7 @@ export default function ArtistInfoModal() {
                 {userLogged?.artist_profile?.biography}
               </h1>
             </div>
-            <div className="grid md:grid-cols-3 grid-cols-1 gap-4 border-t border-slate-300 dark:border-slate-700/60 md:px-5 px-2 pt-4 pb-5">
+            <div className="grid md:grid-cols-3 grid-cols-1 gap-4 border-t border-slate-300 dark:border-slate-700/60 md:px-5 px-3 pt-4 pb-5">
               <div className="flex flex-col gap-2">
                 <h1 className="text-sm dark:text-white">
                   <CTranslateTo

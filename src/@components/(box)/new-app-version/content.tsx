@@ -2,11 +2,13 @@ import { BaseBox } from "../BaseBox";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { ReactIcons } from "@/utils/icons";
 import { useAppProvider } from "@/providers/app/AppProvider";
+import { useState } from "react";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 
 export default function ContentVersion() {
   const { handleAppSystemModal } = useAppProvider();
+  const [isUpdating, setIsUpdateing] = useState(false);
 
   return (
     <>
@@ -35,16 +37,25 @@ export default function ContentVersion() {
           </div>
           <div className="grid grid-cols-2 gap-2 mt-2">
             <AuSoftUI.UI.Button
+              disabled={isUpdating}
               onClick={() => {
+                setIsUpdateing(true);
                 window.location.reload();
               }}
               variant={"primary"}
               className="w-full items-center justify-center"
             >
-              <CTranslateTo eng="Update now" pt="Atualizar agora" />
-              <ReactIcons.AiICon.AiFillRocket size={15} />
+              {!isUpdating && (
+                <>
+                  <CTranslateTo eng="Update now" pt="Atualizar agora" />
+                  <ReactIcons.AiICon.AiFillRocket size={15} />
+                </>
+              )}
+
+              {isUpdating && <ReactIcons.PiIcon.PiSpinner size={15} />}
             </AuSoftUI.UI.Button>
             <AuSoftUI.UI.Button
+              disabled={isUpdating}
               onClick={() => {
                 handleAppSystemModal({ openNewVersion: false });
               }}
