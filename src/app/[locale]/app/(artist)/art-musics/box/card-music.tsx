@@ -61,7 +61,7 @@ export default function CardMusic({
                       }
                     />
 
-                    <MusicViews views={music.views} />
+                    <MusicViews views={music.views_count.length} />
                     <MusicDonations
                       donations={
                         music.music_donations ? music.music_donations.length : 0

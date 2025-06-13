@@ -66,7 +66,7 @@ export default function RowMusic({
                           music.category ? music.category.name : "-------"
                         }
                       />
-                      <MusicViews views={music.views} />
+                      <MusicViews views={music.views_count.length} />
                       <MusicDonations
                         donations={
                           music.music_donations

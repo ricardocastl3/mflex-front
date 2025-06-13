@@ -69,7 +69,7 @@ export default function MusicCardPublic({
               <ReactIcons.HiIcon.HiPlay size={18} />
               {music.category ? music.category.name : "-------"}
             </h1>
-            <MusicViews views={music.views} />
+            <MusicViews views={music.views_count.length} />
           </div>
           <h4 className="font-bold md:text-[1rem] text-{1rem} dark:text-white">
             {music.title}

@@ -29,7 +29,7 @@ export default function MobileMoreOptions() {
         </div>
         <div
           onClick={() => handleOpenModal("")}
-          className="flex flex-col gap-3 px-4 py-5 h-[35vh] overflow-y-auto"
+          className="flex flex-col gap-3 px-4 py-5 h-[40vh] overflow-y-auto"
         >
           <h4 className="text-normal text-slate-500 dark:text-slate-300">
             <CTranslateTo eng="Navigation" pt="Navegação" />

@@ -6,7 +6,7 @@ import { useModal } from "@/providers/app/ModalProvider";
 import { useAuth } from "@/providers/auth/AuthProvider";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { ReactIcons } from "@/utils/icons";
-import { langByCookies } from "@/http/axios/api";
+import { internalApi, langByCookies } from "@/http/axios/api";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { useMusicProvider } from "@/providers/features/MusicProvider";
 import { useEffect, useState } from "react";
@@ -18,6 +18,7 @@ import CurrencyServices from "@/services/CurrencyServices";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 import Link from "next/link";
+import MusicViews from "@/app/[locale]/app/(artist)/art-musics/components/MusicViews";
 
 export default function MusicContent({ music }: { music: IMusic }) {
   const { userLogged } = useAuth();
@@ -33,11 +34,15 @@ export default function MusicContent({ music }: { music: IMusic }) {
     let timeout: NodeJS.Timeout;
 
     if (checkUser) {
-      timeout = setTimeout(() => {
+      timeout = setTimeout(async () => {
         if (!userLogged) {
           handleSelectMusic(music);
           handleIsPlayingMusic(false);
           handleOpenModal("ads-listen-music");
+        } else {
+          await internalApi.post("/artists/musics/v", {
+            m: music.id,
+          });
         }
       }, 30000);
     }
@@ -74,6 +79,7 @@ export default function MusicContent({ music }: { music: IMusic }) {
             category_name={music?.category ? music.category.name : "no"}
             date={music.created_at}
           />
+          <MusicViews views={music.views_count.length} />
         </div>
         {music.artist_profile?.is_verified &&
           serverStats &&

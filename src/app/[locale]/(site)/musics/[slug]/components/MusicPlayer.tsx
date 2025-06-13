@@ -1,5 +1,3 @@
-import { useAppProvider } from "@/providers/app/AppProvider";
-import { useMusicProvider } from "@/providers/features/MusicProvider";
 import { IMusic } from "@/http/interfaces/models/artists/IMusic";
 
 import ASoundPlayer from "@/@components/(system)/ASoundPlayer";
