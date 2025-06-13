@@ -3,13 +3,12 @@
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { useEffect, useState } from "react";
 import { useCategoryProvider } from "@/providers/features/CategoryProvider";
+import { langByCookies } from "@/http/axios/api";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import BoxCategories from "../../../components/BoxCategories";
 import MusicCardPublic from "./MusicCardPublic";
-import useNews from "@/hooks/api/useNews";
 import useMusics from "@/hooks/api/musics/useMusics";
-import { langByCookies } from "@/http/axios/api";
 
 export default function MusicsContainer() {
   // Contexts

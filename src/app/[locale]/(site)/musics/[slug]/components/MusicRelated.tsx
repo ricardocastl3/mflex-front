@@ -20,7 +20,7 @@ export default function MusicRelated({
   const { isNotifyGranted } = useAppProvider();
 
   return (
-    <div className="flex flex-col  md:px-0 px-5 gap-4 md:pb-12 pb-2">
+    <div className="flex flex-col  md:px-0 px-5 gap-4 md:pb-12 pb-8">
       <BaseBox className="p-4 dark:bg-ausoft-slate-900 dark:text-white font-bold text-lg">
         <CTranslateTo eng="Related Music" pt="Músicas Relacionadas" />
       </BaseBox>
