@@ -33,10 +33,7 @@ export default function ASoundPlayer({
   useClickOutside(soundPlayerRef, () => {
     if (isListMusic) {
       setIsPlaying(false);
-      if (soundRef.current) {
-        soundRef.current.stop();
-        soundRef.current.unload();
-      }
+      setHoverInButtonPlay(false);
     }
   });
 
@@ -127,6 +124,9 @@ export default function ASoundPlayer({
   return (
     <div ref={soundPlayerRef} className={`flex items-center gap-3 ${style}`}>
       <div
+        onClick={() => {
+          setHoverInButtonPlay(true);
+        }}
         onMouseEnter={() => setHoverInButtonPlay(true)}
         onMouseLeave={() => setHoverInButtonPlay(false)}
         className="flex items-center gap-3"
