@@ -1,15 +1,25 @@
 import { IMusic } from "@/http/interfaces/models/artists/IMusic";
+import { useModal } from "@/providers/app/ModalProvider";
+import { useAuth } from "@/providers/auth/AuthProvider";
 import { useMusicProvider } from "@/providers/features/MusicProvider";
 import { useEffect, useState, useMemo, useRef } from "react";
 
 export default function MusicPlayerProgress({ music }: { music: IMusic }) {
+  const { userLogged } = useAuth();
+  const { handleOpenModal } = useModal();
+
   const totalDuration = Number(music.duration.split(":")[0]);
   const [initialDuration, setInitialDuration] = useState<{
     min: number;
     second: number;
   }>({ min: 0, second: 0 });
 
-  const { clickSeekPlayerSeconds, playerSeekSeconds } = useMusicProvider();
+  const {
+    clickSeekPlayerSeconds,
+    handleIsPlayingMusic,
+    playerSeekSeconds,
+    handleSelectMusic,
+  } = useMusicProvider();
 
   // Update time display when playerSeekSeconds changes
   useEffect(() => {
@@ -19,6 +29,13 @@ export default function MusicPlayerProgress({ music }: { music: IMusic }) {
   }, [playerSeekSeconds]);
 
   const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!userLogged) {
+      handleIsPlayingMusic(false);
+      handleSelectMusic(music);
+      handleOpenModal("ads-listen-music");
+      return;
+    }
+
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const percentage = x / rect.width;
