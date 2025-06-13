@@ -19,6 +19,7 @@ export default function MusicPlayerProgress({ music }: { music: IMusic }) {
     handleIsPlayingMusic,
     playerSeekSeconds,
     handleSelectMusic,
+    isPlayingMusic,
   } = useMusicProvider();
 
   // Update time display when playerSeekSeconds changes
@@ -29,7 +30,7 @@ export default function MusicPlayerProgress({ music }: { music: IMusic }) {
   }, [playerSeekSeconds]);
 
   const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!userLogged) {
+    if (!userLogged && isPlayingMusic) {
       handleIsPlayingMusic(false);
       handleSelectMusic(music);
       handleOpenModal("ads-listen-music");
