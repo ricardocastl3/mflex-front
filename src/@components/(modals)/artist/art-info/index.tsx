@@ -76,7 +76,7 @@ export default function ArtistInfoModal() {
                 {userLogged?.artist_profile?.biography}
               </h1>
             </div>
-            <div className="grid md:grid-cols-3 grid-cols-1 gap-4 border-t border-slate-300 dark:border-slate-700/60 px-5 pt-4 pb-5">
+            <div className="grid md:grid-cols-3 grid-cols-1 gap-4 border-t border-slate-300 dark:border-slate-700/60 md:px-5 px-2 pt-4 pb-5">
               <div className="flex flex-col gap-2">
                 <h1 className="text-sm dark:text-white">
                   <CTranslateTo
@@ -209,7 +209,7 @@ export default function ArtistInfoModal() {
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-3 border-t border-slate-300 dark:border-slate-800 px-5 pt-4 pb-5">
+        <div className="flex items-center gap-3 border-t border-slate-300 dark:border-slate-800 md:px-7 px-5 pt-4 pb-5">
           <AuSoftUI.UI.Button
             disabled={isSubmitting}
             onClick={handleUpdateProfile}
