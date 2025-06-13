@@ -71,7 +71,7 @@ export default function AngolanPaymentDetailsModal() {
           } else if (LocalStorageServices.getAffiliateCode()) {
             LocalStorageServices.resetAllKeys();
           } else {
-            window.location.href = "/" + langByCookies;
+            window.location.href = "/" + langByCookies + "/artist";
             return;
           }
         }
