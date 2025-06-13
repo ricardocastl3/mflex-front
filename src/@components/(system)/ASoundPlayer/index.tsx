@@ -4,7 +4,6 @@ import { ReactIcons } from "@/utils/icons";
 import { useMusicProvider } from "@/providers/features/MusicProvider";
 
 import useClickOutside from "@/hooks/useClickOutside";
-import { AuSoftUI } from "@/@components/(ausoft)";
 
 export default function ASoundPlayer({
   url,
@@ -85,7 +84,10 @@ export default function ASoundPlayer({
         // For general
         soundRef.current.pause();
       }
-      if (hoverInButtonPlay && isPlayingMusic) soundRef.current.play();
+      if (hoverInButtonPlay && isPlayingMusic) {
+        setIsLoading(true);
+        soundRef.current.play();
+      }
     }
   }, [isPlaying, isPlayingMusic]);
 
