@@ -221,7 +221,7 @@ export default function UsageSubsModal() {
                   handleOpenModal("");
                 }}
                 variant={"primary"}
-                className="items-center justify-center"
+                className="items-center w-full justify-center"
               >
                 <CTranslateTo
                   eng="Upgrade flex subscription"
@@ -238,11 +238,11 @@ export default function UsageSubsModal() {
                   handleOpenModal("");
                 }}
                 variant={"primary"}
-                className="items-center justify-center"
+                className="items-center w-full justify-center"
               >
                 <CTranslateTo
                   eng="Upgrade artist plan"
-                  pt="Atualizar do partista"
+                  pt="Atualizar plano para artista"
                 />
                 <ReactIcons.AiICon.AiOutlineLink size={15} />
               </AuSoftUI.UI.Button>
