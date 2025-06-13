@@ -91,10 +91,13 @@ export default function ASoundPlayer({
 
     return () => {
       handleIsPlayingMusic(false);
-      seekPlayerSeconds(0);
     };
   }, [volume]);
 
+  useEffect(() => {
+    seekPlayerSeconds(0);
+  }, []);
+  
   useEffect(() => {
     if (soundRef.current && isPlaying) {
       const interval = setInterval(() => {
