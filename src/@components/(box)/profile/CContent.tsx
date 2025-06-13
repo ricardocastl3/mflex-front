@@ -102,7 +102,7 @@ export default function CContent({ callback }: { callback?: () => void }) {
           </>
         )}
 
-        {!currentSubscription && currentArtistSubscription && (
+        {!currentSubscription && !currentArtistSubscription && (
           <>
             <h1 className="text-sm  dark:text-slate-400 text-slate-700">
               <CTranslateTo eng="No active plane: " pt="Sem plano ativo:" />

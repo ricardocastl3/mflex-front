@@ -66,8 +66,12 @@ export default function AuthProvider({
   const [fetchCurrentArtistSubscription, setFetchCurrentArtistSubscription] =
     useState(false);
 
-  const { currentSubsUsage, fetchCurrentSubsUsage, isLoadingCurrentSubsUsage } =
-    useSubscription();
+  const {
+    currentSubsUsage,
+    currentMusicSubsUsage,
+    fetchCurrentSubsUsage,
+    isLoadingCurrentSubsUsage,
+  } = useSubscription();
 
   const path = usePathname();
   const startRoutes = path.slice(4);
@@ -174,7 +178,7 @@ export default function AuthProvider({
       setFetchCurrentSubscription(false);
       setFetchCurrentArtistSubscription(false);
 
-      setCurrentArtistSubscription(currentArtistSubscription);
+      setCurrentArtistSubscription(currentMusicSubsUsage);
       setCurrentSubscription(currentSubsUsage);
     }
   }, [
