@@ -63,6 +63,10 @@ export default function CContent({ callback }: { callback?: () => void }) {
             ? currentSubscription.subscription.is_expired
               ? "dark:bg-red-900/20 bg-red-100"
               : "dark:bg-yellow-900/20 bg-yellow-100"
+            : currentArtistSubscription
+            ? currentArtistSubscription.subscription.is_expired
+              ? "dark:bg-red-900/20 bg-red-100"
+              : "dark:bg-yellow-900/20 bg-yellow-100"
             : "bg-slate-200 dark:bg-slate-800/60"
         } flex items-center gap-2 rounded-lg  p-2 mt-3`}
       >
