@@ -85,7 +85,6 @@ export default function ASoundPlayer({
         soundRef.current.pause();
       }
       if (hoverInButtonPlay && isPlayingMusic) {
-        setIsLoading(true);
         soundRef.current.play();
       }
     }
