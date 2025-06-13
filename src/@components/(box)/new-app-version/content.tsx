@@ -52,7 +52,12 @@ export default function ContentVersion() {
                 </>
               )}
 
-              {isUpdating && <ReactIcons.PiIcon.PiSpinner size={15} />}
+              {isUpdating && (
+                <ReactIcons.PiIcon.PiSpinner
+                  className="animate-spin"
+                  size={15}
+                />
+              )}
             </AuSoftUI.UI.Button>
             <AuSoftUI.UI.Button
               disabled={isUpdating}
