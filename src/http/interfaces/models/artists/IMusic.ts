@@ -10,6 +10,7 @@ export interface IMusic {
   description: string;
   url: string;
   slug: string;
+  is_donable: boolean;
 
   is_online: boolean;
   is_public: boolean;

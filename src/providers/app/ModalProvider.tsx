@@ -41,6 +41,7 @@ type modalType =
   | "elite-affiliate-material"
   | "art-gracefull-donate"
   | "art-view-donation-state"
+  | "art-no-have-profile-subs"
   | "affiliate-info"
   | "artist-info"
   | "art-add-music"

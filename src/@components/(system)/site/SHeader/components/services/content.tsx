@@ -47,10 +47,7 @@ export default function CContentServices({
           } flex items-center gap-2 w-full md:py-2.5 py-4 px-4 dark:text-slate-100 rounded-full text-[0.85rem]`}
         >
           <ReactIcons.PiIcon.PiBuilding size={15} />
-          <CTranslateTo
-            eng="About Marca Flex"
-            pt="Conheça a Marca Flex"
-          />
+          <CTranslateTo eng="About Marca Flex" pt="Conheça a Marca Flex" />
         </Link>
 
         <Link
@@ -62,7 +59,10 @@ export default function CContentServices({
           } flex items-center gap-2 w-full md:py-2.5 py-4 px-4 dark:text-slate-100 rounded-full text-[0.85rem]`}
         >
           <ReactIcons.PiIcon.PiMarkerCircle size={15} />
-          <CTranslateTo eng="Become FLEX Affiliate" pt="Seja um afiliado FLEX" />
+          <CTranslateTo
+            eng="Become FLEX Affiliate"
+            pt="Seja um afiliado FLEX"
+          />
         </Link>
 
         <Link
@@ -75,6 +75,17 @@ export default function CContentServices({
         >
           <ReactIcons.PiIcon.PiStar size={15} />
           <CTranslateTo eng="Flex Plans" pt="Planos Flex" />
+        </Link>
+        <Link
+          href={`/${langByCookies}/art-pricing`}
+          className={`${
+            currentPageByUrl == "art-pricing"
+              ? "dark:bg-yellow-800/50 bg-yellow-200/40"
+              : "dark:hover:bg-yellow-800/50 hover:bg-yellow-200/40"
+          }  flex items-center gap-2 w-full md:py-2.5 py-4 px-4 dark:text-slate-100 rounded-full text-[0.85rem]`}
+        >
+          <ReactIcons.FaIcon.FaMusic size={15} />
+          <CTranslateTo eng="Artists Plans" pt="Planos para Artistas" />
         </Link>
       </div>
     </div>

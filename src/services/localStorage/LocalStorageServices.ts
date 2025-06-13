@@ -8,6 +8,7 @@ class LocalStorageServices {
     rc_watchMovie: "rc-watch-movie",
     rc_football: "gm_rc",
     rc_music: "rc-music",
+    rc_artist_panel: "rc-art-panel",
     aff_code: "btag",
     watch_token: "wtn",
   };
@@ -39,6 +40,11 @@ class LocalStorageServices {
         return;
       }
 
+      if (this.getArtistPanel()) {
+        this.redirectForArtistPanel();
+        return;
+      }
+
       setTimeout(() => {
         resolv(true);
       }, 500);
@@ -55,6 +61,8 @@ class LocalStorageServices {
     localStorage.removeItem(this.keys.rc_watchMovie);
     localStorage.removeItem(this.keys.rc_football);
     localStorage.removeItem(this.keys.aff_code);
+    localStorage.removeItem(this.keys.rc_artist_panel);
+    localStorage.removeItem(this.keys.rc_music);
   }
 
   setKey(key: string, data: any) {
@@ -94,8 +102,18 @@ class LocalStorageServices {
     window.location.href = `/${langByCookies}/musics/${slug}`;
   }
 
+  redirectForArtistPanel() {
+    this.delKey(this.keys.rc_artist_panel);
+    window.location.href = `/${langByCookies}/app/art-musics`;
+  }
+
   getWatchID() {
     const res = localStorage.getItem(this.keys.rc_watchTv);
+    return res?.split("_")[1] || false;
+  }
+
+  getArtistPanel() {
+    const res = localStorage.getItem(this.keys.rc_artist_panel);
     return res?.split("_")[1] || false;
   }
 
@@ -121,6 +139,10 @@ class LocalStorageServices {
 
   setWatchID(id: string) {
     localStorage.setItem(this.keys.rc_watchTv, `wtv_${id}`);
+  }
+
+  setArtistPanel(id: string) {
+    localStorage.setItem(this.keys.rc_artist_panel, `${id}`);
   }
 
   setMusicSlug(id: string) {

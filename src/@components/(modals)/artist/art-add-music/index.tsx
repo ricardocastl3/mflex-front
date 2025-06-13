@@ -10,6 +10,7 @@ import { localImages } from "@/utils/images";
 import { useCategoryProvider } from "@/providers/features/CategoryProvider";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { useMusicProvider } from "@/providers/features/MusicProvider";
+import { useAuth } from "@/providers/auth/AuthProvider";
 
 import AAuSoftLogo from "@/@components/(ausoft)/AAuSoftLogo";
 import BaseModal from "../../base";
@@ -25,6 +26,7 @@ export default function ArtistAddMusicModal() {
   const { handleAddToastOnArray } = useAppProvider();
   const { selectedCategory, handleSelectCategory } = useCategoryProvider();
   const { handleOpenModal, handleAddTextOnBoxSuccess } = useModal();
+  const { handleFetchCurrentArtistSubs } = useAuth();
 
   // Controls
   const [coverMusic, setCoverMusic] = useState("");
@@ -156,7 +158,7 @@ export default function ArtistAddMusicModal() {
       }
 
       handleOpenModal("box-success");
-
+      handleFetchCurrentArtistSubs(true);
       handleFetchMusic(true);
       setIsSubmitting(false);
     } catch (err) {

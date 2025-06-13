@@ -19,7 +19,7 @@ export interface IInvoiceTransaction {
 
 interface IPrice {
   monthly: "yes" | "no";
-  type: "subs" | "others" | "packs" | "donations";
+  type: "subs" | "others" | "packs" | "donations" | "tickets";
   price: string;
   amount: number;
 }

@@ -14,6 +14,7 @@ import { getCookie, hasCookie, setCookie } from "cookies-next";
 import { internalApi, langByCookies } from "@/http/axios/api";
 import { usePathname, useRouter } from "next/navigation";
 import { ISubscriptionUsage } from "@/http/interfaces/models/subscriptions/ISubscriptionUsage";
+import { IMusicSubscription } from "@/http/interfaces/models/artists/IMusicSubscription";
 
 import CookieServices from "@/services/auth/CookieServices";
 import useSubscription from "@/hooks/api/useSubscription";
@@ -26,7 +27,9 @@ interface IAuthContextProps {
   isUserConfirmed: boolean;
   userLogged: IUserResponse | undefined;
   currentSubscription: ISubscriptionUsage | undefined;
+  currentArtistSubscription: IMusicSubscription | undefined;
 
+  handleFetchCurrentArtistSubs: (val: boolean) => void;
   handleFetchCurrentSubs: (val: boolean) => void;
   handleRedirectToSign: () => void;
   fetchUserInformations: () => void;
@@ -54,6 +57,13 @@ export default function AuthProvider({
   >();
 
   const [fetchCurrentSubscription, setFetchCurrentSubscription] =
+    useState(false);
+
+  const [currentArtistSubscription, setCurrentArtistSubscription] = useState<
+    IMusicSubscription | undefined
+  >();
+
+  const [fetchCurrentArtistSubscription, setFetchCurrentArtistSubscription] =
     useState(false);
 
   const { currentSubsUsage, fetchCurrentSubsUsage, isLoadingCurrentSubsUsage } =
@@ -148,20 +158,30 @@ export default function AuthProvider({
     setFetchCurrentSubscription(val);
   }
 
+  function handleFetchCurrentArtistSubs(val: boolean) {
+    setFetchCurrentArtistSubscription(val);
+  }
   useEffect(() => {
     fetchUserInformations();
   }, []);
 
   useEffect(() => {
-    if (fetchCurrentSubscription) {
+    if (fetchCurrentSubscription || fetchCurrentArtistSubscription) {
       fetchCurrentSubsUsage();
     }
 
     if (!isLoadingCurrentSubsUsage) {
       setFetchCurrentSubscription(false);
+      setFetchCurrentArtistSubscription(false);
+
+      setCurrentArtistSubscription(currentArtistSubscription);
       setCurrentSubscription(currentSubsUsage);
     }
-  }, [isLoadingCurrentSubsUsage, fetchCurrentSubscription]);
+  }, [
+    isLoadingCurrentSubsUsage,
+    fetchCurrentSubscription,
+    fetchCurrentArtistSubscription,
+  ]);
 
   return (
     <AuthContext.Provider
@@ -171,8 +191,10 @@ export default function AuthProvider({
 
         isUserConfirmed,
         currentSubscription,
+        currentArtistSubscription,
 
         fetchUserInformations,
+        handleFetchCurrentArtistSubs,
         handleFetchCurrentSubs,
         handleRedirectToSign,
         userLogged,

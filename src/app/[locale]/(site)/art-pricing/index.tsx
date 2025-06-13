@@ -17,13 +17,13 @@ import SubsCard from "./components/SubsCard";
 import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 export default function PricingPage() {
-  const { isLoadingAllPlans, allPlans } = usePlan({ route: "flex" });
+  const { isLoadingAllPlans, allPlans } = usePlan({ route: "musics" });
   const { isLoadingCurrentSubsUsage } = useAuth();
   const { handleOpenModal } = useModal();
   const { handleAddItemOnCheckout } = useCheckoutProvider();
-  const { currentSubscription } = useAuth();
+  const { currentArtistSubscription, userLogged } = useAuth();
 
-  function openSubsModal(plan: IPlan) {
+  function openSubsModalForPurchase(plan: IPlan) {
     handleAddItemOnCheckout({
       type: "subs",
       amount: plan.amount,
@@ -42,25 +42,23 @@ export default function PricingPage() {
         });
         const plan = resp.data.sb;
 
-        if (currentSubscription) {
-          if (currentSubscription.subscription.plan?.id != plan.id) {
-            openSubsModal(plan);
-          } else {
-            if (
-              currentSubscription?.subscription.plan?.flex_movie &&
-              !currentSubscription.subscription.is_expired
-            ) {
-              LocalStorageServices.checkRedirects();
-            } else {
-              openSubsModal(plan);
-            }
+        if (currentArtistSubscription) {
+          if (currentArtistSubscription.subscription.plan?.id != plan.id) {
+            openSubsModalForPurchase(plan);
           }
         } else {
-          openSubsModal(plan);
+          if (
+            userLogged?.artist_profile &&
+            userLogged.artist_profile.is_verified
+          ) {
+            openSubsModalForPurchase(plan);
+          } else {
+            handleOpenModal("art-no-have-profile-subs");
+          }
         }
       } catch (err) {}
     },
-    [currentSubscription]
+    [currentArtistSubscription]
   );
 
   useEffect(() => {

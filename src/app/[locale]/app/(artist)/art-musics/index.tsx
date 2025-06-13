@@ -5,12 +5,16 @@ import { AuSoftUI } from "@/@components/(ausoft)";
 import { useModal } from "@/providers/app/ModalProvider";
 import { useMusicProvider } from "@/providers/features/MusicProvider";
 import { useEffect, useState } from "react";
+import { useAuth } from "@/providers/auth/AuthProvider";
+import { langByCookies } from "@/http/axios/api";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import PageBase from "../../@components/PageBase";
 import ContainerBase from "../../@components/ContainerBase";
 import useMusics from "@/hooks/api/musics/useMusics";
 import MusicBox from "./box/MusicBox";
+import MusicNoSubscription from "./box/MusicNoSubscription";
+import Link from "next/link";
 
 export default function MusicPage() {
   const { handleOpenModal } = useModal();
@@ -25,6 +29,7 @@ export default function MusicPage() {
     route: "app",
   });
   const { handleSelectMusic, fetchMusic } = useMusicProvider();
+  const { currentArtistSubscription } = useAuth();
 
   // Controls
   const [canSearch, setCanSearch] = useState(false);
@@ -68,41 +73,67 @@ export default function MusicPage() {
             className="md:w-[19rem] w-full rounded-full font-bold border-slate-400"
             placeholder="→ Informe o título da música..."
           />
-          <div className="md:flex hidden items-center gap-3">
+          {currentArtistSubscription && (
+            <div className="md:flex hidden items-center gap-3">
+              <AuSoftUI.UI.Button
+                onClick={() => {
+                  handleSelectMusic(undefined),
+                    handleOpenModal("art-add-music");
+                }}
+                size={"sm"}
+                className="rounded-full py-2"
+                variant={"primary"}
+              >
+                <CTranslateTo eng="New Music" pt="Nova Música" />
+                <ReactIcons.Hi2Icon.HiMusicalNote size={18} />
+              </AuSoftUI.UI.Button>
+
+              {currentArtistSubscription.subscription.is_expired && (
+                <Link href={`/${langByCookies}/art-pricing`}>
+                  <AuSoftUI.UI.Button
+                    onClick={() => {
+                      handleSelectMusic(undefined),
+                        handleOpenModal("art-add-music");
+                    }}
+                    size={"sm"}
+                    className="rounded-full py-2 animate-pulse"
+                    variant={"primary"}
+                  >
+                    <CTranslateTo eng="Renew plan" pt="Renovar plano" />
+                    <ReactIcons.Hi2Icon.HiMusicalNote size={18} />
+                  </AuSoftUI.UI.Button>
+                </Link>
+              )}
+            </div>
+          )}
+        </div>
+        {currentArtistSubscription && (
+          <div className="md:hidden flex fixed gap-4 bottom-[4.9rem] right-[4.4rem] z-20">
             <AuSoftUI.UI.Button
+              size={"sm"}
               onClick={() => {
                 handleSelectMusic(undefined), handleOpenModal("art-add-music");
               }}
-              size={"sm"}
-              className="rounded-full py-2"
+              className="rounded-full p-3"
               variant={"primary"}
             >
-              <CTranslateTo eng="New Music" pt="Nova Música" />
               <ReactIcons.Hi2Icon.HiMusicalNote size={18} />
             </AuSoftUI.UI.Button>
           </div>
-        </div>
-        <div className="md:hidden flex fixed gap-4 bottom-[4.9rem] right-[4.4rem] z-20">
-          <AuSoftUI.UI.Button
-            size={"sm"}
-            onClick={() => {
-              handleSelectMusic(undefined), handleOpenModal("art-add-music");
-            }}
-            className="rounded-full p-3"
-            variant={"primary"}
-          >
-            <ReactIcons.Hi2Icon.HiMusicalNote size={18} />
-          </AuSoftUI.UI.Button>
-        </div>
+        )}
       </div>
 
       <ContainerBase>
-        <MusicBox
-          isLoading={isLoadingAllMusics}
-          isLoadingMore={isLoadingMoreMusics}
-          musicsAPI={allMusics}
-          fetchMore={() => handleLoadMore({ name: searchMusic })}
-        />
+        {!currentArtistSubscription && <MusicNoSubscription />}
+
+        {currentArtistSubscription && (
+          <MusicBox
+            isLoading={isLoadingAllMusics}
+            isLoadingMore={isLoadingMoreMusics}
+            musicsAPI={allMusics}
+            fetchMore={() => handleLoadMore({ name: searchMusic })}
+          />
+        )}
       </ContainerBase>
     </PageBase>
   );

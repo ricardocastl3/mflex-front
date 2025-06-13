@@ -21,6 +21,7 @@ export default function AngolanPaymentDetailsModal() {
   const {
     selectedAngolanMethod,
     handleAddItemOnCheckout,
+    selectedCheckoutTicket,
     handlePriceAmountSelected,
     itemPriceIdCheckoutSelected,
     isPurchased,
@@ -40,18 +41,23 @@ export default function AngolanPaymentDetailsModal() {
     if (!isPurchased) handleOpenModal("");
 
     if (isPurchased) {
-      if (
-        itemPriceIdCheckoutSelected &&
-        itemPriceIdCheckoutSelected.type == "donations"
-      ) {
+      if (selectedCheckoutTicket) {
+        window.location.href = "/" + langByCookies + "/app/tickets";
+        return;
+      }
+
+      if (!itemPriceIdCheckoutSelected) {
+        handleOpenModal("");
+        setIsLoading(false);
+        return;
+      }
+
+      if (itemPriceIdCheckoutSelected.type == "donations") {
         handleOpenModal("art-gracefull-donate");
         return;
       }
 
-      if (
-        itemPriceIdCheckoutSelected &&
-        itemPriceIdCheckoutSelected.type == "subs"
-      ) {
+      if (itemPriceIdCheckoutSelected.type == "subs") {
         if (selectedAngolanMethod != "reference") {
           if (LocalStorageServices.getWatchID()) {
             LocalStorageServices.redirectWatchTv();
@@ -71,8 +77,6 @@ export default function AngolanPaymentDetailsModal() {
         }
 
         handleOpenModal("");
-      } else {
-        window.location.href = "/" + langByCookies + "/app/tickets";
       }
     }
     setIsLoading(false);

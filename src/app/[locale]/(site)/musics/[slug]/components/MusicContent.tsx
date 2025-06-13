@@ -122,7 +122,7 @@ export default function MusicContent({ music }: { music: IMusic }) {
                 </Link>
               )}
 
-              {userLogged && (
+              {userLogged && music.is_donable && (
                 <div className="flex items-center flex-wrap gap-2">
                   {amountToDonate.map((don, i) => {
                     return (

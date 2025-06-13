@@ -12,7 +12,12 @@ import CardSubsStatus from "@/app/[locale]/app/subscriptions/components/card-sta
 import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 export default function CContent({ callback }: { callback?: () => void }) {
-  const { userLogged, currentSubscription, handleLogout } = useAuth();
+  const {
+    userLogged,
+    currentSubscription,
+    currentArtistSubscription,
+    handleLogout,
+  } = useAuth();
   const { handleOpenModal } = useModal();
 
   const subscriptionExpired =
@@ -61,19 +66,23 @@ export default function CContent({ callback }: { callback?: () => void }) {
             : "bg-slate-200 dark:bg-slate-800/60"
         } flex items-center gap-2 rounded-lg  p-2 mt-3`}
       >
-        {currentSubscription && (
+        {(currentSubscription || currentArtistSubscription) && (
           <>
-            <h1
-              className={`${
-                subscriptionExpired
-                  ? "dark:text-red-400 text-red-700"
-                  : "dark:text-yellow-400 text-yellow-700"
-              } text-sm `}
-            >
-              <CTranslateTo eng="Plan: " pt="Plano: " />
-              {currentSubscription.subscription.plan?.name}
-            </h1>
-            <CardSubsStatus isExpired={subscriptionExpired} />
+            {currentSubscription && (
+              <>
+                <h1
+                  className={`${
+                    subscriptionExpired
+                      ? "dark:text-red-400 text-red-700"
+                      : "dark:text-yellow-400 text-yellow-700"
+                  } text-sm `}
+                >
+                  <CTranslateTo eng="Plan: " pt="Plano: " />
+                  {currentSubscription.subscription.plan?.name}
+                </h1>
+                <CardSubsStatus isExpired={subscriptionExpired} />
+              </>
+            )}
             <button
               onClick={() => {
                 if (callback) callback();
@@ -93,7 +102,7 @@ export default function CContent({ callback }: { callback?: () => void }) {
           </>
         )}
 
-        {!currentSubscription && (
+        {!currentSubscription && currentArtistSubscription && (
           <>
             <h1 className="text-sm  dark:text-slate-400 text-slate-700">
               <CTranslateTo eng="No active plane: " pt="Sem plano ativo:" />
