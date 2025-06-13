@@ -26,10 +26,6 @@ export default function MusicPlayerProgress({ music }: { music: IMusic }) {
     clickSeekPlayerSeconds(seekTime);
   };
 
-  const progressWidth = useMemo(() => {
-    return `${(playerSeekSeconds / (totalDuration * 60)) * 100}%`;
-  }, [playerSeekSeconds, totalDuration]);
-
   const formattedTime = useMemo(() => {
     return `${String(initialDuration.min).padStart(2, "0")}:${String(
       initialDuration.second
@@ -41,7 +37,6 @@ export default function MusicPlayerProgress({ music }: { music: IMusic }) {
 
   useEffect(() => {
     if (parentProgress.current) {
-      const parentWidth = parentProgress.current.offsetWidth;
       const progressPercentage =
         (playerSeekSeconds / (totalDuration * 60)) * 100;
       const calculatedWidth = Math.min(progressPercentage, 100);

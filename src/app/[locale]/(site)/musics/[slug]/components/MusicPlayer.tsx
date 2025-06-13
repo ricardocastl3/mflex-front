@@ -3,13 +3,9 @@ import { useMusicProvider } from "@/providers/features/MusicProvider";
 import { IMusic } from "@/http/interfaces/models/artists/IMusic";
 
 import ASoundPlayer from "@/@components/(system)/ASoundPlayer";
-import Siriwave from "react-siriwave";
 import MusicPlayerProgress from "./MusicPlayerProgress";
 
 export default function MusicPlayer({ music }: { music: IMusic }) {
-  const { isDarkMode } = useAppProvider();
-  const { isPlayingMusic } = useMusicProvider();
-
   return (
     <div
       style={{

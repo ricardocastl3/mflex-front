@@ -39,7 +39,7 @@ export default function MusicContent({ music }: { music: IMusic }) {
           handleIsPlayingMusic(false);
           handleOpenModal("ads-listen-music");
         }
-      }, 60000);
+      }, 30000);
     }
 
     return () => {
@@ -50,7 +50,7 @@ export default function MusicContent({ music }: { music: IMusic }) {
   }, [checkUser, userLogged, handleOpenModal]);
 
   useEffect(() => {
-    setCheckUser(isPlayingMusic);
+    if (isPlayingMusic) setCheckUser(isPlayingMusic);
   }, [isPlayingMusic]);
 
   return (
