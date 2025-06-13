@@ -4,6 +4,7 @@ import { ReactIcons } from "@/utils/icons";
 import { useMusicProvider } from "@/providers/features/MusicProvider";
 
 import useClickOutside from "@/hooks/useClickOutside";
+import { AuSoftUI } from "@/@components/(ausoft)";
 
 export default function ASoundPlayer({
   url,
@@ -23,6 +24,8 @@ export default function ASoundPlayer({
 }) {
   const [volume, setVolume] = useState(50);
   const [isPlaying, setIsPlaying] = useState(false);
+
+  const [isLoading, setIsLoading] = useState(true);
 
   const soundRef = useRef<Howl | null>(null);
   const soundPlayerRef = useRef<null>(null);
@@ -46,19 +49,14 @@ export default function ASoundPlayer({
   useEffect(() => {
     soundRef.current = new Howl({
       src: [url],
-      volume: 0.5,
+      volume: 1,
       html5: true,
       onend: () => {
         handleIsPlayingMusic(false);
         setIsPlaying(false);
       },
       onload: () => {
-        if (soundRef.current) {
-          const duration = soundRef.current.duration();
-          if (typeof duration === "number") {
-            seekPlayerSeconds(0);
-          }
-        }
+        setIsLoading(false);
       },
     });
 
@@ -93,6 +91,7 @@ export default function ASoundPlayer({
 
     return () => {
       handleIsPlayingMusic(false);
+      seekPlayerSeconds(0);
     };
   }, [volume]);
 
@@ -135,8 +134,15 @@ export default function ASoundPlayer({
           {!isPlaying && (
             <ReactIcons.AiICon.AiFillPlayCircle size={size || 25} />
           )}
-          {isPlaying && (
+          {isPlaying && !isLoading && (
             <ReactIcons.AiICon.AiFillPauseCircle size={size || 25} />
+          )}
+
+          {isLoading && isPlaying && (
+            <ReactIcons.PiIcon.PiSpinner
+              className="animate-spin"
+              size={size || 25}
+            />
           )}
         </button>
         <div className="hidden">

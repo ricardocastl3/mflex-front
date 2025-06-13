@@ -45,7 +45,7 @@ export default function RowMusic({
                 <MusicMiniCoverPlayer
                   type="mini"
                   cover={music.cover}
-                  url={music.url}
+                  url={music.id}
                 />
 
                 <div className="flex flex-1 gap-8 items-end">

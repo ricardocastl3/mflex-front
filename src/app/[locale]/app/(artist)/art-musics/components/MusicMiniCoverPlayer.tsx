@@ -33,7 +33,7 @@ export default function MusicMiniCoverPlayer({
             isListMusic={true}
             padding={paddingIcon}
             size={sizeIconPlayer}
-            url={url}
+            url={`${process.env.MFLEX_SERVER_URL}/musics/listen/${url}`}
           />
         )}
       </div>

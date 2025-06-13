@@ -71,7 +71,7 @@ export default function MusicCardPublic({
             </h1>
             <MusicViews views={music.views} />
           </div>
-          <h4 className="font-bold md:text-[1rem] text-xl dark:text-white">
+          <h4 className="font-bold md:text-[1rem] text-{1rem} dark:text-white">
             {music.title}
           </h4>
         </div>

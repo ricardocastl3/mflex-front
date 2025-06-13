@@ -11,7 +11,7 @@ export async function generateMetadata({
   const pars = await params;
   return LocalePageServices.metadatas({
     titleENG: "My Musics",
-    titlePT: "Meus Músicas",
+    titlePT: "Minhas Músicas",
     descriptionENG: "Manage your musics",
     descriptionPT: "Gerencie as suas músicas",
     params: pars.locale,

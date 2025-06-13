@@ -42,7 +42,7 @@ export default function CardMusic({
               <MusicMiniCoverPlayer
                 type="large"
                 cover={music.cover}
-                url={music.url}
+                url={music.id}
               />
 
               <div className="flex items-center gap-4">
