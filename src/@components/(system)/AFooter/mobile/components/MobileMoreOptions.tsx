@@ -67,8 +67,8 @@ export default function MobileMoreOptions() {
             <LinkButton
               isExpanded={true}
               Icon={ReactIcons.FaIcon.FaMusic}
-              href="organizer"
-              isSelected={currentAppPageUrl == "organizer"}
+              href="artist"
+              isSelected={currentAppPageUrl == "artist"}
               title_en="Artists Dashboard"
               title_pt="Painel do Artista"
             />
