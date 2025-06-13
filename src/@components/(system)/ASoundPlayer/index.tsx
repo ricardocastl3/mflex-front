@@ -34,7 +34,10 @@ export default function ASoundPlayer({
   useClickOutside(soundPlayerRef, () => {
     if (isListMusic) {
       setIsPlaying(false);
-      if (soundRef.current) soundRef.current.stop();
+      if (soundRef.current) {
+        soundRef.current.stop();
+        soundRef.current.unload();
+      }
     }
   });
 
@@ -45,7 +48,7 @@ export default function ASoundPlayer({
     seekPlayerSeconds,
   } = useMusicProvider();
 
-  const [hoverInButtonPlay, setHoverInButtonPlay] = useState(true);
+  const [hoverInButtonPlay, setHoverInButtonPlay] = useState(false);
 
   useEffect(() => {
     soundRef.current = new Howl({
