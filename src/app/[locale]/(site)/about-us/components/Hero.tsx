@@ -18,7 +18,7 @@ export default function HeroAbout() {
         <h1 className="md:text-[2rem] text-[1.7rem] font-bold text-white">
           <CTranslateTo eng="Who We Are?" pt="Quem Somos?" />
         </h1>
-        <h4 className="text-white md:mt-2 t-2 text-lg">
+        <h4 className="text-white md:text-start text-center md:mt-2 t-2 text-lg">
           <CTranslateTo
             eng="Your Digital Entertainment Universe 🚀"
             pt="O Seu Universo Do Entretenimento Digital 🚀"

@@ -18,10 +18,10 @@ export default function HeroPlans() {
         <h1 className="md:text-[2rem] text-[1.7rem] font-bold text-white">
           <CTranslateTo eng="Artist Plans" pt="Planos para Artistas" />
         </h1>
-        <h4 className="flex text-white md:mt-2 t-2 text-lg">
+        <h4 className="flex text-center text-white md:mt-2 t-2 text-lg">
           <CTranslateTo
-            eng="Share your music with the world and receive direct support from your fans! 🎵"
-            pt="Compartilhe sua música com o mundo e receba apoio direto dos seus fãs! 🎵"
+            eng="Share your music with the world and receive direct support from your fans!"
+            pt="Compartilhe sua música com o mundo e receba apoio direto dos seus fãs!"
           />
         </h4>
       </div>
