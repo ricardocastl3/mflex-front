@@ -94,7 +94,8 @@ export default function MusicContent({ music }: { music: IMusic }) {
         </div>
         {music.artist_profile?.is_verified &&
           serverStats &&
-          serverStats?.music_donation_on && (
+          serverStats?.music_donation_on &&
+          music.is_donable && (
             <div className="flex flex-col gap-2">
               <h1 className="dark:text-white">
                 <CTranslateTo
@@ -122,7 +123,7 @@ export default function MusicContent({ music }: { music: IMusic }) {
                 </Link>
               )}
 
-              {userLogged && music.is_donable && (
+              {userLogged && (
                 <div className="flex items-center flex-wrap gap-2">
                   {amountToDonate.map((don, i) => {
                     return (
