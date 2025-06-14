@@ -17,29 +17,18 @@ export default function BoxSuccessModal() {
   //Contexts
   const { handleOpenModal, boxSuccessText } = useModal();
   const { userLogged } = useAuth();
-  const { selectedTicket, handleFetchTicket } = useTicketProvider();
-  const { handleFetchEvent, selectedEvent } = useEventProvider();
-  const { selectedMusic, handleFetchMusic } = useMusicProvider();
-  const { selectedCategory, handleSelectCategory } = useCategoryProvider();
+  const { handleFetchTicket } = useTicketProvider();
+  const { handleFetchEvent } = useEventProvider();
+  const { handleFetchMusic } = useMusicProvider();
+  const { handleSelectCategory } = useCategoryProvider();
 
   function handleCloseBox() {
     handleOpenModal("");
 
-    if (selectedTicket) {
-      handleFetchTicket(false);
-    }
-
-    if (selectedEvent) {
-      handleFetchEvent(false);
-    }
-
-    if (selectedMusic) {
-      handleFetchMusic(false);
-    }
-
-    if (selectedCategory) {
-      handleSelectCategory(undefined);
-    }
+    handleFetchTicket(false);
+    handleFetchEvent(false);
+    handleFetchMusic(false);
+    handleSelectCategory(undefined);
   }
 
   return (
