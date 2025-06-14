@@ -20,8 +20,8 @@ export default function HeroPlans() {
         </h1>
         <h4 className="flex text-white md:mt-2 t-2 text-lg">
           <CTranslateTo
-            eng="Share your music with the world and receive direct support from your fans! Get exclusive features for music sharing and a seamless donation system. 🎵"
-            pt="Compartilhe sua música com o mundo e receba apoio direto dos seus fãs! Tenha recursos exclusivos para compartilhamento de músicas e um sistema de doações simplificado. 🎵"
+            eng="Share your music with the world and receive direct support from your fans! 🎵"
+            pt="Compartilhe sua música com o mundo e receba apoio direto dos seus fãs! 🎵"
           />
         </h4>
       </div>
