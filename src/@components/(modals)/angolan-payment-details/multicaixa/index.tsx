@@ -100,7 +100,7 @@ export default function MulticaixaPayment() {
 
       return () => clearInterval(interval);
     }
-  }, [alreadySent]);
+  }, [alreadySent, isPurchased]);
 
   useEffect(() => {
     if (socketEvent?.name == "reference-pay") {

@@ -105,7 +105,7 @@ export default function PayPayPayment() {
 
       return () => clearInterval(interval);
     }
-  }, [alreadySentRequest]);
+  }, [alreadySentRequest, isPurchased]);
 
   useEffect(() => {
     if (socketEvent?.name == "reference-pay") {
