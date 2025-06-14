@@ -1,3 +1,5 @@
+"use client";
+
 import { useAuth } from "@/providers/auth/AuthProvider";
 import { ReactNode } from "react";
 
