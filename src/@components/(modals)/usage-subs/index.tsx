@@ -65,8 +65,8 @@ export default function UsageSubsModal() {
                     />
                   ) : (
                     <CTranslateTo
-                      eng="Subscription active and in use 😀"
-                      pt="Assinatura ativa, e em uso 😀"
+                      eng="Artist subscription active and in use 😀"
+                      pt="Assinatura do artista ativa, e em uso 😀"
                     />
                   )}
                 </h1>
@@ -102,7 +102,7 @@ export default function UsageSubsModal() {
                   isExpired
                     ? "dark:bg-red-900/20 bg-red-100"
                     : "dark:bg-green-900/20 bg-green-100"
-                } mb-4 p-2 rounded-xl`}
+                } mb-4 p-2 rounded-xl mt-2`}
               >
                 <h1
                   className={`${
@@ -113,13 +113,13 @@ export default function UsageSubsModal() {
                 >
                   {isExpired ? (
                     <CTranslateTo
-                      eng="Expired Subscription 😭"
-                      pt="Assinatura expirada 😭"
+                      eng="Expired FFlex Subscription 😭"
+                      pt="Assinatura flex expirada 😭"
                     />
                   ) : (
                     <CTranslateTo
-                      eng="Subscription active and in use 😀"
-                      pt="Assinatura ativa, e em uso 😀"
+                      eng="Flex subscription active and in use 😀"
+                      pt="Assinatura flex ativa, e em uso 😀"
                     />
                   )}
                 </h1>
@@ -213,7 +213,7 @@ export default function UsageSubsModal() {
             </>
           )}
         </div>
-        <div className="py-4 px-4 mt-3 border-t border-slate-200 dark:border-slate-800 grid grid-cols-2">
+        <div className="py-4 px-4 mt-3 border-t gap-4 border-slate-200 dark:border-slate-800 grid grid-cols-2">
           {currentSubscription && (
             <Link href={`/${langByCookies}/pricing`}>
               <AuSoftUI.UI.Button
