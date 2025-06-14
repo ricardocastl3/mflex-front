@@ -232,7 +232,7 @@ export default function UsageSubsModal() {
             </Link>
           )}
           {currentArtistSubscription && (
-            <Link href={`/${langByCookies}/pricing`}>
+            <Link href={`/${langByCookies}/art-pricing`}>
               <AuSoftUI.UI.Button
                 onClick={() => {
                   handleOpenModal("");
