@@ -79,7 +79,7 @@ export default function UsageSubsModal() {
                   <h2 className="text-sm dark:text-slate-300">
                     <CTranslateTo eng="Month total: " pt="Total no mês: " />
                     <b className="font-bold">
-                      {currentArtistSubscription.subscription.plan?.musics}
+                      {currentArtistSubscription.subscription.plan?.art_musics}
                     </b>
                   </h2>
                   <h2 className="text-sm dark:text-slate-300">

@@ -4,7 +4,7 @@ export interface IPlan {
   amount: number;
   description: string;
   flex_movie: boolean;
-  musics?: number;
+  art_musics?: number;
   flex_tv: boolean;
   is_trial?: boolean;
   football_ai?: number;
