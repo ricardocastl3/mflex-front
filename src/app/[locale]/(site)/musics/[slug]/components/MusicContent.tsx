@@ -95,7 +95,8 @@ export default function MusicContent({ music }: { music: IMusic }) {
         {music.artist_profile?.is_verified &&
           serverStats &&
           serverStats?.music_donation_on &&
-          music.is_donable && (
+          music.is_donable &&
+          music.artist_profile.is_online && (
             <div className="flex flex-col gap-2">
               <h1 className="dark:text-white">
                 <CTranslateTo
