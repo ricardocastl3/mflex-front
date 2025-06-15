@@ -1,5 +1,5 @@
-import { IEvent } from "@/http/interfaces/models/IEvent";
 import { AuSoftUI } from "@/@components/(ausoft)";
+import { IEvent } from "@/http/interfaces/models/organizer/IEvent";
 
 import ContainerBase from "../../../@components/ContainerBase";
 import EventCard from "./EventCard";
