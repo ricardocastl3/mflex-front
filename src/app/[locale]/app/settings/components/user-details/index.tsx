@@ -157,7 +157,7 @@ export default function UserDetailBox() {
                   gender: e.target.value,
                 }));
               }}
-              className="w-full"
+              className="w-full py-[13px]"
               weight={"md"}
             >
               <option
