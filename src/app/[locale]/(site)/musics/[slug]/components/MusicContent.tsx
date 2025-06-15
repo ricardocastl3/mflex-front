@@ -103,16 +103,17 @@ export default function MusicContent({ music }: { music: IMusic }) {
             />
             <MusicViews views={music.views_count.length} />
           </div>
-
-          <AuSoftUI.UI.Button
-            variant={"outline"}
-            size={"sm"}
-            onClick={handleComplaintMusic}
-            className="items-center md:flex hidden py-2 md:w-fit w-full"
-          >
-            <CTranslateTo eng="Report Music" pt="Denunciar Música" />
-            <ReactIcons.AiICon.AiFillWarning size={10} />
-          </AuSoftUI.UI.Button>
+          {music.artist_profile?.id != userLogged?.id && (
+            <AuSoftUI.UI.Button
+              variant={"outline"}
+              size={"sm"}
+              onClick={handleComplaintMusic}
+              className="items-center md:flex hidden py-2 md:w-fit w-full"
+            >
+              <CTranslateTo eng="Report Music" pt="Denunciar Música" />
+              <ReactIcons.AiICon.AiFillWarning size={10} />
+            </AuSoftUI.UI.Button>
+          )}
         </div>
         <div className="flex items-center gap-3">
           <AuSoftUI.UI.Button
@@ -123,15 +124,17 @@ export default function MusicContent({ music }: { music: IMusic }) {
             <CTranslateTo eng="Download Music" pt="Baixar música" />
             <ReactIcons.AiICon.AiOutlineDownload size={10} />
           </AuSoftUI.UI.Button>
-          <AuSoftUI.UI.Button
-            variant={"outline"}
-            size={"sm"}
-            onClick={handleComplaintMusic}
-            className="items-center md:hidden flex py-2 md:w-fit w-full"
-          >
-            <CTranslateTo eng="Report Music" pt="Denunciar Música" />
-            <ReactIcons.AiICon.AiFillWarning size={10} />
-          </AuSoftUI.UI.Button>
+          {music.artist_profile?.id != music.id && (
+            <AuSoftUI.UI.Button
+              variant={"outline"}
+              size={"sm"}
+              onClick={handleComplaintMusic}
+              className="items-center md:hidden flex py-2 md:w-fit w-full"
+            >
+              <CTranslateTo eng="Report Music" pt="Denunciar Música" />
+              <ReactIcons.AiICon.AiFillWarning size={10} />
+            </AuSoftUI.UI.Button>
+          )}
         </div>
         {music.artist_profile?.is_verified &&
           serverStats &&
