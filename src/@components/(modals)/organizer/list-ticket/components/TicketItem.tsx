@@ -1,11 +1,11 @@
 import { internalApi } from "@/http/axios/api";
-import { IEventTicket } from "@/http/interfaces/models/IEventTicket";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { useModal } from "@/providers/app/ModalProvider";
 import { useEventProvider } from "@/providers/features/EventProvider";
 import { useEventTicketProvider } from "@/providers/features/EventTicketProvider";
 import { ReactIcons } from "@/utils/icons";
 import { useEffect, useState } from "react";
+import { IEventTicket } from "@/http/interfaces/models/organizer/IEventTicket";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CurrencyServices from "@/services/CurrencyServices";
