@@ -127,7 +127,10 @@ export default function ArtistComplaintMusicModal() {
           </div>
           <div className="flex flex-col gap-2">
             <h3 className="dark:text-white">
-              <CTranslateTo eng="Description" pt="Descrição" />
+              <CTranslateTo
+                eng="Reason for the complaint"
+                pt="Motivo da denúncia"
+              />
             </h3>
             <AuSoftUI.UI.TextField.TextArea
               value={reason}
@@ -138,8 +141,8 @@ export default function ArtistComplaintMusicModal() {
               className="w-full h-[40vh]"
               placeholder={
                 langByCookies == "en"
-                  ? "Write something about this ticket"
-                  : "Escreva alguma coisa sobre este ingresso"
+                  ? "Write in detail the reason for the complaint..."
+                  : "Escreva de forma detalhada o motivo da denúncia..."
               }
             />
           </div>
