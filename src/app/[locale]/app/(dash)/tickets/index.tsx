@@ -7,7 +7,7 @@ import { useState } from "react";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import TicketBox from "./components/TicketBox";
 import PageBase from "../../@components/PageBase";
-import useTickets from "@/hooks/api/useTickets";
+import useTickets from "@/hooks/api/organizer/useTickets";
 
 export default function TicketPage() {
   const {

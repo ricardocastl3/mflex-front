@@ -1,5 +1,5 @@
-import { IEventTicket } from "@/http/interfaces/models/IEventTicket";
 import { ReactIcons } from "@/utils/icons";
+import { IEventTicket } from "@/http/interfaces/models/organizer/IEventTicket";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import TicketCard from "./TicketCard";

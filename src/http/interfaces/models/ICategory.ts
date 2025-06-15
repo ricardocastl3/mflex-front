@@ -1,6 +1,6 @@
-import { IEvent } from "./IEvent";
 import { INews } from "./INews";
 import { IPodcast } from "./IPodCast";
+import { IEvent } from "./organizer/IEvent";
 
 export interface ICategory {
   id: string;

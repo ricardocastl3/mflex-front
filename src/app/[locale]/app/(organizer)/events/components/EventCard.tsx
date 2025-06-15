@@ -1,11 +1,11 @@
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { ReactIcons } from "@/utils/icons";
 import { useModal } from "@/providers/app/ModalProvider";
-import { IEvent } from "@/http/interfaces/models/IEvent";
 import { useEventProvider } from "@/providers/features/EventProvider";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { useEffect, useState } from "react";
 import { internalApi } from "@/http/axios/api";
+import { IEvent } from "@/http/interfaces/models/organizer/IEvent";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";

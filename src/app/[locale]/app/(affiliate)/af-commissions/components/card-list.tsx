@@ -1,10 +1,9 @@
 import { internalApi } from "@/http/axios/api";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { useState } from "react";
-import { ITransfer } from "@/http/interfaces/models/ITransfer";
 import { ReactIcons } from "@/utils/icons";
 import { useAuth } from "@/providers/auth/AuthProvider";
-import { AuSoftUI } from "@/@components/(ausoft)";
+import { ITransfer } from "@/http/interfaces/models/ITransfer";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";

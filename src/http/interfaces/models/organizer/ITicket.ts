@@ -1,6 +1,6 @@
-import { IUserResponse } from "../responses/IUserResponse";
 import { IEventTicket } from "./IEventTicket";
 import { IEvent } from "./IEvent";
+import { IUserResponse } from "../../responses/IUserResponse";
 
 export interface ITicket {
   id: string;

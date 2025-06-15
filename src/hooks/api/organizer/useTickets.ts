@@ -1,6 +1,6 @@
 import { ISearchDataField } from "@/@components/(system)/ASearch/SearchDataField";
 import { internalApi } from "@/http/axios/api";
-import { IUserTickerResponseAPI } from "@/http/interfaces/models/ITicket";
+import { IUserTickerResponseAPI } from "@/http/interfaces/models/organizer/ITicket";
 import { appConfigs } from "@/utils/enums";
 import { useCallback, useEffect, useState } from "react";
 

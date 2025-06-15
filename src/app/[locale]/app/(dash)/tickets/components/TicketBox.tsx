@@ -1,8 +1,5 @@
-import {
-  ITicket,
-  IUserTickerResponseAPI,
-} from "@/http/interfaces/models/ITicket";
 import { AuSoftUI } from "@/@components/(ausoft)";
+import { IUserTickerResponseAPI } from "@/http/interfaces/models/organizer/ITicket";
 
 import ContainerBase from "../../../@components/ContainerBase";
 import TicketCard from "./TicketCard";

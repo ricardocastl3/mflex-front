@@ -1,8 +1,7 @@
 "use client";
 
+import { ITicket } from "@/http/interfaces/models/organizer/ITicket";
 import React, { createContext, useContext, useState } from "react";
-
-import { ITicket } from "@/http/interfaces/models/ITicket";
 
 export type TAngolanMethods = "reference" | "express" | "paypay";
 

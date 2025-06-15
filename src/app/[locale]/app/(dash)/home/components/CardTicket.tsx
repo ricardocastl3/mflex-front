@@ -3,7 +3,7 @@ import { ReactIcons } from "@/utils/icons";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import LoadingVal from "./LoadindVal";
-import useTickets from "@/hooks/api/useTickets";
+import useTickets from "@/hooks/api/organizer/useTickets";
 
 export default function CardTicket() {
   const { allTickets, isLoadingAllTickets } = useTickets();

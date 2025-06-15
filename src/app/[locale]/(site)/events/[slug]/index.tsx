@@ -1,12 +1,12 @@
 "use client";
 
 import { internalApi, langByCookies } from "@/http/axios/api";
-import { IEvent } from "@/http/interfaces/models/IEvent";
 import { use, useCallback, useEffect, useState } from "react";
 import { ReactIcons } from "@/utils/icons";
 import { format } from "date-fns";
 import { BaseBox } from "@/@components/(box)/BaseBox";
 import { enUS, pt } from "date-fns/locale";
+import { IEvent } from "@/http/interfaces/models/organizer/IEvent";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import TicketBox from "./components/TicketsBox";
@@ -232,7 +232,9 @@ export default function EventPage({
             </div>
           </div>
         </div>
-        <TicketBox tickets={selectedEvent?.event_tickets} />
+        {selectedEvent.can_sell_ticket && (
+          <TicketBox tickets={selectedEvent?.event_tickets} />
+        )}
       </div>
     );
 }

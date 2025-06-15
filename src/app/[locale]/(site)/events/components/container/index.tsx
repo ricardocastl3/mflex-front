@@ -7,7 +7,7 @@ import { useCategoryProvider } from "@/providers/features/CategoryProvider";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import EventCard from "./EventCard";
 import BoxCategories from "../../../components/BoxCategories";
-import useEvents from "@/hooks/api/useEvents";
+import useEvents from "@/hooks/api/organizer/useEvents";
 
 export default function EventContainer() {
   // Contexts

@@ -1,6 +1,6 @@
 import { ISearchDataField } from "@/@components/(system)/ASearch/SearchDataField";
 import { internalApi } from "@/http/axios/api";
-import { IEvent } from "@/http/interfaces/models/IEvent";
+import { IEvent } from "@/http/interfaces/models/organizer/IEvent";
 import { useCallback, useEffect, useState } from "react";
 
 export default function useEvents({ route }: { route: "app" | "public" }) {

@@ -1,7 +1,6 @@
 import { langByCookies } from "@/http/axios/api";
-import { IEvent } from "@/http/interfaces/models/IEvent";
-import { NextResponse } from "next/server";
 import { Metadata } from "next";
+import { IEvent } from "@/http/interfaces/models/organizer/IEvent";
 
 import axios from "axios";
 

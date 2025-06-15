@@ -1,5 +1,4 @@
 import { AuSoftUI } from "@/@components/(ausoft)";
-import { IEventTicket } from "@/http/interfaces/models/IEventTicket";
 import { ReactIcons } from "@/utils/icons";
 import { useEffect, useState } from "react";
 import { useAuth } from "@/providers/auth/AuthProvider";
@@ -10,6 +9,7 @@ import { useCheckoutProvider } from "@/providers/app/CheckoutProvider";
 import { useEventTicketProvider } from "@/providers/features/EventTicketProvider";
 import { setCookie } from "cookies-next";
 import { appConfigs, ECOOKIES } from "@/utils/enums";
+import { IEventTicket } from "@/http/interfaces/models/organizer/IEventTicket";
 
 import CurrencyServices from "@/services/CurrencyServices";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";

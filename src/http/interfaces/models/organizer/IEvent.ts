@@ -1,6 +1,6 @@
+import { IUserResponse } from "../../responses/IUserResponse";
+import { ICategory } from "../ICategory";
 import { IEventTicket } from "./IEventTicket";
-import { ICategory } from "./ICategory";
-import { IUserResponse } from "../responses/IUserResponse";
 
 export interface IEvent {
   id: string;
@@ -13,6 +13,7 @@ export interface IEvent {
   main_address: string;
   map_location: string;
   reference_address: string;
+  can_sell_ticket: boolean;
   created_at: Date;
   category: ICategory;
   rejected_reason?: string;

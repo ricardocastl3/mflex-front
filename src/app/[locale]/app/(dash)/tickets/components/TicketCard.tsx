@@ -1,9 +1,9 @@
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { useModal } from "@/providers/app/ModalProvider";
 import { ReactIcons } from "@/utils/icons";
-import { ITicket } from "@/http/interfaces/models/ITicket";
 import { useTicketProvider } from "@/providers/features/TicketProvider";
 import { localImages } from "@/utils/images";
+import { ITicket } from "@/http/interfaces/models/organizer/ITicket";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 

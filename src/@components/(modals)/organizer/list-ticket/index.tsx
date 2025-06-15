@@ -3,7 +3,6 @@ import { useModal } from "@/providers/app/ModalProvider";
 import { useEventProvider } from "@/providers/features/EventProvider";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { useEventTicketProvider } from "@/providers/features/EventTicketProvider";
-import { IEventTicket } from "@/http/interfaces/models/IEventTicket";
 import { useEffect, useState } from "react";
 import { useAuth } from "@/providers/auth/AuthProvider";
 
@@ -11,7 +10,8 @@ import AAuSoftLogo from "@/@components/(ausoft)/AAuSoftLogo";
 import BaseModal from "../../base";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import EventTicketCard from "./components/TicketItem";
-import useEventTickets from "@/hooks/api/useEventTickets";
+import useEventTickets from "@/hooks/api/organizer/useEventTickets";
+import { IEventTicket } from "@/http/interfaces/models/organizer/IEventTicket";
 
 export default function ListTicketModal() {
   // Contexts

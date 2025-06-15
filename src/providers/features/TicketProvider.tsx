@@ -1,6 +1,6 @@
 "use client";
 
-import { ITicket } from "@/http/interfaces/models/ITicket";
+import { ITicket } from "@/http/interfaces/models/organizer/ITicket";
 import { createContext, ReactNode, useContext, useState } from "react";
 
 interface ITicketProviderProps {

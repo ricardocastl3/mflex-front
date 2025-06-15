@@ -5,7 +5,7 @@ import { ReactIcons } from "@/utils/icons";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import PageBase from "../../@components/PageBase";
-import GeneralDonationsBox from "./components/TransferBox";
+import GeneralDonationsBox from "./components/DonationBox";
 import useDonations from "@/hooks/api/musics/useDonations";
 
 export default function MyDonationsPage() {

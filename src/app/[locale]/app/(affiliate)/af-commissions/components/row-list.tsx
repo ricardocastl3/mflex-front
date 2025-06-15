@@ -1,10 +1,9 @@
-import { ITransfer } from "@/http/interfaces/models/ITransfer";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { internalApi } from "@/http/axios/api";
 import { useState } from "react";
 import { ReactIcons } from "@/utils/icons";
 import { useAuth } from "@/providers/auth/AuthProvider";
-import { AuSoftUI } from "@/@components/(ausoft)";
+import { ITransfer } from "@/http/interfaces/models/ITransfer";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CardStatus from "./card-status";

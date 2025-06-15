@@ -1,6 +1,6 @@
 "use client";
 
-import { IEvent } from "@/http/interfaces/models/IEvent";
+import { IEvent } from "@/http/interfaces/models/organizer/IEvent";
 import { createContext, ReactNode, useContext, useState } from "react";
 
 interface IEventProviderProps {

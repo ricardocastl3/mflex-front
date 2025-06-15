@@ -10,7 +10,7 @@ import { useAuth } from "@/providers/auth/AuthProvider";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import EventBox from "./components/EventBox";
 import PageBase from "../../@components/PageBase";
-import useEvents from "@/hooks/api/useEvents";
+import useEvents from "@/hooks/api/organizer/useEvents";
 import EventNoSubscription from "./components/EventNoSubscription";
 
 export default function EventAppPage() {

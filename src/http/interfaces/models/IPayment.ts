@@ -1,5 +1,5 @@
 import { IUserResponse } from "../responses/IUserResponse";
-import { ITicket } from "./ITicket";
+import { ITicket } from "./organizer/ITicket";
 import { ITransfer } from "./ITransfer";
 
 export interface IPayment {
