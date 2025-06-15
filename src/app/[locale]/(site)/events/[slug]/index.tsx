@@ -31,13 +31,13 @@ export default function EventPage({
         resp.data.event.status === "pending" ||
         resp.data.event.status == "rejected"
       ) {
-        window.location.href = `${process.env.MFLEX_NEXT_PUBLIC_URL}/${langByCookies}`;
+        window.location.href = `/${langByCookies}/events`;
         return;
       }
 
       setIsLoading(false);
     } catch (err) {
-      window.location.href = `${process.env.MFLEX_NEXT_PUBLIC_URL}/${langByCookies}`;
+      window.location.href = `/${langByCookies}/events`;
     }
   }, []);
 
