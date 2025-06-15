@@ -77,7 +77,7 @@ export default function ArtistComplaintMusicModal() {
         <div className="flex items-center justify-between p-4 border-b border-slate-300 dark:border-slate-800">
           <div className="flex items-center gap-3">
             <AAuSoftLogo size={40} />
-            <h3 className="text-base font-bold dark:text-white">
+            <h3 className="text-base font-bold dark:text-white truncate">
               <CTranslateTo eng="Report Music: " pt="Denúnciar música: " />{" "}
               {selectedMusic?.title}
             </h3>
