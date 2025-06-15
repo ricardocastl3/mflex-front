@@ -168,7 +168,11 @@ class LocalStorageServices {
   }
 
   setLastPageViewFlexZone(id: string) {
-    localStorage.setItem(this.keys.rc_last_page, `${id}`);
+    if (id == "") {
+      localStorage.removeItem(this.keys.rc_last_page);
+    } else {
+      localStorage.setItem(this.keys.rc_last_page, `${id}`);
+    }
   }
 
   // Pricing
