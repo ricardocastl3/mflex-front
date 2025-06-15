@@ -289,14 +289,6 @@ export default function AddTicketModal() {
         </div>
 
         <div className="flex items-center gap-2 md:px-5 px-5 py-4 border-t border-slate-300 dark:border-slate-800 ">
-          <AuSoftUI.UI.Button
-            onClick={handleClose}
-            type="button"
-            size={"md"}
-            variant={"outline"}
-          >
-            <CTranslateTo eng="Cancel" pt="Cancelar" />
-          </AuSoftUI.UI.Button>
           <AuSoftUI.UI.Button type="submit" size={"md"} variant={"primary"}>
             {!isSubmitting && !selectedEventTicket && (
               <CTranslateTo eng="Add Ticket" pt="Adicionar Ingresso" />
@@ -307,6 +299,14 @@ export default function AddTicketModal() {
             )}
 
             <AuSoftUI.Component.isFormSubmitting isSubmitting={isSubmitting} />
+          </AuSoftUI.UI.Button>
+          <AuSoftUI.UI.Button
+            onClick={handleClose}
+            type="button"
+            size={"md"}
+            variant={"outline"}
+          >
+            <CTranslateTo eng="Cancel" pt="Cancelar" />
           </AuSoftUI.UI.Button>
         </div>
 

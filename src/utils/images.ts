@@ -141,7 +141,10 @@ const flexSocial =
 import planBanner from "@/@assets/bgs/banners/plan_banner.jpg";
 
 import bannerTv from "@/@assets/bgs/banners/tv.jpg";
-import moviePlaceholder from "@/@assets/bgs/movie-plh.jpg"
+import moviePlaceholder from "@/@assets/bgs/movie-plh.jpg";
+
+import artistBg from "@/@assets/bgs/artist-bg.jpg";
+import artistProfileBg from "@/@assets/bgs/artist-profile-bg.jpg";
 
 export const localImages = {
   logos: {
@@ -181,6 +184,8 @@ export const localImages = {
   },
   bgs: {
     moviePlaceholder,
+    artistBg,
+    artistProfileBg,
   },
   vectors: {
     emptyBox,

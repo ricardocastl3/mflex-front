@@ -30,6 +30,16 @@ export default function MusicContent({ music }: { music: IMusic }) {
 
   const [checkUser, setCheckUser] = useState(false);
 
+  function handleComplaintMusic() {
+    if (!userLogged) {
+      LocalStorageServices.setMusicSlug(music.slug);
+      window.location.href = `/${langByCookies}/sign-in`;
+    } else {
+      handleSelectMusic(music);
+      handleOpenModal("art-complaint-music");
+    }
+  }
+
   useEffect(() => {
     let timeoutUser: NodeJS.Timeout;
     let timeoutView: NodeJS.Timeout;
@@ -85,12 +95,43 @@ export default function MusicContent({ music }: { music: IMusic }) {
         </div>
 
         <div className="flex items-center gap-3 flex-wrap border-b pb-4 border-slate-300 dark:border-slate-700/60">
-          <DateCategory
-            right
-            category_name={music?.category ? music.category.name : "no"}
-            date={music.created_at}
-          />
-          <MusicViews views={music.views_count.length} />
+          <div className="md:text-base text-sm flex items-center gap-3">
+            <DateCategory
+              right
+              category_name={music?.category ? music.category.name : "no"}
+              date={music.created_at}
+            />
+            <MusicViews views={music.views_count.length} />
+          </div>
+
+          <AuSoftUI.UI.Button
+            variant={"outline"}
+            size={"sm"}
+            onClick={handleComplaintMusic}
+            className="items-center md:flex hidden py-2 md:w-fit w-full"
+          >
+            <CTranslateTo eng="Report Music" pt="Denunciar Música" />
+            <ReactIcons.AiICon.AiFillWarning size={10} />
+          </AuSoftUI.UI.Button>
+        </div>
+        <div className="flex items-center gap-3">
+          <AuSoftUI.UI.Button
+            variant={"primary"}
+            size={"sm"}
+            className="items-center hidden py-2 md:w-fit w-full"
+          >
+            <CTranslateTo eng="Download Music" pt="Baixar música" />
+            <ReactIcons.AiICon.AiOutlineDownload size={10} />
+          </AuSoftUI.UI.Button>
+          <AuSoftUI.UI.Button
+            variant={"outline"}
+            size={"sm"}
+            onClick={handleComplaintMusic}
+            className="items-center md:hidden flex py-2 md:w-fit w-full"
+          >
+            <CTranslateTo eng="Report Music" pt="Denunciar Música" />
+            <ReactIcons.AiICon.AiFillWarning size={10} />
+          </AuSoftUI.UI.Button>
         </div>
         {music.artist_profile?.is_verified &&
           serverStats &&

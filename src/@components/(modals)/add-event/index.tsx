@@ -478,14 +478,6 @@ export default function AddEventModal() {
         </div>
 
         <div className="flex items-center gap-3 border-t border-slate-300 dark:border-slate-800 px-5 pt-4 pb-5">
-          <AuSoftUI.UI.Button
-            type="button"
-            onClick={handleClose}
-            variant={"outline"}
-            size={"md"}
-          >
-            <CTranslateTo eng="Cancel" pt="Cancelar" />
-          </AuSoftUI.UI.Button>
           <AuSoftUI.UI.Button type="submit" variant={"primary"} size={"md"}>
             {selectedEvent && !isSubmitting && (
               <CTranslateTo eng="Save Changes" pt="Salvar alterações" />
@@ -494,6 +486,14 @@ export default function AddEventModal() {
               <CTranslateTo eng="Add new event" pt="Adicionar novo evento" />
             )}
             <AuSoftUI.Component.isFormSubmitting isSubmitting={isSubmitting} />
+          </AuSoftUI.UI.Button>
+          <AuSoftUI.UI.Button
+            type="button"
+            onClick={handleClose}
+            variant={"outline"}
+            size={"md"}
+          >
+            <CTranslateTo eng="Cancel" pt="Cancelar" />
           </AuSoftUI.UI.Button>
         </div>
         <ARegisterProgress isOpened={isSubmitting} rounded="all" />

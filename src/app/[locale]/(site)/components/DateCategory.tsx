@@ -40,7 +40,7 @@ export default function DateCategory({
       </h4>
 
       {right && (
-        <h1 className="flex items-center gap-2 text-base dark:text-yellow-500 text-yellow-600">
+        <h1 className="flex items-center gap-2 dark:text-yellow-500 text-yellow-600">
           <ReactIcons.VSCIcon.VscAzureDevops size={15} />
           {category_name == "no" && (
             <CTranslateTo eng="No Category" pt="Sem categoria" />

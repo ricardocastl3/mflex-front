@@ -35,6 +35,7 @@ import CropImageModal from "./cropper-image/easy/crop";
 import AdsListenMusicModal from "./ads/ads-listen-music";
 import GracefullDonateModal from "./artist/art-gracefull-donate";
 import UserNoHaveArtistProfileModal from "./artist/art-no-have-profile-subs";
+import ArtistComplaintMusicModal from "./artist/art-complaint-music";
 
 export default function ModalOpenProvider() {
   const { openModal } = useModal();
@@ -135,6 +136,9 @@ export default function ModalOpenProvider() {
 
     case "art-no-have-profile-subs":
       return <UserNoHaveArtistProfileModal />;
+
+    case "art-complaint-music":
+      return <ArtistComplaintMusicModal />;
 
     default:
       return <></>;
