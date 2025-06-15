@@ -1,9 +1,3 @@
-import AAuSoftLogo from "@/@components/(ausoft)/AAuSoftLogo";
-import BaseModal from "../base";
-import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import EventTicketCard from "./components/TicketItem";
-import useEventTickets from "@/hooks/api/useEventTickets";
-
 import { ReactIcons } from "@/utils/icons";
 import { useModal } from "@/providers/app/ModalProvider";
 import { useEventProvider } from "@/providers/features/EventProvider";
@@ -11,6 +5,13 @@ import { AuSoftUI } from "@/@components/(ausoft)";
 import { useEventTicketProvider } from "@/providers/features/EventTicketProvider";
 import { IEventTicket } from "@/http/interfaces/models/IEventTicket";
 import { useEffect, useState } from "react";
+import { useAuth } from "@/providers/auth/AuthProvider";
+
+import AAuSoftLogo from "@/@components/(ausoft)/AAuSoftLogo";
+import BaseModal from "../../base";
+import CTranslateTo from "@/@components/(translation)/CTranslateTo";
+import EventTicketCard from "./components/TicketItem";
+import useEventTickets from "@/hooks/api/useEventTickets";
 
 export default function ListTicketModal() {
   // Contexts
@@ -19,6 +20,7 @@ export default function ListTicketModal() {
   const { handleOpenModal } = useModal();
   const { handleSeachEventTicket, isLoadingAllTickets, allTickets } =
     useEventTickets();
+  const { currentSubscription } = useAuth();
 
   // Constrols
   const [allTicketsSafed, setAllTicketsSafed] = useState<IEventTicket[]>(
@@ -86,8 +88,12 @@ export default function ListTicketModal() {
               </h2>
               <AuSoftUI.UI.Button
                 onClick={() => {
-                  handleSelectEventTicket(undefined),
-                    handleOpenModal("add-ticket");
+                  if (!currentSubscription?.subscription.is_expired) {
+                    handleSelectEventTicket(undefined),
+                      handleOpenModal("add-ticket");
+                  } else {
+                    handleOpenModal("ticket-unavailable-subs");
+                  }
                 }}
                 variant={"primary"}
                 size={"md"}

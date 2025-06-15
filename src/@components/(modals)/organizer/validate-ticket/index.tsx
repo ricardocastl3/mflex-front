@@ -1,4 +1,4 @@
-import BaseModal from "../base";
+import BaseModal from "../../base";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import QrScanner from "./QrScanner";
 

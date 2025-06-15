@@ -9,6 +9,7 @@ class LocalStorageServices {
     rc_football: "gm_rc",
     rc_music: "rc-music",
     rc_artist_panel: "rc-art-panel",
+    rc_organizer_panel: "rc-org-panel",
     rc_last_page: "lst-pg",
     aff_code: "btag",
     watch_token: "wtn",
@@ -63,6 +64,7 @@ class LocalStorageServices {
     localStorage.removeItem(this.keys.rc_football);
     localStorage.removeItem(this.keys.aff_code);
     localStorage.removeItem(this.keys.rc_artist_panel);
+    localStorage.removeItem(this.keys.rc_organizer_panel);
     localStorage.removeItem(this.keys.rc_music);
   }
 
@@ -108,6 +110,11 @@ class LocalStorageServices {
     window.location.href = `/${langByCookies}/app/art-musics`;
   }
 
+  redirectForOrganizerPanel() {
+    this.delKey(this.keys.rc_organizer_panel);
+    window.location.href = `/${langByCookies}/app/events`;
+  }
+
   getWatchID() {
     const res = localStorage.getItem(this.keys.rc_watchTv);
     return res?.split("_")[1] || false;
@@ -120,7 +127,12 @@ class LocalStorageServices {
 
   getArtistPanel() {
     const res = localStorage.getItem(this.keys.rc_artist_panel);
-    return res?.split("_")[1] || false;
+    return res;
+  }
+
+  getOrganizerPanel() {
+    const res = localStorage.getItem(this.keys.rc_organizer_panel);
+    return res;
   }
 
   getMusicSlug() {
@@ -147,8 +159,14 @@ class LocalStorageServices {
     localStorage.setItem(this.keys.rc_watchTv, `wtv_${id}`);
   }
 
+  // To redirect route when he purchase something
   setArtistPanel(id: string) {
     localStorage.setItem(this.keys.rc_artist_panel, `${id}`);
+  }
+
+  // To redirect route when he purchase something
+  setOrganizerPanel(id: string) {
+    localStorage.setItem(this.keys.rc_organizer_panel, `${id}`);
   }
 
   setMusicSlug(id: string) {

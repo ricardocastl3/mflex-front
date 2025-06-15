@@ -70,8 +70,11 @@ export default function AngolanPaymentDetailsModal() {
             return;
           } else if (LocalStorageServices.getAffiliateCode()) {
             LocalStorageServices.resetAllKeys();
-          } else {
-            window.location.href = "/" + langByCookies + "/app/artist";
+          } else if (LocalStorageServices.getArtistPanel()) {
+            LocalStorageServices.redirectForArtistPanel();
+            return;
+          } else if (LocalStorageServices.getOrganizerPanel()) {
+            LocalStorageServices.redirectForOrganizerPanel();
             return;
           }
         }

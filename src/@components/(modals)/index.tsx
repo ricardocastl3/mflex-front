@@ -8,12 +8,12 @@ import DefaultQuestionModal from "./default-question";
 import MobileMoreOptions from "../(system)/AFooter/mobile/components/MobileMoreOptions";
 import ResourceUnvailableModal from "./resource-unavailable";
 import AngolanPaymentDetailsModal from "./angolan-payment-details";
-import AddEventModal from "./add-event";
-import ValidateTicketModal from "./validate-ticket";
-import AddTicketModal from "./add-ticket";
-import ListTicketModal from "./list-ticket";
-import ViewTicketModal from "./view-ticket";
-import ApproveTicketModal from "./approve-ticket";
+import AddEventModal from "./organizer/add-event";
+import ValidateTicketModal from "./organizer/validate-ticket";
+import AddTicketModal from "./organizer/add-ticket";
+import ListTicketModal from "./organizer/list-ticket";
+import ViewTicketModal from "./organizer/view-ticket";
+import ApproveTicketModal from "./organizer/approve-ticket";
 import AngolanPaymentModal from "./angolan-payment";
 import TechnicalSupport from "./technical-support";
 import AllowNotificationModal from "./allow-notifications";
@@ -36,6 +36,7 @@ import AdsListenMusicModal from "./ads/ads-listen-music";
 import GracefullDonateModal from "./artist/art-gracefull-donate";
 import UserNoHaveArtistProfileModal from "./artist/art-no-have-profile-subs";
 import ArtistComplaintMusicModal from "./artist/art-complaint-music";
+import TicketNotAvailableSubsExpiredModale from "./organizer/ticket-unavailable-subs";
 
 export default function ModalOpenProvider() {
   const { openModal } = useModal();
@@ -139,6 +140,9 @@ export default function ModalOpenProvider() {
 
     case "art-complaint-music":
       return <ArtistComplaintMusicModal />;
+
+    case "ticket-unavailable-subs":
+      return <TicketNotAvailableSubsExpiredModale />;
 
     default:
       return <></>;

@@ -6,7 +6,7 @@ import { useAppProvider } from "@/providers/app/AppProvider";
 import { internalApi } from "@/http/axios/api";
 
 import AAuSoftLogo from "@/@components/(ausoft)/AAuSoftLogo";
-import BaseModal from "../base";
+import BaseModal from "../../base";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CurrencyServices from "@/services/CurrencyServices";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";

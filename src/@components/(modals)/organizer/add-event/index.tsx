@@ -13,7 +13,7 @@ import { useCategoryProvider } from "@/providers/features/CategoryProvider";
 import { useAppProvider } from "@/providers/app/AppProvider";
 
 import AAuSoftLogo from "@/@components/(ausoft)/AAuSoftLogo";
-import BaseModal from "../base";
+import BaseModal from "../../base";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import EventSchemas from "@/services/schemas/EventSchema";
 import SelectCategoryDropdown from "./category";

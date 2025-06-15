@@ -37,6 +37,7 @@ type modalType =
   | "cropper-image"
   | "watch-tv"
   | "ads-listen-music"
+  | "ticket-unavailable-subs"
   | "event-affiliate-material"
   | "elite-affiliate-material"
   | "art-gracefull-donate"

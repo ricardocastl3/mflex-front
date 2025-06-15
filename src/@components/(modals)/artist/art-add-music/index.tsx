@@ -17,7 +17,7 @@ import BaseModal from "../../base";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 import ARegisterProgress from "@/@components/(ausoft)/ARegisterProgress";
-import SelectCategoryDropdown from "../../add-event/category";
+import SelectCategoryDropdown from "../../organizer/add-event/category";
 import MusicSchemas from "@/services/schemas/MusicSchema";
 
 export default function ArtistAddMusicModal() {

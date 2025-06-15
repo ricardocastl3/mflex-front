@@ -11,7 +11,7 @@ import { useEventTicketProvider } from "@/providers/features/EventTicketProvider
 import { useAppProvider } from "@/providers/app/AppProvider";
 
 import AAuSoftLogo from "@/@components/(ausoft)/AAuSoftLogo";
-import BaseModal from "../base";
+import BaseModal from "../../base";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import TicketSchemas from "@/services/schemas/TicketSchema";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
