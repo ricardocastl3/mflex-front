@@ -168,7 +168,7 @@ class LocalStorageServices {
   }
 
   setLastPageViewFlexZone(id: string) {
-    if (id == "") {
+    if (id == "" || !id || id == "undefined") {
       localStorage.removeItem(this.keys.rc_last_page);
     } else {
       localStorage.setItem(this.keys.rc_last_page, `${id}`);
