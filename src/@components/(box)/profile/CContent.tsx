@@ -20,7 +20,7 @@ export default function CContent({ callback }: { callback?: () => void }) {
     handleLogout,
   } = useAuth();
 
-  const { currentPageByUrl } = useAppProvider();
+  const { currentPageByUrl, currentLastPageUrl } = useAppProvider();
   const { handleOpenModal } = useModal();
 
   const subscriptionExpired =
@@ -141,7 +141,7 @@ export default function CContent({ callback }: { callback?: () => void }) {
           href={`/${langByCookies}/app`}
           onClick={() => {
             if (currentPageByUrl != "app") {
-              LocalStorageServices.setLastPageViewFlexZone(currentPageByUrl);
+              LocalStorageServices.setLastPageViewFlexZone(currentLastPageUrl);
             }
           }}
           className="mt-2.5 rounded-full flex text-sm items-center gap-2 px-4 dark:text-slate-200 dark:hover:bg-slate-800/40 hover:bg-slate-200 transition-all py-3"

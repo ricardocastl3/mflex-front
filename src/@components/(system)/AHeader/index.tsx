@@ -34,23 +34,22 @@ export default function AHeader() {
         >
           <AAuSoftLogo size={70} />
         </Link>
-        <AuSoftUI.UI.Button
-          onClick={() => {
-            if (LocalStorageServices.getLastPeerViewFlexZone()) {
-              router.push(
-                `/${langByCookies}/${LocalStorageServices.getLastPeerViewFlexZone()}`
-              );
-            } else {
-              router.push(`/${langByCookies}`);
-            }
-          }}
-          variant={"primary"}
-          size={"sm"}
-          className="py-0.5 px-2 gap-1 w-fit items-center"
+        <Link
+          href={`${
+            LocalStorageServices.getLastPeerViewFlexZone()
+              ? `/${langByCookies}/${LocalStorageServices.getLastPeerViewFlexZone()}`
+              : `/${langByCookies}`
+          }`}
         >
-          <ReactIcons.BiIcon.BiArrowToLeft size={15} />
-          <CTranslateTo eng="Back" pt="Voltar" />
-        </AuSoftUI.UI.Button>
+          <AuSoftUI.UI.Button
+            variant={"primary"}
+            size={"sm"}
+            className="py-0.5 px-2 gap-1 w-fit items-center"
+          >
+            <ReactIcons.BiIcon.BiArrowToLeft size={15} />
+            <CTranslateTo eng="Back" pt="Voltar" />
+          </AuSoftUI.UI.Button>
+        </Link>
       </div>
 
       <div className="flex items-center md:gap-2 gap-2 divide-x-2 divide-slate-300 dark:divide-slate-700/60">

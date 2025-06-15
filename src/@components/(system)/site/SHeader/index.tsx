@@ -19,8 +19,12 @@ import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 export default function SHeader() {
   // Contexts
-  const { segmentedLayout, hiddenMobileHeader, currentPageByUrl } =
-    useAppProvider();
+  const {
+    segmentedLayout,
+    hiddenMobileHeader,
+    currentLastPageUrl,
+    currentPageByUrl,
+  } = useAppProvider();
   const { userLogged, handleRedirectToSign, isLoadingUserData } = useAuth();
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -122,7 +126,9 @@ export default function SHeader() {
               variant={"primary"}
               onClick={() => {
                 LocalStorageServices.resetAllKeys();
-                LocalStorageServices.setLastPageViewFlexZone(currentPageByUrl);
+                LocalStorageServices.setLastPageViewFlexZone(
+                  currentLastPageUrl
+                );
                 handleRedirectToSign();
               }}
               className="rounded-full"

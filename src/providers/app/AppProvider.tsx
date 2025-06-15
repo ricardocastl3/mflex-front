@@ -4,10 +4,10 @@ import { usePathname, useSelectedLayoutSegment } from "next/navigation";
 import { useAuth } from "../auth/AuthProvider";
 import { IServerStats } from "@/http/interfaces/models/IServerStats";
 import { IAffiliateConfigs } from "@/http/interfaces/models/affiliate/IAffiliateConfigs";
+import { useSocketProvider } from "../auth/SocketProvider";
 
 import React, { createContext, useContext, useEffect, useState } from "react";
 import CookieServices from "@/services/auth/CookieServices";
-import { useSocketProvider } from "../auth/SocketProvider";
 
 export interface IToast {
   id?: number;
@@ -31,6 +31,7 @@ interface IAppContext {
   isNotifyGranted: boolean;
   currentPageByUrl: string;
   currentAppPageUrl: string;
+  currentLastPageUrl: string;
   openToast: IToast[];
   segmentedLayout: string | null;
   segmentedLayoutByLocalStorage: string;
@@ -71,6 +72,8 @@ export default function AppProvider({
   //Controls
   const [currentPageByUrl, setCurrentPageByUrl] = useState("");
   const [currentAppPageUrl, setCurrentAppPageUrl] = useState("");
+  const [currentLastPageUrl, setCurrentLastPageUrl] = useState("");
+
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [openToast, setOpenToast] = useState<IToast[]>([]);
   const [openBanner, setOpenBanner] = useState(false);
@@ -151,6 +154,7 @@ export default function AppProvider({
     const pathBase = path.split("/")[2];
     setCurrentPageByUrl(pathBase);
     setCurrentAppPageUrl(path.split("/")[3]);
+    setCurrentLastPageUrl(path.slice(4));
 
     if (
       (pathBase == "podflex" || pathBase == "musics") &&
@@ -221,6 +225,7 @@ export default function AppProvider({
         openToast,
         currentPageByUrl,
         currentAppPageUrl,
+        currentLastPageUrl,
         isDarkMode,
       }}
     >
