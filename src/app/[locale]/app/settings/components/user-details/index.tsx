@@ -178,7 +178,7 @@ export default function UserDetailBox() {
               </option>
               <option
                 value={"feminine"}
-                className="md:bg-ausoft-slate-950 dark:text-white"
+                className="bg-ausoft-slate-950 dark:text-white"
               >
                 <CTranslateTo eng="Feminine" pt="Feminino" />
               </option>
