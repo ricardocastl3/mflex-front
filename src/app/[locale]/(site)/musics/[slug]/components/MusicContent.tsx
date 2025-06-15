@@ -115,16 +115,16 @@ export default function MusicContent({ music }: { music: IMusic }) {
             </AuSoftUI.UI.Button>
           )}
         </div>
-        <div className="flex items-center gap-3">
-          <AuSoftUI.UI.Button
-            variant={"primary"}
-            size={"sm"}
-            className="items-center hidden py-2 md:w-fit w-full"
-          >
-            <CTranslateTo eng="Download Music" pt="Baixar música" />
-            <ReactIcons.AiICon.AiOutlineDownload size={10} />
-          </AuSoftUI.UI.Button>
-          {music.artist_profile?.id != userLogged?.artist_profile?.id && (
+        {music.artist_profile?.id != userLogged?.artist_profile?.id && (
+          <div className="flex items-center gap-3">
+            <AuSoftUI.UI.Button
+              variant={"primary"}
+              size={"sm"}
+              className="items-center hidden py-2 md:w-fit w-full"
+            >
+              <CTranslateTo eng="Download Music" pt="Baixar música" />
+              <ReactIcons.AiICon.AiOutlineDownload size={10} />
+            </AuSoftUI.UI.Button>
             <AuSoftUI.UI.Button
               variant={"outline"}
               size={"sm"}
@@ -134,8 +134,9 @@ export default function MusicContent({ music }: { music: IMusic }) {
               <CTranslateTo eng="Report Music" pt="Denunciar Música" />
               <ReactIcons.AiICon.AiFillWarning size={10} />
             </AuSoftUI.UI.Button>
-          )}
-        </div>
+          </div>
+        )}
+
         {music.artist_profile?.is_verified &&
           serverStats &&
           serverStats?.music_donation_on &&
