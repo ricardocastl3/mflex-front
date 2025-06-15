@@ -115,6 +115,7 @@ export default function ArtistComplaintMusicModal() {
               {complaintMusicTitles.map((til, i) => {
                 return (
                   <option
+                    key={i}
                     value={til.value}
                     className="dark:bg-ausoft-slate-950 dark:text-white"
                   >
