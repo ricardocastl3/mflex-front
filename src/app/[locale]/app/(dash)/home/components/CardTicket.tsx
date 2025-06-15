@@ -11,7 +11,7 @@ export default function CardTicket() {
   return (
     <BaseBox className="p-4">
       <div className="flex flex-col gap-2">
-        <div className="w-full flex justify-between">
+        <div className="w-full flex items-center justify-between">
           <h1 className="text-base dark:text-white font-bold">
             <CTranslateTo eng="My Tickets" pt="Meus Ingressos" />
           </h1>
