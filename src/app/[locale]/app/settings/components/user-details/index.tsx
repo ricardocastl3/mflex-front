@@ -20,14 +20,18 @@ export default function UserDetailBox() {
     email?: string;
     first: string;
     last: string;
+    gender: string;
+    birthday: string;
   }>(
-    userLogged
+    userLogged && userLogged.profile
       ? {
-          last: userLogged.last_name!,
-          first: userLogged.first_name!,
+          last: userLogged.last_name || "",
+          first: userLogged.first_name || "",
           email: userLogged.email,
+          birthday: userLogged.profile?.birthday || "",
+          gender: userLogged.profile?.gender || "",
         }
-      : { last: "", first: "", email: "" }
+      : { last: "", first: "", email: "", birthday: "", gender: "" }
   );
   const [phoneNumber, setPhoneNumber] = useState(
     userLogged?.profile?.phone_number
@@ -64,6 +68,8 @@ export default function UserDetailBox() {
         last_name: personalData.last,
         first_name: personalData.first,
         email: personalData.email,
+        gender: personalData.gender,
+        birthday: personalData.birthday,
       });
 
       AuSoftUI.Component.ToastifyWithTranslation({
@@ -131,6 +137,69 @@ export default function UserDetailBox() {
                 setPersonalData((state) => ({
                   ...state,
                   last: e.target.value,
+                }));
+              }}
+              className="w-full"
+              weight={"md"}
+              placeholder="Ex: Castro"
+            />
+          </div>
+
+          <div className="flex flex-col gap-4">
+            <h4 className="text-sm font-bold dark:text-white">
+              <CTranslateTo eng="Gender" pt="Género" />
+            </h4>
+            <AuSoftUI.UI.Select
+              value={personalData.gender}
+              onChange={(e) => {
+                setPersonalData((state) => ({
+                  ...state,
+                  gender: e.target.value,
+                }));
+              }}
+              className="w-full"
+              weight={"md"}
+            >
+              <option
+                value={""}
+                className="dark:bg-ausoft-slate-950 dark:text-white"
+              >
+                <CTranslateTo
+                  eng="--------- Select Gender -------"
+                  pt="-------- Selecione o seu género ------"
+                />
+              </option>
+
+              <option
+                value={"masculine"}
+                className="dark:bg-ausoft-slate-950 dark:text-white"
+              >
+                <CTranslateTo eng="Masculine" pt="Masculino" />
+              </option>
+              <option
+                value={"feminine"}
+                className="md:bg-ausoft-slate-950 dark:text-white"
+              >
+                <CTranslateTo eng="Feminine" pt="Feminino" />
+              </option>
+            </AuSoftUI.UI.Select>
+          </div>
+
+          <div className="flex flex-col gap-4">
+            <h4 className="text-sm font-bold dark:text-white">
+              <CTranslateTo eng="Birthday" pt="Data de nascimeno" />
+            </h4>
+            <AuSoftUI.UI.TextField.Default
+              value={
+                personalData.birthday
+                  ? personalData.birthday.split("T")[0]
+                  : new Date().toISOString().split("T")[0]
+              }
+              type="date"
+              onChange={(e) => {
+                setPersonalData((state) => ({
+                  ...state,
+                  birthday: e.target.value,
                 }));
               }}
               className="w-full"
