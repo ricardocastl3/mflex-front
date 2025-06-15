@@ -16,7 +16,7 @@ export default function CardDonations() {
           <h1 className="text-base dark:text-white font-bold">
             <CTranslateTo eng="Donations" pt="Minhas doações" />
           </h1>
-          <ReactIcons.FaIcon.FaDonate size={15} className="text-emerald-500" />
+          <ReactIcons.FaIcon.FaDonate size={12} className="text-emerald-500" />
         </div>
 
         <LoadingVal
