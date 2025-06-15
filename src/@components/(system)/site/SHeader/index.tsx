@@ -122,6 +122,7 @@ export default function SHeader() {
               variant={"primary"}
               onClick={() => {
                 LocalStorageServices.resetAllKeys();
+                LocalStorageServices.setLastPageViewFlexZone(currentPageByUrl);
                 handleRedirectToSign();
               }}
               className="rounded-full"

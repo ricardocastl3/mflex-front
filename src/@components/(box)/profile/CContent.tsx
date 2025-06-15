@@ -4,6 +4,7 @@ import { AuSoftUI } from "@/@components/(ausoft)";
 import { localImages } from "@/utils/images";
 import { langByCookies } from "@/http/axios/api";
 import { useModal } from "@/providers/app/ModalProvider";
+import { useAppProvider } from "@/providers/app/AppProvider";
 
 import React from "react";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
@@ -18,6 +19,8 @@ export default function CContent({ callback }: { callback?: () => void }) {
     currentArtistSubscription,
     handleLogout,
   } = useAuth();
+
+  const { currentPageByUrl } = useAppProvider();
   const { handleOpenModal } = useModal();
 
   const subscriptionExpired =
@@ -136,6 +139,11 @@ export default function CContent({ callback }: { callback?: () => void }) {
       >
         <Link
           href={`/${langByCookies}/app`}
+          onClick={() => {
+            if (currentPageByUrl != "app") {
+              LocalStorageServices.setLastPageViewFlexZone(currentPageByUrl);
+            }
+          }}
           className="mt-2.5 rounded-full flex text-sm items-center gap-2 px-4 dark:text-slate-200 dark:hover:bg-slate-800/40 hover:bg-slate-200 transition-all py-3"
         >
           <ReactIcons.VSCIcon.VscSymbolEvent size={14} />

@@ -9,6 +9,7 @@ class LocalStorageServices {
     rc_football: "gm_rc",
     rc_music: "rc-music",
     rc_artist_panel: "rc-art-panel",
+    rc_last_page: "lst-pg",
     aff_code: "btag",
     watch_token: "wtn",
   };
@@ -112,6 +113,11 @@ class LocalStorageServices {
     return res?.split("_")[1] || false;
   }
 
+  getLastPeerViewFlexZone() {
+    const res = localStorage.getItem(this.keys.rc_last_page);
+    return res;
+  }
+
   getArtistPanel() {
     const res = localStorage.getItem(this.keys.rc_artist_panel);
     return res?.split("_")[1] || false;
@@ -159,6 +165,10 @@ class LocalStorageServices {
 
   setWatchMovieID(id: string) {
     localStorage.setItem(this.keys.rc_watchMovie, `wtm_${id}`);
+  }
+
+  setLastPageViewFlexZone(id: string) {
+    localStorage.setItem(this.keys.rc_last_page, `${id}`);
   }
 
   // Pricing

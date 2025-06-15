@@ -6,14 +6,18 @@ import { useAppProvider } from "@/providers/app/AppProvider";
 import { langByCookies } from "@/http/axios/api";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { ReactIcons } from "@/utils/icons";
+import { useRouter } from "next/navigation";
 
 import Link from "next/link";
 import AAuSoftLogo from "@/@components/(ausoft)/AAuSoftLogo";
 import CTranslate from "@/@components/(translation)/CCTranslate/CTranslate";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
+import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 export default function AHeader() {
   const { openBanner } = useAppProvider();
+
+  const router = useRouter();
 
   return (
     <div
@@ -31,7 +35,15 @@ export default function AHeader() {
           <AAuSoftLogo size={70} />
         </Link>
         <AuSoftUI.UI.Button
-          onClick={() => (window.location.href = `/${langByCookies}`)}
+          onClick={() => {
+            if (LocalStorageServices.getLastPeerViewFlexZone()) {
+              router.push(
+                `/${langByCookies}/${LocalStorageServices.getLastPeerViewFlexZone()}`
+              );
+            } else {
+              router.push(`/${langByCookies}`);
+            }
+          }}
           variant={"primary"}
           size={"sm"}
           className="py-0.5 px-2 gap-1 w-fit items-center"
