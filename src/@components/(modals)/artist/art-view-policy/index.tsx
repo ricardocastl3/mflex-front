@@ -28,7 +28,7 @@ export default function ArtistViewPolicyModal() {
   InitEmbedAdobeReader({
     divMaster: "pdf-div",
     title,
-    url: affiliateConfigs?.art_success_link!,
+    url: affiliateConfigs?.art_term_link!,
   });
 
   return (
