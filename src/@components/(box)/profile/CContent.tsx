@@ -9,7 +9,7 @@ import { useAppProvider } from "@/providers/app/AppProvider";
 import React from "react";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import Link from "next/link";
-import CardSubsStatus from "@/app/[locale]/app/subscriptions/components/card-status";
+import CardSubsStatus from "@/app/[locale]/app/(dash)/subscriptions/components/card-status";
 import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 export default function CContent({ callback }: { callback?: () => void }) {

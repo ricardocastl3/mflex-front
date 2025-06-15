@@ -2,8 +2,8 @@ import { IMusicDonationResponseAPI } from "@/http/interfaces/models/artists/IMus
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CurrencyServices from "@/services/CurrencyServices";
-import LoadMoreContent from "../../@components/api-query-pages/LoadMoreContent";
-import MusicMiniCoverPlayer from "../../(artist)/art-musics/components/MusicMiniCoverPlayer";
+import LoadMoreContent from "../../../@components/api-query-pages/LoadMoreContent";
+import MusicMiniCoverPlayer from "../../../(artist)/art-musics/components/MusicMiniCoverPlayer";
 
 export default function CardDonationsTransfers({
   donationsAPI,

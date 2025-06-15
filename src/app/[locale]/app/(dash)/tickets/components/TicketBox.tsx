@@ -4,10 +4,10 @@ import {
 } from "@/http/interfaces/models/ITicket";
 import { AuSoftUI } from "@/@components/(ausoft)";
 
-import ContainerBase from "../../@components/ContainerBase";
+import ContainerBase from "../../../@components/ContainerBase";
 import TicketCard from "./TicketCard";
-import LoadMoreContent from "../../@components/api-query-pages/LoadMoreContent";
-import LoadingMoreButton from "../../@components/api-query-pages/LoadingMoreButton";
+import LoadMoreContent from "../../../@components/api-query-pages/LoadMoreContent";
+import LoadingMoreButton from "../../../@components/api-query-pages/LoadingMoreButton";
 
 export default function TicketBox({
   isLoading,

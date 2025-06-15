@@ -5,8 +5,8 @@ import { ISubscriptionResponseAPI } from "@/http/interfaces/models/subscriptions
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import SubsList from "./row-list";
 import SubsCard from "./card-list";
-import ContainerBase from "../../@components/ContainerBase";
-import LoadingMoreButton from "../../@components/api-query-pages/LoadingMoreButton";
+import ContainerBase from "../../../@components/ContainerBase";
+import LoadingMoreButton from "../../../@components/api-query-pages/LoadingMoreButton";
 
 export default function SubscriptionBox({
   subscriptions,

@@ -4,7 +4,7 @@ import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CurrencyServices from "@/services/CurrencyServices";
 import DateServices from "@/services/DateServices";
 import CardSubsStatus from "./card-status";
-import LoadMoreContent from "../../@components/api-query-pages/LoadMoreContent";
+import LoadMoreContent from "../../../@components/api-query-pages/LoadMoreContent";
 
 export default function SubsCard({
   subscriptions,

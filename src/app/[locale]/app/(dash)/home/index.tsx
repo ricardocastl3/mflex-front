@@ -4,9 +4,9 @@ import { useAuth } from "@/providers/auth/AuthProvider";
 import { BaseBox } from "@/@components/(box)/BaseBox";
 import { homeFeatures } from "./components/home/features";
 
-import PageBase from "../@components/PageBase";
+import PageBase from "../../@components/PageBase";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import ContainerBase from "../@components/ContainerBase";
+import ContainerBase from "../../@components/ContainerBase";
 import CardTicket from "./components/CardTicket";
 import CardDonations from "./components/CardDonations";
 import CardTransactions from "./components/CardTransactions";

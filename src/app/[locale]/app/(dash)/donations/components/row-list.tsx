@@ -2,9 +2,9 @@ import { IMusicDonationResponseAPI } from "@/http/interfaces/models/artists/IMus
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CardStatus from "./card-status";
-import LoadMoreContent from "../../@components/api-query-pages/LoadMoreContent";
+import LoadMoreContent from "../../../@components/api-query-pages/LoadMoreContent";
 import CurrencyServices from "@/services/CurrencyServices";
-import MusicMiniCoverPlayer from "../../(artist)/art-musics/components/MusicMiniCoverPlayer";
+import MusicMiniCoverPlayer from "../../../(artist)/art-musics/components/MusicMiniCoverPlayer";
 import Link from "next/link";
 import { langByCookies } from "@/http/axios/api";
 import { ReactIcons } from "@/utils/icons";
@@ -44,9 +44,7 @@ export default function RowDonationsTranfers({
 
                 <div className="flex flex-col gap-1 w-full">
                   <h4 className="text-sm dark:text-white pr-5 text-wrap">
-                    {prod.music && (
-                      <>{`${prod.music.title}`}</>
-                    )}
+                    {prod.music && <>{`${prod.music.title}`}</>}
                     {!prod.music && <>{`${prod.music_title}`}</>}
                   </h4>
                   <div className="flex items-center justify-between w-full">

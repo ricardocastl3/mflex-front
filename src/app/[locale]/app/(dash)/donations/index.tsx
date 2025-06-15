@@ -4,7 +4,7 @@ import { useTransactionProvider } from "@/providers/features/TransactionProvider
 import { ReactIcons } from "@/utils/icons";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import PageBase from "../@components/PageBase";
+import PageBase from "../../@components/PageBase";
 import GeneralDonationsBox from "./components/TransferBox";
 import useDonations from "@/hooks/api/musics/useDonations";
 

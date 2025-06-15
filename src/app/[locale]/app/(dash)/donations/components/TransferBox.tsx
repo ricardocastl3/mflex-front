@@ -7,8 +7,8 @@ import { IMusicDonationResponseAPI } from "@/http/interfaces/models/artists/IMus
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import RowDonationsTranfers from "./row-list";
 import CardOrganizerDonadonations from "./card-list";
-import ContainerBase from "../../@components/ContainerBase";
-import LoadingMoreButton from "../../@components/api-query-pages/LoadingMoreButton";
+import ContainerBase from "../../../@components/ContainerBase";
+import LoadingMoreButton from "../../../@components/api-query-pages/LoadingMoreButton";
 
 export default function GeneralDonationsBox({
   donationsAPI,
