@@ -49,7 +49,11 @@ export default function EventAppPage() {
             <div className="md:flex hidden items-center gap-3">
               <AuSoftUI.UI.Button
                 onClick={() => {
-                  handleSelectEvent(undefined), handleOpenModal("add-event");
+                  if (currentSubscription.subscription.is_expired) {
+                    handleOpenModal("ticket-unavailable-subs");
+                  } else {
+                    handleSelectEvent(undefined), handleOpenModal("add-event");
+                  }
                 }}
                 size={"sm"}
                 className="rounded-full py-2"
@@ -66,7 +70,11 @@ export default function EventAppPage() {
             <AuSoftUI.UI.Button
               size={"sm"}
               onClick={() => {
-                handleSelectEvent(undefined), handleOpenModal("add-event");
+                if (currentSubscription.subscription.is_expired) {
+                  handleOpenModal("ticket-unavailable-subs");
+                } else {
+                  handleSelectEvent(undefined), handleOpenModal("add-event");
+                }
               }}
               className="rounded-full p-3"
               variant={"primary"}
