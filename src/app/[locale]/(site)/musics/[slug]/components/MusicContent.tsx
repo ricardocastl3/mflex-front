@@ -103,7 +103,7 @@ export default function MusicContent({ music }: { music: IMusic }) {
             />
             <MusicViews views={music.views_count.length} />
           </div>
-          {music.artist_profile?.id != userLogged?.id && (
+          {music.artist_profile?.id != userLogged?.artist_profile?.id && (
             <AuSoftUI.UI.Button
               variant={"outline"}
               size={"sm"}
@@ -124,7 +124,7 @@ export default function MusicContent({ music }: { music: IMusic }) {
             <CTranslateTo eng="Download Music" pt="Baixar música" />
             <ReactIcons.AiICon.AiOutlineDownload size={10} />
           </AuSoftUI.UI.Button>
-          {music.artist_profile?.id != music.id && (
+          {music.artist_profile?.id != userLogged?.artist_profile?.id && (
             <AuSoftUI.UI.Button
               variant={"outline"}
               size={"sm"}
