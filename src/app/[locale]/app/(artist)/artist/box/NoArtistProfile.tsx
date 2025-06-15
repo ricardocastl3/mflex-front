@@ -49,7 +49,7 @@ export default function NoArtistProfile() {
       >
         <div className="absolute inset-0 bg-black/70 flex flex-col justify-center items-center">
           <div className="md:w-[50vw] w-[80vw] text-center flex items-center flex-col gap-4">
-            <ASoundPlayer url="" style="animate-pulse" />
+            <ASoundPlayer url="/snds/artistas.mp3" style="animate-pulse" />
             <div className="flex flex-col gap-3 items-center">
               <h1 className="text-xl text-yellow-500 font-bold">
                 <CTranslateTo

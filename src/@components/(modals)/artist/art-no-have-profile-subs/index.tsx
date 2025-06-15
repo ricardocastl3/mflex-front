@@ -3,14 +3,17 @@ import { BaseBox } from "@/@components/(box)/BaseBox";
 import { ReactIcons } from "@/utils/icons";
 import { langByCookies } from "@/http/axios/api";
 import { useModal } from "@/providers/app/ModalProvider";
+import { useAppProvider } from "@/providers/app/AppProvider";
 
 import React from "react";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import BaseModal from "../../base";
-import Link from "next/link";
+import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 export default function UserNoHaveArtistProfileModal() {
   const { handleOpenModal } = useModal();
+  const { currentLastPageUrl } = useAppProvider();
+
   return (
     <BaseModal callbackClose={() => {}}>
       <BaseBox className="md:w-[40vw] w-[90vw] h-fit flex flex-col justify-between">
@@ -29,18 +32,19 @@ export default function UserNoHaveArtistProfileModal() {
           </h4>
         </div>
         <div className="md:py-4 py-4 md:px-8 px-4 border-t border-slate-300 dark:border-slate-800 grid grid-cols-2 md:gap-4 gap-2">
-          <Link href={`/${langByCookies}/app/artist`}>
-            <AuSoftUI.UI.Button
-              onClick={() => {
-                handleOpenModal("");
-              }}
-              size={"sm"}
-              variant={"primary"}
-              className="w-full justify-center rounded-full"
-            >
-              <CTranslateTo eng="Become Artist" pt="Quero ser artista" />
-            </AuSoftUI.UI.Button>
-          </Link>
+          <AuSoftUI.UI.Button
+            onClick={() => {
+              handleOpenModal("");
+              LocalStorageServices.setLastPageViewFlexZone(currentLastPageUrl);
+              window.location.href = `/${langByCookies}/app/artist`;
+            }}
+            size={"sm"}
+            variant={"primary"}
+            className="w-full justify-center rounded-full"
+          >
+            <CTranslateTo eng="Become Flex Artist" pt="Quero ser artista flex" />
+          </AuSoftUI.UI.Button>
+
           <AuSoftUI.UI.Button
             size={"sm"}
             variant={"outline"}
