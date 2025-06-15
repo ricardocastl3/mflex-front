@@ -2,10 +2,10 @@
 
 import { BaseBox } from "@/@components/(box)/BaseBox";
 import { langByCookies } from "@/http/axios/api";
-import { IEvent } from "@/http/interfaces/models/IEvent";
 import { ReactIcons } from "@/utils/icons";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { IEvent } from "@/http/interfaces/models/organizer/IEvent";
 
 import Link from "next/link";
 import DateCategory from "../../../components/DateCategory";
