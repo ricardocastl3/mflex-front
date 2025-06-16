@@ -40,7 +40,7 @@ export default function ArtistRequesting() {
                   pt="Clique no botão abaixo para verificar sua identidade como artista. Esta etapa é necessária para que possamos analisar seu perfil e garantir que você é um artista real. O processo de verificação pode levar até 2 dias."
                 />
               </h1>
-              <p className="text-sm text-gray-300 italic">
+              <p className="text-sm text-gray-300 italic font-bold">
                 <CTranslateTo
                   eng="Note: If you have already submitted your documents, please wait for our analysis."
                   pt="Obs: Se você já enviou seus documentos, aguarde nossa análise."
@@ -48,18 +48,18 @@ export default function ArtistRequesting() {
               </p>
             </div>
           </div>
+          <AuSoftUI.UI.Button
+            onClick={() => handleOpenModal("art-send-identity")}
+            variant={"primary"}
+            size={"lg"}
+            className="rounded-full animate-pulse"
+          >
+            <CTranslateTo
+              eng="Send Identification"
+              pt="Confirmar Identificação"
+            />
+          </AuSoftUI.UI.Button>
         </div>
-        <AuSoftUI.UI.Button
-          onClick={() => handleOpenModal("art-send-identity")}
-          variant={"primary"}
-          size={"lg"}
-          className="rounded-full animate-pulse"
-        >
-          <CTranslateTo
-            eng="Send Identification"
-            pt="Confirmar Identificação"
-          />
-        </AuSoftUI.UI.Button>
       </div>
     </div>
   );

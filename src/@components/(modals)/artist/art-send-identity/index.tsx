@@ -15,7 +15,7 @@ export default function ArtSendIdentityModal() {
       callbackClose={() => handleOpenModal("")}
       customDesktop="pt-2 pb-2"
     >
-      <div className="md:w-[50vw] w-[90vw] md:h-[90vh] h-[90vh] flex flex-col">
+      <div className="md:w-[60vw] w-[90vw] md:h-[90vh] h-[90vh] flex flex-col">
         <div className="px-4 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
           <div className="flex items-end gap-2">
             <AuSoftUI.Component.AuSoftLogo size={36} />
