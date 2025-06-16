@@ -150,6 +150,13 @@ export default function CContent({ callback }: { callback?: () => void }) {
           <CTranslateTo eng="Flex Zone" pt="Flex Zone" />
         </Link>
         <Link
+          href={`/${langByCookies}/musics`}
+          className="rounded-full flex text-sm items-center gap-2 px-4 dark:text-slate-200 dark:hover:bg-slate-800/40 hover:bg-slate-200 transition-all py-3"
+        >
+          <ReactIcons.FaIcon.FaMusic size={14} />
+          <CTranslateTo eng="Musics" pt="Músicas" />
+        </Link>
+        <Link
           href={`/${langByCookies}/podflex`}
           className="rounded-full flex text-sm items-center gap-2 px-4 dark:text-slate-200 dark:hover:bg-slate-800/40 hover:bg-slate-200 transition-all py-3"
         >
