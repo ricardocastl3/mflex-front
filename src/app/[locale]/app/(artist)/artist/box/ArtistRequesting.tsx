@@ -52,7 +52,7 @@ export default function ArtistRequesting() {
             onClick={() => handleOpenModal("art-send-identity")}
             variant={"primary"}
             size={"lg"}
-            className="rounded-full animate-pulse"
+            className="rounded-full mt-3"
           >
             <CTranslateTo
               eng="Send Identification"
