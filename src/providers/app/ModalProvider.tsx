@@ -48,6 +48,7 @@ type modalType =
   | "artist-info"
   | "art-add-music"
   | "art-view-policy"
+  | "art-send-identity"
   | "art-success-material"
   | "";
 

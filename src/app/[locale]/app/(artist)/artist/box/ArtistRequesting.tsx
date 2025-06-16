@@ -1,10 +1,13 @@
 import { useAppProvider } from "@/providers/app/AppProvider";
+import { AuSoftUI } from "@/@components/(ausoft)";
+import { useModal } from "@/providers/app/ModalProvider";
 
 import ASoundPlayer from "@/@components/(system)/ASoundPlayer";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 
 export default function ArtistRequesting() {
   const { openBanner } = useAppProvider();
+  const { handleOpenModal } = useModal();
 
   return (
     <div
@@ -27,19 +30,36 @@ export default function ArtistRequesting() {
             <div className="flex flex-col gap-3 items-center">
               <h1 className="text-xl text-yellow-500 font-bold">
                 <CTranslateTo
-                  eng="We are analyzing your profile"
-                  pt="Estamos analisando o seu perfil"
+                  eng="Please confirm your identification"
+                  pt="Por favor, confirme sua identificação"
                 />
               </h1>
               <h1 className="md:text-lg text-base text-white">
                 <CTranslateTo
-                  eng="We will contact you very soon, the process can take up to 2 days for general approval."
-                  pt="Entraremos em contacto muito embreve, o processo pode demorar até 2 dias, para a aprovação geral"
+                  eng="Click the button below to verify your identity as an artist. This step is required for us to analyze your profile and ensure you are a real artist. The verification process may take up to 2 days."
+                  pt="Clique no botão abaixo para verificar sua identidade como artista. Esta etapa é necessária para que possamos analisar seu perfil e garantir que você é um artista real. O processo de verificação pode levar até 2 dias."
                 />
               </h1>
+              <p className="text-sm text-gray-300 italic">
+                <CTranslateTo
+                  eng="Note: If you have already submitted your documents, please wait for our analysis."
+                  pt="Obs: Se você já enviou seus documentos, aguarde nossa análise."
+                />
+              </p>
             </div>
           </div>
         </div>
+        <AuSoftUI.UI.Button
+          onClick={() => handleOpenModal("art-send-identity")}
+          variant={"primary"}
+          size={"lg"}
+          className="rounded-full animate-pulse"
+        >
+          <CTranslateTo
+            eng="Send Identification"
+            pt="Confirmar Identificação"
+          />
+        </AuSoftUI.UI.Button>
       </div>
     </div>
   );

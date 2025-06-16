@@ -37,6 +37,7 @@ import GracefullDonateModal from "./artist/art-gracefull-donate";
 import UserNoHaveArtistProfileModal from "./artist/art-no-have-profile-subs";
 import ArtistComplaintMusicModal from "./artist/art-complaint-music";
 import TicketNotAvailableSubsExpiredModale from "./organizer/ticket-unavailable-subs";
+import ArtSendIdentityModal from "./artist/art-send-identity";
 
 export default function ModalOpenProvider() {
   const { openModal } = useModal();
@@ -143,6 +144,9 @@ export default function ModalOpenProvider() {
 
     case "ticket-unavailable-subs":
       return <TicketNotAvailableSubsExpiredModale />;
+
+    case "art-send-identity":
+      return <ArtSendIdentityModal />;
 
     default:
       return <></>;
