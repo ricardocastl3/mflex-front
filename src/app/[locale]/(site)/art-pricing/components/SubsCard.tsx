@@ -48,7 +48,12 @@ export default function SubsCard({
         LocalStorageServices.setPricingID(plan.id);
         router.push(`/${langByCookies}/sign-up`);
       } else {
-        if (!userLogged.artist_profile) {
+        if (
+          !userLogged.artist_profile ||
+          (userLogged &&
+            userLogged.artist_profile &&
+            !userLogged.artist_profile.is_verified)
+        ) {
           handleOpenModal("art-no-have-profile-subs");
           return;
         }
