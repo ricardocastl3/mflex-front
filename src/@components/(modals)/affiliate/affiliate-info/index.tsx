@@ -13,6 +13,8 @@ export default function AffiliateInfoModal() {
 
   const url = `${process.env.MFLEX_NEXT_PUBLIC_URL}/${langByCookies}/pricing?btag=${userLogged?.profile?.affiliate_code}`;
 
+  const artistUrl = `${process.env.MFLEX_NEXT_PUBLIC_URL}/${langByCookies}/art-pricing?btag=${userLogged?.profile?.affiliate_code}`;
+
   return (
     <BaseModal
       callbackClose={() => handleOpenModal("")}
@@ -54,18 +56,29 @@ export default function AffiliateInfoModal() {
             </div>
           </div>
         </div>
-        <div className="py-4 px-4 mt-3 border-t border-slate-200 dark:border-slate-800">
+        <div className="py-4 px-4 mt-3 border-t flex items-center gap-2.5 border-slate-200 dark:border-slate-800">
+          <AuSoftUI.Component.Clipboard
+            body={
+              <AuSoftUI.UI.Button variant={"primary"} className="items-center">
+                <CTranslateTo eng="Flex Plan Link" pt="Link para planos flex" />
+                <ReactIcons.FaIcon.FaLink size={15} />
+              </AuSoftUI.UI.Button>
+            }
+            text={url}
+            title_en="Link copied"
+            title_pt="Link copiado"
+          />
           <AuSoftUI.Component.Clipboard
             body={
               <AuSoftUI.UI.Button variant={"primary"} className="items-center">
                 <CTranslateTo
-                  eng="Copy subscription link"
-                  pt="Copiar link de assinaturas"
+                  eng="Artist Plan Link"
+                  pt="Link para planos para artistas"
                 />
-                <ReactIcons.AiICon.AiOutlineLink size={15} />
+                <ReactIcons.FaIcon.FaLink size={15} />
               </AuSoftUI.UI.Button>
             }
-            text={url}
+            text={artistUrl}
             title_en="Link copied"
             title_pt="Link copiado"
           />
