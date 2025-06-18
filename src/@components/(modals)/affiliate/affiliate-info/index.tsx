@@ -56,10 +56,13 @@ export default function AffiliateInfoModal() {
             </div>
           </div>
         </div>
-        <div className="py-4 px-4 mt-3 border-t flex items-center gap-2.5 border-slate-200 dark:border-slate-800">
+        <div className="py-4 px-4 mt-3 border-t flex md:flex-row flex-col md:items-center items-start gap-2.5 border-slate-200 dark:border-slate-800">
           <AuSoftUI.Component.Clipboard
             body={
-              <AuSoftUI.UI.Button variant={"primary"} className="items-center">
+              <AuSoftUI.UI.Button
+                variant={"primary"}
+                className="items-center md:w-fit w-full"
+              >
                 <CTranslateTo eng="Flex Plan Link" pt="Link para planos flex" />
                 <ReactIcons.FaIcon.FaLink size={15} />
               </AuSoftUI.UI.Button>
@@ -70,7 +73,10 @@ export default function AffiliateInfoModal() {
           />
           <AuSoftUI.Component.Clipboard
             body={
-              <AuSoftUI.UI.Button variant={"primary"} className="items-center">
+              <AuSoftUI.UI.Button
+                variant={"primary"}
+                className="items-center md:w-fit w-full"
+              >
                 <CTranslateTo
                   eng="Artist Plan Link"
                   pt="Link para planos para artistas"
