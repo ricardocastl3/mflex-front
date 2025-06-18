@@ -103,45 +103,48 @@ export default function MusicContent({ music }: { music: IMusic }) {
             />
             <MusicViews views={music.views_count.length} />
           </div>
-          {music.artist_profile?.id != userLogged?.artist_profile?.id && (
-            <AuSoftUI.UI.Button
-              variant={"outline"}
-              size={"sm"}
-              onClick={handleComplaintMusic}
-              className="items-center md:flex hidden py-2 md:w-fit w-full"
-            >
-              <CTranslateTo eng="Report Music" pt="Denunciar Música" />
-              <ReactIcons.AiICon.AiFillWarning size={10} />
-            </AuSoftUI.UI.Button>
-          )}
+          {music.artist_profile?.id != userLogged?.artist_profile?.id &&
+            !userLogged?.artist_profile?.is_official && (
+              <AuSoftUI.UI.Button
+                variant={"outline"}
+                size={"sm"}
+                onClick={handleComplaintMusic}
+                className="items-center md:flex hidden py-2 md:w-fit w-full"
+              >
+                <CTranslateTo eng="Report Music" pt="Denunciar Música" />
+                <ReactIcons.AiICon.AiFillWarning size={10} />
+              </AuSoftUI.UI.Button>
+            )}
         </div>
-        {music.artist_profile?.id != userLogged?.artist_profile?.id && (
-          <div className="flex items-center gap-3">
-            <AuSoftUI.UI.Button
-              variant={"primary"}
-              size={"sm"}
-              className="items-center hidden py-2 md:w-fit w-full"
-            >
-              <CTranslateTo eng="Download Music" pt="Baixar música" />
-              <ReactIcons.AiICon.AiOutlineDownload size={10} />
-            </AuSoftUI.UI.Button>
-            <AuSoftUI.UI.Button
-              variant={"outline"}
-              size={"sm"}
-              onClick={handleComplaintMusic}
-              className="items-center md:hidden flex py-2 md:w-fit w-full"
-            >
-              <CTranslateTo eng="Report Music" pt="Denunciar Música" />
-              <ReactIcons.AiICon.AiFillWarning size={10} />
-            </AuSoftUI.UI.Button>
-          </div>
-        )}
+        {music.artist_profile?.id != userLogged?.artist_profile?.id &&
+          !userLogged?.artist_profile?.is_official && (
+            <div className="flex items-center gap-3">
+              <AuSoftUI.UI.Button
+                variant={"primary"}
+                size={"sm"}
+                className="items-center hidden py-2 md:w-fit w-full"
+              >
+                <CTranslateTo eng="Download Music" pt="Baixar música" />
+                <ReactIcons.AiICon.AiOutlineDownload size={10} />
+              </AuSoftUI.UI.Button>
+              <AuSoftUI.UI.Button
+                variant={"outline"}
+                size={"sm"}
+                onClick={handleComplaintMusic}
+                className="items-center md:hidden flex py-2 md:w-fit w-full"
+              >
+                <CTranslateTo eng="Report Music" pt="Denunciar Música" />
+                <ReactIcons.AiICon.AiFillWarning size={10} />
+              </AuSoftUI.UI.Button>
+            </div>
+          )}
 
         {music.artist_profile?.is_verified &&
           serverStats &&
           serverStats?.music_donation_on &&
           music.is_donable &&
-          music.artist_profile.is_online && (
+          music.artist_profile.is_online &&
+          !userLogged?.artist_profile?.is_official && (
             <div className="flex flex-col gap-2">
               <h1 className="dark:text-white">
                 <CTranslateTo

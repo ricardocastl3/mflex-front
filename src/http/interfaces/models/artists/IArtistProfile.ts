@@ -9,6 +9,7 @@ export interface IArtistProfile {
   photo: string;
   is_online: boolean;
   is_verified: boolean;
+  is_official: boolean;
   request_profile: boolean;
 
   instagram: string;
