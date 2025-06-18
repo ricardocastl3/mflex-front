@@ -81,8 +81,8 @@ export default function RequestAffiliation() {
             >
               <ReactIcons.PiIcon.PiWhatsappLogo size={15} />
               <CTranslateTo
-                eng="Request affiliation analysis"
-                pt="Pedir análise de afiliação"
+                eng="Click here to request final analysis"
+                pt="Clique aqui para pedir análise final"
               />
             </AuSoftUI.UI.Button>
           )}
