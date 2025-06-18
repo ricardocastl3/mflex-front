@@ -23,6 +23,7 @@ export default function RequestAffiliation() {
       await fetchUserInformations();
       setIsSubmitting(false);
     } catch (err) {
+      setIsSubmitting(false);
       return CAxiosErrorToastify({ err, openToast: handleAddToastOnArray });
     }
   }
