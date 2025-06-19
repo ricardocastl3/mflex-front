@@ -1,7 +1,6 @@
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { useTranslate } from "@/providers/app/TranslateProvider";
 import { ReactIcons } from "@/utils/icons";
-import { useModal } from "@/providers/app/ModalProvider";
 import { useCategoryProvider } from "@/providers/features/CategoryProvider";
 
 import React from "react";
@@ -17,7 +16,6 @@ export default function ContentCategory({
 }) {
   //Contexts
   const { currentLang } = useTranslate();
-  const { handleOpenModal } = useModal();
   const { allCategory, isLoadingCategory, handleSeachByName } = useCategory({
     view,
   });
@@ -45,7 +43,7 @@ export default function ContentCategory({
       <div>
         <AuSoftUI.UI.TextField.Default
           onChange={(e) => {
-            handleSeachByName(e.target.value, "events");
+            handleSeachByName(e.target.value, view);
           }}
           placeholder={currentLang.code == "EN" ? "Search..." : "Pesquisar..."}
           className="w-full"
