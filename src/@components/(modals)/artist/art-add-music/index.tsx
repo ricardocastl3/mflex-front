@@ -285,8 +285,8 @@ export default function ArtistAddMusicModal() {
             <div className="flex flex-col gap-2">
               <h1 className="text-base dark:text-white">
                 <CTranslateTo
-                  eng="Audio File (MP3)"
-                  pt="Arquivo em áudio (MP3)"
+                  eng="Audio File (MP3/M4A)"
+                  pt="Arquivo em áudio (MP3/M4A)"
                 />
               </h1>
               <AuSoftUI.UI.TextField.Default
@@ -297,13 +297,24 @@ export default function ArtistAddMusicModal() {
                   if (e.target.files?.length! > 0) {
                     if (e.target?.files) {
                       const file = e.target?.files[0];
-                      if (
-                        file &&
-                        (file.type === "audio/mpeg" ||
-                          file.type === "audio/mp4")
-                      ) {
-                        const url = URL.createObjectURL(file);
-                        setSoundMusic(url);
+                      if (file) {
+                        // Check MIME types for MP3 and M4A
+                        const isValidMimeType =
+                          file.type === "audio/mpeg" ||
+                          file.type === "audio/mp4" ||
+                          file.type === "audio/x-m4a" ||
+                          file.type === "audio/aac";
+
+                        // Check file extension as fallback
+                        const fileName = file.name.toLowerCase();
+                        const isValidExtension =
+                          fileName.endsWith(".mp3") ||
+                          fileName.endsWith(".m4a");
+
+                        if (isValidMimeType || isValidExtension) {
+                          const url = URL.createObjectURL(file);
+                          setSoundMusic(url);
+                        }
                       }
                     }
                   }
