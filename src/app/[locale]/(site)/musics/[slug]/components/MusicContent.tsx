@@ -104,7 +104,7 @@ export default function MusicContent({ music }: { music: IMusic }) {
             <MusicViews views={music.views_count.length} />
           </div>
           {music.artist_profile?.id != userLogged?.artist_profile?.id &&
-            !userLogged?.artist_profile?.is_official && (
+            !music?.artist_profile?.is_official && (
               <AuSoftUI.UI.Button
                 variant={"outline"}
                 size={"sm"}
@@ -117,7 +117,7 @@ export default function MusicContent({ music }: { music: IMusic }) {
             )}
         </div>
         {music.artist_profile?.id != userLogged?.artist_profile?.id &&
-          !userLogged?.artist_profile?.is_official && (
+          !music?.artist_profile?.is_official && (
             <div className="flex items-center gap-3">
               <AuSoftUI.UI.Button
                 variant={"primary"}
@@ -144,7 +144,7 @@ export default function MusicContent({ music }: { music: IMusic }) {
           serverStats?.music_donation_on &&
           music.is_donable &&
           music.artist_profile.is_online &&
-          !userLogged?.artist_profile?.is_official && (
+          !music?.artist_profile?.is_official && (
             <div className="flex flex-col gap-2">
               <h1 className="dark:text-white">
                 <CTranslateTo
