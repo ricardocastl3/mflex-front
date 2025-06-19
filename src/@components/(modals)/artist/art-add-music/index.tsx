@@ -297,7 +297,11 @@ export default function ArtistAddMusicModal() {
                   if (e.target.files?.length! > 0) {
                     if (e.target?.files) {
                       const file = e.target?.files[0];
-                      if (file && file.type === "audio/mpeg") {
+                      if (
+                        file &&
+                        (file.type === "audio/mpeg" ||
+                          file.type === "audio/mp4")
+                      ) {
                         const url = URL.createObjectURL(file);
                         setSoundMusic(url);
                       }
