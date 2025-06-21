@@ -45,7 +45,7 @@ export default function AuSoftNotifyDropdownContent({
         mode,
         id,
       });
-
+      setIsloading(false);
       reload();
     } catch (err) {
       setIsloading(false);
