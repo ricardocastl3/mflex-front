@@ -6,6 +6,7 @@ import { useAppProvider } from "@/providers/app/AppProvider";
 import { internalApi } from "@/http/axios/api";
 import { ReactIcons } from "@/utils/icons";
 import { useResourceProvider } from "@/providers/features/ResourceProvider";
+import { useAuth } from "@/providers/auth/AuthProvider";
 
 import DateServices from "@/services/DateServices";
 import LikeResourceButton from "../../likes/LikeResourceButton";
@@ -20,6 +21,7 @@ export default function CommentCard({
 }) {
   const { handleAddToastOnArray } = useAppProvider();
   const { handleFetchResource } = useResourceProvider();
+  const { userLogged } = useAuth();
 
   const [content, setContent] = useState(comment.content);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -128,31 +130,36 @@ export default function CommentCard({
                 </h1>
               )}
             </div>
-            <div className="flex items-center gap-2">
-              <LikeResourceButton
-                other_likes={comment.likes}
-                pulse={false}
-                iconSize={16}
-                other_id={comment.id}
-              />
-              <button
-                onClick={() => {
-                  setContent(comment.content);
-                  setIsToEdit(true);
-                }}
-                className=" rounded-full text-xs font-bold px-2 py-1 bg-blue-200 text-blue-700 dark:bg-blue-700/30 dark:text-blue-500"
-              >
-                <CTranslateTo eng="Edit" pt="Editar" />
-              </button>
-              <button
-                onClick={() => {
-                  setIsToDelete(true);
-                }}
-                className="rounded-full text-xs font-bold px-2 py-1 bg-red-200 text-red-700 dark:bg-red-700/30 dark:text-red-500"
-              >
-                <CTranslateTo eng="Delete" pt="Eliminar" />
-              </button>
-            </div>
+
+            {userLogged && userLogged.id == comment.user.id && (
+              <>
+                <div className="flex items-center gap-2">
+                  <LikeResourceButton
+                    other_likes={comment.likes}
+                    pulse={false}
+                    iconSize={16}
+                    other_id={comment.id}
+                  />
+                  <button
+                    onClick={() => {
+                      setContent(comment.content);
+                      setIsToEdit(true);
+                    }}
+                    className=" rounded-full text-xs font-bold px-2 py-1 bg-blue-200 text-blue-700 dark:bg-blue-700/30 dark:text-blue-500"
+                  >
+                    <CTranslateTo eng="Edit" pt="Editar" />
+                  </button>
+                  <button
+                    onClick={() => {
+                      setIsToDelete(true);
+                    }}
+                    className="rounded-full text-xs font-bold px-2 py-1 bg-red-200 text-red-700 dark:bg-red-700/30 dark:text-red-500"
+                  >
+                    <CTranslateTo eng="Delete" pt="Eliminar" />
+                  </button>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>

@@ -142,9 +142,25 @@ export default function CommentContainer({
 
               {resource && resource.comments.length > 0 && (
                 <>
-                  {resource.comments.map((comment, i) => {
-                    return <CommentCard key={i} comment={comment} />;
-                  })}
+                  {resource.comments
+                    .sort((a, b) => {
+                      if (userLogged) {
+                        if (
+                          a.user.id === userLogged.id &&
+                          b.user.id !== userLogged.id
+                        )
+                          return -1;
+                        if (
+                          a.user.id !== userLogged.id &&
+                          b.user.id === userLogged.id
+                        )
+                          return 1;
+                      }
+                      return 0;
+                    })
+                    .map((comment, i) => {
+                      return <CommentCard key={i} comment={comment} />;
+                    })}
                 </>
               )}
             </div>
