@@ -33,13 +33,40 @@ export default function CommentContainer({
 
   const searchParms = useSearchParams();
   const router = useRouter();
-  const path = usePathname()
+  const path = usePathname();
 
   useEffect(() => {
     if (searchParms.get("cm")) {
-      router.push(path+"#cm-" + searchParms.get("cm"));
+      const commentId = searchParms.get("cm");
+
+      // Pequeno delay para garantir que os comentários estejam renderizados
+      setTimeout(() => {
+        const commentElement = document.getElementById(`cm-${commentId}`);
+
+        if (commentElement) {
+          // Scroll suave até o comentário
+          commentElement.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+          });
+
+          // Adiciona um highlight temporário
+          commentElement.classList.add(
+            "bg-yellow-100",
+            "dark:bg-yellow-900/20",
+            "transition-colors",
+            "duration-300"
+          );
+          setTimeout(() => {
+            commentElement.classList.remove(
+              "bg-yellow-100",
+              "dark:bg-yellow-900/20"
+            );
+          }, 2000);
+        }
+      }, 100);
     }
-  }, []);
+  }, [searchParms]);
 
   return (
     <div className="flex md:flex-row flex-col pb-5 md:w-fit w-full">
