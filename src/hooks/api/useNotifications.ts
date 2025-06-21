@@ -1,12 +1,16 @@
 import { internalApi } from "@/http/axios/api";
-import { IResourceNotification } from "@/http/interfaces/models/resources/IResourceNotifications";
+import { IResourceNotificationAPI } from "@/http/interfaces/models/resources/IResourceNotifications";
 import { appConfigs } from "@/utils/enums";
 import { useCallback, useEffect, useState } from "react";
 
 export default function useNotifications() {
-  const [allNotifications, setAllNotifications] = useState<
-    IResourceNotification[]
-  >([]);
+  const [allNotifications, setAllNotifications] =
+    useState<IResourceNotificationAPI>({
+      notifications: [],
+      reads: 0,
+      total: 0,
+      unreads: 0,
+    });
   const [isLoadingAllNotifications, setIsLoadingAllNotifications] =
     useState(true);
 
@@ -16,18 +20,20 @@ export default function useNotifications() {
 
   const fetchAllNotifications = useCallback(async () => {
     try {
-      const resp = await internalApi.get<{
-        notifications: IResourceNotification[];
-      }>(`/notify`, {
+      const resp = await internalApi.get<IResourceNotificationAPI>(`/notify`, {
         params: {
           currentPage: 0,
           nextPage: appConfigs.api.pageLoads,
         },
       });
 
-      if (resp.data.notifications.length <= 0) setHasMoreNotifications(false);
+      if (resp.data.notifications.length <= 0) {
+        setHasMoreNotifications(false);
+      } else {
+        setHasMoreNotifications(true);
+      }
 
-      setAllNotifications(resp.data.notifications);
+      setAllNotifications(resp.data);
       setIsLoadingAllNotifications(false);
     } catch (err) {
       setIsLoadingAllNotifications(false);
@@ -38,11 +44,9 @@ export default function useNotifications() {
     try {
       setIsLoadingMoreNotifications(true);
 
-      const resp = await internalApi.get<{
-        notifications: IResourceNotification[];
-      }>(`/notify`, {
+      const resp = await internalApi.get<IResourceNotificationAPI>(`/notify`, {
         params: {
-          currentPage: allNotifications.length,
+          currentPage: allNotifications?.notifications.length,
           nextPage: appConfigs.api.pageLoads,
         },
       });
@@ -50,7 +54,11 @@ export default function useNotifications() {
       if (resp.data.notifications.length <= 0) {
         setHasMoreNotifications(false);
       } else {
-        setAllNotifications((state) => [...state, ...resp.data.notifications]);
+        setHasMoreNotifications(true);
+        setAllNotifications((state) => ({
+          ...state,
+          notifications: [...state?.notifications, ...resp.data.notifications],
+        }));
       }
 
       setIsLoadingMoreNotifications(false);

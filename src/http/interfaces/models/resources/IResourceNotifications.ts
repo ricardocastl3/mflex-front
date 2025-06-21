@@ -7,3 +7,10 @@ export interface IResourceNotification {
   blank: boolean;
   created_at: Date;
 }
+
+export interface IResourceNotificationAPI {
+  reads: number;
+  unreads: number;
+  total: number;
+  notifications: IResourceNotification[];
+}
