@@ -31,25 +31,43 @@ export default function LikeResourceButton({
 
   async function handleLike() {
     try {
-      setAlreadyLike((state) => !state);
-      setShowExplosion(!alreadyLike);
+      const newAlreadyLikeState = !alreadyLike;
+      setShowExplosion(newAlreadyLikeState);
+      setAlreadyLike(newAlreadyLikeState);
+
+      if (newAlreadyLikeState) {
+        setTotal((t) => t + 1);
+      } else {
+        setTotal((t) => (t > 0 ? t - 1 : 0));
+      }
+
       await internalApi.post("/users/likes", {
         id: other_id ? other_id : resource?.id,
       });
-    } catch (err) {}
+    } catch (err) {
+      // Revert on error
+      const revertedState = !alreadyLike;
+      setShowExplosion(revertedState);
+      setAlreadyLike(revertedState);
+
+      if (revertedState) {
+        setTotal((t) => t + 1);
+      } else {
+        setTotal((t) => (t > 0 ? t - 1 : 0));
+      }
+    }
   }
 
   useEffect(() => {
     const likes = resource ? resource.likes : other_likes ? other_likes : [];
-    setTotal(likes.length);
-
-    const findMe = likes.find((i) => i.user.id == userLogged?.id);
-    setAlreadyLike(findMe ? true : false);
-  }, []);
+    if (likes) {
+      const findMe = likes.find((i) => i.user.id == userLogged?.id);
+      setAlreadyLike(findMe ? true : false);
+      setTotal(likes.length);
+    }
+  }, [resource, other_likes, userLogged]);
 
   useEffect(() => {
-    let count = total;
-
     if (soundRef.current) {
       if (alreadyLike && showExplosion) {
         soundRef.current.play();
@@ -57,15 +75,7 @@ export default function LikeResourceButton({
         soundRef.current.stop();
       }
     }
-
-    if (alreadyLike) {
-      ++count;
-    } else {
-      count = count > 0 ? --count : 0;
-    }
-
-    setTotal(count);
-  }, [alreadyLike]);
+  }, [alreadyLike, showExplosion]);
 
   useEffect(() => {
     soundRef.current = new Howl({
