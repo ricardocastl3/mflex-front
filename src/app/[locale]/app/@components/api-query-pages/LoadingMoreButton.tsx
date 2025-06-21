@@ -5,10 +5,12 @@ export default function LoadingMoreButton({
   has,
   isLoading,
   fetchMore,
+  size,
 }: {
   has: boolean;
   isLoading: boolean;
   fetchMore: () => void;
+  size?: "lg" | "md" | "sm";
 }) {
   return (
     <>
@@ -18,7 +20,7 @@ export default function LoadingMoreButton({
             onClick={fetchMore}
             className="w-full rounded-full justify-center"
             variant={"outline"}
-            size={"lg"}
+            size={size || "lg"}
           >
             <CTranslateTo eng="Load More" pt="Carregar Mais" />
           </AuSoftUI.UI.Button>

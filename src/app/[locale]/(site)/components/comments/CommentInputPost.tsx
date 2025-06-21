@@ -1,7 +1,6 @@
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { internalApi, langByCookies } from "@/http/axios/api";
 import { useAppProvider } from "@/providers/app/AppProvider";
-import { useAuth } from "@/providers/auth/AuthProvider";
 import { useResourceProvider } from "@/providers/features/ResourceProvider";
 import { useState } from "react";
 import { ReactIcons } from "@/utils/icons";

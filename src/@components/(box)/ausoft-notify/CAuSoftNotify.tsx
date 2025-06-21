@@ -52,16 +52,20 @@ export function CAuSoftNotify() {
             />
           );
         }}
-        DesktopContent={
-          <CContent
-            fetchMore={handleLoadMore}
-            hasMore={hasMoreNotifications}
-            isLoadMore={isLoadingMoreNotifications}
-            reload={() => fetchAllNotifications()}
-            allNotifications={allNotifications}
-            isLoadingNotification={isLoadingAllNotifications}
-          />
-        }
+        DesktopContentElement={(call) => {
+          return (
+            <CContent
+              fetchMore={handleLoadMore}
+              hasMore={hasMoreNotifications}
+              isLoadMore={isLoadingMoreNotifications}
+              reload={() => fetchAllNotifications()}
+              callback={() => call.callback!()}
+              allNotifications={allNotifications}
+              isLoadingNotification={isLoadingAllNotifications}
+            />
+          );
+        }}
+        DesktopContent
       />
     </>
   );

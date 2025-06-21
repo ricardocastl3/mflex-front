@@ -3,6 +3,7 @@ import { IResourceComment } from "@/http/interfaces/models/resources/IResourceCo
 import { localImages } from "@/utils/images";
 import { useState } from "react";
 import { useAuth } from "@/providers/auth/AuthProvider";
+import { useRouter } from "next/navigation";
 
 import DateServices from "@/services/DateServices";
 import LikeResourceButton from "../../likes/LikeResourceButton";
@@ -36,6 +37,8 @@ export default function CommentCard({
     isToDelete: false,
     isToEdit: false,
   });
+
+  const router = useRouter();
 
   function handleSetConfig(config: ICommentBox) {
     setCommentBox((state) => ({ ...state, ...config }));
@@ -104,6 +107,7 @@ export default function CommentCard({
                         openAnswerInput: true,
                         showResponses: true,
                       });
+                      router.push(`#input-res-${comment.id}`);
                       handleSetConfig({ isToEdit: false });
                     }}
                     className=" rounded-full text-xs font-bold px-2 py-1 bg-yellow-200 text-yellow-700 dark:bg-yellow-700/30 dark:text-yellow-500"

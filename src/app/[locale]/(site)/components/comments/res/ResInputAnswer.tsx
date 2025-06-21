@@ -52,7 +52,7 @@ export default function ResInputAnswer({
   }
 
   return (
-    <div className="border-t border-r-slate-300  animate-fade border-b flex flex-col items-start gap-4 border-slate-300 dark:border-slate-800 py-4">
+    <div id={`input-res-${comment.id}`} className="border-t border-r-slate-300  animate-fade border-b flex flex-col items-start gap-4 border-slate-300 dark:border-slate-800 py-4">
       <AuSoftUI.UI.TextField.TextArea
         placeholder={`${
           langByCookies == "pt"

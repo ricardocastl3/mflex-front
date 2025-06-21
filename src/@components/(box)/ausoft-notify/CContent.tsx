@@ -58,9 +58,9 @@ export default function AuSoftNotifyDropdownContent({
   }, [isLoadingNotification]);
 
   function handleOpenAction(url: string, type: "blank" | "fix") {
-    callback!();
+    if (callback) callback();
     if (type == "fix") {
-      window.location.href = url;
+      router.push(url);
     } else {
       window.open(url, "_blank");
     }
@@ -187,6 +187,7 @@ export default function AuSoftNotifyDropdownContent({
             )}
             <LoadingMoreButton
               has={hasMore}
+              size="sm"
               isLoading={isLoadMore}
               fetchMore={fetchMore}
             />
@@ -227,7 +228,7 @@ export default function AuSoftNotifyDropdownContent({
         )}
       </div>
       {!isLoading && allNotifications.unreads > 0 && (
-        <div className="flex flex-col w-full gap-1.5 box-content mb-4 border-t border-slate-300 dark:border-slate-800 pt-4">
+        <div className="flex flex-col w-full gap-1.5 box-content mb-2 border-t border-slate-300 dark:border-slate-800 pt-4">
           <button
             onClick={() => handleMarkAsRead("all")}
             className="appearance-none dark:text-yellow-500 text-yellow-800 text-sm font-bold hover:text-yellow-900 hover:dark:text-yellow-700"
