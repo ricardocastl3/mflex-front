@@ -131,15 +131,16 @@ export default function CommentCard({
               )}
             </div>
 
-            {userLogged && userLogged.id == comment.user.id && (
-              <>
-                <div className="flex items-center gap-2">
-                  <LikeResourceButton
-                    other_likes={comment.likes}
-                    pulse={false}
-                    iconSize={16}
-                    other_id={comment.id}
-                  />
+            <div className="flex items-center gap-2">
+              <LikeResourceButton
+                other_likes={comment.likes}
+                pulse={false}
+                iconSize={16}
+                other_id={comment.id}
+              />
+
+              {userLogged && userLogged.id == comment.user.id && (
+                <>
                   <button
                     onClick={() => {
                       setContent(comment.content);
@@ -157,9 +158,9 @@ export default function CommentCard({
                   >
                     <CTranslateTo eng="Delete" pt="Eliminar" />
                   </button>
-                </div>
-              </>
-            )}
+                </>
+              )}
+            </div>
           </div>
         </div>
       </div>
