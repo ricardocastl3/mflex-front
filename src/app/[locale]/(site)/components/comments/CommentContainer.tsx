@@ -53,7 +53,7 @@ export default function CommentContainer({
   }, []);
 
   return (
-    <div className="flex md:flex-row flex-col pb-5">
+    <div className="flex md:flex-row flex-col pb-5 w-full">
       <BaseBox
         className={`${
           displayMode == "mobile"
@@ -112,7 +112,7 @@ export default function CommentContainer({
           <div className="flex flex-col gap-2 w-full">
             <h1 className="dark:text-white font-bold text-base flex items-center gap-4">
               <CTranslateTo eng="Comments" pt="Comentários" />
-              <div className="px-3 py-1 rounded-full bg-slate-200 text-slate-600 font-bold dark:bg-slate-800/50 h-fit dark:text-white text-base">
+              <div className="px-3 py-1 rounded-full bg-slate-200 text-slate-600 font-bold dark:bg-slate-800/50 h-fit dark:text-white text-sm">
                 {resource?.comments.length}
               </div>
             </h1>

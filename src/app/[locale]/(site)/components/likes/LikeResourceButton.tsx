@@ -40,7 +40,7 @@ export default function LikeResourceButton({
   }
 
   useEffect(() => {
-    let likes = resource ? resource.likes : other_likes ? other_likes : [];
+    const likes = resource ? resource.likes : other_likes ? other_likes : [];
     const findMe = likes.find((i) => i.user.id == userLogged?.id);
     setAlreadyLike(findMe ? true : false);
     setTotal(likes.length);
