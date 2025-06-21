@@ -56,7 +56,7 @@ export default function CommentResContainer({
                     </div>
                     <div className="flex flex-col gap-2">
                       <div className="flex items-center gap-2">
-                        <h1 className="text-sm font-bold dark:text-white">{`${response.user.first_name} ${comment.user.last_name}`}</h1>
+                        <h1 className="text-sm font-bold dark:text-white">{`${response.user.first_name} ${response.user.last_name}`}</h1>
                         <h1 className="text-sm dark:text-slate-400 text-slate-600">
                           {DateServices.normalize(response.created_at)}
                         </h1>

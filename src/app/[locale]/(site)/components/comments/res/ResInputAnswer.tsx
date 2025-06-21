@@ -2,7 +2,6 @@ import { AuSoftUI } from "@/@components/(ausoft)";
 import { internalApi, langByCookies } from "@/http/axios/api";
 import { IResourceComment } from "@/http/interfaces/models/resources/IResourceComment";
 import { useAppProvider } from "@/providers/app/AppProvider";
-import { useAuth } from "@/providers/auth/AuthProvider";
 import { useResourceProvider } from "@/providers/features/ResourceProvider";
 import { ReactIcons } from "@/utils/icons";
 import { useState } from "react";
@@ -19,7 +18,6 @@ export default function ResInputAnswer({
 }) {
   const { handleAddToastOnArray } = useAppProvider();
   const { handleFetchResource } = useResourceProvider();
-  const { userLogged } = useAuth();
 
   const [content, setContent] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -46,6 +44,7 @@ export default function ResInputAnswer({
       });
       handleFetchResource(true);
       setIsSubmitting(false);
+      setContent("");
     } catch (err) {
       setIsSubmitting(false);
       return CAxiosErrorToastify({ err, openToast: handleAddToastOnArray });
@@ -78,7 +77,7 @@ export default function ResInputAnswer({
           {!isSubmitting && (
             <>
               <ReactIcons.AiICon.AiOutlineSend
-                className="rotate-180"
+                className="-rotate-90"
                 size={15}
               />
               <CTranslateTo eng="Answer" pt="Responder" />
