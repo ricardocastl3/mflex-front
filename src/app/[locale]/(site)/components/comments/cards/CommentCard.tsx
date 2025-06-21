@@ -51,7 +51,7 @@ export default function CommentCard({
         />
       )}
 
-      <div className="flex flex-col gap-2 pb-3">
+      <div id={`cm-${comment.id}`} className="flex flex-col gap-2 pb-3">
         <div className="flex items-start gap-2 h-full">
           <div className="mb-2 flex flex-col items-center gap-2 h-full">
             <AuSoftUI.Component.Avatar
