@@ -28,6 +28,18 @@ export default function CommentCard({
 
   async function handleEditComment() {
     try {
+      if (content.length <= 0) {
+        AuSoftUI.Component.ToastifyWithTranslation({
+          description_en: "Please write a comment before submitting.",
+          description_pt: "Por favor, escreva um comentário antes de enviar.",
+          title_en: "Empty Comment",
+          title_pt: "Comentário Vazio",
+          toast: handleAddToastOnArray,
+          type: "error",
+        });
+        return;
+      }
+
       setIsSubmitting(true);
       handleFetchResource(false);
       await internalApi.put("/users/comments", {
