@@ -53,7 +53,7 @@ export default function CommentContainer({
   }, []);
 
   return (
-    <div className="flex md:flex-row flex-col pb-5 w-full">
+    <div className="flex md:flex-row flex-col pb-5 md:w-fit w-full">
       <BaseBox
         className={`${
           displayMode == "mobile"

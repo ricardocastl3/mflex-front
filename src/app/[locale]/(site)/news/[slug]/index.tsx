@@ -69,7 +69,7 @@ export default function PreviewNew({ params }: Props) {
 
   if (selectedNews && !isLoading && !isLoadingAllNews)
     return (
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-8 w-full items-stretch">
         <div className="relative">
           <HeroNews />
           <div className="w-full flex z-20 absolute inset-0 justify-center items-center">

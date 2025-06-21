@@ -7,7 +7,7 @@ import LikeResourceButton from "../../../components/likes/LikeResourceButton";
 
 export default function NewContent({ news }: { news: INews }) {
   return (
-    <BaseBox className="w-full flex-1 md:p-8 p-4 justify-between flex flex-col md:mb-8 mb-0 gap-4 dark:bg-ausoft-slate-900 ">
+    <BaseBox className="flex-1 md:p-8 p-4 justify-between flex flex-col md:mb-8 mb-0 gap-4 dark:bg-ausoft-slate-900 ">
       <div className="flex flex-col gap-4">
         <div
           style={{
