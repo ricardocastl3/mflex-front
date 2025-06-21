@@ -3,13 +3,14 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { v4 as uuid } from "uuid";
+import { useAuth } from "./AuthProvider";
 
 interface ISocketProviderProps {
   socketEvent: ISocketEvent | undefined;
 }
 
 interface ISocketEvent {
-  name: "reference-pay" | "new-app-version" | "";
+  name: "reference-pay" | "new-app-version" | "new-notify" | "";
   metadata: string;
 }
 
@@ -32,11 +33,17 @@ export default function SocketProvider({
     name: "",
   });
 
-  useEffect(() => {
-    const userId = uuid();
-    socketClient.emit("k", userId);
+  const { userLogged } = useAuth();
 
-    setSocketEvent((state) => ({ ...state, metadata: userId }));
+  useEffect(() => {
+    let userId;
+    if (userLogged) {
+      userId = userLogged.id;
+    } else {
+      userId = uuid();
+    }
+
+    socketClient.emit("k", userId);
 
     socketClient.on("reference-pay", (data) => {
       setSocketEvent((state) => ({ ...state, name: "reference-pay" }));
@@ -45,7 +52,11 @@ export default function SocketProvider({
     socketClient.on("new-app-version", (data) => {
       setSocketEvent((state) => ({ ...state, name: "new-app-version" }));
     });
-  }, [socketClient]);
+
+    socketClient.on("new-notify", (data) => {
+      setSocketEvent((state) => ({ ...state, name: "new-notify" }));
+    });
+  }, [socketClient, userLogged]);
 
   return (
     <SocketProviderContext.Provider value={{ socketEvent }}>

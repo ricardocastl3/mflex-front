@@ -45,10 +45,10 @@ export default function RootLayout({
         className={`${anek.className} transition-all duration-500 bg-slate-200/80 dark:bg-ausoft-slate-950`}
       >
         <Suspense>
-          <SocketProvider>
-            <TranslateProvider>
-              <ModalProvider>
-                <AuthProvider>
+          <AuthProvider>
+            <SocketProvider>
+              <TranslateProvider>
+                <ModalProvider>
                   <AppProvider>
                     <CheckoutProvider>
                       <TransactionProvider>
@@ -82,10 +82,10 @@ export default function RootLayout({
                       <GoogleAnalytics gaId="G-998HC7V4FQ" />
                     )}
                   </AppProvider>
-                </AuthProvider>
-              </ModalProvider>
-            </TranslateProvider>
-          </SocketProvider>
+                </ModalProvider>
+              </TranslateProvider>
+            </SocketProvider>
+          </AuthProvider>
         </Suspense>
       </body>
     </html>

@@ -1,4 +1,6 @@
 import { ReactIcons } from "@/utils/icons";
+import { useSocketProvider } from "@/providers/auth/SocketProvider";
+import { useEffect } from "react";
 
 import CContent from "./CContent";
 import ADropdownBase from "@/@components/(ausoft)/ADropdownBase";
@@ -13,6 +15,14 @@ export function CAuSoftNotify() {
     isLoadingAllNotifications,
     fetchAllNotifications,
   } = useNotifications();
+
+  const { socketEvent } = useSocketProvider();
+
+  useEffect(() => {
+    if (socketEvent?.name == "new-notify") {
+      fetchAllNotifications();
+    }
+  }, [socketEvent]);
 
   return (
     <>
