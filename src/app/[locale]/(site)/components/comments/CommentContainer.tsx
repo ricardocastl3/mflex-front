@@ -8,6 +8,7 @@ import {
 } from "@/providers/features/ResourceProvider";
 import { useEffect } from "react";
 import { useAppProvider } from "@/providers/app/AppProvider";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CommentCard from "./cards/CommentCard";
@@ -28,6 +29,16 @@ export default function CommentContainer({
 
   useEffect(() => {
     handleSelectResource(resource);
+  }, []);
+
+  const searchParms = useSearchParams();
+  const router = useRouter();
+  const path = usePathname()
+
+  useEffect(() => {
+    if (searchParms.get("cm")) {
+      router.push(path+"#cm-" + searchParms.get("cm"));
+    }
   }, []);
 
   return (
