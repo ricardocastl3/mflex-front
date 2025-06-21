@@ -133,7 +133,6 @@ export default function CommentResContainer({
           selectedComment &&
           selectedComment.id == comment.id && (
             <>
-              selectedComment
               <ResInputAnswer
                 comment={comment}
                 callbackClose={() =>

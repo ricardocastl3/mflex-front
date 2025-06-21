@@ -6,7 +6,7 @@ import Image from "next/image";
 import ADropdownBase from "@/@components/(ausoft)/ADropdownBase";
 import CContent from "./CContent";
 
-export default function CTranslate() {
+export default function CTranslate({ size }: { size?: number }) {
   const { currentLang } = useTranslate();
 
   return (
@@ -16,8 +16,8 @@ export default function CTranslate() {
           <button className="rounded-full bg-white dark:bg-slate-800/80 border py-1.5 px-1.5 dark:border-none border-slate-300 flex items-center gap-2 text-slate-800 dark:text-slate-200">
             <Image
               src={currentLang.image!}
-              width={24}
-              height={24}
+              width={size || 24}
+              height={size || 24}
               alt={currentLang.lang != "null" ? currentLang.lang : "idioma"}
             />
           </button>

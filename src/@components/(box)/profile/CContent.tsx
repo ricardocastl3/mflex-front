@@ -11,6 +11,7 @@ import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import Link from "next/link";
 import CardSubsStatus from "@/app/[locale]/app/(dash)/subscriptions/components/card-status";
 import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
+import CTranslate from "@/@components/(translation)/CCTranslate/CTranslate";
 
 export default function CContent({ callback }: { callback?: () => void }) {
   const {
@@ -73,6 +74,9 @@ export default function CContent({ callback }: { callback?: () => void }) {
             : "bg-slate-200 dark:bg-slate-800/60"
         } flex items-center gap-2 rounded-lg  p-2 mt-3`}
       >
+        <div className="md:hidden flex">
+          <CTranslate size={15} />
+        </div>
         {(currentSubscription || currentArtistSubscription) && (
           <>
             {currentSubscription && (
@@ -82,7 +86,7 @@ export default function CContent({ callback }: { callback?: () => void }) {
                     subscriptionExpired
                       ? "dark:text-red-400 text-red-700"
                       : "dark:text-yellow-400 text-yellow-700"
-                  } text-sm `}
+                  } md:flex hidden text-sm `}
                 >
                   <CTranslateTo eng="Plan: " pt="Plano: " />
                   {currentSubscription.subscription.plan?.name}

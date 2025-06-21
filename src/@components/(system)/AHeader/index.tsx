@@ -6,7 +6,7 @@ import { useAppProvider } from "@/providers/app/AppProvider";
 import { langByCookies } from "@/http/axios/api";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { ReactIcons } from "@/utils/icons";
-import { useRouter } from "next/navigation";
+import { CAuSoftNotify } from "@/@components/(box)/ausoft-notify/CAuSoftNotify";
 
 import Link from "next/link";
 import AAuSoftLogo from "@/@components/(ausoft)/AAuSoftLogo";
@@ -16,8 +16,6 @@ import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 export default function AHeader() {
   const { openBanner } = useAppProvider();
-
-  const router = useRouter();
 
   return (
     <div
@@ -54,8 +52,11 @@ export default function AHeader() {
 
       <div className="flex items-center md:gap-2 gap-2 divide-x-2 divide-slate-300 dark:divide-slate-700/60">
         <div className="flex items-center gap-2.5">
+          <CAuSoftNotify />
           <CSwitcherTheme />
-          <CTranslate />
+          <div className="md:flex hidden">
+            <CTranslate />
+          </div>
         </div>
         <div className="flex relative items-center gap-2.5 md:pl-4 pl-2">
           <div className="md:flex hidden"></div>

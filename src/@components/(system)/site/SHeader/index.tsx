@@ -7,6 +7,7 @@ import { useAuth } from "@/providers/auth/AuthProvider";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { ReactIcons } from "@/utils/icons";
 import { useEffect, useState } from "react";
+import { CAuSoftNotify } from "@/@components/(box)/ausoft-notify/CAuSoftNotify";
 
 import Link from "next/link";
 import AAuSoftLogo from "@/@components/(ausoft)/AAuSoftLogo";
@@ -113,6 +114,7 @@ export default function SHeader() {
       </div>
       <div className="flex items-center md:gap-2 gap-2 divide-x-2 divide-slate-200 dark:divide-slate-700/60">
         <div className="flex items-center gap-2.5">
+          <CAuSoftNotify />
           <CSwitcherTheme />
           <div className="flex">
             <CTranslate />
