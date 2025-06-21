@@ -49,7 +49,7 @@ class LocalStorageServices {
       }
 
       if (this.getCommentURL()) {
-        this.redirectForArtistPanel();
+        this.redirectForComment();
         return;
       }
 
