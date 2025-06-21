@@ -134,16 +134,7 @@ export default function AuSoftNotifyDropdownContent({
                       {notification.title}
                     </h4>
                   </div>
-                  <div
-                    onClick={() => {
-                      if (window.innerWidth <= 764) {
-                        handleOpenAction(
-                          notification.url,
-                          notification.blank ? "blank" : "fix"
-                        );
-                      }
-                    }}
-                  >
+                  <div>
                     <h4 className="text-[0.85rem] text-slate-700 dark:text-slate-400">
                       {notification.description}
                     </h4>
