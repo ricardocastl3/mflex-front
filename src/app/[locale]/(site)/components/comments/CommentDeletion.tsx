@@ -13,9 +13,11 @@ import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 export default function CommentDeletion({
   callbackClose,
   id,
+  type,
 }: {
   callbackClose: () => void;
   id: string;
+  type: "response" | "comment";
 }) {
   const { handleFetchResource } = useResourceProvider();
   const { handleAddToastOnArray } = useAppProvider();
@@ -26,7 +28,8 @@ export default function CommentDeletion({
     try {
       setIsSubmitting(true);
       handleFetchResource(false);
-      await internalApi.delete("/users/comments", {
+      const route = type == "comment" ? "" : "/res";
+      await internalApi.delete("/users/comments" + route, {
         data: {
           id,
         },

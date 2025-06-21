@@ -2,79 +2,63 @@ import { AuSoftUI } from "@/@components/(ausoft)";
 import { IResourceComment } from "@/http/interfaces/models/resources/IResourceComment";
 import { localImages } from "@/utils/images";
 import { useState } from "react";
-import { useAppProvider } from "@/providers/app/AppProvider";
-import { internalApi } from "@/http/axios/api";
-import { ReactIcons } from "@/utils/icons";
-import { useResourceProvider } from "@/providers/features/ResourceProvider";
 import { useAuth } from "@/providers/auth/AuthProvider";
 
 import DateServices from "@/services/DateServices";
 import LikeResourceButton from "../../likes/LikeResourceButton";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
-import CommentDeletion from "./CommentDeletion";
+import CommentDeletion from "../CommentDeletion";
+import CommentResContainer from "../res/ResContainer";
+import CommentInputEdit from "./CommentInputEdit";
+
+export interface ICommentBox {
+  showResponses?: boolean;
+  isToEdit?: boolean;
+  isToDelete?: boolean;
+  openAnswerInput?: boolean;
+}
 
 export default function CommentCard({
   comment,
 }: {
   comment: IResourceComment;
 }) {
-  const { handleAddToastOnArray } = useAppProvider();
-  const { handleFetchResource } = useResourceProvider();
   const { userLogged } = useAuth();
 
-  const [content, setContent] = useState(comment.content);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isToEdit, setIsToEdit] = useState(false);
-  const [isToDelete, setIsToDelete] = useState(false);
+  const [commentBox, setCommentBox] = useState<ICommentBox>({
+    openAnswerInput: false,
+    showResponses: false,
 
-  async function handleEditComment() {
-    try {
-      if (content.length <= 0) {
-        AuSoftUI.Component.ToastifyWithTranslation({
-          description_en: "Please write a comment before submitting.",
-          description_pt: "Por favor, escreva um comentário antes de enviar.",
-          title_en: "Empty Comment",
-          title_pt: "Comentário Vazio",
-          toast: handleAddToastOnArray,
-          type: "error",
-        });
-        return;
-      }
+    isToDelete: false,
+    isToEdit: false,
+  });
 
-      setIsSubmitting(true);
-      handleFetchResource(false);
-      await internalApi.put("/users/comments", {
-        id: comment.id,
-        content,
-      });
-      handleFetchResource(true);
-      setIsSubmitting(false);
-      setIsToEdit(false);
-    } catch (err) {
-      setIsSubmitting(false);
-      return CAxiosErrorToastify({ err, openToast: handleAddToastOnArray });
-    }
+  function handleSetConfig(config: ICommentBox) {
+    setCommentBox((state) => ({ ...state, ...config }));
   }
 
   return (
     <>
-      {isToDelete && (
+      {commentBox.isToDelete && (
         <CommentDeletion
+          type="comment"
           id={comment.id}
-          callbackClose={() => setIsToDelete(false)}
+          callbackClose={() => handleSetConfig({ isToDelete: false })}
         />
       )}
 
-      <div className="flex flex-col gap-2">
-        <div className="flex items-start gap-2">
-          <div className="mb-2">
+      <div className="flex flex-col gap-2 pb-3">
+        <div className="flex items-start gap-2 h-full">
+          <div className="mb-2 flex flex-col items-center gap-2 h-full">
             <AuSoftUI.Component.Avatar
               size={30}
               width={30}
               wsite=""
               src={comment.user.photo || localImages.logos.flexUser.src}
             />
+            {commentBox.showResponses && comment.responses.length > 0 && (
+              <div className="animate-fade flex-1 p-[0.1rem] bg-slate-300 dark:bg-slate-800/40"></div>
+            )}
           </div>
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
@@ -83,48 +67,16 @@ export default function CommentCard({
                 {DateServices.normalize(comment.created_at)}
               </h1>
             </div>
-            <div className="md:w-[50vw] w-[65vw]">
-              {isToEdit && (
+            <div className="md:w-[50vw] w-[65vw] flex flex-col gap-2">
+              {commentBox.isToEdit && (
                 <>
-                  <div className="animate-fade border-b flex flex-col items-start gap-4 border-slate-300 dark:border-slate-800 pb-4">
-                    <AuSoftUI.UI.TextField.TextArea
-                      onChange={(e) => {
-                        setContent(e.target.value);
-                      }}
-                      value={content}
-                      className="flex-1 h-[150px] w-full  border-none bg-slate-200 text-slate-800 dark:bg-slate-800/20 dark:text-white"
-                    />
-                    <div className="flex items-center gap-2">
-                      <AuSoftUI.UI.Button
-                        disabled={isSubmitting}
-                        onClick={handleEditComment}
-                        className="rounded-full h-fit font-bold items-center"
-                        variant={"primary"}
-                      >
-                        <AuSoftUI.Component.isFormSubmitting
-                          isSubmitting={isSubmitting}
-                        />
-
-                        {!isSubmitting && (
-                          <>
-                            <ReactIcons.AiICon.AiOutlineSend size={15} />
-                            <CTranslateTo eng="Update" pt="Atualizar" />
-                          </>
-                        )}
-                      </AuSoftUI.UI.Button>
-                      <AuSoftUI.UI.Button
-                        disabled={isSubmitting}
-                        onClick={() => setIsToEdit(false)}
-                        className="rounded-full h-fit font-bold items-center"
-                        variant={"outline"}
-                      >
-                        <CTranslateTo eng="Cancel" pt="Cancelar" />
-                      </AuSoftUI.UI.Button>
-                    </div>
-                  </div>
+                  <CommentInputEdit
+                    comment={comment}
+                    handleSetConfig={handleSetConfig}
+                  />
                 </>
               )}
-              {!isToEdit && (
+              {!commentBox.isToEdit && (
                 <h1 className="text-sm  dark:text-white text-wrap w-full break-words">
                   {comment.content}
                 </h1>
@@ -132,33 +84,85 @@ export default function CommentCard({
             </div>
 
             <div className="flex items-center gap-2">
-              <LikeResourceButton
-                other_likes={comment.likes}
-                pulse={false}
-                iconSize={16}
-                other_id={comment.id}
-              />
-
-              {userLogged && userLogged.id == comment.user.id && (
+              {userLogged && (
                 <>
+                  <LikeResourceButton
+                    other_likes={comment.likes}
+                    pulse={false}
+                    iconSize={16}
+                    other_id={comment.id}
+                  />
+
                   <button
                     onClick={() => {
-                      setContent(comment.content);
-                      setIsToEdit(true);
+                      handleSetConfig({
+                        openAnswerInput: true,
+                        showResponses: true,
+                      });
+                      handleSetConfig({ isToEdit: false });
                     }}
-                    className=" rounded-full text-xs font-bold px-2 py-1 bg-blue-200 text-blue-700 dark:bg-blue-700/30 dark:text-blue-500"
+                    className=" rounded-full text-xs font-bold px-2 py-1 bg-yellow-200 text-yellow-700 dark:bg-yellow-700/30 dark:text-yellow-500"
                   >
-                    <CTranslateTo eng="Edit" pt="Editar" />
+                    <CTranslateTo eng="Answer" pt="Responder" />
                   </button>
-                  <button
-                    onClick={() => {
-                      setIsToDelete(true);
-                    }}
-                    className="rounded-full text-xs font-bold px-2 py-1 bg-red-200 text-red-700 dark:bg-red-700/30 dark:text-red-500"
-                  >
-                    <CTranslateTo eng="Delete" pt="Eliminar" />
-                  </button>
+
+                  {userLogged.id == comment.user.id && (
+                    <>
+                      <button
+                        onClick={() => {
+                          handleSetConfig({ openAnswerInput: false });
+                          handleSetConfig({ isToEdit: true });
+                        }}
+                        className=" rounded-full text-xs font-bold px-2 py-1 bg-blue-200 text-blue-700 dark:bg-blue-700/30 dark:text-blue-500"
+                      >
+                        <CTranslateTo eng="Edit" pt="Editar" />
+                      </button>
+                      <button
+                        onClick={() => {
+                          handleSetConfig({ isToDelete: true });
+                        }}
+                        className="rounded-full text-xs font-bold px-2 py-1 bg-red-200 text-red-700 dark:bg-red-700/30 dark:text-red-500"
+                      >
+                        <CTranslateTo eng="Delete" pt="Eliminar" />
+                      </button>
+                    </>
+                  )}
                 </>
+              )}
+            </div>
+            <div className="w-full pt-2">
+              {comment.responses.length > 0 && (
+                <button
+                  onClick={() => {
+                    handleSetConfig({
+                      showResponses: !commentBox.showResponses,
+                    });
+                  }}
+                  className="flex items-center gap-4 pb-4 w-full"
+                >
+                  <h1 className="w-fit text-slate-600 dark:text-slate-300 font-bold text-xs">
+                    {commentBox.showResponses && (
+                      <CTranslateTo
+                        eng="→ Hidden Answers"
+                        pt="→ Esconder respostas"
+                      />
+                    )}
+                    {!commentBox.showResponses && (
+                      <CTranslateTo
+                        eng={`→ Show (${comment.responses.length}) answers`}
+                        pt={`→ Mostrar (${comment.responses.length}) respostas`}
+                      />
+                    )}
+                  </h1>
+                  <div className="p-[0.1rem] rounded-full bg-slate-400 dark:bg-slate-800 flex-1"></div>
+                </button>
+              )}
+              {commentBox.showResponses && (
+                <CommentResContainer
+                  handleSetConfig={handleSetConfig}
+                  openAnswerInput={commentBox.openAnswerInput}
+                  comment={comment}
+                />
               )}
             </div>
           </div>
