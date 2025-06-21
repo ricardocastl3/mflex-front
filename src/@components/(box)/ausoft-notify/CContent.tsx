@@ -130,7 +130,7 @@ export default function AuSoftNotifyDropdownContent({
                       }}
                       className="text-[0.85rem] dark:text-white font-bold"
                     >
-                      {notification.title} jhjh hkkjjh hhhjhjhj hhjhjh hhjhj
+                      {notification.title}
                     </h4>
                   </div>
                   <div
