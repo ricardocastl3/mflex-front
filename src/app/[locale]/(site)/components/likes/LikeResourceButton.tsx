@@ -41,9 +41,10 @@ export default function LikeResourceButton({
 
   useEffect(() => {
     const likes = resource ? resource.likes : other_likes ? other_likes : [];
+    setTotal(likes.length);
+
     const findMe = likes.find((i) => i.user.id == userLogged?.id);
     setAlreadyLike(findMe ? true : false);
-    setTotal(likes.length);
   }, []);
 
   useEffect(() => {
@@ -62,6 +63,7 @@ export default function LikeResourceButton({
     } else {
       count = count > 0 ? --count : 0;
     }
+
     setTotal(count);
   }, [alreadyLike]);
 
