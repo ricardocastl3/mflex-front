@@ -1,5 +1,8 @@
 import { IUserResponse } from "../../responses/IUserResponse";
 import { ICategory } from "../ICategory";
+import { IResourceComment } from "../resources/IResourceComment";
+import { IResourceLike } from "../resources/IResourceLike";
+import { IResourceView } from "../resources/IResourceView";
 import { IEventTicket } from "./IEventTicket";
 
 export interface IEvent {
@@ -24,4 +27,7 @@ export interface IEvent {
     last_name: string;
   };
   event_tickets: IEventTicket[];
+  comments: IResourceComment[];
+  views: IResourceView[];
+  likes: IResourceLike[];
 }

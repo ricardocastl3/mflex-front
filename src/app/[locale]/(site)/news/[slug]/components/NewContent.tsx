@@ -3,10 +3,11 @@ import { INews } from "@/http/interfaces/models/INews";
 
 import DateCategory from "../../../components/DateCategory";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
+import LikeResourceButton from "../../../components/likes/LikeResourceButton";
 
 export default function NewContent({ news }: { news: INews }) {
   return (
-    <BaseBox className="flex-1 md:p-8 p-4 justify-between flex flex-col md:mb-8 mb-0 gap-4 dark:bg-ausoft-slate-900 ">
+    <BaseBox className="w-full flex-1 md:p-8 p-4 justify-between flex flex-col md:mb-8 mb-0 gap-4 dark:bg-ausoft-slate-900 ">
       <div className="flex flex-col gap-4">
         <div
           style={{
@@ -25,6 +26,7 @@ export default function NewContent({ news }: { news: INews }) {
             category_name={news?.category ? news.category.name : "no"}
             date={news.created_at}
           />
+          <LikeResourceButton resource={news} />
         </div>
         <h1 className="text-lg leading-[2rem] font-bold dark:text-white">
           {news.title}

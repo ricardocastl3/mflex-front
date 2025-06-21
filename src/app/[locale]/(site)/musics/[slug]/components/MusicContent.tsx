@@ -19,6 +19,7 @@ import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 import Link from "next/link";
 import MusicViews from "@/app/[locale]/app/(artist)/art-musics/components/MusicViews";
+import LikeResourceButton from "../../../components/likes/LikeResourceButton";
 
 export default function MusicContent({ music }: { music: IMusic }) {
   const { userLogged } = useAuth();
@@ -102,6 +103,7 @@ export default function MusicContent({ music }: { music: IMusic }) {
               date={music.created_at}
             />
             <MusicViews views={music.views_count.length} />
+            <LikeResourceButton resource={music} />
           </div>
           {music.artist_profile?.id != userLogged?.artist_profile?.id &&
             !music?.artist_profile?.is_official && (

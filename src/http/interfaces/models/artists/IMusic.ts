@@ -1,4 +1,6 @@
 import { ICategory } from "../ICategory";
+import { IResourceComment } from "../resources/IResourceComment";
+import { IResourceLike } from "../resources/IResourceLike";
 import { IArtistProfile } from "./IArtistProfile";
 import { IMusicDonation } from "./IMusicDonation";
 import { IMusicView } from "./IMusicView";
@@ -22,6 +24,9 @@ export interface IMusic {
   artist_profile?: IArtistProfile;
   music_donations?: IMusicDonation[];
   views_count: IMusicView[];
+
+  comments: IResourceComment[];
+  likes: IResourceLike[];
 }
 
 export interface IMusicResponseAPI {

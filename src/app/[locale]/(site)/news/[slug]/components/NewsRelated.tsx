@@ -1,27 +1,38 @@
 import { INews } from "@/http/interfaces/models/INews";
 import { BaseBox } from "@/@components/(box)/BaseBox";
 import { localImages } from "@/utils/images";
+import { useAuth } from "@/providers/auth/AuthProvider";
+import { useAppProvider } from "@/providers/app/AppProvider";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import NewsCard from "../../components/container/NewsCard";
 import Image from "next/image";
 import SubscribeBanner from "../../../components/ads/SubscribeBanner";
-import { useAuth } from "@/providers/auth/AuthProvider";
-import { useAppProvider } from "@/providers/app/AppProvider";
+
 import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 export default function NewsRelated({
   news,
   newElement,
+  displayMode,
 }: {
   newElement: INews;
   news: INews[];
+  displayMode: "mobile" | "desktop" | "both";
 }) {
   const { userLogged } = useAuth();
   const { isNotifyGranted } = useAppProvider();
 
   return (
-    <div className="flex flex-col gap-4 md:pb-12 pb-2">
+    <div
+      className={`${
+        displayMode == "mobile"
+          ? "md:hidden flex mx-4"
+          : displayMode == "desktop"
+          ? "md:flex hidden"
+          : "flex"
+      }  flex-col gap-4 md:pb-12 pb-2`}
+    >
       <BaseBox className="p-4 dark:bg-ausoft-slate-900 dark:text-white font-bold text-lg">
         <CTranslateTo eng="Related News" pt="Novidades Relacionadas" />
       </BaseBox>

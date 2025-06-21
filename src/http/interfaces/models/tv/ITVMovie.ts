@@ -1,5 +1,8 @@
 import { ICategory } from "../ICategory";
 import { IPlan } from "../IPlan";
+import { IResourceComment } from "../resources/IResourceComment";
+import { IResourceLike } from "../resources/IResourceLike";
+import { IResourceView } from "../resources/IResourceView";
 
 export interface ITVMovie {
   id: string;
@@ -17,6 +20,10 @@ export interface ITVMovie {
   category_id: string;
   plan: IPlan;
   plan_id: string;
+
+  comments: IResourceComment[];
+  views: IResourceView[];
+  likes: IResourceLike[];
 }
 
 export interface ITVMovieChannelsAPI {

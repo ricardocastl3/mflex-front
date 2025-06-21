@@ -4,6 +4,7 @@ import { INews } from "@/http/interfaces/models/INews";
 import { use, useCallback, useEffect, useState } from "react";
 import { ReactIcons } from "@/utils/icons";
 import { internalApi, langByCookies } from "@/http/axios/api";
+import { useResourceProvider } from "@/providers/features/ResourceProvider";
 
 import NewSkeleton from "./NewSkeleton";
 import HeroNews from "../components/Hero";
@@ -11,6 +12,7 @@ import useNews from "@/hooks/api/useNews";
 import NewsRelated from "./components/NewsRelated";
 import NewsOthers from "./components/NewsOthers";
 import NewContent from "./components/NewContent";
+import CommentContainer from "../../components/comments/CommentContainer";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -23,11 +25,13 @@ export default function PreviewNew({ params }: Props) {
 
   const { isLoadingAllNews, allNews } = useNews({ route: "slug" });
 
+  const { fetchResource } = useResourceProvider();
+
   const fetchNews = useCallback(async () => {
     try {
       const resp = await internalApi.get("/news", {
         params: {
-          slug: pars.slug
+          slug: pars.slug,
         },
       });
 
@@ -43,8 +47,8 @@ export default function PreviewNew({ params }: Props) {
   }, []);
 
   useEffect(() => {
-    fetchNews();
-  }, []);
+    if (fetchResource) fetchNews();
+  }, [fetchResource]);
 
   if (isLoading || isLoadingAllNews) {
     return (
@@ -77,10 +81,22 @@ export default function PreviewNew({ params }: Props) {
           </div>
         </div>
 
-        <div className="flex md:flex-row flex-col gap-8 md:px-[3rem] px-6">
+        <div className="flex md:flex-row flex-col gap-8 md:px-[3rem] px-4">
           <NewContent news={selectedNews} />
-          <NewsRelated newElement={selectedNews} news={allNews} />
+          <NewsRelated
+            displayMode="desktop"
+            newElement={selectedNews}
+            news={allNews}
+          />
+          <CommentContainer displayMode="mobile" resource={selectedNews} />
         </div>
+
+        <NewsRelated
+          displayMode="mobile"
+          newElement={selectedNews}
+          news={allNews}
+        />
+        <CommentContainer displayMode="desktop" resource={selectedNews} />
 
         <NewsOthers newElement={selectedNews} news={allNews} />
       </div>

@@ -1,5 +1,8 @@
 import { ICategory } from "./ICategory";
 import { IPodcastAuthor } from "./IPodcastAuthor";
+import { IResourceComment } from "./resources/IResourceComment";
+import { IResourceLike } from "./resources/IResourceLike";
+import { IResourceView } from "./resources/IResourceView";
 
 export interface IPodcast {
   id: string;
@@ -15,5 +18,10 @@ export interface IPodcast {
   category_id: string;
   category?: ICategory;
   podcaster: IPodcastAuthor;
+
+  comments: IResourceComment[];
+  views:IResourceView[]
+  likes:IResourceLike[]
+  
   created_at: Date;
 }

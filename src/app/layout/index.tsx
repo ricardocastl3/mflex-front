@@ -25,6 +25,7 @@ import FootballProvider from "@/providers/features/FootballProvider";
 import FlexTVProvider from "@/providers/features/FlexTVProvider";
 import MusicProvider from "@/providers/features/MusicProvider";
 import ArtistProvider from "@/providers/features/ArtistProvider";
+import ResourceProvider from "@/providers/features/ResourceProvider";
 
 const anek = Abel({ weight: "400", subsets: ["latin"] });
 
@@ -59,7 +60,9 @@ export default function RootLayout({
                                   <ArtistProvider>
                                     <EventTicketProvider>
                                       <FootballProvider>
-                                        {children}
+                                        <ResourceProvider>
+                                          {children}
+                                        </ResourceProvider>
                                       </FootballProvider>
                                     </EventTicketProvider>
                                   </ArtistProvider>

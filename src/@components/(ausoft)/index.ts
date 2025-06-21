@@ -25,6 +25,7 @@ import Onboarding from "../(modals)/onboarding";
 import AAnimated from "./AAnimated";
 import ARegisterProgress from "./ARegisterProgress";
 import AQRCode from "./AQRCode";
+import AConfetti from "./AConfetti";
 
 export const AuSoftUI = {
   Component: {
@@ -47,6 +48,7 @@ export const AuSoftUI = {
     isFormSubmitting: AIsSubmitting,
     ListEmpty: AListEmpty,
     LoadingList: ALoadingList,
+    ConfettiExplosion: AConfetti,
   },
   Modal: {
     Onboarding,

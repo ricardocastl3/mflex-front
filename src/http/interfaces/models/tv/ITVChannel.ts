@@ -1,4 +1,7 @@
 import { IPlan } from "../IPlan";
+import { IResourceComment } from "../resources/IResourceComment";
+import { IResourceLike } from "../resources/IResourceLike";
+import { IResourceView } from "../resources/IResourceView";
 
 export interface ITVChannel {
   id: string;
@@ -9,6 +12,9 @@ export interface ITVChannel {
   is_public: boolean;
   is_live: boolean;
   st: number;
+  comments: IResourceComment[];
+  views: IResourceView[];
+  likes: IResourceLike[];
   description?: string;
 }
 

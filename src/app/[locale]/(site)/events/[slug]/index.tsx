@@ -11,6 +11,7 @@ import { IEvent } from "@/http/interfaces/models/organizer/IEvent";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import TicketBox from "./components/TicketsBox";
 import EventSkeleton from "./components/EventSkeleton";
+import LikeResourceButton from "../../components/likes/LikeResourceButton";
 
 export default function EventPage({
   params,
@@ -100,7 +101,9 @@ export default function EventPage({
                 }}
                 className="w-full md:h-[600px] h-[300px]"
               ></BaseBox>
-              <div className="py-7">
+              <div className="py-7 flex-col gap-4">
+                <LikeResourceButton resource={selectedEvent} />
+
                 <h2 className="text-lg dark:text-white">
                   {selectedEvent.description}
                 </h2>

@@ -1,6 +1,5 @@
 import { BaseBox } from "@/@components/(box)/BaseBox";
 import { localImages } from "@/utils/images";
-import { useAuth } from "@/providers/auth/AuthProvider";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { IMusic } from "@/http/interfaces/models/artists/IMusic";
 
@@ -13,14 +12,24 @@ import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 export default function MusicRelated({
   musics,
   newElement,
+  displayMode,
 }: {
   newElement: IMusic;
   musics: IMusic[];
+  displayMode: "mobile" | "desktop" | "both";
 }) {
   const { isNotifyGranted } = useAppProvider();
 
   return (
-    <div className="flex flex-col  md:px-0 px-5 gap-4 md:pb-12 pb-8">
+    <div
+      className={`${
+        displayMode == "mobile"
+          ? "md:hidden flex mx-4"
+          : displayMode == "desktop"
+          ? "md:flex hidden"
+          : "flex"
+      } flex flex-col  md:px-0 px-4 gap-4 md:pb-12 pb-8`}
+    >
       <BaseBox className="p-4 dark:bg-ausoft-slate-900 dark:text-white font-bold text-lg">
         <CTranslateTo eng="Related Music" pt="Músicas Relacionadas" />
       </BaseBox>

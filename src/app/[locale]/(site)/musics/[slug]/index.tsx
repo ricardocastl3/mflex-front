@@ -4,6 +4,7 @@ import { use, useCallback, useEffect, useState } from "react";
 import { ReactIcons } from "@/utils/icons";
 import { internalApi, langByCookies } from "@/http/axios/api";
 import { IMusic } from "@/http/interfaces/models/artists/IMusic";
+import { useResourceProvider } from "@/providers/features/ResourceProvider";
 
 import NewSkeleton from "./components/MusicSkeleton";
 import HeroMusics from "../components/Hero";
@@ -12,6 +13,7 @@ import useMusics from "@/hooks/api/musics/useMusics";
 import MusicContent from "./components/MusicContent";
 import MusicRelated from "./components/MusicRelated";
 import MusicOthers from "./components/MusicOthers";
+import CommentContainer from "../../components/comments/CommentContainer";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -23,6 +25,8 @@ export default function PreviewMusic({ params }: Props) {
   const [selectedMusic, setSelectedMusic] = useState<IMusic | undefined>();
 
   const { isLoadingAllMusics, allMusics } = useMusics({ route: "slug" });
+
+  const { fetchResource } = useResourceProvider();
 
   const fetchMusics = useCallback(async () => {
     try {
@@ -45,8 +49,8 @@ export default function PreviewMusic({ params }: Props) {
   }, []);
 
   useEffect(() => {
-    fetchMusics();
-  }, []);
+    if (fetchResource) fetchMusics();
+  }, [fetchResource]);
 
   if (isLoading || isLoadingAllMusics) {
     return (
@@ -81,8 +85,22 @@ export default function PreviewMusic({ params }: Props) {
 
         <div className="flex md:flex-row flex-col gap-8 md:px-[3rem] px-0">
           <MusicContent music={selectedMusic} />
-          <MusicRelated newElement={selectedMusic} musics={allMusics.musics} />
+          <MusicRelated
+            displayMode="desktop"
+            newElement={selectedMusic}
+            musics={allMusics.musics}
+          />
+          <div className="md:hidden flex px-4 w-full">
+            <CommentContainer displayMode="mobile" resource={selectedMusic} />
+          </div>
         </div>
+
+        <CommentContainer displayMode="desktop" resource={selectedMusic} />
+        <MusicRelated
+          displayMode="mobile"
+          newElement={selectedMusic}
+          musics={allMusics.musics}
+        />
 
         <MusicOthers newElement={selectedMusic} musics={allMusics.musics} />
       </div>

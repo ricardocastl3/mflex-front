@@ -4,6 +4,7 @@ import { YouTubeEmbed } from "@next/third-parties/google";
 
 import DateCategory from "../../../components/DateCategory";
 import PodFlexCaster from "../../components/container/PodFlexCaster";
+import LikeResourceButton from "../../../components/likes/LikeResourceButton";
 
 export default function PodContent({ podflex }: { podflex: IPodcast }) {
   return (
@@ -35,6 +36,7 @@ export default function PodContent({ podflex }: { podflex: IPodcast }) {
             category_name={podflex?.category ? podflex.category.name : "no"}
             date={podflex.started_at}
           />
+          <LikeResourceButton resource={podflex} />
         </div>
         <div
           className="dark:text-slate-300 text-base"
