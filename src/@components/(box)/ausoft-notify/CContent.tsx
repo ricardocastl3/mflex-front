@@ -58,7 +58,9 @@ export default function AuSoftNotifyDropdownContent({
   }, [isLoadingNotification]);
 
   function handleOpenAction(url: string, type: "blank" | "fix") {
+    callback!();
     if (type == "fix") {
+      router.push(url);
       router.push(url);
     } else {
       window.open(url, "_blank");
