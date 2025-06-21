@@ -61,7 +61,6 @@ export default function AuSoftNotifyDropdownContent({
     callback!();
     if (type == "fix") {
       router.push(url);
-      router.push(url);
     } else {
       window.open(url, "_blank");
     }
