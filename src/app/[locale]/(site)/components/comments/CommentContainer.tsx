@@ -8,7 +8,7 @@ import {
 } from "@/providers/features/ResourceProvider";
 import { useEffect } from "react";
 import { useAppProvider } from "@/providers/app/AppProvider";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CommentCard from "./cards/CommentCard";
@@ -32,41 +32,43 @@ export default function CommentContainer({
   }, []);
 
   const searchParms = useSearchParams();
-  const router = useRouter();
-  const path = usePathname();
+  const pathname = usePathname();
+
+  // Função para fazer scroll até o comentário
+  const scrollToComment = (commentId: string) => {
+    setTimeout(() => {
+      const commentElement = document.getElementById(`cm-${commentId}`);
+
+      if (commentElement) {
+        // Scroll suave até o comentário
+        commentElement.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+
+        // Adiciona um highlight temporário
+        commentElement.classList.add(
+          "bg-yellow-100",
+          "dark:bg-yellow-900/20",
+          "transition-colors",
+          "duration-300"
+        );
+        setTimeout(() => {
+          commentElement.classList.remove(
+            "bg-yellow-100",
+            "dark:bg-yellow-900/20"
+          );
+        }, 2000);
+      }
+    }, 500); // Delay maior para garantir que tudo esteja carregado
+  };
 
   useEffect(() => {
-    if (searchParms.get("cm")) {
-      const commentId = searchParms.get("cm");
-
-      // Pequeno delay para garantir que os comentários estejam renderizados
-      setTimeout(() => {
-        const commentElement = document.getElementById(`cm-${commentId}`);
-
-        if (commentElement) {
-          // Scroll suave até o comentário
-          commentElement.scrollIntoView({
-            behavior: "smooth",
-            block: "center",
-          });
-
-          // Adiciona um highlight temporário
-          commentElement.classList.add(
-            "bg-yellow-100",
-            "dark:bg-yellow-900/20",
-            "transition-colors",
-            "duration-300"
-          );
-          setTimeout(() => {
-            commentElement.classList.remove(
-              "bg-yellow-100",
-              "dark:bg-yellow-900/20"
-            );
-          }, 2000);
-        }
-      }, 100);
+    const commentId = searchParms.get("cm");
+    if (commentId && resource?.comments && resource.comments.length > 0) {
+      scrollToComment(commentId);
     }
-  }, [searchParms]);
+  }, [searchParms, resource, pathname]);
 
   return (
     <div className="flex md:flex-row flex-col pb-5 md:w-fit w-full">
