@@ -27,7 +27,10 @@ export default function useNotifications() {
         },
       });
 
-      if (resp.data.notifications.length <= 0) {
+      if (
+        resp.data.notifications.length <= 0 ||
+        resp.data.notifications.length == resp.data.total
+      ) {
         setHasMoreNotifications(false);
       } else {
         setHasMoreNotifications(true);
@@ -51,7 +54,10 @@ export default function useNotifications() {
         },
       });
 
-      if (resp.data.notifications.length <= 0) {
+      if (
+        resp.data.notifications.length <= 0 ||
+        resp.data.notifications.length == resp.data.total
+      ) {
         setHasMoreNotifications(false);
       } else {
         setHasMoreNotifications(true);
