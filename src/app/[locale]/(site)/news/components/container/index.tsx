@@ -107,7 +107,7 @@ export default function NewsContainer() {
 
             {isLoadingMoreNews && (
               <>
-                {Array.from({ length: 4 }).map((event, i) => {
+                {Array.from({ length: 3 }).map((event, i) => {
                   return (
                     <div
                       key={i}
@@ -123,7 +123,7 @@ export default function NewsContainer() {
         {isLoadingAllNews && (
           <>
             <div className="grid md:grid-cols-3 grid-cols-1 gap-x-6 gap-y-8">
-              {Array.from({ length: 4 }).map((event, i) => {
+              {Array.from({ length: 6 }).map((event, i) => {
                 return (
                   <div
                     key={i}
