@@ -25,6 +25,10 @@ export default function CommentCard({
 }) {
   const { userLogged } = useAuth();
 
+  const [selectedComment, setSelectedComment] = useState<
+    IResourceComment | undefined
+  >();
+
   const [commentBox, setCommentBox] = useState<ICommentBox>({
     openAnswerInput: false,
     showResponses: false,
@@ -95,6 +99,7 @@ export default function CommentCard({
 
                   <button
                     onClick={() => {
+                      setSelectedComment(comment);
                       handleSetConfig({
                         openAnswerInput: true,
                         showResponses: true,
@@ -159,6 +164,7 @@ export default function CommentCard({
               )}
               {commentBox.showResponses && (
                 <CommentResContainer
+                  selectedComment={selectedComment}
                   handleSetConfig={handleSetConfig}
                   openAnswerInput={commentBox.openAnswerInput}
                   comment={comment}

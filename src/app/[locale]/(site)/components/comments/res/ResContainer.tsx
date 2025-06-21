@@ -14,10 +14,12 @@ import ResInputEdit from "./ResInputEdit";
 
 export default function CommentResContainer({
   comment,
+  selectedComment,
   openAnswerInput,
   handleSetConfig,
 }: {
   comment: IResourceComment;
+  selectedComment: IResourceComment | undefined;
   openAnswerInput?: boolean;
   handleSetConfig: (config: ICommentBox) => void;
 }) {
@@ -25,7 +27,8 @@ export default function CommentResContainer({
 
   const [isToEdit, setIsToEdit] = useState(false);
   const [isToDelete, setIsToDelete] = useState(false);
-  const [respondeID, setResponse] = useState("");
+
+  const [selectedAnswerID, setSelectedAnswerID] = useState("");
 
   return (
     <>
@@ -34,12 +37,16 @@ export default function CommentResContainer({
           {isToDelete && (
             <CommentDeletion
               type="response"
-              id={respondeID}
+              id={selectedAnswerID}
               callbackClose={() => setIsToDelete(false)}
             />
           )}
 
-          <div className="animate-fade-up flex flex-col gap-4 h-[40vh] overflow-y-auto">
+          <div
+            className={`${
+              openAnswerInput ? "h-[40vh] overflow-y-auto" : ""
+            } animate-fade-up flex flex-col gap-4 `}
+          >
             {comment.responses.map((response, i) => {
               return (
                 <div key={i} className="flex flex-col gap-2 pb-3">
@@ -62,7 +69,7 @@ export default function CommentResContainer({
                         </h1>
                       </div>
                       <div className="md:w-[50vw] w-[65vw] flex flex-col gap-2">
-                        {isToEdit && (
+                        {isToEdit && selectedAnswerID == response.id && (
                           <>
                             <ResInputEdit
                               response={response}
@@ -92,6 +99,7 @@ export default function CommentResContainer({
                                 <button
                                   onClick={() => {
                                     setIsToEdit(true);
+                                    setSelectedAnswerID(response.id);
                                   }}
                                   className=" rounded-full text-xs font-bold px-2 py-1 bg-blue-200 text-blue-700 dark:bg-blue-700/30 dark:text-blue-500"
                                 >
@@ -99,7 +107,7 @@ export default function CommentResContainer({
                                 </button>
                                 <button
                                   onClick={() => {
-                                    setResponse(response.id);
+                                    setSelectedAnswerID(response.id);
                                     setIsToDelete(true);
                                   }}
                                   className="rounded-full text-xs font-bold px-2 py-1 bg-red-200 text-red-700 dark:bg-red-700/30 dark:text-red-500"
@@ -121,14 +129,19 @@ export default function CommentResContainer({
       )}
 
       <div className="w-full pt-2">
-        {openAnswerInput && (
-          <>
-            <ResInputAnswer
-              comment={comment}
-              callbackClose={() => handleSetConfig({ openAnswerInput: false })}
-            />
-          </>
-        )}
+        {openAnswerInput &&
+          selectedComment &&
+          selectedComment.id == comment.id && (
+            <>
+              selectedComment
+              <ResInputAnswer
+                comment={comment}
+                callbackClose={() =>
+                  handleSetConfig({ openAnswerInput: false })
+                }
+              />
+            </>
+          )}
       </div>
     </>
   );
