@@ -11,6 +11,7 @@ class LocalStorageServices {
     rc_artist_panel: "rc-art-panel",
     rc_organizer_panel: "rc-org-panel",
     rc_last_page: "lst-pg",
+    rc_comment: "rc-comment",
     aff_code: "btag",
     watch_token: "wtn",
   };
@@ -47,6 +48,11 @@ class LocalStorageServices {
         return;
       }
 
+      if (this.getCommentURL()) {
+        this.redirectForArtistPanel();
+        return;
+      }
+
       setTimeout(() => {
         resolv(true);
       }, 500);
@@ -66,6 +72,7 @@ class LocalStorageServices {
     localStorage.removeItem(this.keys.rc_artist_panel);
     localStorage.removeItem(this.keys.rc_organizer_panel);
     localStorage.removeItem(this.keys.rc_music);
+    localStorage.removeItem(this.keys.rc_comment);
   }
 
   setKey(key: string, data: any) {
@@ -105,6 +112,12 @@ class LocalStorageServices {
     window.location.href = `/${langByCookies}/musics/${slug}`;
   }
 
+  redirectForComment() {
+    const slug = this.getCommentURL();
+    this.delKey(this.keys.rc_comment);
+    window.location.href = `${slug}`;
+  }
+
   redirectForArtistPanel() {
     this.delKey(this.keys.rc_artist_panel);
     window.location.href = `/${langByCookies}/app/art-musics`;
@@ -118,6 +131,11 @@ class LocalStorageServices {
   getWatchID() {
     const res = localStorage.getItem(this.keys.rc_watchTv);
     return res?.split("_")[1] || false;
+  }
+
+  getCommentURL() {
+    const res = localStorage.getItem(this.keys.rc_comment);
+    return res;
   }
 
   getLastPeerViewFlexZone() {
@@ -183,6 +201,10 @@ class LocalStorageServices {
 
   setWatchMovieID(id: string) {
     localStorage.setItem(this.keys.rc_watchMovie, `wtm_${id}`);
+  }
+
+  setCommentURL(id: string) {
+    localStorage.setItem(this.keys.rc_comment, id);
   }
 
   setLastPageViewFlexZone(id: string) {

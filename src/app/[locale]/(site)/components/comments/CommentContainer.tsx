@@ -13,6 +13,8 @@ import { useAppProvider } from "@/providers/app/AppProvider";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CommentCard from "./cards/CommentCard";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
+import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
+import Link from "next/link";
 
 export default function CommentContainer({
   resource,
@@ -22,7 +24,7 @@ export default function CommentContainer({
   resource: ResourceType;
 }) {
   const { handleSelectResource, handleFetchResource } = useResourceProvider();
-  const { handleAddToastOnArray } = useAppProvider();
+  const { handleAddToastOnArray, currentLastPageUrl } = useAppProvider();
   const { userLogged } = useAuth();
 
   const [content, setContent] = useState("");
@@ -110,16 +112,21 @@ export default function CommentContainer({
           )}
 
           {!userLogged && (
-            <AuSoftUI.UI.Button
-              variant={"primary"}
-              size={"md"}
-              className="md:w-fit w-full"
-            >
-              <CTranslateTo
-                eng="Log in to be able to comment"
-                pt="Inicie sessão para conseguires comentar"
-              />
-            </AuSoftUI.UI.Button>
+            <Link href={`/${langByCookies}/sign-in`} className="w-full">
+              <AuSoftUI.UI.Button
+                onClick={() => {
+                  LocalStorageServices.setCommentURL(currentLastPageUrl);
+                }}
+                variant={"primary"}
+                size={"md"}
+                className="md:w-fit w-full"
+              >
+                <CTranslateTo
+                  eng="Log in to be able to comment"
+                  pt="Inicie sessão para conseguires comentar"
+                />
+              </AuSoftUI.UI.Button>
+            </Link>
           )}
           <div className="flex flex-col gap-2 w-full">
             <h1 className="dark:text-white font-bold text-base flex items-center gap-4">
