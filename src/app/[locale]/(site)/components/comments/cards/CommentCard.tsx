@@ -74,7 +74,7 @@ export default function CommentCard({
               src={comment.user.photo || localImages.logos.flexUser.src}
             />
             {commentBox.showResponses && comment.responses.length > 0 && (
-              <div className="animate-fade flex-1 p-[0.1rem] bg-slate-200 dark:bg-slate-800/40"></div>
+              <div className="animate-fade flex-1 p-[0.1rem] bg-slate-200/80 dark:bg-slate-800/40"></div>
             )}
           </div>
           <div className="flex flex-col gap-2">
@@ -173,7 +173,7 @@ export default function CommentCard({
                       />
                     )}
                   </h1>
-                  <div className="p-[0.1rem] rounded-full bg-slate-400 dark:bg-slate-800 flex-1"></div>
+                  <div className="p-[0.1rem] rounded-full bg-slate-200/80 dark:bg-slate-800 flex-1"></div>
                 </button>
               )}
               {commentBox.showResponses && (
