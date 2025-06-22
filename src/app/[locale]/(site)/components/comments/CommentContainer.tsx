@@ -1,3 +1,5 @@
+"use client";
+
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { BaseBox } from "@/@components/(box)/BaseBox";
 import { langByCookies } from "@/http/axios/api";
@@ -34,33 +36,62 @@ export default function CommentContainer({
   const searchParms = useSearchParams();
   const pathname = usePathname();
 
-  // Função para fazer scroll até o comentário
   const scrollToComment = (commentId: string) => {
     setTimeout(() => {
       const commentElement = document.getElementById(`cm-${commentId}`);
 
       if (commentElement) {
-        // Scroll suave até o comentário
-        commentElement.scrollIntoView({
-          behavior: "smooth",
-          block: "center",
-        });
+        try {
+          // Método 1: scrollIntoView com opções específicas
+          commentElement.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+          });
 
-        // Adiciona um highlight temporário
+          // Método 2: Scroll manual como fallback (especialmente para desktop)
+          setTimeout(() => {
+            const rect = commentElement.getBoundingClientRect();
+            const scrollTop =
+              window.pageYOffset || document.documentElement.scrollTop;
+            const targetScrollTop =
+              scrollTop + rect.top - window.innerHeight / 2;
+
+            // Verifica se o elemento está visível
+            if (rect.top < 0 || rect.bottom > window.innerHeight) {
+              window.scrollTo({
+                top: targetScrollTop,
+                behavior: "smooth",
+              });
+            }
+          }, 150);
+        } catch (error) {}
+
+        // Adiciona um highlight temporário mais visível
         commentElement.classList.add(
           "bg-yellow-100",
           "dark:bg-yellow-900/20",
           "transition-colors",
-          "duration-300"
+          "duration-300",
+          "border-2",
+          "border-yellow-400",
+          "rounded-lg",
+          "p-2"
         );
         setTimeout(() => {
           commentElement.classList.remove(
             "bg-yellow-100",
-            "dark:bg-yellow-900/20"
+            "dark:bg-yellow-900/20",
+            "border-2",
+            "border-yellow-400",
+            "rounded-lg",
+            "p-2"
           );
-        }, 2000);
+        }, 3000);
+      } else {
+        // Tenta encontrar todos os elementos com ID que começam com cm-
+        const allCommentElements = document.querySelectorAll('[id^="cm-"]');
       }
-    }, 500); // Delay maior para garantir que tudo esteja carregado
+    }, 800); // Aumentei o delay para garantir que tudo esteja renderizado
   };
 
   useEffect(() => {
@@ -68,7 +99,7 @@ export default function CommentContainer({
     if (commentId && resource?.comments && resource.comments.length > 0) {
       scrollToComment(commentId);
     }
-  }, [searchParms, resource, pathname]);
+  }, [searchParms, resource, pathname, displayMode]);
 
   return (
     <div className="flex md:flex-row flex-col pb-5 md:w-fit w-full">

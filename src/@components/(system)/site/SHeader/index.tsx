@@ -116,7 +116,7 @@ export default function SHeader() {
         <div className="flex items-center gap-2.5">
           <CAuSoftNotify />
           <CSwitcherTheme />
-          <div className="flex">
+          <div className="md:flex hidden">
             <CTranslate />
           </div>
         </div>

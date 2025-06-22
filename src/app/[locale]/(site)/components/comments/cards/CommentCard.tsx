@@ -3,7 +3,6 @@ import { IResourceComment } from "@/http/interfaces/models/resources/IResourceCo
 import { localImages } from "@/utils/images";
 import { useState } from "react";
 import { useAuth } from "@/providers/auth/AuthProvider";
-import { useRouter } from "next/navigation";
 
 import DateServices from "@/services/DateServices";
 import LikeResourceButton from "../../likes/LikeResourceButton";
@@ -38,10 +37,21 @@ export default function CommentCard({
     isToEdit: false,
   });
 
-  const router = useRouter();
-
   function handleSetConfig(config: ICommentBox) {
     setCommentBox((state) => ({ ...state, ...config }));
+  }
+
+  function handleAbleAnswer() {
+    setTimeout(() => {
+      const commentElement = document.getElementById(`input-res-${comment.id}`);
+      if (commentElement) {
+        // Scroll suave até o comentário
+        commentElement.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+      }
+    }, 300);
   }
 
   return (
@@ -64,7 +74,7 @@ export default function CommentCard({
               src={comment.user.photo || localImages.logos.flexUser.src}
             />
             {commentBox.showResponses && comment.responses.length > 0 && (
-              <div className="animate-fade flex-1 p-[0.1rem] bg-slate-300 dark:bg-slate-800/40"></div>
+              <div className="animate-fade flex-1 p-[0.1rem] bg-slate-200 dark:bg-slate-800/40"></div>
             )}
           </div>
           <div className="flex flex-col gap-2">
@@ -107,7 +117,7 @@ export default function CommentCard({
                         openAnswerInput: true,
                         showResponses: true,
                       });
-                      router.push(`#input-res-${comment.id}`);
+                      handleAbleAnswer();
                       handleSetConfig({ isToEdit: false });
                     }}
                     className=" rounded-full text-xs font-bold px-2 py-1 bg-yellow-200 text-yellow-700 dark:bg-yellow-700/30 dark:text-yellow-500"
