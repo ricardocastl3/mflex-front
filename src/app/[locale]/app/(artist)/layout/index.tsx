@@ -15,7 +15,9 @@ export default function ArtistLayout({ children }: { children: ReactNode }) {
         userLogged.artist_profile.request_profile &&
         !userLogged.artist_profile.is_online && <ArtistRequesting />}
 
-      {!userLogged?.artist_profile && <NoArtistProfile />}
+      {(!userLogged?.artist_profile ||
+        (userLogged?.artist_profile &&
+          !userLogged.artist_profile.request_profile)) && <NoArtistProfile />}
 
       {userLogged?.artist_profile && userLogged.artist_profile.is_online && (
         <>{children}</>
