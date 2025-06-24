@@ -116,9 +116,7 @@ export default function SHeader() {
         <div className="flex items-center gap-2.5">
           {userLogged && <CAuSoftNotify />}
           {!userLogged && <CTranslate />}
-
           <CSwitcherTheme />
-          <div className="md:flex hidden">{!userLogged && <CTranslate />}</div>
         </div>
         <div className="flex relative items-center gap-2.5 md:pl-4 pl-2">
           {userLogged && !isLoadingUserData && <CUserProfileBox />}
