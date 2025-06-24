@@ -22,7 +22,8 @@ export default function TicketCard({ ticket }: { ticket: IEventTicket }) {
   const { userLogged } = useAuth();
   const { handleOpenModal } = useModal();
   const { handleSelectEventTicket } = useEventTicketProvider();
-  const { handleSelectCustomerBuyed } = useCheckoutProvider();
+  const { handleSelectCustomerBuyed, handleAddItemOnCheckout } =
+    useCheckoutProvider();
 
   const router = useRouter();
 
@@ -38,6 +39,14 @@ export default function TicketCard({ ticket }: { ticket: IEventTicket }) {
         quantity,
         ticket_id: ticket.id,
       });
+
+      handleAddItemOnCheckout({
+        type: "tickets",
+        amount: totalToPay,
+        monthly: "no",
+        price: ticket.id,
+      });
+      
       handleSelectEventTicket(ticket);
       handleOpenModal("angolan-payment-modal");
     }
