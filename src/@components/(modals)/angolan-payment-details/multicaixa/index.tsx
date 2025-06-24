@@ -53,13 +53,13 @@ export default function MulticaixaPayment() {
     try {
       setIsLoading(true);
 
-      const url =
-        itemPriceIdCheckoutSelected &&
-        (itemPriceIdCheckoutSelected.type == "subs"
+      const url = itemPriceIdCheckoutSelected
+        ? itemPriceIdCheckoutSelected.type == "subs"
           ? "subs"
           : itemPriceIdCheckoutSelected.type == "donations"
           ? "donations"
-          : "tickets");
+          : "tickets"
+        : "tickets";
 
       const resp = await internalApi.post(`/payments/checkout/${url}`, {
         quantity: details.quantity,

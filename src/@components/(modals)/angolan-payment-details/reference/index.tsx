@@ -43,13 +43,13 @@ export default function ReferencePayment() {
 
   const handleGetRef = useCallback(async () => {
     try {
-      const url =
-        itemPriceIdCheckoutSelected &&
-        (itemPriceIdCheckoutSelected.type == "subs"
+      const url = itemPriceIdCheckoutSelected
+        ? itemPriceIdCheckoutSelected.type == "subs"
           ? "subs"
           : itemPriceIdCheckoutSelected.type == "donations"
           ? "donations"
-          : "tickets");
+          : "tickets"
+        : "tickets";
 
       const resp = await internalApi.post(`/payments/checkout/${url}`, {
         quantity: details?.quantity,

@@ -40,13 +40,6 @@ export default function TicketCard({ ticket }: { ticket: IEventTicket }) {
         ticket_id: ticket.id,
       });
 
-      handleAddItemOnCheckout({
-        type: "tickets",
-        amount: totalToPay,
-        monthly: "no",
-        price: ticket.id,
-      });
-      
       handleSelectEventTicket(ticket);
       handleOpenModal("angolan-payment-modal");
     }
