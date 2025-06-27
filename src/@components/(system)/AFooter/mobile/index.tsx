@@ -42,11 +42,11 @@ export default function AMobileFooter() {
         />
 
         <LinkMButton
-          Icon={ReactIcons.HiIcon.HiCreditCard}
-          action="subscriptions"
-          isSelected={currentAppPageUrl == "subscriptions"}
-          title_en="Subscriptions"
-          title_pt="Assinaturas"
+          Icon={ReactIcons.FaIcon.FaHome}
+          action="flex-house"
+          isSelected={currentAppPageUrl == "flex-house"}
+          title_en="Flex House"
+          title_pt="Casa Da Flex"
           bar
         />
 

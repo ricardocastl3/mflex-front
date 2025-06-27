@@ -37,12 +37,13 @@ export default function MobileMoreOptions() {
           <div className="flex flex-col gap-2">
             <LinkButton
               isExpanded={true}
-              Icon={ReactIcons.FaIcon.FaHome}
-              href="flex-house"
-              isSelected={currentAppPageUrl == "flex-house"}
-              title_en="Flex House"
-              title_pt="Casa Da Flex"
+              Icon={ReactIcons.HiIcon.HiCreditCard}
+              href="subscriptions"
+              isSelected={currentAppPageUrl == "subscriptions"}
+              title_en="Subscriptions"
+              title_pt="Assinaturas"
             />
+
             <LinkButton
               isExpanded={true}
               Icon={ReactIcons.FaIcon.FaDonate}
