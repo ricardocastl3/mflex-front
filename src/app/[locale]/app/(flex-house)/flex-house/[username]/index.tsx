@@ -178,7 +178,7 @@ export default function FlexHousePage({
                   </div>
                 </div>
               </div>
-              <div className="flex items-center gap-4 border-t border-b border-slate-300/80 dark:border-slate-800 p-2">
+              <div className="flex items-center justify-center gap-4 border-t border-b border-slate-300/80 dark:border-slate-800 p-2">
                 <div className="flex items-center gap-2">
                   {userLogged?.id == selectedCreator.user.id && (
                     <>
@@ -203,9 +203,27 @@ export default function FlexHousePage({
 
           <div className="flex justify-center">
             <div className="md:w-[50vw] w-full flex flex-col gap-4">
-              {allPosts.map((post, i) => {
-                return <PostCard post={post} key={i} />;
-              })}
+              {allPosts.length <= 0 && (
+                <div className="py-12">
+                  <AuSoftUI.Component.ListEmpty
+                    action_en=""
+                    action_pt=""
+                    action_url=""
+                    description_en="The creator has not posted anything at the moment."
+                    description_pt="O criador ainda não postou nada de momento"
+                    title_en="No Creator Post"
+                    title_pt="Criador sem postagens"
+                    hasAction={false}
+                  />
+                </div>
+              )}
+              {allPosts.length > 0 && (
+                <>
+                  {allPosts.map((post, i) => {
+                    return <PostCard post={post} key={i} />;
+                  })}
+                </>
+              )}
             </div>
           </div>
         </ContainerBase>

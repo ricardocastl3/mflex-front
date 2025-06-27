@@ -14,7 +14,7 @@ export default function FollowCreatorButton({
   creator?: ICreator;
 }) {
   const [isFollowing, setIsFollowing] = useState(false);
-  const { userLogged } = useAuth();
+  const { userLogged, fetchUserInformations } = useAuth();
 
   const { handleAddToastOnArray } = useAppProvider();
 
@@ -24,6 +24,7 @@ export default function FollowCreatorButton({
       await internalApi.post("/creators/follow", {
         id: creator?.id,
       });
+      await fetchUserInformations();
     } catch (err) {
       return CAxiosErrorToastify({ err, openToast: handleAddToastOnArray });
     }
