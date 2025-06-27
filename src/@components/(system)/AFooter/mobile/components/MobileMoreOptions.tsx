@@ -58,7 +58,7 @@ export default function MobileMoreOptions() {
           <div className="flex flex-col gap-2">
             <LinkButton
               isExpanded={true}
-              Icon={ReactIcons.FaIcon.FaMusic}
+              Icon={ReactIcons.HiIcon.HiColorSwatch}
               href="creator"
               isSelected={currentAppPageUrl == "creator"}
               title_en="Creator Panel"

@@ -10,18 +10,38 @@ export default function FormmattedDescription({
       {description.split(/\n/).map((line, idx) =>
         type === "post" ? (
           <p key={idx} className="dark:text-white text-sm">
-            {line.split(/(#[\w-]+)/g).map((part, i) =>
-              part.match(/^#[\w-]+$/) ? (
-                <span
-                  key={i}
-                  className="cursor-pointer hover:text-yellow-600 dark:hover:text-yellow-600 text-yellow-500 font-semibold"
-                >
-                  {part}
-                </span>
-              ) : (
-                <span key={i}>{part}</span>
-              )
-            )}
+            {line
+              .split(/(#[\w-]+)|(https?:\/\/[^\s]+)|(www\.[^\s]+)/g)
+              .map((part, i) => {
+                if (!part) return null;
+                if (part.match(/^#[\w-]+$/)) {
+                  return (
+                    <span
+                      key={i}
+                      className="cursor-pointer hover:text-yellow-600 dark:hover:text-yellow-600 text-yellow-500 font-semibold"
+                    >
+                      {part}
+                    </span>
+                  );
+                } else if (part.match(/^(https?:\/\/[^\s]+|www\.[^\s]+)/)) {
+                  const url = part.startsWith("http")
+                    ? part
+                    : `https://${part}`;
+                  return (
+                    <a
+                      key={i}
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-500 underline break-all"
+                    >
+                      {part}
+                    </a>
+                  );
+                } else {
+                  return <span key={i}>{part}</span>;
+                }
+              })}
           </p>
         ) : (
           <p key={idx} className="dark:text-white text-sm">
