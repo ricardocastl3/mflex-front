@@ -1,7 +1,7 @@
 import { ReactIcons } from "@/utils/icons";
 import { IconType } from "react-icons";
 
-export interface IAffiliateService {
+export interface IArtistService {
   t_pt: string;
   t_en: string;
   d_pt: string;
@@ -13,7 +13,7 @@ export interface IAffiliateService {
   affiliateRequire: boolean;
 }
 
-export const artistServices: IAffiliateService[] = [
+export const artistServices: IArtistService[] = [
   {
     t_pt: "Minhas Músicas",
     t_en: "My Musics",

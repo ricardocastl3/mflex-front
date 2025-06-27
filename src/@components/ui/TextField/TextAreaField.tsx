@@ -37,6 +37,7 @@ export interface InputProps
     VariantProps<typeof InputVariants> {
   asChild?: boolean;
   requiredField?: boolean;
+  onInput?: (e: React.FormEvent<HTMLTextAreaElement>) => void;
 }
 
 const TextAreaField = React.forwardRef<HTMLTextAreaElement, InputProps>(
@@ -47,6 +48,7 @@ const TextAreaField = React.forwardRef<HTMLTextAreaElement, InputProps>(
       weight,
       asChild = false,
       requiredField = false,
+      onInput,
       ...props
     },
     ref
@@ -64,6 +66,7 @@ const TextAreaField = React.forwardRef<HTMLTextAreaElement, InputProps>(
             } `
           }
           ref={ref}
+          onInput={onInput}
           {...props}
         />
       </>

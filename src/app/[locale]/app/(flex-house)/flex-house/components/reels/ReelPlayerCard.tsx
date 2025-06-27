@@ -1,0 +1,200 @@
+import { ICreatorPost } from "@/http/interfaces/models/fhouse/ICreatorPost";
+import { useFlexHouseProvider } from "@/providers/features/FlexHouseProvider";
+import { ReactIcons } from "@/utils/icons";
+import { useRef, useState, useEffect } from "react";
+import { useAuth } from "@/providers/auth/AuthProvider";
+
+import CTranslateTo from "@/@components/(translation)/CTranslateTo";
+import CreatorMiniPreviewAvatar from "../creator/CreatorMiniPreviewAvatar";
+import { internalApi } from "@/http/axios/api";
+
+export default function ReelPlayerCard({
+  post,
+  change,
+}: {
+  post: ICreatorPost;
+  change: number;
+}) {
+  const {
+    handleOpenReelCommentContainer,
+    openReelCommentContainer,
+    handleSelectFHTab,
+  } = useFlexHouseProvider();
+
+  const { userLogged } = useAuth();
+
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  const togglePlay = async () => {
+    if (videoRef.current) {
+      try {
+        if (isPlaying) {
+          videoRef.current.pause();
+          setIsPlaying(false);
+        } else {
+          await videoRef.current.play();
+          setIsPlaying(true);
+        }
+      } catch (error) {
+        console.error("Error toggling video playback:", error);
+      }
+    }
+  };
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
+
+  const handleVideoClick = () => {
+    togglePlay();
+  };
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      const handlePlay = () => setIsPlaying(true);
+      const handlePause = () => setIsPlaying(false);
+      const handleEnded = async () => {
+        setIsPlaying(false);
+        video.currentTime = 0;
+        try {
+          await video.play();
+          setIsPlaying(true);
+        } catch (error) {
+          console.error("Error restarting video:", error);
+        }
+      };
+
+      video.addEventListener("play", handlePlay);
+      video.addEventListener("pause", handlePause);
+      video.addEventListener("ended", handleEnded);
+
+      return () => {
+        video.removeEventListener("play", handlePlay);
+        video.removeEventListener("pause", handlePause);
+        video.removeEventListener("ended", handleEnded);
+      };
+    }
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      setIsLoading(true);
+      video.load();
+
+      const findView = post.views.find((i) => i.user.id == userLogged?.id);
+      if (!findView) {
+        internalApi.post("/users/vs", {
+          id: post.id,
+        });
+      }
+
+      Promise.resolve(video.play());
+    }
+  }, [videoRef, change]);
+
+  return (
+    <div className="relative h-full">
+      <div className="flex z-10 bg-black/20 p-4 absolute top-0 inset-x-0">
+        <button
+          onClick={() => {
+            handleOpenReelCommentContainer(false);
+            handleSelectFHTab("feed");
+          }}
+          className="text-white text-lg font-bold flex items-center gap-4"
+        >
+          <ReactIcons.PiIcon.PiCaretLeft size={28} />
+          <p>
+            <CTranslateTo eng="Reels" pt="Reels" />
+          </p>
+        </button>
+      </div>
+      <div
+        onClick={handleVideoClick}
+        className="z-10 md:w-[30vw] w-[98vw] h-full p-8 rounded-xl cursor-pointer"
+      >
+        <video
+          ref={videoRef}
+          loop
+          muted={isMuted}
+          onLoadedData={() => setIsLoading(false)}
+          playsInline
+          className="animate-fade absolute z-0 md:rounded-xl rounded-none inset-0 h-full w-full object-cover cursor-pointer"
+        >
+          <source
+            src={`${process.env.MFLEX_SERVER_URL}/reels/${post.id}`}
+            type="video/mp4"
+          />
+        </video>
+
+        {!isPlaying && !isLoading && (
+          <div className="absolute inset-0 flex items-center justify-center z-0">
+            <div className="bg-black bg-opacity-50 rounded-full p-4">
+              <ReactIcons.AiICon.AiFillPlayCircle
+                size={48}
+                className="text-white"
+              />
+            </div>
+          </div>
+        )}
+        {isLoading && (
+          <div className="absolute inset-0 flex items-center justify-center z-0">
+            <div className="bg-black bg-opacity-50 rounded-full p-4">
+              <ReactIcons.PiIcon.PiSpinner
+                size={48}
+                className="text-white animate-spin"
+              />
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className="md:flex absolute z-10 inset-0 left-[83%] ">
+        <div className="absolute z-10 top-4 right-4 flex flex-col gap-4">
+          <button
+            onClick={toggleMute}
+            className="text-white flex flex-col items-center gap-2 font-bold text-xs"
+          >
+            {isMuted ? (
+              <ReactIcons.Io5Icon.IoVolumeMute size={25} />
+            ) : (
+              <ReactIcons.VSCIcon.VscUnmute size={25} />
+            )}
+          </button>
+        </div>
+        <div className="absolute z-10 top-1/2 right-4 flex flex-col gap-4">
+          <button
+            onClick={() => {
+              handleOpenReelCommentContainer(!openReelCommentContainer);
+            }}
+            className="text-white flex flex-col gap-2 items-center font-bold text-xs"
+          >
+            <ReactIcons.AiICon.AiFillMessage size={28} />
+            <p>{post.comments.length}</p>
+          </button>
+
+          <span className="text-white flex flex-col items-center gap-2 font-bold text-xs">
+            <ReactIcons.AiICon.AiFillPlayCircle size={28} />
+            <p>{post.views.length}</p>
+          </span>
+        </div>
+      </div>
+
+      <div className="md:hidden flex z-10 bg-black/30 p-4 absolute bottom-0 inset-x-0">
+        <CreatorMiniPreviewAvatar
+          creator={post?.author}
+          title_color="text-white"
+          resource={post}
+        />
+      </div>
+    </div>
+  );
+}

@@ -167,7 +167,10 @@ export default function CommentContainer({
                         )
                           return 1;
                       }
-                      return 0;
+                      return (
+                        new Date(b.created_at).getTime() -
+                        new Date(a.created_at).getTime()
+                      );
                     })
                     .map((comment, i) => {
                       return <CommentCard key={i} comment={comment} />;

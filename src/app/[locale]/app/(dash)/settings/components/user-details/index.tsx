@@ -6,8 +6,10 @@ import { useAppProvider } from "@/providers/app/AppProvider";
 import { useAuth } from "@/providers/auth/AuthProvider";
 import { ReactIcons } from "@/utils/icons";
 
+import React from "react";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
+import UserPhoto from "./UserPhoto";
 
 export default function UserDetailBox() {
   //contexts
@@ -90,7 +92,7 @@ export default function UserDetailBox() {
   }
 
   return (
-    <BaseBox className="md:px-5 px-4 md:py-4 py-4">
+    <BaseBox className="md:px-5 px-4 md:py-4 py-4 relative">
       <div className="flex items-start gap-2 border-b pb-2 border-slate-300/80 dark:border-slate-800">
         <div className="flex flex-col gap-0.5">
           <div className="flex items-center gap-2 dark:text-slate-100">
@@ -107,7 +109,10 @@ export default function UserDetailBox() {
           </h3>
         </div>
       </div>
-      <div className="mt-4 flex flex-col w-full items-start gap-4">
+
+      <UserPhoto />
+
+      <div className="mt-4 flex flex-col items-start gap-4">
         <div className="grid md:grid-cols-2 grid-cols-1 gap-4 w-full">
           <div className="flex flex-col gap-4">
             <h4 className="text-sm font-bold dark:text-white">
@@ -208,7 +213,7 @@ export default function UserDetailBox() {
             />
           </div>
 
-          <div className="flex flex-col gap-4 relative">
+          <div className="flex flex-col gap-4">
             <h4 className="text-sm font-bold dark:text-white">
               <CTranslateTo eng="Mobile Phone Number" pt="Número de celular" />
             </h4>

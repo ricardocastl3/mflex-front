@@ -23,7 +23,7 @@ export interface IAppSystem {
 export interface ICroppImage {
   selected?: string;
   extracted?: string;
-  modal?: "artist-profile" | "";
+  modal?: "artist-profile" | "creator-profile" | "";
 }
 
 interface IAppContext {

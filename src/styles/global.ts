@@ -1,12 +1,4 @@
 import { globalCss } from ".";
-import { slate } from "tailwindcss/colors";
-
-let isDarkMode = "light";
-
-if (typeof window != "undefined") {
-  const htmlElement = localStorage.getItem("theme")
-  isDarkMode = htmlElement as string;
-}
 
 export const GlobalStyles = globalCss({
   "*": {
@@ -15,6 +7,14 @@ export const GlobalStyles = globalCss({
     boxSizing: "border-box",
     scrollBehavior: "smooth",
     fontSmooth: "never",
+  },
+
+  ".scrollbar-hide": {
+    scrollbarWidth: "none", // Firefox
+    msOverflowStyle: "none", // IE and Edge
+  },
+  ".scrollbar-hide::-webkit-scrollbar": {
+    display: "none", // Chrome, Safari, Opera
   },
 
   "::-webkit-scrollbar": {
@@ -26,9 +26,15 @@ export const GlobalStyles = globalCss({
   },
 
   "::-webkit-scrollbar-thumb": {
-    background: isDarkMode == "dark" ? slate[800] : slate[200],
     borderRadius: "8px",
     height: "0px",
+  },
+
+  '[data-theme="dark"] ::-webkit-scrollbar-thumb': {
+    background: "#1e293b", // slate[800]
+  },
+  '[data-theme="light"] ::-webkit-scrollbar-thumb': {
+    background: "#e2e8f0", // slate[200]
   },
 
   ":focus": {

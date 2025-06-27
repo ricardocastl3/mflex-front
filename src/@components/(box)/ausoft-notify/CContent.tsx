@@ -117,7 +117,7 @@ export default function AuSoftNotifyDropdownContent({
                     notification.read
                       ? "dark:bg-slate-800/40 bg-slate-300/40"
                       : "dark:bg-slate-800/90 bg-slate-100"
-                  } animate-fade cursor-pointer hover:bg-slate-300/40 dark:hover:bg-slate-800/40 rounded-xl flex flex-col gap-1 px-3.5 py-2 w-full`}
+                  } cursor-pointer hover:bg-slate-300/40 dark:hover:bg-slate-800/40 rounded-xl flex flex-col gap-1 px-3.5 py-2 w-full`}
                 >
                   <div className="flex items-center justify-between">
                     <h4

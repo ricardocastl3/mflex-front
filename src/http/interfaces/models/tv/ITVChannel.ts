@@ -16,6 +16,7 @@ export interface ITVChannel {
   views: IResourceView[];
   likes: IResourceLike[];
   description?: string;
+  created_at: Date;
 }
 
 export interface ITVCategoryChannelsAPI {

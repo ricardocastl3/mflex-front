@@ -24,7 +24,7 @@ export default function AMobileFooter() {
       </div>
       <BaseBox className="dark:bg-ausoft-slate-900 z-20 md:hidden border-t rounded-t-xl border-slate-200 dark:border-slate-800 fixed bottom-0 rounded-none grid grid-cols-4 inset-x-0">
         <LinkMButton
-          Icon={ReactIcons.VSCIcon.VscSymbolEvent}
+          Icon={ReactIcons.HiIcon.HiLightningBolt}
           action="/"
           isSelected={currentAppPageUrl == "" || !currentAppPageUrl}
           title_en="Flex Zone"

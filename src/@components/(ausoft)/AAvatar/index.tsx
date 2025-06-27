@@ -1,4 +1,3 @@
-import { useAuth } from "@/providers/auth/AuthProvider";
 import Image from "next/image";
 
 export default function AAvatar({

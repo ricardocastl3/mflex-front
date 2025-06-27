@@ -2,7 +2,6 @@
 
 import { ReactIcons } from "@/utils/icons";
 import { artistServices } from "./components/services";
-import { useAuth } from "@/providers/auth/AuthProvider";
 import { useAppProvider } from "@/providers/app/AppProvider";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
@@ -11,7 +10,6 @@ import ContainerBase from "../../@components/ContainerBase";
 import CardAffiliateItem from "./components/card-items";
 
 export default function ArtistPage() {
-  const { userLogged } = useAuth();
   const { affiliateConfigs } = useAppProvider();
 
   return (
@@ -35,7 +33,7 @@ export default function ArtistPage() {
                   })}
               </div>
             </div>
-            {userLogged?.profile?.affiliate_active && affiliateConfigs && (
+            {affiliateConfigs && (
               <div className="pt-4 flex flex-col gap-4 border-t border-slate-300 dark:border-slate-800">
                 <div className="grid md:grid-cols-4 grid-cols-1 gap-4">
                   {artistServices

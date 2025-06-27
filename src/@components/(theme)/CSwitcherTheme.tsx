@@ -16,9 +16,10 @@ export function CSwitcherTheme() {
     setIsDarkModeBySwitch(checked);
     handleSetDarkMode(checked);
     setTheme(colorTheme);
-    if (window.innerWidth > 765) {
-      window.location.href = "";
-    }
+
+    const theme = checked ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
   };
 
   useEffect(() => {
@@ -30,6 +31,14 @@ export function CSwitcherTheme() {
       setIsDarkModeBySwitch(false);
     }
   }, [colorTheme, handleSetDarkMode]);
+
+  useEffect(() => {
+    const theme = localStorage.getItem("theme");
+    document.documentElement.setAttribute(
+      "data-theme",
+      theme && theme != String("null") ? theme : "light"
+    );
+  }, []);
 
   return (
     <div className={`flex items-center gap-4 p-1.5 rounded-full`}>

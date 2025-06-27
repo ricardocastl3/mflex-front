@@ -1,6 +1,7 @@
 "use client";
 
 import { IMusic } from "@/http/interfaces/models/artists/IMusic";
+import { ICreatorPost } from "@/http/interfaces/models/fhouse/ICreatorPost";
 import { INews } from "@/http/interfaces/models/INews";
 import { IPodcast } from "@/http/interfaces/models/IPodCast";
 import { IEvent } from "@/http/interfaces/models/organizer/IEvent";
@@ -15,6 +16,7 @@ export type ResourceType =
   | IMusic
   | ITVChannel
   | ITVMovie
+  | ICreatorPost
   | undefined;
 
 interface IResourceProviderProps {

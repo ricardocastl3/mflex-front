@@ -100,11 +100,19 @@ export default function ASidebar() {
           <div className="flex flex-col gap-2">
             <LinkButton
               isExpanded={showText}
-              Icon={ReactIcons.PiIcon.PiHouseFill}
+              Icon={ReactIcons.HiIcon.HiLightningBolt}
               href=""
               isSelected={currentAppPageUrl == "" || !currentAppPageUrl}
               title_en="Home"
               title_pt="Página Inicial"
+            />
+            <LinkButton
+              isExpanded={showText}
+              Icon={ReactIcons.HiIcon.HiHome}
+              href="flex-house"
+              isSelected={currentAppPageUrl == "flex-house"}
+              title_en="Flex House"
+              title_pt="Casa da Flex"
             />
             <LinkButton
               isExpanded={showText}
@@ -141,28 +149,19 @@ export default function ASidebar() {
           </div>
           <h4 className="text-normal text-slate-500 dark:text-slate-300">
             {isExpanded ? (
-              <CTranslateTo eng="Events" pt="Eventos" />
+              <CTranslateTo eng="Panels" pt="Painéis" />
             ) : (
-              <CTranslateTo eng="Event." pt="Event." />
+              <CTranslateTo eng="Panels" pt="Painéis" />
             )}
           </h4>
           <div className="flex flex-col gap-2">
             <LinkButton
               isExpanded={showText}
-              Icon={ReactIcons.MdIcon.MdDashboard}
-              href="affiliate"
-              isSelected={currentAppPageUrl == "affiliate"}
-              title_en="Affiliate Dashboard"
-              title_pt="Painel do afiliado"
-            />
-
-            <LinkButton
-              isExpanded={showText}
-              Icon={ReactIcons.FaIcon.FaCalendarWeek}
-              href="organizer"
-              isSelected={currentAppPageUrl == "organizer"}
-              title_en="Organizer Dashboard"
-              title_pt="Painel do organizador"
+              Icon={ReactIcons.HiIcon.HiColorSwatch}
+              href="creator"
+              isSelected={currentAppPageUrl == "creator"}
+              title_en="Creator Dashboard"
+              title_pt="Painel do Criador"
             />
 
             <LinkButton
@@ -170,10 +169,49 @@ export default function ASidebar() {
               Icon={ReactIcons.FaIcon.FaMusic}
               href="artist"
               isSelected={currentAppPageUrl == "artist"}
-              title_en="Artist Dashboard"
-              title_pt="Painel do artista"
+              title_en="Artist Panel"
+              title_pt="Painel do Artista"
+            />
+
+            <LinkButton
+              isExpanded={showText}
+              Icon={ReactIcons.MdIcon.MdDashboard}
+              href="affiliate"
+              isSelected={currentAppPageUrl == "affiliate"}
+              title_en="Affiliate Panel"
+              title_pt="Painel do Afiliado"
+            />
+
+            <LinkButton
+              isExpanded={showText}
+              Icon={ReactIcons.FaIcon.FaCalendarWeek}
+              href="organizer"
+              isSelected={currentAppPageUrl == "organizer"}
+              title_en="Organizer Panel"
+              title_pt="Painel do Organizador"
             />
           </div>
+          {process.env.NODE_ENV == "development" && (
+            <>
+              <h4 className="text-normal text-slate-500 dark:text-slate-300">
+                {isExpanded ? (
+                  <CTranslateTo eng="Monitoring" pt="Monitoramento" />
+                ) : (
+                  <CTranslateTo eng="Monitor." pt="Monitor." />
+                )}
+              </h4>
+              <div className="flex flex-col gap-2">
+                <LinkButton
+                  isExpanded={showText}
+                  Icon={ReactIcons.MdIcon.MdStorage}
+                  href="storage"
+                  isSelected={currentAppPageUrl == "storage"}
+                  title_en="Usage Storage"
+                  title_pt="Uso de armazenamento"
+                />
+              </div>
+            </>
+          )}
         </div>
       </div>
     </BaseBox>

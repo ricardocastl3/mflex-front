@@ -1,5 +1,5 @@
 import { BaseBox } from "@/@components/(box)/BaseBox";
-import { IAffiliateService } from "./services";
+import { IArtistService } from "./services";
 import { langByCookies } from "@/http/axios/api";
 import { useModal } from "@/providers/app/ModalProvider";
 
@@ -10,7 +10,7 @@ import { ReactIcons } from "@/utils/icons";
 export default function CardAffiliateItem({
   service,
 }: {
-  service: IAffiliateService;
+  service: IArtistService;
 }) {
   const { handleOpenModal } = useModal();
 

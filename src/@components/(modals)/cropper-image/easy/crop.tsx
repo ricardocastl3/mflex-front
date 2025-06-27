@@ -70,6 +70,8 @@ export default function CropImageModal() {
                 showCroppedImage();
                 if (croppedImageSelected?.modal == "artist-profile") {
                   handleOpenModal("artist-info");
+                } else if (croppedImageSelected?.modal == "creator-profile") {
+                  handleOpenModal("ct-info");
                 } else {
                   handleOpenModal("");
                 }
@@ -83,6 +85,8 @@ export default function CropImageModal() {
               onClick={() => {
                 if (croppedImageSelected?.modal == "artist-profile") {
                   handleOpenModal("artist-info");
+                } else if (croppedImageSelected?.modal == "creator-profile") {
+                  handleOpenModal("ct-info");
                 } else {
                   handleOpenModal("");
                 }

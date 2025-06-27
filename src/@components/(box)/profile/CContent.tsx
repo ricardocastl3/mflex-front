@@ -33,7 +33,11 @@ export default function CContent({ callback }: { callback?: () => void }) {
     <div className="md:w-[26vw] w-[82vw]">
       <div className="flex items-center gap-4 pb-4 border-b border-slate-300 dark:border-slate-700/60">
         <AuSoftUI.Component.Avatar
-          src={localImages.logos.flexUser.src}
+          src={
+            userLogged && userLogged.photo
+              ? userLogged.photo
+              : localImages.logos.flexUser.src
+          }
           size={50}
           width={50}
           wsite="w-[3.3rem] h-[3.3rem]"

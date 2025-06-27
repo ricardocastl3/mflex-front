@@ -9,7 +9,7 @@ interface IBoxTextLocale {
   title_pt?: string;
 }
 
-type modalType =
+export type modalType =
   | "add-event"
   | "add-ticket"
   | "approve-ticket"
@@ -50,6 +50,14 @@ type modalType =
   | "art-view-policy"
   | "art-send-identity"
   | "art-success-material"
+  | "ct-complaint"
+  | "ct-info"
+  | "ct-share-post"
+  | "ct-publish-image"
+  | "ct-publish-video"
+  | "ct-publish-event"
+  | "ct-publish-music"
+  | "ct-publish-del-comments"
   | "";
 
 interface IOnboardingType {

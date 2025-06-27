@@ -38,6 +38,14 @@ import UserNoHaveArtistProfileModal from "./artist/art-no-have-profile-subs";
 import ArtistComplaintMusicModal from "./artist/art-complaint-music";
 import TicketNotAvailableSubsExpiredModale from "./organizer/ticket-unavailable-subs";
 import ArtSendIdentityModal from "./artist/art-send-identity";
+import CreatorComplaintPostModal from "./creator/ct-complaint-post";
+import CreatorSharePostModal from "./creator/ct-share-post";
+import CreatorPublishPostImageModal from "./creator/ct-publish-image";
+import CreatorPublishPostEventModal from "./creator/ct-publish-event";
+import CreatorPublishPostVideoModal from "./creator/ct-publish-video";
+import CreatorPublishPostMusicModal from "./creator/ct-publish-music";
+import CreatorInfoModal from "./creator/ct-info";
+import CRTCommentDeletionGlobalModal from "./creator/ct-del-comments";
 
 export default function ModalOpenProvider() {
   const { openModal } = useModal();
@@ -147,6 +155,30 @@ export default function ModalOpenProvider() {
 
     case "art-send-identity":
       return <ArtSendIdentityModal />;
+
+    case "ct-complaint":
+      return <CreatorComplaintPostModal />;
+
+    case "ct-share-post":
+      return <CreatorSharePostModal />;
+
+    case "ct-publish-image":
+      return <CreatorPublishPostImageModal />;
+
+    case "ct-publish-video":
+      return <CreatorPublishPostVideoModal />;
+
+    case "ct-publish-event":
+      return <CreatorPublishPostEventModal />;
+
+    case "ct-publish-music":
+      return <CreatorPublishPostMusicModal />;
+
+    case "ct-info":
+      return <CreatorInfoModal />;
+
+    case "ct-publish-del-comments":
+      return <CRTCommentDeletionGlobalModal />;
 
     default:
       return <></>;

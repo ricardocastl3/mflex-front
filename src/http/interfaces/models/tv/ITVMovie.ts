@@ -24,6 +24,7 @@ export interface ITVMovie {
   comments: IResourceComment[];
   views: IResourceView[];
   likes: IResourceLike[];
+  created_at: Date;
 }
 
 export interface ITVMovieChannelsAPI {

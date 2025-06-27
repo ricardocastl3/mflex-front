@@ -37,6 +37,14 @@ export default function MobileMoreOptions() {
           <div className="flex flex-col gap-2">
             <LinkButton
               isExpanded={true}
+              Icon={ReactIcons.FaIcon.FaHome}
+              href="flex-house"
+              isSelected={currentAppPageUrl == "flex-house"}
+              title_en="Flex House"
+              title_pt="Casa Da Flex"
+            />
+            <LinkButton
+              isExpanded={true}
               Icon={ReactIcons.FaIcon.FaDonate}
               href="donations"
               isSelected={currentAppPageUrl == "donations"}
@@ -50,27 +58,37 @@ export default function MobileMoreOptions() {
           <div className="flex flex-col gap-2">
             <LinkButton
               isExpanded={true}
+              Icon={ReactIcons.FaIcon.FaMusic}
+              href="creator"
+              isSelected={currentAppPageUrl == "creator"}
+              title_en="Creator Panel"
+              title_pt="Painel do Criador"
+            />
+
+            <LinkButton
+              isExpanded={true}
+              Icon={ReactIcons.FaIcon.FaMusic}
+              href="artist"
+              isSelected={currentAppPageUrl == "artist"}
+              title_en="Artists Panel"
+              title_pt="Painel do Artista"
+            />
+
+            <LinkButton
+              isExpanded={true}
               Icon={ReactIcons.MdIcon.MdDashboard}
               href="affiliate"
               isSelected={currentAppPageUrl == "affiliate"}
-              title_en="Affiliate Dashboard"
-              title_pt="Painel do afiliado"
+              title_en="Affiliate Panel"
+              title_pt="Painel do Afiliado"
             />
             <LinkButton
               isExpanded={true}
               Icon={ReactIcons.FaIcon.FaCalendarWeek}
               href="organizer"
               isSelected={currentAppPageUrl == "organizer"}
-              title_en="Organizer Dashboard"
-              title_pt="Painel do organizador"
-            />
-            <LinkButton
-              isExpanded={true}
-              Icon={ReactIcons.FaIcon.FaMusic}
-              href="artist"
-              isSelected={currentAppPageUrl == "artist"}
-              title_en="Artists Dashboard"
-              title_pt="Painel do Artista"
+              title_en="Organizer Panel"
+              title_pt="Painel do Organizador"
             />
           </div>
         </div>
