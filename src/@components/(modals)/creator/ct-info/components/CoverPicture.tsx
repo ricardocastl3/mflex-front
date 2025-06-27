@@ -6,6 +6,7 @@ import { useAuth } from "@/providers/auth/AuthProvider";
 import { ReactIcons } from "@/utils/icons";
 
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
+import { localImages } from "@/utils/images";
 
 export default function CoverPictureBox() {
   // Contexts
@@ -64,8 +65,7 @@ export default function CoverPictureBox() {
         backgroundImage: `url(${
           coverUrl != ""
             ? coverUrl
-            : userLogged?.creator?.cover ||
-              "https://img.freepik.com/free-vector/vector-music-melody-note-dancing-flow_206725-628.jpg?t=st=1749718672~exp=1749722272~hmac=ed75dd586ba6c29327a9aa38a4c565177a9cf493daab7b06684318a174aed06e&w=740"
+            : userLogged?.creator?.cover || localImages.bgs.creatorBg
         })`,
       }}
       className="relative flex flex-col items-center p-16 gap-3 rounded-t-2xl"
