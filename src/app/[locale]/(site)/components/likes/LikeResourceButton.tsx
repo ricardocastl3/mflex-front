@@ -2,10 +2,7 @@ import { AuSoftUI } from "@/@components/(ausoft)";
 import { internalApi } from "@/http/axios/api";
 import { IResourceLike } from "@/http/interfaces/models/resources/IResourceLike";
 import { useAuth } from "@/providers/auth/AuthProvider";
-import {
-  ResourceType,
-  useResourceProvider,
-} from "@/providers/features/ResourceProvider";
+import { ResourceType } from "@/providers/features/ResourceProvider";
 import { ReactIcons } from "@/utils/icons";
 import { useEffect, useRef, useState } from "react";
 import { Howl } from "howler";
@@ -28,8 +25,6 @@ export default function LikeResourceButton({
   const [showExplosion, setShowExplosion] = useState(false);
   const [total, setTotal] = useState(0);
 
-  const { handleFetchResource } = useResourceProvider();
-
   const soundRef = useRef<Howl | null>(null);
 
   const url = "/snds/like.mp3";
@@ -44,12 +39,9 @@ export default function LikeResourceButton({
       } else {
         setTotal((t) => (t > 0 ? t - 1 : 0));
       }
-      handleFetchResource(true);
       await internalApi.post("/users/likes", {
         id: other_id ? other_id : resource?.id,
       });
-
-      handleFetchResource(false);
     } catch (err) {
       // Revert on error
       const revertedState = !alreadyLike;
