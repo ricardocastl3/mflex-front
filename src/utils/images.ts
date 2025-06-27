@@ -145,6 +145,8 @@ import moviePlaceholder from "@/@assets/bgs/movie-plh.jpg";
 
 import artistBg from "@/@assets/bgs/artist-bg.jpg";
 import artistProfileBg from "@/@assets/bgs/artist-profile-bg.jpg";
+const creatorBg =
+  "https://img.freepik.com/free-vector/bulb-idea-low-poly-wireframe-mesh_271628-313.jpg?t=st=1750875552~exp=1750879152~hmac=742895b5018dbc057906cd40824730d5e5ea30f64f87a4678281a893f362de39&w=1380";
 
 export const localImages = {
   logos: {
@@ -186,6 +188,7 @@ export const localImages = {
     moviePlaceholder,
     artistBg,
     artistProfileBg,
+    creatorBg,
   },
   vectors: {
     emptyBox,

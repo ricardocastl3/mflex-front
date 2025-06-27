@@ -22,7 +22,7 @@ export default function CreatorBox({ creator }: { creator?: ICreator }) {
             backgroundPosition: "center",
             backgroundSize: "cover",
             backgroundImage: `url(${
-              userLogged?.creator?.cover || localImages.bgs.artistProfileBg.src
+              userLogged?.creator?.cover || localImages.bgs.creatorBg
             })`,
           }}
           className="rounded-t-xl relative"

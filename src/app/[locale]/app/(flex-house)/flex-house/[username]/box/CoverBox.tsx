@@ -14,8 +14,7 @@ export default function CoverBox({ creator }: { creator: ICreator }) {
             backgroundSize: "cover",
             objectFit: "cover",
             backgroundImage: `url(${
-              creator.cover ||
-              "https://img.freepik.com/free-vector/bulb-idea-low-poly-wireframe-mesh_271628-313.jpg?t=st=1750875552~exp=1750879152~hmac=742895b5018dbc057906cd40824730d5e5ea30f64f87a4678281a893f362de39&w=1380"
+              creator.cover || localImages.bgs.creatorBg
             })`,
           }}
           className="rounded-t-xl"
