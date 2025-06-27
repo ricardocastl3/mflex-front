@@ -49,12 +49,12 @@ export default function PostCard({ post }: { post: ICreatorPost }) {
               X
             </AuSoftUI.UI.Button>
           </div>
-          <div className="md:hidden flex z-10 dark:bg-[#0f121c] bg-white p-4 absolute top-0 inset-x-0 border-b border-slate-300/90 dark:border-slate-800 ">
+          <div className="md:hidden flex z-40 dark:bg-[#0f121c] bg-white p-4 absolute top-0 inset-x-0 border-b border-slate-300/90 dark:border-slate-800 ">
             <button
               onClick={() => setOpenComments(false)}
-              className="md:w-[20vw] w-[80vw] dark:text-white text-lg font-bold flex items-center gap-4"
+              className="md:w-[20vw] w-[80vw] dark:text-white text-base font-bold flex items-center gap-4"
             >
-              <ReactIcons.PiIcon.PiCaretLeft size={28} />
+              <ReactIcons.PiIcon.PiCaretLeft size={25} />
               <p className="truncate">
                 <CTranslateTo eng="Post: " pt="Publicação de:" />{" "}
                 {` Ricardo Castle`}

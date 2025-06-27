@@ -65,18 +65,20 @@ export default function Reels() {
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartY.current === null) return;
-    const touchEndY = e.changedTouches[0].clientY;
-    const diffY = touchStartY.current - touchEndY;
+    if (window.innerWidth <= 765 && !openReelCommentContainer) {
+      if (touchStartY.current === null) return;
+      const touchEndY = e.changedTouches[0].clientY;
+      const diffY = touchStartY.current - touchEndY;
 
-    if (diffY > 50) {
-      // Swipe para cima: próximo reel
-      handleNext();
-    } else if (diffY < -50) {
-      // Swipe para baixo: reel anterior
-      handlePrev();
+      if (diffY > 50) {
+        // Swipe para cima: próximo reel
+        handleNext();
+      } else if (diffY < -50) {
+        // Swipe para baixo: reel anterior
+        handlePrev();
+      }
+      touchStartY.current = null;
     }
-    touchStartY.current = null;
   };
 
   useEffect(() => {

@@ -10,9 +10,7 @@ import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 
 export default function FollowCreatorButton({
   creator,
-  type = "follow",
 }: {
-  type?: "follow" | "unfollow";
   creator?: ICreator;
 }) {
   const [isFollowing, setIsFollowing] = useState(false);

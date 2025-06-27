@@ -4,7 +4,13 @@ import { ICreatorPostAPI } from "@/http/interfaces/models/fhouse/ICreatorPost";
 import { appConfigs } from "@/utils/enums";
 import { useCallback, useEffect, useState } from "react";
 
-export default function useCreatorPost({ view }: { view: "reel" | "feed" }) {
+export default function useCreatorPost({
+  view,
+  creator,
+}: {
+  creator?: string;
+  view: "reel" | "feed";
+}) {
   const [isLoadingCreatorPosts, setIsLoadingCreatorPosts] = useState(true);
   const [allCreatorPosts, setAllCreatorPosts] = useState<ICreatorPostAPI>({
     has: true,
@@ -13,12 +19,15 @@ export default function useCreatorPost({ view }: { view: "reel" | "feed" }) {
   });
   const [isLoadingMorePosts, setIsLoadingMorePosts] = useState(false);
 
+  const apiRoutes = creator ? "/creators/feed-self" : "/creators/feed";
+
   const fetchAllCreatorPosts = useCallback(async () => {
     try {
       setIsLoadingCreatorPosts(true);
-      const resp = await internalApi.get<ICreatorPostAPI>("/creators/feed", {
+      const resp = await internalApi.get<ICreatorPostAPI>(apiRoutes, {
         params: {
           view,
+          creator,
           currentPage: view == "reel" ? 0 : allCreatorPosts.posts.length,
           nextPage: view == "reel" ? 999999 : appConfigs.api.pageLoads,
         },
@@ -28,14 +37,15 @@ export default function useCreatorPost({ view }: { view: "reel" | "feed" }) {
     } catch (err) {
       setIsLoadingCreatorPosts(false);
     }
-  }, []);
+  }, [creator]);
 
   const handleSeachByName = async (name: string, view: string) => {
     try {
       setIsLoadingCreatorPosts(true);
-      const resp = await internalApi.get<ICreatorPostAPI>("/creators/feed", {
+      const resp = await internalApi.get<ICreatorPostAPI>(apiRoutes, {
         params: {
           name,
+          creator,
           view,
           currentPage: 0,
           nextPage: 2,
@@ -55,10 +65,11 @@ export default function useCreatorPost({ view }: { view: "reel" | "feed" }) {
         setIsLoadingMorePosts(true);
         name = name == "" ? undefined : name;
 
-        const resp = await internalApi.get<ICreatorPostAPI>("/creators/feed", {
+        const resp = await internalApi.get<ICreatorPostAPI>(apiRoutes, {
           params: {
             name,
             view,
+            creator,
             currentPage: view == "reel" ? 0 : allCreatorPosts.posts.length,
             nextPage: view == "reel" ? 999999 : appConfigs.api.pageLoads,
           },
@@ -88,7 +99,7 @@ export default function useCreatorPost({ view }: { view: "reel" | "feed" }) {
 
   useEffect(() => {
     fetchAllCreatorPosts();
-  }, []);
+  }, [creator]);
 
   return {
     handleSeachByName,

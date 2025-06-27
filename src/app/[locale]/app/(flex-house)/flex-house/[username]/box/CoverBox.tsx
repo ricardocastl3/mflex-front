@@ -1,7 +1,8 @@
 import { AuSoftUI } from "@/@components/(ausoft)";
+import { ICreator } from "@/http/interfaces/models/fhouse/ICreator";
 import { localImages } from "@/utils/images";
 
-export default function CoverBox() {
+export default function CoverBox({ creator }: { creator: ICreator }) {
   return (
     <div className="">
       <div className="relative">
@@ -12,7 +13,10 @@ export default function CoverBox() {
             backgroundPosition: "center",
             backgroundSize: "cover",
             objectFit: "cover",
-            backgroundImage: `url(${"https://img.freepik.com/free-vector/bulb-idea-low-poly-wireframe-mesh_271628-313.jpg?t=st=1750875552~exp=1750879152~hmac=742895b5018dbc057906cd40824730d5e5ea30f64f87a4678281a893f362de39&w=1380"})`,
+            backgroundImage: `url(${
+              creator.cover ||
+              "https://img.freepik.com/free-vector/bulb-idea-low-poly-wireframe-mesh_271628-313.jpg?t=st=1750875552~exp=1750879152~hmac=742895b5018dbc057906cd40824730d5e5ea30f64f87a4678281a893f362de39&w=1380"
+            })`,
           }}
           className="rounded-t-xl"
         ></div>
@@ -23,7 +27,7 @@ export default function CoverBox() {
                 size={90}
                 width={90}
                 wsite=""
-                src={localImages.logos.flexUser.src}
+                src={creator.user.photo || localImages.logos.flexUser.src}
               />
             </div>
           </div>

@@ -1,5 +1,6 @@
 import { IUserResponse } from "../../responses/IUserResponse";
 import { ICreatorFollowing } from "./ICreatorFollowing";
+import { ICreatorPost } from "./ICreatorPost";
 
 export interface ICreator {
   id: string;
@@ -12,5 +13,6 @@ export interface ICreator {
   created_at: Date;
   updated_at: Date;
   user: IUserResponse;
+  posts: ICreatorPost[];
   followers: ICreatorFollowing[];
 }
