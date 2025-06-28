@@ -39,7 +39,7 @@ export default function CRTPostDescription({
               style={{
                 width: "100%",
                 backgroundPosition: "center",
-                backgroundSize: "cover",
+                backgroundSize: "contain",
                 objectFit: "contain",
                 backgroundImage: `url(${post.image})`,
               }}
