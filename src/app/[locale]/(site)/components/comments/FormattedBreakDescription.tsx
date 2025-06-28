@@ -68,7 +68,7 @@ export default function FormattedBreakDescription({
       {isTextTruncated && !viewAllContent && (
         <span
           onClick={() => setViewAllContent((state) => !state)}
-          className="w-fit cursor-pointer font-bold text-xs dark:text-white"
+          className="w-fit cursor-pointer font-bold text-sm dark:text-white"
         >
           <CTranslateTo eng="See more" pt="Ver mais" />
         </span>
@@ -76,7 +76,7 @@ export default function FormattedBreakDescription({
       {viewAllContent && (
         <span
           onClick={() => setViewAllContent((state) => !state)}
-          className="w-fit cursor-pointer font-bold text-xs dark:text-white"
+          className="w-fit cursor-pointer font-bold text-sm dark:text-white"
         >
           <CTranslateTo eng="See less" pt="Ver menos" />
         </span>
