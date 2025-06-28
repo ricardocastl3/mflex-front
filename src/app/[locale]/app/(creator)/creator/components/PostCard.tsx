@@ -80,7 +80,7 @@ export default function PostCard({ post }: { post: ICreatorPost }) {
                 objectFit: "contain",
                 backgroundImage: `url(${post.image})`,
               }}
-              className="rounded-md"
+              className="rounded-md bg-slate-200 dark:bg-slate-800/50"
             ></div>
           )}
 

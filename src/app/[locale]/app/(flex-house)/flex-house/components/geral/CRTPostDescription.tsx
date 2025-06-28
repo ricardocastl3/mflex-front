@@ -44,7 +44,7 @@ export default function CRTPostDescription({
                 objectFit: "contain",
                 backgroundImage: `url(${post.image})`,
               }}
-              className="rounded-md  md:h-[250px] h-[200px] "
+              className="rounded-md  md:h-[250px] h-[200px] bg-slate-200 dark:bg-slate-800/50"
             ></div>
           )}
 
