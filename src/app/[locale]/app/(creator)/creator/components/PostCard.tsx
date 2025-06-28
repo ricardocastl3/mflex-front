@@ -8,6 +8,7 @@ import PostFooter from "./PostFooter";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import DateServices from "@/services/DateServices";
 import FormmattedDescription from "@/app/[locale]/(site)/components/comments/FormmattedDescription";
+import FormattedBreakDescription from "@/app/[locale]/(site)/components/comments/FormattedBreakDescription";
 
 export default function PostCard({ post }: { post: ICreatorPost }) {
   return (
@@ -31,7 +32,13 @@ export default function PostCard({ post }: { post: ICreatorPost }) {
               <div className="flex items-center justify-between gap-4 w-full">
                 <div className="md:w-[14rem] w-[35vw]">
                   <h1 className={`dark:text-white text-sm font-bold truncate `}>
-                    {`${post?.author?.user.first_name} ${post?.author?.user?.last_name}`}
+                    <>
+                      {post.author?.user && (
+                        <>{`${post?.author?.user.first_name} ${post?.author?.user?.last_name}`}</>
+                      )}
+
+                      {!post.author?.user && <p>Marca Flex</p>}
+                    </>
                   </h1>
                 </div>
               </div>
@@ -49,7 +56,15 @@ export default function PostCard({ post }: { post: ICreatorPost }) {
             </div>
           </div>
           <div className="flex flex-col gap-0.5">
-            <FormmattedDescription description={post.description} type="post" />
+            {(post.image || post.type == "reel") && (
+              <FormattedBreakDescription post={post} type="post" />
+            )}
+            {!post.image && post.type != "reel" && (
+              <FormmattedDescription
+                description={post.description}
+                type="post"
+              />
+            )}{" "}
           </div>
         </div>
 

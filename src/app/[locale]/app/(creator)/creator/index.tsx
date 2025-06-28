@@ -25,26 +25,6 @@ export default function CreatorPage() {
 
   const { fetchCreatorPost } = useCreatorProvider();
 
-  // Controls
-  const [canSearch, setCanSearch] = useState(false);
-  const [searchMusic, setSearchMusic] = useState("");
-
-  // Debounced search effect
-  useEffect(() => {
-    if (!canSearch) return;
-
-    const handler = setTimeout(() => {
-      if (searchMusic === "") {
-        //fetchAll
-      } else {
-        ///  handleSeachByName({ name: searchMusic });
-      }
-      setCanSearch(false);
-    }, 200);
-
-    return () => clearTimeout(handler);
-  }, [searchMusic, canSearch]);
-
   useEffect(() => {
     if (
       !allCreatorPosts.has ||

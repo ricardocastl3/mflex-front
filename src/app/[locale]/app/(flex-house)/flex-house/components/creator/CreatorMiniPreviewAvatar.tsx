@@ -33,7 +33,13 @@ export default function CreatorMiniPreviewAvatar({
           <div className="flex items-center justify-between gap-4 w-full">
             <div className="md:w-[14rem] w-[35vw]">
               <h1 className={`${title_color} text-sm font-bold truncate `}>
-                {`${creator?.user.first_name} ${creator?.user.last_name}`}
+                <>
+                  {creator && (
+                    <>{`${creator?.user.first_name} ${creator?.user?.last_name}`}</>
+                  )}
+
+                  {!creator && <p>Marca Flex</p>}
+                </>
               </h1>
             </div>
           </div>

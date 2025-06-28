@@ -1,10 +1,11 @@
 import { ICreatorPost } from "@/http/interfaces/models/fhouse/ICreatorPost";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { ReactIcons } from "@/utils/icons";
 
 import CreatorMiniPreviewAvatar from "../creator/CreatorMiniPreviewAvatar";
 import CreatorPostMiniDetails from "../creator/CreatorPostMiniDetails";
 import FormmattedDescription from "@/app/[locale]/(site)/components/comments/FormmattedDescription";
+import FormattedBreakDescription from "@/app/[locale]/(site)/components/comments/FormattedBreakDescription";
 
 export default function CRTPostDescription({
   post,
@@ -18,12 +19,20 @@ export default function CRTPostDescription({
   showFile?: boolean;
 }) {
   return (
-    <div className="">
+    <div className="w-full">
       <div className="flex flex-col gap-3 w-full">
         <CreatorMiniPreviewAvatar creator={post.author} resource={post} />
-        <div className="flex flex-col gap-1">
+
+        {(post.image || post.type == "reel") && (
+          <div className="w-full">
+            <FormattedBreakDescription post={post} type="post" />
+          </div>
+        )}
+
+        {!post.image && post.type != "reel" && (
           <FormmattedDescription description={post.description} type="post" />
-        </div>
+        )}
+
         <div className="flex flex-col gap-2">
           {post?.image && (
             <div

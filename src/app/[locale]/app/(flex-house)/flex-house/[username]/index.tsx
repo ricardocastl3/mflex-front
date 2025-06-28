@@ -47,9 +47,17 @@ export default function FlexHousePage({
         },
       });
 
-      setSelectedCreator(resp.data.creator);
-      setAllPosts(resp.data.creator.posts.slice(0, SLICE_POST));
-      setHasMorePosts(resp.data.creator.posts.length > SLICE_POST);
+      const allPostsAPI = resp.data.creator.posts.sort(
+        (a: ICreatorPost, b: ICreatorPost) => {
+          return (
+            new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+          );
+        }
+      );
+
+      setSelectedCreator({ ...resp.data.creator, posts: allPostsAPI });
+      setAllPosts(allPostsAPI.slice(0, SLICE_POST));
+      setHasMorePosts(allPostsAPI.length > SLICE_POST);
       setIsLoading(false);
     } catch (err) {
       window.location.href = `/${langByCookies}/app/flex-house`;
@@ -126,108 +134,108 @@ export default function FlexHousePage({
 
   return (
     <PageBase customTop="md:pt-[4.5rem] pt-[4.5rem]">
-      {isLoading && (
-        <ContainerBase customHeight="h-[80vh]">
-          <div className="flex flex-col gap-4">
-            <div className="p-18 bg-slate-200 animate-pulse dark:bg-slate-800/50"></div>
-            <div className="p-18 flex-1 h-full bg-slate-200 animate-pulse dark:bg-slate-800/50"></div>
-          </div>
-        </ContainerBase>
-      )}
+      <ContainerBase customHeight="h-[80vh]" ref={scrollContainerRef}>
+        {isLoading && (
+          <>
+            <div className="h-[180px] bg-slate-300 animate-pulse rounded-xl dark:bg-slate-800/60"></div>
+            <div className="p-16 flex-1 h-full bg-slate-300 animate-pulse rounded-xl dark:bg-slate-800/60"></div>
+          </>
+        )}
 
-      {!isLoading && selectedCreator && (
-        <ContainerBase customHeight="h-[80vh]" ref={scrollContainerRef}>
+        {!isLoading && selectedCreator && (
           <div className="flex flex-col gap-4">
-            <CoverBox creator={selectedCreator} />
-            <div className="md:mt-10 mt-8 flex flex-col gap-4">
-              <div className="flex justify-center">
-                <div className="flex flex-col items-center gap-2 md:w-[50vw] w-[80vw]">
-                  <h1 className="dark:text-white text-xl font-extrabold">
-                    {`${selectedCreator?.user.first_name} ${selectedCreator?.user.last_name}`}
-                  </h1>
+            <div className="flex flex-col gap-4 animate-fade-up">
+              <CoverBox creator={selectedCreator} />
+              <div className="md:mt-10 mt-8 flex flex-col gap-4">
+                <div className="flex justify-center">
+                  <div className="flex flex-col items-center gap-2 md:w-[50vw] w-[80vw]">
+                    <h1 className="dark:text-white text-xl font-extrabold">
+                      {`${selectedCreator?.user.first_name} ${selectedCreator?.user.last_name}`}
+                    </h1>
 
-                  <div className="grid grid-cols-3 gap-4">
-                    <CreatorStat
-                      color="bg-yellow-100 dark:bg-yellow-800/10 dark:text-yellow-500 text-yellow-600"
-                      t_en="Followers"
-                      t_pt="Seguidores"
-                      value={
-                        selectedCreator?.followers.filter(
-                          (i) => i.creator_id == selectedCreator?.id
-                        ).length!
-                      }
-                    />
-                    <CreatorStat
-                      color="bg-blue-200/50 dark:bg-blue-800/10 dark:text-blue-500 text-blue-600"
-                      t_en="Posts"
-                      t_pt="Postagens"
-                      value={
-                        selectedCreator.posts.filter((i) => i.type == "image")
-                          .length
-                      }
-                    />
-                    <CreatorStat
-                      color="bg-emerald-100 dark:bg-emerald-800/10 dark:text-emerald-500 text-emerald-600"
-                      t_en="Videos"
-                      t_pt="Vídeos"
-                      value={
-                        selectedCreator.posts.filter((i) => i.type == "reel")
-                          .length
-                      }
-                    />
+                    <div className="grid grid-cols-3 gap-4">
+                      <CreatorStat
+                        color="bg-yellow-100 dark:bg-yellow-800/10 dark:text-yellow-500 text-yellow-600"
+                        t_en="Followers"
+                        t_pt="Seguidores"
+                        value={
+                          selectedCreator?.followers.filter(
+                            (i) => i.creator_id == selectedCreator?.id
+                          ).length!
+                        }
+                      />
+                      <CreatorStat
+                        color="bg-blue-200/50 dark:bg-blue-800/10 dark:text-blue-500 text-blue-600"
+                        t_en="Posts"
+                        t_pt="Postagens"
+                        value={
+                          selectedCreator.posts.filter((i) => i.type == "image")
+                            .length
+                        }
+                      />
+                      <CreatorStat
+                        color="bg-emerald-100 dark:bg-emerald-800/10 dark:text-emerald-500 text-emerald-600"
+                        t_en="Videos"
+                        t_pt="Vídeos"
+                        value={
+                          selectedCreator.posts.filter((i) => i.type == "reel")
+                            .length
+                        }
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-center justify-center gap-4 border-t border-b border-slate-300/80 dark:border-slate-800 p-2">
+                  <div className="flex items-center gap-2">
+                    {userLogged?.id == selectedCreator.user.id && (
+                      <>
+                        <AuSoftUI.UI.Button
+                          onClick={() => handleOpenModal("ct-info")}
+                          variant={"outline"}
+                          size={"sm"}
+                          className="items-center"
+                        >
+                          <CTranslateTo eng="Edit Profile" pt="Editar Perfil" />
+                          <ReactIcons.AiICon.AiFillEdit size={15} />
+                        </AuSoftUI.UI.Button>
+                      </>
+                    )}
+                    {userLogged?.id != selectedCreator.user.id && (
+                      <FollowCreatorButton creator={selectedCreator} />
+                    )}
                   </div>
                 </div>
               </div>
-              <div className="flex items-center justify-center gap-4 border-t border-b border-slate-300/80 dark:border-slate-800 p-2">
-                <div className="flex items-center gap-2">
-                  {userLogged?.id == selectedCreator.user.id && (
-                    <>
-                      <AuSoftUI.UI.Button
-                        onClick={() => handleOpenModal("ct-info")}
-                        variant={"outline"}
-                        size={"sm"}
-                        className="items-center"
-                      >
-                        <CTranslateTo eng="Edit Profile" pt="Editar Perfil" />
-                        <ReactIcons.AiICon.AiFillEdit size={15} />
-                      </AuSoftUI.UI.Button>
-                    </>
-                  )}
-                  {userLogged?.id != selectedCreator.user.id && (
-                    <FollowCreatorButton creator={selectedCreator} />
-                  )}
-                </div>
+            </div>
+
+            <div className="flex justify-center">
+              <div className="md:w-[50vw] w-full flex flex-col gap-4">
+                {allPosts.length <= 0 && (
+                  <div className="py-12">
+                    <AuSoftUI.Component.ListEmpty
+                      action_en=""
+                      action_pt=""
+                      action_url=""
+                      description_en="The creator has not posted anything at the moment."
+                      description_pt="O criador ainda não postou nada de momento"
+                      title_en="No Creator Post"
+                      title_pt="Criador sem postagens"
+                      hasAction={false}
+                    />
+                  </div>
+                )}
+                {allPosts.length > 0 && (
+                  <>
+                    {allPosts.map((post, i) => {
+                      return <PostCard post={post} key={i} />;
+                    })}
+                  </>
+                )}
               </div>
             </div>
           </div>
-
-          <div className="flex justify-center">
-            <div className="md:w-[50vw] w-full flex flex-col gap-4">
-              {allPosts.length <= 0 && (
-                <div className="py-12">
-                  <AuSoftUI.Component.ListEmpty
-                    action_en=""
-                    action_pt=""
-                    action_url=""
-                    description_en="The creator has not posted anything at the moment."
-                    description_pt="O criador ainda não postou nada de momento"
-                    title_en="No Creator Post"
-                    title_pt="Criador sem postagens"
-                    hasAction={false}
-                  />
-                </div>
-              )}
-              {allPosts.length > 0 && (
-                <>
-                  {allPosts.map((post, i) => {
-                    return <PostCard post={post} key={i} />;
-                  })}
-                </>
-              )}
-            </div>
-          </div>
-        </ContainerBase>
-      )}
+        )}
+      </ContainerBase>
     </PageBase>
   );
 }

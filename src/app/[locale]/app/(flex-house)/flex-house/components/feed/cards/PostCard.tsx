@@ -75,7 +75,7 @@ export default function PostCard({ post }: { post: ICreatorPost }) {
             openComments
               ? "md:w-[40vw] w-[100vw] md:rounded-xl rounded-none md:pt-4 pt-[5rem] md:px-4 px-4 md:h-fit h-fit"
               : "mb-4 md:p-4 p-3 "
-          }  flex flex-col gap-4`}
+          } flex flex-col gap-4`}
         >
           <CRTPostDescription
             openComments={openComments}
