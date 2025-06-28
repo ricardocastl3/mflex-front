@@ -127,7 +127,7 @@ export default function ReelPlayerCard({
           muted={isMuted}
           onLoadedData={() => setIsLoading(false)}
           playsInline
-          className="animate-fade z-0 max-h-full max-w-full object-contain cursor-pointer"
+          className="animate-fade z-0 h-full w-full object-contain cursor-pointer"
         >
           <source
             src={`${process.env.MFLEX_SERVER_URL}/reels/${post.id}`}
@@ -146,7 +146,7 @@ export default function ReelPlayerCard({
           </div>
         )}
         {isLoading && (
-          <div className="absolute inset-0 flex items-center justify-center z-0">
+          <div className="absolute inset-0 flex items-center justify-center z-0 w-full">
             <div className="bg-black bg-opacity-50 rounded-full p-4">
               <ReactIcons.PiIcon.PiSpinner
                 size={48}
@@ -157,7 +157,7 @@ export default function ReelPlayerCard({
         )}
       </div>
 
-      <div className="md:flex absolute z-10 inset-0 left-[83%] ">
+      <div className="md:flex absolute z-10 inset-0 left-[83%]">
         <div className="absolute z-10 top-4 right-4 flex flex-col gap-4">
           <button
             onClick={toggleMute}
