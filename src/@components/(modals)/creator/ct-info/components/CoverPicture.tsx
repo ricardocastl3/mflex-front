@@ -62,6 +62,7 @@ export default function CoverPictureBox() {
         backgroundSize: "cover",
         objectFit: "cover",
         backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
         backgroundImage: `url(${
           coverUrl != ""
             ? coverUrl

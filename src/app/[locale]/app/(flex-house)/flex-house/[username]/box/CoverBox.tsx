@@ -10,6 +10,7 @@ export default function CoverBox({ creator }: { creator: ICreator }) {
           style={{
             height: "180px",
             width: "100%",
+            backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             objectFit: "cover",
