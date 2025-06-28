@@ -12,6 +12,7 @@ import CTranslate from "@/@components/(translation)/CCTranslate/CTranslate";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import Link from "next/link";
 import LoadingLayout from "@/app/onload-pages/_loading-layouts";
+import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 export default function AuthLayout({
   children,
@@ -38,7 +39,11 @@ export default function AuthLayout({
         >
           <div>
             <Link
-              href={`/${langByCookies}`}
+              href={`${
+                LocalStorageServices.getLastPeerViewFlexZone()
+                  ? `/${langByCookies}/${LocalStorageServices.getLastPeerViewFlexZone()}`
+                  : `/${langByCookies}`
+              }`}
               className=" text-yellow-600 dark:text-yellow-300 flex items-center gap-4"
             >
               <ReactIcons.AiICon.AiOutlineArrowLeft size={16} />
