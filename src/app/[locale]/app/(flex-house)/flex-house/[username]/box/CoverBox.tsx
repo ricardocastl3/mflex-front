@@ -10,14 +10,14 @@ export default function CoverBox({ creator }: { creator: ICreator }) {
           style={{
             height: "180px",
             width: "100%",
-            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             objectFit: "cover",
             backgroundImage: `url(${
               creator.cover || localImages.bgs.creatorBg
             })`,
           }}
-          className="rounded-t-xl"
+          className="rounded-t-xl bg-slate-300 dark:bg-slate-800/50 "
         ></div>
         <div className="absolute flex-col gap-4 inset-x-0 -bottom-[2rem] justify-center flex">
           <div className="flex flex-col items-center w-full gap-4 justify-center">

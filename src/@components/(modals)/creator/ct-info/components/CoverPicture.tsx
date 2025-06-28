@@ -59,8 +59,8 @@ export default function CoverPictureBox() {
     <div
       style={{
         height: "200px",
-        backgroundAttachment: "fixed",
         backgroundSize: "cover",
+        objectFit: "cover",
         backgroundRepeat: "no-repeat",
         backgroundImage: `url(${
           coverUrl != ""
@@ -68,7 +68,7 @@ export default function CoverPictureBox() {
             : userLogged?.creator?.cover || localImages.bgs.creatorBg
         })`,
       }}
-      className="relative flex flex-col items-center p-16 gap-3 rounded-t-2xl"
+      className="relative bg-slate-300 dark:bg-slate-800/50  flex flex-col items-center p-16 gap-3 rounded-t-2xl"
     >
       <div className="absolute md:top-20 top-20 flex justify-center items-center flex-col gap-2">
         {!isUpdatingPic && (
