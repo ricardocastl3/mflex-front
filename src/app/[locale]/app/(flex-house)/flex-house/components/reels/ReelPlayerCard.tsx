@@ -119,7 +119,7 @@ export default function ReelPlayerCard({
       </div>
       <div
         onClick={handleVideoClick}
-        className="z-10 md:w-[30vw] w-[98vw] h-full p-8 rounded-xl cursor-pointer"
+        className="z-10 flex items-center justify-center h-full cursor-pointer"
       >
         <video
           ref={videoRef}
@@ -127,7 +127,7 @@ export default function ReelPlayerCard({
           muted={isMuted}
           onLoadedData={() => setIsLoading(false)}
           playsInline
-          className="animate-fade absolute z-0 md:rounded-xl rounded-none inset-0 h-full w-full object-cover cursor-pointer"
+          className="animate-fade z-0 max-h-full max-w-full object-contain cursor-pointer"
         >
           <source
             src={`${process.env.MFLEX_SERVER_URL}/reels/${post.id}`}

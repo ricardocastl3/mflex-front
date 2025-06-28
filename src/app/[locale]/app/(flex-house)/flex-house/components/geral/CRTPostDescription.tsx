@@ -39,12 +39,11 @@ export default function CRTPostDescription({
               style={{
                 width: "100%",
                 backgroundPosition: "center",
-                backgroundSize: "contain",
+                backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
-                objectFit: "contain",
                 backgroundImage: `url(${post.image})`,
               }}
-              className="rounded-md  md:h-[250px] h-[200px] bg-slate-200 dark:bg-slate-800/50"
+              className="rounded-md h-[300px] md:h-[200px] bg-slate-200 dark:bg-slate-800/50"
             ></div>
           )}
 

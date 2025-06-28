@@ -49,6 +49,22 @@ export default function Reels() {
     }
   }, [animationDirection]);
 
+  // Prevenir reload da página no mobile
+  useEffect(() => {
+    const preventReload = (e: Event) => {
+      e.preventDefault();
+    };
+
+    // Adicionar event listeners para prevenir reload
+    document.addEventListener("touchmove", preventReload, { passive: false });
+    document.addEventListener("wheel", preventReload, { passive: false });
+
+    return () => {
+      document.removeEventListener("touchmove", preventReload);
+      document.removeEventListener("wheel", preventReload);
+    };
+  }, []);
+
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev > 0 ? prev - 1 : prev));
   };
