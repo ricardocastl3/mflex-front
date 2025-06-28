@@ -76,6 +76,7 @@ export default function PostCard({ post }: { post: ICreatorPost }) {
                 height: "150px",
                 backgroundPosition: "center",
                 backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
                 objectFit: "contain",
                 backgroundImage: `url(${post.image})`,
               }}
