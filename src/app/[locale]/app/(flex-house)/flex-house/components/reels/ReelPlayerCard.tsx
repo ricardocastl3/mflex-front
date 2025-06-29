@@ -10,49 +10,6 @@ import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CreatorMiniPreviewAvatar from "../creator/CreatorMiniPreviewAvatar";
 import FormattersServices from "@/services/FormattersServices";
 
-// Hook personalizado para gerenciar cache de vídeos
-const useVideoCache = () => {
-  const videoCache = useRef(
-    new Map<string, { url: string; readyState: number; timestamp: number }>()
-  );
-  const MAX_CACHE_SIZE = 10;
-
-  const cleanupCache = () => {
-    const cache = videoCache.current;
-    if (cache.size > MAX_CACHE_SIZE) {
-      const entries = Array.from(cache.entries());
-      entries.sort((a, b) => a[1].timestamp - b[1].timestamp);
-
-      const toRemove = entries.slice(0, cache.size - MAX_CACHE_SIZE);
-      toRemove.forEach(([key]) => cache.delete(key));
-
-      console.log(`Cache limpo: ${toRemove.length} vídeos removidos`);
-    }
-  };
-
-  const getCachedVideo = (id: string) => {
-    return videoCache.current.get(id);
-  };
-
-  const setCachedVideo = (id: string, url: string, readyState: number) => {
-    videoCache.current.set(id, {
-      url,
-      readyState,
-      timestamp: Date.now(),
-    });
-    cleanupCache();
-  };
-
-  const updateTimestamp = (id: string) => {
-    const cached = videoCache.current.get(id);
-    if (cached) {
-      cached.timestamp = Date.now();
-    }
-  };
-
-  return { getCachedVideo, setCachedVideo, updateTimestamp };
-};
-
 export default function ReelPlayerCard({ post }: { post: ICreatorPost }) {
   const {
     handleOpenReelCommentContainer,
@@ -64,13 +21,14 @@ export default function ReelPlayerCard({ post }: { post: ICreatorPost }) {
   const { selectedResource, handleSelectResource } = useResourceProvider();
 
   const { userLogged } = useAuth();
-  const { getCachedVideo, setCachedVideo, updateTimestamp } = useVideoCache();
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const loadedVideoIdRef = useRef<string | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
+  const [bufferingProgress, setBufferingProgress] = useState(0);
+  const [isBuffering, setIsBuffering] = useState(false);
 
   const togglePlay = async () => {
     if (videoRef.current) {
@@ -132,67 +90,94 @@ export default function ReelPlayerCard({ post }: { post: ICreatorPost }) {
     const video = videoRef.current;
     if (video && loadedVideoIdRef.current !== post.id) {
       setIsLoading(true);
+      setIsBuffering(true);
+      setBufferingProgress(0);
       loadedVideoIdRef.current = post.id;
 
-      const videoUrl = `${process.env.MFLEX_SERVER_URL}/reels/${post.id}`;
+      // Ajusta qualidade baseado na conexão
+      adjustVideoQuality();
 
-      // Verifica se o vídeo atual já tem a URL correta e está carregado
-      if (video.src === videoUrl && video.readyState >= 2) {
-        console.log(`Vídeo já carregado: ${post.id}`);
-        video.currentTime = 0; // Reinicia o vídeo
-        video.muted = isMuted;
-        Promise.resolve(video.play()).catch(console.error);
-        setIsLoading(false);
-        return;
-      }
+      // Listener para início do carregamento
+      const handleLoadStart = () => {
+        setIsLoading(true);
+        setIsBuffering(true);
+        setBufferingProgress(0);
+        console.log("Download started");
+      };
 
-      // Verifica se o vídeo já está no cache
-      const cachedVideo = getCachedVideo(post.id);
+      // Listener para progresso de carregamento
+      const handleProgress = () => {
+        if (video.buffered.length > 0 && video.duration > 0) {
+          const bufferedEnd = video.buffered.end(video.buffered.length - 1);
+          const duration = video.duration;
+          const progress = (bufferedEnd / duration) * 100;
 
-      if (cachedVideo && cachedVideo.readyState >= 2) {
-        // Se o vídeo já está no cache, reutiliza ele
-        console.log(`Reutilizando vídeo do cache: ${post.id}`);
+          // Atualiza o progresso apenas se for maior que o anterior
+          setBufferingProgress((prev) => Math.max(prev, progress));
 
-        // Atualiza o timestamp para indicar uso recente
-        updateTimestamp(post.id);
+          console.log(`Download progress: ${progress.toFixed(1)}%`);
 
-        // Define a URL do vídeo
-        video.src = cachedVideo.url;
-        video.currentTime = 0; // Reinicia o vídeo
-        video.muted = isMuted;
-
-        // Reproduz automaticamente
-        Promise.resolve(video.play()).catch(console.error);
-        setIsLoading(false);
-      } else {
-        // Se não está no cache, carrega normalmente
-        console.log(`Carregando novo vídeo: ${post.id}`);
-
-        // Define a URL e carrega
-        video.src = videoUrl;
-        video.load();
-
-        // Listener para quando o vídeo terminar de carregar
-        const handleLoadedData = () => {
-          setIsLoading(false);
-
-          // Adiciona o vídeo ao cache
-          setCachedVideo(post.id, video.src, video.readyState);
-
-          // Tenta reproduzir automaticamente após carregar
-          if (video.readyState >= 2) {
-            Promise.resolve(video.play()).catch(console.error);
+          // Se o buffer estiver suficiente para reprodução, para de mostrar loading
+          if (progress > 10) {
+            setIsLoading(false);
           }
-        };
+        }
+      };
 
-        video.addEventListener("loadeddata", handleLoadedData);
+      // Listener para quando o vídeo terminar de carregar
+      const handleLoadedData = () => {
+        setIsLoading(false);
+        setIsBuffering(false);
+        setBufferingProgress(100);
+        console.log("Video loaded completely");
 
-        return () => {
-          video.removeEventListener("loadeddata", handleLoadedData);
-        };
-      }
+        // Tenta reproduzir automaticamente após carregar
+        if (video.readyState >= 2) {
+          Promise.resolve(video.play()).catch(console.error);
+        }
+      };
+
+      // Listener para quando o buffer estiver pronto para reprodução
+      const handleCanPlay = () => {
+        setIsBuffering(false);
+        if (!isPlaying) {
+          Promise.resolve(video.play()).catch(console.error);
+        }
+      };
+
+      // Listener para quando o buffer estiver vazio
+      const handleWaiting = () => {
+        setIsBuffering(true);
+        console.log("Video waiting for more data");
+      };
+
+      // Listener para quando o buffer estiver cheio
+      const handleCanPlayThrough = () => {
+        setIsBuffering(false);
+        console.log("Video can play through without buffering");
+      };
+
+      // Adiciona todos os listeners
+      video.addEventListener("loadstart", handleLoadStart);
+      video.addEventListener("progress", handleProgress);
+      video.addEventListener("loadeddata", handleLoadedData);
+      video.addEventListener("canplay", handleCanPlay);
+      video.addEventListener("waiting", handleWaiting);
+      video.addEventListener("canplaythrough", handleCanPlayThrough);
+
+      // Garante que o vídeo seja carregado corretamente
+      video.load();
+
+      return () => {
+        video.removeEventListener("loadstart", handleLoadStart);
+        video.removeEventListener("progress", handleProgress);
+        video.removeEventListener("loadeddata", handleLoadedData);
+        video.removeEventListener("canplay", handleCanPlay);
+        video.removeEventListener("waiting", handleWaiting);
+        video.removeEventListener("canplaythrough", handleCanPlayThrough);
+      };
     }
-  }, [post.id, isMuted]);
+  }, [post.id, isPlaying]);
 
   // useEffect para registrar visualização
   useEffect(() => {
@@ -205,6 +190,39 @@ export default function ReelPlayerCard({ post }: { post: ICreatorPost }) {
       }
     }
   }, [post.id, userLogged?.id]);
+
+  // Função para detectar velocidade da conexão e ajustar qualidade
+  const adjustVideoQuality = () => {
+    if ("connection" in navigator) {
+      const connection = (navigator as any).connection;
+      const effectiveType = connection.effectiveType;
+      const downlink = connection.downlink;
+
+      // Ajusta preload baseado na velocidade
+      if (videoRef.current) {
+        if (downlink < 2) {
+          // Conexão lenta - carrega apenas metadata
+          videoRef.current.preload = "metadata";
+        } else if (downlink < 5) {
+          // Conexão média - carrega alguns segundos
+          videoRef.current.preload = "auto";
+        } else {
+          // Conexão rápida - carrega mais conteúdo
+          videoRef.current.preload = "auto";
+        }
+      }
+    }
+  };
+
+  // Função para pré-carregar o próximo vídeo
+  const preloadNextVideo = (nextPostId: string) => {
+    const preloadVideo = document.createElement("video");
+    preloadVideo.preload = "metadata";
+    preloadVideo.src = `${process.env.MFLEX_SERVER_URL}/reels/${nextPostId}`;
+
+    preloadVideo.addEventListener("loadedmetadata", () => {});
+    preloadVideo.load();
+  };
 
   return (
     <div className="relative h-full">
@@ -234,6 +252,7 @@ export default function ReelPlayerCard({ post }: { post: ICreatorPost }) {
           muted={isMuted}
           onLoadedData={() => setIsLoading(false)}
           playsInline
+          preload="metadata"
           className="animate-fade z-0 h-full w-full rounded-md object-cover cursor-pointer"
         >
           <source
@@ -253,7 +272,7 @@ export default function ReelPlayerCard({ post }: { post: ICreatorPost }) {
           </div>
         )}
         {isLoading && (
-          <div className="absolute inset-0 flex items-center justify-center z-0 w-full">
+          <div className="absolute inset-0 flex flex-col gap-3 items-center justify-center z-0 w-full">
             <div className="bg-black bg-opacity-50 rounded-full p-4">
               <ReactIcons.PiIcon.PiSpinner
                 size={48}

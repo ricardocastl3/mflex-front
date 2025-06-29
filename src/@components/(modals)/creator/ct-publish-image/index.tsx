@@ -3,16 +3,17 @@ import { AuSoftUI } from "@/@components/(ausoft)";
 import { ReactIcons } from "@/utils/icons";
 import { useCreatorProvider } from "@/providers/features/CreatorProvider";
 import { useState } from "react";
-import { internalApi, langByCookies } from "@/http/axios/api";
+import { internalApi } from "@/http/axios/api";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { localImages } from "@/utils/images";
 import { useFlexHouseProvider } from "@/providers/features/FlexHouseProvider";
+import { useAuth } from "@/providers/auth/AuthProvider";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import BaseModal from "../../base";
-import AAuSoftLogo from "@/@components/(ausoft)/AAuSoftLogo";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 import ARegisterProgress from "@/@components/(ausoft)/ARegisterProgress";
+import CreatorTextAreaField from "../ct-components/CreatorTextAreaField";
 
 interface IPostImage {
   image?: string;
@@ -30,14 +31,15 @@ export default function CreatorPublishPostImageModal() {
   const { handleFetchFHCreatorPost } = useFlexHouseProvider();
   const { handleAddTextOnBoxSuccess } = useModal();
   const { handleAddToastOnArray } = useAppProvider();
+  const { userLogged } = useAuth();
 
   // Controls
   const [postDetails, setPostDetails] = useState<IPostImage>(
     selectedCreatorPost
       ? {
           description: selectedCreatorPost.description,
-          image: "",
-          visibility: selectedCreatorPost.visibility,
+          image: selectedCreatorPost.image,
+          visibility: selectedCreatorPost.visibility || "public",
         }
       : { description: "", image: "", visibility: "public" }
   );
@@ -134,9 +136,8 @@ export default function CreatorPublishPostImageModal() {
   return (
     <BaseModal callbackClose={handleClose} customDesktop="pt-2">
       <div className="flex flex-col justify-between md:w-[50vw] w-[90vw] relative">
-        <div className="flex items-center justify-between md:p-4 p-4 border-b border-slate-200 dark:border-slate-700">
+        <div className="flex items-center justify-between md:p-4 p-4 border-b border-slate-200 dark:border-slate-800">
           <div className="flex items-center gap-3">
-            <AAuSoftLogo size={40} />
             {!selectedCreatorPost && (
               <h4 className="text-base dark:text-white font-bold">
                 <CTranslateTo eng="New Post" pt="Nova Postagem" />
@@ -152,32 +153,95 @@ export default function CreatorPublishPostImageModal() {
             <ReactIcons.BiIcon.BiX size={25} className="dark:text-white" />
           </button>
         </div>
-        <div className="p-4 flex flex-col gap-4 h-[60vh] overflow-y-auto">
-          <div className="flex flex-col gap-4 items-center justify-center">
-            <div className="rounded-xl w-fit">
-              <div
-                style={{
-                  height: "150px",
-                  width: "200px",
-                  objectFit: "fill",
-                  backgroundRepeat: "no-repeat",
-                  backgroundPosition: "center",
-                  backgroundSize: "contain",
-                  backgroundImage: `url(${
-                    postDetails.image != ""
-                      ? postDetails.image
-                      : selectedCreatorPost && selectedCreatorPost.image != ""
-                      ? selectedCreatorPost.image
-                      : cataloguePreview
-                  })`,
-                }}
-                className="rounded-xl bg-slate-200 dark:bg-slate-700/50"
-              ></div>
+        <div className="p-4 flex flex-col gap-4 h-[50vh] overflow-y-auto">
+          <div className="flex items-center gap-2">
+            <div>
+              <AuSoftUI.Component.Avatar
+                size={50}
+                width={50}
+                wsite=""
+                src={userLogged?.photo || localImages.logos.flexUser.src}
+              />
             </div>
+            <div className="flex flex-col gap-2">
+              <h1 className="text-sm font-bold dark:text-white">
+                {`${userLogged?.first_name} ${userLogged?.last_name}`}
+              </h1>
+              <AuSoftUI.UI.Select
+                value={postDetails.visibility}
+                onChange={(e) => {
+                  handleSetInfo({ visibility: e.target.value });
+                }}
+                className="w-fit py-1 text-xs"
+                weight={"md"}
+              >
+                <option
+                  value={"public"}
+                  className="dark:bg-ausoft-slate-950 dark:text-white"
+                >
+                  <CTranslateTo eng="Public" pt="Público" />
+                </option>
+                <option
+                  value={"private"}
+                  className="dark:bg-ausoft-slate-950 dark:text-white"
+                >
+                  <CTranslateTo eng="Private" pt="Privado" />
+                </option>
+              </AuSoftUI.UI.Select>
+            </div>
+          </div>
+          <div className="flex flex-col gap-2">
+            <CreatorTextAreaField
+              hasImage={postDetails.image ? true : false}
+              onChange={(e) => handleSetInfo({ description: e })}
+              value={postDetails.description}
+            />
+          </div>
+          {postDetails.image && (
+            <div className="flex gap-4 items-center justify-center w-full ">
+              <div className="rounded-xl relative border border-slate-200 dark:border-slate-800 md:w-[400px] w-[100px]">
+                <div
+                  style={{
+                    objectFit: "fill",
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "center",
+                    backgroundSize: "contain",
+                    backgroundImage: `url(${
+                      postDetails.image != ""
+                        ? postDetails.image
+                        : selectedCreatorPost && selectedCreatorPost.image != ""
+                        ? selectedCreatorPost.image
+                        : cataloguePreview
+                    })`,
+                  }}
+                  className="rounded-xl md:h-[200px] h-[100px] md:w-[400px] w-[100px] bg-slate-200 dark:bg-slate-700/50"
+                ></div>
+                <div className="absolute top-0 right-0 md:mx-2 mx-1 md:my-2 my-1">
+                  <button
+                    onClick={() => {
+                      handleSetInfo({ image: "" });
+                    }}
+                    className="px-2 bg-black/60 text-base font-bold rounded-full text-white"
+                  >
+                    X
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="flex flex-col w-full">
+          <div className="mx-4 mt-2 gap-4 flex items-center rounded-lg p-4 border border-slate-200 dark:border-slate-800">
+            <h1 className="dark:text-white">
+              <CTranslateTo
+                eng="Add in yout post"
+                pt="Adicione na tua publicação"
+              />
+            </h1>
             <div className="relative cursor-pointer">
               <input
                 name="avatar"
-                className="absolute top-0 right-0 file:border-transparent cursor-pointer left-0 file:bg-transparent file:text-transparent"
+                className="absolute cursor-pointer top-0 right-0 file:border-transparent left-0 file:bg-transparent file:text-transparent"
                 type="file"
                 onChange={(e) => {
                   if (e.target.files?.length! > 0) {
@@ -196,83 +260,31 @@ export default function CreatorPublishPostImageModal() {
                 variant={"primary"}
                 className="rounded-full pt-1.5 pb-2 cursor-pointer px-2 z-20"
               >
-                <ReactIcons.AiICon.AiFillEdit size={20} />
+                <ReactIcons.AiICon.AiFillFileImage size={20} />
               </AuSoftUI.UI.Button>
             </div>
           </div>
+          <div className="p-4 flex items-center gap-4">
+            <AuSoftUI.UI.Button
+              disabled={isSubmitting}
+              onClick={handleRegister}
+              variant={"primary"}
+              size={"sm"}
+              className="w-full font-bold text-base justify-center"
+            >
+              {!isSubmitting && !selectedCreatorPost && (
+                <CTranslateTo eng="Publish" pt="Publicar" />
+              )}
+              {!isSubmitting && selectedCreatorPost && (
+                <CTranslateTo eng="Save Changes" pt="Salvar Alterações" />
+              )}
+              <AuSoftUI.Component.isFormSubmitting
+                isSubmitting={isSubmitting}
+              />
+            </AuSoftUI.UI.Button>
 
-          <div className="grid md:grid-cols-1 grid-cols-1 gap-4">
-            <div className="flex flex-col gap-2">
-              <h1 className="text-base dark:text-white">
-                <CTranslateTo eng="Visibility" pt="Visibilidade" />
-              </h1>
-              <AuSoftUI.UI.Select
-                value={
-                  selectedCreatorPost?.visibility || postDetails.visibility
-                }
-                onChange={(e) => {
-                  handleSetInfo({ visibility: e.target.value });
-                }}
-                className="w-full"
-                weight={"md"}
-              >
-                <option
-                  value={"public"}
-                  className="dark:bg-ausoft-slate-950 dark:text-white"
-                >
-                  <CTranslateTo eng="Public" pt="Público" />
-                </option>
-                <option
-                  value={"private"}
-                  className="dark:bg-ausoft-slate-950 dark:text-white"
-                >
-                  <CTranslateTo eng="Private" pt="Privado" />
-                </option>
-              </AuSoftUI.UI.Select>
-            </div>
+            <ARegisterProgress isOpened={isSubmitting} rounded="all" />
           </div>
-
-          <div className="flex flex-col gap-2">
-            <h1 className="text-base dark:text-white">
-              <CTranslateTo eng="Descrição" pt="Description" />
-            </h1>
-            <AuSoftUI.UI.TextField.TextArea
-              value={postDetails.description}
-              onChange={(e) => handleSetInfo({ description: e.target.value })}
-              placeholder={`${
-                langByCookies == "pt"
-                  ? "Escreva uma descrição..."
-                  : "Write your description..."
-              }`}
-              className="w-full h-[40vh]"
-              weight={"md"}
-            />
-          </div>
-        </div>
-        <div className="p-4 flex items-center gap-4 border-t border-slate-200 dark:border-slate-800">
-          <AuSoftUI.UI.Button
-            disabled={isSubmitting}
-            onClick={handleRegister}
-            variant={"primary"}
-            size={"sm"}
-          >
-            {!isSubmitting && !selectedCreatorPost && (
-              <CTranslateTo eng="Publish" pt="Publicar" />
-            )}
-            {!isSubmitting && selectedCreatorPost && (
-              <CTranslateTo eng="Save Changes" pt="Salvar Alterações" />
-            )}
-            <AuSoftUI.Component.isFormSubmitting isSubmitting={isSubmitting} />
-          </AuSoftUI.UI.Button>
-          <AuSoftUI.UI.Button
-            disabled={isSubmitting}
-            onClick={handleClose}
-            variant={"outline"}
-            size={"sm"}
-          >
-            <CTranslateTo eng="Cancel" pt="Cancelar" />
-          </AuSoftUI.UI.Button>
-          <ARegisterProgress isOpened={isSubmitting} rounded="all" />
         </div>
       </div>
     </BaseModal>
