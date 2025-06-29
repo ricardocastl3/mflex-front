@@ -31,15 +31,18 @@ export default function FollowCreatorButton({
   }
 
   useEffect(() => {
-    const find = creator?.followers.find(
-      (i) => i.follower_id == userLogged?.id
-    );
-    if (find) {
-      setIsFollowing(true);
-    } else {
-      setIsFollowing(false);
+    if (!creator) return;
+    if (creator?.followers?.length > 0) {
+      const find = creator?.followers.find(
+        (i) => i.follower_id == userLogged?.id
+      );
+      if (find) {
+        setIsFollowing(true);
+      } else {
+        setIsFollowing(false);
+      }
     }
-  }, []);
+  }, [creator]);
 
   return (
     <>
