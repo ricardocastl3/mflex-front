@@ -6,6 +6,7 @@ import { ICreatorPost } from "@/http/interfaces/models/fhouse/ICreatorPost";
 
 import LikeResourceButton from "@/app/[locale]/(site)/components/likes/LikeResourceButton";
 import MusicViews from "@/app/[locale]/app/(artist)/art-musics/components/MusicViews";
+import FormattersServices from "@/services/FormattersServices";
 
 export default function CreatorPostMiniDetails({
   views,
@@ -37,7 +38,11 @@ export default function CreatorPostMiniDetails({
             size={"sm"}
           >
             <ReactIcons.AiICon.AiOutlineMessage size={15} />
-            <p className="">{post?.comments.length}</p>
+            <p className="">
+              {FormattersServices.formatNumberByMillions(
+                post?.comments.length!
+              )}
+            </p>
           </AuSoftUI.UI.Button>
         )}
       </div>

@@ -12,8 +12,12 @@ export default function TabButton({
   t_pt: string;
   t_en: string;
 }) {
-  const { selectedFHTab, handleSelectFHTab, handleFetchFHCreatorPost } =
-    useFlexHouseProvider();
+  const {
+    selectedFHTab,
+    handleSelectFHTab,
+    handleShowPreviewReelModal,
+    handleFetchFHCreatorPost,
+  } = useFlexHouseProvider();
   const isSelected = selectedFHTab == t_en.toLowerCase();
 
   return (
@@ -24,6 +28,10 @@ export default function TabButton({
           setTimeout(() => {
             handleFetchFHCreatorPost(false);
           }, 100);
+        }
+        if (t_en.toLowerCase() == "shorts") {
+          handleShowPreviewReelModal(true);
+          return;
         }
         handleSelectFHTab(t_en.toLowerCase());
       }}

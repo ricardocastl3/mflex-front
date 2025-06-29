@@ -5,29 +5,27 @@ import { ReactIcons } from "@/utils/icons";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { useEffect, useState, useRef } from "react";
 import { ICreatorPost } from "@/http/interfaces/models/fhouse/ICreatorPost";
-import { useResourceProvider } from "@/providers/features/ResourceProvider";
 
 import ReelPlayerCard from "./ReelPlayerCard";
 import ReelCommentCard from "./comments/ReelCommentsCard";
 import useCreatorPost from "@/hooks/api/creators/useCreatorPosts";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 
-export default function Reels() {
+export default function ReelsHouseModal() {
   const {
     openReelCommentContainer,
-    handleSelectFHTab,
     handleOpenReelCommentContainer,
+    selectedFHCreatorReel,
+    handleSelectFHCreatorReel,
+    handleShowPreviewReelModal,
   } = useFlexHouseProvider();
 
-  const { fetchResource } = useResourceProvider();
-
-  const { allCreatorPosts, fetchAllCreatorPosts, isLoadingCreatorPosts } =
-    useCreatorPost({
-      view: "reel",
-    });
+  const { allCreatorPosts, isLoadingCreatorPosts } = useCreatorPost({
+    view: "reel",
+  });
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const posts = allCreatorPosts.posts || [];
+  const [allPosts, setAllPosts] = useState<ICreatorPost[]>([]);
 
   const [currentPost, setCurrentPost] = useState<ICreatorPost | undefined>();
   const [animationDirection, setAnimationDirection] = useState<
@@ -37,10 +35,20 @@ export default function Reels() {
   const touchStartY = useRef<number | null>(null);
 
   useEffect(() => {
-    if (!isLoadingCreatorPosts) {
-      setCurrentPost(allCreatorPosts.posts[currentIndex]);
+    if (isLoadingCreatorPosts) return;
+    const posts: ICreatorPost[] = [];
+    if (selectedFHCreatorReel) {
+      posts.push(selectedFHCreatorReel);
     }
-  }, [isLoadingCreatorPosts, currentIndex]);
+    posts.push(...allCreatorPosts.posts);
+    handleSelectFHCreatorReel(undefined);
+    setAllPosts(posts);
+    setCurrentPost(posts[currentIndex]);
+  }, [isLoadingCreatorPosts]);
+
+  useEffect(() => {
+    setCurrentPost(allPosts[currentIndex]);
+  }, [currentIndex]);
 
   useEffect(() => {
     if (animationDirection) {
@@ -55,6 +63,7 @@ export default function Reels() {
       e.preventDefault();
     };
 
+    if (window.innerWidth > 765) return;
     // Adicionar event listeners para prevenir reload
     document.addEventListener("touchmove", preventReload, { passive: false });
     document.addEventListener("wheel", preventReload, { passive: false });
@@ -70,7 +79,7 @@ export default function Reels() {
   };
 
   const handleNext = () => {
-    if (currentIndex < posts.length) {
+    if (currentIndex < allPosts.length) {
       setAnimationDirection("down");
       setCurrentIndex((prev) => prev + 1);
     }
@@ -97,13 +106,9 @@ export default function Reels() {
     }
   };
 
-  useEffect(() => {
-    if (fetchResource) fetchAllCreatorPosts();
-  }, [fetchResource]);
-
-  if (isLoadingCreatorPosts && posts.length <= 0) {
+  if (isLoadingCreatorPosts && allPosts.length <= 0) {
     return (
-      <div className="fixed inset-0 bg-black/90 z-30 flex items-center justify-center">
+      <div className="fixed inset-0 bg-black/90 z-40 flex items-center justify-center">
         <span className="text-white text-xl">
           <CTranslateTo eng="Loading reels..." pt="Carregando reels..." />
         </span>
@@ -113,12 +118,12 @@ export default function Reels() {
 
   if (!isLoadingCreatorPosts && !currentPost) {
     return (
-      <div className="fixed inset-0 bg-black/90 flex-col gap-4 z-30 flex items-center justify-center">
+      <div className="fixed inset-0 bg-black/90 flex-col gap-4 z-40 flex items-center justify-center">
         <span className="text-white text-xl">
           <CTranslateTo eng="No more reels" pt="Sem mais reels" />
         </span>
         <AuSoftUI.UI.Button
-          onClick={() => handleSelectFHTab("feed")}
+          onClick={() => handleShowPreviewReelModal(false)}
           variant={"primary"}
           size={"sm"}
         >
@@ -131,7 +136,7 @@ export default function Reels() {
   if (currentPost)
     return (
       <div
-        className={`fixed inset-0 w-full bg-black/90 z-30 flex md:justify-center justify-stretch`}
+        className={`fixed inset-0 w-full bg-black/90 z-40 flex md:justify-center justify-stretch`}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
@@ -164,7 +169,7 @@ export default function Reels() {
                 className="rounded-full p-4 border border-slate-700  text-white"
                 onClick={handleNext}
                 disabled={
-                  currentIndex === posts.length - 1 && !allCreatorPosts.has
+                  currentIndex === allPosts.length - 1 && !allCreatorPosts.has
                 }
               >
                 <ReactIcons.PiIcon.PiCaretDown size={20} />

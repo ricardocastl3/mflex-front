@@ -3,6 +3,10 @@ import { BaseBox } from "@/@components/(box)/BaseBox";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { localImages } from "@/utils/images";
 import { ReactIcons } from "@/utils/icons";
+import { useFlexHouseProvider } from "@/providers/features/FlexHouseProvider";
+import { useCallback, useEffect, useState } from "react";
+import { useResourceProvider } from "@/providers/features/ResourceProvider";
+import { internalApi } from "@/http/axios/api";
 
 import PostFooter from "./PostFooter";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
@@ -11,6 +15,32 @@ import FormmattedDescription from "@/app/[locale]/(site)/components/comments/For
 import FormattedBreakDescription from "@/app/[locale]/(site)/components/comments/FormattedBreakDescription";
 
 export default function PostCard({ post }: { post: ICreatorPost }) {
+  // contcts
+  const { handleSelectFHCreatorReel, handleShowPreviewReelModal } =
+    useFlexHouseProvider();
+
+  function handleOpenReel() {
+    handleSelectFHCreatorReel(post);
+    handleShowPreviewReelModal(true);
+  }
+
+  const [selectedPost, setSelectedPost] = useState<ICreatorPost | undefined>();
+
+  const { fetchResource } = useResourceProvider();
+
+  const fetchPost = useCallback(async () => {
+    try {
+      const resp = await internalApi.get("/creators/posts", {
+        params: { id: post.id },
+      });
+      setSelectedPost(resp.data.post);
+    } catch (err) {}
+  }, []);
+
+  useEffect(() => {
+    if (fetchResource) fetchPost();
+  }, [fetchResource]);
+
   return (
     <div className={``}>
       <BaseBox
@@ -86,7 +116,7 @@ export default function PostCard({ post }: { post: ICreatorPost }) {
 
           {post.type == "reel" && (
             <div
-              onClick={() => {}}
+              onClick={handleOpenReel}
               className="z-10 w-full h-[150px] p-8 rounded-md cursor-pointer relative"
             >
               <video
@@ -112,7 +142,7 @@ export default function PostCard({ post }: { post: ICreatorPost }) {
             </div>
           )}
 
-          <PostFooter post={post} />
+          <PostFooter post={selectedPost || post} />
         </div>
       </BaseBox>
     </div>

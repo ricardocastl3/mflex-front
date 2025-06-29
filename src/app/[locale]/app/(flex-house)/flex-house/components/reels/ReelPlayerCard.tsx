@@ -3,10 +3,12 @@ import { useFlexHouseProvider } from "@/providers/features/FlexHouseProvider";
 import { ReactIcons } from "@/utils/icons";
 import { useRef, useState, useEffect } from "react";
 import { useAuth } from "@/providers/auth/AuthProvider";
+import { internalApi } from "@/http/axios/api";
+import { useResourceProvider } from "@/providers/features/ResourceProvider";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CreatorMiniPreviewAvatar from "../creator/CreatorMiniPreviewAvatar";
-import { internalApi } from "@/http/axios/api";
+import FormattersServices from "@/services/FormattersServices";
 
 export default function ReelPlayerCard({
   post,
@@ -18,8 +20,11 @@ export default function ReelPlayerCard({
   const {
     handleOpenReelCommentContainer,
     openReelCommentContainer,
-    handleSelectFHTab,
+    handleShowPreviewReelModal,
+    handleSelectFHCreatorReel,
   } = useFlexHouseProvider();
+
+  const { selectedResource, handleSelectResource } = useResourceProvider();
 
   const { userLogged } = useAuth();
 
@@ -107,7 +112,9 @@ export default function ReelPlayerCard({
         <button
           onClick={() => {
             handleOpenReelCommentContainer(false);
-            handleSelectFHTab("feed");
+            handleSelectFHCreatorReel(undefined);
+            handleSelectResource(undefined);
+            handleShowPreviewReelModal(false);
           }}
           className="text-white text-lg font-bold flex items-center gap-4"
         >
@@ -158,7 +165,7 @@ export default function ReelPlayerCard({
       </div>
 
       <div className="md:flex absolute z-10 inset-0 left-[83%]">
-        <div className="absolute z-10 top-4 right-4 flex flex-col gap-4">
+        <div className="absolute z-10 top-4 right-6 flex flex-col gap-4">
           <button
             onClick={toggleMute}
             className="text-white flex flex-col items-center gap-2 font-bold text-xs"
@@ -170,26 +177,37 @@ export default function ReelPlayerCard({
             )}
           </button>
         </div>
-        <div className="absolute z-10 top-1/2 right-4 flex flex-col gap-4">
+        <div className="absolute z-10 top-[50%] right-6 flex flex-col gap-4">
           <button
             onClick={() => {
               handleOpenReelCommentContainer(!openReelCommentContainer);
             }}
-            className="text-white flex flex-col gap-2 items-center font-bold text-xs"
+            className="text-white flex flex-col gap-2 items-center font-bold text-sm"
           >
-            <ReactIcons.AiICon.AiFillMessage size={28} />
-            <p>{post.comments.length}</p>
+            <ReactIcons.AiICon.AiFillMessage size={33} />
+            <p>
+              {FormattersServices.formatNumberByMillions(
+                selectedResource?.comments.length || post.comments.length
+              )}
+            </p>
           </button>
 
-          <span className="text-white flex flex-col items-center gap-2 font-bold text-xs">
-            <ReactIcons.AiICon.AiFillPlayCircle size={28} />
-            <p>{post.views.length}</p>
+          <span className="text-white flex flex-col items-center gap-2 font-bold text-sm">
+            <ReactIcons.AiICon.AiFillPlayCircle size={33} />
+            <p>
+              {FormattersServices.formatNumberByMillions(
+                (selectedResource &&
+                  (selectedResource as ICreatorPost).views.length) ||
+                  post.views.length
+              )}
+            </p>
           </span>
         </div>
       </div>
 
-      <div className="md:hidden flex z-10 bg-black/30 p-4 absolute bottom-0 inset-x-0">
+      <div className="flex z-10 bg-black/30 px-4 pt-4 pb-6 absolute bottom-0 inset-x-0">
         <CreatorMiniPreviewAvatar
+          hasFollow={true}
           creator={post?.author}
           title_color="text-white"
           resource={post}

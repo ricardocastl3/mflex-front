@@ -1,6 +1,7 @@
 import { ICreatorPost } from "@/http/interfaces/models/fhouse/ICreatorPost";
 import { Dispatch, SetStateAction } from "react";
 import { ReactIcons } from "@/utils/icons";
+import { useFlexHouseProvider } from "@/providers/features/FlexHouseProvider";
 
 import CreatorMiniPreviewAvatar from "../creator/CreatorMiniPreviewAvatar";
 import CreatorPostMiniDetails from "../creator/CreatorPostMiniDetails";
@@ -18,6 +19,15 @@ export default function CRTPostDescription({
   post: ICreatorPost;
   showFile?: boolean;
 }) {
+  const { handleSelectFHCreatorReel, handleShowPreviewReelModal } =
+    useFlexHouseProvider();
+
+  function handleOpenReel() {
+    handleSelectFHCreatorReel(post);
+    handleShowPreviewReelModal(true);
+    if (setOpenComments) setOpenComments(false);
+  }
+
   return (
     <div className="w-full">
       <div className="flex flex-col gap-3 w-full">
@@ -49,7 +59,7 @@ export default function CRTPostDescription({
 
           {post.type == "reel" && showFile && (
             <div
-              onClick={() => {}}
+              onClick={handleOpenReel}
               className="z-10 w-full md:h-[250px] h-[200px] p-8 rounded-md cursor-pointer relative"
             >
               <video

@@ -5,6 +5,7 @@ import { AuSoftUI } from "@/@components/(ausoft)";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { useWebPush } from "@/hooks/useWebPush";
 import { langByCookies } from "@/http/axios/api";
+import { useFlexHouseProvider } from "@/providers/features/FlexHouseProvider";
 
 import AHeader from "@/@components/(system)/AHeader";
 import LoadingLayout from "@/app/onload-pages/_loading-layouts";
@@ -15,6 +16,7 @@ import ABanner from "@/@components/(system)/ABanner";
 import useViewPdf from "@/@components/(system)/AAdobePdfReader/useViewPdf";
 import useServerStats from "@/hooks/api/useServerStats";
 import NewAppVersionBanner from "@/@components/(box)/new-app-version";
+import ReelsHouseModal from "../(flex-house)/flex-house/components/reels";
 
 export default function MFlexLayout({
   children,
@@ -23,6 +25,8 @@ export default function MFlexLayout({
 }) {
   const { isLoadingUserData, userLogged, handleLogout } = useAuth();
   const { openToast, openBanner } = useAppProvider();
+  const { showPreviewReelModal } = useFlexHouseProvider();
+
   useWebPush(userLogged?.id!);
   useViewPdf();
   useServerStats({ user: userLogged });
@@ -49,6 +53,8 @@ export default function MFlexLayout({
 
   return (
     <>
+      {showPreviewReelModal && <ReelsHouseModal />}
+
       <NewAppVersionBanner />
 
       {openToast.length > 0 && <AuSoftUI.Component.Toaster />}

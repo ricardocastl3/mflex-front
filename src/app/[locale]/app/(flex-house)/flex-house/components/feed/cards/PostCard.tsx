@@ -57,7 +57,15 @@ export default function PostCard({ post }: { post: ICreatorPost }) {
               <ReactIcons.PiIcon.PiCaretLeft size={25} />
               <p className="truncate">
                 <CTranslateTo eng="Post: " pt="Publicação de:" />{" "}
-                {` Ricardo Castle`}
+                <b className={`dark:text-white text-sm font-bold truncate `}>
+                  <>
+                    {post.author?.user && (
+                      <>{`${post?.author?.user.first_name} ${post?.author?.user?.last_name}`}</>
+                    )}
+
+                    {!post.author?.user && <p>Marca Flex</p>}
+                  </>
+                </b>
               </p>
             </button>
           </div>

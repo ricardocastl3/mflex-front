@@ -8,20 +8,23 @@ interface ICRTDelComment {
   type?: string;
 }
 
+type ISelectTab = "feed" | "" | string;
 interface IFlexHouseProviderProps {
   selectedFHCreatorPost: ICreatorPost | undefined;
+  selectedFHCreatorReel: ICreatorPost | undefined;
   openReelCommentContainer: boolean;
   fetchFHCreatorPost: boolean;
   selectedFHTab: string;
-  showPreviewReelDesktop: boolean;
+  showPreviewReelModal: boolean;
   selectedDelFHComment: ICRTDelComment;
 
   handleSelectDelFHComment: (comment: ICRTDelComment) => void;
-  handleShowPreviewReelDesktop: (mode: boolean) => void;
-  handleSelectFHTab: (tab: string) => void;
+  handleShowPreviewReelModal: (mode: boolean) => void;
+  handleSelectFHTab: (tab: ISelectTab) => void;
   handleFetchFHCreatorPost: (mode: boolean) => void;
   handleOpenReelCommentContainer: (mode: boolean) => void;
   handleSelectFHCreatorPost: (category: ICreatorPost | undefined) => void;
+  handleSelectFHCreatorReel: (category: ICreatorPost | undefined) => void;
 }
 
 export const FlexHouseContext = createContext({} as IFlexHouseProviderProps);
@@ -40,17 +43,21 @@ export default function FlexHouseProvider({
     ICreatorPost | undefined
   >();
 
+  const [selectedFHCreatorReel, setSelectedFHCreatorReel] = useState<
+    ICreatorPost | undefined
+  >();
+
   const [selectedDelFHComment, setSelectedDelFHComment] =
     useState<ICRTDelComment>({ id: "", type: "" });
 
-  const [selectedFHTab, setSelectedFHTab] = useState("feed");
+  const [selectedFHTab, setSelectedFHTab] = useState<ISelectTab>("feed");
 
   const [fetchFHCreatorPost, setFetchFHCreatorPost] = useState(false);
 
   const [openReelCommentContainer, setOpenReelCommentContainer] =
     useState(false);
 
-  const [showPreviewReelDesktop, setShowPreviewReelDesktop] = useState(false);
+  const [showPreviewReelModal, setShowPreviewReelModal] = useState(false);
 
   function handleFetchFHCreatorPost(mode: boolean) {
     setFetchFHCreatorPost(mode);
@@ -60,19 +67,23 @@ export default function FlexHouseProvider({
     setOpenReelCommentContainer(mode);
   }
 
-  function handleShowPreviewReelDesktop(mode: boolean) {
-    setShowPreviewReelDesktop(mode);
+  function handleShowPreviewReelModal(mode: boolean) {
+    setShowPreviewReelModal(mode);
   }
 
   function handleSelectFHCreatorPost(post: ICreatorPost | undefined) {
     setSelectedFHCreatorPost(post);
   }
 
+  function handleSelectFHCreatorReel(post: ICreatorPost | undefined) {
+    setSelectedFHCreatorReel(post);
+  }
+
   function handleSelectDelFHComment(comment: ICRTDelComment) {
     setSelectedDelFHComment(comment);
   }
 
-  function handleSelectFHTab(tab: string) {
+  function handleSelectFHTab(tab: ISelectTab) {
     setSelectedFHTab(tab);
   }
 
@@ -82,11 +93,13 @@ export default function FlexHouseProvider({
         fetchFHCreatorPost,
         openReelCommentContainer,
         selectedFHTab,
-        showPreviewReelDesktop,
+        showPreviewReelModal,
         selectedDelFHComment,
+        selectedFHCreatorReel,
 
+        handleSelectFHCreatorReel,
         handleSelectDelFHComment,
-        handleShowPreviewReelDesktop,
+        handleShowPreviewReelModal,
         handleSelectFHTab,
         handleOpenReelCommentContainer,
         handleFetchFHCreatorPost,

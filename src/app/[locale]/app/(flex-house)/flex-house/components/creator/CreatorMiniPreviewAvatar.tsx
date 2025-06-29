@@ -2,24 +2,31 @@ import { AuSoftUI } from "@/@components/(ausoft)";
 import { localImages } from "@/utils/images";
 import { ResourceType } from "@/providers/features/ResourceProvider";
 import { ICreator } from "@/http/interfaces/models/fhouse/ICreator";
-import { useAuth } from "@/providers/auth/AuthProvider";
 import { langByCookies } from "@/http/axios/api";
+import { useFlexHouseProvider } from "@/providers/features/FlexHouseProvider";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import DateServices from "@/services/DateServices";
 import Link from "next/link";
+import FollowCreatorButton from "@/app/[locale]/app/@components/creator/FollowCreatorButton";
 
 export default function CreatorMiniPreviewAvatar({
   resource,
   creator,
   title_color = "dark:text-white",
+  hasFollow,
 }: {
   resource: ResourceType;
   title_color?: string;
   creator?: ICreator;
+  hasFollow?: boolean;
 }) {
+  const { handleShowPreviewReelModal } = useFlexHouseProvider();
   return (
-    <Link href={`/${langByCookies}/app/flex-house/${creator?.username}`}>
+    <Link
+      href={`/${langByCookies}/app/flex-house/${creator?.username}`}
+      onClick={() => handleShowPreviewReelModal(false)}
+    >
       <div className="flex items-center gap-2 w-full">
         <div className="w-[50px]">
           <AuSoftUI.Component.Avatar
@@ -30,7 +37,7 @@ export default function CreatorMiniPreviewAvatar({
           />
         </div>
         <div className="flex flex-col gap-[0.08rem] w-full">
-          <div className="flex items-center justify-between gap-4 w-full">
+          <div className="flex items-center justify-between w-full">
             <div className="md:w-[14rem] w-[35vw]">
               <h1 className={`${title_color} text-sm font-bold truncate `}>
                 <>
@@ -53,6 +60,7 @@ export default function CreatorMiniPreviewAvatar({
             <h1 className="text-[0.8rem] dark:text-slate-400 text-slate-600">
               {DateServices.normalize(resource?.created_at!)}
             </h1>
+            {hasFollow && <FollowCreatorButton creator={creator} />}
           </div>
         </div>
       </div>

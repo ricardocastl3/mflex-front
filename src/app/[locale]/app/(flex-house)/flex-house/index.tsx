@@ -6,7 +6,6 @@ import { BaseBox } from "@/@components/(box)/BaseBox";
 
 import PageBase from "../../@components/PageBase";
 import Feed from "./components/feed";
-import Reels from "./components/reels";
 import TabButton from "./components/TabButton";
 import ContainerBase from "../../@components/ContainerBase";
 import ForYouTab from "./components/for-you";
@@ -46,7 +45,6 @@ export default function FlexHousePage() {
       </div>
       <ContainerBase>
         {selectedFHTab == "feed" && <Feed />}
-        {selectedFHTab == "shorts" && <Reels />}
         {selectedFHTab == "for you" && <ForYouTab />}
       </ContainerBase>
     </PageBase>
