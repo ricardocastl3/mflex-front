@@ -56,6 +56,17 @@ export default function CreatorPublishPostImageModal() {
 
   async function handleRegister() {
     try {
+      if (postDetails.description == "") {
+        return AuSoftUI.Component.ToastifyWithTranslation({
+          description_en: "Please, write something",
+          description_pt: "Por favor, escreva alguma coisa",
+          title_en: "No Content",
+          title_pt: "Sem Contéudo",
+          toast: handleAddToastOnArray,
+          type: "error",
+        });
+      }
+
       setIsSubmitting(true);
       const formData = new FormData();
 
