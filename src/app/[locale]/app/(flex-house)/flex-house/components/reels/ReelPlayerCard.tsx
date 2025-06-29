@@ -10,6 +10,49 @@ import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CreatorMiniPreviewAvatar from "../creator/CreatorMiniPreviewAvatar";
 import FormattersServices from "@/services/FormattersServices";
 
+// Hook personalizado para gerenciar cache de vídeos
+const useVideoCache = () => {
+  const videoCache = useRef(
+    new Map<string, { url: string; readyState: number; timestamp: number }>()
+  );
+  const MAX_CACHE_SIZE = 10;
+
+  const cleanupCache = () => {
+    const cache = videoCache.current;
+    if (cache.size > MAX_CACHE_SIZE) {
+      const entries = Array.from(cache.entries());
+      entries.sort((a, b) => a[1].timestamp - b[1].timestamp);
+
+      const toRemove = entries.slice(0, cache.size - MAX_CACHE_SIZE);
+      toRemove.forEach(([key]) => cache.delete(key));
+
+      console.log(`Cache limpo: ${toRemove.length} vídeos removidos`);
+    }
+  };
+
+  const getCachedVideo = (id: string) => {
+    return videoCache.current.get(id);
+  };
+
+  const setCachedVideo = (id: string, url: string, readyState: number) => {
+    videoCache.current.set(id, {
+      url,
+      readyState,
+      timestamp: Date.now(),
+    });
+    cleanupCache();
+  };
+
+  const updateTimestamp = (id: string) => {
+    const cached = videoCache.current.get(id);
+    if (cached) {
+      cached.timestamp = Date.now();
+    }
+  };
+
+  return { getCachedVideo, setCachedVideo, updateTimestamp };
+};
+
 export default function ReelPlayerCard({ post }: { post: ICreatorPost }) {
   const {
     handleOpenReelCommentContainer,
@@ -21,6 +64,7 @@ export default function ReelPlayerCard({ post }: { post: ICreatorPost }) {
   const { selectedResource, handleSelectResource } = useResourceProvider();
 
   const { userLogged } = useAuth();
+  const { getCachedVideo, setCachedVideo, updateTimestamp } = useVideoCache();
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const loadedVideoIdRef = useRef<string | null>(null);
@@ -90,25 +134,65 @@ export default function ReelPlayerCard({ post }: { post: ICreatorPost }) {
       setIsLoading(true);
       loadedVideoIdRef.current = post.id;
 
-      // Garante que o vídeo seja carregado corretamente
-      video.load();
+      const videoUrl = `${process.env.MFLEX_SERVER_URL}/reels/${post.id}`;
 
-      // Listener para quando o vídeo terminar de carregar
-      const handleLoadedData = () => {
+      // Verifica se o vídeo atual já tem a URL correta e está carregado
+      if (video.src === videoUrl && video.readyState >= 2) {
+        console.log(`Vídeo já carregado: ${post.id}`);
+        video.currentTime = 0; // Reinicia o vídeo
+        video.muted = isMuted;
+        Promise.resolve(video.play()).catch(console.error);
         setIsLoading(false);
-        // Tenta reproduzir automaticamente após carregar
-        if (video.readyState >= 2) {
-          Promise.resolve(video.play()).catch(console.error);
-        }
-      };
+        return;
+      }
 
-      video.addEventListener("loadeddata", handleLoadedData);
+      // Verifica se o vídeo já está no cache
+      const cachedVideo = getCachedVideo(post.id);
 
-      return () => {
-        video.removeEventListener("loadeddata", handleLoadedData);
-      };
+      if (cachedVideo && cachedVideo.readyState >= 2) {
+        // Se o vídeo já está no cache, reutiliza ele
+        console.log(`Reutilizando vídeo do cache: ${post.id}`);
+
+        // Atualiza o timestamp para indicar uso recente
+        updateTimestamp(post.id);
+
+        // Define a URL do vídeo
+        video.src = cachedVideo.url;
+        video.currentTime = 0; // Reinicia o vídeo
+        video.muted = isMuted;
+
+        // Reproduz automaticamente
+        Promise.resolve(video.play()).catch(console.error);
+        setIsLoading(false);
+      } else {
+        // Se não está no cache, carrega normalmente
+        console.log(`Carregando novo vídeo: ${post.id}`);
+
+        // Define a URL e carrega
+        video.src = videoUrl;
+        video.load();
+
+        // Listener para quando o vídeo terminar de carregar
+        const handleLoadedData = () => {
+          setIsLoading(false);
+
+          // Adiciona o vídeo ao cache
+          setCachedVideo(post.id, video.src, video.readyState);
+
+          // Tenta reproduzir automaticamente após carregar
+          if (video.readyState >= 2) {
+            Promise.resolve(video.play()).catch(console.error);
+          }
+        };
+
+        video.addEventListener("loadeddata", handleLoadedData);
+
+        return () => {
+          video.removeEventListener("loadeddata", handleLoadedData);
+        };
+      }
     }
-  }, [post.id]);
+  }, [post.id, isMuted]);
 
   // useEffect para registrar visualização
   useEffect(() => {
