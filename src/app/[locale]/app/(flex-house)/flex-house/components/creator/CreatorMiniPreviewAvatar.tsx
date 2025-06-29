@@ -4,6 +4,7 @@ import { ResourceType } from "@/providers/features/ResourceProvider";
 import { ICreator } from "@/http/interfaces/models/fhouse/ICreator";
 import { langByCookies } from "@/http/axios/api";
 import { useFlexHouseProvider } from "@/providers/features/FlexHouseProvider";
+import { useAuth } from "@/providers/auth/AuthProvider";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import DateServices from "@/services/DateServices";
@@ -22,6 +23,12 @@ export default function CreatorMiniPreviewAvatar({
   hasFollow?: boolean;
 }) {
   const { handleShowPreviewReelModal } = useFlexHouseProvider();
+
+  const { userLogged } = useAuth();
+
+  const ImCreator =
+    userLogged?.creator && userLogged.creator.id == creator?.id ? true : false;
+
   return (
     <Link
       href={`/${langByCookies}/app/flex-house/${creator?.username}`}
@@ -60,7 +67,9 @@ export default function CreatorMiniPreviewAvatar({
             <h1 className="text-[0.8rem] dark:text-slate-400 text-slate-600">
               {DateServices.normalize(resource?.created_at!)}
             </h1>
-            {hasFollow && <FollowCreatorButton creator={creator} />}
+            {hasFollow && !ImCreator && (
+              <FollowCreatorButton creator={creator} />
+            )}
           </div>
         </div>
       </div>
