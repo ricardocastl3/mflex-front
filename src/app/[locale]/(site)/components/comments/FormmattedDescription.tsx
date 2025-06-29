@@ -9,7 +9,7 @@ export default function FormmattedDescription({
     <>
       {description.split(/\n/).map((line, idx) =>
         type === "post" ? (
-          <p key={idx} className="dark:text-white text-sm">
+          <p key={idx} className="dark:text-white text-[0.9rem]">
             {line
               .split(/(#[\w-]+)|(https?:\/\/[^\s]+)|(www\.[^\s]+)/g)
               .map((part, i) => {
@@ -44,7 +44,7 @@ export default function FormmattedDescription({
               })}
           </p>
         ) : (
-          <p key={idx} className="dark:text-white text-sm">
+          <p key={idx} className="dark:text-white text-[0.9rem]">
             {line}
           </p>
         )
