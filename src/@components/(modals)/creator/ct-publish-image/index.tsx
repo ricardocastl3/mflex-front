@@ -153,7 +153,7 @@ export default function CreatorPublishPostImageModal() {
             <ReactIcons.BiIcon.BiX size={25} className="dark:text-white" />
           </button>
         </div>
-        <div className="p-4 flex flex-col gap-4 h-[50vh] overflow-y-auto">
+        <div className="p-4 flex flex-col gap-4 md:h-[50vh] h-[40vh] overflow-y-auto">
           <div className="flex items-center gap-2">
             <div>
               <AuSoftUI.Component.Avatar

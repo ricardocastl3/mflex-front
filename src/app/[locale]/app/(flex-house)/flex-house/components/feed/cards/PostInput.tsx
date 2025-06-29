@@ -50,12 +50,13 @@ export default function PostInput() {
           </div>
           <AuSoftUI.UI.TextField.Default
             onClick={() => handleOpenModal("ct-publish-image")}
+            readOnly={true}
             placeholder={`${
               langByCookies == "pt"
                 ? "Em que estas a pensar?....."
                 : "What are you thinking about?....."
             }`}
-            className="flex-1 flex  bg-slate-100 dark:bg-slate-800/40 focus:none h-[8vh] w-full"
+            className="flex-1 flex  bg-slate-100 dark:bg-slate-800/40 focus:none md:h-[8vh] h-[6vh] w-full"
           />
         </div>
         <div className="grid grid-cols-3 gap-4 pt-2 border-t border-slate-200 dark:border-slate-800">
