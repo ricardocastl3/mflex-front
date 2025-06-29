@@ -22,8 +22,7 @@ export default function CreatorMiniPreviewAvatar({
   creator?: ICreator;
   hasFollow?: boolean;
 }) {
-  const { handleShowPreviewReelModal, handleSelectFHCreatorReel } =
-    useFlexHouseProvider();
+  const { handleShowPreviewReelModal } = useFlexHouseProvider();
 
   const { userLogged } = useAuth();
 
@@ -31,7 +30,6 @@ export default function CreatorMiniPreviewAvatar({
     userLogged?.creator && userLogged.creator.id == creator?.id ? true : false;
 
   function handleClose() {
-    handleSelectFHCreatorReel(undefined);
     handleShowPreviewReelModal(false);
   }
 
@@ -64,15 +62,20 @@ export default function CreatorMiniPreviewAvatar({
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <h1 className="text-xs font-bold dark:text-yellow-400 text-yellow-600">
-              <CTranslateTo eng="Creator" pt="Criador(a)" />
-            </h1>
-            <h1 className="text-[0.8rem] dark:text-slate-400 text-slate-600">
-              {"•"}
-            </h1>
-            <h1 className="text-[0.8rem] dark:text-slate-400 text-slate-600">
-              {DateServices.normalize(resource?.created_at!)}
-            </h1>
+            <div onClick={handleClose} className="flex items-center gap-2">
+              <h1
+                onClick={handleClose}
+                className="text-xs font-bold dark:text-yellow-400 text-yellow-600"
+              >
+                <CTranslateTo eng="Creator" pt="Criador(a)" />
+              </h1>
+              <h1 className="text-[0.8rem] dark:text-slate-400 text-slate-600">
+                {"•"}
+              </h1>
+              <h1 className="text-[0.8rem] dark:text-slate-400 text-slate-600">
+                {DateServices.normalize(resource?.created_at!)}
+              </h1>
+            </div>
             {hasFollow && !ImCreator && (
               <FollowCreatorButton creator={creator} />
             )}
