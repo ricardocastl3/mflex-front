@@ -38,7 +38,7 @@ export default function CreatorTextAreaField({
       }`}
       className={`${
         hasImage ? "min-h-[10vh]" : "min-h-[20vh] text-lg"
-      } w-full md:max-h-[33vh] max-h-[30vh] focus:ring-transparent focus:ring-offset-transparent overflow-hidden border-none bg-slate-200 dark:bg-slate-800/50`}
+      } w-full md:max-h-[33vh] max-h-[30vh] focus:ring-offset-0 focus:ring-transparent focus:ring-offset-transparent overflow-hidden border-none bg-slate-200 dark:bg-slate-800/50`}
       weight={"md"}
     />
   );
