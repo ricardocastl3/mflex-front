@@ -30,12 +30,12 @@ export default function CreatorMiniPreviewAvatar({
     userLogged?.creator && userLogged.creator.id == creator?.id ? true : false;
 
   return (
-    <Link
-      href={`/${langByCookies}/app/flex-house/${creator?.username}`}
-      onClick={() => handleShowPreviewReelModal(false)}
-    >
+    <Link href={`/${langByCookies}/app/flex-house/${creator?.username}`}>
       <div className="flex items-center gap-2 w-full">
-        <div className="w-[50px]">
+        <div
+          className="w-[50px]"
+          onClick={() => handleShowPreviewReelModal(false)}
+        >
           <AuSoftUI.Component.Avatar
             size={43}
             width={43}
@@ -44,7 +44,10 @@ export default function CreatorMiniPreviewAvatar({
           />
         </div>
         <div className="flex flex-col gap-[0.08rem] w-full">
-          <div className="flex items-center justify-between w-full">
+          <div
+            onClick={() => handleShowPreviewReelModal(false)}
+            className="flex items-center justify-between w-full"
+          >
             <div className="md:w-[14rem] w-[35vw]">
               <h1 className={`${title_color} text-sm font-bold truncate `}>
                 <>
