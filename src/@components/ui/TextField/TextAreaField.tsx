@@ -16,6 +16,7 @@ const InputVariants = cva(
           "px-4 py-2.5 text-sm focus:ring-offset-1 rounded-lg bg-transparent text-slate-800 dark:text-slate-100 border-[1.8px]",
       },
       weight: {
+        noneFocus: "h-[36px] w-[120px] px-[15px] py-[18px] text-[0.8rem]",
         sm: "h-[36px] w-[120px] px-[15px] py-[18px] text-[0.8rem] focus:ring-1",
         md: "h-[40px] w-[140px] px-[15px] py-[18px] text-[0.9rem] focus:ring-2",
         lg: "h-[50px] w-[150px] px-[15px] py-[18px] text-[0.9rem] focus:ring-2",
