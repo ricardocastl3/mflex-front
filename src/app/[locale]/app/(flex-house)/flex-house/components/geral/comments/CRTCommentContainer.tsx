@@ -61,6 +61,10 @@ export default function CRTCommentContainer({
     if (fetchResource) fetchNewPostsComment();
   }, [fetchResource, resource]);
 
+  useEffect(() => {
+    fetchNewPostsComment();
+  }, []);
+
   const scrollToComment = (commentId: string) => {
     setTimeout(() => {
       const commentElement = document.getElementById(`cm-${commentId}`);

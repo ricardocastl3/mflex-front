@@ -198,7 +198,9 @@ export default function CreatorPublishPostVideoModal() {
                 <CTranslateTo eng="Visibility" pt="Visibilidade" />
               </h1>
               <AuSoftUI.UI.Select
-                value={videoDetails.visibility}
+                value={
+                  selectedCreatorPost?.visibility || videoDetails.visibility
+                }
                 onChange={(e) => {
                   handleSetInfo({ visibility: e.target.value });
                 }}

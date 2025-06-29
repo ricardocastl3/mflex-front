@@ -55,7 +55,7 @@ export default function PostCard({ post }: { post: ICreatorPost }) {
               className="md:w-[20vw] w-[80vw] dark:text-white text-base font-bold flex items-center gap-4"
             >
               <ReactIcons.PiIcon.PiCaretLeft size={25} />
-              <p className="truncate">
+              <p className="truncate flex items-center gap-2">
                 <CTranslateTo eng="Post: " pt="Publicação de:" />{" "}
                 <b className={`dark:text-white text-sm font-bold truncate `}>
                   <>

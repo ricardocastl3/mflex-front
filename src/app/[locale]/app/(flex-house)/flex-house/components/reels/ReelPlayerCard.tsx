@@ -10,13 +10,7 @@ import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CreatorMiniPreviewAvatar from "../creator/CreatorMiniPreviewAvatar";
 import FormattersServices from "@/services/FormattersServices";
 
-export default function ReelPlayerCard({
-  post,
-  change,
-}: {
-  post: ICreatorPost;
-  change: number;
-}) {
+export default function ReelPlayerCard({ post }: { post: ICreatorPost }) {
   const {
     handleOpenReelCommentContainer,
     openReelCommentContainer,
@@ -29,9 +23,9 @@ export default function ReelPlayerCard({
   const { userLogged } = useAuth();
 
   const videoRef = useRef<HTMLVideoElement>(null);
+  const loadedVideoIdRef = useRef<string | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
-
   const [isLoading, setIsLoading] = useState(true);
 
   const togglePlay = async () => {
@@ -89,22 +83,44 @@ export default function ReelPlayerCard({
     }
   }, []);
 
+  // useEffect para carregar o vídeo apenas uma vez
   useEffect(() => {
     const video = videoRef.current;
-    if (video) {
+    if (video && loadedVideoIdRef.current !== post.id) {
       setIsLoading(true);
+      loadedVideoIdRef.current = post.id;
+
+      // Garante que o vídeo seja carregado corretamente
       video.load();
 
+      // Listener para quando o vídeo terminar de carregar
+      const handleLoadedData = () => {
+        setIsLoading(false);
+        // Tenta reproduzir automaticamente após carregar
+        if (video.readyState >= 2) {
+          Promise.resolve(video.play()).catch(console.error);
+        }
+      };
+
+      video.addEventListener("loadeddata", handleLoadedData);
+
+      return () => {
+        video.removeEventListener("loadeddata", handleLoadedData);
+      };
+    }
+  }, [post.id]);
+
+  // useEffect para registrar visualização
+  useEffect(() => {
+    if (loadedVideoIdRef.current === post.id) {
       const findView = post.views.find((i) => i.user.id == userLogged?.id);
       if (!findView) {
         internalApi.post("/users/vs", {
           id: post.id,
         });
       }
-
-      Promise.resolve(video.play());
     }
-  }, [videoRef, change]);
+  }, [post.id, userLogged?.id]);
 
   return (
     <div className="relative h-full">

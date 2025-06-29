@@ -41,7 +41,7 @@ export default function ResourceProvider({
 }) {
   const [selectedResource, setSelectedResource] = useState<ResourceType>();
 
-  const [fetchResource, setFetchResource] = useState(true);
+  const [fetchResource, setFetchResource] = useState(false);
 
   function handleFetchResource(mode: boolean) {
     setFetchResource(mode);

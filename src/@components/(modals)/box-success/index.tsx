@@ -22,7 +22,8 @@ export default function BoxSuccessModal() {
   const { handleFetchEvent } = useEventProvider();
   const { handleFetchMusic } = useMusicProvider();
   const { handleSelectCategory } = useCategoryProvider();
-  const { handleFetchCreatorPosts } = useCreatorProvider();
+  const { handleFetchCreatorPosts, handleSelectCreatorPost } =
+    useCreatorProvider();
 
   function handleCloseBox() {
     handleOpenModal("");
@@ -32,6 +33,7 @@ export default function BoxSuccessModal() {
     handleFetchMusic(false);
     handleFetchCreatorPosts(false);
     handleSelectCategory(undefined);
+    handleSelectCreatorPost(undefined);
   }
 
   return (

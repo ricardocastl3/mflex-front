@@ -39,8 +39,14 @@ export default function ReelsHouseModal() {
     const posts: ICreatorPost[] = [];
     if (selectedFHCreatorReel) {
       posts.push(selectedFHCreatorReel);
+      posts.push(
+        ...allCreatorPosts.posts.filter(
+          (i) => i.id != selectedFHCreatorReel?.id
+        )
+      );
+    } else {
+      posts.push(...allCreatorPosts.posts);
     }
-    posts.push(...allCreatorPosts.posts);
     handleSelectFHCreatorReel(undefined);
     setAllPosts(posts);
     setCurrentPost(posts[currentIndex]);
@@ -152,7 +158,7 @@ export default function ReelsHouseModal() {
               }
             ${animationDirection === "down" ? "animate-fade-down" : ""} h-full`}
             >
-              <ReelPlayerCard change={currentIndex} post={currentPost} />
+              <ReelPlayerCard post={currentPost} />
             </div>
 
             <div className="absolute top-[40%] right-5 p-4 items-center flex-col gap-5 md:flex hidden">

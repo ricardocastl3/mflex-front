@@ -22,7 +22,11 @@ interface IPostImage {
 
 export default function CreatorPublishPostImageModal() {
   const { handleOpenModal } = useModal();
-  const { selectedCreatorPost, handleFetchCreatorPosts } = useCreatorProvider();
+  const {
+    selectedCreatorPost,
+    handleSelectCreatorPost,
+    handleFetchCreatorPosts,
+  } = useCreatorProvider();
   const { handleFetchFHCreatorPost } = useFlexHouseProvider();
   const { handleAddTextOnBoxSuccess } = useModal();
   const { handleAddToastOnArray } = useAppProvider();
@@ -45,6 +49,7 @@ export default function CreatorPublishPostImageModal() {
   }
   function handleClose() {
     handleOpenModal("");
+    handleSelectCreatorPost(undefined);
   }
 
   async function handleRegister() {
@@ -202,7 +207,9 @@ export default function CreatorPublishPostImageModal() {
                 <CTranslateTo eng="Visibility" pt="Visibilidade" />
               </h1>
               <AuSoftUI.UI.Select
-                value={postDetails.visibility}
+                value={
+                  selectedCreatorPost?.visibility || postDetails.visibility
+                }
                 onChange={(e) => {
                   handleSetInfo({ visibility: e.target.value });
                 }}

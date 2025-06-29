@@ -1,6 +1,7 @@
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { ReactIcons } from "@/utils/icons";
 import { useModal } from "@/providers/app/ModalProvider";
+import { useCreatorProvider } from "@/providers/features/CreatorProvider";
 
 import React from "react";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
@@ -11,6 +12,8 @@ export default function ContentDropdown({
   callback?: () => void;
 }) {
   const { handleOpenModal } = useModal();
+  const { handleSelectCreatorPost } = useCreatorProvider();
+
   return (
     <div className="md:w-[15vw] w-[82vw]">
       <div className="md:hidden flex items-center justify-between pb-2 mb-2 border-b  border-slate-200 dark:border-slate-700">
@@ -36,6 +39,8 @@ export default function ContentDropdown({
             {
               callback && callback();
             }
+
+            handleSelectCreatorPost(undefined);
             handleOpenModal("ct-publish-image");
           }}
           className="flex items-center dark:text-white gap-2 p-3 text-sm font-bold rounded-md hover:bg-slate-200 hover:dark:bg-slate-800/60"
@@ -48,6 +53,7 @@ export default function ContentDropdown({
             {
               callback && callback();
             }
+            handleSelectCreatorPost(undefined);
             handleOpenModal("ct-publish-video");
           }}
           className="flex items-center dark:text-white gap-2 p-3 text-sm font-bold rounded-md hover:bg-slate-200 hover:dark:bg-slate-800/60"

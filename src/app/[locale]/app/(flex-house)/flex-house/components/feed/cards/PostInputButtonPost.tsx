@@ -1,6 +1,8 @@
-import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import { modalType, useModal } from "@/providers/app/ModalProvider";
+import { useCreatorProvider } from "@/providers/features/CreatorProvider";
 import { IconType } from "react-icons";
+
+import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 
 export default function PostInputButtonPost({
   Icon,
@@ -19,7 +21,9 @@ export default function PostInputButtonPost({
 
   return (
     <button
-      onClick={() => handleOpenModal(action)}
+      onClick={() => {
+        handleOpenModal(action);
+      }}
       className={`${color} p-3 justify-center rounded-xl flex items-center gap-2 text-xs font-bold`}
     >
       <Icon size={15} />
