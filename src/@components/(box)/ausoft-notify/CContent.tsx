@@ -79,7 +79,17 @@ export default function AuSoftNotifyDropdownContent({
             <div className="px-1 text-sm font-bold rounded-full dark:text-yellow-500 text-yellow-600 bg-yellow-200 dark:bg-yellow-800/40">
               {` ${
                 allNotifications.total != allNotifications.notifications.length
-                  ? `(${allNotifications.notifications.length}/${allNotifications.total})`
+                  ? `(${
+                      allNotifications.notifications.length >= 100
+                        ? "+99"
+                        : allNotifications.notifications.length
+                    }/${
+                      allNotifications.total >= 100
+                        ? "+99"
+                        : allNotifications.total
+                    })`
+                  : allNotifications.total >= 100
+                  ? "+99"
                   : allNotifications.total
               }`}
             </div>

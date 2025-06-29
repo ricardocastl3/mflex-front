@@ -34,7 +34,7 @@ export function CAuSoftNotify() {
             </span>
             {allNotifications.unreads > 0 && (
               <span className="absolute -top-1 -right-1 pb-[0.02rem] pl-1.5 pr-[0.32rem] pt-[0.1rem] bg-red-600 rounded-full dark:bg-red-600 text-white text-xs font-bold">
-                {allNotifications.unreads}
+                {allNotifications.unreads > 9 ? "+9" : allNotifications.unreads}
               </span>
             )}
           </div>
