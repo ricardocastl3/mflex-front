@@ -160,7 +160,7 @@ export default function ASidebar() {
               Icon={ReactIcons.HiIcon.HiColorSwatch}
               href="creator"
               isSelected={currentAppPageUrl == "creator"}
-              title_en="Creator Dashboard"
+              title_en="Creator Panel"
               title_pt="Painel do Criador"
             />
 
