@@ -52,6 +52,10 @@ export default function PreviewMusic({ params }: Props) {
     if (fetchResource) fetchMusics();
   }, [fetchResource]);
 
+  useEffect(() => {
+    fetchMusics();
+  }, []);
+
   if (isLoading || isLoadingAllMusics) {
     return (
       <div className="flex flex-col">

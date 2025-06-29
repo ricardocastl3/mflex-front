@@ -50,6 +50,10 @@ export default function PreviewNew({ params }: Props) {
     if (fetchResource) fetchNews();
   }, [fetchResource]);
 
+  useEffect(() => {
+    fetchNews();
+  }, []);
+
   if (isLoading || isLoadingAllNews) {
     return (
       <div className="flex flex-col">
