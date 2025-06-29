@@ -155,7 +155,7 @@ export default function CreatorPublishPostVideoModal() {
             <ReactIcons.BiIcon.BiX size={25} className="dark:text-white" />
           </button>
         </div>
-        <div className="p-4 flex flex-col gap-4 md:h-[50vh] h-[50vh] overflow-y-auto">
+        <div className="flex flex-col gap-3 p-4">
           <div className="flex items-center gap-2">
             <div>
               <AuSoftUI.Component.Avatar
@@ -192,27 +192,32 @@ export default function CreatorPublishPostVideoModal() {
               </AuSoftUI.UI.Select>
             </div>
           </div>
-          <div className="flex flex-col gap-2">
-            <CreatorTextAreaField
-              hasImage={videoDetails.url || selectedCreatorPost ? true : false}
-              onChange={(e) => handleSetInfo({ description: e })}
-              value={videoDetails.description}
-            />
-          </div>
-          {(videoDetails.url || selectedCreatorPost) && (
-            <div className="flex gap-4 items-center justify-center w-full ">
-              <div className="rounded-xl flex justify-center items-center relative">
-                <div className="bg-green-200/30 dark:bg-green-800/20 items-center flex rounded-xl flex-col gap-2 text-sm font-bold dark:text-green-500 text-green-600 p-8 ">
-                  <ReactIcons.PiIcon.PiPlayFill size={20} className="" />
-                  {/* <CTranslateTo eng="Selected Video" pt="Video selecionado" /> */}
+          <div className="flex flex-col gap-4 md:h-[37vh] h-[34vh] overflow-y-auto">
+            <div className="flex flex-col gap-2">
+              <CreatorTextAreaField
+                hasImage={
+                  videoDetails.url || selectedCreatorPost ? true : false
+                }
+                onChange={(e) => handleSetInfo({ description: e })}
+                value={videoDetails.description}
+              />
+            </div>
+            {(videoDetails.url || selectedCreatorPost) && (
+              <div className="flex gap-4 items-center justify-center w-full ">
+                <div className="rounded-xl flex justify-center items-center relative">
+                  <div className="bg-green-200/30 dark:bg-green-800/20 items-center flex rounded-xl flex-col gap-2 text-sm font-bold dark:text-green-500 text-green-600 p-8 ">
+                    <ReactIcons.PiIcon.PiPlayFill size={20} className="" />
+                    {/* <CTranslateTo eng="Selected Video" pt="Video selecionado" /> */}
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
+
         <div className="flex flex-col w-full">
-          <div className="mx-4 mt-2 gap-4 flex items-center rounded-lg p-4 border border-slate-200 dark:border-slate-800">
-            <h1 className="dark:text-white">
+          <div className="mx-4 mt-2 gap-4 flex items-center rounded-lg px-4 py-3 border border-slate-200 dark:border-slate-800">
+            <h1 className="dark:text-white text-sm">
               <CTranslateTo eng="Add in your video" pt="Adicione o seu vídeo" />
             </h1>
             <div className="relative cursor-pointer">
@@ -249,7 +254,7 @@ export default function CreatorPublishPostVideoModal() {
                 variant={"destructive"}
                 className="rounded-full pt-1.5 pb-2 cursor-pointer px-2 z-20"
               >
-                <ReactIcons.AiICon.AiFillVideoCamera size={20} />
+                <ReactIcons.AiICon.AiFillVideoCamera size={16} />
               </AuSoftUI.UI.Button>
             </div>
           </div>

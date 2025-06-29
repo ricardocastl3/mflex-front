@@ -153,7 +153,7 @@ export default function CreatorPublishPostImageModal() {
             <ReactIcons.BiIcon.BiX size={25} className="dark:text-white" />
           </button>
         </div>
-        <div className="p-4 flex flex-col gap-4 md:h-[50vh] h-[50vh] overflow-y-auto">
+        <div className="flex flex-col gap-3 p-4">
           <div className="flex items-center gap-2">
             <div>
               <AuSoftUI.Component.Avatar
@@ -190,49 +190,53 @@ export default function CreatorPublishPostImageModal() {
               </AuSoftUI.UI.Select>
             </div>
           </div>
-          <div className="flex flex-col gap-2">
-            <CreatorTextAreaField
-              hasImage={postDetails.image ? true : false}
-              onChange={(e) => handleSetInfo({ description: e })}
-              value={postDetails.description}
-            />
-          </div>
-          {postDetails.image && (
-            <div className="flex gap-4 items-center justify-center w-full ">
-              <div className="rounded-xl relative border border-slate-200 dark:border-slate-800 md:w-[400px] w-[100px]">
-                <div
-                  style={{
-                    objectFit: "fill",
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "center",
-                    backgroundSize: "contain",
-                    backgroundImage: `url(${
-                      postDetails.image != ""
-                        ? postDetails.image
-                        : selectedCreatorPost && selectedCreatorPost.image != ""
-                        ? selectedCreatorPost.image
-                        : cataloguePreview
-                    })`,
-                  }}
-                  className="rounded-xl md:h-[200px] h-[100px] md:w-[400px] w-[100px] bg-slate-200 dark:bg-slate-700/50"
-                ></div>
-                <div className="absolute top-0 right-0 md:mx-2 mx-1 md:my-2 my-1">
-                  <button
-                    onClick={() => {
-                      handleSetInfo({ image: "" });
+          <div className="flex flex-col gap-4 md:h-[37vh] h-[34vh] overflow-y-auto pt-2 md:pr-1 pr-0">
+            <div className="flex flex-col gap-2">
+              <CreatorTextAreaField
+                hasImage={postDetails.image ? true : false}
+                onChange={(e) => handleSetInfo({ description: e })}
+                value={postDetails.description}
+              />
+            </div>
+            {postDetails.image && (
+              <div className="flex gap-4 items-center justify-center w-full ">
+                <div className="rounded-xl relative border border-slate-200 dark:border-slate-800 md:w-[400px] w-[100px]">
+                  <div
+                    style={{
+                      objectFit: "fill",
+                      backgroundRepeat: "no-repeat",
+                      backgroundPosition: "center",
+                      backgroundSize: "contain",
+                      backgroundImage: `url(${
+                        postDetails.image != ""
+                          ? postDetails.image
+                          : selectedCreatorPost &&
+                            selectedCreatorPost.image != ""
+                          ? selectedCreatorPost.image
+                          : cataloguePreview
+                      })`,
                     }}
-                    className="px-2 bg-black/60 text-base font-bold rounded-full text-white"
-                  >
-                    X
-                  </button>
+                    className="rounded-xl md:h-[200px] h-[100px] md:w-[400px] w-[100px] bg-slate-200 dark:bg-slate-700/50"
+                  ></div>
+                  <div className="absolute top-0 right-0 md:mx-2 mx-1 md:my-2 my-1">
+                    <button
+                      onClick={() => {
+                        handleSetInfo({ image: "" });
+                      }}
+                      className="px-2 bg-black/60 text-base font-bold rounded-full text-white"
+                    >
+                      X
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
+
         <div className="flex flex-col w-full">
-          <div className="mx-4 mt-2 gap-4 flex items-center rounded-lg p-4 border border-slate-200 dark:border-slate-800">
-            <h1 className="dark:text-white">
+          <div className="mx-4 mt-2 gap-4 flex items-center rounded-lg px-4 py-3 border border-slate-200 dark:border-slate-800">
+            <h1 className="dark:text-white text-sm">
               <CTranslateTo
                 eng="Add in yout post"
                 pt="Adicione na tua publicação"
@@ -260,7 +264,7 @@ export default function CreatorPublishPostImageModal() {
                 variant={"primary"}
                 className="rounded-full pt-1.5 pb-2 cursor-pointer px-2 z-20"
               >
-                <ReactIcons.AiICon.AiFillFileImage size={20} />
+                <ReactIcons.AiICon.AiFillFileImage size={16} />
               </AuSoftUI.UI.Button>
             </div>
           </div>

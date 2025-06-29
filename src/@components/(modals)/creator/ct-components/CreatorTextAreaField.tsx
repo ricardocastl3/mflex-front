@@ -37,8 +37,10 @@ export default function CreatorTextAreaField({
           : `What are you thinking, ${userLogged?.first_name}`
       }`}
       className={`${
-        hasImage ? "md:min-h-[10vh] min-h-[12vh]" : "min-h-[20vh] md:text-lg text-base"
-      } w-full md:max-h-[33vh] max-h-[30vh] focus:ring-offset-0 focus:ring-transparent focus:ring-offset-transparent overflow-hidden border-none bg-slate-200 dark:bg-slate-800/50`}
+        hasImage
+          ? "md:min-h-[6vh] min-h-[20vh]"
+          : "min-h-[20vh] md:text-lg text-base"
+      } w-full md:max-h-[35vh] max-h-[30vh] focus:ring-offset-0 focus:ring-transparent focus:ring-offset-transparent overflow-hidden border-none bg-slate-200 dark:bg-slate-800/50`}
       weight={"md"}
     />
   );
