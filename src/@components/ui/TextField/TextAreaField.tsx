@@ -10,7 +10,8 @@ const InputVariants = cva(
   {
     variants: {
       variant: {
-        noneFocus: "px-4 py-2.5 text-sm",
+        noneFocus:
+          "px-4 py-2.5 text-sm rounded-lg bg-transparent text-slate-800 dark:text-slate-100",
         default:
           "px-4 py-2.5 text-sm focus:ring-offset-1 rounded-lg bg-transparent text-slate-800 dark:text-slate-100 border-[1.8px]",
       },
