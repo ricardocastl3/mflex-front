@@ -1,7 +1,7 @@
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { langByCookies } from "@/http/axios/api";
 import { useAuth } from "@/providers/auth/AuthProvider";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 export default function CreatorTextAreaField({
   hasImage,
@@ -23,6 +23,10 @@ export default function CreatorTextAreaField({
     }
   }
 
+  useEffect(() => {
+    handleResize();
+  }, [value]);
+
   return (
     <AuSoftUI.UI.TextField.TextArea
       ref={textareaRef}
@@ -40,7 +44,7 @@ export default function CreatorTextAreaField({
         hasImage
           ? "md:min-h-[6vh] min-h-[20vh] md:text-base text-sm"
           : "min-h-[20vh] md:text-lg text-base"
-      } w-full md:max-h-[35vh] max-h-[30vh] focus:ring-offset-0 focus:ring-transparent focus:ring-offset-transparent overflow-hidden border-none bg-slate-200 dark:bg-slate-800/50`}
+      } w-full md:max-h-[35vh] max-h-[30vh] focus:ring-offset-0 focus:ring-transparent focus:ring-offset-transparent overflow-y-auto border-none bg-slate-200 dark:bg-slate-800/50`}
       weight={"noneFocus"}
       variant={"noneFocus"}
     />
