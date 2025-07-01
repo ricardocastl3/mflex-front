@@ -12,7 +12,7 @@ export const availableLangs: IAvailableLangs[] = [
     id: 1,
     lang: "Português",
     code: "PT",
-    image: localImages.flags.pt,
+    image: localImages.flags.ao,
   },
   {
     id: 2,

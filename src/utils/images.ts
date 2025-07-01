@@ -104,6 +104,9 @@ const ptFlag =
 const enFlag =
   "https://firebasestorage.googleapis.com/v0/b/lora-538b7.appspot.com/o/prefs%2Fflags%2Feng.png?alt=media&token=bd219d25-af32-4709-b1eb-15ad05b6bf01";
 
+const aoFlag =
+  "https://firebasestorage.googleapis.com/v0/b/lora-538b7.appspot.com/o/prefs%2Fflags%2Fao.png?alt=media&token=90be19df-e4b6-470d-bba5-b5f35a639065";
+
 const paypayLogo =
   "https://firebasestorage.googleapis.com/v0/b/lora-538b7.appspot.com/o/prefs%2Flogos%2Fpaypay_africa_logo.jpeg?alt=media&token=fd9ae0e9-f121-4ef4-ac78-3520a7874c72";
 
@@ -168,6 +171,7 @@ export const localImages = {
   flags: {
     pt: ptFlag,
     en: enFlag,
+    ao: aoFlag,
   },
   banner: {
     banner1,
