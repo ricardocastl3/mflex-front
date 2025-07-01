@@ -172,11 +172,11 @@ export default function CContent({ callback }: { callback?: () => void }) {
           <CTranslateTo eng="PodCasts" pt="PodCasts" />
         </Link>
         <Link
-          href={`/${langByCookies}/events`}
+          href={`/${langByCookies}/app/flex-house`}
           className="rounded-full flex text-sm items-center gap-2 px-4 dark:text-slate-200 dark:hover:bg-slate-800/40 hover:bg-slate-200 transition-all py-3"
         >
-          <ReactIcons.BiIcon.BiCalendarAlt size={14} />
-          <CTranslateTo eng="Public Events" pt="Eventos Públicos" />
+          <ReactIcons.BiIcon.BiHome size={14} />
+          <CTranslateTo eng="Flex House" pt="Casa Da Flex" />
         </Link>
       </div>
       <div className="flex flex-col gap-1.5 mt-2">
