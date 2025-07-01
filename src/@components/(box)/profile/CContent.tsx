@@ -78,9 +78,8 @@ export default function CContent({ callback }: { callback?: () => void }) {
             : "bg-slate-200 dark:bg-slate-800/60"
         } flex items-center gap-2 rounded-lg  p-2 mt-3`}
       >
-        <div className="md:hidden flex">
-          <CTranslate size={15} />
-        </div>
+        <CTranslate size={15} />
+
         {(currentSubscription || currentArtistSubscription) && (
           <>
             {currentSubscription && (
