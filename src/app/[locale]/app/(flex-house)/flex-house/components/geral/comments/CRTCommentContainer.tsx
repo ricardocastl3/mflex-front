@@ -138,7 +138,7 @@ export default function CRTCommentContainer({
           : displayMode == "desktop"
           ? "md:flex hidden mx-[3rem] w-[62vw]"
           : "w-full"
-      } md:h-fit h-full md:pb-8 pb-12`}
+      } md:h-fit h-full md:pb-8 pb-20`}
     >
       <div className="flex flex-col gap-4 w-full h-full">
         {userLogged && <CRTCommentInputPost />}
