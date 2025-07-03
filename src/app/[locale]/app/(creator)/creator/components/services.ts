@@ -20,7 +20,7 @@ export const creatorServices: ICreatorService[] = [
     d_en: "Your publication statistics",
     iconColor: "text-violet-500 hover:text-violet-600",
     Icon: ReactIcons.FaIcon.FaChartArea,
-    action: "creators/stats",
+    action: "creator/stats",
     type: "menu",
   },
   {
