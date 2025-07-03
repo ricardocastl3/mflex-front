@@ -7,6 +7,7 @@ import { useCreatorProvider } from "@/providers/features/CreatorProvider";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import useOwnCreatorPost from "@/hooks/api/creators/useOwnCreatorPost";
 import PageBase from "@/app/[locale]/app/@components/PageBase";
+import ContainerBase from "@/app/[locale]/app/@components/ContainerBase";
 
 export default function CreatorPage() {
   const {
@@ -19,41 +20,6 @@ export default function CreatorPage() {
 
   const { fetchCreatorPost } = useCreatorProvider();
 
-  useEffect(() => {
-    if (
-      !allCreatorPosts.has ||
-      isLoadingCreatorPosts ||
-      isLoadingMorePosts ||
-      (!isLoadingMorePosts && !allCreatorPosts.has)
-    )
-      return;
-
-    let isLoading = false; // Controle para evitar chamadas repetidas
-
-    const handleScroll = () => {
-      const scrollHeight = document.documentElement.scrollHeight;
-      const scrollTop = window.scrollY;
-      const clientHeight = document.documentElement.clientHeight;
-
-      const height = window.innerWidth > 765 ? 1000 : 800;
-
-      if (scrollTop + clientHeight >= scrollHeight - height && !isLoading) {
-        isLoading = true; // Marcar como carregando
-        setTimeout(async () => {
-          await handleLoadMore({ name: "" });
-          isLoading = false;
-        }, 500);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [isLoadingMorePosts, isLoadingCreatorPosts]);
-
-  useEffect(() => {
-    if (fetchCreatorPost) fetchAllCreatorPosts();
-  }, [fetchCreatorPost]);
-
   return (
     <>
       <PageBase>
@@ -63,6 +29,17 @@ export default function CreatorPage() {
             <CTranslateTo eng="Statistics" pt="Estatísicas" />
           </h4>
         </div>
+        <ContainerBase>
+          <div>
+            <h1 className="text-yellow-500">
+              <CTranslateTo
+                eng="We are working on your statistics..."
+                pt="Estamos trabalhando nas suas estatísticas..."
+              />{" "}
+              {` 🙂‍↔️`}
+            </h1>
+          </div>
+        </ContainerBase>
       </PageBase>
     </>
   );
