@@ -1,3 +1,4 @@
+import { langByCookies } from "@/http/axios/api";
 import { useModal } from "@/providers/app/ModalProvider";
 import { ReactIcons } from "@/utils/icons";
 import { usePathname } from "next/navigation";
@@ -38,10 +39,18 @@ export default function TechSupport() {
         >
           <div className="dark:bg-orange-900 bg-orange-600 rounded-full">
             <button
-              onClick={() => handleOpenModal("technical-support")}
+              onClick={() =>
+                window.open(
+                  `https://wa.me/244954974069?text=${
+                    langByCookies == "en"
+                      ? "Hello, I need a help!"
+                      : "Olá, preciso de ajuda!"
+                  }`
+                )
+              }
               className="p-3.5 flex cursor-pointer hover:animate-jump hover:dark:bg-orange-700 hover:bg-orange-600 transition-all duration-300 dark:bg-orange-600 bg-orange-500 text-white rounded-full"
             >
-              <ReactIcons.AiICon.AiFillCustomerService
+              <ReactIcons.AiICon.AiFillMessage
                 size={window.innerWidth > 765 ? 27 : 18}
               />
             </button>
