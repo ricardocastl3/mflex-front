@@ -107,7 +107,7 @@ export default function Feed() {
         await fetchPostOnUrl(get);
         await fetchAllCreatorPosts();
       }
-    }, 500);
+    }, 10);
   }, [params, fetchPostOnUrl]);
 
   return (
