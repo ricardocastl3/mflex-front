@@ -57,14 +57,14 @@ export default function PostCard({
     if (fetchResource) fetchPost();
   }, [fetchResource]);
 
-
-  useEffect(()=>{
-
-
-    
-
-    
-  },[])
+  useEffect(() => {
+    return () => {
+      if (onUrl) {
+        router.push(`/${langByCookies}/app/flex-house`);
+        if (setSelectedPostByURL) setSelectedPostByURL(undefined);
+      }
+    };
+  }, []);
 
   return (
     <div
