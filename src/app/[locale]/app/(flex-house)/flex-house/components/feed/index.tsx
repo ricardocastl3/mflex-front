@@ -103,7 +103,7 @@ export default function Feed() {
   useEffect(() => {
     const get = params.get("lkp");
     if (get) fetchPostOnUrl(get);
-  }, []);
+  }, [params]);
 
   return (
     <div className="">
