@@ -54,6 +54,7 @@ export default function CreatorSharePostModal() {
       }
 
       window.open(shareData.url);
+      handleClose();
       setIsSubmitting(false);
     } catch (err) {
       setIsSubmitting(false);
