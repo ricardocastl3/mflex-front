@@ -16,6 +16,8 @@ export const useWebPush = (userId: string) => {
   useEffect(() => {
     if (!userId) return;
 
+    if (!Notification) return;
+
     if ("serviceWorker" in navigator && "PushManager" in window) {
       navigator.serviceWorker.register("/sw.js").then(async (reg) => {
         try {

@@ -43,7 +43,6 @@ export default function RootLayout({
   useAOS();
   FacebookPixel({ pixelId: "1182352936527746" });
   useConsoleRemote();
-  
   return (
     <html lang="en" translate="no">
       <body
