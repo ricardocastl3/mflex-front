@@ -1,17 +1,20 @@
 import { ReactIcons } from "@/utils/icons";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { localImages } from "@/utils/images";
-import { useAppProvider } from "@/providers/app/AppProvider";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import {
+  IResourceNotification,
+  IResourceNotificationAPI,
+} from "@/http/interfaces/models/resources/IResourceNotifications";
+import { subDays } from "date-fns";
 import { internalApi } from "@/http/axios/api";
-import { IResourceNotificationAPI } from "@/http/interfaces/models/resources/IResourceNotifications";
+import { useAppProvider } from "@/providers/app/AppProvider";
 
 import Image from "next/image";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
-import DateServices from "@/services/DateServices";
 import LoadingMoreButton from "@/app/[locale]/app/@components/api-query-pages/LoadingMoreButton";
+import NotificationCard from "./NotificationCard";
+import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 
 export default function AuSoftNotifyDropdownContent({
   callback,
@@ -32,11 +35,18 @@ export default function AuSoftNotifyDropdownContent({
 }) {
   // Contexts
   const { handleAddToastOnArray } = useAppProvider();
-  const [isLoading, setIsloading] = useState(isLoadingNotification);
 
   // Controls
-  const [canOpen, setCanOpen] = useState(false);
-  const router = useRouter();
+  const [safedNotification, setSafedNotification] = useState<
+    IResourceNotification[]
+  >([]);
+
+  const [isLoading, setIsloading] = useState(isLoadingNotification);
+
+  useEffect(() => {
+    setIsloading(isLoadingNotification);
+    setSafedNotification(allNotifications.notifications);
+  }, [isLoadingNotification]);
 
   async function handleMarkAsRead(mode: string, id?: string) {
     try {
@@ -50,19 +60,6 @@ export default function AuSoftNotifyDropdownContent({
     } catch (err) {
       setIsloading(false);
       return CAxiosErrorToastify({ err, openToast: handleAddToastOnArray });
-    }
-  }
-
-  useEffect(() => {
-    setIsloading(isLoadingNotification);
-  }, [isLoadingNotification]);
-
-  function handleOpenAction(url: string, type: "blank" | "fix") {
-    if (callback) callback();
-    if (type == "fix") {
-      router.push(url);
-    } else {
-      window.open(url, "_blank");
     }
   }
 
@@ -106,102 +103,111 @@ export default function AuSoftNotifyDropdownContent({
       </div>
       <div className="mt-4 flex w-full items-start gap-2.5 flex-col md:h-[50vh] h-[50vh] overflow-y-auto">
         {!isLoading && allNotifications.notifications.length > 0 && (
-          <div className="flex flex-col gap-2.5 pb-4 w-full">
-            {allNotifications.notifications.map((notification, i) => {
-              return (
-                <div
-                  onMouseEnter={() => {
-                    if (window.innerWidth > 764) {
-                      setCanOpen(true);
-                    }
-                  }}
-                  onClick={() => {
-                    if (canOpen)
-                      handleOpenAction(
-                        notification.url,
-                        notification.blank ? "blank" : "fix"
+          <>
+            <div className="flex flex-col gap-2.5 pb-4 w-full">
+              {allNotifications.notifications.filter(
+                (i) =>
+                  new Date(i.created_at).toISOString().split("T")[0] ==
+                  new Date().toISOString().split("T")[0]
+              ).length > 0 && (
+                <>
+                  <h1 className="mb-3 font-bold text-slate-600 dark:text-slate-400 text-xs">
+                    <CTranslateTo eng="Today" pt="Hoje" />
+                  </h1>
+
+                  {allNotifications.notifications
+                    .filter(
+                      (i) =>
+                        new Date(i.created_at).toISOString().split("T")[0] ==
+                        new Date().toISOString().split("T")[0]
+                    )
+                    .map((notification, i) => {
+                      return (
+                        <NotificationCard
+                          key={i}
+                          callback={callback}
+                          notification={notification}
+                          handleMarkAsRead={handleMarkAsRead}
+                        />
                       );
-                  }}
-                  key={i}
-                  className={`${
-                    notification.read
-                      ? "dark:bg-slate-800/40 bg-slate-300/40"
-                      : "dark:bg-slate-800/90 bg-slate-100"
-                  } cursor-pointer hover:bg-slate-300/40 dark:hover:bg-slate-800/40 rounded-xl flex flex-col gap-1 px-3.5 py-2 w-full`}
-                >
-                  <div className="flex items-center justify-between">
-                    <h4
-                      onClick={() => {
-                        if (window.innerWidth <= 764) {
-                          handleOpenAction(
-                            notification.url,
-                            notification.blank ? "blank" : "fix"
-                          );
-                        }
-                      }}
-                      className="text-[0.85rem] dark:text-white font-bold"
-                    >
-                      {notification.title}
-                    </h4>
-                  </div>
-                  <div>
-                    <h4 className="text-[0.85rem] text-slate-700 dark:text-slate-400">
-                      {notification.description}
-                    </h4>
+                    })}
+                </>
+              )}
 
-                    <div className="flex items-center gap-2 mt-1.5">
-                      <h4 className="text-[0.85rem] text-slate-500 dark:text-slate-400 ">
-                        {DateServices.normalize(notification.created_at)}
-                      </h4>
+              {allNotifications.notifications.filter(
+                (i) =>
+                  new Date(i.created_at).toISOString().split("T")[0] ==
+                  subDays(new Date(), 1).toISOString().split("T")[0]
+              ).length > 0 && (
+                <>
+                  <h1 className="mb-3 font-bold text-slate-600 dark:text-slate-400 text-xs">
+                    <CTranslateTo eng="Yesterday" pt="Ontem" />
+                  </h1>
 
-                      <button
-                        onMouseEnter={() => {
-                          setCanOpen(false);
-                        }}
-                        onClick={() => {
-                          handleMarkAsRead("single", notification.id);
-                        }}
-                        className={`${
-                          notification.read
-                            ? "dark:text-slate-500 text-slate-500 hover:bg-slate-300 dark:hover:bg-slate-800"
-                            : "dark:text-yellow-700 text-yellow-500 hover:bg-yellow-200 dark:hover:bg-yellow-900/40"
-                        } p-1.5 rounded-full flex items-center text-xs gap-2`}
-                      >
-                        {notification.read && (
-                          <CTranslateTo
-                            eng="Mas as unread"
-                            pt="Marcar como não lida"
-                          />
-                        )}
-                        {!notification.read && (
-                          <CTranslateTo
-                            eng="Mas as read"
-                            pt="Marcar como lida"
-                          />
-                        )}
-                        <ReactIcons.PiIcon.PiCircleFill size={8} />
-                      </button>
-                    </div>
-                  </div>
+                  {allNotifications.notifications
+                    .filter(
+                      (i) =>
+                        new Date(i.created_at).toISOString().split("T")[0] ==
+                        subDays(new Date(), 1).toISOString().split("T")[0]
+                    )
+                    .map((notification, i) => {
+                      return (
+                        <NotificationCard
+                          key={i}
+                          callback={callback}
+                          notification={notification}
+                          handleMarkAsRead={handleMarkAsRead}
+                        />
+                      );
+                    })}
+                </>
+              )}
+
+              {allNotifications.notifications.filter(
+                (i) =>
+                  new Date(i.created_at).getTime() <
+                  subDays(new Date(), 2).getTime()
+              ).length > 0 && (
+                <>
+                  <h1 className="mb-3 font-bold text-slate-600 dark:text-slate-400 text-xs">
+                    <CTranslateTo eng="Previous Day" pt="Dias anteriores" />
+                  </h1>
+
+                  {allNotifications.notifications
+                    .filter(
+                      (i) =>
+                        new Date(i.created_at).getTime() <
+                        subDays(new Date(), 2).getTime()
+                    )
+                    .map((notification, i) => {
+                      return (
+                        <NotificationCard
+                          key={i}
+                          callback={callback}
+                          notification={notification}
+                          handleMarkAsRead={handleMarkAsRead}
+                        />
+                      );
+                    })}
+                </>
+              )}
+
+              {isLoadMore && (
+                <div className="w-full">
+                  <AuSoftUI.Component.LoadingList
+                    overflow={false}
+                    isLoading={isLoadMore}
+                  />
                 </div>
-              );
-            })}
-
-            {isLoadMore && (
-              <div className="w-full">
-                <AuSoftUI.Component.LoadingList
-                  overflow={false}
-                  isLoading={isLoadMore}
-                />
-              </div>
-            )}
-            <LoadingMoreButton
-              has={hasMore}
-              size="sm"
-              isLoading={isLoadMore}
-              fetchMore={fetchMore}
-            />
-          </div>
+              )}
+              <LoadingMoreButton
+                has={hasMore}
+                size="sm"
+                isLoading={isLoadMore}
+                fetchMore={fetchMore}
+              />
+            </div>
+          </>
         )}
 
         {!isLoading && allNotifications.notifications.length <= 0 && (
