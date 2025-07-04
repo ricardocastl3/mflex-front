@@ -8,6 +8,8 @@ export default function useConsoleRemote() {
       channel: "mflex-solo-lobo", // required
       redirectDefaultConsoleToRemote: true, // optional, default: false
     });
+
+    console.re.log("RECONSOLE");
     window.onerror = function (msg, url, lineNo, columnNo, error) {
       console.re.log("🛑 Erro global:", {
         msg,
