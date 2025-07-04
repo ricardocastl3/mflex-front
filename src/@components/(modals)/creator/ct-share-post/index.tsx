@@ -32,7 +32,7 @@ export default function CreatorSharePostModal() {
       setIsSubmitting(true);
       await internalApi.post("/users/shares", { id: selectedResource?.id });
 
-      let shareData = {
+      const shareData = {
         content: ``,
         url: "",
       };
