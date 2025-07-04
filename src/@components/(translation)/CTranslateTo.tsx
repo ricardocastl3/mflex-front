@@ -8,7 +8,11 @@ interface ITranslateTo {
 }
 
 export default function CTranslateTo({ eng, pt }: ITranslateTo) {
-  const { currentLang } = useTranslate();
-
-  return <>{currentLang.code == "PT" ? pt : eng}</>;
+  try {
+    const { currentLang } = useTranslate();
+    return <>{currentLang.code == "PT" ? pt : eng}</>;
+  } catch (error) {
+    console.error(error);
+    return <>Erro ao traduzir</>;
+  }
 }

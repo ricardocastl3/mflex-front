@@ -40,6 +40,7 @@ export default function TechSupport() {
           <div className="dark:bg-orange-900 bg-orange-600 rounded-full">
             <button
               onClick={() =>
+                //handleOpenModal("technical-support")
                 window.open(
                   `https://wa.me/244954974069?text=${
                     langByCookies == "en"
