@@ -12,6 +12,7 @@ import SFooter from "@/@components/(system)/site/SFooter/desktop";
 import TechSupport from "@/services/contact-zap/TechSupport";
 import useServerStats from "@/hooks/api/useServerStats";
 import NewAppVersionBanner from "@/@components/(box)/new-app-version";
+import useConsoleRemote from "@/hooks/app/useConsoleRemote";
 
 export default function MFlexLayout({
   children,
@@ -21,6 +22,7 @@ export default function MFlexLayout({
   const { isLoadingUserData, userLogged } = useAuth();
   const { openToast, openBanner } = useAppProvider();
 
+  useConsoleRemote();
   useServerStats({ user: userLogged });
 
   if (isLoadingUserData) {
