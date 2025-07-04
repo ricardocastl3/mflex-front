@@ -170,11 +170,14 @@ export default function AppProvider({
   }, [path]);
 
   useEffect(() => {
-    if (userLogged)
-      Notification.requestPermission().then((e) => {
-        if (e == "granted") setIsNotifyGranted(true);
-        else setIsNotifyGranted(false);
-      });
+    try {
+      if (userLogged) {
+        Notification.requestPermission().then((e) => {
+          if (e == "granted") setIsNotifyGranted(true);
+          else setIsNotifyGranted(false);
+        });
+      }
+    } catch (err) {}
   }, [userLogged]);
 
   useEffect(() => {

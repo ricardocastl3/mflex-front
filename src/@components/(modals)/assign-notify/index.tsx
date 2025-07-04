@@ -15,20 +15,22 @@ export default function AllowNotificationModal() {
   const { handleOpenModal } = useModal();
 
   async function handleAllow() {
-    const notification = await Notification.requestPermission();
+    try {
+      const notification = await Notification.requestPermission();
 
-    if (notification == "granted") {
-      window.location.href = "/" + langByCookies + "/app";
-    }
-    if (notification == "denied") {
-      alert(
-        `${
-          langByCookies == "en"
-            ? "To allow, open your browser settings, go to notifications, search for the website www.marcaflex.com, and authorize"
-            : "Para permitir, abra as definições do seu navegador, entre em notificações, procure pelo site www.marcaflex.com, e autorize"
-        }`
-      );
-    }
+      if (notification == "granted") {
+        window.location.href = "/" + langByCookies + "/app";
+      }
+      if (notification == "denied") {
+        alert(
+          `${
+            langByCookies == "en"
+              ? "To allow, open your browser settings, go to notifications, search for the website www.marcaflex.com, and authorize"
+              : "Para permitir, abra as definições do seu navegador, entre em notificações, procure pelo site www.marcaflex.com, e autorize"
+          }`
+        );
+      }
+    } catch (err) {}
   }
 
   return (
