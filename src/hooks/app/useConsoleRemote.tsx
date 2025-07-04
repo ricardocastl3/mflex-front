@@ -11,10 +11,6 @@ export default function useConsoleRemote() {
       redirectDefaultConsoleToRemote: true, // optional, default: false
     });
 
-    internalApi.post("/users/log-ct", {
-      info: { msg: "RECONSOLE" },
-    });
-
     window.onerror = function (msg, url, lineNo, columnNo, error) {
       console.re.log("🛑 Erro global:", {
         msg,
@@ -24,7 +20,7 @@ export default function useConsoleRemote() {
         error,
       });
 
-      internalApi.post("/log-ct", {
+      internalApi.post("/users/log-ct", {
         info: { msg, url, lineNo, columnNo, error },
       });
     };
