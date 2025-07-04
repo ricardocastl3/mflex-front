@@ -102,7 +102,10 @@ export default function Feed() {
 
   useEffect(() => {
     const get = params.get("lkp");
-    if (get) fetchPostOnUrl(get);
+    if (get) {
+      fetchPostOnUrl(get);
+      fetchAllCreatorPosts();
+    }
   }, [params, fetchPostOnUrl]);
 
   return (
