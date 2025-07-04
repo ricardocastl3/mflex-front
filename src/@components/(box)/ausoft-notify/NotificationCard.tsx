@@ -80,7 +80,7 @@ export default function NotificationCard({
           </h4>
 
           <button
-            onMouseEnter={() => {
+            onMouseOver={() => {
               setCanOpen(false);
             }}
             onClick={() => {

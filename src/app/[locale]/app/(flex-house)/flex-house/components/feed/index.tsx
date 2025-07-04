@@ -101,11 +101,11 @@ export default function Feed() {
   }, [fetchFHCreatorPost]);
 
   useEffect(() => {
-    setTimeout(() => {
+    setTimeout(async () => {
       const get = params.get("lkp");
       if (get) {
-        fetchPostOnUrl(get);
-        fetchAllCreatorPosts();
+        await fetchPostOnUrl(get);
+        await fetchAllCreatorPosts();
       }
     }, 500);
   }, [params, fetchPostOnUrl]);
