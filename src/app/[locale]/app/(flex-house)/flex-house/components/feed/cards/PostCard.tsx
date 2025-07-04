@@ -10,8 +10,14 @@ import CRTPostDescription from "../../geral/CRTPostDescription";
 import CRTCommentContainer from "../../geral/comments/CRTCommentContainer";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 
-export default function PostCard({ post }: { post: ICreatorPost }) {
-  const [openComments, setOpenComments] = useState(false);
+export default function PostCard({
+  post,
+  openComment = false,
+}: {
+  openComment?: boolean;
+  post: ICreatorPost;
+}) {
+  const [openComments, setOpenComments] = useState(openComment);
   const [selectedPost, setSelectedPost] = useState<ICreatorPost | undefined>();
 
   const { fetchResource } = useResourceProvider();

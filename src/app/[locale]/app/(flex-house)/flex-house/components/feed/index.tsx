@@ -1,6 +1,9 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { localImages } from "@/utils/images";
 import { useFlexHouseProvider } from "@/providers/features/FlexHouseProvider";
+import { useSearchParams } from "next/navigation";
+import { internalApi } from "@/http/axios/api";
+import { ICreatorPost } from "@/http/interfaces/models/fhouse/ICreatorPost";
 
 import PostCard from "./cards/PostCard";
 import CreatorBox from "./box/creator/CreatorBox";
@@ -22,6 +25,13 @@ export default function Feed() {
   const { fetchFHCreatorPost } = useFlexHouseProvider();
   const isLoadingRef = useRef(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const params = useSearchParams();
+
+  // Controls
+  const [selectedPostOnUrl, setSelectedPostOnUrl] = useState<
+    ICreatorPost | undefined
+  >();
 
   useEffect(() => {
     if (isLoadingCreatorPosts || isLoadingMorePosts || !allCreatorPosts.has) {
@@ -75,9 +85,25 @@ export default function Feed() {
     handleLoadMore,
   ]);
 
+  const fetchPostOnUrl = useCallback(async (id: string) => {
+    try {
+      const resp = await internalApi.get("/creators/posts", {
+        params: {
+          id,
+        },
+      });
+      setSelectedPostOnUrl(resp.data.post);
+    } catch (err) {}
+  }, []);
+
   useEffect(() => {
     if (fetchFHCreatorPost) fetchAllCreatorPosts();
   }, [fetchFHCreatorPost]);
+
+  useEffect(() => {
+    const get = params.get("lkp");
+    if (get) fetchPostOnUrl(get);
+  }, []);
 
   return (
     <div className="">
@@ -95,7 +121,19 @@ export default function Feed() {
             {!isLoadingCreatorPosts && allCreatorPosts.posts.length > 0 && (
               <>
                 {allCreatorPosts.posts.map((post, i) => {
-                  return <PostCard key={i} post={post} />;
+                  return (
+                    <PostCard
+                      openComment={
+                        selectedPostOnUrl
+                          ? selectedPostOnUrl.id == post.id
+                            ? true
+                            : false
+                          : false
+                      }
+                      key={i}
+                      post={post}
+                    />
+                  );
                 })}
               </>
             )}

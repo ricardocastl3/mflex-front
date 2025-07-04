@@ -12,6 +12,7 @@ import ForYouTab from "./components/for-you";
 
 export default function FlexHousePage() {
   const { selectedFHTab } = useFlexHouseProvider();
+
   return (
     <PageBase customTop="md:pt-[4rem] pt-[4.5rem]">
       <div className="flex items-center">
