@@ -101,7 +101,7 @@ export default function AuSoftNotifyDropdownContent({
           </button>
         )}
       </div>
-      <div className="mt-4 flex w-full items-start gap-2.5 flex-col md:h-[50vh] h-[50vh] overflow-y-auto">
+      <div className="mt-4 flex w-full items-start gap-2.5 flex-col md:h-[55vh] h-[50vh] overflow-y-auto md:pr-1 pr-0">
         {!isLoading && allNotifications.notifications.length > 0 && (
           <>
             <div className="flex flex-col gap-2.5 pb-4 w-full">
@@ -111,7 +111,7 @@ export default function AuSoftNotifyDropdownContent({
                   new Date().toISOString().split("T")[0]
               ).length > 0 && (
                 <>
-                  <h1 className="mb-3 font-bold text-slate-600 dark:text-slate-400 text-xs">
+                  <h1 className="mb-1 font-bold text-slate-600 dark:text-slate-400 text-xs">
                     <CTranslateTo eng="Today" pt="Hoje" />
                   </h1>
 
@@ -140,7 +140,7 @@ export default function AuSoftNotifyDropdownContent({
                   subDays(new Date(), 1).toISOString().split("T")[0]
               ).length > 0 && (
                 <>
-                  <h1 className="mb-3 font-bold text-slate-600 dark:text-slate-400 text-xs">
+                  <h1 className="mb-1 font-bold text-slate-600 dark:text-slate-400 text-xs">
                     <CTranslateTo eng="Yesterday" pt="Ontem" />
                   </h1>
 
@@ -169,7 +169,7 @@ export default function AuSoftNotifyDropdownContent({
                   subDays(new Date(), 2).getTime()
               ).length > 0 && (
                 <>
-                  <h1 className="mb-3 font-bold text-slate-600 dark:text-slate-400 text-xs">
+                  <h1 className="mb-1 font-bold text-slate-600 dark:text-slate-400 text-xs">
                     <CTranslateTo eng="Previous Day" pt="Dias anteriores" />
                   </h1>
 
