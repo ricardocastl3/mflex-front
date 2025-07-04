@@ -123,7 +123,8 @@ export default function Feed() {
                 {allCreatorPosts.posts.map((post, i) => {
                   return (
                     <PostCard
-                      openComment={
+                      setSelectedPostByURL={setSelectedPostOnUrl}
+                      onUrl={
                         selectedPostOnUrl
                           ? selectedPostOnUrl.id == post.id
                             ? true
