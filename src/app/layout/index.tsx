@@ -28,6 +28,7 @@ import ArtistProvider from "@/providers/features/ArtistProvider";
 import ResourceProvider from "@/providers/features/ResourceProvider";
 import FlexHouseProvider from "@/providers/features/FlexHouseProvider";
 import CreatorProvider from "@/providers/features/CreatorProvider";
+import useConsoleRemote from "@/hooks/app/useConsoleRemote";
 
 const anek = Abel({ weight: "400", subsets: ["latin"] });
 
@@ -41,6 +42,8 @@ export default function RootLayout({
   usePWA();
   useAOS();
   FacebookPixel({ pixelId: "1182352936527746" });
+  useConsoleRemote();
+  
   return (
     <html lang="en" translate="no">
       <body
