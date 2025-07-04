@@ -58,13 +58,13 @@ export default function PostCard({
   }, [fetchResource]);
 
   useEffect(() => {
-    return () => {
+    if (!openComments) {
       if (onUrl) {
         router.push(`/${langByCookies}/app/flex-house`);
         if (setSelectedPostByURL) setSelectedPostByURL(undefined);
       }
-    };
-  }, []);
+    }
+  }, [openComments]);
 
   return (
     <div

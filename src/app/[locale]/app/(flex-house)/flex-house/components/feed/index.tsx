@@ -101,11 +101,13 @@ export default function Feed() {
   }, [fetchFHCreatorPost]);
 
   useEffect(() => {
-    const get = params.get("lkp");
-    if (get) {
-      fetchPostOnUrl(get);
-      fetchAllCreatorPosts();
-    }
+    setTimeout(() => {
+      const get = params.get("lkp");
+      if (get) {
+        fetchPostOnUrl(get);
+        fetchAllCreatorPosts();
+      }
+    }, 500);
   }, [params, fetchPostOnUrl]);
 
   return (
