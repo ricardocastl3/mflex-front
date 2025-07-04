@@ -57,6 +57,15 @@ export default function PostCard({
     if (fetchResource) fetchPost();
   }, [fetchResource]);
 
+
+  useEffect(()=>{
+
+
+    
+
+    
+  },[])
+
   return (
     <div
       className={`${

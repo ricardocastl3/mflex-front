@@ -1,5 +1,5 @@
 import { IResourceNotification } from "@/http/interfaces/models/resources/IResourceNotifications";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ReactIcons } from "@/utils/icons";
 
@@ -15,7 +15,6 @@ export default function NotificationCard({
   handleMarkAsRead: (mode: string, id?: string) => void;
   notification: IResourceNotification;
 }) {
-
   const [canOpen, setCanOpen] = useState(false);
 
   const router = useRouter();
@@ -29,9 +28,15 @@ export default function NotificationCard({
     }
   }
 
+  useEffect(() => {
+    if (window.innerWidth > 764) {
+      setCanOpen(true);
+    }
+  }, []);
+
   return (
     <div
-      onMouseEnter={() => {
+      onMouseOver={() => {
         if (window.innerWidth > 764) {
           setCanOpen(true);
         }
