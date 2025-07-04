@@ -23,7 +23,6 @@ export default function PostCard({
   onUrl = false,
 }: {
   onUrl?: boolean;
-  openComment?: boolean;
   post: ICreatorPost;
   setSelectedPostByURL?: Dispatch<SetStateAction<ICreatorPost | undefined>>;
 }) {
