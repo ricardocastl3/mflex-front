@@ -1,6 +1,7 @@
 import { IResourceComment } from "../resources/IResourceComment";
 import { IResourceLike } from "../resources/IResourceLike";
 import { IResourceView } from "../resources/IResourceView";
+import { IResourseShare } from "../resources/IResourseShare";
 import { ICreator } from "./ICreator";
 
 export interface ICreatorPost {
@@ -15,6 +16,7 @@ export interface ICreatorPost {
   created_at: Date;
   updated_at: Date;
 
+  shares: IResourseShare[];
   views: IResourceView[];
   comments: IResourceComment[];
   likes: IResourceLike[];

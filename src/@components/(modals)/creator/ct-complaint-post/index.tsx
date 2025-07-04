@@ -1,12 +1,11 @@
 import { ReactIcons } from "@/utils/icons";
 import { useModal } from "@/providers/app/ModalProvider";
-import { useEffect, useState } from "react";
-import { useEventProvider } from "@/providers/features/EventProvider";
+import { useState } from "react";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { internalApi, langByCookies } from "@/http/axios/api";
 import { useAppProvider } from "@/providers/app/AppProvider";
-import { useMusicProvider } from "@/providers/features/MusicProvider";
 import { complaintPosts } from "./utils";
+import { useResourceProvider } from "@/providers/features/ResourceProvider";
 
 import AAuSoftLogo from "@/@components/(ausoft)/AAuSoftLogo";
 import BaseModal from "../../base";
@@ -16,10 +15,8 @@ import ARegisterProgress from "@/@components/(ausoft)/ARegisterProgress";
 
 export default function CreatorComplaintPostModal() {
   // Contexts
-  const { handleFetchEvent, handleSelectEvent, selectedEvent } =
-    useEventProvider();
-  const { selectedMusic } = useMusicProvider();
   const { handleOpenModal, handleAddTextOnBoxSuccess } = useModal();
+  const { selectedResource } = useResourceProvider();
   const { handleAddToastOnArray } = useAppProvider();
 
   // Controls
@@ -43,7 +40,7 @@ export default function CreatorComplaintPostModal() {
       setIsSubmitting(true);
 
       await internalApi.post("/creators/cmp", {
-        id: selectedMusic?.id,
+        id: selectedResource?.id,
         title,
         reason,
       });
@@ -67,8 +64,6 @@ export default function CreatorComplaintPostModal() {
 
   function handleClose() {
     handleOpenModal("");
-    handleFetchEvent(false);
-    handleSelectEvent(undefined);
   }
 
   return (
