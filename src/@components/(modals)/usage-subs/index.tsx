@@ -190,7 +190,7 @@ export default function UsageSubsModal() {
                       pt="TV Channels: "
                     />
                     <b className="font-bold">
-                      {currentSubscription?.subscription.plan?.flex_tv ? (
+                      {currentSubscription?.flex_tv ? (
                         <CTranslateTo eng="Yes" pt="Sim" />
                       ) : (
                         <CTranslateTo eng="No" pt="Não" />
@@ -201,7 +201,7 @@ export default function UsageSubsModal() {
                     <CTranslateTo eng="Movies: " pt="Filmes: " />
                     <b className="font-bold">
                       {" "}
-                      {currentSubscription?.subscription.plan?.flex_movie ? (
+                      {currentSubscription?.flex_movie ? (
                         <CTranslateTo eng="Yes" pt="Sim" />
                       ) : (
                         <CTranslateTo eng="No" pt="Não" />

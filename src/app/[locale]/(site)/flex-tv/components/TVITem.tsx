@@ -32,12 +32,6 @@ export default function TVItem({
     router.push(`/${langByCookies}/pricing`);
   }
 
-  const isExpiredSubscription =
-    !currentSubscription ||
-    (currentSubscription && currentSubscription.subscription.is_expired)
-      ? true
-      : false;
-
   return (
     <motion.div
       initial={{ y: "9rem", opacity: 0 }}
@@ -66,8 +60,7 @@ export default function TVItem({
         </div>
 
         {(item.public ||
-          (currentSubscription &&
-            currentSubscription.subscription.plan?.flex_tv)) && (
+          (currentSubscription && currentSubscription?.flex_tv)) && (
           <AuSoftUI.UI.Button
             onClick={() => {
               handleSelectFlexTVMovie(undefined);
@@ -84,8 +77,7 @@ export default function TVItem({
         )}
 
         {!item.public &&
-          ((currentSubscription &&
-            !currentSubscription.subscription.plan?.flex_tv) ||
+          ((currentSubscription && !currentSubscription.flex_tv) ||
             !currentSubscription) && (
             <AuSoftUI.UI.Button
               onClick={handleSubscribe}
@@ -96,7 +88,7 @@ export default function TVItem({
               <ReactIcons.MdIcon.MdTv size={14} />
 
               {currentSubscription &&
-                (!currentSubscription.subscription.plan?.flex_tv ||
+                (!currentSubscription.flex_tv ||
                   currentSubscription.subscription.is_expired) && (
                   <CTranslateTo eng="Upgrade Plan" pt="Atualizar plano" />
                 )}
