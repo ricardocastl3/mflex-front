@@ -76,7 +76,7 @@ export default function SignInPage() {
     }
   }
 
-  useEffect(() => {
+  /*   useEffect(() => {
     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
     const isFacebookWebView =
       userAgent.includes("FBAN") || userAgent.includes("FBAV");
@@ -85,7 +85,7 @@ export default function SignInPage() {
     if (isFacebookWebView || isInstagram) {
       handleOpenModal("open-in-your-browser");
     }
-  }, []);
+  }, []); */
 
   return (
     <motion.div
