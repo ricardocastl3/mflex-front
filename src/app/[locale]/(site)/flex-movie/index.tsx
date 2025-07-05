@@ -162,7 +162,7 @@ export default function FlexMoviePage() {
   }, [searchParams]);
 
   useEffect(() => {
-    if (currentSubscription?.subscription.is_expired) {
+    if (currentSubscription?.subscription.is_expired == true) {
       setSelectedTypeChannel("active");
     }
   }, [currentSubscription]);

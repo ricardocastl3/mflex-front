@@ -159,7 +159,7 @@ export default function FlexTVPage() {
   }, []);
 
   useEffect(() => {
-    if (currentSubscription?.subscription.is_expired) {
+    if (currentSubscription?.subscription.is_expired == true) {
       setSelectedTypeChannel("active");
     }
   }, [currentSubscription]);
