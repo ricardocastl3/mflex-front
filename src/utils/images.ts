@@ -119,6 +119,7 @@ import facebookCircle from "@/@assets/vectors/facebook.png";
 import instagram from "@/@assets/vectors/instagram.png";
 import linkedin from "@/@assets/vectors/linkedin.png";
 import tiktok from "@/@assets/vectors/tik-tok.png";
+import whatsapp from "@/@assets/vectors/whatsapp.png";
 
 import banner1 from "@/@assets/bgs/banners/1.jpg";
 import banner2 from "@/@assets/bgs/banners/2.jpg";
@@ -173,10 +174,11 @@ export const localImages = {
     paypayLogo,
   },
   social: {
-    facebook,
+    facebook: facebookCircle,
     instagram,
     tiktok,
     linkedin,
+    whatsapp,
   },
 
   flags: {

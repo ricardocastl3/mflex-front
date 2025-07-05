@@ -7,6 +7,11 @@ export const socialShares = [
     Icon: localImages.social.facebook,
     type: "facebook",
   },
+  {
+    title: "WhatsApp",
+    Icon: localImages.social.whatsapp,
+    type: "whatsapp",
+  },
   /*  {
     title: "TikTok",
     Icon: localImages.social.tiktok,

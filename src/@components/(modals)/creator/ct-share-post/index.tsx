@@ -51,6 +51,10 @@ export default function CreatorSharePostModal() {
             nextUrl
           )}`;
           break;
+
+        case "whatsapp":
+          shareData.url = `https://wa.me/?text=${encodeURIComponent(nextUrl)}`;
+          break;
       }
 
       window.open(shareData.url);
