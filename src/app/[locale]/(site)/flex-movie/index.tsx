@@ -97,7 +97,9 @@ export default function FlexMoviePage() {
     setPreviousNewCategory(safedCategory);
 
     const isFlexed =
-      currentSubscription && currentSubscription.subscription.plan?.flex_movie
+      currentSubscription &&
+      currentSubscription.flex_movie &&
+      !currentSubscription.subscription.is_expired
         ? true
         : false;
 
@@ -160,15 +162,6 @@ export default function FlexMoviePage() {
     if (id == "") return;
     fetchMovie(id);
   }, [searchParams]);
-
-  useEffect(() => {
-    if (
-      currentSubscription?.subscription.is_expired == true ||
-      !currentSubscription?.flex_movie
-    ) {
-      setSelectedTypeChannel("active");
-    }
-  }, [currentSubscription]);
 
   return (
     <div className="flex flex-col gap-4">

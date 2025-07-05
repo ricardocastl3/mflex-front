@@ -95,7 +95,9 @@ export default function FlexTVPage() {
     setPreviousNewCategory(safedCategory);
 
     const isFlexed =
-      currentSubscription && currentSubscription.subscription.plan?.flex_tv
+      currentSubscription &&
+      currentSubscription?.flex_tv &&
+      !currentSubscription?.subscription.is_expired
         ? true
         : false;
 
@@ -157,15 +159,6 @@ export default function FlexTVPage() {
     if (id == "") return;
     fetchTV(id);
   }, []);
-
-  useEffect(() => {
-    if (
-      currentSubscription?.subscription.is_expired == true ||
-      !currentSubscription?.flex_tv
-    ) {
-      setSelectedTypeChannel("active");
-    }
-  }, [currentSubscription]);
 
   return (
     <div className="flex flex-col gap-4">
