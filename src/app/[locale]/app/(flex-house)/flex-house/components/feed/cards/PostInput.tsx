@@ -64,7 +64,7 @@ export default function PostInput() {
             Icon={ReactIcons.AiICon.AiFillFileImage}
             action="ct-publish-image"
             color="text-yellow-500 dark:text-yellow-500 hover:bg-yellow-100 hover:dark:bg-yellow-800/20"
-            t_en="Imagem"
+            t_en="Image"
             t_pt="Imagem"
           />
           <PostInputButtonPost

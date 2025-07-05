@@ -59,7 +59,7 @@ export default function CreatorSharePostModal() {
               : `This Marca Flex post is amazing 🔥\n\n👉 Know more: ${nextUrl}`
           }`;
 
-          shareData.url = `https://wa.me/?text=${encodeURIComponent(message)}`;
+          shareData.url = `https://wa.me/?text=${message}`;
           break;
       }
 
