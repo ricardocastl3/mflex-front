@@ -158,6 +158,12 @@ export default function FlexTVPage() {
     fetchTV(id);
   }, []);
 
+  useEffect(() => {
+    if (currentSubscription?.subscription.is_expired) {
+      setSelectedTypeChannel("active");
+    }
+  }, [currentSubscription]);
+
   return (
     <div className="flex flex-col gap-4">
       <div className="flex fixed md:bottom-[4rem] bottom-[4.9rem] md:right-[4rem] right-[4rem] z-20 animate-fade-up">
