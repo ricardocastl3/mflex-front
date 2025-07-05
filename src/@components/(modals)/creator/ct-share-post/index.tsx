@@ -55,11 +55,11 @@ export default function CreatorSharePostModal() {
         case "whatsapp":
           const message = `${
             langByCookies == "pt"
-              ? `Este poste na Marca Flex está incrível 🔥\n\n👉 Saiba mais: ${nextUrl}`
-              : `This Marca Flex post is amazing 🔥\n\n👉 Know more: ${nextUrl}`
+              ? `Este poste na Marca Flex está incrível!\n\n→ Saiba mais: ${nextUrl}`
+              : `This Marca Flex post is amazing!\n\n→ Know more: ${nextUrl}`
           }`;
 
-          shareData.url = `https://wa.me/?text=${message}`;
+          shareData.url = `https://wa.me/?text=${encodeURIComponent(message)}`;
           break;
       }
 
