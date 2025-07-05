@@ -4,6 +4,7 @@ import { useModal } from "@/providers/app/ModalProvider";
 import { Dispatch, SetStateAction } from "react";
 import { ICreatorPost } from "@/http/interfaces/models/fhouse/ICreatorPost";
 import { useResourceProvider } from "@/providers/features/ResourceProvider";
+import { useAuth } from "@/providers/auth/AuthProvider";
 
 import LikeResourceButton from "@/app/[locale]/(site)/components/likes/LikeResourceButton";
 import MusicViews from "@/app/[locale]/app/(artist)/art-musics/components/MusicViews";
@@ -26,6 +27,7 @@ export default function CreatorPostMiniDetails({
 }) {
   const { handleOpenModal } = useModal();
   const { handleSelectResource } = useResourceProvider();
+  const { userLogged } = useAuth();
 
   return (
     <div className="flex items-center w-full justify-between gap-3.5 border-t border-b pt-2 pb-2 border-slate-200 dark:border-slate-800">
@@ -49,17 +51,19 @@ export default function CreatorPostMiniDetails({
         )}
       </div>
       <div className="flex items-center gap-2">
-        <AuSoftUI.UI.Button
-          onClick={() => {
-            handleSelectResource(post);
-            handleOpenModal("ct-complaint");
-          }}
-          className="items-center py-1.5 px-2.5"
-          variant={"outline"}
-          size={"sm"}
-        >
-          <ReactIcons.MdIcon.MdReport size={20} />
-        </AuSoftUI.UI.Button>
+        {userLogged?.id != post?.author?.user.id && (
+          <AuSoftUI.UI.Button
+            onClick={() => {
+              handleSelectResource(post);
+              handleOpenModal("ct-complaint");
+            }}
+            className="items-center py-1.5 px-2.5"
+            variant={"outline"}
+            size={"sm"}
+          >
+            <ReactIcons.MdIcon.MdReport size={20} />
+          </AuSoftUI.UI.Button>
+        )}
         <AuSoftUI.UI.Button
           onClick={() => {
             handleSelectResource(post);
