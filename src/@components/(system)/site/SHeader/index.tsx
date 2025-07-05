@@ -115,7 +115,7 @@ export default function SHeader() {
       <div className="flex items-center md:gap-2 gap-2 divide-x-2 divide-slate-200 dark:divide-slate-700/60">
         <div className="flex items-center gap-2.5">
           {userLogged && (
-            <div className="md:flex hidden">
+            <div className="md:flex hidden pr-1.5">
               <CTranslate />
             </div>
           )}

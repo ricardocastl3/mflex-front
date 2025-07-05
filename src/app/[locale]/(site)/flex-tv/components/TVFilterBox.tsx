@@ -19,7 +19,7 @@ export default function TVFilterBox({
 
   useEffect(() => {
     const has = currentSubscription
-      ? Boolean(currentSubscription?.subscription.plan?.flex_tv)
+      ? Boolean(currentSubscription?.flex_tv)
         ? true
         : false
       : false;
