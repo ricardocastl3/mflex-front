@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
+import GAEventsServices from "@/services/google/GAEventsServices";
 
 export default function TVItem({
   item,
@@ -66,6 +67,12 @@ export default function TVItem({
               handleSelectFlexTVMovie(undefined);
               handleSelectFlexTV(item);
               handleOpenModal("watch-tv");
+              GAEventsServices.send({
+                action: "buttonClicked",
+                event_name: `watch-tv-${item.name
+                  .toLowerCase()
+                  .replaceAll("_", "")}`,
+              });
             }}
             variant={"outline"}
             className="items-center justify-center"
