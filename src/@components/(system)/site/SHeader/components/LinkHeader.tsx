@@ -31,7 +31,7 @@ export default function LinkHeader({
       onClick={() => {
         LocalStorageServices.resetAllKeys(),
           GAEventsServices.send({
-            event_name: `desktop-cl-header-${action}`,
+            event_name: `desktop_cl_header_${action}`,
             action: "buttonClicked",
           });
       }}

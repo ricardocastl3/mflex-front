@@ -31,7 +31,7 @@ export default function LinkMButton({
       onClick={() => {
         LocalStorageServices.resetAllKeys(),
           GAEventsServices.send({
-            event_name: `mobile-cl-footer-${action}`,
+            event_name: `mobile_cl_footer_${action}`,
             action: "buttonClikcked",
           });
       }}
