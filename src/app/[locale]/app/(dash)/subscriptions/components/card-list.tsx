@@ -1,4 +1,5 @@
 import { ISubscriptionResponseAPI } from "@/http/interfaces/models/subscriptions/ISubscription";
+import { addYears } from "date-fns";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CurrencyServices from "@/services/CurrencyServices";
@@ -46,8 +47,17 @@ export default function SubsCard({
                 <CTranslateTo eng="Expires At:" pt="Expira em:" />
               </h4>
               <h4 className="dark:text-white text-sm">
-                {DateServices.dateWithBars(
-                  new Date(prod.expires_at).toISOString()
+                {new Date(prod.expires_at).getFullYear() >=
+                addYears(new Date(), 100).getFullYear() ? (
+                  <b className="dark:text-slate-500 text-slate-600 ">
+                    ---------------
+                  </b>
+                ) : (
+                  <>
+                    {DateServices.dateWithBars(
+                      new Date(prod.expires_at).toISOString()
+                    )}
+                  </>
                 )}
               </h4>
               <h4 className="text-sm dark:text-white">
