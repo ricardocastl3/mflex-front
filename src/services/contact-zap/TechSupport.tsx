@@ -42,7 +42,7 @@ export default function TechSupport() {
               onClick={() =>
                 //handleOpenModal("technical-support")
                 window.open(
-                  `https://wa.me/244954974069?text=${
+                  `https://wa.me/244953320345?text=${
                     langByCookies == "en"
                       ? "Hello, I need a help!"
                       : "Olá, preciso de ajuda!"
