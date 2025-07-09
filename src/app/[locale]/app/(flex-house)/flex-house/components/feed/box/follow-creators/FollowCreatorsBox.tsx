@@ -44,8 +44,8 @@ export default function FollowCreatorsBox() {
             />
             <h1 className="text-sm text-center dark:text-white">
               <CTranslateTo
-                eng="Not following anyone yet"
-                pt="Ainda não está seguindo ninguém"
+                eng="You're not following anyone yet"
+                pt="Ainda não estás seguindo ninguém"
               />
             </h1>
           </div>
