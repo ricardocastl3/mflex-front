@@ -10,6 +10,7 @@ export interface INews {
   image_url: string;
   slug: string;
   source: string;
+  updated_at: Date;
   category?: ICategory;
   category_id?: string;
 
