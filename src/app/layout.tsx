@@ -7,6 +7,6 @@ export const metadata: Metadata = {
   description:
     "Somos a maior plataforma de entretenimeno em África, onde você pode explorar podcasts, eventos e novidades imperdíveis. Junte-se a nós e descubra como podemos transformar suas ideias em realidade!",
   other: {
-    "shareaholic:site_id": "5058d641f0655548b686724e9065f495",
+    "google-adsense-account": "ca-pub-2045747943237657",
   },
 };
