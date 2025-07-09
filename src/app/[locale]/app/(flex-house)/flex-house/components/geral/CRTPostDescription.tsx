@@ -45,16 +45,11 @@ export default function CRTPostDescription({
 
         <div className="flex flex-col gap-2">
           {post?.image && (
-            <div
-              style={{
-                width: "100%",
-                backgroundPosition: "center",
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-                backgroundImage: `url(${post.image})`,
-              }}
-              className="rounded-md h-[300px] md:h-[200px] bg-slate-200 dark:bg-slate-800/50"
-            ></div>
+            <img
+              src={post.image}
+              alt="post"
+              className="rounded-md bg-slate-200 dark:bg-slate-800/50 w-full max-h-[300px] object-contain"
+            />
           )}
 
           {post.type == "reel" && showFile && (
