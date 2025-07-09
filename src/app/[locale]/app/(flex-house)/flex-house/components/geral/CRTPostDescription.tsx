@@ -1,5 +1,5 @@
 import { ICreatorPost } from "@/http/interfaces/models/fhouse/ICreatorPost";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { ReactIcons } from "@/utils/icons";
 import { useFlexHouseProvider } from "@/providers/features/FlexHouseProvider";
 
@@ -21,6 +21,8 @@ export default function CRTPostDescription({
 }) {
   const { handleSelectFHCreatorReel, handleShowPreviewReelModal } =
     useFlexHouseProvider();
+
+  const [isLoadingImage, setIsLoadingImage] = useState(true);
 
   function handleOpenReel() {
     handleSelectFHCreatorReel(post);
@@ -45,15 +47,21 @@ export default function CRTPostDescription({
 
         <div className="flex flex-col gap-2">
           {post?.image && (
-            <img
-              src={post.image}
-              alt="post"
-              className={`rounded-md bg-slate-200 dark:bg-slate-800/50 w-full ${
-                openComments
-                  ? "max-h-[300px]  md:max-h-[300px] "
-                  : "max-h-[800px]  md:max-h-[500px]"
-              } object-contain`}
-            />
+            <>
+              {isLoadingImage && (
+                <div className="p-20 animate-pulse rounded-md bg-slate-200 dark:bg-slate-800/50"></div>
+              )}
+              <img
+                src={post.image}
+                onLoad={() => setIsLoadingImage(false)}
+                alt="post"
+                className={`rounded-md bg-slate-200 dark:bg-slate-800/50 w-full ${
+                  openComments
+                    ? "max-h-[300px]  md:max-h-[300px] "
+                    : "max-h-[800px]  md:max-h-[500px]"
+                } object-contain`}
+              />
+            </>
           )}
 
           {post.type == "reel" && showFile && (
