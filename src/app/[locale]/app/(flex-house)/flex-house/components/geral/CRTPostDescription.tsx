@@ -48,7 +48,7 @@ export default function CRTPostDescription({
             <img
               src={post.image}
               alt="post"
-              className="rounded-md bg-slate-200 dark:bg-slate-800/50 w-full max-h-[300px] object-contain"
+              className="rounded-md bg-slate-200 dark:bg-slate-800/50 w-full max-h-[800px] md:max-h-[500px] object-contain"
             />
           )}
 
