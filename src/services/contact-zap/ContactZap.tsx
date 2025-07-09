@@ -32,7 +32,7 @@ export default function ContactZap() {
           <div className="dark:bg-orange-900 bg-orange-600 animate-pulse p-1.5 rounded-full">
             <Link
               target="_blank"
-              href={`https://wa.me/244954974069?text=${
+              href={`https://wa.me/244953320345?text=${
                 langByCookies == "en"
                   ? "Hello, I need a help!"
                   : "Olá, preciso de ajuda!"
