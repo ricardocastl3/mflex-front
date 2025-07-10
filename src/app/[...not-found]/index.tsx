@@ -6,9 +6,11 @@ import { Button } from "@/@components/ui/Button";
 import { langByCookies } from "@/http/axios/api";
 
 import Image from "next/image";
+import Link from "next/link";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 
 export default function NotFound() {
+
   return (
     <div className="flex flex-col justify-center h-screen items-center pt-16">
       <BaseBox className="p-8 flex flex-col items-center md:w-[40vw] w-[90vw]">
@@ -34,9 +36,10 @@ export default function NotFound() {
           variant={"primary"}
           size={"md"}
           className="w-full justify-center mt-4 rounded-full"
-          onClick={() => (window.location.href = `/${langByCookies}`)}
         >
-          <CTranslateTo eng="Back to MFLEX" pt="Voltar para a MFLEX" />
+          <Link href={`${process.env.MFLEX_NEXT_PUBLIC_URL}/${langByCookies}`}>
+            <CTranslateTo eng="Back to MFLEX" pt="Voltar para a MFLEX" />
+          </Link>
         </Button>
       </BaseBox>
     </div>

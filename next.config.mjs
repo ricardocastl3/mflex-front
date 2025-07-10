@@ -54,7 +54,7 @@ const nextConfig = withPWA({
 
     MFLEX_SERVER_URL: process.env.MFLEX_SERVER_URL,
     MFLEX_SERVER_TOKEN: process.env.MFLEX_SERVER_TOKEN,
-    
+
     MFLEX_STREAMIN_SERVER_URL: process.env.MFLEX_STREAMIN_SERVER_URL,
     MFLEX_STREAMING_SERVER_TOKEN: process.env.MFLEX_STREAMING_SERVER_TOKEN,
 
@@ -76,6 +76,10 @@ const nextConfig = withPWA({
           {
             key: "Referrer-Policy",
             value: "strict-origin-when-cross-origin",
+          },
+          {
+            key: "X-Robots-Tag",
+            value: "index, follow",
           },
         ],
       },
