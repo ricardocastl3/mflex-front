@@ -69,7 +69,7 @@ export default function TVItem({
               handleOpenModal("watch-tv");
               GAEventsServices.send({
                 action: "buttonClicked",
-                event_name: `watch-tv-${item.name
+                event_name: `watch_tv_${item.name
                   .toLowerCase()
                   .replaceAll("_", "")}`,
               });
