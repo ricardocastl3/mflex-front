@@ -37,7 +37,7 @@ export default function CreatorSharePostModal() {
         url: "",
       };
 
-      const nextUrl = `${process.env.MFLEX_NEXT_PUBLIC_URL}/${langByCookies}/app/flex-house?lkp=${selectedResource?.id}`;
+      const nextUrl = `${process.env.MFLEX_NEXT_PUBLIC_URL}/${langByCookies}/share/ctr-post/${selectedResource?.id}`;
 
       switch (type) {
         case "facebook":
