@@ -285,8 +285,8 @@ export default function ArtistAddMusicModal() {
             <div className="flex flex-col gap-2">
               <h1 className="text-base dark:text-white">
                 <CTranslateTo
-                  eng="Audio File (MP3|M4A) - MAX: 4MB"
-                  pt="Arquivo em áudio (MP3|M4A) - MAX: 4MB"
+                  eng="Audio File (MP3) - MAX: 4MB"
+                  pt="Arquivo em áudio (MP3) - MAX: 4MB"
                 />
               </h1>
               <AuSoftUI.UI.TextField.Default
