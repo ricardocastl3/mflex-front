@@ -2,6 +2,7 @@ import { IPlan } from "../IPlan";
 import { IResourceComment } from "../resources/IResourceComment";
 import { IResourceLike } from "../resources/IResourceLike";
 import { IResourceView } from "../resources/IResourceView";
+import { IResourseShare } from "../resources/IResourseShare";
 
 export interface ITVChannel {
   id: string;
@@ -15,6 +16,8 @@ export interface ITVChannel {
   comments: IResourceComment[];
   views: IResourceView[];
   likes: IResourceLike[];
+  shares: IResourseShare[];
+
   description?: string;
   created_at: Date;
 }

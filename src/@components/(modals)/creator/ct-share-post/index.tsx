@@ -6,6 +6,10 @@ import { useResourceProvider } from "@/providers/features/ResourceProvider";
 import { ReactIcons } from "@/utils/icons";
 import { socialShares } from "./socials";
 import { useAppProvider } from "@/providers/app/AppProvider";
+import { IMusic } from "@/http/interfaces/models/artists/IMusic";
+import { IEvent } from "@/http/interfaces/models/organizer/IEvent";
+import { INews } from "@/http/interfaces/models/INews";
+import { IPodcast } from "@/http/interfaces/models/IPodCast";
 
 import React, { useState } from "react";
 import BaseModal from "../../base";
@@ -16,7 +20,8 @@ import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 export default function CreatorSharePostModal() {
   //Contexts
   const { handleOpenModal } = useModal();
-  const { selectedResource, handleSelectResource } = useResourceProvider();
+  const { selectedResource, handleSelectResource, selectedResourceType } =
+    useResourceProvider();
   const { handleAddToastOnArray } = useAppProvider();
 
   // Controls
@@ -37,7 +42,25 @@ export default function CreatorSharePostModal() {
         url: "",
       };
 
-      const nextUrl = `${process.env.MFLEX_NEXT_PUBLIC_URL}/${langByCookies}/share/ctr-post/${selectedResource?.id}`;
+      let nextUrl = "";
+
+      if (!selectedResource) return;
+
+      if (selectedResourceType == "post") {
+        nextUrl = `${process.env.MFLEX_NEXT_PUBLIC_URL}/${langByCookies}/share/ctr-post/${selectedResource.id}`;
+      } else if (selectedResourceType == "music") {
+        const music = selectedResource as IMusic;
+        nextUrl = `${process.env.MFLEX_NEXT_PUBLIC_URL}/${langByCookies}/musics/${music.slug}`;
+      } else if (selectedResourceType == "event") {
+        const event = selectedResource as IEvent;
+        nextUrl = `${process.env.MFLEX_NEXT_PUBLIC_URL}/${langByCookies}/events/${event.slug}`;
+      } else if (selectedResourceType == "news") {
+        const news = selectedResource as INews;
+        nextUrl = `${process.env.MFLEX_NEXT_PUBLIC_URL}/${langByCookies}/news/${news.slug}`;
+      } else if (selectedResourceType == "podcast") {
+        const podcast = selectedResource as IPodcast;
+        nextUrl = `${process.env.MFLEX_NEXT_PUBLIC_URL}/${langByCookies}/podflex/${podcast.slug}`;
+      }
 
       switch (type) {
         case "facebook":

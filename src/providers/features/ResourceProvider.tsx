@@ -19,12 +19,22 @@ export type ResourceType =
   | ICreatorPost
   | undefined;
 
+export type TSelectedResourceType =
+  | "news"
+  | "event"
+  | "podcast"
+  | "music"
+  | "post"
+  | undefined;
+
 interface IResourceProviderProps {
   selectedResource: ResourceType;
+  selectedResourceType: TSelectedResourceType;
   fetchResource: boolean;
 
   handleFetchResource: (mode: boolean) => void;
   handleSelectResource: (event: ResourceType) => void;
+  handleSelectResourceType: (type: TSelectedResourceType) => void;
 }
 
 export const EventContext = createContext({} as IResourceProviderProps);
@@ -40,6 +50,8 @@ export default function ResourceProvider({
   children: ReactNode;
 }) {
   const [selectedResource, setSelectedResource] = useState<ResourceType>();
+  const [selectedResourceType, setSelectedResourceType] =
+    useState<TSelectedResourceType>();
 
   const [fetchResource, setFetchResource] = useState(false);
 
@@ -51,10 +63,17 @@ export default function ResourceProvider({
     setSelectedResource(resource);
   }
 
+  function handleSelectResourceType(type: TSelectedResourceType) {
+    setSelectedResourceType(type);
+  }
+
   return (
     <EventContext.Provider
       value={{
         handleSelectResource,
+        handleSelectResourceType,
+
+        selectedResourceType,
         selectedResource,
         fetchResource,
         handleFetchResource,

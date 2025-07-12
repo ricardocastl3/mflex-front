@@ -4,6 +4,7 @@ import { INews } from "@/http/interfaces/models/INews";
 import DateCategory from "../../../components/DateCategory";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import LikeResourceButton from "../../../components/likes/LikeResourceButton";
+import ShareButtonResource from "../../../components/shares/ShareButtonResource";
 
 export default function NewContent({ news }: { news: INews }) {
   return (
@@ -27,6 +28,7 @@ export default function NewContent({ news }: { news: INews }) {
             date={news.created_at}
           />
           <LikeResourceButton resource={news} />
+          <ShareButtonResource resource={news} type="news" />
         </div>
         <h1 className="text-lg leading-[2rem] font-bold dark:text-white">
           {news.title}

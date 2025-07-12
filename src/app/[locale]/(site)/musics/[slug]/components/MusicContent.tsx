@@ -20,6 +20,7 @@ import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 import Link from "next/link";
 import MusicViews from "@/app/[locale]/app/(artist)/art-musics/components/MusicViews";
 import LikeResourceButton from "../../../components/likes/LikeResourceButton";
+import ShareButtonResource from "../../../components/shares/ShareButtonResource";
 
 export default function MusicContent({ music }: { music: IMusic }) {
   const { userLogged } = useAuth();
@@ -104,6 +105,7 @@ export default function MusicContent({ music }: { music: IMusic }) {
             />
             <MusicViews views={music.views_count.length} />
             <LikeResourceButton resource={music} />
+            <ShareButtonResource resource={music} type="music" />
           </div>
           {music.artist_profile?.id != userLogged?.artist_profile?.id &&
             !music?.artist_profile?.is_official && (

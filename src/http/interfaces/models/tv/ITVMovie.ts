@@ -3,6 +3,7 @@ import { IPlan } from "../IPlan";
 import { IResourceComment } from "../resources/IResourceComment";
 import { IResourceLike } from "../resources/IResourceLike";
 import { IResourceView } from "../resources/IResourceView";
+import { IResourseShare } from "../resources/IResourseShare";
 
 export interface ITVMovie {
   id: string;
@@ -24,6 +25,8 @@ export interface ITVMovie {
   comments: IResourceComment[];
   views: IResourceView[];
   likes: IResourceLike[];
+  shares: IResourseShare[];
+
   created_at: Date;
 }
 

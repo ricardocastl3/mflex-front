@@ -12,6 +12,7 @@ import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import TicketBox from "./components/TicketsBox";
 import EventSkeleton from "./components/EventSkeleton";
 import LikeResourceButton from "../../components/likes/LikeResourceButton";
+import ShareButtonResource from "../../components/shares/ShareButtonResource";
 
 export default function EventPage({
   params,
@@ -102,8 +103,10 @@ export default function EventPage({
                 className="w-full md:h-[600px] h-[300px]"
               ></BaseBox>
               <div className="py-7 flex-col gap-4">
-                <LikeResourceButton resource={selectedEvent} />
-
+                <div className="flex items-center gap-3 mb-2">
+                  <LikeResourceButton resource={selectedEvent} />
+                  <ShareButtonResource resource={selectedEvent} type="event" />
+                </div>
                 <h2 className="text-lg dark:text-white">
                   {selectedEvent.description}
                 </h2>

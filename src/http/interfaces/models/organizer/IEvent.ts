@@ -3,6 +3,7 @@ import { ICategory } from "../ICategory";
 import { IResourceComment } from "../resources/IResourceComment";
 import { IResourceLike } from "../resources/IResourceLike";
 import { IResourceView } from "../resources/IResourceView";
+import { IResourseShare } from "../resources/IResourseShare";
 import { IEventTicket } from "./IEventTicket";
 
 export interface IEvent {
@@ -30,4 +31,5 @@ export interface IEvent {
   comments: IResourceComment[];
   views: IResourceView[];
   likes: IResourceLike[];
+  shares: IResourseShare[];
 }

@@ -3,6 +3,7 @@ import { IPodcastAuthor } from "./IPodcastAuthor";
 import { IResourceComment } from "./resources/IResourceComment";
 import { IResourceLike } from "./resources/IResourceLike";
 import { IResourceView } from "./resources/IResourceView";
+import { IResourseShare } from "./resources/IResourseShare";
 
 export interface IPodcast {
   id: string;
@@ -20,8 +21,9 @@ export interface IPodcast {
   podcaster: IPodcastAuthor;
 
   comments: IResourceComment[];
-  views:IResourceView[]
-  likes:IResourceLike[]
-  
+  views: IResourceView[];
+  likes: IResourceLike[];
+  shares: IResourseShare[];
+
   created_at: Date;
 }

@@ -1,6 +1,7 @@
 import { ICategory } from "../ICategory";
 import { IResourceComment } from "../resources/IResourceComment";
 import { IResourceLike } from "../resources/IResourceLike";
+import { IResourseShare } from "../resources/IResourseShare";
 import { IArtistProfile } from "./IArtistProfile";
 import { IMusicDonation } from "./IMusicDonation";
 import { IMusicView } from "./IMusicView";
@@ -27,6 +28,7 @@ export interface IMusic {
 
   comments: IResourceComment[];
   likes: IResourceLike[];
+  shares: IResourseShare[];
 }
 
 export interface IMusicResponseAPI {
