@@ -26,7 +26,7 @@ export default function TutorialModal({
 
   const [isLoading, setIsLoading] = useState(true);
   const [allTutorialFiltered, setTutorialFiltered] = useState<ITutorial[]>([]);
-  const [device, setDevice] = useState("mobile");
+  const [device, setDevice] = useState("all");
 
   function handleCloseBox() {
     handleOpenModal("");
