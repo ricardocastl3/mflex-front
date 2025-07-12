@@ -1,5 +1,6 @@
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { useModal } from "@/providers/app/ModalProvider";
+import { useAuth } from "@/providers/auth/AuthProvider";
 import {
   ResourceType,
   TSelectedResourceType,
@@ -17,6 +18,10 @@ export default function ShareButtonResource({
   const { handleSelectResource, handleSelectResourceType } =
     useResourceProvider();
   const { handleOpenModal } = useModal();
+
+  
+  const { userLogged } = useAuth();
+  if (!userLogged) return <></>;
 
   return (
     <AuSoftUI.UI.Button
