@@ -6,7 +6,7 @@ import React from "react";
 import BaseModal from "../../base";
 import TutorialModal from "../../tutorials";
 
-export default function AffiliateTutorialModal() {
+export default function OrganizerTutorialModal() {
   //Contexts
   const { handleOpenModal } = useModal();
 
@@ -16,7 +16,7 @@ export default function AffiliateTutorialModal() {
 
   return (
     <BaseModal callbackClose={() => handleCloseBox()} customDesktop="pb-4">
-      <TutorialModal type="affiliate" />
+      <TutorialModal type="organizer" />
     </BaseModal>
   );
 }

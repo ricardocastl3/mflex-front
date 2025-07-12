@@ -49,6 +49,7 @@ import CRTCommentDeletionGlobalModal from "./creator/ct-del-comments";
 import AffiliateTutorialModal from "./affiliate/aff-tutorials";
 import ArtistTutorialModal from "./artist/art-tutorials";
 import AffiliateSendIdentityModal from "./affiliate/aff-send-identity";
+import OrganizerTutorialModal from "./organizer/org-tutorials";
 
 export default function ModalOpenProvider() {
   const { openModal } = useModal();
@@ -125,6 +126,9 @@ export default function ModalOpenProvider() {
 
     case "ads-listen-music":
       return <AdsListenMusicModal />;
+
+    case "org-tutorials":
+      return <OrganizerTutorialModal />;
 
     case "event-affiliate-material":
       return <EventAffiliateMaterialModal />;

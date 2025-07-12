@@ -14,7 +14,7 @@ export default function CardOrganizerItem({
   const { handleOpenModal } = useModal();
 
   const action = `${
-    service.action.startsWith("modal-validate")
+    service.action.startsWith("modal")
       ? "#"
       : `/${langByCookies}/app/${service.action}`
   }`;
@@ -22,8 +22,13 @@ export default function CardOrganizerItem({
   return (
     <BaseBox
       onClick={() => {
-        if (action == "#") {
-          handleOpenModal("validate-ticket");
+        if (service.action.startsWith("modal")) {
+          if (service.action == "modal-validate") {
+            handleOpenModal("validate-ticket");
+          }
+          if (service.action == "modal-org-tutorials") {
+            handleOpenModal("org-tutorials");
+          }
         }
       }}
       className="md:hover:scale-[1.03] scale-100 transition-all p-5"

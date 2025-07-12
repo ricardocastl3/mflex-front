@@ -63,4 +63,14 @@ export const organizerServices: IServiceOrganizer[] = [
     action: "org-affiliates",
     priority: 1,
   },
+  {
+    t_pt: "Video aulas",
+    t_en: "Tutoriais",
+    d_pt: "Aprenda como criar eventos, ver afiliados, no seu painel",
+    d_en: "Learn how to create events, view affiliates, in your dashboard",
+    iconColor: "text-red-500 hover:text-red-600",
+    Icon: ReactIcons.MdIcon.MdPlayCircle,
+    action: "modal-org-tutorials",
+    priority: 1,
+  },
 ];
