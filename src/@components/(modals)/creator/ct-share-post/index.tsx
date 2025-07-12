@@ -92,9 +92,9 @@ export default function CreatorSharePostModal() {
       setIsSubmitting(true);
       await internalApi.post("/users/shares", { id: selectedResource?.id });
 
-      let nextUrl = handleGetLink(type);
+      const sharedLink = handleGetLink(type);
 
-      window.open(nextUrl);
+      window.open(sharedLink);
       handleClose();
       setIsSubmitting(false);
     } catch (err) {
