@@ -118,7 +118,7 @@ export default function CreatorSharePostModal() {
             </button>
           </div>
           <div className="flex flex-col items-center justify-center pb-7">
-            <div className="flex items-end justify-center w-full gap-8 py-5  md:px-8 px-4 ">
+            <div className="grid grid-cols-4 justify-center md:gap-7 gap-5 py-5  md:px-8 px-4 ">
               {socialShares.map((social, i) => {
                 return (
                   <div key={i}>
@@ -130,12 +130,12 @@ export default function CreatorSharePostModal() {
                         body={
                           <button className="hover:scale-105 scale-100 transition-all flex flex-col items-center gap-2">
                             <Image
-                              height={40}
-                              width={40}
+                              height={window.innerWidth > 765 ? 40 : 30}
+                              width={window.innerWidth > 765 ? 40 : 30}
                               src={social.Icon}
                               alt=""
                             />
-                            <h1 className="font-bold dark:text-white text-sm">
+                            <h1 className="font-bold dark:text-white md:text-sm text-[0.8rem]">
                               {social.title}
                             </h1>
                           </button>
@@ -148,12 +148,12 @@ export default function CreatorSharePostModal() {
                         className="hover:scale-105 scale-100 transition-all flex flex-col items-center gap-2"
                       >
                         <Image
-                          height={40}
-                          width={40}
+                          height={window.innerWidth > 765 ? 40 : 30}
+                          width={window.innerWidth > 765 ? 40 : 30}
                           src={social.Icon}
                           alt=""
                         />
-                        <h1 className="font-bold dark:text-white text-sm">
+                        <h1 className="font-bold dark:text-white md:text-sm text-[0.8rem]">
                           {social.title}
                         </h1>
                       </button>
@@ -162,7 +162,7 @@ export default function CreatorSharePostModal() {
                 );
               })}
             </div>
-            <div className="flex flex-col gap-2 items-center text-center pt-4 border-t border-slate-300 dark:border-slate-800">
+            <div className="flex flex-col md:px-4 px-7 gap-2 items-center text-center pt-4 border-t border-slate-300 dark:border-slate-800">
               <h1 className="font-bold dark:text-yellow-500 text-yellow-600 text-base">
                 <CTranslateTo
                   eng="Share with your friends"
