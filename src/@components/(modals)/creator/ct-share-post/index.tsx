@@ -32,61 +32,69 @@ export default function CreatorSharePostModal() {
     handleOpenModal("");
   }
 
+  function handleGetLink(type: string) {
+    if (!selectedResource) return;
+
+    let nextUrl = "";
+    let sharedLink = "";
+
+    if (selectedResourceType == "post") {
+      nextUrl = `${process.env.MFLEX_NEXT_PUBLIC_URL}/${langByCookies}/share/ctr-post/${selectedResource.id}`;
+    } else if (selectedResourceType == "music") {
+      const music = selectedResource as IMusic;
+      nextUrl = `${process.env.MFLEX_NEXT_PUBLIC_URL}/${langByCookies}/musics/${music.slug}`;
+    } else if (selectedResourceType == "event") {
+      const event = selectedResource as IEvent;
+      nextUrl = `${process.env.MFLEX_NEXT_PUBLIC_URL}/${langByCookies}/events/${event.slug}`;
+    } else if (selectedResourceType == "news") {
+      const news = selectedResource as INews;
+      nextUrl = `${process.env.MFLEX_NEXT_PUBLIC_URL}/${langByCookies}/news/${news.slug}`;
+    } else if (selectedResourceType == "podcast") {
+      const podcast = selectedResource as IPodcast;
+      nextUrl = `${process.env.MFLEX_NEXT_PUBLIC_URL}/${langByCookies}/podflex/${podcast.slug}`;
+    }
+
+    switch (type) {
+      case "facebook":
+        sharedLink = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+          nextUrl
+        )}`;
+        break;
+
+      case "linkedin":
+        sharedLink = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+          nextUrl
+        )}`;
+        break;
+
+      case "whatsapp":
+        const message = `${
+          langByCookies == "pt"
+            ? `Este poste na Marca Flex está incrível!\n\n→ Saiba mais: ${nextUrl}`
+            : `This Marca Flex post is amazing!\n\n→ Know more: ${nextUrl}`
+        }`;
+
+        sharedLink = `https://wa.me/?text=${encodeURIComponent(message)}`;
+        break;
+
+      case "copy":
+        sharedLink = nextUrl;
+        break;
+    }
+
+    return sharedLink;
+  }
+
   async function handleShare(type: string) {
     try {
+      if (!selectedResource) return;
+
       setIsSubmitting(true);
       await internalApi.post("/users/shares", { id: selectedResource?.id });
 
-      const shareData = {
-        content: ``,
-        url: "",
-      };
+      let nextUrl = handleGetLink(type);
 
-      let nextUrl = "";
-
-      if (!selectedResource) return;
-
-      if (selectedResourceType == "post") {
-        nextUrl = `${process.env.MFLEX_NEXT_PUBLIC_URL}/${langByCookies}/share/ctr-post/${selectedResource.id}`;
-      } else if (selectedResourceType == "music") {
-        const music = selectedResource as IMusic;
-        nextUrl = `${process.env.MFLEX_NEXT_PUBLIC_URL}/${langByCookies}/musics/${music.slug}`;
-      } else if (selectedResourceType == "event") {
-        const event = selectedResource as IEvent;
-        nextUrl = `${process.env.MFLEX_NEXT_PUBLIC_URL}/${langByCookies}/events/${event.slug}`;
-      } else if (selectedResourceType == "news") {
-        const news = selectedResource as INews;
-        nextUrl = `${process.env.MFLEX_NEXT_PUBLIC_URL}/${langByCookies}/news/${news.slug}`;
-      } else if (selectedResourceType == "podcast") {
-        const podcast = selectedResource as IPodcast;
-        nextUrl = `${process.env.MFLEX_NEXT_PUBLIC_URL}/${langByCookies}/podflex/${podcast.slug}`;
-      }
-
-      switch (type) {
-        case "facebook":
-          shareData.url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-            nextUrl
-          )}`;
-          break;
-
-        case "linkedin":
-          shareData.url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-            nextUrl
-          )}`;
-          break;
-
-        case "whatsapp":
-          const message = `${
-            langByCookies == "pt"
-              ? `Este poste na Marca Flex está incrível!\n\n→ Saiba mais: ${nextUrl}`
-              : `This Marca Flex post is amazing!\n\n→ Know more: ${nextUrl}`
-          }`;
-
-          shareData.url = `https://wa.me/?text=${encodeURIComponent(message)}`;
-          break;
-      }
-
-      window.open(shareData.url);
+      window.open(nextUrl);
       handleClose();
       setIsSubmitting(false);
     } catch (err) {
@@ -113,16 +121,44 @@ export default function CreatorSharePostModal() {
             <div className="flex items-end justify-center w-full gap-8 py-5  md:px-8 px-4 ">
               {socialShares.map((social, i) => {
                 return (
-                  <button
-                    onClick={() => handleShare(social.type)}
-                    key={i}
-                    className="hover:scale-105 scale-100 transition-all flex flex-col items-center gap-2"
-                  >
-                    <Image height={40} width={40} src={social.Icon} alt="" />
-                    <h1 className="font-bold dark:text-white text-sm">
-                      {social.title}
-                    </h1>
-                  </button>
+                  <div key={i}>
+                    {social.type == "copy" && (
+                      <AuSoftUI.Component.Clipboard
+                        text={handleGetLink("copy")!}
+                        title_en="Link Copied"
+                        title_pt="Link copiado"
+                        body={
+                          <button className="hover:scale-105 scale-100 transition-all flex flex-col items-center gap-2">
+                            <Image
+                              height={40}
+                              width={40}
+                              src={social.Icon}
+                              alt=""
+                            />
+                            <h1 className="font-bold dark:text-white text-sm">
+                              {social.title}
+                            </h1>
+                          </button>
+                        }
+                      />
+                    )}
+                    {social.type != "copy" && (
+                      <button
+                        onClick={() => handleShare(social.type)}
+                        className="hover:scale-105 scale-100 transition-all flex flex-col items-center gap-2"
+                      >
+                        <Image
+                          height={40}
+                          width={40}
+                          src={social.Icon}
+                          alt=""
+                        />
+                        <h1 className="font-bold dark:text-white text-sm">
+                          {social.title}
+                        </h1>
+                      </button>
+                    )}
+                  </div>
                 );
               })}
             </div>
