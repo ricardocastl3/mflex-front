@@ -19,7 +19,6 @@ export default function ShareButtonResource({
     useResourceProvider();
   const { handleOpenModal } = useModal();
 
-  
   const { userLogged } = useAuth();
   if (!userLogged) return <></>;
 
