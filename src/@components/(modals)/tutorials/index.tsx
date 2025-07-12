@@ -51,9 +51,12 @@ export default function TutorialModal({
     if (isLoadingTutorial) return;
 
     const all =
-      device == "mobile"
+      device == "all"
+        ? allTutorial.filter((i) => i.device == "all")
+        : device == "mobile"
         ? allTutorial.filter((i) => i.device == "mobile")
         : allTutorial.filter((i) => i.device == "computer");
+
     setTutorialFiltered(all);
     setIsLoading(false);
   }, [allTutorial, device, isLoadingTutorial]);
@@ -92,6 +95,12 @@ export default function TutorialModal({
                 className="w-full py-2"
                 weight={"md"}
               >
+                <option
+                  value={"all"}
+                  className="dark:bg-ausoft-slate-950 dark:text-white"
+                >
+                  <CTranslateTo eng="All Devices" pt="Todos os dispositivos" />
+                </option>
                 <option
                   value={"mobile"}
                   className="dark:bg-ausoft-slate-950 dark:text-white"
