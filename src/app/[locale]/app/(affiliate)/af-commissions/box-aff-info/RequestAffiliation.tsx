@@ -5,6 +5,7 @@ import { useAuth } from "@/providers/auth/AuthProvider";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { useState } from "react";
 import { internalApi } from "@/http/axios/api";
+import { useModal } from "@/providers/app/ModalProvider";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
@@ -12,6 +13,7 @@ import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 export default function RequestAffiliation() {
   const { userLogged, fetchUserInformations } = useAuth();
   const { handleAddToastOnArray } = useAppProvider();
+  const { handleOpenModal } = useModal();
 
   // Controls
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -68,23 +70,25 @@ export default function RequestAffiliation() {
 
         {userLogged?.profile?.affiliate_request &&
           !userLogged?.profile?.affiliate_active && (
-            <AuSoftUI.UI.Button
-              onClick={() =>
-                window.open(
-                  "https://chat.whatsapp.com/LFuxjzNqpZ07EWa0RGgbr9",
-                  "_blank"
-                )
-              }
-              variant={"green"}
-              size={"sm"}
-              className="items-center"
-            >
-              <ReactIcons.PiIcon.PiWhatsappLogo size={15} />
-              <CTranslateTo
-                eng="Click here to request final analysis"
-                pt="Clique aqui para pedir análise final"
-              />
-            </AuSoftUI.UI.Button>
+            <div className="flex flex-col gap-2">
+              <AuSoftUI.UI.Button
+                onClick={() => handleOpenModal("aff-send-identity")}
+                variant={"primary"}
+                size={"sm"}
+                className="items-center"
+              >
+                <CTranslateTo
+                  eng="Click here to request final analysis"
+                  pt="Clique aqui para pedir análise final"
+                />
+              </AuSoftUI.UI.Button>
+              <span className="text-xs italic dark:text-yellow-400 text-yellow-600">
+                <CTranslateTo
+                  eng="Note: If you have already sent your data, please wait for our analysis."
+                  pt="Obs: Se já enviastes os seus dados, aguarde a nossa análise"
+                />
+              </span>
+            </div>
           )}
 
         {userLogged?.profile?.affiliate_active && (

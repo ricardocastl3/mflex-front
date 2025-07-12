@@ -5,7 +5,6 @@ import { useModal } from "@/providers/app/ModalProvider";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import Link from "next/link";
-import { ReactIcons } from "@/utils/icons";
 
 export default function CardAffiliateItem({
   service,
@@ -36,6 +35,11 @@ export default function CardAffiliateItem({
             {service.type == "manual" && (
               <h1 className="rounded-full text-xs font-bold text-blue-700 dark:text-blue-400 bg-blue-200 dark:bg-blue-800/40 px-2 py-0.5 flex items-center gap-2">
                 <CTranslateTo eng="Manual" pt="Material" />
+              </h1>
+            )}
+            {service.type == "tutorial" && (
+              <h1 className="rounded-full text-xs font-bold text-red-700 dark:text-red-400 bg-red-200 dark:bg-red-800/40 px-2 py-0.5 flex items-center gap-2">
+                <CTranslateTo eng="Video" pt="Vídeos" />
               </h1>
             )}
             <h1 className="text-base dark:text-white">

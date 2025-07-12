@@ -38,7 +38,7 @@ export default function OrganizerPage() {
             <div className="pt-4 flex flex-col gap-4 border-t border-slate-300 dark:border-slate-800">
               <div className="grid md:grid-cols-4 grid-cols-1 gap-4">
                 {affiliateServices
-                  .filter((i) => i.type == "manual")
+                  .filter((i) => i.type == "manual" || i.type == "tutorial")
                   .map((service, i) => {
                     return <CardAffiliateItem service={service} key={i} />;
                   })}

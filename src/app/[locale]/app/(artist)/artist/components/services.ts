@@ -58,4 +58,15 @@ export const artistServices: IArtistService[] = [
     affiliateRequire: false,
     type: "manual",
   },
+  {
+    t_pt: "Vídeo Aulas",
+    t_en: "Tutorials",
+    d_pt: "Aprenda como postar músicas, e usar o seu painel",
+    d_en: "Learn how to post music and use your dashboard",
+    iconColor: "text-red-500 hover:text-red-600",
+    Icon: ReactIcons.MdIcon.MdPlayCircle,
+    action: "modal-art-tutorials",
+    affiliateRequire: true,
+    type: "tutorial",
+  },
 ];

@@ -70,4 +70,15 @@ export const affiliateServices: IAffiliateService[] = [
     affiliateRequire: true,
     type: "manual",
   },
+  {
+    t_pt: "Vídeo Aulas",
+    t_en: "Tutorials",
+    d_pt: "Aprenda como começar a ganhar dinheiro com a plataforma",
+    d_en: "Learn how to start making money with the platform",
+    iconColor: "text-red-500 hover:text-red-600",
+    Icon: ReactIcons.MdIcon.MdPlayCircle,
+    action: "modal-aff-tutorials",
+    affiliateRequire: true,
+    type: "tutorial",
+  },
 ];

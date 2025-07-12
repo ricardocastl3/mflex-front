@@ -38,6 +38,11 @@ export default function CardAffiliateItem({
                 <CTranslateTo eng="Manual" pt="Material" />
               </h1>
             )}
+            {service.type == "tutorial" && (
+              <h1 className="rounded-full text-xs font-bold text-red-700 dark:text-red-400 bg-red-200 dark:bg-red-800/40 px-2 py-0.5 flex items-center gap-2">
+                <CTranslateTo eng="Video" pt="Vídeos" />
+              </h1>
+            )}
             <h1 className="text-base dark:text-white">
               <CTranslateTo eng={service.t_en} pt={service.t_pt} />
             </h1>

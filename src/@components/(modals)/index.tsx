@@ -46,6 +46,9 @@ import CreatorPublishPostVideoModal from "./creator/ct-publish-video";
 import CreatorPublishPostMusicModal from "./creator/ct-publish-music";
 import CreatorInfoModal from "./creator/ct-info";
 import CRTCommentDeletionGlobalModal from "./creator/ct-del-comments";
+import AffiliateTutorialModal from "./affiliate/aff-tutorials";
+import ArtistTutorialModal from "./artist/art-tutorials";
+import AffiliateSendIdentityModal from "./affiliate/aff-send-identity";
 
 export default function ModalOpenProvider() {
   const { openModal } = useModal();
@@ -81,6 +84,9 @@ export default function ModalOpenProvider() {
     case "list-ticket":
       return <ListTicketModal />;
 
+    case "ticket-unavailable-subs":
+      return <TicketNotAvailableSubsExpiredModale />;
+
     case "view-ticket":
       return <ViewTicketModal />;
 
@@ -114,6 +120,12 @@ export default function ModalOpenProvider() {
     case "usage-susb":
       return <UsageSubsModal />;
 
+    case "cropper-image":
+      return <CropImageModal />;
+
+    case "ads-listen-music":
+      return <AdsListenMusicModal />;
+
     case "event-affiliate-material":
       return <EventAffiliateMaterialModal />;
 
@@ -122,6 +134,12 @@ export default function ModalOpenProvider() {
 
     case "affiliate-info":
       return <AffiliateInfoModal />;
+
+    case "aff-tutorials":
+      return <AffiliateTutorialModal />;
+
+    case "aff-send-identity":
+      return <AffiliateSendIdentityModal />;
 
     case "artist-info":
       return <ArtistInfoModal />;
@@ -135,12 +153,6 @@ export default function ModalOpenProvider() {
     case "art-view-policy":
       return <ArtistViewPolicyModal />;
 
-    case "cropper-image":
-      return <CropImageModal />;
-
-    case "ads-listen-music":
-      return <AdsListenMusicModal />;
-
     case "art-gracefull-donate":
       return <GracefullDonateModal />;
 
@@ -150,11 +162,11 @@ export default function ModalOpenProvider() {
     case "art-complaint-music":
       return <ArtistComplaintMusicModal />;
 
-    case "ticket-unavailable-subs":
-      return <TicketNotAvailableSubsExpiredModale />;
-
     case "art-send-identity":
       return <ArtSendIdentityModal />;
+
+    case "art-tutorials":
+      return <ArtistTutorialModal />;
 
     case "ct-complaint":
       return <CreatorComplaintPostModal />;
