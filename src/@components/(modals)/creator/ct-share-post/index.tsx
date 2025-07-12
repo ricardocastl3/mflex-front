@@ -185,7 +185,7 @@ export default function CreatorSharePostModal() {
             variant={"outline"}
             className="w-full justify-center rounded-full"
           >
-            <CTranslateTo eng="Cancel" pt="Cancelar" />
+            <CTranslateTo eng="Close" pt="Fechar" />
           </AuSoftUI.UI.Button>
 
           <AuSoftUI.Component.RegisterProgress
