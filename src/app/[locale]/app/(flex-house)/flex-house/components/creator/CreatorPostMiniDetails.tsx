@@ -26,7 +26,8 @@ export default function CreatorPostMiniDetails({
   setOpenComments?: Dispatch<SetStateAction<boolean>>;
 }) {
   const { handleOpenModal } = useModal();
-  const { handleSelectResource } = useResourceProvider();
+  const { handleSelectResource, handleSelectResourceType } =
+    useResourceProvider();
   const { userLogged } = useAuth();
 
   return (
@@ -66,6 +67,7 @@ export default function CreatorPostMiniDetails({
         )}
         <AuSoftUI.UI.Button
           onClick={() => {
+            handleSelectResourceType("post");
             handleSelectResource(post);
             handleOpenModal("ct-share-post");
           }}
