@@ -10,6 +10,7 @@ import Image from "next/image";
 import SubscribeBanner from "../../../components/ads/SubscribeBanner";
 
 import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
+import GAdsComponent from "../../../components/ads/GAdsComponent";
 
 export default function NewsRelated({
   news,
@@ -102,6 +103,8 @@ export default function NewsRelated({
               })}
           </>
         )}
+
+        <GAdsComponent adSlot="7976131667" />
       </div>
     </div>
   );
