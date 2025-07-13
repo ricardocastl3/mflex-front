@@ -279,7 +279,7 @@ export default function CreatorPublishPostVideoModal() {
                               description_en:
                                 "The video size must be a maximum of 12MB",
                               description_pt:
-                                "O tamanho do vídeo precisa ter no máximo 12MB",
+                                "O tamanho do vídeo precisa ser no máximo 12MB",
                               title_en: "Video too large",
                               title_pt: "Vídeo muito grande",
                               toast: handleAddToastOnArray,

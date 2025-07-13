@@ -311,7 +311,7 @@ export default function CreatorPublishPostImageModal() {
                             description_en:
                               "The image size must be a maximum of 8MB",
                             description_pt:
-                              "O tamanho do vídeo precisa ter no máximo 8MB",
+                              "O tamanho do vídeo precisa ser no máximo 8MB",
                             title_en: "Image too large",
                             title_pt: "Imagem muito grande",
                             toast: handleAddToastOnArray,

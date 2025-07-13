@@ -362,7 +362,7 @@ export default function ArtistAddMusicModal() {
                               description_en:
                                 "The music size must be a maximum of 8MB",
                               description_pt:
-                                "O tamanho da música precisa ter no máximo 8MB",
+                                "O tamanho da música precisa ser no máximo 8MB",
                               title_en: "Music too large",
                               title_pt: "Música muito grande",
                               toast: handleAddToastOnArray,
