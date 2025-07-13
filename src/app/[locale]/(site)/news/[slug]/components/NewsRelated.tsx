@@ -104,7 +104,7 @@ export default function NewsRelated({
           </>
         )}
 
-        <GAdsComponent adSlot="7976131667" />
+        <GAdsComponent adSlot="6753429774" />
       </div>
     </div>
   );
