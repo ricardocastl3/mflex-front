@@ -16,7 +16,7 @@ export async function generateMetadata({
       process.env.MFLEX_SERVER_URL + "/api/v1" + "/podcasts",
       {
         params: {
-          slug: pars.slug
+          slug: pars.slug,
         },
         headers: {
           "accept-language": langByCookies,
@@ -30,7 +30,7 @@ export async function generateMetadata({
 
     return {
       title: findPodflex.title + " 🎙️ | Marca Flex",
-      description: findPodflex.description,
+      description: findPodflex.description.replaceAll("<br>", ""),
       openGraph: {
         images: [
           {
