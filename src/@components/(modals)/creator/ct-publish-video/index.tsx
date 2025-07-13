@@ -67,12 +67,6 @@ export default function CreatorPublishPostVideoModal() {
       setIsSubmitting(true);
       const formData = new FormData();
 
-      if (videoDetails.url != "") {
-        const res = await fetch(videoDetails.url!);
-        const blob = await res.blob();
-        formData.append("video", blob);
-      }
-
       if (selectedCreatorPost) {
         formData.append("video_id", selectedCreatorPost.id);
       }
