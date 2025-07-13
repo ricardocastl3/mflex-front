@@ -162,7 +162,7 @@ export default function CreatorSharePostModal() {
                 );
               })}
             </div>
-            <div className="flex flex-col md:px-4 px-7 gap-2 items-center text-center pt-4 border-t border-slate-300 dark:border-slate-800">
+            <div className="flex flex-col md:px-4 px-3.5 gap-2 items-center text-center pt-4 border-t border-slate-300 dark:border-slate-800">
               <h1 className="font-bold dark:text-yellow-500 text-yellow-600 text-base">
                 <CTranslateTo
                   eng="Share with your friends"
