@@ -11,6 +11,7 @@ import { useCategoryProvider } from "@/providers/features/CategoryProvider";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { useMusicProvider } from "@/providers/features/MusicProvider";
 import { useAuth } from "@/providers/auth/AuthProvider";
+import { v4 as uuidV4 } from "uuid";
 
 import AAuSoftLogo from "@/@components/(ausoft)/AAuSoftLogo";
 import BaseModal from "../../base";
@@ -19,6 +20,7 @@ import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 import ARegisterProgress from "@/@components/(ausoft)/ARegisterProgress";
 import SelectCategoryDropdown from "../../organizer/add-event/category";
 import MusicSchemas from "@/services/schemas/MusicSchema";
+import ChunkUploadService from "@/services/ChunkUploadService";
 
 export default function ArtistAddMusicModal() {
   // Contexts
@@ -31,6 +33,7 @@ export default function ArtistAddMusicModal() {
   // Controls
   const [coverMusic, setCoverMusic] = useState("");
   const [soundMusic, setSoundMusic] = useState("");
+  const [selectedMusicAPI, setSelectedMusicAPI] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Forms
@@ -92,31 +95,73 @@ export default function ArtistAddMusicModal() {
       setIsSubmitting(true);
       const formData = new FormData();
 
-      if (coverMusic != "") {
-        const res = await fetch(coverMusic);
-        const blob = await res.blob();
-        formData.append("cover", blob);
-      }
-
-      if (soundMusic != "") {
-        const res = await fetch(soundMusic);
-        const blob = await res.blob();
-        formData.append("sound", blob);
-      }
-
       if (selectedMusic) {
         formData.append("music_id", selectedMusic.id);
+      }
+
+      if (selectedMusicAPI != "") {
+        formData.append("music_id", selectedMusicAPI);
       }
 
       formData.append("category_id", selectedCategory.id);
       formData.append("title", data.title);
       formData.append("description", data.description);
 
-      await internalApi.postForm("/artists/musics", formData, {
+      const resp = await internalApi.postForm("/artists/musics", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
+
+      setSelectedMusicAPI(resp.data.id);
+
+      const fileId = uuidV4();
+
+      if (coverMusic != "") {
+        const res = await fetch(coverMusic);
+        const blob = await res.blob();
+
+        const { success } = await ChunkUploadService.uploadMusicByChunks({
+          file: blob,
+          fileId,
+          type: "cover",
+          musicId: selectedMusic?.id || resp.data.id, // se estiver editando
+        });
+
+        if (!success) {
+          return AuSoftUI.Component.ToastifyWithTranslation({
+            description_en: "Please, select an audio",
+            description_pt: "Por favor, selecione o áudio da sua música",
+            title_en: "No Audio",
+            title_pt: "Sem Áudio",
+            toast: handleAddToastOnArray,
+            type: "error",
+          });
+        }
+      }
+
+      if (soundMusic != "") {
+        const res = await fetch(soundMusic);
+        const blob = await res.blob();
+
+        const { success } = await ChunkUploadService.uploadMusicByChunks({
+          file: blob,
+          fileId,
+          type: "sound",
+          musicId: selectedMusic?.id || resp.data.id,
+        });
+
+        if (!success) {
+          return AuSoftUI.Component.ToastifyWithTranslation({
+            description_en: "Please try again",
+            description_pt: "Por favor, tente novamente",
+            title_en: "Error loading music",
+            title_pt: "Erro no carregamento da música",
+            toast: handleAddToastOnArray,
+            type: "error",
+          });
+        }
+      }
 
       const message = {
         pt: {
@@ -312,6 +357,19 @@ export default function ArtistAddMusicModal() {
                           fileName.endsWith(".m4a");
 
                         if (isValidMimeType || isValidExtension) {
+                          if (file && file.size > 8 * 1024 * 1024) {
+                            return AuSoftUI.Component.ToastifyWithTranslation({
+                              description_en:
+                                "The music size must be a maximum of 8MB",
+                              description_pt:
+                                "O tamanho da música precisa ter no máximo 8MB",
+                              title_en: "Music too large",
+                              title_pt: "Música muito grande",
+                              toast: handleAddToastOnArray,
+                              type: "error",
+                            });
+                          }
+
                           const url = URL.createObjectURL(file);
                           setSoundMusic(url);
                         }

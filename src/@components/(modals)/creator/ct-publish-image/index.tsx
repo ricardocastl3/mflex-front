@@ -8,12 +8,14 @@ import { useAppProvider } from "@/providers/app/AppProvider";
 import { localImages } from "@/utils/images";
 import { useFlexHouseProvider } from "@/providers/features/FlexHouseProvider";
 import { useAuth } from "@/providers/auth/AuthProvider";
+import { v4 as uuidV4 } from "uuid";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import BaseModal from "../../base";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 import ARegisterProgress from "@/@components/(ausoft)/ARegisterProgress";
 import CreatorTextAreaField from "../ct-components/CreatorTextAreaField";
+import ChunkUploadService from "@/services/ChunkUploadService";
 
 interface IPostImage {
   image?: string;
@@ -45,6 +47,7 @@ export default function CreatorPublishPostImageModal() {
   );
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedPostAPI, setSelectedPostAPI] = useState<string>("");
 
   function handleSetInfo(info: IPostImage) {
     setPostDetails((state) => ({ ...state, ...info }));
@@ -71,23 +74,63 @@ export default function CreatorPublishPostImageModal() {
       const formData = new FormData();
 
       if (postDetails.image != "") {
-        const res = await fetch(postDetails.image!);
-        const blob = await res.blob();
-        formData.append("image", blob);
+        formData.append("hasImage", "yes");
       }
 
       if (selectedCreatorPost) {
         formData.append("post_id", selectedCreatorPost.id);
       }
 
+      if (selectedPostAPI != "") {
+        formData.append("post_id", selectedPostAPI);
+      }
+
       formData.append("description", postDetails.description!);
       formData.append("visibility", postDetails.visibility!);
 
-      await internalApi.postForm("/creators/posts", formData, {
+      const resp = await internalApi.postForm("/creators/posts", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
+
+      setSelectedPostAPI(resp.data.id);
+      const fileId = uuidV4();
+
+      if (postDetails.image != "") {
+        const res = await fetch(postDetails.image!);
+        const blob = await res.blob();
+
+        const isValid = ChunkUploadService.validateFileSize({
+          blob,
+          maxMB: 8,
+          toast: handleAddToastOnArray,
+          titlePt: "Imagem muito grande",
+          titleEn: "Image too large",
+          descriptionPt: "O tamanho da imagem precisa ter no máximo 8MB",
+          descriptionEn: "The image size must be a maximum of 8MB",
+        });
+
+        if (!isValid) return;
+
+        const { success } = await ChunkUploadService.uploadCreatorPostByChunks({
+          file: blob,
+          fileId,
+          type: "image",
+          postId: selectedCreatorPost?.id || resp.data.id,
+        });
+
+        if (!success) {
+          return AuSoftUI.Component.ToastifyWithTranslation({
+            description_en: "Please try again",
+            description_pt: "Por favor, tente novamente",
+            title_en: "Error loading image",
+            title_pt: "Erro no carregamento da imagem",
+            toast: handleAddToastOnArray,
+            type: "error",
+          });
+        }
+      }
 
       const message = {
         pt: {
@@ -263,6 +306,18 @@ export default function CreatorPublishPostImageModal() {
                     if (e.target?.files) {
                       const file = e.target?.files[0];
                       if (file && file.type.startsWith("image/")) {
+                        if (file && file.size > 8 * 1024 * 1024) {
+                          return AuSoftUI.Component.ToastifyWithTranslation({
+                            description_en:
+                              "The image size must be a maximum of 8MB",
+                            description_pt:
+                              "O tamanho do vídeo precisa ter no máximo 8MB",
+                            title_en: "Image too large",
+                            title_pt: "Imagem muito grande",
+                            toast: handleAddToastOnArray,
+                            type: "error",
+                          });
+                        }
                         const url = URL.createObjectURL(file);
                         handleSetInfo({ image: url });
                       }

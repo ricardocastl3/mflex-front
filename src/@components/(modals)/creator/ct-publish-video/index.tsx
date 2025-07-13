@@ -8,12 +8,14 @@ import { useAppProvider } from "@/providers/app/AppProvider";
 import { useFlexHouseProvider } from "@/providers/features/FlexHouseProvider";
 import { useAuth } from "@/providers/auth/AuthProvider";
 import { localImages } from "@/utils/images";
+import { v4 as uuidV4 } from "uuid";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import BaseModal from "../../base";
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 import ARegisterProgress from "@/@components/(ausoft)/ARegisterProgress";
 import CreatorTextAreaField from "../ct-components/CreatorTextAreaField";
+import ChunkUploadService from "@/services/ChunkUploadService";
 
 interface IPostVideo {
   url?: string;
@@ -40,6 +42,7 @@ export default function CreatorPublishPostVideoModal() {
   );
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedPostAPI, setSelectedPostAPI] = useState<string>("");
 
   function handleSetInfo(info: IPostVideo) {
     setVideoDetails((state) => ({ ...state, ...info }));
@@ -74,14 +77,44 @@ export default function CreatorPublishPostVideoModal() {
         formData.append("video_id", selectedCreatorPost.id);
       }
 
+      if (selectedPostAPI != "") {
+        formData.append("video_id", selectedPostAPI);
+      }
+
       formData.append("description", videoDetails.description!);
       formData.append("visibility", videoDetails.visibility!);
 
-      await internalApi.postForm("/creators/videos", formData, {
+      const resp = await internalApi.postForm("/creators/videos", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
+
+      setSelectedPostAPI(resp.data.id);
+      const fileId = uuidV4();
+
+      if (videoDetails.url != "") {
+        const res = await fetch(videoDetails.url!);
+        const blob = await res.blob();
+
+        const { success } = await ChunkUploadService.uploadCreatorPostByChunks({
+          file: blob,
+          fileId,
+          type: "reel",
+          postId: selectedCreatorPost?.id || resp.data.id,
+        });
+
+        if (!success) {
+          return AuSoftUI.Component.ToastifyWithTranslation({
+            description_en: "Please try again",
+            description_pt: "Por favor, tente novamente",
+            title_en: "Error loading video",
+            title_pt: "Erro no carregamento do vídeo",
+            toast: handleAddToastOnArray,
+            type: "error",
+          });
+        }
+      }
 
       const message = {
         pt: {
@@ -241,6 +274,18 @@ export default function CreatorPublishPostVideoModal() {
                           fileName.endsWith(".mov") ||
                           fileName.endsWith(".avi");
                         if (isValidMimeType || isValidExtension) {
+                          if (file && file.size > 12 * 1024 * 1024) {
+                            return AuSoftUI.Component.ToastifyWithTranslation({
+                              description_en:
+                                "The video size must be a maximum of 12MB",
+                              description_pt:
+                                "O tamanho do vídeo precisa ter no máximo 12MB",
+                              title_en: "Video too large",
+                              title_pt: "Vídeo muito grande",
+                              toast: handleAddToastOnArray,
+                              type: "error",
+                            });
+                          }
                           const url = URL.createObjectURL(file);
                           handleSetInfo({ url });
                         }
