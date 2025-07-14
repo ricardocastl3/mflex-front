@@ -97,7 +97,7 @@ export default function MusicContent({ music }: { music: IMusic }) {
         </div>
 
         <div className="flex items-center gap-3 flex-wrap border-b pb-4 border-slate-300 dark:border-slate-700/60">
-          <div className="md:text-base text-sm flex items-center gap-3">
+          <div className="md:text-base text-sm flex items-center gap-3 flex-wrap">
             <DateCategory
               right
               category_name={music?.category ? music.category.name : "no"}

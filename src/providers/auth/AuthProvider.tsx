@@ -12,13 +12,14 @@ import React, {
 import { IUserResponse } from "@/http/interfaces/responses/IUserResponse";
 import { getCookie, hasCookie, setCookie } from "cookies-next";
 import { internalApi, langByCookies } from "@/http/axios/api";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ISubscriptionUsage } from "@/http/interfaces/models/subscriptions/ISubscriptionUsage";
 import { IMusicSubscription } from "@/http/interfaces/models/artists/IMusicSubscription";
 
 import CookieServices from "@/services/auth/CookieServices";
 import useSubscription from "@/hooks/api/useSubscription";
 import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
+import { addDays } from "date-fns";
 
 interface IAuthContextProps {
   isLoadingUserData: boolean;
@@ -75,12 +76,19 @@ export default function AuthProvider({
 
   const path = usePathname();
   const startRoutes = path.slice(4);
+  const params = useSearchParams();
 
   const router = useRouter();
 
   const fetchUserInformations = useCallback(async () => {
     try {
       const authToken = hasCookie(ECOOKIES.COOKIE_USER_AUTH_TOKEN);
+
+      if (params.get("token")) {
+        setCookie(ECOOKIES.COOKIE_USER_AUTH_TOKEN, params.get("token"), {
+          expires: addDays(new Date(), 7),
+        });
+      }
 
       if (!authToken) {
         if (path.slice(4).startsWith("app")) {
