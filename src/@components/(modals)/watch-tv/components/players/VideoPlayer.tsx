@@ -58,7 +58,7 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
         if (!userLogged) {
           handleOpenModal("watch-no-ads");
         }
-      }, 30000);
+      }, 10000);
     }
 
     return () => {
