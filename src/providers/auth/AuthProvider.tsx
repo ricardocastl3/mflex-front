@@ -110,7 +110,6 @@ export default function AuthProvider({
           return;
         }
       } else {
-        startRoutes == "sign-up";
         if (user?.status == 0 && startRoutes != "confirm-account") {
           CookieServices.setLogoutCookies();
           setIsLoadingUserData(false);

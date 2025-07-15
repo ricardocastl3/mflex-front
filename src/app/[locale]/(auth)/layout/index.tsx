@@ -6,11 +6,11 @@ import { ReactIcons } from "@/utils/icons";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { useAuth } from "@/providers/auth/AuthProvider";
+import { useRouter } from "next/navigation";
 
 import React from "react";
 import CTranslate from "@/@components/(translation)/CCTranslate/CTranslate";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
-import Link from "next/link";
 import LoadingLayout from "@/app/onload-pages/_loading-layouts";
 import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
@@ -21,9 +21,25 @@ export default function AuthLayout({
 }) {
   // Contexts
   const { openToast, isScrolledWindow } = useAppProvider();
-  const { isLoadingUserData } = useAuth();
+  const { isLoadingUserData, userLogged } = useAuth();
+
+  const router = useRouter();
 
   if (isLoadingUserData) return <LoadingLayout />;
+
+  function handleBack() {
+    const urlSafed = `${
+      LocalStorageServices.getLastPeerViewFlexZone()
+        ? `/${langByCookies}/${LocalStorageServices.getLastPeerViewFlexZone()}`
+        : `/${langByCookies}`
+    }`;
+
+    if (userLogged && userLogged.status == 0) {
+      window.location.href = urlSafed;
+    } else {
+      router.push(urlSafed);
+    }
+  }
 
   return (
     <>
@@ -37,20 +53,14 @@ export default function AuthLayout({
               : "border-transparent bg-transparent"
           } z-10 md:px-12 fixed inset-x-0 px-5 md:py-8 py-4 flex items-center justify-between`}
         >
-          <div>
-            <Link
-              href={`${
-                LocalStorageServices.getLastPeerViewFlexZone()
-                  ? `/${langByCookies}/${LocalStorageServices.getLastPeerViewFlexZone()}`
-                  : `/${langByCookies}`
-              }`}
-              className=" text-yellow-600 dark:text-yellow-300 flex items-center gap-4"
-            >
-              <ReactIcons.AiICon.AiOutlineArrowLeft size={16} />
-              <h4 className="font-bold">
-                <CTranslateTo eng="Back to home" pt="Voltar" />
-              </h4>
-            </Link>
+          <div
+            onClick={handleBack}
+            className="cursor-pointer text-yellow-600 dark:text-yellow-300 flex items-center gap-4"
+          >
+            <ReactIcons.AiICon.AiOutlineArrowLeft size={16} />
+            <h4 className="font-bold">
+              <CTranslateTo eng="Back to home" pt="Voltar" />
+            </h4>
           </div>
           <div className="flex items-center gap-2">
             <CTranslate />
