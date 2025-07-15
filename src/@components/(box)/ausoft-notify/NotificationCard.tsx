@@ -34,13 +34,15 @@ export default function NotificationCard({
     }
   }, []);
 
+  const hover = {
+    onMouseOver: () => {
+      if (window.innerWidth > 764) {
+        setCanOpen(true);
+      }
+    },
+  };
   return (
     <div
-      onMouseOver={() => {
-        if (window.innerWidth > 764) {
-          setCanOpen(true);
-        }
-      }}
       onClick={() => {
         if (canOpen)
           handleOpenAction(
@@ -56,6 +58,7 @@ export default function NotificationCard({
     >
       <div className="flex items-center justify-between">
         <h4
+          {...hover}
           onClick={() => {
             if (window.innerWidth <= 764) {
               handleOpenAction(
@@ -70,7 +73,10 @@ export default function NotificationCard({
         </h4>
       </div>
       <div>
-        <h4 className="text-[0.85rem] text-slate-700 dark:text-slate-400">
+        <h4
+          {...hover}
+          className="text-[0.85rem] text-slate-700 dark:text-slate-400"
+        >
           {notification.description}
         </h4>
 
