@@ -84,12 +84,6 @@ export default function AuthProvider({
     try {
       const authToken = hasCookie(ECOOKIES.COOKIE_USER_AUTH_TOKEN);
 
-      if (params.get("token")) {
-        setCookie(ECOOKIES.COOKIE_USER_AUTH_TOKEN, params.get("token"), {
-          expires: addDays(new Date(), 7),
-        });
-      }
-
       if (!authToken) {
         if (path.slice(4).startsWith("app")) {
           return handleRedirectToSign();
