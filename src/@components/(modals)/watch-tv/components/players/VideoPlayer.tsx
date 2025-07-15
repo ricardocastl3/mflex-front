@@ -15,7 +15,7 @@ import { useFlexTVProvider } from "@/providers/features/FlexTVProvider";
 import { ReactIcons } from "@/utils/icons";
 import { useAuth } from "@/providers/auth/AuthProvider";
 import { useModal } from "@/providers/app/ModalProvider";
-import { internalApi } from "@/http/axios/api";
+import { internalApi, langByCookies } from "@/http/axios/api";
 
 interface Props {
   item_id: string;
@@ -77,7 +77,7 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
     tentativasRef.current += 1;
     console.log(`Tentando reconectar... tentativa ${tentativasRef.current}`);
 
-    return
+    return;
     if (playerRef.current) {
       setIsRefreshing(true);
       setIsReconnecting(true);

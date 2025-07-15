@@ -117,6 +117,10 @@ export default function AuthProvider({
           window.location.href = `/${langByCookies}/confirm-account`;
           return;
         }
+      } else {
+        if (userLogged?.status == 0) {
+          return handleLogout();
+        }
       }
 
       const getCheckout = getCookie(ECOOKIES.AS_CHECKOUT_REDIRECT);
