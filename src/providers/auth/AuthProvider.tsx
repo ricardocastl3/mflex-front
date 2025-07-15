@@ -114,7 +114,7 @@ export default function AuthProvider({
       } else {
         if (user?.status == 0) {
           CookieServices.setLogoutCookies();
-          LocalStorageServices.resetAllKeys();
+          setIsLoadingUserData(false);
           return;
         }
       }
