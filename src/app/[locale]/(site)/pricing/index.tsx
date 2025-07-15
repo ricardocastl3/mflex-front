@@ -97,7 +97,7 @@ export default function PricingPage() {
               <AuSoftUI.Component.ListEmpty
                 action_en="Get In Touch"
                 action_pt="Entrar em contacto"
-                action_url="https://wa.me/244954974069?text=Olá, preciso de ajuda com a plataforma"
+                action_url="https://wa.me/244953320345?text=Olá, preciso de ajuda com a plataforma"
                 description_en="OOops! The plans were not loaded correctly, please refresh the page, if the error persists please contact us!"
                 description_pt="OOops! Os planos não foram carregados corretamente, atualize a página, caso o error persistir entre em contacto conosco!"
                 title_en="Unavailable Plans"

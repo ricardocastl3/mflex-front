@@ -238,7 +238,7 @@ export default function FlexMoviePage() {
               <AuSoftUI.Component.ListEmpty
                 action_en="Get In Touch"
                 action_pt="Entrar em contacto"
-                action_url="https://wa.me/244954974069?text=Olá, preciso de ajuda com a plataforma"
+                action_url="https://wa.me/244953320345?text=Olá, preciso de ajuda com a plataforma"
                 description_en="OOops! The movies were not loaded correctly, please refresh the page. If the error persists, please contact us!"
                 description_pt="OOops! Os filmes não foram carregados corretamente, atualize a página. Caso o erro persista, entre em contacto conosco!"
                 title_en="Unavailable Movies"

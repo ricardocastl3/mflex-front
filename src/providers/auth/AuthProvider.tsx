@@ -118,8 +118,10 @@ export default function AuthProvider({
           return;
         }
       } else {
-        if (userLogged?.status == 0) {
-          return handleLogout();
+        if (user?.status == 0) {
+          CookieServices.setLogoutCookies();
+          LocalStorageServices.resetAllKeys();
+          return;
         }
       }
 
