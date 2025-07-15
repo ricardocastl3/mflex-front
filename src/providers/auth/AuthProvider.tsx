@@ -12,14 +12,13 @@ import React, {
 import { IUserResponse } from "@/http/interfaces/responses/IUserResponse";
 import { getCookie, hasCookie, setCookie } from "cookies-next";
 import { internalApi, langByCookies } from "@/http/axios/api";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { ISubscriptionUsage } from "@/http/interfaces/models/subscriptions/ISubscriptionUsage";
 import { IMusicSubscription } from "@/http/interfaces/models/artists/IMusicSubscription";
 
 import CookieServices from "@/services/auth/CookieServices";
 import useSubscription from "@/hooks/api/useSubscription";
 import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
-import { addDays } from "date-fns";
 
 interface IAuthContextProps {
   isLoadingUserData: boolean;
@@ -76,7 +75,6 @@ export default function AuthProvider({
 
   const path = usePathname();
   const startRoutes = path.slice(4);
-  const params = useSearchParams();
 
   const router = useRouter();
 
@@ -112,7 +110,8 @@ export default function AuthProvider({
           return;
         }
       } else {
-        if (user?.status == 0) {
+        startRoutes == "sign-up";
+        if (user?.status == 0 && startRoutes != "confirm-account") {
           CookieServices.setLogoutCookies();
           setIsLoadingUserData(false);
           return;
