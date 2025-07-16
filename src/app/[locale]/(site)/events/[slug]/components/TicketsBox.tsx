@@ -1,10 +1,17 @@
 import { ReactIcons } from "@/utils/icons";
 import { IEventTicket } from "@/http/interfaces/models/organizer/IEventTicket";
+import { IEvent } from "@/http/interfaces/models/organizer/IEvent";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import TicketCard from "./TicketCard";
 
-export default function TicketBox({ tickets }: { tickets: IEventTicket[] }) {
+export default function TicketBox({
+  tickets,
+  event,
+}: {
+  event: IEvent;
+  tickets: IEventTicket[];
+}) {
   return (
     <div className="md:px-12 px-5 py-8 flex flex-col gap-4 border-b border-slate-300 dark:border-slate-800 bg-white dark:bg-ausoft-slate-900">
       <h1 className="dark:text-white text-2xl font-bold">
@@ -14,7 +21,7 @@ export default function TicketBox({ tickets }: { tickets: IEventTicket[] }) {
       {tickets.length > 0 && (
         <div className="flex flex-col gap-4">
           {tickets.map((ticket, i) => {
-            return <TicketCard key={i} ticket={ticket} />;
+            return <TicketCard event={event} key={i} ticket={ticket} />;
           })}
         </div>
       )}

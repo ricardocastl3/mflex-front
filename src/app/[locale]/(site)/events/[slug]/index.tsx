@@ -239,7 +239,10 @@ export default function EventPage({
           </div>
         </div>
         {selectedEvent.can_sell_ticket && (
-          <TicketBox tickets={selectedEvent?.event_tickets} />
+          <TicketBox
+            event={selectedEvent}
+            tickets={selectedEvent?.event_tickets}
+          />
         )}
       </div>
     );

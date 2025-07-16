@@ -7,14 +7,20 @@ import { langByCookies } from "@/http/axios/api";
 import { useModal } from "@/providers/app/ModalProvider";
 import { useCheckoutProvider } from "@/providers/app/CheckoutProvider";
 import { useEventTicketProvider } from "@/providers/features/EventTicketProvider";
-import { setCookie } from "cookies-next";
-import { appConfigs, ECOOKIES } from "@/utils/enums";
 import { IEventTicket } from "@/http/interfaces/models/organizer/IEventTicket";
+import { IEvent } from "@/http/interfaces/models/organizer/IEvent";
 
 import CurrencyServices from "@/services/CurrencyServices";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
+import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
-export default function TicketCard({ ticket }: { ticket: IEventTicket }) {
+export default function TicketCard({
+  ticket,
+  event,
+}: {
+  event: IEvent;
+  ticket: IEventTicket;
+}) {
   const [quantity, setQuantity] = useState(1);
   const [totalToPay, setTotalToPay] = useState(0);
 
@@ -22,16 +28,13 @@ export default function TicketCard({ ticket }: { ticket: IEventTicket }) {
   const { userLogged } = useAuth();
   const { handleOpenModal } = useModal();
   const { handleSelectEventTicket } = useEventTicketProvider();
-  const { handleSelectCustomerBuyed, handleAddItemOnCheckout } =
-    useCheckoutProvider();
+  const { handleSelectCustomerBuyed } = useCheckoutProvider();
 
   const router = useRouter();
 
   function handlePurchaseTicket() {
     if (!userLogged) {
-      setCookie(ECOOKIES.AS_CHECKOUT_REDIRECT, ticket.event_id, {
-        domain: appConfigs.domain,
-      });
+      LocalStorageServices.setBuyTicketEventSlug(event.slug);
       router.push(`/${langByCookies}/sign-in`);
     } else {
       handleSelectCustomerBuyed({

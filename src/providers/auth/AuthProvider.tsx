@@ -117,20 +117,6 @@ export default function AuthProvider({
         }
       }
 
-      const getCheckout = getCookie(ECOOKIES.AS_CHECKOUT_REDIRECT);
-      if (getCheckout) {
-        setCookie(ECOOKIES.AS_CHECKOUT_REDIRECT, "", {
-          domain: appConfigs.domain,
-          expires: new Date(0),
-          maxAge: 0,
-        });
-        const resp = await internalApi.get("/events/" + getCheckout);
-        setUserLogged(user);
-        setIsLoadingUserData(false);
-        router.push(`/${langByCookies}/events/${resp.data.event.slug}`);
-        return;
-      }
-
       if (
         startRoutes == "sign-in" ||
         startRoutes == "sign-up" ||

@@ -6,6 +6,7 @@ class LocalStorageServices {
     rc_pricing: "rc-pricing",
     rc_watchTv: "rc-watch-tv",
     rc_watchMovie: "rc-watch-movie",
+    rc_buy_ticket_slug: "rc-buy-ticket",
     rc_football: "gm_rc",
     rc_music: "rc-music",
     rc_artist_panel: "rc-art-panel",
@@ -53,6 +54,11 @@ class LocalStorageServices {
         return;
       }
 
+      if (this.getBuyTicketEventSlug()) {
+        this.redirectForBuyTicketEvent();
+        return;
+      }
+
       setTimeout(() => {
         resolv(true);
       }, 500);
@@ -73,6 +79,7 @@ class LocalStorageServices {
     localStorage.removeItem(this.keys.rc_organizer_panel);
     localStorage.removeItem(this.keys.rc_music);
     localStorage.removeItem(this.keys.rc_comment);
+    localStorage.removeItem(this.keys.rc_buy_ticket_slug);
   }
 
   setKey(key: string, data: any) {
@@ -128,8 +135,18 @@ class LocalStorageServices {
     window.location.href = `/${langByCookies}/app/events`;
   }
 
+  redirectForBuyTicketEvent() {
+    this.delKey(this.keys.rc_buy_ticket_slug);
+    window.location.href = `/${langByCookies}/events/${this.getBuyTicketEventSlug()}`;
+  }
+
   getWatchID() {
     const res = localStorage.getItem(this.keys.rc_watchTv);
+    return res?.split("_")[1] || false;
+  }
+
+  getBuyTicketEventSlug() {
+    const res = localStorage.getItem(this.keys.rc_buy_ticket_slug);
     return res?.split("_")[1] || false;
   }
 
@@ -177,12 +194,16 @@ class LocalStorageServices {
     localStorage.setItem(this.keys.rc_watchTv, `wtv_${id}`);
   }
 
-  // To redirect route when he purchase something
+  setBuyTicketEventSlug(slug: string) {
+    localStorage.setItem(this.keys.rc_buy_ticket_slug, `sl_${slug}`);
+  }
+
+  // To redirect route when he purchase the plan to create musics
   setArtistPanel(id: string) {
     localStorage.setItem(this.keys.rc_artist_panel, `${id}`);
   }
 
-  // To redirect route when he purchase something
+  // To redirect route when he purchase the plan for create event
   setOrganizerPanel(id: string) {
     localStorage.setItem(this.keys.rc_organizer_panel, `${id}`);
   }

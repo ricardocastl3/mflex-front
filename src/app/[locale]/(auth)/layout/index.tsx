@@ -35,6 +35,7 @@ export default function AuthLayout({
     }`;
 
     if (userLogged && userLogged.status == 0) {
+      // to reload user informations
       window.location.href = urlSafed;
     } else {
       router.push(urlSafed);
