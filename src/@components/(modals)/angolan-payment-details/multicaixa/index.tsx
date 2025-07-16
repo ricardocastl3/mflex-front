@@ -69,7 +69,7 @@ export default function MulticaixaPayment() {
         phone_number: phoneNumber,
         amount: itemPriceIdCheckoutSelected?.amount || undefined,
         btag: LocalStorageServices.getAffiliateCode() || undefined,
-        d: socketEvent?.metadata,
+        d: socketEvent?.user_id,
       });
 
       setAlreadySent(resp.data.d);

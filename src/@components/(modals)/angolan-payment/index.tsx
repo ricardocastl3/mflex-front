@@ -2,9 +2,6 @@ import { useModal } from "@/providers/app/ModalProvider";
 import { useEffect, useState } from "react";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { useCheckoutProvider } from "@/providers/app/CheckoutProvider";
-import { socketClient } from "@/providers/auth/SocketProvider";
-import { v4 as uuid } from "uuid";
-import { useAuth } from "@/providers/auth/AuthProvider";
 
 import BaseModal from "../base";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
@@ -21,7 +18,6 @@ export default function AngolanPaymentModal() {
     handlePriceAmountSelected,
     handleSelectAngolanMethod,
   } = useCheckoutProvider();
-  const { userLogged } = useAuth();
 
   function handleClose() {
     handleAddItemOnCheckout(undefined);
@@ -30,14 +26,6 @@ export default function AngolanPaymentModal() {
   }
 
   useEffect(() => {
-    let userId;
-    if (userLogged) {
-      userId = userLogged.id;
-    } else {
-      userId = uuid();
-    }
-
-    socketClient.emit("k", userId);
     handleSelectAngolanMethod("express");
   }, []);
 

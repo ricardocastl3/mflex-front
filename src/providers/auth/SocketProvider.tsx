@@ -11,7 +11,8 @@ interface ISocketProviderProps {
 
 interface ISocketEvent {
   name: "reference-pay" | "new-app-version" | "new-notify" | "";
-  metadata: string;
+  user_id: string;
+  metadata?: any;
 }
 
 export const socketClient = io(process.env.MFLEX_SERVER_URL);
@@ -29,15 +30,15 @@ export default function SocketProvider({
   children: React.ReactNode;
 }) {
   const [socketEvent, setSocketEvent] = useState<ISocketEvent>({
-    metadata: "",
+    user_id: "",
     name: "",
   });
 
   const { userLogged } = useAuth();
 
   useEffect(() => {
-    let userId;
-    if (userLogged) {
+    let userId = "";
+    if (userLogged?.id) {
       userId = userLogged.id;
     } else {
       userId = uuid();
@@ -45,6 +46,7 @@ export default function SocketProvider({
 
     socketClient.emit("k", userId);
 
+    setSocketEvent((state) => ({ ...state, user_id: userId }));
     socketClient.on("reference-pay", (data) => {
       setSocketEvent((state) => ({ ...state, name: "reference-pay" }));
     });
