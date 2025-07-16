@@ -10,7 +10,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { useAuth } from "@/providers/auth/AuthProvider";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useModal } from "@/providers/app/ModalProvider";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
@@ -25,7 +25,6 @@ export default function SignInPage() {
   // Context
   const { handleAddToastOnArray } = useAppProvider();
   const { fetchUserInformations } = useAuth();
-  const { handleOpenModal } = useModal();
 
   // Controls
   const [isSubmit, setIsSubmit] = useState(false);
@@ -51,7 +50,7 @@ export default function SignInPage() {
   async function handleSignIn(data: formData) {
     try {
       setIsSubmit(true);
-      await internalApi.post("/auth/sign-in", {
+      const resp = await internalApi.post("/auth/sign-in", {
         phone: data.phone,
         password: data.password,
       });
@@ -62,6 +61,11 @@ export default function SignInPage() {
         setTimeout(() => {
           window.location.href = `/${langByCookies}`;
         }, 400);
+        return;
+      }
+
+      if (resp.status == 0) {
+        window.location.href = `/${langByCookies}/confirm-account`;
         return;
       }
 
