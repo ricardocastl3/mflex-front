@@ -91,10 +91,6 @@ export default function MusicPage() {
               {currentArtistSubscription.subscription.is_expired && (
                 <Link href={`/${langByCookies}/art-pricing`}>
                   <AuSoftUI.UI.Button
-                    onClick={() => {
-                      handleSelectMusic(undefined),
-                        handleOpenModal("art-add-music");
-                    }}
                     size={"sm"}
                     className="rounded-full py-2 animate-pulse"
                     variant={"primary"}
