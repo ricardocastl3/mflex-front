@@ -55,17 +55,17 @@ export default function SignInPage() {
         password: data.password,
       });
 
+      if (resp.status == 0) {
+        window.location.href = `/${langByCookies}/confirm-account`;
+        return;
+      }
+
       if (LocalStorageServices.hasRedirectSubscriber()) {
         LocalStorageServices.removeRedirectSubscriber();
         await WebPushServices.register();
         setTimeout(() => {
-          window.location.href = `/${langByCookies}`;
+          window.location.href = `/${langByCookies}/`;
         }, 400);
-        return;
-      }
-
-      if (resp.status == 0) {
-        window.location.href = `/${langByCookies}/confirm-account`;
         return;
       }
 
