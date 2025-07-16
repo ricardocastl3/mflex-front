@@ -15,7 +15,6 @@ export default function useMusics({
     total: 0,
   });
   const [isLoadingAllMusics, setIsLoadingAllMusics] = useState(true);
-
   const [isLoadingMoreMusics, setIsLoadingMoreMusics] = useState(false);
 
   const apiRoutes = `/artists/musics/${route == "app" ? "me" : ""}`;

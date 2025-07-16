@@ -45,6 +45,10 @@ const nextConfig = withPWA({
         hostname: "pbs.twimg.com",
         protocol: "https",
       },
+      {
+        hostname: "media.marcaflex.com",
+        protocol: "https",
+      },
     ],
   },
   env: {

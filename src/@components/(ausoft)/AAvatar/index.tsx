@@ -8,11 +8,11 @@ export default function AAvatar({
 }: {
   src?: string;
   size: number;
-  width:number
+  width: number;
   wsite: string;
 }) {
   return (
-    <div className="cursor-pointer border-2 hover:bg-gradient-to-tl rounded-full border-yellow-600">
+    <div className="cursor-pointer border-2 bg-yellow-700 rounded-full border-yellow-600">
       <Image
         width={width}
         height={size}
