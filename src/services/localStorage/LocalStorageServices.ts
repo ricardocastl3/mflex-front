@@ -136,8 +136,9 @@ class LocalStorageServices {
   }
 
   redirectForBuyTicketEvent() {
+    const slug = this.getBuyTicketEventSlug();
     this.delKey(this.keys.rc_buy_ticket_slug);
-    window.location.href = `/${langByCookies}/events/${this.getBuyTicketEventSlug()}`;
+    window.location.href = `/${langByCookies}/events/${slug}`;
   }
 
   getWatchID() {
