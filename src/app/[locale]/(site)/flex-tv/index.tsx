@@ -68,6 +68,7 @@ export default function FlexTVPage() {
               name: cat.tv_channels[0].name,
               public: cat.tv_channels[0].is_public,
               is_live: cat.tv_channels[0].is_live,
+              views: cat.tv_channels[0].views,
               me: true,
             },
           ],
@@ -86,6 +87,7 @@ export default function FlexTVPage() {
                 is_live: tv.is_live,
                 public: tv.is_public,
                 me: true,
+                views: tv.views,
               });
             }
           });
@@ -149,6 +151,7 @@ export default function FlexTVPage() {
         public: tv.is_public,
         st: tv.st,
         logo: tv.logo,
+        views: tv.views,
       });
       handleOpenModal("watch-tv");
     } catch (err) {}

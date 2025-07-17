@@ -52,4 +52,5 @@ export interface ITVMovieSafed {
   rating: string;
   public: boolean;
   is_live: boolean;
+  views: IResourceView[];
 }

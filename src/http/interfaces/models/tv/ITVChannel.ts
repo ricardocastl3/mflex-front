@@ -41,6 +41,7 @@ export interface ITVChannelSafed {
   logo?: string;
   st: number;
   me: boolean;
+  views: IResourceView[];
   is_live: boolean;
   public: boolean;
 }

@@ -58,6 +58,16 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
           handleOpenModal("watch-no-ads");
         }
       }, 20000);
+
+      if (!selectedFlexTV) return;
+      const findView = selectedFlexTV?.views.find(
+        (i) => i.user.id == userLogged?.id
+      );
+      if (!findView) {
+        internalApi.post("/users/vs", {
+          id: selectedFlexTV.id,
+        });
+      }
     }
 
     return () => {
@@ -65,7 +75,7 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
         clearTimeout(timeout);
       }
     };
-  }, [checkUser, userLogged, handleOpenModal]);
+  }, [checkUser, userLogged, selectedFlexTV]);
 
   useEffect(() => {
     if (initialSRC == "") return;

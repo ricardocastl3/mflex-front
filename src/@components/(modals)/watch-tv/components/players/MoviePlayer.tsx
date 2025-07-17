@@ -2,6 +2,7 @@ import { ReactIcons } from "@/utils/icons";
 import { useAuth } from "@/providers/auth/AuthProvider";
 import { useModal } from "@/providers/app/ModalProvider";
 import { internalApi } from "@/http/axios/api";
+import { useFlexTVProvider } from "@/providers/features/FlexTVProvider";
 
 import React, { useRef, useEffect, useState } from "react";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
@@ -33,6 +34,7 @@ const MoviePlayer: React.FC<Props> = ({ item_id }) => {
 
   const { userLogged } = useAuth();
   const { handleOpenModal } = useModal();
+  const { selectedFlexTVMovie } = useFlexTVProvider();
 
   const watchUrl = "movies";
 
@@ -55,6 +57,18 @@ const MoviePlayer: React.FC<Props> = ({ item_id }) => {
           handleOpenModal("watch-no-ads");
         }
       }, 20000);
+
+      if (!selectedFlexTVMovie) return;
+      const findView = selectedFlexTVMovie?.views.find(
+        (i) => i.user.id == userLogged?.id
+      );
+      if (!findView) {
+        try {
+          internalApi.post("/users/vs", {
+            id: selectedFlexTVMovie.id,
+          });
+        } catch (err) {}
+      }
     }
 
     return () => {

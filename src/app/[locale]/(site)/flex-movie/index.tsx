@@ -67,6 +67,7 @@ export default function FlexMoviePage() {
               public: cat.tv_movies[0].is_public,
               is_live: cat.tv_movies[0].is_live,
               rating: cat.tv_movies[0].rating,
+              views: cat.tv_movies[0].views,
               me: true,
             },
           ],
@@ -85,6 +86,7 @@ export default function FlexMoviePage() {
                 public: tv.is_public,
                 is_live: tv.is_live,
                 rating: tv.rating,
+                views: tv.views,
                 me: true,
               });
             }
@@ -150,6 +152,7 @@ export default function FlexMoviePage() {
         st: mv.st,
         logo: mv.thumbnail,
         rating: mv.rating,
+        views: mv.views,
       });
       handleOpenModal("watch-tv");
     } catch (err) {}
