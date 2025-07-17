@@ -3,6 +3,7 @@ import { useAppProvider } from "@/providers/app/AppProvider";
 import { useModal } from "@/providers/app/ModalProvider";
 import { useMusicProvider } from "@/providers/features/MusicProvider";
 import { Dispatch, SetStateAction, useEffect } from "react";
+import { useAuth } from "@/providers/auth/AuthProvider";
 
 import CAxiosErrorToastify from "@/http/errors/CAxiosErrorToastify";
 
@@ -15,6 +16,7 @@ export default function MusicDeletionModal({
 }) {
   const { handleOpenModal, handleAddModalQuestionData } = useModal();
   const { handleAddToastOnArray } = useAppProvider();
+  const { handleFetchCurrentArtistSubs } = useAuth();
 
   const { handleFetchMusic, handleSelectMusic, selectedMusic } =
     useMusicProvider();
@@ -31,6 +33,10 @@ export default function MusicDeletionModal({
 
       handleFetchMusic(true);
       handleSelectMusic(undefined);
+      handleFetchCurrentArtistSubs(true);
+      setTimeout(() => {
+        handleFetchCurrentArtistSubs(false);
+      }, 500);
       handleAddModalQuestionData({ isSubmitting: false, isUpdated: true });
     } catch (err) {
       handleAddModalQuestionData({

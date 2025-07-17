@@ -203,9 +203,14 @@ export default function ArtistAddMusicModal() {
       }
 
       handleOpenModal("box-success");
-      handleFetchCurrentArtistSubs(true);
+
       handleFetchMusic(true);
       setIsSubmitting(false);
+
+      handleFetchCurrentArtistSubs(true);
+      setTimeout(() => {
+        handleFetchCurrentArtistSubs(false);
+      }, 500);
     } catch (err) {
       setIsSubmitting(false);
       return CAxiosErrorToastify({ err, openToast: handleAddToastOnArray });
