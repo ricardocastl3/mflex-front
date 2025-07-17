@@ -76,7 +76,7 @@ export default function FlexMoviePage() {
         const updateCategory = safedCategory.find((i) => i.id == cat.id);
         if (updateCategory)
           cat.tv_movies.forEach((tv) => {
-            const findTV = updateCategory.tv.find((i) => i.st == tv.st);
+            const findTV = updateCategory.tv.find((i) => i.id == tv.id);
             if (!findTV) {
               updateCategory.tv.push({
                 id: tv.id,
