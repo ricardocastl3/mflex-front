@@ -77,8 +77,19 @@ export default function MusicPage() {
             <div className="md:flex hidden items-center gap-3">
               <AuSoftUI.UI.Button
                 onClick={() => {
-                  handleSelectMusic(undefined),
+                  if (
+                    currentArtistSubscription.subscription.is_expired ||
+                    currentArtistSubscription.musics == 0
+                  ) {
+                    handleOpenModal("art-subs-limit");
+                  }
+                  if (
+                    !currentArtistSubscription.subscription.is_expired &&
+                    currentArtistSubscription.musics > 0
+                  ) {
+                    handleSelectMusic(undefined);
                     handleOpenModal("art-add-music");
+                  }
                 }}
                 size={"sm"}
                 className="rounded-full py-2"
@@ -108,7 +119,19 @@ export default function MusicPage() {
             <AuSoftUI.UI.Button
               size={"sm"}
               onClick={() => {
-                handleSelectMusic(undefined), handleOpenModal("art-add-music");
+                if (
+                  currentArtistSubscription.subscription.is_expired ||
+                  currentArtistSubscription.musics == 0
+                ) {
+                  handleOpenModal("art-subs-limit");
+                }
+                if (
+                  !currentArtistSubscription.subscription.is_expired &&
+                  currentArtistSubscription.musics > 0
+                ) {
+                  handleSelectMusic(undefined);
+                  handleOpenModal("art-add-music");
+                }
               }}
               className="rounded-full p-3"
               variant={"primary"}

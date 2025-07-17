@@ -36,7 +36,7 @@ import AdsListenMusicModal from "./ads/ads-listen-music";
 import GracefullDonateModal from "./artist/art-gracefull-donate";
 import UserNoHaveArtistProfileModal from "./artist/art-no-have-profile-subs";
 import ArtistComplaintMusicModal from "./artist/art-complaint-music";
-import TicketNotAvailableSubsExpiredModale from "./organizer/ticket-unavailable-subs";
+import TicketNotAvailableSubsExpiredModal from "./organizer/ticket-unavailable-subs";
 import ArtSendIdentityModal from "./artist/art-send-identity";
 import CreatorComplaintPostModal from "./creator/ct-complaint-post";
 import CreatorSharePostModal from "./creator/ct-share-post";
@@ -50,6 +50,7 @@ import AffiliateTutorialModal from "./affiliate/aff-tutorials";
 import ArtistTutorialModal from "./artist/art-tutorials";
 import AffiliateSendIdentityModal from "./affiliate/aff-send-identity";
 import OrganizerTutorialModal from "./organizer/org-tutorials";
+import ArtistSubscriptionLimit from "./artist/art-subs-limit";
 
 export default function ModalOpenProvider() {
   const { openModal } = useModal();
@@ -86,7 +87,7 @@ export default function ModalOpenProvider() {
       return <ListTicketModal />;
 
     case "ticket-unavailable-subs":
-      return <TicketNotAvailableSubsExpiredModale />;
+      return <TicketNotAvailableSubsExpiredModal />;
 
     case "view-ticket":
       return <ViewTicketModal />;
@@ -171,6 +172,9 @@ export default function ModalOpenProvider() {
 
     case "art-tutorials":
       return <ArtistTutorialModal />;
+
+    case "art-subs-limit":
+      return <ArtistSubscriptionLimit />;
 
     case "ct-complaint":
       return <CreatorComplaintPostModal />;

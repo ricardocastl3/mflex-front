@@ -44,6 +44,7 @@ export type modalType =
   | "affiliate-info"
   | "aff-tutorials"
   | "aff-send-identity"
+  | "art-subs-limit"
   | "art-gracefull-donate"
   | "art-view-donation-state"
   | "art-no-have-profile-subs"

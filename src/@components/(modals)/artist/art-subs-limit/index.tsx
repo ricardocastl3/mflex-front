@@ -11,10 +11,29 @@ import LocalStorageServices from "@/services/localStorage/LocalStorageServices";
 
 import Link from "next/link";
 
-export default function TicketNotAvailableSubsExpiredModal() {
+export default function ArtistSubscriptionLimit() {
   //Contexts
-  const { userLogged } = useAuth();
+  const { userLogged, currentArtistSubscription } = useAuth();
   const { handleOpenModal } = useModal();
+
+  const title =
+    currentArtistSubscription &&
+    currentArtistSubscription.subscription.is_expired
+      ? {
+          pt: `${userLogged?.first_name}, sua assinatura expirou`,
+          en: `${userLogged?.first_name}, your subscription has expired`,
+          des_en: `To continue adding new music, you will need to upgrade your subscription.`,
+          des_pt:
+            "Para continuar adicionando novas músicas, você precisará atualizar a sua assinatura",
+        }
+      : currentArtistSubscription?.musics == 0
+      ? {
+          pt: `${userLogged?.first_name}, já excedeu o limite `,
+          en: `${userLogged?.first_name}, has already exceeded the limit`,
+          des_en: `You've reached your monthly limit of ${currentArtistSubscription.subscription.plan?.art_musics} songs. To continue adding new songs, upgrade your subscription.`,
+          des_pt: `Atingiu o limite de ${currentArtistSubscription.subscription.plan?.art_musics} músicas no mês. Para continuar adicionando novas músicas atualize sua assinatura`,
+        }
+      : { pt: ``, en: ``, des_en: ``, des_pt: `` };
 
   return (
     <BaseModal callbackClose={() => {}}>
@@ -22,20 +41,14 @@ export default function TicketNotAvailableSubsExpiredModal() {
         <div className="md:px-8 px-4 py-5 flex flex-col items-center gap-2">
           <div className="text-[2rem] rounded-full pt-4">⚠️</div>
           <h4 className="font-bold text-lg md:w-[20vw] w-[70vw] text-red-600 text-center dark:text-red-400">
-            <CTranslateTo
-              eng={`${userLogged?.first_name}, your subscription has expired`}
-              pt={`${userLogged?.first_name}, sua assinatura expirou`}
-            />
+            <CTranslateTo eng={title.en} pt={title.pt} />
           </h4>
           <h4 className="flex md:flex-row flex-col md:w-[30vw] w-[80vw] text-center items-center gap-2 text-[0.9rem] dark:text-slate-400 text-slate-800">
-            <CTranslateTo
-              eng={`To continue selling tickets, you'll need to renew your subscription`}
-              pt={`Para continuar vendendo ingressos, você precisará renovar sua assinatura`}
-            />
+            <CTranslateTo eng={title.des_en} pt={title.des_pt} />
           </h4>
         </div>
         <div className="md:py-4 py-4 md:px-8 px-4 border-t border-slate-300 dark:border-slate-800 grid grid-cols-2 md:gap-4 gap-2">
-          <Link href={`/${langByCookies}/pricing`}>
+          <Link href={`/${langByCookies}/art-pricing`}>
             <AuSoftUI.UI.Button
               onClick={() => {
                 LocalStorageServices.setOrganizerPanel(
@@ -45,7 +58,10 @@ export default function TicketNotAvailableSubsExpiredModal() {
               variant={"primary"}
               className="items-center justify-center rounded-full w-full"
             >
-              <CTranslateTo eng={"Sign a Plan"} pt={"Assinar um plano"} />
+              <CTranslateTo
+                eng={"Upgrade Subscription"}
+                pt={"Atualizar Assinatura"}
+              />
             </AuSoftUI.UI.Button>
           </Link>
           <AuSoftUI.UI.Button
