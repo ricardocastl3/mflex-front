@@ -1,4 +1,3 @@
-import { useFlexTVProvider } from "@/providers/features/FlexTVProvider";
 import { ReactIcons } from "@/utils/icons";
 import { useAuth } from "@/providers/auth/AuthProvider";
 import { useModal } from "@/providers/app/ModalProvider";
@@ -7,6 +6,7 @@ import { internalApi } from "@/http/axios/api";
 import React, { useRef, useEffect, useState } from "react";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import videojs from "video.js";
+import CookieServices from "@/services/auth/CookieServices";
 
 import "video.js/dist/video-js.css";
 
@@ -16,13 +16,11 @@ import "@videojs/themes/dist/forest/index.css";
 import "@videojs/themes/dist/sea/index.css";
 import "videojs-hls-quality-selector";
 
-import CookieServices from "@/services/auth/CookieServices";
-
 interface Props {
   item_id: string;
 }
 
-const VideoPlayer: React.FC<Props> = ({ item_id }) => {
+const MoviePlayer: React.FC<Props> = ({ item_id }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const playerRef = useRef<any>(null);
   const tentativasRef = useRef(0);
@@ -35,14 +33,13 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
 
   const { userLogged } = useAuth();
   const { handleOpenModal } = useModal();
-  const { selectedFlexTV } = useFlexTVProvider();
 
-  const watchUrl = selectedFlexTV ? "streams" : "movies";
+  const watchUrl = "movies";
 
   useEffect(() => {
     internalApi.get(`/${watchUrl}/watch/${item_id}`).then((e) => {
-      setInitialSrc(e.data.url);
       if (e.data.url != "") {
+        setInitialSrc(e.data.url);
         const url = e.data.url.split("k=")[1];
         CookieServices.setWatchToken(url);
       }
@@ -87,12 +84,12 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
         ],
       });
 
-      const player = playerRef.current;
-
       // Ative o plugin de seleção de qualidade
       playerRef.current.hlsQualitySelector({
         displayCurrentQuality: true,
       });
+
+      const player = playerRef.current;
 
       player.on("playing", () => {
         setCheckUser(true);
@@ -146,4 +143,4 @@ const VideoPlayer: React.FC<Props> = ({ item_id }) => {
   );
 };
 
-export default VideoPlayer;
+export default MoviePlayer;

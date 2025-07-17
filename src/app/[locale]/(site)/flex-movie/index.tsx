@@ -64,7 +64,6 @@ export default function FlexMoviePage() {
               st: cat.tv_movies[0].st,
               logo: cat.tv_movies[0].thumbnail,
               name: cat.tv_movies[0].name,
-
               public: cat.tv_movies[0].is_public,
               is_live: cat.tv_movies[0].is_live,
               rating: cat.tv_movies[0].rating,
@@ -83,7 +82,6 @@ export default function FlexMoviePage() {
                 st: tv.st,
                 logo: tv.thumbnail,
                 name: tv.name,
-
                 public: tv.is_public,
                 is_live: tv.is_live,
                 rating: tv.rating,

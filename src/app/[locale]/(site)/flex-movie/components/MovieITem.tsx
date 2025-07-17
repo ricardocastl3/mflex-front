@@ -9,6 +9,7 @@ import { useAuth } from "@/providers/auth/AuthProvider";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { ReactIcons } from "@/utils/icons";
 import { useRouter } from "next/navigation";
+import { useAppProvider } from "@/providers/app/AppProvider";
 
 import Image from "next/image";
 import MovieStartRating from "./MovieStartRating";
@@ -25,6 +26,7 @@ export default function TVMovieItem({
   const { handleSelectFlexTVMovie, handleSelectFlexTV } = useFlexTVProvider();
   const { handleOpenModal } = useModal();
   const { currentSubscription } = useAuth();
+  const { serverStats } = useAppProvider();
 
   const [imageError, setImageError] = useState(false);
 
@@ -89,7 +91,8 @@ export default function TVMovieItem({
                 onError={() => setImageError(true)}
                 unoptimized
               />
-              {process.env.NODE_ENV == "production" && (
+
+              {!serverStats?.tv_movie_on && (
                 <>
                   <div className="z-20 flex-col rounded-xl gap-2 absolute bg-black/60  h-full flex justify-center items-center">
                     <h1 className="text-sm text-white md:px-8 px-4 text-center">
@@ -102,7 +105,7 @@ export default function TVMovieItem({
                 </>
               )}
 
-              {process.env.NODE_ENV != "production" && (
+              {serverStats?.tv_movie_on && (
                 <>
                   {!hasSubscription && (
                     <div className="z-20 flex-col rounded-xl gap-2 absolute bg-black/60  h-full flex justify-center items-center">

@@ -30,6 +30,8 @@ export async function GET(
     const pathFull = path.join("/");
 
     if (pathFull.startsWith("strx")) {
+      const pToken = url.searchParams.get("p");
+      const sToken = url.searchParams.get("s");
       const watchToken = cookieSafe.get(
         LocalStorageServices.keys.watch_token
       )?.value;
@@ -39,6 +41,8 @@ export async function GET(
         {
           responseType: "stream",
           params: {
+            p: pToken,
+            s: sToken,
             token: watchToken,
           },
         }

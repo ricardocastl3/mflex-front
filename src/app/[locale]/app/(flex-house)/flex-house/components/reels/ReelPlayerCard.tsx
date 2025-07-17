@@ -102,7 +102,6 @@ export default function ReelPlayerCard({ post }: { post: ICreatorPost }) {
         setIsLoading(true);
         setIsBuffering(true);
         setBufferingProgress(0);
-        console.log("Download started");
       };
 
       // Listener para progresso de carregamento
@@ -114,8 +113,6 @@ export default function ReelPlayerCard({ post }: { post: ICreatorPost }) {
 
           // Atualiza o progresso apenas se for maior que o anterior
           setBufferingProgress((prev) => Math.max(prev, progress));
-
-          console.log(`Download progress: ${progress.toFixed(1)}%`);
 
           // Se o buffer estiver suficiente para reprodução, para de mostrar loading
           if (progress > 10) {

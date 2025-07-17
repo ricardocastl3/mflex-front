@@ -150,6 +150,16 @@ export default function AppProvider({
 
   const path = usePathname();
 
+  const handleScroll = () => {
+    const scrollPercentage = (window.scrollY / window.innerHeight) * 100;
+    setIsScrolledWindow(scrollPercentage >= 10);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   useEffect(() => {
     const pathBase = path.split("/")[2];
     setCurrentPageByUrl(pathBase);
@@ -179,16 +189,6 @@ export default function AppProvider({
       }
     } catch (err) {}
   }, [userLogged]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPercentage = (window.scrollY / window.innerHeight) * 100;
-      setIsScrolledWindow(scrollPercentage > 10);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   useEffect(() => {
     if (socketEvent?.name == "new-app-version") {
