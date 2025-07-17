@@ -51,7 +51,7 @@ export default function TVMovieItem({
     <>
       <motion.div
         onClick={() => {
-          if (process.env.NODE_ENV != "production") {
+          if (serverStats?.tv_movie_on) {
             if (item.public) {
               handleSelectFlexTVMovie(item);
               handleSelectFlexTV(undefined);
