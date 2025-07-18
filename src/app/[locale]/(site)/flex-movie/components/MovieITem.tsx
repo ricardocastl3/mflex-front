@@ -1,5 +1,3 @@
-import { useFlexTVProvider } from "@/providers/features/FlexTVProvider";
-import { useModal } from "@/providers/app/ModalProvider";
 import { ITVMovieSafed } from "@/http/interfaces/models/tv/ITVMovie";
 import { motion } from "framer-motion";
 import { useState } from "react";
@@ -50,10 +48,10 @@ export default function TVMovieItem({
         onClick={() => {
           if (serverStats?.tv_movie_on) {
             if (item.public) {
-              window.location.href = `/${langByCookies}/flex-movie/${item.id}`;
+              router.push(`/${langByCookies}/flex-movie/${item.id}`);
             } else {
               if (currentSubscription && currentSubscription?.flex_movie) {
-                window.location.href = `/${langByCookies}/flex-movie/${item.id}`;
+                router.push(`/${langByCookies}/flex-movie/${item.id}`);
               } else {
                 handleSubscribe();
               }
