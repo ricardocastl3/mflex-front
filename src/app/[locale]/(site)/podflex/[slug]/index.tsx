@@ -29,7 +29,7 @@ export default function PreviewNew({ params }: Props) {
     try {
       const resp = await internalApi.get("/podcasts", {
         params: {
-          slug: pars.slug
+          slug: pars.slug,
         },
       });
 
@@ -69,7 +69,7 @@ export default function PreviewNew({ params }: Props) {
   if (selectedPodcasts && !isLoading && !isLoadingAllPodcasts)
     return (
       <div className="flex flex-col md:gap-8 gap-0">
-        <div className="relative w-full">
+        <div className="relative w-full md:flex hidden">
           <HeroPodFlex route="slug" />
           <div className="w-full md:flex hidden z-20 absolute inset-0 justify-center items-center">
             <div className="md:w-[60vw] w-[90vw] md:px-8 p-4 text-center">

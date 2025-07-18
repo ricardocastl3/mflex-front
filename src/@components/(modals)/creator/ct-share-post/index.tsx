@@ -10,6 +10,7 @@ import { IMusic } from "@/http/interfaces/models/artists/IMusic";
 import { IEvent } from "@/http/interfaces/models/organizer/IEvent";
 import { INews } from "@/http/interfaces/models/INews";
 import { IPodcast } from "@/http/interfaces/models/IPodCast";
+import { ITVMovie } from "@/http/interfaces/models/tv/ITVMovie";
 
 import React, { useState } from "react";
 import BaseModal from "../../base";
@@ -52,6 +53,9 @@ export default function CreatorSharePostModal() {
     } else if (selectedResourceType == "podcast") {
       const podcast = selectedResource as IPodcast;
       nextUrl = `${process.env.MFLEX_NEXT_PUBLIC_URL}/${langByCookies}/podflex/${podcast.slug}`;
+    } else if (selectedResourceType == "movie") {
+      const movie = selectedResource as ITVMovie;
+      nextUrl = `${process.env.MFLEX_NEXT_PUBLIC_URL}/${langByCookies}/flex-movie/${movie.id}`;
     }
 
     switch (type) {

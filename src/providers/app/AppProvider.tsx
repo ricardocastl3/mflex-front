@@ -167,7 +167,9 @@ export default function AppProvider({
     setCurrentLastPageUrl(path.slice(4));
 
     if (
-      (pathBase == "podflex" || pathBase == "musics") &&
+      (pathBase == "podflex" ||
+        pathBase == "musics" ||
+        pathBase == "flex-movie") &&
       path.split("/").length == 4
     ) {
       setHiddenMobileHeader(true);

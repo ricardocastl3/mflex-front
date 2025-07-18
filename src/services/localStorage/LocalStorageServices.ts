@@ -98,9 +98,9 @@ class LocalStorageServices {
   }
 
   redirectWatchMovie() {
-    const id = this.getWatchID();
+    const id = this.getWatchMovieID();
     this.resetAllKeys();
-    window.location.href = `/${langByCookies}/flex-movie?mv=${id}`;
+    window.location.href = `/${langByCookies}/flex-movie/${id}`;
   }
 
   redirectFootballAITeam() {

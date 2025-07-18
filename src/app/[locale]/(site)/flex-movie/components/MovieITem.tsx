@@ -23,8 +23,6 @@ export default function TVMovieItem({
   item: ITVMovieSafed;
   index: number;
 }) {
-  const { handleSelectFlexTVMovie, handleSelectFlexTV } = useFlexTVProvider();
-  const { handleOpenModal } = useModal();
   const { currentSubscription } = useAuth();
   const { serverStats } = useAppProvider();
 
@@ -42,8 +40,7 @@ export default function TVMovieItem({
   const hasSubscription =
     !item.public &&
     (!currentSubscription ||
-      (currentSubscription &&
-        !currentSubscription.subscription.plan?.flex_movie))
+      (currentSubscription && !currentSubscription?.flex_movie))
       ? false
       : true;
 
@@ -53,16 +50,10 @@ export default function TVMovieItem({
         onClick={() => {
           if (serverStats?.tv_movie_on) {
             if (item.public) {
-              handleSelectFlexTVMovie(item);
-              handleSelectFlexTV(undefined);
-              handleOpenModal("watch-tv");
+              window.location.href = `/${langByCookies}/flex-movie/${item.id}`;
             } else {
-              if (
-                currentSubscription &&
-                currentSubscription.subscription.plan?.flex_movie
-              ) {
-                handleSelectFlexTVMovie(item);
-                handleOpenModal("watch-tv");
+              if (currentSubscription && currentSubscription?.flex_movie) {
+                window.location.href = `/${langByCookies}/flex-movie/${item.id}`;
               } else {
                 handleSubscribe();
               }
@@ -108,7 +99,7 @@ export default function TVMovieItem({
               {serverStats?.tv_movie_on && (
                 <>
                   {!hasSubscription && (
-                    <div className="z-20 flex-col rounded-xl gap-2 absolute bg-black/60  h-full flex justify-center items-center">
+                    <div className="z-20 flex-col rounded-xl inset-0 gap-2 absolute bg-black/60  h-full flex justify-center items-center">
                       <h1 className="text-sm text-white md:px-8 px-4 text-center">
                         <CTranslateTo
                           eng="You don't have an subscription"

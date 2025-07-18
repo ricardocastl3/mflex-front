@@ -24,6 +24,7 @@ export type TSelectedResourceType =
   | "event"
   | "podcast"
   | "music"
+  | "movie"
   | "post"
   | undefined;
 

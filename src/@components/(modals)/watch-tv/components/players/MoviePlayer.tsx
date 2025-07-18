@@ -50,11 +50,14 @@ const MoviePlayer: React.FC<Props> = ({ item_id }) => {
 
   useEffect(() => {
     let timeout: NodeJS.Timeout;
+    if (!playerRef.current) return;
 
     if (checkUser) {
       timeout = setTimeout(() => {
         if (!userLogged) {
           handleOpenModal("watch-no-ads");
+          playerRef.current.dispose();
+          playerRef.current = null;
         }
       }, 20000);
 

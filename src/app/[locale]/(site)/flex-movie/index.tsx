@@ -1,17 +1,10 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { AuSoftUI } from "@/@components/(ausoft)";
-import {
-  ITVCategoryMovieSafed,
-  ITVMovie,
-} from "@/http/interfaces/models/tv/ITVMovie";
+import { ITVCategoryMovieSafed } from "@/http/interfaces/models/tv/ITVMovie";
 import { useAppProvider } from "@/providers/app/AppProvider";
 import { ReactIcons } from "@/utils/icons";
-import { useSearchParams } from "next/navigation";
-import { internalApi } from "@/http/axios/api";
-import { useFlexTVProvider } from "@/providers/features/FlexTVProvider";
-import { useModal } from "@/providers/app/ModalProvider";
 import { useAuth } from "@/providers/auth/AuthProvider";
 
 import HeroMovie from "./components/Hero";
@@ -26,8 +19,6 @@ export default function FlexMoviePage() {
     useMyMovies();
 
   const { handleCloseLeagueBox } = useAppProvider();
-  const { handleSelectFlexTVMovie } = useFlexTVProvider();
-  const { handleOpenModal } = useModal();
   const { currentSubscription } = useAuth();
 
   const [newCategory, setNewCategory] = useState<ITVCategoryMovieSafed[]>([]);
@@ -135,34 +126,6 @@ export default function FlexMoviePage() {
       setNewCategory(categories);
     }
   }, [selectedTypeChannel]);
-
-  const searchParams = useSearchParams();
-  const fetchMovie = useCallback(async (id: string) => {
-    try {
-      const resp = await internalApi.get<{ mv: ITVMovie }>("/movie/mv", {
-        params: { id },
-      });
-      const mv = resp.data.mv;
-      handleSelectFlexTVMovie({
-        id: mv.id,
-        is_live: mv.is_live,
-        me: true,
-        name: mv.name,
-        public: mv.is_public,
-        st: mv.st,
-        logo: mv.thumbnail,
-        rating: mv.rating,
-        views: mv.views,
-      });
-      handleOpenModal("watch-tv");
-    } catch (err) {}
-  }, []);
-
-  useEffect(() => {
-    const id = searchParams.get("mv") || "";
-    if (id == "") return;
-    fetchMovie(id);
-  }, [searchParams]);
 
   return (
     <div className="flex flex-col gap-4">
