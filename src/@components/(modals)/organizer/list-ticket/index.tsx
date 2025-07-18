@@ -4,7 +4,6 @@ import { useEventProvider } from "@/providers/features/EventProvider";
 import { AuSoftUI } from "@/@components/(ausoft)";
 import { useEventTicketProvider } from "@/providers/features/EventTicketProvider";
 import { useEffect, useState } from "react";
-import { useAuth } from "@/providers/auth/AuthProvider";
 import { IEventTicket } from "@/http/interfaces/models/organizer/IEventTicket";
 
 import AAuSoftLogo from "@/@components/(ausoft)/AAuSoftLogo";
@@ -20,7 +19,6 @@ export default function ListTicketModal() {
   const { handleOpenModal } = useModal();
   const { handleSeachEventTicket, isLoadingAllTickets, allTickets } =
     useEventTickets();
-  const { currentSubscription } = useAuth();
 
   // Constrols
   const [allTicketsSafed, setAllTicketsSafed] = useState<IEventTicket[]>(
@@ -88,12 +86,8 @@ export default function ListTicketModal() {
               </h2>
               <AuSoftUI.UI.Button
                 onClick={() => {
-                  if (!currentSubscription?.subscription.is_expired) {
-                    handleSelectEventTicket(undefined),
-                      handleOpenModal("add-ticket");
-                  } else {
-                    handleOpenModal("ticket-unavailable-subs");
-                  }
+                  handleSelectEventTicket(undefined),
+                    handleOpenModal("add-ticket");
                 }}
                 variant={"primary"}
                 size={"md"}
