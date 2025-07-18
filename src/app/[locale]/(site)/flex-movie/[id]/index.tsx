@@ -26,7 +26,7 @@ export default function PreviewNew({ params }: Props) {
   const [allMovieSafed, setAllMovieSafed] = useState<ITVMovie[]>([]);
 
   const { handleSelectFlexTVMovie } = useFlexTVProvider();
-  const { fetchResource } = useResourceProvider();
+  const { fetchResource, handleSelectResource } = useResourceProvider();
   const { isLoadingAllTVMovies, allTVMovies } = useMyMovies();
 
   const fetchMovie = useCallback(async () => {
@@ -36,6 +36,8 @@ export default function PreviewNew({ params }: Props) {
           id: pars.id,
         },
       });
+      
+      handleSelectResource(resp.data.mv);
       handleSelectFlexTVMovie(resp.data.mv);
       setSelectedMovie(resp.data.mv);
       setIsLoading(false);
