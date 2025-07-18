@@ -30,9 +30,9 @@ export async function generateMetadata({
     const findMovie = resp.data.mv;
 
     const description =
-      langByCookies == "pt"
-        ? `Acompanhe ${findMovie.name} na Marca Flex 👌📺`
-        : `Watch ${findMovie.name} non Marca Flex 👌📺`;
+      langByCookies == "en"
+        ? `Watch ${findMovie.name} no Marca Flex 👌📺`
+        : `Acompanhe ${findMovie.name} na Marca Flex 👌📺`;
 
     return {
       title: findMovie.name + " 📺 | Marca Flex",

@@ -72,12 +72,52 @@ export default function CreatorSharePostModal() {
         break;
 
       case "whatsapp":
-        const message = `${
-          langByCookies == "pt"
-            ? `Este poste na Marca Flex está incrível!\n\n→ Saiba mais: ${nextUrl}`
-            : `This Marca Flex post is amazing!\n\n→ Know more: ${nextUrl}`
-        }`;
+        let message = "";
 
+        switch (selectedResourceType) {
+          case "post":
+            message = `${
+              langByCookies == "pt"
+                ? `Este poste na Marca Flex está incrível!\n\n→ Saiba mais: ${nextUrl}`
+                : `This Marca Flex post is amazing!\n\n→ Know more: ${nextUrl}`
+            }`;
+            break;
+          case "music":
+            `${
+              langByCookies == "pt"
+                ? `Esta música na Marca Flex está incrível!\n\n→ Saiba mais: ${nextUrl}`
+                : `This music in Marca Flex is amazing!\n\n→ Know more: ${nextUrl}`
+            }`;
+            break;
+          case "movie":
+            message = `${
+              langByCookies == "pt"
+                ? `Este filme na Marca Flex está incrível!\n\n→ Saiba mais: ${nextUrl}`
+                : `This movie in Marca Flex is amazing!\n\n→ Know more: ${nextUrl}`
+            }`;
+            break;
+          case "podcast":
+            message = `${
+              langByCookies == "pt"
+                ? `Este podcast na Marca Flex está incrível!\n\n→ Saiba mais: ${nextUrl}`
+                : `This podcast in Marca Flex is amazing!\n\n→ Know more: ${nextUrl}`
+            }`;
+            break;
+          case "news":
+            message = `${
+              langByCookies == "pt"
+                ? `Esta notícia na Marca Flex está incrível!\n\n→ Saiba mais: ${nextUrl}`
+                : `This news in Marca Flex is amazing!\n\n→ Know more: ${nextUrl}`
+            }`;
+            break;
+          case "event":
+            message = `${
+              langByCookies == "pt"
+                ? `Este evento na Marca Flex está incrível!\n\n→ Saiba mais: ${nextUrl}`
+                : `This event in Marca Flex is amazing!\n\n→ Know more: ${nextUrl}`
+            }`;
+            break;
+        }
         sharedLink = `https://wa.me/?text=${encodeURIComponent(message)}`;
         break;
 
