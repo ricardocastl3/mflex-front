@@ -5,19 +5,16 @@ import { AuSoftUI } from "@/@components/(ausoft)";
 import { useModal } from "@/providers/app/ModalProvider";
 import { useEffect } from "react";
 import { useEventProvider } from "@/providers/features/EventProvider";
-import { useAuth } from "@/providers/auth/AuthProvider";
 
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
 import EventBox from "./components/EventBox";
 import PageBase from "../../@components/PageBase";
 import useEvents from "@/hooks/api/organizer/useEvents";
-import EventNoSubscription from "./components/EventNoSubscription";
 
 export default function EventAppPage() {
   // Contexts
   const { handleOpenModal } = useModal();
   const { fetchEvent, handleSelectEvent } = useEventProvider();
-  const { currentSubscription } = useAuth();
 
   const { allEvents, fetchAllEvents, handleSeachByName, isLoadingAllEvents } =
     useEvents({
@@ -45,50 +42,37 @@ export default function EventAppPage() {
             className="md:w-[19rem] w-full rounded-full font-bold border-slate-400"
             placeholder="Ex: Formação Você Rei..."
           />
-          {currentSubscription && (
-            <div className="md:flex hidden items-center gap-3">
-              <AuSoftUI.UI.Button
-                onClick={() => {
-                  if (currentSubscription.subscription.is_expired) {
-                    handleOpenModal("ticket-unavailable-subs");
-                  } else {
-                    handleSelectEvent(undefined), handleOpenModal("add-event");
-                  }
-                }}
-                size={"sm"}
-                className="rounded-full py-2"
-                variant={"primary"}
-              >
-                <CTranslateTo eng="New Event" pt="Novo Evento" />
-                <ReactIcons.Hi2Icon.HiCalendar size={18} />
-              </AuSoftUI.UI.Button>
-            </div>
-          )}
-        </div>
-        {currentSubscription && (
-          <div className="md:hidden flex fixed gap-4 bottom-[4.9rem] right-[4.4rem] z-20">
+
+          <div className="md:flex hidden items-center gap-3">
             <AuSoftUI.UI.Button
-              size={"sm"}
               onClick={() => {
-                if (currentSubscription.subscription.is_expired) {
-                  handleOpenModal("ticket-unavailable-subs");
-                } else {
-                  handleSelectEvent(undefined), handleOpenModal("add-event");
-                }
+                handleSelectEvent(undefined), handleOpenModal("add-event");
               }}
-              className="rounded-full p-3"
+              size={"sm"}
+              className="rounded-full py-2"
               variant={"primary"}
             >
+              <CTranslateTo eng="New Event" pt="Novo Evento" />
               <ReactIcons.Hi2Icon.HiCalendar size={18} />
             </AuSoftUI.UI.Button>
           </div>
-        )}
-      </div>
-      {currentSubscription && (
-        <EventBox isLoading={isLoadingAllEvents} events={allEvents} />
-      )}
+        </div>
 
-      {!currentSubscription && <EventNoSubscription />}
+        <div className="md:hidden flex fixed gap-4 bottom-[4.9rem] right-[4.4rem] z-20">
+          <AuSoftUI.UI.Button
+            size={"sm"}
+            onClick={() => {
+              handleSelectEvent(undefined), handleOpenModal("add-event");
+            }}
+            className="rounded-full p-3"
+            variant={"primary"}
+          >
+            <ReactIcons.Hi2Icon.HiCalendar size={18} />
+          </AuSoftUI.UI.Button>
+        </div>
+      </div>
+
+      <EventBox isLoading={isLoadingAllEvents} events={allEvents} />
     </PageBase>
   );
 }
