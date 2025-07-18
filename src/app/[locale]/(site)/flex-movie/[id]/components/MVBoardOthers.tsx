@@ -33,7 +33,7 @@ export default function MVBoardOthers({
           )
           .map((newEl, i) => {
             return (
-              i <= 2 && (
+              i <= filterItem && (
                 <TVMovieItem
                   item={{
                     public: newEl.is_public,
