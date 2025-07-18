@@ -57,7 +57,7 @@ export default function MVBoardRelated({
           )
           .map((newEl, i) => {
             return (
-              i <= 2 && (
+              i < 1 && (
                 <TVMovieItem
                   item={{
                     public: newEl.is_public,
