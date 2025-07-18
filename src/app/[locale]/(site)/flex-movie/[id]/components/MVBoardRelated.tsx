@@ -15,6 +15,7 @@ export default function MVBoardRelated({
   movies: ITVMovie[];
   displayMode: "mobile" | "desktop" | "both";
 }) {
+  const filterItem = window.innerWidth > 765 ? 1 : 2;
   return (
     <div
       className={`${
@@ -57,7 +58,7 @@ export default function MVBoardRelated({
           )
           .map((newEl, i) => {
             return (
-              i < 1 && (
+              i < filterItem && (
                 <TVMovieItem
                   item={{
                     public: newEl.is_public,
