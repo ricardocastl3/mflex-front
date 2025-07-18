@@ -51,7 +51,7 @@ export default function PreviewNew({ params }: Props) {
   useEffect(() => {
     if (isLoadingAllTVMovies) return;
 
-    let movies: ITVMovie[] = [];
+    const movies: ITVMovie[] = [];
 
     const cats = allTVMovies.map((cat) => cat.tv_movies);
 
