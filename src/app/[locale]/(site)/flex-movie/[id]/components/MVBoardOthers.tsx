@@ -18,7 +18,7 @@ export default function MVBoardOthers({
   ) {
     return <></>;
   }
-  const filterItem = window.innerWidth > 765 ? 2 : 3;
+  const filterItem = window.innerWidth > 765 ? 4 : 3;
   return (
     <div className="md:py-10 py-10 md:px-[3rem] px-5 flex mt-5 flex-col gap-8 bg-slate-300/40 dark:bg-ausoft-slate-950 pt-2 border-t border-slate-300 dark:border-slate-800">
       <h1 className="dark:text-white text-xl font-bold md:pt-0 pt-8">
