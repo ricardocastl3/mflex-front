@@ -3,8 +3,6 @@ import { Metadata } from "next";
 export { default } from "./layout/index";
 
 export const metadata: Metadata = {
-  description:
-    "Somos a maior plataforma de entretenimento em África, onde você pode explorar podcasts, eventos e novidades imperdíveis. Junte-se a nós e descubra como podemos transformar suas ideias em realidade!",
   keywords: [
     "entretenimento",
     "África",
@@ -32,23 +30,6 @@ export const metadata: Metadata = {
       pt: "/pt",
       en: "/en",
     },
-  },
-  openGraph: {
-    type: "website",
-    locale: "pt_BR",
-    url: "https://marcaflex.com",
-    siteName: "Marca Flex",
-    title: "Marca Flex - Maior Plataforma de Entretenimento em África",
-    description:
-      "Somos a maior plataforma de entretenimento em África, onde você pode explorar podcasts, eventos e novidades imperdíveis.",
-    images: [
-      {
-        url: "/icons/logo.png",
-        width: 1200,
-        height: 630,
-        alt: "Marca Flex - Plataforma de Entretenimento",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
