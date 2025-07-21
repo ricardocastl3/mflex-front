@@ -259,6 +259,7 @@ class LocalStorageServices {
       return false;
     }
   }
+  
   hasSubscriber() {
     if (localStorage.getItem(ECOOKIES.localStorage.subscriber)) {
       return true;

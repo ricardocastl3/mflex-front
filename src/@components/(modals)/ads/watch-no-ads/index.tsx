@@ -23,7 +23,11 @@ export default function WatchNodAdsModal() {
       LocalStorageServices.setWatchMovieID(selectedFlexTVMovie.id);
     }
 
-    window.location.href = `/${langByCookies}/sign-up`;
+    if (LocalStorageServices.hasSubscriber()) {
+      window.location.href = `/${langByCookies}/sign-in`;
+    } else {
+      window.location.href = `/${langByCookies}/sign-up`;
+    }
   }
 
   return (
