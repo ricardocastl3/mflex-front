@@ -6,6 +6,7 @@ import { useState } from "react";
 import { ReactIcons } from "@/utils/icons";
 import { langByCookies } from "@/http/axios/api";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useEventTicketProvider } from "@/providers/features/EventTicketProvider";
 
 import BaseModal from "../base";
 import CTranslateTo from "@/@components/(translation)/CTranslateTo";
@@ -21,11 +22,12 @@ export default function AngolanPaymentDetailsModal() {
   const {
     selectedAngolanMethod,
     handleAddItemOnCheckout,
-    selectedCheckoutTicket,
     handlePriceAmountSelected,
     itemPriceIdCheckoutSelected,
     isPurchased,
   } = useCheckoutProvider();
+
+  const { selectedEventTicket } = useEventTicketProvider();
 
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -41,7 +43,7 @@ export default function AngolanPaymentDetailsModal() {
     if (!isPurchased) handleOpenModal("");
 
     if (isPurchased) {
-      if (selectedCheckoutTicket) {
+      if (selectedEventTicket) {
         window.location.href = "/" + langByCookies + "/app/tickets";
         return;
       }

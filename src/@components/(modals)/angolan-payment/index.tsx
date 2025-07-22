@@ -17,6 +17,7 @@ export default function AngolanPaymentModal() {
     handleAddItemOnCheckout,
     handlePriceAmountSelected,
     handleSelectAngolanMethod,
+    handleIsPurchased,
   } = useCheckoutProvider();
 
   function handleClose() {
@@ -27,6 +28,7 @@ export default function AngolanPaymentModal() {
 
   useEffect(() => {
     handleSelectAngolanMethod("express");
+    handleIsPurchased(false);
   }, []);
 
   return (
