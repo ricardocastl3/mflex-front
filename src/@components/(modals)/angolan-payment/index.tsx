@@ -27,7 +27,7 @@ export default function AngolanPaymentModal() {
   }
 
   useEffect(() => {
-    handleSelectAngolanMethod("express");
+    handleSelectAngolanMethod("reference");
     handleIsPurchased(false);
   }, []);
 
@@ -53,7 +53,7 @@ export default function AngolanPaymentModal() {
             title_pt="Pagamento por Referência"
           />
           <PaymentCard
-            active={true}
+            active={false}
             isLoading={isLoading}
             isSelected={selectedAngolanMethod == "express" ? true : false}
             method="express"

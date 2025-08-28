@@ -21,7 +21,7 @@ export const socketClient = io(process.env.MFLEX_SERVER_URL, {
   reconnection: true,
   reconnectionDelayMax: 10000,
   query: {
-    k: getCookie(ECOOKIES.COOKIE_USER_AUTH_TOKEN),
+    jesus: getCookie(ECOOKIES.COOKIE_USER_AUTH_TOKEN),
   },
 });
 
