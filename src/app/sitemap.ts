@@ -57,7 +57,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: "2025-07-10",
       changeFrequency: "hourly",
       priority: 0.8,
-      alternates: {
+      alternates: { 
         languages: {
           pt: `${BASE_URL}/pt/events`,
           en: `${BASE_URL}/en/events`,

@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL(process.env.MFLEX_NEXT_PUBLIC_URL),
   alternates: {
-    canonical: "/",
+    canonical: process.env.MFLEX_NEXT_PUBLIC_URL + "/pt",
     languages: {
       pt: "/pt",
       en: "/en",

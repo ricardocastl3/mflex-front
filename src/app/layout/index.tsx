@@ -43,6 +43,88 @@ export default function RootLayout({
   FacebookPixel({ pixelId: "1182352936527746" });
   return (
     <html lang="en" translate="no">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                name: "Marcaflex",
+                url: process.env.MFLEX_NEXT_PUBLIC_URL + "/pt",
+                logo: process.env.MFLEX_NEXT_PUBLIC_URL + "/icons/logo.png",
+                description:
+                  "Marca Flex - Maior Plataforma de Entretenimento em África",
+                foundingDate: "2025-07-15",
+                founder: {
+                  "@type": "Person",
+                  name: "Ricardo Castle",
+                },
+                contactPoint: [
+                  {
+                    "@type": "ContactPoint",
+                    contactType: "customer service",
+                    email: "suporte@marcaflex.com",
+                    telephone: "+244941185831",
+                    availableLanguage: ["pt", "en"],
+                  },
+                ],
+                areaServed: "Worldwide",
+                sameAs: ["https://www.instagram.com/marcafl3x"],
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                name: "Marca Flex",
+                url: process.env.MFLEX_NEXT_PUBLIC_URL + "/pt",
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                name: "Marca Flex",
+                operatingSystem: "Web",
+                applicationCategory: "BusinessApplication",
+                url: "https://marcaflex.com/pt",
+                description:
+                  "Plataforma online que automatiza tarefas e aumenta a produtividade de empreendedores de língua portuguesa.",
+                offers: [
+                  {
+                    "@type": "Offer",
+                    price: "950",
+                    priceCurrency: "AOA",
+                    url: "https://marcaflex.com/pt/pricing",
+                    eligibleRegion: "Worldwide",
+                    priceSpecification: {
+                      "@type": "UnitPriceSpecification",
+                      price: "950",
+                      priceCurrency: "AOA",
+                      billingDuration: "P1M",
+                      unitCode: "MON",
+                    },
+                  },
+                  {
+                    "@type": "Offer",
+                    price: "4900",
+                    priceCurrency: "AOA",
+                    url: "https://marcaflex.com/pt/pricing",
+                    eligibleRegion: "Angola",
+                    priceSpecification: {
+                      "@type": "UnitPriceSpecification",
+                      price: "4900",
+                      priceCurrency: "AOA",
+                      billingDuration: "P1M",
+                      unitCode: "MON",
+                    },
+                  },
+                ],
+                screenshot: "https://marcaflex.com/assets/app-preview.png",
+              },
+            ]),
+          }}
+        />
+      </head>
+
       <body
         className={`${anek.className} transition-all duration-500 bg-slate-200/80 dark:bg-ausoft-slate-950`}
       >
