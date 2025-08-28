@@ -4,6 +4,8 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { v4 as uuid } from "uuid";
 import { useAuth } from "./AuthProvider";
+import { getCookie } from "cookies-next";
+import { ECOOKIES } from "@/utils/enums";
 
 interface ISocketProviderProps {
   socketEvent: ISocketEvent | undefined;
@@ -15,7 +17,13 @@ interface ISocketEvent {
   metadata?: any;
 }
 
-export const socketClient = io(process.env.MFLEX_SERVER_URL);
+export const socketClient = io(process.env.MFLEX_SERVER_URL, {
+  reconnection: true,
+  reconnectionDelayMax: 10000,
+  query: {
+    k: getCookie(ECOOKIES.COOKIE_USER_AUTH_TOKEN),
+  },
+});
 
 export const SocketProviderContext = createContext({} as ISocketProviderProps);
 
@@ -45,6 +53,20 @@ export default function SocketProvider({
     }
 
     socketClient.emit("k", userId);
+
+    socketClient.on("connect", () => {
+      socketClient.emit("k", userId);
+    });
+
+    socketClient.on("disconnect", (reason) => {
+      if (socketClient.active) {
+        // temporary disconnection, the socket will automatically try to reconnect
+      } else {
+        if (reason === "io server disconnect") {
+          socketClient.connect();
+        }
+      }
+    });
 
     setSocketEvent((state) => ({ ...state, user_id: userId }));
     socketClient.on("reference-pay", (data) => {
