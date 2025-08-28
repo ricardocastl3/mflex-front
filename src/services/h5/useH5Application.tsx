@@ -6,7 +6,7 @@ export default function useH5App() {
     window.addEventListener("message", function (ev) {
       if (/\.zsaipay\.com$/.test(ev.origin)) {
         // Control the message source
-        let message = JSON.parse(ev.data);
+        const message = JSON.parse(ev.data);
         // The'message' must have a member 'action', indicating the result of what action.
         if (message["action"] === "...") {
           //... Execute
