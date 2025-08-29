@@ -1,6 +1,6 @@
 "use client";
 
-import { appConfigs, ECOOKIES } from "@/utils/enums";
+import { ECOOKIES } from "@/utils/enums";
 import React, {
   createContext,
   useCallback,
@@ -10,11 +10,12 @@ import React, {
 } from "react";
 
 import { IUserResponse } from "@/http/interfaces/responses/IUserResponse";
-import { getCookie, hasCookie, setCookie } from "cookies-next";
+import { hasCookie, setCookie } from "cookies-next";
 import { internalApi, langByCookies } from "@/http/axios/api";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ISubscriptionUsage } from "@/http/interfaces/models/subscriptions/ISubscriptionUsage";
 import { IMusicSubscription } from "@/http/interfaces/models/artists/IMusicSubscription";
+import { h5PayPaySendMessage } from "@/services/h5/H5PayPayApplication";
 
 import CookieServices from "@/services/auth/CookieServices";
 import useSubscription from "@/hooks/api/useSubscription";
@@ -24,6 +25,7 @@ interface IAuthContextProps {
   isLoadingUserData: boolean;
   isLoadingCurrentSubsUsage: boolean;
 
+  isPayPayClient: boolean;
   isUserConfirmed: boolean;
   userLogged: IUserResponse | undefined;
   currentSubscription: ISubscriptionUsage | undefined;
@@ -52,6 +54,8 @@ export default function AuthProvider({
   const [userLogged, setUserLogged] = useState<IUserResponse | undefined>();
   const [isUserConfirmed, setIsUserConfirmed] = useState(false);
 
+  const [isPayPayClient, setIsPayPayClient] = useState(false);
+
   const [currentSubscription, setCurrentSubscription] = useState<
     ISubscriptionUsage | undefined
   >();
@@ -75,6 +79,7 @@ export default function AuthProvider({
 
   const path = usePathname();
   const startRoutes = path.slice(4);
+  const searchParams = useSearchParams();
 
   const router = useRouter();
 
@@ -130,7 +135,9 @@ export default function AuthProvider({
 
       setUserLogged(user);
       setIsLoadingUserData(false);
+      h5PayPaySendMessage({ action: "toggleLoading", show: false });
     } catch (err) {
+      h5PayPaySendMessage({ action: "toggleLoading", show: false });
       if (startRoutes == "app" || startRoutes == "confirm-account") {
         return handleRedirectToSign();
       } else {
@@ -179,11 +186,20 @@ export default function AuthProvider({
     fetchCurrentArtistSubscription,
   ]);
 
+  useEffect(() => {
+    // PayPay Integration
+    const lang = searchParams.get("_paypay_lang") || "pt";
+    const client = searchParams.get("_paypay_client") === "yes";
+
+    if (client) setIsPayPayClient(true);
+  }, []);
+
   return (
     <AuthContext.Provider
       value={{
         isLoadingUserData,
         isLoadingCurrentSubsUsage,
+        isPayPayClient,
 
         isUserConfirmed,
         currentSubscription,

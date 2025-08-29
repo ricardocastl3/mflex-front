@@ -6,6 +6,7 @@ import { useAppProvider } from "@/providers/app/AppProvider";
 import { useWebPush } from "@/hooks/useWebPush";
 import { langByCookies } from "@/http/axios/api";
 import { useFlexHouseProvider } from "@/providers/features/FlexHouseProvider";
+import { h5PayPaySendMessage } from "@/services/h5/H5PayPayApplication";
 
 import AHeader from "@/@components/(system)/AHeader";
 import LoadingLayout from "@/app/onload-pages/_loading-layouts";
@@ -44,10 +45,13 @@ export default function MFlexLayout({
 
     if (userLogged?.status == 3) return handleLogout();
 
-    if (userLogged?.status == 1) return setIsLoadingAll(false);
+    if (userLogged?.status == 1) {
+      return setIsLoadingAll(false);
+    }
   }, [userLogged]);
 
   if (isLoadingUserData || isLoadingAll) {
+    h5PayPaySendMessage({ action: "toggleLoading", show: true });
     return <LoadingLayout />;
   }
 
